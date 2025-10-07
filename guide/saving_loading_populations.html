@@ -1,112 +1,393 @@
 
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
-<head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Saving and loading populations &mdash; Brush 0.1.dev1+ga5affc5fe documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
-      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Saving and loading populations &#8212; Brush 0.1a documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-    <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=f69ed792"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-      <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/js/theme.js"></script>
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=74359811"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/saving_loading_populations';</script>
+    <link rel="icon" href="../_static/paint-brush-solid.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="The archive" href="archive.html" />
-    <link rel="prev" title="JSON Interoperability" href="json.html" /> 
-</head>
+    <link rel="prev" title="JSON Interoperability" href="json.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-          
-          
-          <a href="../index.html" class="icon icon-home">
-            Brush
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Quickstart</span></p>
-<ul>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Brush 0.1a documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quickstart</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics.html">Basic Usage</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Cookbook</a><ul class="current">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Cookbook</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="data.html">Working with Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="search_space.html">The Search Space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="working_with_programs.html">Working with Programs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="json.html">JSON Interoperability</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Saving and loading populations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#saving-just-the-archive">Saving just the archive</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#using-population-files-with-classification">Using population files with classification</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#serialization-with-pickle">Serialization with pickle</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#stop-resume-the-fitting-of-an-estimator">Stop/resume the fitting of an estimator</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Saving and loading populations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="archive.html">The archive</a></li>
 <li class="toctree-l2"><a class="reference internal" href="deap.html">Using Deap</a></li>
 </ul>
-</li>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cpp_api/index.html">C++ API</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python_api/index.html">Python API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/estimator.html">BrushEstimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/interface.html">EstimatorInterface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/regressor.html">BrushRegressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/classifier.html">BrushClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/python_api.html">Python API</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cpp_api/index.html">C++ API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/data.html">Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/timeseries.html">TimeSeries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/search_space.html">SearchSpace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/program.html">Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/node.html">Node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/nodetypes.html">NodeTypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/individual.html">Individual and Fitness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/evaluation.html">Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/population.html">Population</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/variation.html">Variation (Crossover/Mutation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/selection.html">Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/archive.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/engine.html">Engine (and parameters)</a></li>
+</ul>
+</details></li>
 </ul>
 
-        </div>
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
       </div>
-    </nav>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Brush</a>
-      </nav>
+<div class="sbt-scroll-pixel-helper"></div>
 
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="index.html">Cookbook</a></li>
-      <li class="breadcrumb-item active">Saving and loading populations</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/guide/saving_loading_populations.ipynb.txt" rel="nofollow"> View page source</a>
-      </li>
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/cavalab/brush" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/guide/saving_loading_populations.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
   </ul>
-  <hr/>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Saving and loading populations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-just-the-archive">Saving just the archive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-population-files-with-classification">Using population files with classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serialization-with-pickle">Serialization with pickle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-resume-the-fitting-of-an-estimator">Stop/resume the fitting of an estimator</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section id="saving-and-loading-populations">
-<h1>Saving and loading populations<a class="headerlink" href="#saving-and-loading-populations" title="Link to this heading"></a></h1>
+<h1>Saving and loading populations<a class="headerlink" href="#saving-and-loading-populations" title="Link to this heading">#</a></h1>
 <p>Another feature Brush implements is the ability to save and load entire populations.
 We use JSON notation to store the population into a file that is human readable. The same way, we can feed an estimator a previous population file to serve as starting point for the evolution.</p>
 <p>In this notebook, we will walk through how to use the <code class="docutils literal notranslate"><span class="pre">save_population</span></code> and <code class="docutils literal notranslate"><span class="pre">load_population</span></code> parameters.</p>
@@ -152,87 +433,87 @@ We use JSON notation to store the population into a file that is human readable.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generation 1/10 [//////                                            ]
-Best model on Val:If(x0&gt;0.75,If(x0&gt;0.81,7.05*Add(6.40*Cos(-6.10*Logabs(11.47*Sin(1.01*Add(1.01*x3,1.20*x4)))),-3.64*Sin(0.90*x3)),If(x6&gt;0.32,0.41*Add(0.52*x3,0.08*x2),1.91*Mul(1.89*x0,1.89*x4))),If(x0&gt;0.70,0.10*Mul(0.03*x3,0.09*x3),If(x0&gt;0.63,17.11,24.59*x0)))
-Train Loss (Med): 8.30766 (81.98991)
-Val Loss (Med): 8.30766 (81.98991)
-Median Size (Max): 7 (138)
-Median complexity (Max): 314 (848846280)
-Time (s): 0.90195
+Best model on Val:-39.13*Cos(If(x0&gt;0.75,-8.80*Logabs(If(x0&gt;0.81,-16.05*x4,5.98*Add(14.92*Exp(-114.76*x0),-23.79*Mul(-23.80,-23.69*x0)))),-23.22*Sin(-12.85*Cos(59.97*Logabs(-2.43*Mul(-2.43*x0,-2.42*x0))))))
+Train Loss (Med): 13.88955 (90.38513)
+Val Loss (Med): 9.49872 (90.38513)
+Median Size (Max): 7 (108)
+Median complexity (Max): 90 (2110834504)
+Time (s): 0.39048
 
 Generation 2/10 [///////////                                       ]
-Best model on Val:If(x0&gt;0.75,If(x0&gt;0.81,2.91*Add(2.63*Cos(If(x6&gt;0.17,If(x0&gt;0.84,0.69*x2,30.74*x4),0.62*x2)),20.44*Sin(0.17*x3)),If(x6&gt;0.32,0.05*Add(4.57*x3,0.70*x2),7.74*Mul(0.39*x0,2.28*x4))),If(x0&gt;0.70,0.02*Mul(0.13*x3,0.13*x3),If(x0&gt;0.63,17.11,24.59*x0)))
-Train Loss (Med): 7.33267 (60.79966)
-Val Loss (Med): 7.33267 (60.79966)
-Median Size (Max): 7 (106)
-Median complexity (Max): 24 (1630685352)
-Time (s): 1.38966
+Best model on Val:-39.13*Cos(If(x0&gt;0.75,-8.80*Logabs(If(x0&gt;0.81,-16.05*x4,5.98*Add(14.92*Exp(-114.76*x0),-23.79*Mul(-23.80,-23.69*x0)))),-23.22*Sin(-12.85*Cos(59.97*Logabs(-2.43*Mul(-2.43*x0,-2.42*x0))))))
+Train Loss (Med): 12.17217 (17.94969)
+Val Loss (Med): 9.49872 (17.94969)
+Median Size (Max): 6 (108)
+Median complexity (Max): 84 (45943304)
+Time (s): 0.51885
 
 Generation 3/10 [////////////////                                  ]
-Best model on Val:If(x0&gt;0.75,If(x0&gt;0.81,2.91*Add(2.63*Cos(If(x6&gt;0.17,If(x0&gt;0.84,0.69*x2,30.74*x4),0.62*x2)),20.44*Sin(0.17*x3)),If(x6&gt;0.32,0.05*Add(4.57*x3,0.70*x2),7.74*Mul(0.39*x0,2.28*x4))),If(x0&gt;0.70,0.02*Mul(0.13*x3,0.13*x3),If(x0&gt;0.63,17.11,24.59*x0)))
-Train Loss (Med): 7.33267 (60.79966)
-Val Loss (Med): 7.33267 (60.79966)
-Median Size (Max): 3 (104)
-Median complexity (Max): 20 (795033864)
-Time (s): 2.48573
+Best model on Val:-39.13*Cos(If(x0&gt;0.75,-8.80*Logabs(If(x0&gt;0.81,-16.05*x4,5.98*Add(14.92*Exp(-114.76*x0),-23.79*Mul(-23.80,-23.69*x0)))),-23.22*Sin(-12.85*Cos(59.97*Logabs(-2.43*Mul(-2.43*x0,-2.42*x0))))))
+Train Loss (Med): 11.46830 (17.10239)
+Val Loss (Med): 9.49872 (17.10239)
+Median Size (Max): 9 (108)
+Median complexity (Max): 448 (45943304)
+Time (s): 0.72486
 
 Generation 4/10 [/////////////////////                             ]
-Best model on Val:If(x0&gt;0.75,If(x0&gt;0.81,6.85*Add(6.59*Cos(-6.10*Logabs(11.49*Sin(1.01*Add(1.01*x3,1.20*x4)))),-3.74*Sin(0.90*x3)),If(x6&gt;0.32,0.41*Add(0.52*x3,0.08*x2),160.40*Cos(2.35*Mul(2.33*x0,2.33*x4)))),If(x0&gt;0.70,0.02*Mul(0.09*x3,0.22*x3),If(x0&gt;0.63,0.85*Add(0.11*x3,If(x0&gt;0.65,-5.88,-0.56*x0)),0.90*Add(2.11*Logabs(20.03*x2),8.90*Cos(If(x6&gt;0.05,If(x6&gt;0.32,-37.99*x0,2.25*Logabs(8.78*x3)),-2.22*Cos(x6)))))))
-Train Loss (Med): 6.72562 (74.37033)
-Val Loss (Med): 6.72562 (74.37033)
-Median Size (Max): 3 (142)
-Median complexity (Max): 20 (795033864)
-Time (s): 3.44387
+Best model on Val:1.39*Add(0.08*Add(30.40*x0,0.34*Mul(0.73*Logabs(0.32*Sin(1.00*x1)),0.83*Mul(0.80,0.77*x2))),13.15*Exp(0.33*Add(0.95*Add(-3.72*x0,1.57*x6),0.69*x4)))
+Train Loss (Med): 6.83135 (15.05905)
+Val Loss (Med): 6.83135 (15.05905)
+Median Size (Max): 13 (108)
+Median complexity (Max): 1544 (47291144)
+Time (s): 0.84699
 
 Generation 5/10 [//////////////////////////                        ]
-Best model on Val:If(x0&gt;0.75,If(x0&gt;0.81,6.85*Add(6.59*Cos(-6.10*Logabs(11.49*Sin(1.01*Add(1.01*x3,1.20*x4)))),-3.74*Sin(0.90*x3)),If(x6&gt;0.32,0.41*Add(0.52*x3,0.08*x2),160.40*Cos(2.35*Mul(2.33*x0,2.33*x4)))),If(x0&gt;0.70,0.02*Mul(0.09*x3,0.22*x3),If(x0&gt;0.63,0.85*Add(0.11*x3,If(x0&gt;0.65,-5.88,-0.56*x0)),0.90*Add(2.11*Logabs(20.03*x2),8.90*Cos(If(x6&gt;0.05,If(x6&gt;0.32,-37.99*x0,2.25*Logabs(8.78*x3)),-2.22*Cos(x6)))))))
-Train Loss (Med): 6.72562 (17.94969)
-Val Loss (Med): 6.72562 (17.94969)
-Median Size (Max): 3 (142)
-Median complexity (Max): 20 (1085522184)
-Time (s): 5.09411
+Best model on Val:1.90*Add(0.07*Add(-95.93*x0,0.34*Mul(0.73*Logabs(0.14*Sin(1.00*x1)),0.83*Mul(0.80,0.77*x2))),15.58*Exp(0.24*Add(0.81*Add(-3.31*x0,1.66*x6),0.67*x4)))
+Train Loss (Med): 6.67398 (13.88654)
+Val Loss (Med): 6.67398 (13.88654)
+Median Size (Max): 18 (48)
+Median complexity (Max): 6504 (724240904)
+Time (s): 1.04423
 
 Generation 6/10 [///////////////////////////////                   ]
-Best model on Val:If(x0&gt;0.75,If(x0&gt;0.81,6.85*Add(6.59*Cos(-6.10*Logabs(11.49*Sin(1.01*Add(1.01*x3,1.20*x4)))),-3.74*Sin(0.90*x3)),If(x6&gt;0.32,0.41*Add(0.52*x3,0.08*x2),160.40*Cos(2.35*Mul(2.33*x0,2.33*x4)))),If(x0&gt;0.70,0.02*Mul(0.09*x3,0.22*x3),If(x0&gt;0.63,0.85*Add(0.11*x3,If(x0&gt;0.65,-5.88,-0.56*x0)),0.90*Add(2.11*Logabs(20.03*x2),8.90*Cos(If(x6&gt;0.05,If(x6&gt;0.32,-37.99*x0,2.25*Logabs(8.78*x3)),-2.22*Cos(x6)))))))
-Train Loss (Med): 6.72562 (60.79966)
-Val Loss (Med): 6.72562 (60.79966)
-Median Size (Max): 3 (142)
-Median complexity (Max): 20 (1085522184)
-Time (s): 6.39109
+Best model on Val:2.17*Add(0.07*Add(-149.47*x0,0.31*Mul(0.66*Logabs(0.12*Sin(1.00*x1)),Mul(0.73,0.70*x2))),15.80*Exp(0.20*Add(0.66*Add(-2.84*x0,1.98*x6),0.65*x4)))
+Train Loss (Med): 6.65623 (12.20967)
+Val Loss (Med): 6.65623 (12.20967)
+Median Size (Max): 38 (48)
+Median complexity (Max): 172096 (47291144)
+Time (s): 1.19227
 
 Generation 7/10 [////////////////////////////////////              ]
-Best model on Val:If(x0&gt;0.75,If(x0&gt;0.81,8.68*Add(9.95*Cos(-5.65*Logabs(12.27*Sin(1.01*Add(1.01*x3,0.13*x6)))),5.05*Sin(0.90*x3)),If(x6&gt;0.32,0.21*Add(x3,0.15*x2),160.40*Cos(2.35*Mul(2.33*x0,2.33*x4)))),If(x0&gt;0.70,0.07*Add(0.08*Mul(0.14*x3,0.36*x3),0.12*x2),If(x0&gt;0.63,17.11,24.59*x0)))
-Train Loss (Med): 5.79435 (74.37033)
-Val Loss (Med): 5.79435 (74.37033)
-Median Size (Max): 3 (142)
-Median complexity (Max): 20 (1085522184)
-Time (s): 7.98272
+Best model on Val:1.22*Add(0.07*Add(-13.54*Cos(-114.38*x0),0.34*Mul(0.76*Logabs(0.37*Sin(1.00*x1)),0.87*Mul(0.82,0.80*x2))),14.55*Exp(0.30*Add(0.94*Add(-3.68*x0,1.69*x6),0.74*x4)))
+Train Loss (Med): 6.08339 (11.77633)
+Val Loss (Med): 6.08339 (11.77633)
+Median Size (Max): 35 (49)
+Median complexity (Max): 108256 (64543496)
+Time (s): 1.44745
 
 Generation 8/10 [/////////////////////////////////////////         ]
-Best model on Val:11.21*Logabs(If(x0&gt;0.75,If(x0&gt;0.81,18.83*Add(9.13*Cos(-5.76*Logabs(12.80*Sin(1.01*Add(1.01*x3,0.06*x6)))),5.99*Sin(0.90*x3)),If(x6&gt;0.32,0.34*Add(x3,-0.05*x2),119.22*Cos(2.35*Mul(2.33*x0,2.33*x4)))),If(x0&gt;0.70,0.03*Add(0.05*Mul(0.12*x3,0.31*x3),0.10*x2),If(x0&gt;0.63,4.59,6.27*x0))))
-Train Loss (Med): 5.66304 (67.58499)
-Val Loss (Med): 5.66304 (67.58499)
-Median Size (Max): 3 (98)
-Median complexity (Max): 20 (968)
-Time (s): 9.15174
+Best model on Val:1.06*Add(0.12*Add(-206.87*x0,Mul(0.37*Logabs(0.06*Sin(1.00*x1)),0.40*Mul(0.72*x4,1.02*Add(0.37*x2,-62.34*x6)))),33.59*Exp(0.22*Add(-2.74*x0,0.92*x4)))
+Train Loss (Med): 5.04058 (11.89453)
+Val Loss (Med): 5.04058 (11.89453)
+Median Size (Max): 31 (60)
+Median complexity (Max): 77696 (1082432264)
+Time (s): 1.60647
 
 Generation 9/10 [//////////////////////////////////////////////    ]
-Best model on Val:11.21*Logabs(If(x0&gt;0.75,If(x0&gt;0.81,18.83*Add(9.13*Cos(-5.76*Logabs(12.80*Sin(1.01*Add(1.01*x3,0.06*x6)))),5.99*Sin(0.90*x3)),If(x6&gt;0.32,0.34*Add(x3,-0.05*x2),119.22*Cos(2.35*Mul(2.33*x0,2.33*x4)))),If(x0&gt;0.70,0.03*Add(0.05*Mul(0.12*x3,0.31*x3),0.10*x2),If(x0&gt;0.63,4.59,6.27*x0))))
-Train Loss (Med): 5.66304 (60.79966)
-Val Loss (Med): 5.66304 (60.79966)
-Median Size (Max): 3 (130)
-Median complexity (Max): 20 (968)
-Time (s): 9.78769
+Best model on Val:1.06*Add(0.12*Add(-206.87*x0,Mul(0.37*Logabs(0.06*Sin(1.00*x1)),0.40*Mul(0.72*x4,1.02*Add(0.37*x2,-62.34*x6)))),33.59*Exp(0.22*Add(-2.74*x0,0.92*x4)))
+Train Loss (Med): 5.04058 (10.31448)
+Val Loss (Med): 5.04058 (10.31448)
+Median Size (Max): 34 (62)
+Median complexity (Max): 456238 (1032695976)
+Time (s): 1.87170
 
 Generation 10/10 [//////////////////////////////////////////////////]
-Best model on Val:11.21*Logabs(If(x0&gt;0.75,If(x0&gt;0.81,18.83*Add(9.13*Cos(-5.76*Logabs(12.80*Sin(1.01*Add(1.01*x3,0.06*x6)))),5.99*Sin(0.90*x3)),If(x6&gt;0.32,0.34*Add(x3,-0.05*x2),119.22*Cos(2.35*Mul(2.33*x0,2.33*x4)))),If(x0&gt;0.70,0.03*Add(0.05*Mul(0.12*x3,0.31*x3),0.10*x2),If(x0&gt;0.63,4.59,6.27*x0))))
-Train Loss (Med): 5.66304 (17.94969)
-Val Loss (Med): 5.66304 (17.94969)
-Median Size (Max): 3 (155)
-Median complexity (Max): 20 (447473992)
-Time (s): 10.44167
+Best model on Val:1.06*Add(0.12*Add(-206.87*x0,Mul(0.37*Logabs(0.06*Sin(1.00*x1)),0.40*Mul(0.72*x4,1.02*Add(0.37*x2,-62.34*x6)))),33.59*Exp(0.22*Add(-2.74*x0,0.92*x4)))
+Train Loss (Med): 5.04058 (7.79783)
+Val Loss (Med): 5.04058 (7.79783)
+Median Size (Max): 40 (63)
+Median complexity (Max): 1559240 (64543496)
+Time (s): 2.06772
 
-Saved population to file /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpx55nrr7z/population.json
-score: 0.9373454330717422
+Saved population to file /tmp/tmpeig73_0r/population.json
+score: 0.944232208729265
 </pre></div>
 </div>
 </div>
@@ -255,10 +536,10 @@ score: 0.9373454330717422
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded population from /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpx55nrr7z/population.json of size = 200
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded population from /tmp/tmpeig73_0r/population.json of size = 200
 Completed 100% [====================]
 saving final population as archive...
-score: 0.9374115013075351
+score: 0.9549996301878213
 </pre></div>
 </div>
 </div>
@@ -276,14 +557,14 @@ score: 0.9374115013075351
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>population size: 100
-archive size   : 7
+archive size   : 20
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;fitness&#39;: {&#39;complexity&#39;: 2,
   &#39;crowding_dist&#39;: 3.4028234663852886e+38,
   &#39;dcounter&#39;: 0,
   &#39;depth&#39;: 1,
-  &#39;dominated&#39;: [1, 6],
+  &#39;dominated&#39;: [],
   &#39;linear_complexity&#39;: 2,
   &#39;loss&#39;: 90.3851318359375,
   &#39;loss_v&#39;: 90.3851318359375,
@@ -298,13 +579,13 @@ archive size   : 7
   &#39;values&#39;: [90.3851318359375, 2.0],
   &#39;weights&#39;: [-1.0, -1.0],
   &#39;wvalues&#39;: [-90.3851318359375, -2.0]},
- &#39;id&#39;: 221,
+ &#39;id&#39;: 212,
  &#39;is_fitted_&#39;: False,
  &#39;objectives&#39;: [&#39;mse&#39;, &#39;linear_complexity&#39;],
- &#39;parent_id&#39;: [262],
+ &#39;parent_id&#39;: [269],
  &#39;program&#39;: {&#39;Tree&#39;: [{&#39;W&#39;: 24.585369110107422,
     &#39;arg_types&#39;: [],
-    &#39;center_op&#39;: True,
+    &#39;center_op&#39;: False,
     &#39;feature&#39;: &#39;constF&#39;,
     &#39;feature_type&#39;: &#39;ArrayF&#39;,
     &#39;fixed&#39;: False,
@@ -313,10 +594,10 @@ archive size   : 7
     &#39;node_type&#39;: &#39;Constant&#39;,
     &#39;prob_change&#39;: 0.6167147755622864,
     &#39;ret_type&#39;: &#39;ArrayF&#39;,
-    &#39;sig_dual_hash&#39;: 7018942542468397869,
-    &#39;sig_hash&#39;: 14162902253047951597}],
+    &#39;sig_dual_hash&#39;: 509529941281334733,
+    &#39;sig_hash&#39;: 17717457037689164349}],
   &#39;is_fitted_&#39;: True},
- &#39;variation&#39;: &#39;subtree&#39;}
+ &#39;variation&#39;: &#39;born&#39;}
 </pre></div>
 </div>
 </div>
@@ -333,15 +614,13 @@ archive size   : 7
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Add
-|- 24.35
-|- x6
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24.59
 </pre></div>
 </div>
 </div>
 </div>
 <section id="saving-just-the-archive">
-<h2>Saving just the archive<a class="headerlink" href="#saving-just-the-archive" title="Link to this heading"></a></h2>
+<h2>Saving just the archive<a class="headerlink" href="#saving-just-the-archive" title="Link to this heading">#</a></h2>
 <p>In case you want to use another expression rather than the final <code class="docutils literal notranslate"><span class="pre">best_estimator_</span></code>, brush provides the archive option.</p>
 <p>The archive is just the pareto front from the population. You can use <code class="docutils literal notranslate"><span class="pre">predict_archive</span></code> (and <code class="docutils literal notranslate"><span class="pre">predict_proba_archive</span></code> if using a <code class="docutils literal notranslate"><span class="pre">BrushClassifier</span></code>) to call the prediction methods for the entire archive, instead of the selected best individual.</p>
 <p>But first, you need to enable this option with <code class="docutils literal notranslate"><span class="pre">use_arch=True</span></code>. When set to False, it will store the entire final population</p>
@@ -363,7 +642,7 @@ archive size   : 7
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded population from /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpx55nrr7z/population.json of size = 200
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded population from /tmp/tmpeig73_0r/population.json of size = 200
 Completed 100% [====================]
 {&#39;complexity&#39;: 2, &#39;crowding_dist&#39;: 0.0, &#39;dcounter&#39;: 0, &#39;depth&#39;: 1, &#39;dominated&#39;: [], &#39;linear_complexity&#39;: 2, &#39;loss&#39;: 90.3851318359375, &#39;loss_v&#39;: 90.3851318359375, &#39;prev_complexity&#39;: 2, &#39;prev_depth&#39;: 1, &#39;prev_linear_complexity&#39;: 2, &#39;prev_loss&#39;: 90.3851318359375, &#39;prev_loss_v&#39;: 90.3851318359375, &#39;prev_size&#39;: 1, &#39;rank&#39;: 1, &#39;size&#39;: 1, &#39;values&#39;: [90.3851318359375, 2.0], &#39;weights&#39;: [-1.0, -1.0], &#39;wvalues&#39;: [-90.3851318359375, -2.0]}
 </pre></div>
@@ -374,7 +653,7 @@ Completed 100% [====================]
 <p>This also allow us to have checkpoints in the execution.</p>
 </section>
 <section id="using-population-files-with-classification">
-<h2>Using population files with classification<a class="headerlink" href="#using-population-files-with-classification" title="Link to this heading"></a></h2>
+<h2>Using population files with classification<a class="headerlink" href="#using-population-files-with-classification" title="Link to this heading">#</a></h2>
 <p>To give another example, we do a two-step fit in the cells below.</p>
 <p>First, we run the evolution and save the population to a file; then, we load it and keep evolving the individuals.</p>
 <p>What is different though is that the first run is optimizing <code class="docutils literal notranslate"><span class="pre">scorer</span></code> and <code class="docutils literal notranslate"><span class="pre">complexity</span></code>, and the second run is optimizing <code class="docutils literal notranslate"><span class="pre">average_precision_score</span></code> and <code class="docutils literal notranslate"><span class="pre">linear_complexity</span></code>.</p>
@@ -408,89 +687,89 @@ Completed 100% [====================]
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generation 1/10 [//////                                            ]
-Best model on Val:Logistic(Sum(-0.39,If(AIDS&gt;15890.50,0.38*Logabs(If(AIDS&gt;18390.00,If(AIDS&gt;22304.00,7.87*AIDS,8.15*AIDS),31.07*Sin(22304.00*AIDS))),0.04*Logabs(If(Total&gt;1572255.50,0.01*Sin(18390.89),62.10*Mul(62.10*AIDS,62.10*AIDS))))))
-Train Loss (Med): 0.52166 (2.86439)
-Val Loss (Med): 0.52166 (2.86439)
-Median Size (Max): 10 (114)
-Median complexity (Max): 992 (2014221728)
-Time (s): 0.71757
+Best model on Val:Logistic(Sum(-0.61,0.15*Mul(0.15*AIDS,0.15*Mul(0.15,0.15))))
+Train Loss (Med): 0.59047 (0.69315)
+Val Loss (Med): 0.59047 (0.69315)
+Median Size (Max): 11 (114)
+Median complexity (Max): 992 (2116961696)
+Time (s): 0.26486
 
 Generation 2/10 [///////////                                       ]
-Best model on Val:Logistic(Sum(-0.39,If(AIDS&gt;15890.50,Logabs(If(AIDS&gt;18390.00,If(AIDS&gt;22304.00,7.87*AIDS,8.15*AIDS),31.07*Sin(22304.00*AIDS))),0.04*Logabs(If(Total&gt;1572255.50,0.01*Sin(18390.89),62.10*Mul(62.10*AIDS,62.10*AIDS))))))
-Train Loss (Med): 0.51282 (0.69315)
-Val Loss (Med): 0.51282 (0.69315)
-Median Size (Max): 10 (166)
-Median complexity (Max): 752 (1777037216)
-Time (s): 1.23145
+Best model on Val:Logistic(Sum(0.00,1.00*Cos(If(AIDS&gt;15890.50,1.00*Cos(AIDS),If(Total&gt;1572255.50,1.00*Add(1.00*Sin(AIDS),AIDS),1.00*Logabs(1.00*Mul(AIDS,AIDS)))))))
+Train Loss (Med): 0.55564 (0.68974)
+Val Loss (Med): 0.55564 (0.68974)
+Median Size (Max): 20 (112)
+Median complexity (Max): 128 (2116961696)
+Time (s): 0.45268
 
 Generation 3/10 [////////////////                                  ]
-Best model on Val:Logistic(Sum(-0.39,If(AIDS&gt;15890.50,Logabs(If(AIDS&gt;18390.00,If(AIDS&gt;22304.00,7.87*AIDS,8.15*AIDS),31.07*Sin(22304.00*AIDS))),0.04*Logabs(If(Total&gt;1572255.50,0.01*Sin(18390.89),62.10*Mul(62.10*AIDS,62.10*AIDS))))))
-Train Loss (Med): 0.51282 (0.69315)
-Val Loss (Med): 0.51282 (0.69315)
-Median Size (Max): 11 (166)
-Median complexity (Max): 176 (1980150176)
-Time (s): 1.90600
+Best model on Val:Logistic(Sum(-0.60,1.08*Logabs(0.48*Add(-0.42,0.11*Add(0.08*Mul(0.08*AIDS,1.24),-30.79*Sin(0.55*AIDS))))))
+Train Loss (Med): 0.52787 (0.65177)
+Val Loss (Med): 0.52787 (0.65177)
+Median Size (Max): 38 (112)
+Median complexity (Max): 4456352 (1857699104)
+Time (s): 0.86926
 
 Generation 4/10 [/////////////////////                             ]
-Best model on Val:Logistic(Sum(-0.61,If(AIDS&gt;15890.50,1.05*Logabs(-1640.36*Cos(18391.79*Sin(If(AIDS&gt;18390.00,AIDS,AIDS)))),-0.64*Sin(1572255.50*Add(AIDS,1.00*Sin(If(Total&gt;1572255.50,Total,AIDS)))))))
-Train Loss (Med): 0.49617 (0.69315)
-Val Loss (Med): 0.49617 (0.69315)
-Median Size (Max): 17 (110)
-Median complexity (Max): 128 (1980150176)
-Time (s): 2.46868
+Best model on Val:Logistic(Sum(-0.63,1.24*Logabs(0.47*Add(-0.32,0.11*Add(0.08*Mul(0.08*AIDS,1.22),-31.12*Sin(0.55*AIDS))))))
+Train Loss (Med): 0.52557 (0.63317)
+Val Loss (Med): 0.52557 (0.63317)
+Median Size (Max): 32 (97)
+Median complexity (Max): 4456352 (2143724960)
+Time (s): 1.11242
 
 Generation 5/10 [//////////////////////////                        ]
-Best model on Val:Logistic(Sum(-0.61,If(AIDS&gt;15890.50,1.05*Logabs(-1640.36*Cos(18391.79*Sin(If(AIDS&gt;18390.00,AIDS,AIDS)))),-0.64*Sin(1572255.50*Add(AIDS,1.00*Sin(If(Total&gt;1572255.50,Total,AIDS)))))))
-Train Loss (Med): 0.49617 (0.59956)
-Val Loss (Med): 0.49617 (0.59956)
-Median Size (Max): 31 (106)
-Median complexity (Max): 128 (2050044320)
-Time (s): 3.41878
+Best model on Val:Logistic(Sum(-0.71,4.02*Logabs(0.43*Add(-0.24,0.09*Add(0.06*Mul(0.06*AIDS,0.90),-33.10*Sin(0.55*AIDS))))))
+Train Loss (Med): 0.44445 (0.62001)
+Val Loss (Med): 0.44445 (0.62001)
+Median Size (Max): 32 (94)
+Median complexity (Max): 3584672 (2143724960)
+Time (s): 1.83904
 
 Generation 6/10 [///////////////////////////////                   ]
-Best model on Val:Logistic(Sum(-0.61,If(AIDS&gt;15890.50,1.05*Logabs(-1640.36*Cos(18391.79*Sin(If(AIDS&gt;18390.00,AIDS,AIDS)))),-0.64*Sin(1572255.50*Add(1.00*Mul(1.00*Mul(Total,AIDS),1.00*Sin(1.00*Cos(1.00))),1.00*Logabs(1.00*Logabs(1.00*Add(AIDS,AIDS))))))))
-Train Loss (Med): 0.49003 (0.55225)
-Val Loss (Med): 0.49003 (0.55225)
-Median Size (Max): 55 (106)
-Median complexity (Max): 17312 (2145595808)
-Time (s): 4.07591
+Best model on Val:Logistic(Sum(-0.71,4.02*Logabs(0.43*Add(-0.24,0.09*Add(0.06*Mul(0.06*AIDS,0.90),-33.10*Sin(0.55*AIDS))))))
+Train Loss (Med): 0.44445 (0.61058)
+Val Loss (Med): 0.44445 (0.61058)
+Median Size (Max): 32 (94)
+Median complexity (Max): 931232 (2021852576)
+Time (s): 2.21610
 
 Generation 7/10 [////////////////////////////////////              ]
-Best model on Val:Logistic(Sum(-0.39,If(AIDS&gt;15890.50,Logabs(AIDS),0.04*Logabs(If(Total&gt;1572255.50,0.00,If(AIDS&gt;123.00,1572255.50*AIDS,AIDS))))))
-Train Loss (Med): 0.47101 (0.53259)
-Val Loss (Med): 0.47101 (0.53259)
-Median Size (Max): 53 (89)
-Median complexity (Max): 241278368 (2145595808)
-Time (s): 5.10235
+Best model on Val:Logistic(Sum(-0.25,0.27*Add(1.00*Logabs(If(AIDS&gt;15890.50,AIDS,1.00*Add(1.00,If(Total&gt;1572255.50,1.00,If(AIDS&gt;123.00,Total,1.00))))),4.42*Sin(1.00*Mul(1.00*Add(1.00*AIDS,1.00*Mul(1.00,1.00*AIDS)),1.00)))))
+Train Loss (Med): 0.41928 (0.59543)
+Val Loss (Med): 0.41928 (0.59543)
+Median Size (Max): 27 (94)
+Median complexity (Max): 48800 (1729559840)
+Time (s): 3.33671
 
 Generation 8/10 [/////////////////////////////////////////         ]
-Best model on Val:Logistic(Sum(-0.39,If(AIDS&gt;15890.50,Logabs(AIDS),0.04*Logabs(If(Total&gt;1572255.50,0.00,If(AIDS&gt;123.00,1572255.50*AIDS,AIDS))))))
-Train Loss (Med): 0.47101 (0.52601)
-Val Loss (Med): 0.47101 (0.52601)
-Median Size (Max): 54 (100)
-Median complexity (Max): 46553504 (2036773280)
-Time (s): 5.88907
+Best model on Val:Logistic(Sum(-0.25,0.27*Add(1.00*Logabs(If(AIDS&gt;15890.50,AIDS,1.00*Add(1.00,If(Total&gt;1572255.50,1.00,If(AIDS&gt;123.00,Total,1.00))))),4.42*Sin(1.00*Mul(1.00*Add(1.00*AIDS,1.00*Mul(1.00,1.00*AIDS)),1.00)))))
+Train Loss (Med): 0.41928 (0.59008)
+Val Loss (Med): 0.41928 (0.59008)
+Median Size (Max): 27 (94)
+Median complexity (Max): 17696 (2059546528)
+Time (s): 3.84268
 
 Generation 9/10 [//////////////////////////////////////////////    ]
-Best model on Val:Logistic(Sum(-0.39,If(AIDS&gt;15890.50,Logabs(AIDS),0.04*Logabs(If(Total&gt;1572255.50,0.00,If(AIDS&gt;123.00,1572255.50*AIDS,AIDS))))))
-Train Loss (Med): 0.47101 (0.52189)
-Val Loss (Med): 0.47101 (0.52189)
-Median Size (Max): 53 (100)
-Median complexity (Max): 137546144 (2036773280)
-Time (s): 6.91610
+Best model on Val:Logistic(Sum(-0.25,0.27*Add(1.00*Logabs(If(AIDS&gt;15890.50,AIDS,1.00*Add(1.00,If(Total&gt;1572255.50,1.00,If(AIDS&gt;123.00,Total,1.00))))),4.42*Sin(1.00*Mul(1.00*Add(1.00*AIDS,1.00*Mul(1.00,1.00*AIDS)),1.00)))))
+Train Loss (Med): 0.41928 (0.54377)
+Val Loss (Med): 0.41928 (0.54377)
+Median Size (Max): 27 (94)
+Median complexity (Max): 11696480 (1482923936)
+Time (s): 5.21761
 
 Generation 10/10 [//////////////////////////////////////////////////]
-Best model on Val:Logistic(Sum(-4.67,If(AIDS&gt;15890.50,Logabs(If(AIDS&gt;18390.00,If(AIDS&gt;22304.00,2.76*AIDS,2.88*AIDS),156.28*Logabs(22304.22*AIDS))),0.31*Logabs(If(Total&gt;1572255.50,-38774.14,Mul(AIDS,147.54*AIDS))))))
-Train Loss (Med): 0.44285 (0.51782)
-Val Loss (Med): 0.44285 (0.51782)
-Median Size (Max): 53 (111)
-Median complexity (Max): 47075744 (2139640224)
-Time (s): 7.70617
+Best model on Val:Logistic(Sum(-0.25,0.27*Add(1.00*Logabs(If(AIDS&gt;15890.50,AIDS,1.00*Add(1.00,If(Total&gt;1572255.50,1.00,If(AIDS&gt;123.00,Total,-0.19))))),4.42*Sin(1.00*Mul(1.00*Add(1.00*AIDS,1.00*Mul(1.00,1.00*AIDS)),1.00)))))
+Train Loss (Med): 0.40533 (0.50746)
+Val Loss (Med): 0.40533 (0.50746)
+Median Size (Max): 30 (94)
+Median complexity (Max): 195011488 (1996766624)
+Time (s): 5.71257
 
 saving final population as archive...
-Saved population to file /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpqguuq9uj/population.json
-Best model: Logistic(Sum(-4.67,If(AIDS&gt;15890.50,Logabs(If(AIDS&gt;18390.00,If(AIDS&gt;22304.00,2.76*AIDS,2.88*AIDS),156.28*Logabs(22304.22*AIDS))),0.31*Logabs(If(Total&gt;1572255.50,-38774.14,Mul(AIDS,147.54*AIDS))))))
-score: 0.84
+Saved population to file /tmp/tmpq76vumq1/population.json
+Best model: Logistic(Sum(-0.25,0.27*Add(1.00*Logabs(If(AIDS&gt;15890.50,AIDS,1.00*Add(1.00,If(Total&gt;1572255.50,1.00,If(AIDS&gt;123.00,Total,-0.19))))),4.42*Sin(1.00*Mul(1.00*Add(1.00*AIDS,1.00*Mul(1.00,1.00*AIDS)),1.00)))))
+score: 0.86
 </pre></div>
 </div>
 </div>
@@ -504,7 +783,7 @@ score: 0.84
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.84
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.86
 </pre></div>
 </div>
 </div>
@@ -530,10 +809,10 @@ score: 0.84
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded population from /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpqguuq9uj/population.json of size = 400
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded population from /tmp/tmpq76vumq1/population.json of size = 400
 Completed 100% [====================]
-Best model: Logistic(Sum(If(AIDS&gt;15890.50,18391.79*Logabs(If(AIDS&gt;18390.00,If(AIDS&gt;22304.00,8.94*AIDS,8.55*AIDS),-4.58*Cos(1.30*Sin(If(AIDS&gt;1.00,22304.00*AIDS,-3.15*AIDS))))),1.29*Logabs(-1759.52*Mul(-1640.28,18389.99)))))
-score: 0.5
+Best model: Logistic(Sum(-0.25,1.00*Add(1.00*Logabs(If(AIDS&gt;15890.50,1.00*Mul(15890.50,AIDS),1.00*Add(1.00,If(Total&gt;1572255.50,1.00,If(AIDS&gt;123.00,Total,1.00))))),4.42*Sin(1.00*Sin(Add(1.00*AIDS,1.00*Mul(1.00,AIDS)))))))
+score: 0.72
 </pre></div>
 </div>
 </div>
@@ -547,7 +826,7 @@ score: 0.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitness(1.022064 4.000000 )
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitness(0.969961 107415968.000000 )
 </pre></div>
 </div>
 </div>
@@ -562,14 +841,14 @@ score: 0.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9478480115442645
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="serialization-with-pickle">
-<h2>Serialization with pickle<a class="headerlink" href="#serialization-with-pickle" title="Link to this heading"></a></h2>
+<h2>Serialization with pickle<a class="headerlink" href="#serialization-with-pickle" title="Link to this heading">#</a></h2>
 <p>You can save the entire model (best individual, parameters, and archive) with pickle.</p>
 <blockquote>
 <div><p>At the current stage, Brush does not serialize the search space and dataset references, but only the necessary information to be able to load a previously trained model and do predictions with it.</p>
@@ -583,8 +862,7 @@ score: 0.5
 <div class="cell_output docutils container">
 <div class="output text_html"><style>#sk-container-id-1 {
   /* Definition of color scheme common for light and dark mode */
-  --sklearn-color-text: #000;
-  --sklearn-color-text-muted: #666;
+  --sklearn-color-text: black;
   --sklearn-color-line: gray;
   /* Definition of color scheme for unfitted estimators */
   --sklearn-color-unfitted-level-0: #fff5e6;
@@ -729,21 +1007,12 @@ clickable and can be expanded/collapsed.
 /* Toggleable label */
 #sk-container-id-1 label.sk-toggleable__label {
   cursor: pointer;
-  display: flex;
+  display: block;
   width: 100%;
   margin-bottom: 0;
   padding: 0.5em;
   box-sizing: border-box;
   text-align: center;
-  align-items: start;
-  justify-content: space-between;
-  gap: 0.5em;
-}
-
-#sk-container-id-1 label.sk-toggleable__label .caption {
-  font-size: 0.6rem;
-  font-weight: lighter;
-  color: var(--sklearn-color-text-muted);
 }
 
 #sk-container-id-1 label.sk-toggleable__label-arrow:before {
@@ -761,7 +1030,9 @@ clickable and can be expanded/collapsed.
 /* Toggleable content - dropdown */
 
 #sk-container-id-1 div.sk-toggleable__content {
-  display: none;
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
   text-align: left;
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-0);
@@ -787,9 +1058,9 @@ clickable and can be expanded/collapsed.
 
 #sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
   /* Expand drop-down */
-  display: block;
-  width: 100%;
-  overflow: visible;
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
 }
 
 #sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
@@ -894,8 +1165,7 @@ a:visited.sk-estimator-doc-link {
   height: 1em;
   width: 1em;
   text-decoration: none !important;
-  margin-left: 0.5em;
-  text-align: center;
+  margin-left: 1ex;
   /* unfitted */
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
   color: var(--sklearn-color-unfitted-level-1);
@@ -994,77 +1264,13 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
-
-.estimator-table summary {
-    padding: .5rem;
-    font-family: monospace;
-    cursor: pointer;
-}
-
-.estimator-table details[open] {
-    padding-left: 0.1rem;
-    padding-right: 0.1rem;
-    padding-bottom: 0.3rem;
-}
-
-.estimator-table .parameters-table {
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
-.estimator-table .parameters-table tr:nth-child(odd) {
-    background-color: #fff;
-}
-
-.estimator-table .parameters-table tr:nth-child(even) {
-    background-color: #f6f6f6;
-}
-
-.estimator-table .parameters-table tr:hover {
-    background-color: #e0e0e0;
-}
-
-.estimator-table table td {
-    border: 1px solid rgba(106, 105, 104, 0.232);
-}
-
-.user-set td {
-    color:rgb(255, 94, 0);
-    text-align: left;
-}
-
-.user-set td.value pre {
-    color:rgb(255, 94, 0) !important;
-    background-color: transparent !important;
-}
-
-.default td {
-    color: black;
-    text-align: left;
-}
-
-.user-set td i,
-.default td i {
-    color: black;
-}
-
-.copy-paste-icon {
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTIwOCAwTDMzMi4xIDBjMTIuNyAwIDI0LjkgNS4xIDMzLjkgMTQuMWw2Ny45IDY3LjljOSA5IDE0LjEgMjEuMiAxNC4xIDMzLjlMNDQ4IDMzNmMwIDI2LjUtMjEuNSA0OC00OCA0OGwtMTkyIDBjLTI2LjUgMC00OC0yMS41LTQ4LTQ4bDAtMjg4YzAtMjYuNSAyMS41LTQ4IDQ4LTQ4ek00OCAxMjhsODAgMCAwIDY0LTY0IDAgMCAyNTYgMTkyIDAgMC0zMiA2NCAwIDAgNDhjMCAyNi41LTIxLjUgNDgtNDggNDhMNDggNTEyYy0yNi41IDAtNDgtMjEuNS00OC00OEwwIDE3NmMwLTI2LjUgMjEuNS00OCA0OC00OHoiLz48L3N2Zz4=);
-    background-repeat: no-repeat;
-    background-size: 14px 14px;
-    background-position: 0;
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    cursor: pointer;
-}
-</style><body><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>BrushClassifier(algorithm=&#x27;nsga2&#x27;, bandit=&#x27;dynamic_thompson&#x27;, batch_size=1.0,
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>BrushClassifier(algorithm=&#x27;nsga2&#x27;, bandit=&#x27;dynamic_thompson&#x27;, batch_size=1.0,
                 constants_simplification=True, cx_prob=0.14285714285714285,
                 functions=[&#x27;SplitBest&#x27;, &#x27;Add&#x27;, &#x27;Mul&#x27;, &#x27;Sin&#x27;, &#x27;Cos&#x27;, &#x27;Exp&#x27;,
                            &#x27;Logabs&#x27;],
                 inexact_simplification=True, initialization=&#x27;uniform&#x27;,
-                load_population=&#x27;/var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpqguuq9uj/population.json&#x27;,
-                logfil...
+                load_population=&#x27;/tmp/tmpq76vumq1/population.json&#x27;, logfile=&#x27;&#x27;,
+                max_depth=10, max_gens=10, max_size=100, m...
                                 &#x27;point&#x27;: 0.16666666666666666,
                                 &#x27;subtree&#x27;: 0.16666666666666666,
                                 &#x27;toggle_weight_off&#x27;: 0.16666666666666666,
@@ -1073,389 +1279,22 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                 pop_size=200, random_state=None, save_population=&#x27;&#x27;,
                 scorer=&#x27;average_precision_score&#x27;, sel=&#x27;lexicase&#x27;,
                 shuffle_split=False, surv=&#x27;nsga2&#x27;, use_arch=True,
-                val_from_arch=True, ...)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>BrushClassifier</div></div><div><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
-        <div class="estimator-table">
-            <details>
-                <summary>Parameters</summary>
-                <table class="parameters-table">
-                  <tbody>
-                    
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('pop_size',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">pop_size&nbsp;</td>
-            <td class="value">200</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('max_gens',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">max_gens&nbsp;</td>
-            <td class="value">10</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('max_stall',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">max_stall&nbsp;</td>
-            <td class="value">0</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('max_time',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">max_time&nbsp;</td>
-            <td class="value">-1</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('verbosity',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">verbosity&nbsp;</td>
-            <td class="value">1</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('algorithm',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">algorithm&nbsp;</td>
-            <td class="value">&#x27;nsga2&#x27;</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('mode',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">mode&nbsp;</td>
-            <td class="value">&#x27;classification&#x27;</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('max_depth',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">max_depth&nbsp;</td>
-            <td class="value">10</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('max_size',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">max_size&nbsp;</td>
-            <td class="value">100</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('num_islands',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">num_islands&nbsp;</td>
-            <td class="value">5</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('mig_prob',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">mig_prob&nbsp;</td>
-            <td class="value">0.05</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('n_jobs',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">n_jobs&nbsp;</td>
-            <td class="value">1</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('cx_prob',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">cx_prob&nbsp;</td>
-            <td class="value">0.14285714285714285</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('bandit',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">bandit&nbsp;</td>
-            <td class="value">&#x27;dynamic_thompson&#x27;</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('logfile',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">logfile&nbsp;</td>
-            <td class="value">&#x27;&#x27;</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('save_population',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">save_population&nbsp;</td>
-            <td class="value">&#x27;&#x27;</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('load_population',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">load_population&nbsp;</td>
-            <td class="value">&#x27;/var/folders/mh/ggnb_j...guuq9uj/population.json&#x27;</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('mutation_probs',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">mutation_probs&nbsp;</td>
-            <td class="value">{&#x27;delete&#x27;: 0.16666666666666666, &#x27;insert&#x27;: 0.16666666666666666, &#x27;point&#x27;: 0.16666666666666666, &#x27;subtree&#x27;: 0.16666666666666666, ...}</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('val_from_arch',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">val_from_arch&nbsp;</td>
-            <td class="value">True</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('use_arch',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">use_arch&nbsp;</td>
-            <td class="value">True</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('functions',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">functions&nbsp;</td>
-            <td class="value">[&#x27;SplitBest&#x27;, &#x27;Add&#x27;, ...]</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('objectives',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">objectives&nbsp;</td>
-            <td class="value">[&#x27;scorer&#x27;, &#x27;complexity&#x27;]</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('constants_simplification',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">constants_simplification&nbsp;</td>
-            <td class="value">True</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('inexact_simplification',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">inexact_simplification&nbsp;</td>
-            <td class="value">True</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('scorer',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">scorer&nbsp;</td>
-            <td class="value">&#x27;average_precision_score&#x27;</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('shuffle_split',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">shuffle_split&nbsp;</td>
-            <td class="value">False</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('initialization',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">initialization&nbsp;</td>
-            <td class="value">&#x27;uniform&#x27;</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('random_state',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">random_state&nbsp;</td>
-            <td class="value">None</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('batch_size',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">batch_size&nbsp;</td>
-            <td class="value">1.0</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('sel',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">sel&nbsp;</td>
-            <td class="value">&#x27;lexicase&#x27;</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('surv',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">surv&nbsp;</td>
-            <td class="value">&#x27;nsga2&#x27;</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('weights_init',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">weights_init&nbsp;</td>
-            <td class="value">True</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('validation_size',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">validation_size&nbsp;</td>
-            <td class="value">0.0</td>
-        </tr>
-    
-                  </tbody>
-                </table>
-            </details>
-        </div>
-    </div></div></div></div></div><script>function copyToClipboard(text, element) {
-    // Get the parameter prefix from the closest toggleable content
-    const toggleableContent = element.closest('.sk-toggleable__content');
-    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
-    const fullParamName = paramPrefix ? `${paramPrefix}${text}` : text;
-
-    const originalStyle = element.style;
-    const computedStyle = window.getComputedStyle(element);
-    const originalWidth = computedStyle.width;
-    const originalHTML = element.innerHTML.replace('Copied!', '');
-
-    navigator.clipboard.writeText(fullParamName)
-        .then(() => {
-            element.style.width = originalWidth;
-            element.style.color = 'green';
-            element.innerHTML = "Copied!";
-
-            setTimeout(() => {
-                element.innerHTML = originalHTML;
-                element.style = originalStyle;
-            }, 2000);
-        })
-        .catch(err => {
-            console.error('Failed to copy:', err);
-            element.style.color = 'red';
-            element.innerHTML = "Failed!";
-            setTimeout(() => {
-                element.innerHTML = originalHTML;
-                element.style = originalStyle;
-            }, 2000);
-        });
-    return false;
-}
-
-document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
-    const toggleableContent = element.closest('.sk-toggleable__content');
-    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
-    const paramName = element.parentElement.nextElementSibling.textContent.trim();
-    const fullParamName = paramPrefix ? `${paramPrefix}${paramName}` : paramName;
-
-    element.setAttribute('title', fullParamName);
-});
-</script></body></div></div>
+                val_from_arch=True, ...)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;BrushClassifier<span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>BrushClassifier(algorithm=&#x27;nsga2&#x27;, bandit=&#x27;dynamic_thompson&#x27;, batch_size=1.0,
+                constants_simplification=True, cx_prob=0.14285714285714285,
+                functions=[&#x27;SplitBest&#x27;, &#x27;Add&#x27;, &#x27;Mul&#x27;, &#x27;Sin&#x27;, &#x27;Cos&#x27;, &#x27;Exp&#x27;,
+                           &#x27;Logabs&#x27;],
+                inexact_simplification=True, initialization=&#x27;uniform&#x27;,
+                load_population=&#x27;/tmp/tmpq76vumq1/population.json&#x27;, logfile=&#x27;&#x27;,
+                max_depth=10, max_gens=10, max_size=100, m...
+                                &#x27;point&#x27;: 0.16666666666666666,
+                                &#x27;subtree&#x27;: 0.16666666666666666,
+                                &#x27;toggle_weight_off&#x27;: 0.16666666666666666,
+                                &#x27;toggle_weight_on&#x27;: 0.16666666666666666},
+                n_jobs=1, num_islands=5, objectives=[&#x27;scorer&#x27;, &#x27;complexity&#x27;],
+                pop_size=200, random_state=None, save_population=&#x27;&#x27;,
+                scorer=&#x27;average_precision_score&#x27;, sel=&#x27;lexicase&#x27;,
+                shuffle_split=False, surv=&#x27;nsga2&#x27;, use_arch=True,
+                val_from_arch=True, ...)</pre></div> </div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1485,15 +1324,15 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ True  True  True  True  True  True  True  True  True  True  True  True
-  True  True  True  True  True  True  True  True  True  True  True  True
-  True  True  True  True  True  True  True  True  True  True  True  True
-  True  True  True  True  True  True  True  True  True  True  True  True
-  True  True]
+  True  True False  True  True  True  True  True  True  True  True  True
+  True  True  True False  True False  True  True  True False False False
+  True  True  True False False  True False False  True False False  True
+ False  True]
 [ True  True  True  True  True  True  True  True  True  True  True  True
-  True  True  True  True  True  True  True  True  True  True  True  True
-  True  True  True  True  True  True  True  True  True  True  True  True
-  True  True  True  True  True  True  True  True  True  True  True  True
-  True  True]
+  True  True False  True  True  True  True  True  True  True  True  True
+  True  True  True False  True False  True  True  True False False False
+  True  True  True False False  True False False  True False False  True
+ False  True]
 </pre></div>
 </div>
 </div>
@@ -1506,25 +1345,25 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;id&#39;: 472, &#39;y_pred&#39;: array([False,  True,  True,  True,  True, False,  True,  True,  True,
-       False, False,  True,  True, False, False, False, False, False,
-       False, False,  True, False, False, False,  True, False, False,
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;id&#39;: 502, &#39;y_pred&#39;: array([ True,  True,  True,  True,  True, False,  True,  True,  True,
+        True,  True,  True,  True,  True,  True, False,  True,  True,
+        True, False, False,  True,  True, False, False, False, False,
+       False, False, False, False, False, False, False, False,  True,
        False, False, False, False, False, False, False, False, False,
-       False, False, False, False,  True,  True, False,  True, False,
-       False, False,  True,  True, False])}
-{&#39;id&#39;: 472, &#39;y_pred&#39;: array([False,  True,  True,  True,  True, False,  True,  True,  True,
-       False, False,  True,  True, False, False, False, False, False,
-       False, False,  True, False, False, False,  True, False, False,
+        True, False,  True,  True,  True])}
+{&#39;id&#39;: 502, &#39;y_pred&#39;: array([ True,  True,  True,  True,  True, False,  True,  True,  True,
+        True,  True,  True,  True,  True,  True, False,  True,  True,
+        True, False, False,  True,  True, False, False, False, False,
+       False, False, False, False, False, False, False, False,  True,
        False, False, False, False, False, False, False, False, False,
-       False, False, False, False,  True,  True, False,  True, False,
-       False, False,  True,  True, False])}
+        True, False,  True,  True,  True])}
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="stop-resume-the-fitting-of-an-estimator">
-<h2>Stop/resume the fitting of an estimator<a class="headerlink" href="#stop-resume-the-fitting-of-an-estimator" title="Link to this heading"></a></h2>
+<h2>Stop/resume the fitting of an estimator<a class="headerlink" href="#stop-resume-the-fitting-of-an-estimator" title="Link to this heading">#</a></h2>
 <p>In the code below I try to mimic how pytorch models are trained: we can stop the training at any time, and we can resume it later.</p>
 <p>The idea is to demonstrate how to use population files to store checkpoints, and continuing from the last saved checkpoint.</p>
 <div class="cell docutils container">
@@ -1581,72 +1420,72 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Progress 1/10
 Completed 100% [====================]
 saving final population as archive...
-Saved population to file /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json
-Best model: Logistic(Sum(0.06,0.57*Cos(1.00*Mean(1.51,1.00*Mean(AIDS,3.04,1.00*AIDS,1.00*Prod(1.00*Sqrtabs(AIDS),AIDS,AIDS)),2.37))))
-score     : 0.64
+Saved population to file /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json
+Best model: Logistic(Sum(-0.27,0.03*Sqrtabs(0.08*AIDS)))
+score     : 0.58
 Progress 2/10
-Loaded population from /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json of size = 200
+Loaded population from /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json of size = 200
 Completed 100% [====================]
 saving final population as archive...
-Saved population to file /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json
-Best model: Logistic(Sum(0.12,Cos(1.00*Mean(1.95,1.00*Mean(AIDS,13.92,AIDS,1.00*Prod(AIDS,AIDS,AIDS)),4.89))))
-score     : 0.72
-Progress 3/10
-Loaded population from /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json of size = 200
-Completed 100% [====================]
-saving final population as archive...
-Saved population to file /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json
-Best model: Logistic(Sum(0.12,Cos(1.00*Mean(1.95,1.00*Mean(AIDS,13.92,AIDS,1.00*Prod(AIDS,AIDS,AIDS)),4.89))))
-score     : 0.72
-Progress 4/10
-Loaded population from /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json of size = 200
-Completed 100% [====================]
-saving final population as archive...
-Saved population to file /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json
-Best model: Logistic(Sum(-0.51,0.00*AIDS))
-score     : 0.68
-Progress 5/10
-Loaded population from /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json of size = 200
-Completed 100% [====================]
-saving final population as archive...
-Saved population to file /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json
-Best model: Logistic(Sum(-179.23,AIDS))
-score     : 0.62
-Progress 6/10
-Loaded population from /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json of size = 200
-Completed 100% [====================]
-saving final population as archive...
-Saved population to file /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json
-Best model: Logistic(Sum(-0.55,0.00*AIDS))
-score     : 0.68
-Progress 7/10
-Loaded population from /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json of size = 200
-Completed 100% [====================]
-saving final population as archive...
-Saved population to file /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json
-Best model: Logistic(Sum(-0.66,0.00*AIDS))
-score     : 0.68
-Progress 8/10
-Loaded population from /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json of size = 200
-Completed 100% [====================]
-saving final population as archive...
-Saved population to file /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json
-Best model: Logistic(Sum(-0.38,0.00*AIDS))
-score     : 0.68
-Progress 9/10
-Loaded population from /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json of size = 200
-Completed 100% [====================]
-saving final population as archive...
-Saved population to file /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json
-Best model: Logistic(Sum(0.22,Cos(1.00*Mean(4.05,Mean(AIDS,-10.20,AIDS,Prod(AIDS,AIDS,AIDS)),8.52))))
-score     : 0.72
-Progress 10/10
-Loaded population from /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json of size = 200
-Completed 100% [====================]
-saving final population as archive...
-Saved population to file /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json
-Best model: Logistic(Sum(-130.08,AIDS))
+Saved population to file /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json
+Best model: Logistic(Sum(-113.35,AIDS))
 score     : 0.64
+Progress 3/10
+Loaded population from /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json
+Best model: Logistic(Sum(-113.35,AIDS))
+score     : 0.64
+Progress 4/10
+Loaded population from /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json
+Best model: Logistic(Sum(-0.11,Tan(Prod(If(AIDS&gt;14174.00,1.00,Total),14174.00))))
+score     : 0.66
+Progress 5/10
+Loaded population from /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json
+Best model: Logistic(Sum(-113.35,1.00*Sqrtabs(AIDS)))
+score     : 0.66
+Progress 6/10
+Loaded population from /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json
+Best model: Logistic(Sum(-113.35,AIDS))
+score     : 0.64
+Progress 7/10
+Loaded population from /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json
+Best model: Logistic(Sum(-113.35,1.00*Sqrtabs(AIDS)))
+score     : 0.66
+Progress 8/10
+Loaded population from /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json
+Best model: Logistic(Sum(-113.35,Sqrtabs(AIDS)))
+score     : 0.66
+Progress 9/10
+Loaded population from /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json
+Best model: Logistic(Sum(-0.02,If(AIDS&gt;15890.50,5.92,-0.42)))
+score     : 0.68
+Progress 10/10
+Loaded population from /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json
+Best model: Logistic(Sum(-113.35,1.00))
+score     : 0.5
 </pre></div>
 </div>
 </div>
@@ -1667,13 +1506,13 @@ score     : 0.64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Logistic(Sum(-130.08,AIDS))
-Fitness(0.600000 16.000000 )
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Logistic(Sum(-113.35,1.00))
+Fitness(0.500000 15.000000 )
 Completed 100% [====================]
 saving final population as archive...
-Saved population to file /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json
-Logistic(Sum(-130.08,1.00*Sqrt(AIDS)))
-Fitness(0.900000 21.000000 )
+Saved population to file /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json
+Logistic(Sum(-113.35,AIDS))
+Fitness(0.700000 16.000000 )
 </pre></div>
 </div>
 </div>
@@ -1686,7 +1525,7 @@ Fitness(0.900000 21.000000 )
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="p">)</span>
 
-<span class="n">est</span><span class="o">.</span><span class="n">partial_fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lock_nodes_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">keep_leaves_unlocked</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">est</span><span class="o">.</span><span class="n">partial_fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lock_nodes_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">skip_leaves</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="p">)</span>
@@ -1694,12 +1533,12 @@ Fitness(0.900000 21.000000 )
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Logistic(Sum(-130.08,1.00*Sqrt(AIDS)))
-Fitness(0.900000 21.000000 )
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Logistic(Sum(-113.35,AIDS))
+Fitness(0.700000 16.000000 )
 Completed 100% [====================]
 saving final population as archive...
-Saved population to file /var/folders/mh/ggnb_jv93cl_gbqbg2jxq0yr0000gn/T/tmpmzzid_sc/brush_pop_checkpoint.json
-Logistic(Sum(-130.08,AIDS))
+Saved population to file /tmp/tmpmfrx5_0r/brush_pop_checkpoint.json
+Logistic(Sum(-113.35,AIDS))
 Fitness(0.600000 16.000000 )
 </pre></div>
 </div>
@@ -1709,34 +1548,106 @@ Fitness(0.600000 16.000000 )
 </section>
 
 
-           </div>
-          </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="json.html" class="btn btn-neutral float-left" title="JSON Interoperability" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="archive.html" class="btn btn-neutral float-right" title="The archive" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+                </article>
+              
 
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2025, William La Cava and Joseph D. Romano.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
-        </div>
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="json.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">JSON Interoperability</p>
       </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+    </a>
+    <a class="right-next"
+       href="archive.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">The archive</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-</body>
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-just-the-archive">Saving just the archive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-population-files-with-classification">Using population files with classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serialization-with-pickle">Serialization with pickle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-resume-the-fitting-of-an-estimator">Stop/resume the fitting of an estimator</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By William La Cava and Joseph D. Romano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2021, William La Cava and Joseph D. Romano.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
 </html>

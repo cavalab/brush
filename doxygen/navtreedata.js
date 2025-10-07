@@ -66,20 +66,20 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d1/d3a/structBrush_1_1Node.html#a237b9208864ace5209edca01623f6b1e",
-"d2/d36/classBrush_1_1Data_1_1Dataset.html#a5020e43def6267598be0ba3d2b46e616",
-"d4/d1f/variation_8h_source.html",
-"d5/d14/classBrush_1_1Var_1_1Variation.html#a34e022870eeefe3cf27f1b5575738ce9",
-"d6/dd0/structBrush_1_1Fitness.html#a4bec036d5b4fa2acc82b2e934183a45c",
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aec9be0a4a08b60d4d6121286de47e65f",
-"d8/dc0/init_8h.html#a0c86fe7dc09ca580e891580bf302e659",
-"da/d4c/classBrush_1_1Eval_1_1Scorer.html#ad88baa386d47e6464c130f0da3858325",
-"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#a16227000cf1d98852df3ef1cd6a6efff",
-"dc/d31/structBrush_1_1Operator.html#ab4b156eb563db21ac32223aabfb9b92c",
-"dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#aa99ffdbe9f4242358c67e3ae3446762c",
-"de/d30/structBrush_1_1Jetify.html",
-"de/deb/structBrush_1_1Parameters.html#a139004f9fa652376afabd690dac242e5",
-"df/d41/bind__variation_8cpp_source.html"
+"d1/d3a/structBrush_1_1Node.html#a0971012cfb2ae944f4bea0ea0dc9e5a3",
+"d2/d36/classBrush_1_1Data_1_1Dataset.html#a652aba735323fddf7bf79407e7e4fc83",
+"d4/d46/classBrush_1_1Var_1_1PointMutation.html#abed0c55509e074070bd1068a62a1ca0a",
+"d5/d14/classBrush_1_1Var_1_1Variation.html#a656380481257dd8f03ceebcb07f0019f",
+"d6/dd0/structBrush_1_1Fitness.html#a52c42c28deffbad276611722fdd58859",
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#af1ff3934c359ca5bd910a61fe083d5ce",
+"d8/dca/structBrush_1_1Function_3_01NodeType_1_1After_01_4.html#a190369bc3a200689efc6832b36428554",
+"da/d54/structBrush_1_1WeightType.html",
+"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ad6978c4386468c44dd252345c11ca126",
+"dc/d5c/namespaceBrush.html#a01fb70aacb9cbd44254dbed1a2cbba39",
+"dc/db4/structBrush_1_1DataEnumType_3_01DT_1_1ArrayIJet_01_4.html",
+"de/d30/structBrush_1_1Jetify.html#a41a88664219f863ac8fe341e03f5c21f",
+"de/deb/structBrush_1_1Parameters.html#a2054b866fb2d2a08114ae9c468ad3863",
+"df/dbb/selection_8cpp_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

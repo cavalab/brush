@@ -10,7 +10,6 @@ var classBrush_1_1Util_1_1Rnd =
     [ "random_choice", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9ea4fb27b340cdd054b1e271e76137e0", null ],
     [ "random_choice", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a18656ce513329b1c672f6ee15ab281b7", null ],
     [ "random_choice", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a318db1552e635b2cac649c0e1b1805f6", null ],
-    [ "rnd_alpha_beta", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a20753601c00c28c431ced39c8c5a216d", null ],
     [ "rnd_dbl", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#aa7cedc8c08588c4740e07da8d6c2cb9f", null ],
     [ "rnd_flt", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a450979f31af93d8dffd7be006ee5d50b", null ],
     [ "rnd_int", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#aef0f2836321f651d5887d29739e180f5", null ],

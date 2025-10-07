@@ -1,16 +1,5 @@
 var NAVTREEINDEX11 =
 {
-"dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#aa99ffdbe9f4242358c67e3ae3446762c":[2,0,0,120,7],
-"dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#ab50d4ebcba078dfe4b43f6fd3dbf5810":[0,0,0,123,15],
-"dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#ab50d4ebcba078dfe4b43f6fd3dbf5810":[2,0,0,120,15],
-"dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#abdabfd8248d206d0613d798922556d20":[0,0,0,123,19],
-"dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#abdabfd8248d206d0613d798922556d20":[2,0,0,120,19],
-"dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#ad4623810d48636cef328a9cc02e385ab":[0,0,0,123,9],
-"dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#ad4623810d48636cef328a9cc02e385ab":[2,0,0,120,9],
-"dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#ae906d7b58748a0f3dc89117f0ce4a20b":[0,0,0,123,22],
-"dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#ae906d7b58748a0f3dc89117f0ce4a20b":[2,0,0,120,22],
-"dc/dac/io_8h.html":[3,0,0,2,3],
-"dc/dac/io_8h_source.html":[3,0,0,2,3],
 "dc/db4/structBrush_1_1DataEnumType_3_01DT_1_1ArrayIJet_01_4.html":[0,0,0,18],
 "dc/db4/structBrush_1_1DataEnumType_3_01DT_1_1ArrayIJet_01_4.html":[2,0,0,15],
 "dc/db4/structBrush_1_1DataEnumType_3_01DT_1_1ArrayIJet_01_4.html#a4718f62ee99454302109fc30c4aee8e2":[0,0,0,18,0],
@@ -249,5 +238,16 @@ var NAVTREEINDEX11 =
 "de/d26/nodetype_8h.html#ae99fa5ab7f6193e3cb2056ba55cbb522":[3,0,0,6,7,19],
 "de/d26/nodetype_8h.html#af3754cc76393d77d2e246a50cf26789b":[3,0,0,6,7,7],
 "de/d26/nodetype_8h_source.html":[3,0,0,6,7],
-"de/d30/structBrush_1_1Jetify.html":[0,0,0,98]
+"de/d30/structBrush_1_1Jetify.html":[0,0,0,98],
+"de/d30/structBrush_1_1Jetify.html":[2,0,0,95],
+"de/d30/structBrush_1_1Jetify.html#a41a88664219f863ac8fe341e03f5c21f":[0,0,0,98,0],
+"de/d30/structBrush_1_1Jetify.html#a41a88664219f863ac8fe341e03f5c21f":[0,0,0,99,0],
+"de/d30/structBrush_1_1Jetify.html#a41a88664219f863ac8fe341e03f5c21f":[0,0,0,100,0],
+"de/d30/structBrush_1_1Jetify.html#a41a88664219f863ac8fe341e03f5c21f":[0,0,0,101,0],
+"de/d30/structBrush_1_1Jetify.html#a41a88664219f863ac8fe341e03f5c21f":[0,0,0,102,0],
+"de/d30/structBrush_1_1Jetify.html#a41a88664219f863ac8fe341e03f5c21f":[0,0,0,103,0],
+"de/d30/structBrush_1_1Jetify.html#a41a88664219f863ac8fe341e03f5c21f":[0,0,0,104,0],
+"de/d30/structBrush_1_1Jetify.html#a41a88664219f863ac8fe341e03f5c21f":[0,0,0,105,0],
+"de/d30/structBrush_1_1Jetify.html#a41a88664219f863ac8fe341e03f5c21f":[0,0,0,106,0],
+"de/d30/structBrush_1_1Jetify.html#a41a88664219f863ac8fe341e03f5c21f":[0,0,0,107,0]
 };

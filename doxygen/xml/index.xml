@@ -330,7 +330,8 @@
     <member refid="d0/d75/classBrush_1_1Engine_1ae11d9f38618b28e5e35912ee58419ed0" kind="function"><name>get_archive</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1a40877d86ac0f8be201ed33893333d0c8" kind="function"><name>get_population</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1a7936896228b5c00b6e87070b7caeed00" kind="function"><name>set_population</name></member>
-    <member refid="d0/d75/classBrush_1_1Engine_1a990879e114f30b1470c13f3a78911465" kind="function"><name>lock_nodes</name></member>
+    <member refid="d0/d75/classBrush_1_1Engine_1a554973e3cdb838b80351337558995469" kind="function"><name>lock_nodes</name></member>
+    <member refid="d0/d75/classBrush_1_1Engine_1a906eb67b9e5e91447f270653b468a36d" kind="function"><name>unlock_nodes</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1ac70f5fca40a2a058b187e579a7910ab3" kind="function"><name>predict_archive</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1a7dd0788450fa1c0b3f5b4687c0588e63" kind="function"><name>predict_archive</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1ac1f6620adc2dd0710a415a7e48b76650" kind="function"><name>predict_proba_archive</name></member>
@@ -627,11 +628,10 @@
     <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a563604a190930983934a9718a42b720b" kind="variable"><name>storage</name></member>
     <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1ac60eb12f5119da28941e61efac059e42" kind="function"><name>HashStorage</name></member>
     <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a150bed4ddabbe973e01d4555724fb086" kind="function"><name>~HashStorage</name></member>
-    <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1ab5d5707f9f68b5ebddeae53988ee5d63" kind="function"><name>append</name></member>
+    <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1aa05ae428c61e9709c2521d1af384d960" kind="function"><name>append</name></member>
     <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a88fbcc63b2b89bf016dcd15c1463307f" kind="function"><name>getList</name></member>
     <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a4cc087bda9fd98d2e7fe416e3e3ad4ba" kind="function"><name>clear</name></member>
     <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1ac6052dacde0f387c0a94c4db6a716546" kind="function"><name>keys</name></member>
-    <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1ac57c86930d31872b0add261949855563" kind="function"><name>print</name></member>
   </compound>
   <compound refid="de/d83/classBrush_1_1Pop_1_1Individual" kind="class"><name>Brush::Pop::Individual</name>
     <member refid="de/d83/classBrush_1_1Pop_1_1Individual_1af8eafd2aab3c3a683d6b3b80a649dfa6" kind="variable"><name>program</name></member>
@@ -679,15 +679,12 @@
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ac63ac4ab691f7bedb423a60ead721ec9" kind="variable"><name>equivalentExpressions</name></member>
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a7319339ce256877088504967d3100685" kind="variable"><name>uniformPlanes</name></member>
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1abb9431d42274e6b559249d6b2872d2a2" kind="function"><name>init</name></member>
-    <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a9e6645327d19f04e16025a61faaca021" kind="function"><name>analyze_tree</name></member>
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a8a70383d31da8c7798595f36f2acb2a9" kind="function"><name>simplify_tree</name></member>
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a3a6711a4adc8e43324fe675688c8b3cb" kind="function"><name>Inexact_simplifier</name></member>
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a8b53abd24e3b1b8018379befdce0059a" kind="function"><name>~Inexact_simplifier</name></member>
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a7c78cf61e853e40d9729e4b31cb1ca59" kind="function"><name>index</name></member>
-    <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1adcb98569affab47f0a15bac9e99dd4c1" kind="function"><name>log_simplification_table</name></member>
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a5f837106982ddf27cb2fcd8d492cc677" kind="function"><name>hash</name></member>
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a32dabddbcfac94f89741db0c4fd6ffa3" kind="function"><name>query</name></member>
-    <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a1bee6d91769fb8c3bcefaf29e2b4f232" kind="function"><name>dt_to_string</name></member>
   </compound>
   <compound refid="dc/de3/classBrush_1_1Var_1_1InsertMutation" kind="class"><name>Brush::Var::InsertMutation</name>
     <member refid="dc/de3/classBrush_1_1Var_1_1InsertMutation_1a8b98cb676dbaeb976e61dd54c3bc4e5b" kind="function"><name>find_spots</name></member>
@@ -826,7 +823,6 @@
     <member refid="d1/d3a/structBrush_1_1Node_1a0971012cfb2ae944f4bea0ea0dc9e5a3" kind="variable"><name>center_op</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1ac5f37d638625468ed68de599a2a7d968" kind="variable"><name>feature</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1a2875e5aa77054658c071f7b0d7103e68" kind="variable"><name>feature_type</name></member>
-    <member refid="d1/d3a/structBrush_1_1Node_1abee9ab1ef7eb2e12dcf45db1bbddf25a" kind="variable"><name>keep_split_feature</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1adcd17b2d50bd124218a1ed472369d461" kind="function"><name>Node</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93" kind="function"><name>Node</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1a24ab653c36833ab9cd301efe99b39d5f" kind="function"><name>set_signature</name></member>
@@ -837,7 +833,7 @@
     <member refid="d1/d3a/structBrush_1_1Node_1a9ec6ba08b0baebc0cd105e4ef774b7fb" kind="function"><name>args_type</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1a754e5efb828686e30ebfa2174d56e37a" kind="function"><name>get_arg_types</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1ac2f0913b7a3e238d879722eb7f62aee2" kind="function"><name>get_arg_count</name></member>
-    <member refid="d1/d3a/structBrush_1_1Node_1a3365cec003572b3ea248bd6647437d73" kind="function"><name>get_node_hash</name></member>
+    <member refid="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" kind="function"><name>get_node_hash</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1a7c46bb16fb006691be230d29b6e731fe" kind="function"><name>operator==</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1ac854a6c4b96a0524e1371397c6fba4b1" kind="function"><name>operator!=</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1aea5769142b80b211a53eb20d8a14507b" kind="function"><name>operator&lt;</name></member>
@@ -851,8 +847,6 @@
     <member refid="d1/d3a/structBrush_1_1Node_1a85a62efd4f1f99fa45eb52e4c0a1a26f" kind="function"><name>get_feature</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1a9ceebb9b686a6f6784ae90c558385410" kind="function"><name>set_feature_type</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1a5d3a467bbb0b2fa914594c735579926d" kind="function"><name>get_feature_type</name></member>
-    <member refid="d1/d3a/structBrush_1_1Node_1a31f2f60b25fa6a8fa8f420070da2863d" kind="function"><name>set_keep_split_feature</name></member>
-    <member refid="d1/d3a/structBrush_1_1Node_1a27183f178a41394fea61c7f5b1fdc751" kind="function"><name>get_keep_split_feature</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1a8d884d5ad5f6825aa8f50039fb6baf9f" kind="function"><name>get_is_weighted</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1a70fb9b583f72b67f6c24c2bbaae55267" kind="function"><name>set_is_weighted</name></member>
   </compound>
@@ -871,7 +865,6 @@
     <member refid="d8/d49/structNode_1a0971012cfb2ae944f4bea0ea0dc9e5a3" kind="variable"><name>center_op</name></member>
     <member refid="d8/d49/structNode_1ac5f37d638625468ed68de599a2a7d968" kind="variable"><name>feature</name></member>
     <member refid="d8/d49/structNode_1a2875e5aa77054658c071f7b0d7103e68" kind="variable"><name>feature_type</name></member>
-    <member refid="d8/d49/structNode_1abee9ab1ef7eb2e12dcf45db1bbddf25a" kind="variable"><name>keep_split_feature</name></member>
     <member refid="d8/d49/structNode_1adcd17b2d50bd124218a1ed472369d461" kind="function"><name>Node</name></member>
     <member refid="d8/d49/structNode_1a62f7ba79b38e86e54488e5dd9a6bdc93" kind="function"><name>Node</name></member>
     <member refid="d8/d49/structNode_1a24ab653c36833ab9cd301efe99b39d5f" kind="function"><name>set_signature</name></member>
@@ -882,7 +875,7 @@
     <member refid="d8/d49/structNode_1a9ec6ba08b0baebc0cd105e4ef774b7fb" kind="function"><name>args_type</name></member>
     <member refid="d8/d49/structNode_1a754e5efb828686e30ebfa2174d56e37a" kind="function"><name>get_arg_types</name></member>
     <member refid="d8/d49/structNode_1ac2f0913b7a3e238d879722eb7f62aee2" kind="function"><name>get_arg_count</name></member>
-    <member refid="d8/d49/structNode_1a3365cec003572b3ea248bd6647437d73" kind="function"><name>get_node_hash</name></member>
+    <member refid="d8/d49/structNode_1a1aef5137dca5171a150c6d26ca43d9bc" kind="function"><name>get_node_hash</name></member>
     <member refid="d8/d49/structNode_1a7c46bb16fb006691be230d29b6e731fe" kind="function"><name>operator==</name></member>
     <member refid="d8/d49/structNode_1ac854a6c4b96a0524e1371397c6fba4b1" kind="function"><name>operator!=</name></member>
     <member refid="d8/d49/structNode_1aea5769142b80b211a53eb20d8a14507b" kind="function"><name>operator&lt;</name></member>
@@ -896,8 +889,6 @@
     <member refid="d8/d49/structNode_1a85a62efd4f1f99fa45eb52e4c0a1a26f" kind="function"><name>get_feature</name></member>
     <member refid="d8/d49/structNode_1a9ceebb9b686a6f6784ae90c558385410" kind="function"><name>set_feature_type</name></member>
     <member refid="d8/d49/structNode_1a5d3a467bbb0b2fa914594c735579926d" kind="function"><name>get_feature_type</name></member>
-    <member refid="d8/d49/structNode_1a31f2f60b25fa6a8fa8f420070da2863d" kind="function"><name>set_keep_split_feature</name></member>
-    <member refid="d8/d49/structNode_1a27183f178a41394fea61c7f5b1fdc751" kind="function"><name>get_keep_split_feature</name></member>
     <member refid="d8/d49/structNode_1a8d884d5ad5f6825aa8f50039fb6baf9f" kind="function"><name>get_is_weighted</name></member>
     <member refid="d8/d49/structNode_1a70fb9b583f72b67f6c24c2bbaae55267" kind="function"><name>set_is_weighted</name></member>
   </compound>
@@ -1238,7 +1229,8 @@
     <member refid="db/d88/structBrush_1_1Program_1a990bd3691f3b3e2b7ff479bcd4231479" kind="function"><name>get_n_weights</name></member>
     <member refid="db/d88/structBrush_1_1Program_1a8bee1c866051b3e11c017cdf29b46eb7" kind="function"><name>get_weights</name></member>
     <member refid="db/d88/structBrush_1_1Program_1a5ba9c69ade043cacb917dfb654a57834" kind="function"><name>set_weights</name></member>
-    <member refid="db/d88/structBrush_1_1Program_1a17d8eaf6b1623cefc4d4888e8ed81330" kind="function"><name>lock_nodes</name></member>
+    <member refid="db/d88/structBrush_1_1Program_1ac95fc63e130e0e594b92a0c160db44aa" kind="function"><name>lock_nodes</name></member>
+    <member refid="db/d88/structBrush_1_1Program_1a9a48839ac5f4e68f5b0468cc50f35439" kind="function"><name>unlock_nodes</name></member>
     <member refid="db/d88/structBrush_1_1Program_1ac87e13742552236e1dc9fd9b62078331" kind="function"><name>get_model</name></member>
     <member refid="db/d88/structBrush_1_1Program_1ab288bd389c68ab3c0776ef14a9e5e331" kind="function"><name>get_dot_model</name></member>
     <member refid="db/d88/structBrush_1_1Program_1a9db890cb3b1bd9f07764bb3bc7f75d64" kind="function"><name>linearize</name></member>
@@ -1276,7 +1268,6 @@
     <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a8357702cf1f426e4909c45b97a18bb0e" kind="function"><name>set_seed</name></member>
     <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aef0f2836321f651d5887d29739e180f5" kind="function"><name>rnd_int</name></member>
     <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a450979f31af93d8dffd7be006ee5d50b" kind="function"><name>rnd_flt</name></member>
-    <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a20753601c00c28c431ced39c8c5a216d" kind="function"><name>rnd_alpha_beta</name></member>
     <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aa7cedc8c08588c4740e07da8d6c2cb9f" kind="function"><name>rnd_dbl</name></member>
     <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a840b7318ae8de499ad0b0bf151986382" kind="function"><name>operator()</name></member>
     <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aab34b78c05c7aa5edd63c6f4e8265351" kind="function"><name>operator()</name></member>
@@ -1829,12 +1820,11 @@
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1af8a04b3abeea0f0f9e5b6e358aa65c09" kind="function"><name>mutate</name></member>
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" kind="function"><name>vary</name></member>
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1ac3440610a9989704a29120584ab8e123" kind="function"><name>update_ss</name></member>
-    <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" kind="function"><name>vary_and_update</name></member>
+    <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1abd847a202dc0014b7635713a122436dd" kind="function"><name>vary_and_update</name></member>
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1ad72e239059728afbec698af129abec25" kind="function"><name>bandit_sample_terminal</name></member>
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1aee4d051cf57caab64e694bdb70622913" kind="function"><name>bandit_get_node_like</name></member>
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a79a47baeb7d1583415e514a1c04c2b07" kind="function"><name>bandit_sample_op_with_arg</name></member>
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a0abca6376ae18e18765501f36a87136a" kind="function"><name>bandit_sample_op</name></member>
-    <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1ae34d61e9fc35cd9dedcca8ee379eade3" kind="function"><name>log_simplification_table</name></member>
   </compound>
   <compound refid="d7/dfc/classvector" kind="class"><name>vector</name>
     <member refid="d7/dfc/classvector_1a2396209900e8f592db1f0b2467f7d899" kind="variable"><name>elements</name></member>

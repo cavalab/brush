@@ -1,111 +1,392 @@
 
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
-<head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The archive &mdash; Brush 0.1.dev1+ga5affc5fe documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
-      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The archive &#8212; Brush 0.1a documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-    <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=f69ed792"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-      <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/js/theme.js"></script>
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=74359811"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/archive';</script>
+    <link rel="icon" href="../_static/paint-brush-solid.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Using Deap" href="deap.html" />
-    <link rel="prev" title="Saving and loading populations" href="saving_loading_populations.html" /> 
-</head>
+    <link rel="prev" title="Saving and loading populations" href="saving_loading_populations.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-          
-          
-          <a href="../index.html" class="icon icon-home">
-            Brush
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Quickstart</span></p>
-<ul>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Brush 0.1a documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quickstart</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics.html">Basic Usage</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Cookbook</a><ul class="current">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Cookbook</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="data.html">Working with Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="search_space.html">The Search Space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="working_with_programs.html">Working with Programs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="json.html">JSON Interoperability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="saving_loading_populations.html">Saving and loading populations</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">The archive</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#loading-a-specific-model-from-archive">Loading a specific model from archive</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#visualizing-the-pareto-front-of-the-archive">Visualizing the Pareto front of the archive</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#storing-the-population-unique-individuals">Storing the population (unique individuals)</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">The archive</a></li>
 <li class="toctree-l2"><a class="reference internal" href="deap.html">Using Deap</a></li>
 </ul>
-</li>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cpp_api/index.html">C++ API</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python_api/index.html">Python API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/estimator.html">BrushEstimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/interface.html">EstimatorInterface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/regressor.html">BrushRegressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/classifier.html">BrushClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/python_api.html">Python API</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cpp_api/index.html">C++ API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/data.html">Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/timeseries.html">TimeSeries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/search_space.html">SearchSpace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/program.html">Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/node.html">Node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/nodetypes.html">NodeTypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/individual.html">Individual and Fitness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/evaluation.html">Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/population.html">Population</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/variation.html">Variation (Crossover/Mutation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/selection.html">Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/archive.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/engine.html">Engine (and parameters)</a></li>
+</ul>
+</details></li>
 </ul>
 
-        </div>
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
       </div>
-    </nav>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Brush</a>
-      </nav>
+<div class="sbt-scroll-pixel-helper"></div>
 
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="index.html">Cookbook</a></li>
-      <li class="breadcrumb-item active">The archive</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/guide/archive.ipynb.txt" rel="nofollow"> View page source</a>
-      </li>
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/cavalab/brush" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/guide/archive.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
   </ul>
-  <hr/>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>The archive</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-a-specific-model-from-archive">Loading a specific model from archive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-pareto-front-of-the-archive">Visualizing the Pareto front of the archive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storing-the-population-unique-individuals">Storing the population (unique individuals)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section id="the-archive">
-<h1>The archive<a class="headerlink" href="#the-archive" title="Link to this heading"></a></h1>
+<h1>The archive<a class="headerlink" href="#the-archive" title="Link to this heading">#</a></h1>
 <p>When you fit a brush estimator, two new attributes are created: <code class="docutils literal notranslate"><span class="pre">best_estimator_</span></code> and <code class="docutils literal notranslate"><span class="pre">archive_</span></code>.</p>
 <p>If you set <code class="docutils literal notranslate"><span class="pre">use_arch</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> when instantiating the estimator, then it will store the pareto front as a list in <code class="docutils literal notranslate"><span class="pre">archive_</span></code>. This pareto front is always created with individuals from the final population that are not dominated in objectives <strong>scorer</strong> and <strong>complexity</strong>. Setting <code class="docutils literal notranslate"><span class="pre">scorer</span></code> as an objective means optimizing the metric set as <code class="docutils literal notranslate"><span class="pre">scorer:</span> <span class="pre">str</span></code>.</p>
 <p>In case you need more flexibility, the archive will contain the entire final population if <code class="docutils literal notranslate"><span class="pre">use_arch</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, and you can iterate through this list to select individuals with different criteria. It is also good to remind that Brush supports different optimization objectives using the argument <code class="docutils literal notranslate"><span class="pre">objectives</span></code>.</p>
@@ -147,807 +428,807 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generation 1/100 [/                                                 ]
-Best model on Val:Logistic(Sum(0.00,If(AIDS&gt;15890.50,1.00*Exp(1.00*Logabs(1.00*Add(1.00*Add(AIDS,AIDS),AIDS))),1.00*Mul(AIDS,1.00*Cos(If(Total&gt;1572255.50,1.00*Exp(1.00*Cos(1.00*Cos(1.00*Mul(AIDS,AIDS)))),1.00*Logabs(1.00*Sin(AIDS))))))))
-Train Loss (Med): 0.74000 (0.50000)
-Val Loss (Med): 0.74000 (0.50000)
-Median Size (Max): 7 (73)
-Median complexity (Max): 992 (1780983200)
-Time (s): 0.18365
+Best model on Val:Logistic(Sum(-0.00,0.19*Cos(1.26*Logabs(0.71*Mul(0.71,0.71*AIDS)))))
+Train Loss (Med): 0.72000 (0.50000)
+Val Loss (Med): 0.72000 (0.50000)
+Median Size (Max): 7 (95)
+Median complexity (Max): 992 (2037174688)
+Time (s): 0.09034
 
 Generation 2/100 [//                                                ]
-Best model on Val:Logistic(Sum(-0.93,If(AIDS&gt;15890.50,If(AIDS&gt;18390.00,12.99,AIDS),1.46*Cos(18390.82*Cos(18390.00*Total)))))
-Train Loss (Med): 0.76000 (0.50000)
-Val Loss (Med): 0.76000 (0.50000)
-Median Size (Max): 7 (73)
-Median complexity (Max): 176 (1330371488)
-Time (s): 0.27951
+Best model on Val:Logistic(Sum(-0.00,0.19*Cos(1.26*Logabs(0.71*Mul(0.71,0.71*AIDS)))))
+Train Loss (Med): 0.72000 (0.56000)
+Val Loss (Med): 0.72000 (0.56000)
+Median Size (Max): 7 (68)
+Median complexity (Max): 992 (994658720)
+Time (s): 0.13514
 
 Generation 3/100 [//                                                ]
-Best model on Val:Logistic(Sum(-0.93,If(AIDS&gt;15890.50,If(AIDS&gt;18390.00,12.99,AIDS),1.46*Cos(18390.82*Cos(18390.00*Total)))))
-Train Loss (Med): 0.76000 (0.50000)
-Val Loss (Med): 0.76000 (0.50000)
-Median Size (Max): 5 (33)
-Median complexity (Max): 176 (9277856)
-Time (s): 0.41748
+Best model on Val:Logistic(Sum(-0.00,0.19*Cos(1.26*Logabs(0.71*Mul(0.71,0.71*AIDS)))))
+Train Loss (Med): 0.72000 (0.56000)
+Val Loss (Med): 0.72000 (0.56000)
+Median Size (Max): 8 (36)
+Median complexity (Max): 2096 (66394208)
+Time (s): 0.17748
 
 Generation 4/100 [///                                               ]
-Best model on Val:Logistic(Sum(-0.93,If(AIDS&gt;15890.50,If(AIDS&gt;18390.00,12.99,AIDS),1.46*Cos(18390.82*Cos(18390.00*Total)))))
-Train Loss (Med): 0.76000 (0.50000)
-Val Loss (Med): 0.76000 (0.50000)
-Median Size (Max): 5 (29)
-Median complexity (Max): 128 (9068960)
-Time (s): 0.59669
+Best model on Val:Logistic(Sum(-0.00,0.19*Cos(1.26*Logabs(0.71*Mul(0.71,0.71*AIDS)))))
+Train Loss (Med): 0.72000 (0.56000)
+Val Loss (Med): 0.72000 (0.56000)
+Median Size (Max): 7 (23)
+Median complexity (Max): 992 (66394208)
+Time (s): 0.20919
 
 Generation 5/100 [///                                               ]
-Best model on Val:Logistic(Sum(-0.93,If(AIDS&gt;15890.50,AIDS,1.46*Cos(18390.82*Cos(18390.00*Total)))))
-Train Loss (Med): 0.76000 (0.50000)
-Val Loss (Med): 0.76000 (0.50000)
-Median Size (Max): 5 (22)
-Median complexity (Max): 128 (9003680)
-Time (s): 0.69763
+Best model on Val:Logistic(Sum(0.03,1.02*Cos(1.49*Logabs(-5.86*Mul(-8.20*Add(45.60*AIDS,-21.96*Add(-13.93*AIDS,563.93)),-8.20*Logabs(632.82*Add(1.24*Cos(-1733.10*AIDS),632.82*Total)))))))
+Train Loss (Med): 0.74000 (0.56000)
+Val Loss (Med): 0.74000 (0.56000)
+Median Size (Max): 6 (41)
+Median complexity (Max): 176 (66394208)
+Time (s): 0.24115
 
 Generation 6/100 [////                                              ]
-Best model on Val:Logistic(Sum(-0.93,If(AIDS&gt;15890.50,AIDS,1.46*Cos(18390.82*Cos(18390.00*Total)))))
-Train Loss (Med): 0.76000 (0.50000)
-Val Loss (Med): 0.76000 (0.50000)
-Median Size (Max): 5 (22)
-Median complexity (Max): 128 (9003680)
-Time (s): 0.75402
+Best model on Val:Logistic(Sum(0.11,Cos(1.37*Logabs(-10.28*Mul(-14.38*Add(70.37*AIDS,-27.39*Add(-15.03*AIDS,538.57)),-14.38*Logabs(815.05*Add(1.24*Cos(-1736.49*AIDS),815.05*Total)))))))
+Train Loss (Med): 0.78000 (0.56000)
+Val Loss (Med): 0.78000 (0.56000)
+Median Size (Max): 5 (41)
+Median complexity (Max): 176 (66394208)
+Time (s): 0.27174
 
 Generation 7/100 [////                                              ]
-Best model on Val:Logistic(Sum(-0.93,If(AIDS&gt;15890.50,AIDS,1.46*Cos(18390.82*Cos(18390.00*Total)))))
-Train Loss (Med): 0.76000 (0.50000)
-Val Loss (Med): 0.76000 (0.50000)
-Median Size (Max): 5 (22)
-Median complexity (Max): 128 (9003680)
-Time (s): 0.82012
+Best model on Val:Logistic(Sum(0.11,Cos(1.37*Logabs(-10.28*Mul(-14.38*Add(70.35*AIDS,-27.39*Add(-15.02*AIDS,538.61)),-14.38*Logabs(815.05*Add(Cos(-1736.49*AIDS),815.05*Total)))))))
+Train Loss (Med): 0.78000 (0.50000)
+Val Loss (Med): 0.78000 (0.50000)
+Median Size (Max): 5 (37)
+Median complexity (Max): 128 (66394208)
+Time (s): 0.30204
 
 Generation 8/100 [/////                                             ]
-Best model on Val:Logistic(Sum(-0.93,If(AIDS&gt;15890.50,AIDS,1.46*Cos(18390.82*Cos(18390.00*Total)))))
-Train Loss (Med): 0.76000 (0.56000)
-Val Loss (Med): 0.76000 (0.56000)
-Median Size (Max): 5 (22)
-Median complexity (Max): 176 (9003680)
-Time (s): 0.89256
+Best model on Val:Logistic(Sum(0.11,Cos(1.37*Logabs(-10.28*Mul(-14.38*Add(70.35*AIDS,-27.39*Add(-15.02*AIDS,538.61)),-14.38*Logabs(815.05*Add(Cos(-1736.49*AIDS),815.05*Total)))))))
+Train Loss (Med): 0.78000 (0.56000)
+Val Loss (Med): 0.78000 (0.56000)
+Median Size (Max): 5 (37)
+Median complexity (Max): 128 (16598432)
+Time (s): 0.32891
 
 Generation 9/100 [/////                                             ]
-Best model on Val:Logistic(Sum(-0.93,If(AIDS&gt;15890.50,AIDS,1.46*Cos(18390.82*Cos(18390.00*Total)))))
-Train Loss (Med): 0.76000 (0.53000)
-Val Loss (Med): 0.76000 (0.53000)
-Median Size (Max): 5 (22)
-Median complexity (Max): 152 (9003680)
-Time (s): 0.98055
+Best model on Val:Logistic(Sum(0.11,Cos(1.37*Logabs(-10.28*Mul(-14.38*Add(70.33*AIDS,-27.39*Add(-15.02*AIDS,538.64)),-14.38*Logabs(815.05*Add(AIDS,815.05*Total)))))))
+Train Loss (Med): 0.78000 (0.56000)
+Val Loss (Med): 0.78000 (0.56000)
+Median Size (Max): 5 (34)
+Median complexity (Max): 176 (647794976)
+Time (s): 0.35818
 
 Generation 10/100 [//////                                            ]
-Best model on Val:Logistic(Sum(-0.93,If(AIDS&gt;15890.50,AIDS,1.46*Cos(18390.82*Cos(18390.00*Total)))))
-Train Loss (Med): 0.76000 (0.53000)
-Val Loss (Med): 0.76000 (0.53000)
-Median Size (Max): 5 (22)
-Median complexity (Max): 152 (9003680)
-Time (s): 1.06166
+Best model on Val:Logistic(Sum(0.11,Cos(1.37*Logabs(-10.28*Mul(-14.38*Add(70.33*AIDS,-27.39*Add(-15.02*AIDS,538.64)),-14.38*Logabs(815.05*Add(AIDS,815.05*Total)))))))
+Train Loss (Med): 0.78000 (0.56000)
+Val Loss (Med): 0.78000 (0.56000)
+Median Size (Max): 5 (34)
+Median complexity (Max): 152 (610592)
+Time (s): 0.38339
 
 Generation 11/100 [//////                                            ]
-Best model on Val:Logistic(Sum(-0.93,If(AIDS&gt;15890.50,AIDS,1.46*Cos(18390.82*Cos(18390.00*Total)))))
-Train Loss (Med): 0.76000 (0.56000)
-Val Loss (Med): 0.76000 (0.56000)
-Median Size (Max): 5 (22)
-Median complexity (Max): 176 (9003680)
-Time (s): 1.17131
+Best model on Val:Logistic(Sum(-0.46,Cos(15892.06*Sin(15890.50*Cos(If(AIDS&gt;15890.50,1.00,Total))))))
+Train Loss (Med): 0.78000 (0.56000)
+Val Loss (Med): 0.78000 (0.56000)
+Median Size (Max): 5 (21)
+Median complexity (Max): 176 (14655776)
+Time (s): 0.41340
 
 Generation 12/100 [///////                                           ]
-Best model on Val:Logistic(Sum(-0.93,If(AIDS&gt;15890.50,AIDS,1.46*Cos(18390.82*Cos(18390.00*Total)))))
-Train Loss (Med): 0.76000 (0.56000)
-Val Loss (Med): 0.76000 (0.56000)
-Median Size (Max): 5 (22)
-Median complexity (Max): 176 (9003680)
-Time (s): 1.27139
+Best model on Val:Logistic(Sum(-0.46,Cos(15892.06*Sin(15890.50*Cos(If(AIDS&gt;15890.50,1.00,Total))))))
+Train Loss (Med): 0.78000 (0.56000)
+Val Loss (Med): 0.78000 (0.56000)
+Median Size (Max): 5 (21)
+Median complexity (Max): 176 (14655776)
+Time (s): 0.43893
 
 Generation 13/100 [///////                                           ]
-Best model on Val:Logistic(Sum(-0.93,If(AIDS&gt;15890.50,AIDS,1.46*Cos(18390.82*Cos(18390.00*Total)))))
-Train Loss (Med): 0.76000 (0.56000)
-Val Loss (Med): 0.76000 (0.56000)
-Median Size (Max): 5 (22)
-Median complexity (Max): 176 (9003680)
-Time (s): 1.39425
+Best model on Val:Logistic(Sum(-0.46,Cos(15892.06*Sin(15890.50*Cos(If(AIDS&gt;15890.50,1.00,Total))))))
+Train Loss (Med): 0.78000 (0.56000)
+Val Loss (Med): 0.78000 (0.56000)
+Median Size (Max): 5 (21)
+Median complexity (Max): 176 (14655776)
+Time (s): 0.46480
 
 Generation 14/100 [////////                                          ]
-Best model on Val:Logistic(Sum(-0.93,If(AIDS&gt;15890.50,AIDS,1.46*Cos(18390.82*Cos(18390.00*Total)))))
-Train Loss (Med): 0.76000 (0.56000)
-Val Loss (Med): 0.76000 (0.56000)
-Median Size (Max): 5 (22)
-Median complexity (Max): 176 (9003680)
-Time (s): 1.48988
+Best model on Val:Logistic(Sum(-0.46,Cos(15892.06*Sin(15890.50*Cos(If(AIDS&gt;15890.50,1.00,Total))))))
+Train Loss (Med): 0.78000 (0.56000)
+Val Loss (Med): 0.78000 (0.56000)
+Median Size (Max): 5 (21)
+Median complexity (Max): 176 (14655776)
+Time (s): 0.49182
 
 Generation 15/100 [////////                                          ]
-Best model on Val:Logistic(Sum(-0.93,If(AIDS&gt;15890.50,AIDS,1.46*Cos(18390.82*Cos(18390.00*Total)))))
-Train Loss (Med): 0.76000 (0.56000)
-Val Loss (Med): 0.76000 (0.56000)
-Median Size (Max): 5 (22)
-Median complexity (Max): 176 (9003680)
-Time (s): 1.62569
+Best model on Val:Logistic(Sum(-0.31,Cos(15890.72*Logabs(15889.52*Cos(If(AIDS&gt;15890.50,1.00,Total))))))
+Train Loss (Med): 0.80000 (0.56000)
+Val Loss (Med): 0.80000 (0.56000)
+Median Size (Max): 5 (21)
+Median complexity (Max): 176 (24424736)
+Time (s): 0.52267
 
 Generation 16/100 [/////////                                         ]
-Best model on Val:Logistic(Sum(-0.93,If(AIDS&gt;15890.50,1.00,1.46*Cos(18390.82*Cos(18390.00*Total)))))
-Train Loss (Med): 0.76000 (0.56000)
-Val Loss (Med): 0.76000 (0.56000)
-Median Size (Max): 5 (20)
-Median complexity (Max): 176 (9002912)
-Time (s): 1.72896
+Best model on Val:Logistic(Sum(-0.31,Cos(15890.72*Logabs(15889.52*Cos(If(AIDS&gt;15890.50,1.00,Total))))))
+Train Loss (Med): 0.80000 (0.56000)
+Val Loss (Med): 0.80000 (0.56000)
+Median Size (Max): 5 (21)
+Median complexity (Max): 176 (24424736)
+Time (s): 0.55711
 
 Generation 17/100 [/////////                                         ]
-Best model on Val:Logistic(Sum(-0.93,If(AIDS&gt;15890.50,1.00,1.46*Cos(18390.82*Cos(18390.00*Total)))))
-Train Loss (Med): 0.76000 (0.53000)
-Val Loss (Med): 0.76000 (0.53000)
-Median Size (Max): 5 (20)
-Median complexity (Max): 152 (9002912)
-Time (s): 1.83223
+Best model on Val:Logistic(Sum(-0.31,Cos(15890.72*Logabs(15889.52*Cos(If(AIDS&gt;15890.50,1.00,Total))))))
+Train Loss (Med): 0.80000 (0.56000)
+Val Loss (Med): 0.80000 (0.56000)
+Median Size (Max): 5 (21)
+Median complexity (Max): 176 (24424736)
+Time (s): 0.59104
 
 Generation 18/100 [//////////                                        ]
-Best model on Val:Logistic(Sum(-0.93,If(AIDS&gt;15890.50,1.00,1.46*Cos(18390.82*Cos(18390.00*Total)))))
-Train Loss (Med): 0.76000 (0.50000)
-Val Loss (Med): 0.76000 (0.50000)
-Median Size (Max): 5 (20)
-Median complexity (Max): 128 (9002912)
-Time (s): 1.93055
+Best model on Val:Logistic(Sum(-0.31,Cos(15890.72*Logabs(15889.52*Cos(If(AIDS&gt;15890.50,1.00,Total))))))
+Train Loss (Med): 0.78000 (0.56000)
+Val Loss (Med): 0.80000 (0.56000)
+Median Size (Max): 5 (18)
+Median complexity (Max): 176 (6084896)
+Time (s): 0.61868
 
 Generation 19/100 [//////////                                        ]
-Best model on Val:Logistic(Sum(-0.93,If(AIDS&gt;15890.50,1.00,1.46*Cos(18390.82*Cos(18390.00*Total)))))
-Train Loss (Med): 0.76000 (0.56000)
-Val Loss (Med): 0.76000 (0.56000)
-Median Size (Max): 5 (20)
-Median complexity (Max): 176 (9002912)
-Time (s): 2.04937
+Best model on Val:Logistic(Sum(-0.25,Cos(15889.85*Logabs(15891.46*Cos(If(AIDS&gt;15890.50,1.00,Total))))))
+Train Loss (Med): 0.82000 (0.56000)
+Val Loss (Med): 0.82000 (0.56000)
+Median Size (Max): 5 (21)
+Median complexity (Max): 176 (24424736)
+Time (s): 0.64722
 
 Generation 20/100 [///////////                                       ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(123.00*Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,1.00*Sin(AIDS),1.00*Exp(1.00)),If(AIDS&gt;123.00,1.00*Mul(2320.50*Total,1.00*Total),1.00*Add(1.00*Total,1.00*AIDS))))))))))
-Train Loss (Med): 0.86000 (0.56000)
-Val Loss (Med): 0.86000 (0.56000)
-Median Size (Max): 5 (67)
-Median complexity (Max): 176 (9002912)
-Time (s): 2.14543
+Best model on Val:Logistic(Sum(-0.25,Cos(15889.85*Logabs(15891.46*Cos(If(AIDS&gt;15890.50,1.00,Total))))))
+Train Loss (Med): 0.82000 (0.56000)
+Val Loss (Med): 0.82000 (0.56000)
+Median Size (Max): 5 (21)
+Median complexity (Max): 176 (24424736)
+Time (s): 0.67421
 
 Generation 21/100 [///////////                                       ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,1.00*Mul(Cos(1572255.62*Logabs(123.00*Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,1.00*Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00*Mul(2320.50*Total,1.00*Total),1.00*Add(1.00*Total,1.00*AIDS))))))),1.00))))
-Train Loss (Med): 0.86000 (0.56000)
-Val Loss (Med): 0.86000 (0.56000)
-Median Size (Max): 5 (68)
-Median complexity (Max): 176 (9002912)
-Time (s): 2.30199
+Best model on Val:Logistic(Sum(-0.25,Cos(15889.85*Logabs(15891.46*Cos(If(AIDS&gt;15890.50,1.00,Total))))))
+Train Loss (Med): 0.82000 (0.56000)
+Val Loss (Med): 0.82000 (0.56000)
+Median Size (Max): 5 (21)
+Median complexity (Max): 176 (24424736)
+Time (s): 0.70172
 
 Generation 22/100 [////////////                                      ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,1.46*Cos(1572255.62*Logabs(123.00*Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,1.00*Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00*Mul(2320.50*Total,1.00*Total),1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.86000 (0.56000)
-Val Loss (Med): 0.86000 (0.56000)
-Median Size (Max): 5 (66)
-Median complexity (Max): 176 (9002912)
-Time (s): 2.40210
+Best model on Val:Logistic(Sum(-0.25,Cos(15889.85*Logabs(15891.46*Cos(If(AIDS&gt;15890.50,1.00,Total))))))
+Train Loss (Med): 0.82000 (0.56000)
+Val Loss (Med): 0.82000 (0.56000)
+Median Size (Max): 5 (21)
+Median complexity (Max): 176 (24424736)
+Time (s): 0.72860
 
 Generation 23/100 [////////////                                      ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,1.46*Cos(1572255.62*Logabs(123.00*Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,1.00*Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00*Mul(2320.50*Total,1.00*Total),1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.86000 (0.56000)
-Val Loss (Med): 0.86000 (0.56000)
-Median Size (Max): 5 (66)
-Median complexity (Max): 176 (9002912)
-Time (s): 2.54415
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 0.75815
 
 Generation 24/100 [/////////////                                     ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,1.46*Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,1.00*Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00*Mul(2320.50*Total,1.00*Total),1.00*Add(1.00*Total,AIDS))))))))))
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
 Train Loss (Med): 0.88000 (0.56000)
 Val Loss (Med): 0.88000 (0.56000)
-Median Size (Max): 5 (64)
-Median complexity (Max): 176 (9002912)
-Time (s): 2.64172
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 0.78237
 
 Generation 25/100 [/////////////                                     ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,1.46*Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,1.00*Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00*Mul(2320.50*Total,1.00*Total),1.00*Add(1.00*Total,AIDS))))))))))
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
 Train Loss (Med): 0.88000 (0.56000)
 Val Loss (Med): 0.88000 (0.56000)
-Median Size (Max): 5 (64)
-Median complexity (Max): 176 (9002912)
-Time (s): 2.79817
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 0.81251
 
 Generation 26/100 [//////////////                                    ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,1.46*Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,1.00*Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00*Mul(2320.50*Total,1.00*Total),1.00*Add(1.00*Total,AIDS))))))))))
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
 Train Loss (Med): 0.88000 (0.56000)
 Val Loss (Med): 0.88000 (0.56000)
-Median Size (Max): 5 (64)
-Median complexity (Max): 176 (9002912)
-Time (s): 2.90021
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 0.84055
 
 Generation 27/100 [//////////////                                    ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00*Mul(2320.50*Total,1.00*Total),1.00*Add(1.00*Total,AIDS))))))))))
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
 Train Loss (Med): 0.88000 (0.56000)
 Val Loss (Med): 0.88000 (0.56000)
-Median Size (Max): 5 (60)
-Median complexity (Max): 176 (9002912)
-Time (s): 3.11338
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 0.86887
 
 Generation 28/100 [///////////////                                   ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00*Mul(2320.50*Total,1.00*Total),1.00*Add(1.00*Total,AIDS))))))))))
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
 Train Loss (Med): 0.88000 (0.56000)
 Val Loss (Med): 0.88000 (0.56000)
-Median Size (Max): 5 (62)
-Median complexity (Max): 176 (9002912)
-Time (s): 3.22705
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 0.89418
 
 Generation 29/100 [///////////////                                   ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00*Mul(2320.50*Total,1.00*Total),1.00*Add(1.00*Total,AIDS))))))))))
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
 Train Loss (Med): 0.88000 (0.56000)
 Val Loss (Med): 0.88000 (0.56000)
-Median Size (Max): 5 (62)
-Median complexity (Max): 176 (9002912)
-Time (s): 3.43963
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 0.92037
 
 Generation 30/100 [////////////////                                  ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00*Mul(2320.50*Total,1.00*Total),1.00*Add(1.00*Total,AIDS))))))))))
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
 Train Loss (Med): 0.88000 (0.56000)
 Val Loss (Med): 0.88000 (0.56000)
-Median Size (Max): 5 (62)
-Median complexity (Max): 176 (9002912)
-Time (s): 3.56886
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 0.94615
 
 Generation 31/100 [////////////////                                  ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
 Train Loss (Med): 0.88000 (0.56000)
 Val Loss (Med): 0.88000 (0.56000)
-Median Size (Max): 5 (50)
-Median complexity (Max): 176 (9002912)
-Time (s): 3.81566
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 0.97294
 
 Generation 32/100 [/////////////////                                 ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
 Train Loss (Med): 0.88000 (0.56000)
 Val Loss (Med): 0.88000 (0.56000)
-Median Size (Max): 5 (50)
-Median complexity (Max): 176 (9002912)
-Time (s): 3.90975
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 0.99962
 
 Generation 33/100 [/////////////////                                 ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
 Train Loss (Med): 0.88000 (0.56000)
 Val Loss (Med): 0.88000 (0.56000)
-Median Size (Max): 5 (50)
-Median complexity (Max): 176 (9002912)
-Time (s): 4.06391
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.02738
 
 Generation 34/100 [//////////////////                                ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.88000 (0.62000)
-Val Loss (Med): 0.88000 (0.62000)
-Median Size (Max): 6 (50)
-Median complexity (Max): 176 (9002912)
-Time (s): 4.17403
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.05278
 
 Generation 35/100 [//////////////////                                ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.88000 (0.70000)
-Val Loss (Med): 0.88000 (0.70000)
-Median Size (Max): 15 (50)
-Median complexity (Max): 176 (454203296)
-Time (s): 4.33815
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.08377
 
 Generation 36/100 [///////////////////                               ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.88000 (0.70000)
-Val Loss (Med): 0.88000 (0.70000)
-Median Size (Max): 15 (50)
-Median complexity (Max): 176 (454203296)
-Time (s): 4.46991
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.11236
 
 Generation 37/100 [///////////////////                               ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.88000 (0.70000)
-Val Loss (Med): 0.88000 (0.70000)
-Median Size (Max): 15 (50)
-Median complexity (Max): 176 (454203296)
-Time (s): 4.68430
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.14049
 
 Generation 38/100 [////////////////////                              ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.88000 (0.70000)
-Val Loss (Med): 0.88000 (0.70000)
-Median Size (Max): 16 (52)
-Median complexity (Max): 584 (454203296)
-Time (s): 4.80943
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.16807
 
 Generation 39/100 [////////////////////                              ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.88000 (0.70000)
-Val Loss (Med): 0.88000 (0.70000)
-Median Size (Max): 16 (52)
-Median complexity (Max): 1088 (454203296)
-Time (s): 5.02899
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.19582
 
 Generation 40/100 [/////////////////////                             ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.88000 (0.71000)
-Val Loss (Med): 0.88000 (0.71000)
-Median Size (Max): 16 (52)
-Median complexity (Max): 63392 (1142069152)
-Time (s): 5.16680
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.22336
 
 Generation 41/100 [/////////////////////                             ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.88000 (0.70000)
-Val Loss (Med): 0.88000 (0.70000)
-Median Size (Max): 16 (52)
-Median complexity (Max): 63392 (47224736)
-Time (s): 5.44718
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.25322
 
 Generation 42/100 [//////////////////////                            ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.88000 (0.69000)
-Val Loss (Med): 0.88000 (0.69000)
-Median Size (Max): 15 (54)
-Median complexity (Max): 176 (135698336)
-Time (s): 5.60524
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.28226
 
 Generation 43/100 [//////////////////////                            ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.88000 (0.69000)
-Val Loss (Med): 0.88000 (0.69000)
-Median Size (Max): 11 (52)
-Median complexity (Max): 176 (31889312)
-Time (s): 5.90069
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.31133
 
 Generation 44/100 [///////////////////////                           ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.88000 (0.70000)
-Val Loss (Med): 0.88000 (0.70000)
-Median Size (Max): 15 (52)
-Median complexity (Max): 992 (31889312)
-Time (s): 6.10233
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.33764
 
 Generation 45/100 [///////////////////////                           ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.88000 (0.70000)
-Val Loss (Med): 0.88000 (0.70000)
-Median Size (Max): 15 (52)
-Median complexity (Max): 992 (31889312)
-Time (s): 6.57095
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.36832
 
 Generation 46/100 [////////////////////////                          ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Sin(AIDS),2.72),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.88000 (0.70000)
-Val Loss (Med): 0.88000 (0.70000)
-Median Size (Max): 15 (52)
-Median complexity (Max): 992 (31889312)
-Time (s): 6.79213
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.39687
 
 Generation 47/100 [////////////////////////                          ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,Sin(AIDS),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 15 (55)
-Median complexity (Max): 1184 (31889312)
-Time (s): 7.15034
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.42940
 
 Generation 48/100 [/////////////////////////                         ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,Sin(AIDS),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 15 (55)
-Median complexity (Max): 1184 (31889312)
-Time (s): 7.30973
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.45752
 
 Generation 49/100 [/////////////////////////                         ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,Sin(AIDS),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 15 (55)
-Median complexity (Max): 1184 (31889312)
-Time (s): 7.62883
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.48766
 
 Generation 50/100 [//////////////////////////                        ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,Sin(AIDS),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 15 (57)
-Median complexity (Max): 1184 (10213280)
-Time (s): 7.78313
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.51614
 
 Generation 51/100 [//////////////////////////                        ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,Sin(AIDS),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 15 (57)
-Median complexity (Max): 1184 (10213280)
-Time (s): 8.10936
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.54636
 
 Generation 52/100 [///////////////////////////                       ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,Sin(AIDS),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 15 (57)
-Median complexity (Max): 1184 (10213280)
-Time (s): 8.25937
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.57235
 
 Generation 53/100 [///////////////////////////                       ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,Sin(AIDS),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 15 (57)
-Median complexity (Max): 63392 (14194592)
-Time (s): 8.49307
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.60119
 
 Generation 54/100 [////////////////////////////                      ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,Sin(AIDS),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 16 (59)
-Median complexity (Max): 63392 (14194592)
-Time (s): 8.62757
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.62778
 
 Generation 55/100 [////////////////////////////                      ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,Sin(AIDS),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 15 (59)
-Median complexity (Max): 63392 (6821792)
-Time (s): 8.95665
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.65519
 
 Generation 56/100 [/////////////////////////////                     ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,Sin(AIDS),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 15 (59)
-Median complexity (Max): 63392 (6821792)
-Time (s): 9.09154
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.68204
 
 Generation 57/100 [/////////////////////////////                     ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,Sin(AIDS),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 15 (59)
-Median complexity (Max): 63392 (6821792)
-Time (s): 9.33874
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.71467
 
 Generation 58/100 [//////////////////////////////                    ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 15 (59)
-Median complexity (Max): 63392 (6821792)
-Time (s): 9.46578
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.74329
 
 Generation 59/100 [//////////////////////////////                    ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 15 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 9.70810
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.77434
 
 Generation 60/100 [///////////////////////////////                   ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 15 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 9.83397
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.80464
 
 Generation 61/100 [///////////////////////////////                   ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 16 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 10.11486
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.83167
 
 Generation 62/100 [////////////////////////////////                  ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 16 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 10.30578
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.85955
 
 Generation 63/100 [////////////////////////////////                  ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 15 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 10.58340
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.89051
 
 Generation 64/100 [/////////////////////////////////                 ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 15 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 10.73584
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.91921
 
 Generation 65/100 [/////////////////////////////////                 ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 15 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 10.98930
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.94931
 
 Generation 66/100 [//////////////////////////////////                ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 15 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 11.17944
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 1.97718
 
 Generation 67/100 [//////////////////////////////////                ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 15 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 11.40828
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 2.00729
 
 Generation 68/100 [///////////////////////////////////               ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 16 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 11.58104
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 2.03720
 
 Generation 69/100 [///////////////////////////////////               ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 16 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 11.87500
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 2.06682
 
 Generation 70/100 [////////////////////////////////////              ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 16 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 12.05814
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 2.09509
 
 Generation 71/100 [////////////////////////////////////              ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.71000)
-Val Loss (Med): 0.90000 (0.71000)
-Median Size (Max): 16 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 12.45736
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 2.12635
 
 Generation 72/100 [/////////////////////////////////////             ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.72000)
-Val Loss (Med): 0.90000 (0.72000)
-Median Size (Max): 16 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 12.61265
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 2.15420
 
 Generation 73/100 [/////////////////////////////////////             ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.72000)
-Val Loss (Med): 0.90000 (0.72000)
-Median Size (Max): 16 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 13.01105
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.68000)
+Val Loss (Med): 0.88000 (0.68000)
+Median Size (Max): 7 (13)
+Median complexity (Max): 992 (931232)
+Time (s): 2.18700
 
 Generation 74/100 [//////////////////////////////////////            ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.72000)
-Val Loss (Med): 0.90000 (0.72000)
-Median Size (Max): 16 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 13.18676
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.68000)
+Val Loss (Med): 0.88000 (0.68000)
+Median Size (Max): 7 (13)
+Median complexity (Max): 992 (931232)
+Time (s): 2.21621
 
 Generation 75/100 [//////////////////////////////////////            ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.72000)
-Val Loss (Med): 0.90000 (0.72000)
-Median Size (Max): 16 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 13.50740
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.68000)
+Val Loss (Med): 0.88000 (0.68000)
+Median Size (Max): 7 (13)
+Median complexity (Max): 992 (931232)
+Time (s): 2.25164
 
 Generation 76/100 [///////////////////////////////////////           ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.72000)
-Val Loss (Med): 0.90000 (0.72000)
-Median Size (Max): 16 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 13.66485
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.68000)
+Val Loss (Med): 0.88000 (0.68000)
+Median Size (Max): 7 (13)
+Median complexity (Max): 992 (931232)
+Time (s): 2.28261
 
 Generation 77/100 [///////////////////////////////////////           ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.72000)
-Val Loss (Med): 0.90000 (0.72000)
-Median Size (Max): 16 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 13.99095
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.68000)
+Val Loss (Med): 0.88000 (0.68000)
+Median Size (Max): 7 (13)
+Median complexity (Max): 992 (931232)
+Time (s): 2.31099
 
 Generation 78/100 [////////////////////////////////////////          ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.72000)
-Val Loss (Med): 0.90000 (0.72000)
-Median Size (Max): 16 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 14.15626
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.68000)
+Val Loss (Med): 0.88000 (0.68000)
+Median Size (Max): 7 (13)
+Median complexity (Max): 992 (931232)
+Time (s): 2.33836
 
 Generation 79/100 [////////////////////////////////////////          ]
-Best model on Val:Logistic(Sum(-0.08,If(AIDS&gt;15890.50,8.28,Cos(1572255.62*Logabs(Sin(1.00*Logabs(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,If(Age&gt;0.00,1.00*Sin(1.00),2.72),1.00),If(AIDS&gt;123.00,1.00,1.00*Add(1.00*Total,AIDS))))))))))
-Train Loss (Med): 0.90000 (0.72000)
-Val Loss (Med): 0.90000 (0.72000)
-Median Size (Max): 16 (60)
-Median complexity (Max): 63392 (6821792)
-Time (s): 14.54490
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.68000)
+Val Loss (Med): 0.88000 (0.68000)
+Median Size (Max): 7 (13)
+Median complexity (Max): 992 (931232)
+Time (s): 2.36721
 
 Generation 80/100 [/////////////////////////////////////////         ]
-Best model on Val:Logistic(Sum(-0.40,If(AIDS&gt;15890.50,3.93,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-2.56),If(AIDS&gt;123.00,2318.55,2642.91))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 16 (36)
-Median complexity (Max): 63392 (31889312)
-Time (s): 14.73274
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.68000)
+Val Loss (Med): 0.88000 (0.68000)
+Median Size (Max): 7 (13)
+Median complexity (Max): 992 (931232)
+Time (s): 2.39715
 
 Generation 81/100 [/////////////////////////////////////////         ]
-Best model on Val:Logistic(Sum(-0.40,If(AIDS&gt;15890.50,3.93,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-2.56),If(AIDS&gt;123.00,2318.55,2642.91))))))
-Train Loss (Med): 0.90000 (0.70000)
-Val Loss (Med): 0.90000 (0.70000)
-Median Size (Max): 16 (36)
-Median complexity (Max): 63392 (31889312)
-Time (s): 14.93427
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.68000)
+Val Loss (Med): 0.88000 (0.68000)
+Median Size (Max): 7 (13)
+Median complexity (Max): 992 (931232)
+Time (s): 2.42767
 
 Generation 82/100 [//////////////////////////////////////////        ]
-Best model on Val:Logistic(Sum(-0.40,If(AIDS&gt;15890.50,3.93,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-2.56),If(AIDS&gt;123.00,2318.55,2642.91))))))
-Train Loss (Med): 0.90000 (0.72000)
-Val Loss (Med): 0.90000 (0.72000)
-Median Size (Max): 18 (38)
-Median complexity (Max): 278432 (112105376)
-Time (s): 15.07023
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.68000)
+Val Loss (Med): 0.88000 (0.68000)
+Median Size (Max): 7 (13)
+Median complexity (Max): 992 (931232)
+Time (s): 2.45420
 
 Generation 83/100 [//////////////////////////////////////////        ]
-Best model on Val:Logistic(Sum(-0.40,If(AIDS&gt;15890.50,3.93,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-2.56),If(AIDS&gt;123.00,2318.55,2642.91))))))
-Train Loss (Med): 0.90000 (0.74000)
-Val Loss (Med): 0.90000 (0.74000)
-Median Size (Max): 19 (38)
-Median complexity (Max): 324512 (127557536)
-Time (s): 15.28743
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.56000)
+Val Loss (Med): 0.88000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 2.48424
 
 Generation 84/100 [///////////////////////////////////////////       ]
-Best model on Val:Logistic(Sum(-0.40,If(AIDS&gt;15890.50,3.93,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-2.56),If(AIDS&gt;123.00,2318.55,2642.91))))))
-Train Loss (Med): 0.90000 (0.84000)
-Val Loss (Med): 0.90000 (0.84000)
-Median Size (Max): 27 (38)
-Median complexity (Max): 5494688 (31889312)
-Time (s): 15.43426
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.68000)
+Val Loss (Med): 0.88000 (0.68000)
+Median Size (Max): 7 (13)
+Median complexity (Max): 992 (931232)
+Time (s): 2.51400
 
 Generation 85/100 [///////////////////////////////////////////       ]
-Best model on Val:Logistic(Sum(-0.68,If(AIDS&gt;15890.50,10.34,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-3.40),If(AIDS&gt;123.00,2318.97,1.00*Mul(51.50*Mul(Total,-0.74),7.39)))))))
-Train Loss (Med): 0.94000 (0.84000)
-Val Loss (Med): 0.94000 (0.84000)
-Median Size (Max): 27 (46)
-Median complexity (Max): 5494688 (454203296)
-Time (s): 15.70847
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.68000)
+Val Loss (Med): 0.88000 (0.68000)
+Median Size (Max): 7 (13)
+Median complexity (Max): 992 (931232)
+Time (s): 2.54317
 
 Generation 86/100 [////////////////////////////////////////////      ]
-Best model on Val:Logistic(Sum(-0.68,If(AIDS&gt;15890.50,10.34,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-3.40),If(AIDS&gt;123.00,2318.97,1.00*Mul(51.50*Mul(Total,-0.74),7.39)))))))
-Train Loss (Med): 0.94000 (0.84000)
-Val Loss (Med): 0.94000 (0.84000)
-Median Size (Max): 27 (46)
-Median complexity (Max): 5494688 (454203296)
-Time (s): 15.86697
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.68000)
+Val Loss (Med): 0.88000 (0.68000)
+Median Size (Max): 7 (13)
+Median complexity (Max): 992 (931232)
+Time (s): 2.57084
 
 Generation 87/100 [////////////////////////////////////////////      ]
-Best model on Val:Logistic(Sum(-0.68,If(AIDS&gt;15890.50,10.34,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-3.40),If(AIDS&gt;123.00,2318.97,1.00*Mul(51.50*Mul(Total,-0.74),7.39)))))))
-Train Loss (Med): 0.94000 (0.84000)
-Val Loss (Med): 0.94000 (0.84000)
-Median Size (Max): 27 (46)
-Median complexity (Max): 5494688 (454203296)
-Time (s): 16.20231
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.84000)
+Val Loss (Med): 0.88000 (0.84000)
+Median Size (Max): 11 (13)
+Median complexity (Max): 232736 (931232)
+Time (s): 2.59900
 
 Generation 88/100 [/////////////////////////////////////////////     ]
-Best model on Val:Logistic(Sum(-0.68,If(AIDS&gt;15890.50,10.34,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-3.40),If(AIDS&gt;123.00,2318.97,1.00*Mul(51.50*Mul(Total,-0.74),7.39)))))))
-Train Loss (Med): 0.94000 (0.79000)
-Val Loss (Med): 0.94000 (0.79000)
-Median Size (Max): 23 (46)
-Median complexity (Max): 2794400 (454203296)
-Time (s): 16.37100
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.68000)
+Val Loss (Med): 0.88000 (0.68000)
+Median Size (Max): 7 (13)
+Median complexity (Max): 992 (931232)
+Time (s): 2.62827
 
 Generation 89/100 [/////////////////////////////////////////////     ]
-Best model on Val:Logistic(Sum(-0.68,If(AIDS&gt;15890.50,10.34,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-3.40),If(AIDS&gt;123.00,2318.97,1.00*Mul(51.50*Mul(Total,-0.74),7.39)))))))
-Train Loss (Med): 0.94000 (0.72000)
-Val Loss (Med): 0.94000 (0.72000)
-Median Size (Max): 19 (46)
-Median complexity (Max): 75680 (454203296)
-Time (s): 16.70405
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.68000)
+Val Loss (Med): 0.88000 (0.68000)
+Median Size (Max): 7 (13)
+Median complexity (Max): 992 (931232)
+Time (s): 2.66117
 
 Generation 90/100 [//////////////////////////////////////////////    ]
-Best model on Val:Logistic(Sum(-0.68,If(AIDS&gt;15890.50,10.34,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-3.40),If(AIDS&gt;123.00,2318.97,1.00*Mul(51.50*Mul(Total,-0.74),7.39)))))))
-Train Loss (Med): 0.94000 (0.79000)
-Val Loss (Med): 0.94000 (0.79000)
-Median Size (Max): 23 (46)
-Median complexity (Max): 2794400 (454203296)
-Time (s): 16.89562
+Best model on Val:Logistic(Sum(-0.36,7.88*Cos(15888.04*Logabs(1.00*Total))))
+Train Loss (Med): 0.88000 (0.68000)
+Val Loss (Med): 0.88000 (0.68000)
+Median Size (Max): 7 (13)
+Median complexity (Max): 992 (931232)
+Time (s): 2.68957
 
 Generation 91/100 [//////////////////////////////////////////////    ]
-Best model on Val:Logistic(Sum(-0.68,If(AIDS&gt;15890.50,10.34,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-3.40),If(AIDS&gt;123.00,2318.97,1.00*Mul(51.50*Mul(Total,-0.74),7.39)))))))
-Train Loss (Med): 0.94000 (0.72000)
-Val Loss (Med): 0.94000 (0.72000)
-Median Size (Max): 19 (46)
-Median complexity (Max): 75680 (454203296)
-Time (s): 17.37115
+Best model on Val:Logistic(Sum(-0.01,-2.90*Sin(15885.29*Logabs(1.00*Total))))
+Train Loss (Med): 0.92000 (0.56000)
+Val Loss (Med): 0.92000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 2.72037
 
 Generation 92/100 [///////////////////////////////////////////////   ]
-Best model on Val:Logistic(Sum(-0.68,If(AIDS&gt;15890.50,10.34,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-3.40),If(AIDS&gt;123.00,2318.97,1.00*Mul(51.50*Mul(Total,-0.74),7.39)))))))
-Train Loss (Med): 0.94000 (0.79000)
-Val Loss (Med): 0.94000 (0.79000)
-Median Size (Max): 23 (46)
-Median complexity (Max): 2794400 (454203296)
-Time (s): 17.56058
+Best model on Val:Logistic(Sum(-0.01,-2.90*Sin(15885.29*Logabs(1.00*Total))))
+Train Loss (Med): 0.92000 (0.56000)
+Val Loss (Med): 0.92000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 2.74752
 
 Generation 93/100 [///////////////////////////////////////////////   ]
-Best model on Val:Logistic(Sum(-0.68,If(AIDS&gt;15890.50,10.34,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-3.40),If(AIDS&gt;123.00,2318.97,1.00*Mul(51.50*Mul(Total,-0.74),7.39)))))))
-Train Loss (Med): 0.94000 (0.79000)
-Val Loss (Med): 0.94000 (0.79000)
-Median Size (Max): 23 (46)
-Median complexity (Max): 2794400 (454203296)
-Time (s): 18.07318
+Best model on Val:Logistic(Sum(-0.01,-2.90*Sin(15885.29*Logabs(1.00*Total))))
+Train Loss (Med): 0.92000 (0.56000)
+Val Loss (Med): 0.92000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 2.77632
 
 Generation 94/100 [////////////////////////////////////////////////  ]
-Best model on Val:Logistic(Sum(-0.68,If(AIDS&gt;15890.50,10.34,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-3.40),If(AIDS&gt;123.00,2318.97,1.00*Mul(51.50*Mul(Total,-0.74),7.39)))))))
-Train Loss (Med): 0.94000 (0.74000)
-Val Loss (Med): 0.94000 (0.74000)
-Median Size (Max): 19 (46)
-Median complexity (Max): 94112 (454203296)
-Time (s): 18.30026
+Best model on Val:Logistic(Sum(-0.01,-2.90*Sin(15885.29*Logabs(1.00*Total))))
+Train Loss (Med): 0.92000 (0.56000)
+Val Loss (Med): 0.92000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 2.80778
 
 Generation 95/100 [////////////////////////////////////////////////  ]
-Best model on Val:Logistic(Sum(-0.68,If(AIDS&gt;15890.50,10.34,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-3.40),If(AIDS&gt;123.00,2318.97,1.00*Mul(51.50*Mul(Total,-0.74),7.39)))))))
-Train Loss (Med): 0.94000 (0.70000)
-Val Loss (Med): 0.94000 (0.70000)
-Median Size (Max): 19 (46)
-Median complexity (Max): 57248 (454203296)
-Time (s): 18.68901
+Best model on Val:Logistic(Sum(-0.01,-2.90*Sin(15885.29*Logabs(1.00*Total))))
+Train Loss (Med): 0.92000 (0.56000)
+Val Loss (Med): 0.92000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 2.83592
 
 Generation 96/100 [///////////////////////////////////////////////// ]
-Best model on Val:Logistic(Sum(-0.68,If(AIDS&gt;15890.50,10.34,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-3.40),If(AIDS&gt;123.00,2318.97,1.00*Mul(51.50*Mul(Total,-0.74),7.39)))))))
-Train Loss (Med): 0.94000 (0.70000)
-Val Loss (Med): 0.94000 (0.70000)
-Median Size (Max): 19 (46)
-Median complexity (Max): 57248 (454203296)
-Time (s): 18.86318
+Best model on Val:Logistic(Sum(-0.01,-2.90*Sin(15885.29*Logabs(1.00*Total))))
+Train Loss (Med): 0.92000 (0.56000)
+Val Loss (Med): 0.92000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 2.86338
 
 Generation 97/100 [///////////////////////////////////////////////// ]
-Best model on Val:Logistic(Sum(-0.68,If(AIDS&gt;15890.50,10.34,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-3.40),If(AIDS&gt;123.00,2318.97,1.00*Mul(51.50*Mul(Total,-0.74),7.39)))))))
-Train Loss (Med): 0.94000 (0.70000)
-Val Loss (Med): 0.94000 (0.70000)
-Median Size (Max): 19 (48)
-Median complexity (Max): 57248 (454203296)
-Time (s): 19.25050
+Best model on Val:Logistic(Sum(-0.01,-2.90*Sin(15885.29*Logabs(1.00*Total))))
+Train Loss (Med): 0.92000 (0.56000)
+Val Loss (Med): 0.92000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 2.89187
 
 Generation 98/100 [//////////////////////////////////////////////////]
-Best model on Val:Logistic(Sum(-0.68,If(AIDS&gt;15890.50,10.34,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-3.40),If(AIDS&gt;123.00,2318.97,1.00*Mul(51.50*Mul(Total,-0.74),7.39)))))))
-Train Loss (Med): 0.94000 (0.70000)
-Val Loss (Med): 0.94000 (0.70000)
-Median Size (Max): 19 (48)
-Median complexity (Max): 57248 (454203296)
-Time (s): 19.44083
+Best model on Val:Logistic(Sum(-0.01,-2.90*Sin(15885.29*Logabs(1.00*Total))))
+Train Loss (Med): 0.92000 (0.56000)
+Val Loss (Med): 0.92000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 2.92152
 
 Generation 99/100 [//////////////////////////////////////////////////]
-Best model on Val:Logistic(Sum(-0.68,If(AIDS&gt;15890.50,10.34,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-3.40),If(AIDS&gt;123.00,2318.97,1.00*Mul(51.50*Mul(Total,-0.74),7.39)))))))
-Train Loss (Med): 0.94000 (0.70000)
-Val Loss (Med): 0.94000 (0.70000)
-Median Size (Max): 19 (48)
-Median complexity (Max): 57248 (454203296)
-Time (s): 19.90857
+Best model on Val:Logistic(Sum(-0.01,-2.90*Sin(15885.29*Logabs(1.00*Total))))
+Train Loss (Med): 0.92000 (0.56000)
+Val Loss (Med): 0.92000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 2.95104
 
 Generation 100/100 [//////////////////////////////////////////////////]
-Best model on Val:Logistic(Sum(-0.68,If(AIDS&gt;15890.50,10.34,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-3.40),If(AIDS&gt;123.00,2318.97,1.00*Mul(51.50*Mul(Total,-0.74),7.39)))))))
-Train Loss (Med): 0.94000 (0.72000)
-Val Loss (Med): 0.94000 (0.72000)
-Median Size (Max): 19 (48)
-Median complexity (Max): 75680 (454203296)
-Time (s): 20.10856
+Best model on Val:Logistic(Sum(-0.01,-2.90*Sin(15885.29*Logabs(1.00*Total))))
+Train Loss (Med): 0.92000 (0.56000)
+Val Loss (Med): 0.92000 (0.56000)
+Median Size (Max): 5 (13)
+Median complexity (Max): 176 (931232)
+Time (s): 2.97776
 
-Best model: Logistic(Sum(-0.68,If(AIDS&gt;15890.50,10.34,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-3.40),If(AIDS&gt;123.00,2318.97,1.00*Mul(51.50*Mul(Total,-0.74),7.39)))))))
-score: 0.94
+Best model: Logistic(Sum(-0.01,-2.90*Sin(15885.29*Logabs(1.00*Total))))
+score: 0.92
 </pre></div>
 </div>
 </div>
@@ -984,10 +1265,10 @@ score: 0.94
   &#39;values&#39;: [0.5, 15.0],
   &#39;weights&#39;: [1.0, -1.0],
   &#39;wvalues&#39;: [0.5, -15.0]},
- &#39;id&#39;: 223,
+ &#39;id&#39;: 221,
  &#39;is_fitted_&#39;: False,
  &#39;objectives&#39;: [&#39;balanced_accuracy&#39;, &#39;linear_complexity&#39;],
- &#39;parent_id&#39;: [210],
+ &#39;parent_id&#39;: [212],
  &#39;program&#39;: {&#39;Tree&#39;: [{&#39;W&#39;: 1.0,
     &#39;arg_types&#39;: [&#39;ArrayF&#39;],
     &#39;center_op&#39;: True,
@@ -1001,7 +1282,7 @@ score: 0.94
     &#39;ret_type&#39;: &#39;ArrayF&#39;,
     &#39;sig_dual_hash&#39;: 13056393536346412951,
     &#39;sig_hash&#39;: 14128685871577087634},
-   {&#39;W&#39;: -21.10409164428711,
+   {&#39;W&#39;: -0.791301429271698,
     &#39;arg_types&#39;: [&#39;ArrayF&#39;],
     &#39;center_op&#39;: True,
     &#39;feature&#39;: &#39;&#39;,
@@ -1014,7 +1295,7 @@ score: 0.94
     &#39;ret_type&#39;: &#39;ArrayF&#39;,
     &#39;sig_dual_hash&#39;: 13056393536346412951,
     &#39;sig_hash&#39;: 14128685871577087634},
-   {&#39;W&#39;: 1.0,
+   {&#39;W&#39;: 0.7913016080856323,
     &#39;arg_types&#39;: [],
     &#39;center_op&#39;: True,
     &#39;feature&#39;: &#39;constF&#39;,
@@ -1028,7 +1309,7 @@ score: 0.94
     &#39;sig_dual_hash&#39;: 7018942542468397869,
     &#39;sig_hash&#39;: 14162902253047951597}],
   &#39;is_fitted_&#39;: True},
- &#39;variation&#39;: &#39;subtree&#39;}
+ &#39;variation&#39;: &#39;delete&#39;}
 </pre></div>
 </div>
 </div>
@@ -1041,90 +1322,48 @@ score: 0.94
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;id&#39;: 223,
-  &#39;y_pred&#39;: array([False, False, False, False, False, False, False, False, False,
-         False, False, False, False, False, False, False, False, False,
-         False, False, False, False, False, False, False, False, False,
-         False, False, False, False, False, False, False, False, False,
-         False, False, False, False, False, False, False, False, False,
-         False, False, False, False, False])},
- {&#39;id&#39;: 255,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;id&#39;: 221,
+  &#39;y_pred&#39;: array([ True,  True,  True,  True,  True,  True,  True,  True,  True,
+          True,  True,  True,  True,  True,  True,  True,  True,  True,
+          True,  True,  True,  True,  True,  True,  True,  True,  True,
+          True,  True,  True,  True,  True,  True,  True,  True,  True,
+          True,  True,  True,  True,  True,  True,  True,  True,  True,
+          True,  True,  True,  True,  True])},
+ {&#39;id&#39;: 293,
   &#39;y_pred&#39;: array([ True,  True,  True,  True,  True,  True,  True,  True,  True,
           True,  True,  True,  True,  True,  True,  True,  True,  True,
           True,  True,  True,  True,  True,  True,  True,  True,  True,
           True,  True,  True,  True,  True,  True,  True,  True,  True,
           True,  True,  True,  True, False,  True,  True,  True,  True,
          False,  True,  True,  True, False])},
- {&#39;id&#39;: 223,
-  &#39;y_pred&#39;: array([False, False, False, False, False, False, False, False, False,
+ {&#39;id&#39;: 248,
+  &#39;y_pred&#39;: array([False,  True,  True,  True,  True, False,  True,  True,  True,
+          True, False,  True,  True,  True, False, False, False, False,
          False, False, False, False, False, False, False, False, False,
-         False, False, False, False, False, False, False, False, False,
-         False, False, False, False, False, False, False, False, False,
+         False, False, False, False,  True,  True, False, False, False,
          False, False, False, False, False, False, False, False, False,
          False, False, False, False, False])},
- {&#39;id&#39;: 285,
-  &#39;y_pred&#39;: array([False,  True,  True,  True,  True, False,  True,  True,  True,
-         False,  True,  True,  True,  True, False,  True,  True,  True,
-          True,  True,  True,  True,  True,  True,  True, False, False,
-         False, False, False, False, False, False, False, False, False,
-         False, False,  True, False,  True,  True,  True,  True,  True,
-          True,  True,  True,  True,  True])},
- {&#39;id&#39;: 285,
-  &#39;y_pred&#39;: array([False,  True,  True,  True,  True, False,  True,  True,  True,
-         False,  True,  True,  True,  True, False,  True,  True,  True,
-          True,  True,  True,  True,  True,  True,  True, False, False,
-         False, False, False, False, False, False, False, False, False,
-         False, False,  True, False,  True,  True,  True,  True,  True,
-          True,  True,  True,  True,  True])},
- {&#39;id&#39;: 274,
-  &#39;y_pred&#39;: array([False,  True,  True,  True,  True,  True,  True,  True,  True,
-         False, False,  True,  True,  True,  True, False,  True, False,
-          True, False, False,  True,  True, False, False, False, False,
-         False, False, False, False,  True, False,  True, False, False,
+ {&#39;id&#39;: 219,
+  &#39;y_pred&#39;: array([ True,  True,  True,  True,  True,  True,  True,  True, False,
+          True,  True,  True,  True, False,  True, False,  True,  True,
+         False,  True,  True,  True,  True,  True,  True, False, False,
          False, False, False, False, False, False,  True, False, False,
+         False, False,  True, False,  True, False, False,  True, False,
          False, False, False, False, False])},
- {&#39;id&#39;: 221,
-  &#39;y_pred&#39;: array([False,  True,  True,  True,  True, False,  True,  True,  True,
-         False,  True,  True,  True,  True, False, False,  True,  True,
-          True,  True, False,  True,  True,  True, False, False, False,
+ {&#39;id&#39;: 211,
+  &#39;y_pred&#39;: array([ True,  True,  True,  True,  True,  True,  True,  True, False,
+          True,  True,  True,  True, False,  True, False,  True,  True,
+         False,  True,  True,  True,  True,  True,  True, False, False,
          False, False, False, False, False, False, False, False, False,
-         False, False,  True, False, False, False, False, False, False,
+         False, False, False, False,  True, False, False,  True, False,
          False, False, False, False, False])},
- {&#39;id&#39;: 272,
-  &#39;y_pred&#39;: array([False,  True,  True,  True,  True, False,  True,  True,  True,
-         False,  True,  True,  True,  True, False,  True,  True,  True,
-          True,  True, False,  True,  True,  True, False, False, False,
-         False, False, False, False, False, False, False, False, False,
-         False, False,  True, False, False, False, False, False, False,
-         False, False, False, False, False])},
- {&#39;id&#39;: 239,
-  &#39;y_pred&#39;: array([ True,  True,  True,  True,  True,  True,  True,  True,  True,
-          True,  True,  True,  True,  True, False, False,  True,  True,
-          True,  True, False,  True,  True,  True, False, False, False,
-         False, False, False, False, False, False, False, False, False,
-         False, False,  True,  True, False, False, False, False, False,
-         False, False, False, False, False])},
- {&#39;id&#39;: 236,
-  &#39;y_pred&#39;: array([ True,  True,  True,  True,  True,  True,  True,  True,  True,
-          True,  True,  True,  True,  True, False, False,  True,  True,
-          True,  True, False,  True,  True,  True, False, False, False,
-         False, False, False, False, False, False, False, False, False,
-         False, False,  True, False, False, False, False, False, False,
-         False, False, False, False, False])},
- {&#39;id&#39;: 278,
-  &#39;y_pred&#39;: array([ True,  True,  True,  True,  True,  True,  True,  True,  True,
-          True,  True,  True,  True,  True, False,  True,  True,  True,
+ {&#39;id&#39;: 264,
+  &#39;y_pred&#39;: array([ True,  True,  True,  True,  True, False,  True,  True, False,
+          True,  True,  True,  True,  True,  True,  True,  True,  True,
           True,  True,  True,  True,  True,  True,  True, False, False,
+         False, False, False,  True, False, False,  True, False, False,
          False, False, False, False, False, False, False, False, False,
-         False, False,  True,  True, False, False, False, False, False,
-         False, False, False, False,  True])},
- {&#39;id&#39;: 200,
-  &#39;y_pred&#39;: array([ True,  True,  True,  True,  True,  True,  True,  True,  True,
-          True,  True,  True,  True,  True, False,  True,  True,  True,
-          True,  True,  True,  True,  True,  True,  True, False, False,
-         False, False, False, False, False, False, False, False, False,
-         False, False,  True, False, False, False, False, False, False,
-         False, False, False, False,  True])}]
+         False, False, False, False, False])}]
 </pre></div>
 </div>
 </div>
@@ -1136,21 +1375,19 @@ score: 0.94
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;id&#39;: 223,
-  &#39;y_pred&#39;: array([1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573936e-09, 1.8573936e-09], dtype=float32)},
- {&#39;id&#39;: 255,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;id&#39;: 221,
+  &#39;y_pred&#39;: array([0.50000006, 0.50000006, 0.50000006, 0.50000006, 0.50000006,
+         0.50000006, 0.50000006, 0.50000006, 0.50000006, 0.50000006,
+         0.50000006, 0.50000006, 0.50000006, 0.50000006, 0.50000006,
+         0.50000006, 0.50000006, 0.50000006, 0.50000006, 0.50000006,
+         0.50000006, 0.50000006, 0.50000006, 0.50000006, 0.50000006,
+         0.50000006, 0.50000006, 0.50000006, 0.50000006, 0.50000006,
+         0.50000006, 0.50000006, 0.50000006, 0.50000006, 0.50000006,
+         0.50000006, 0.50000006, 0.50000006, 0.50000006, 0.50000006,
+         0.50000006, 0.50000006, 0.50000006, 0.50000006, 0.50000006,
+         0.50000006, 0.50000006, 0.50000006, 0.50000006, 0.50000006],
+        dtype=float32)},
+ {&#39;id&#39;: 293,
   &#39;y_pred&#39;: array([1.0000000e+00, 1.0000000e+00, 1.0000000e+00, 1.0000000e+00,
          1.0000000e+00, 1.0000000e+00, 1.0000000e+00, 1.0000000e+00,
          1.0000000e+00, 1.0000000e+00, 1.0000000e+00, 1.0000000e+00,
@@ -1164,134 +1401,64 @@ score: 0.94
          2.7566156e-07, 1.0000000e+00, 1.0000000e+00, 1.0000000e+00,
          1.0000000e+00, 1.3724385e-08, 1.0000000e+00, 1.0000000e+00,
          9.9994957e-01, 8.2106108e-04], dtype=float32)},
- {&#39;id&#39;: 223,
-  &#39;y_pred&#39;: array([1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573938e-09, 1.8573938e-09, 1.8573938e-09, 1.8573938e-09,
-         1.8573936e-09, 1.8573936e-09], dtype=float32)},
- {&#39;id&#39;: 285,
-  &#39;y_pred&#39;: array([0.47076803, 0.51036537, 0.51036537, 0.51036537, 0.51036537,
-         0.47076803, 0.51036537, 0.51036537, 0.51036537, 0.47076803,
-         0.9999993 , 0.51036537, 0.51036537, 0.9999993 , 0.47076803,
-         0.9999993 , 0.9999993 , 0.9999993 , 0.9999993 , 0.9999993 ,
-         0.9999993 , 0.9999993 , 0.9999993 , 0.9999993 , 0.9999993 ,
-         0.47076803, 0.47076803, 0.47076803, 0.47076803, 0.47076803,
-         0.47076803, 0.47076803, 0.47076803, 0.47076803, 0.47076803,
-         0.47076803, 0.47076803, 0.47076803, 0.9999993 , 0.47076803,
-         0.9999993 , 0.9999993 , 0.9999993 , 0.9999993 , 0.9999993 ,
-         0.9999993 , 0.9999993 , 0.9999993 , 0.9999993 , 0.9999993 ],
+ {&#39;id&#39;: 248,
+  &#39;y_pred&#39;: array([0.40833503, 0.98202515, 0.9980563 , 0.92872834, 0.67898285,
+         0.4070141 , 0.9048409 , 0.976074  , 0.8018479 , 0.5646839 ,
+         0.3847002 , 0.7565754 , 0.84180486, 0.586586  , 0.45134684,
+         0.35905665, 0.37237877, 0.3807646 , 0.36907253, 0.36326355,
+         0.3588278 , 0.3657978 , 0.36631706, 0.36100444, 0.35924742,
+         0.36772263, 0.45368758, 0.46581194, 0.40029088, 0.39311057,
+         0.38719472, 0.60710347, 0.6725364 , 0.47429708, 0.40791455,
+         0.36778042, 0.4510595 , 0.46119544, 0.39615974, 0.37585256,
+         0.35844654, 0.3599154 , 0.36035466, 0.35964814, 0.35938093,
+         0.35838932, 0.35981992, 0.35980085, 0.35892314, 0.35859904],
         dtype=float32)},
- {&#39;id&#39;: 285,
-  &#39;y_pred&#39;: array([0.47076803, 0.51036537, 0.51036537, 0.51036537, 0.51036537,
-         0.47076803, 0.51036537, 0.51036537, 0.51036537, 0.47076803,
-         0.9999993 , 0.51036537, 0.51036537, 0.9999993 , 0.47076803,
-         0.9999993 , 0.9999993 , 0.9999993 , 0.9999993 , 0.9999993 ,
-         0.9999993 , 0.9999993 , 0.9999993 , 0.9999993 , 0.9999993 ,
-         0.47076803, 0.47076803, 0.47076803, 0.47076803, 0.47076803,
-         0.47076803, 0.47076803, 0.47076803, 0.47076803, 0.47076803,
-         0.47076803, 0.47076803, 0.47076803, 0.9999993 , 0.47076803,
-         0.9999993 , 0.9999993 , 0.9999993 , 0.9999993 , 0.9999993 ,
-         0.9999993 , 0.9999993 , 0.9999993 , 0.9999993 , 0.9999993 ],
+ {&#39;id&#39;: 219,
+  &#39;y_pred&#39;: array([0.6864201 , 0.62320006, 0.59923023, 0.56793886, 0.5824001 ,
+         0.5721623 , 0.71364987, 0.70274574, 0.41704366, 0.6941184 ,
+         0.5835392 , 0.70923126, 0.6972106 , 0.43207327, 0.6878464 ,
+         0.2699413 , 0.546583  , 0.57360303, 0.3045069 , 0.59427977,
+         0.68194443, 0.63278586, 0.609651  , 0.5713467 , 0.5897826 ,
+         0.29801217, 0.4025196 , 0.4356033 , 0.40474552, 0.45357585,
+         0.40078697, 0.3005697 , 0.31442082, 0.5511301 , 0.3249881 ,
+         0.39019045, 0.30818477, 0.32123098, 0.53915846, 0.3350185 ,
+         0.72893566, 0.42496505, 0.39604115, 0.7106083 , 0.38027793,
+         0.29813585, 0.395445  , 0.43163544, 0.40848818, 0.43824142],
         dtype=float32)},
- {&#39;id&#39;: 274,
-  &#39;y_pred&#39;: array([0.22078463, 0.9992943 , 0.9992943 , 0.9992943 , 0.9992943 ,
-         0.6344058 , 0.9992943 , 0.9992943 , 0.9992943 , 0.20277868,
-         0.27959597, 0.9992943 , 0.9992943 , 0.5544949 , 0.5330731 ,
-         0.241057  , 0.6292696 , 0.29684842, 0.6433534 , 0.22639535,
-         0.21853629, 0.51127195, 0.61393803, 0.39996338, 0.23879772,
-         0.24733631, 0.43363965, 0.19904314, 0.33172768, 0.3894886 ,
-         0.47258943, 0.6089025 , 0.19756831, 0.6233104 , 0.34609637,
-         0.42297646, 0.2998753 , 0.47208527, 0.23798501, 0.1987097 ,
-         0.25890952, 0.20208882, 0.6450495 , 0.24025731, 0.26688117,
-         0.21143621, 0.42287534, 0.21421689, 0.19780532, 0.30269516],
-        dtype=float32)},
- {&#39;id&#39;: 221,
-  &#39;y_pred&#39;: array([0.39694032, 0.51036537, 0.51036537, 0.51036537, 0.51036537,
-         0.39694032, 0.51036537, 0.51036537, 0.51036537, 0.39694032,
-         0.51036215, 0.51036537, 0.51036537, 0.51036215, 0.39694032,
-         0.4890932 , 0.51036215, 0.51036215, 0.51036215, 0.51036215,
-         0.4890932 , 0.51036215, 0.51036215, 0.51036215, 0.4890932 ,
-         0.39694032, 0.39694032, 0.39694032, 0.39694032, 0.39694032,
-         0.39694032, 0.39694032, 0.39694032, 0.39694032, 0.39694032,
-         0.39694032, 0.39694032, 0.39694032, 0.51036215, 0.39694032,
-         0.4890932 , 0.4890932 , 0.4890932 , 0.4890932 , 0.4890932 ,
-         0.4890932 , 0.4890932 , 0.4890932 , 0.4890932 , 0.4890932 ],
-        dtype=float32)},
- {&#39;id&#39;: 272,
-  &#39;y_pred&#39;: array([0.39694032, 0.51036537, 0.51036537, 0.51036537, 0.51036537,
-         0.39694032, 0.51036537, 0.51036537, 0.51036537, 0.39694032,
-         0.51036215, 0.51036537, 0.51036537, 0.51036215, 0.39694032,
-         0.5087247 , 0.51036215, 0.51036215, 0.51036215, 0.51036215,
-         0.4852957 , 0.51036215, 0.51036215, 0.51036215, 0.13536516,
-         0.39694032, 0.39694032, 0.39694032, 0.39694032, 0.39694032,
-         0.39694032, 0.39694032, 0.39694032, 0.39694032, 0.39694032,
-         0.39694032, 0.39694032, 0.39694032, 0.51036215, 0.39694032,
-         0.45193142, 0.4159763 , 0.34887105, 0.4760136 , 0.20720221,
-         0.1409639 , 0.17713964, 0.35815552, 0.42929202, 0.39328158],
-        dtype=float32)},
- {&#39;id&#39;: 239,
-  &#39;y_pred&#39;: array([0.5785229 , 0.9999362 , 0.9999362 , 0.9999362 , 0.9999362 ,
-         0.5055826 , 0.9999362 , 0.9999362 , 0.9999362 , 0.5466553 ,
-         0.55092424, 0.9999362 , 0.9999362 , 0.55092424, 0.17046632,
-         0.464316  , 0.55092424, 0.55092424, 0.55092424, 0.55092424,
-         0.464316  , 0.55092424, 0.55092424, 0.55092424, 0.464316  ,
-         0.24375606, 0.42224756, 0.2000557 , 0.164838  , 0.4683254 ,
-         0.24800968, 0.35139441, 0.15822724, 0.33005065, 0.17509437,
-         0.3915668 , 0.17795096, 0.15703292, 0.55092424, 0.5484897 ,
-         0.464316  , 0.464316  , 0.464316  , 0.464316  , 0.464316  ,
-         0.464316  , 0.464316  , 0.464316  , 0.46431595, 0.46431595],
-        dtype=float32)},
- {&#39;id&#39;: 236,
-  &#39;y_pred&#39;: array([0.5341366 , 0.97149706, 0.97149706, 0.97149706, 0.97149706,
-         0.595743  , 0.97149706, 0.97149706, 0.97149706, 0.6374889 ,
-         0.6451214 , 0.97149706, 0.97149706, 0.6451214 , 0.20631014,
-         0.25465378, 0.6451214 , 0.6451214 , 0.6451214 , 0.6451214 ,
-         0.25465378, 0.6451214 , 0.6451214 , 0.6451214 , 0.25465378,
-         0.22488779, 0.27234203, 0.45471945, 0.22488779, 0.22488779,
-         0.22488779, 0.35909244, 0.21077366, 0.3659081 , 0.21971035,
-         0.22488779, 0.23598474, 0.20088616, 0.6451214 , 0.22488779,
-         0.25465378, 0.25465378, 0.25465378, 0.25465378, 0.25465378,
-         0.25465378, 0.25465378, 0.25465378, 0.25465378, 0.25465378],
-        dtype=float32)},
- {&#39;id&#39;: 278,
-  &#39;y_pred&#39;: array([0.5785229 , 0.9999362 , 0.9999362 , 0.9999362 , 0.9999362 ,
-         0.5055826 , 0.9999362 , 0.9999362 , 0.9999362 , 0.5466553 ,
-         0.55092424, 0.9999362 , 0.9999362 , 0.55092424, 0.17046632,
-         0.54496455, 0.55092424, 0.55092424, 0.55092424, 0.55092424,
-         0.55631787, 0.55092424, 0.55092424, 0.55092424, 0.57406765,
-         0.24375606, 0.42224756, 0.2000557 , 0.164838  , 0.4683254 ,
-         0.24800968, 0.35139441, 0.15822724, 0.33005065, 0.17509437,
-         0.3915668 , 0.17795096, 0.15703292, 0.55092424, 0.5484897 ,
-         0.36465532, 0.20978333, 0.3414585 , 0.16395786, 0.1567926 ,
-         0.16825083, 0.4635296 , 0.37926087, 0.18373597, 0.5086016 ],
-        dtype=float32)},
- {&#39;id&#39;: 200,
-  &#39;y_pred&#39;: array([0.5785229 , 0.9999362 , 0.9999362 , 0.9999362 , 0.9999362 ,
-         0.5055826 , 0.9999362 , 0.9999362 , 0.9999362 , 0.5466553 ,
-         0.55092424, 0.9999362 , 0.9999362 , 0.55092424, 0.17046632,
-         0.54496455, 0.55092424, 0.55092424, 0.55092424, 0.55092424,
-         0.55631787, 0.55092424, 0.55092424, 0.55092424, 0.57406765,
-         0.16120362, 0.42224756, 0.2000557 , 0.16120362, 0.16120362,
-         0.16120362, 0.35139441, 0.15822724, 0.33005065, 0.17509437,
-         0.16120362, 0.17795096, 0.15703292, 0.55092424, 0.16120362,
-         0.36465532, 0.20978333, 0.3414585 , 0.16395786, 0.1567926 ,
-         0.16825083, 0.4635296 , 0.37926087, 0.18373597, 0.5086016 ],
-        dtype=float32)}]
+ {&#39;id&#39;: 211,
+  &#39;y_pred&#39;: array([9.99756992e-01, 9.21415389e-01, 7.50565529e-01, 9.86214936e-01,
+         5.94436049e-01, 9.84587669e-01, 9.99429643e-01, 9.98750210e-01,
+         1.39690459e-01, 9.97672498e-01, 9.88340616e-01, 9.99241948e-01,
+         9.98260319e-01, 2.06604719e-01, 9.97030616e-01, 5.14819149e-05,
+         9.56043661e-01, 9.83307600e-01, 8.66552728e-05, 9.92092907e-01,
+         9.99594748e-01, 9.69664693e-01, 9.08371747e-01, 9.76374924e-01,
+         8.08928192e-01, 6.39469072e-05, 1.20460846e-01, 2.89271295e-01,
+         2.04852759e-03, 4.56543356e-01, 2.27350392e-03, 5.16894157e-04,
+         1.27286999e-03, 3.90714079e-01, 2.55049020e-03, 1.75322441e-03,
+         8.02178401e-04, 1.84543116e-03, 3.16811889e-01, 3.78971826e-03,
+         9.99822438e-01, 6.18866598e-03, 2.16634548e-03, 9.99862075e-01,
+         1.22594810e-03, 7.88759353e-05, 3.99214551e-02, 1.80326357e-01,
+         4.39522974e-03, 2.23556280e-01], dtype=float32)},
+ {&#39;id&#39;: 264,
+  &#39;y_pred&#39;: array([1.0000000e+00, 9.9988294e-01, 9.9999988e-01, 1.0000000e+00,
+         1.0000000e+00, 2.4966138e-09, 1.0000000e+00, 1.0000000e+00,
+         1.5822124e-15, 9.9979264e-01, 1.0000000e+00, 1.0000000e+00,
+         1.0000000e+00, 9.9988341e-01, 1.0000000e+00, 1.0000000e+00,
+         9.9999893e-01, 1.0000000e+00, 1.0000000e+00, 1.0000000e+00,
+         1.0000000e+00, 9.9982423e-01, 1.0000000e+00, 1.0000000e+00,
+         1.0000000e+00, 2.6599127e-17, 5.1820837e-04, 8.8313186e-08,
+         1.1011731e-12, 2.7481830e-16, 1.0000000e+00, 1.4913140e-16,
+         1.4125823e-14, 1.0000000e+00, 3.6946167e-05, 6.5860484e-13,
+         5.0766158e-12, 1.5568159e-14, 3.7854254e-05, 6.2157230e-18,
+         1.3829807e-16, 2.4564454e-06, 6.6555383e-10, 4.7116561e-11,
+         3.5990334e-17, 2.0255630e-17, 1.2753754e-04, 1.2954929e-07,
+         5.2649058e-13, 1.9475200e-16], dtype=float32)}]
 </pre></div>
 </div>
 </div>
 </div>
 <section id="loading-a-specific-model-from-archive">
-<h2>Loading a specific model from archive<a class="headerlink" href="#loading-a-specific-model-from-archive" title="Link to this heading"></a></h2>
+<h2>Loading a specific model from archive<a class="headerlink" href="#loading-a-specific-model-from-archive" title="Link to this heading">#</a></h2>
 <p>We have a static class method called <code class="docutils literal notranslate"><span class="pre">from_json</span></code> which let’s you easily the string representation of the json from the archive to load an individual.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1310,8 +1477,8 @@ score: 0.94
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Logistic(Sum(-0.68,If(AIDS&gt;15890.50,10.34,Cos(If(Total&gt;1572255.50,If(AIDS&gt;2320.50,Mul(Total,0.84),-3.40),If(AIDS&gt;123.00,2318.97,1.00*Mul(51.50*Mul(Total,-0.74),7.39)))))))
-Fitness(0.940000 95.000000 )
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Logistic(Sum(-0.21,-39.49*Sin(15885.22*Logabs(1.00*Total))))
+Fitness(0.920000 50.000000 )
 </pre></div>
 </div>
 </div>
@@ -1327,19 +1494,19 @@ Fitness(0.940000 95.000000 )
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True,  True,  True,  True,  True,  True,  True,  True,  True,
-        True,  True,  True,  True,  True, False,  True,  True,  True,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True,  True,  True,  True,  True, False,  True,  True, False,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
         True,  True,  True,  True,  True,  True,  True, False, False,
+       False, False, False,  True, False, False,  True, False, False,
        False, False, False, False, False, False, False, False, False,
-       False, False,  True, False, False, False, False, False, False,
-       False, False, False, False,  True])
+       False, False, False, False, False])
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="visualizing-the-pareto-front-of-the-archive">
-<h2>Visualizing the Pareto front of the archive<a class="headerlink" href="#visualizing-the-pareto-front-of-the-archive" title="Link to this heading"></a></h2>
+<h2>Visualizing the Pareto front of the archive<a class="headerlink" href="#visualizing-the-pareto-front-of-the-archive" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
@@ -1359,18 +1526,18 @@ Fitness(0.940000 95.000000 )
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Complexity (smaller is better)&#39;)
 </pre></div>
 </div>
-<img alt="../_images/f249e790dbd9b1e4983695724d8ce5c601960ec959c1c49c13469fb50fe4cfd5.png" src="../_images/f249e790dbd9b1e4983695724d8ce5c601960ec959c1c49c13469fb50fe4cfd5.png" />
+<img alt="../_images/e833355686a646820b21020770e894347545f04cd69e0ab50329e3c5e25142f4.png" src="../_images/e833355686a646820b21020770e894347545f04cd69e0ab50329e3c5e25142f4.png" />
 </div>
 </div>
 </section>
 <section id="storing-the-population-unique-individuals">
-<h2>Storing the population (unique individuals)<a class="headerlink" href="#storing-the-population-unique-individuals" title="Link to this heading"></a></h2>
+<h2>Storing the population (unique individuals)<a class="headerlink" href="#storing-the-population-unique-individuals" title="Link to this heading">#</a></h2>
 <p>If not using archive, then the unique individuals from the final population will be stored. Notice that, while the archive contains only the Pareto front (when <code class="docutils literal notranslate"><span class="pre">use_arch=True</span></code>), this will contain all individuals, even dominated ones.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1378,8 +1545,8 @@ Fitness(0.940000 95.000000 )
     <span class="c1"># functions=[&#39;SplitBest&#39;,&#39;Add&#39;,&#39;Mul&#39;,&#39;Sin&#39;,&#39;Cos&#39;,&#39;Exp&#39;,&#39;Logabs&#39;],</span>
     <span class="n">use_arch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;scorer&quot;</span><span class="p">,</span> <span class="s2">&quot;linear_complexity&quot;</span><span class="p">],</span>
-    <span class="n">max_depth</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
-    <span class="n">max_size</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">max_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
     <span class="n">max_gens</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
     <span class="n">pop_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span>
@@ -1394,8 +1561,8 @@ Fitness(0.940000 95.000000 )
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 100% [====================]
-Best model: Logistic(Sum(-0.28,463.85*Prod(21.86*Div(If(AIDS&gt;15890.50,AIDS,-0.82),15897.31*AIDS),21.86)))
-score: 0.68
+Best model: Logistic(Sum(7.07,-8.07*Cos(Mean(0.02*Max(-173.56*Sin(6.31*AIDS),Abs(0.01*AIDS),35.87,-183.85*Cos(0.04*Max(28.76,1.00,-19.92,-134.24*Sin(6.31*AIDS)))),-0.83))))
+score: 0.8
 </pre></div>
 </div>
 </div>
@@ -1417,47 +1584,118 @@ score: 0.68
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Complexity (smaller is better)&#39;)
 </pre></div>
 </div>
-<img alt="../_images/ec0287a6b722052db558318878c647091ed038d749897767d376bda27bc742c7.png" src="../_images/ec0287a6b722052db558318878c647091ed038d749897767d376bda27bc742c7.png" />
+<img alt="../_images/8f0c0e54a4691df257bdb834a6f24e9306cc5c572e146ec5b2f4e08e7ddad749.png" src="../_images/8f0c0e54a4691df257bdb834a6f24e9306cc5c572e146ec5b2f4e08e7ddad749.png" />
 </div>
 </div>
 </section>
 </section>
 
 
-           </div>
-          </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="saving_loading_populations.html" class="btn btn-neutral float-left" title="Saving and loading populations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="deap.html" class="btn btn-neutral float-right" title="Using Deap" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+                </article>
+              
 
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2025, William La Cava and Joseph D. Romano.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
-        </div>
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="saving_loading_populations.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Saving and loading populations</p>
       </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+    </a>
+    <a class="right-next"
+       href="deap.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Using Deap</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-</body>
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-a-specific-model-from-archive">Loading a specific model from archive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-pareto-front-of-the-archive">Visualizing the Pareto front of the archive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storing-the-population-unique-individuals">Storing the population (unique individuals)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By William La Cava and Joseph D. Romano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2021, William La Cava and Joseph D. Romano.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
 </html>

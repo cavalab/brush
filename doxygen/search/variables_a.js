@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['keep_5fsplit_5ffeature_0',['keep_split_feature',['../d1/d3a/structBrush_1_1Node.html#abee9ab1ef7eb2e12dcf45db1bbddf25a',1,'Brush::Node::keep_split_feature'],['../d8/d49/structNode.html#abee9ab1ef7eb2e12dcf45db1bbddf25a',1,'Node::keep_split_feature']]],
-  ['keys_1',['keys',['../d9/d28/classmap.html#a8dc2b3ed44acf51fb2bd3eb30b237269',1,'map::keys'],['../d0/d59/classset.html#a7f92ca6d6e5216b9c4be631bd87f1df4',1,'set::keys']]]
+  ['keys_0',['keys',['../d9/d28/classmap.html#a8dc2b3ed44acf51fb2bd3eb30b237269',1,'map::keys'],['../d0/d59/classset.html#a7f92ca6d6e5216b9c4be631bd87f1df4',1,'set::keys']]]
 ];

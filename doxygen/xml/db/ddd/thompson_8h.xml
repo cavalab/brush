@@ -3,6 +3,7 @@
   <compounddef id="db/ddd/thompson_8h" kind="file" language="C++">
     <compoundname>thompson.h</compoundname>
     <includes refid="da/d8e/bandit__operator_8h" local="yes">bandit_operator.h</includes>
+    <includes local="no">boost/math/distributions/gamma.hpp</includes>
     <includes refid="d5/d60/utils_8h" local="yes">../util/utils.h</includes>
     <includedby refid="d7/d00/bandit_8h" local="yes">bandit.h</includedby>
     <includedby refid="d4/d93/bind__engines_8h" local="yes">bind_engines.h</includedby>
@@ -30,6 +31,8 @@
         <label>thompson.h</label>
         <link refid="db/ddd/thompson_8h"/>
         <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
         </childnode>
         <childnode refid="24" relation="include">
         </childnode>
@@ -286,6 +289,9 @@
       <node id="41">
         <label>bitset</label>
       </node>
+      <node id="52">
+        <label>boost/math/distributions/gamma.hpp</label>
+      </node>
       <node id="20">
         <label>ceres/jet.h</label>
       </node>
@@ -477,7 +483,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/bandit/thompson.h" line="6" column="9" bodyfile="/home/runner/work/brush/brush/src/bandit/thompson.h" bodystart="6" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/bandit/thompson.h" line="14" column="9" bodyfile="/home/runner/work/brush/brush/src/bandit/thompson.h" bodystart="14" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -487,36 +493,44 @@
     <programlisting>
 <codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="da/d8e/bandit__operator_8h" kindref="compound">bandit_operator.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d5/d60/utils_8h" kindref="compound">../util/utils.h</ref>&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">//<sp/>to<sp/>use<sp/>random<sp/>generator</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>THOMPSON_H</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="6" refid="db/ddd/thompson_8h_1a271b58113b98f8efee90f4c08baf9b40" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>THOMPSON_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#include<sp/>&lt;boost/random.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#include<sp/>&lt;boost/random/gamma_distribution.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;boost/math/distributions/gamma.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref><sp/>{</highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="da/d94/namespaceBrush_1_1MAB" kindref="compound">MAB</ref><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>//<sp/>https://www.boost.org/doc/libs/1_85_0/doc/html/boost/random/beta_distribution.html</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#include<sp/>&lt;boost/random/beta_distribution.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a761ac01c116bc93d9eada9c84635b2af" kindref="member">ThompsonSamplingBandit</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1ab235b15e23e629a01e6709ffd67b3e60" kindref="member">BanditOperator</ref></highlight></codeline>
-<codeline lineno="12"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a761ac01c116bc93d9eada9c84635b2af" kindref="member">ThompsonSamplingBandit</ref>(vector&lt;string&gt;<sp/>arms,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>dynamic=</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a761ac01c116bc93d9eada9c84635b2af" kindref="member">ThompsonSamplingBandit</ref>(map&lt;string,<sp/>float&gt;<sp/>arms_probs,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>dynamic=</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="16" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a518c1dfe7269e964e90c88960c95474d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a518c1dfe7269e964e90c88960c95474d" kindref="member">~ThompsonSamplingBandit</ref>(){};</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;string,<sp/>float&gt;<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a439981e98dbe8c366cdd8bdadfe40765" kindref="member">sample_probs</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a670420157e8bc8fa177e28655fcec19e" kindref="member">update</ref>);</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a429bc282a1077ee3bccacf6a6ba4885b" kindref="member">choose</ref>();</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a670420157e8bc8fa177e28655fcec19e" kindref="member">update</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>arm,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>reward);</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="22" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a08a370a0d6cd8751f1748544ff47e419" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a08a370a0d6cd8751f1748544ff47e419" kindref="member">dynamic_update</ref>;</highlight></codeline>
-<codeline lineno="23" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1acb1c631e00212bb6086b2a05564cf740" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1acb1c631e00212bb6086b2a05564cf740" kindref="member">C</ref><sp/>=<sp/>250;</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a733ae88b247d7a7f0eceb96b0d7c9ffd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;string,<sp/>float&gt;<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a733ae88b247d7a7f0eceb96b0d7c9ffd" kindref="member">alphas</ref>;</highlight></codeline>
-<codeline lineno="26" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1acdb685bebd456dd5da80e4a214d9b55f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;string,<sp/>float&gt;<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1acdb685bebd456dd5da80e4a214d9b55f" kindref="member">betas</ref>;</highlight></codeline>
-<codeline lineno="27"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>MAB</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>THOMPSON_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d5/d60/utils_8h" kindref="compound">../util/utils.h</ref>&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">//<sp/>to<sp/>use<sp/>random<sp/>generator</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>THOMPSON_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="db/ddd/thompson_8h_1a271b58113b98f8efee90f4c08baf9b40" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>THOMPSON_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref><sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="da/d94/namespaceBrush_1_1MAB" kindref="compound">MAB</ref><sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a761ac01c116bc93d9eada9c84635b2af" kindref="member">ThompsonSamplingBandit</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1ab235b15e23e629a01e6709ffd67b3e60" kindref="member">BanditOperator</ref></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a761ac01c116bc93d9eada9c84635b2af" kindref="member">ThompsonSamplingBandit</ref>(vector&lt;string&gt;<sp/>arms,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>dynamic=</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a761ac01c116bc93d9eada9c84635b2af" kindref="member">ThompsonSamplingBandit</ref>(map&lt;string,<sp/>float&gt;<sp/>arms_probs,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>dynamic=</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="24" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a518c1dfe7269e964e90c88960c95474d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a518c1dfe7269e964e90c88960c95474d" kindref="member">~ThompsonSamplingBandit</ref>(){};</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;string,<sp/>float&gt;<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a439981e98dbe8c366cdd8bdadfe40765" kindref="member">sample_probs</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a670420157e8bc8fa177e28655fcec19e" kindref="member">update</ref>);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a429bc282a1077ee3bccacf6a6ba4885b" kindref="member">choose</ref>();</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a670420157e8bc8fa177e28655fcec19e" kindref="member">update</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>arm,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>reward);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="30" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a08a370a0d6cd8751f1748544ff47e419" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a08a370a0d6cd8751f1748544ff47e419" kindref="member">dynamic_update</ref>;</highlight></codeline>
+<codeline lineno="31" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1acb1c631e00212bb6086b2a05564cf740" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1acb1c631e00212bb6086b2a05564cf740" kindref="member">C</ref><sp/>=<sp/>250;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a733ae88b247d7a7f0eceb96b0d7c9ffd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;string,<sp/>float&gt;<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a733ae88b247d7a7f0eceb96b0d7c9ffd" kindref="member">alphas</ref>;</highlight></codeline>
+<codeline lineno="34" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1acdb685bebd456dd5da80e4a214d9b55f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;string,<sp/>float&gt;<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1acdb685bebd456dd5da80e4a214d9b55f" kindref="member">betas</ref>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>MAB</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>THOMPSON_H</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/bandit/thompson.h"/>
   </compounddef>
