@@ -16,7 +16,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 #set (CUDA_PROPAGATE_HOST_FLAGS ON)
 
-  
 # project name
 project(_brush)
 
@@ -24,6 +23,7 @@ if(DEFINED ENV{CONDA_PREFIX})
     set(CMAKE_PREFIX_PATH $ENV{CONDA_PREFIX})
     message(STATUS "CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}")
 endif()
+
 # # add Eigen include paths
 if (DEFINED ENV{EIGEN3_INCLUDE_DIR})
     set(EIGEN3_INCLUDE_DIR $ENV{EIGEN3_INCLUDE_DIR})
@@ -57,6 +57,7 @@ if (NOT CMAKE_BUILD_TYPE)
 endif()
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 #set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+
 # add OpenMP support
 option(OMP "use OpenMP" ON)
 if (OMP)
@@ -73,10 +74,12 @@ if (MACOSX)
 endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-ignored-attributes")
+
 ########################################
 # fmt
 find_package(fmt REQUIRED)
 message("fmt_FOUND: ${fmt_FOUND}")
+
 ########################################
 # Python
 find_package(Python COMPONENTS Interpreter Development REQUIRED)
@@ -103,21 +106,37 @@ message(STATUS "Sources: '${sources}")
 
 # the pure cpp brush library (no python bindings)
 add_library(cbrush SHARED ${sources})
+set_property(TARGET cbrush PROPERTY CXX_VISIBILITY_PRESET "default") # change visibility preset to default
 # target_link_libraries(cbrush PUBLIC ${Python_LIBRARIES} fmt::fmt)
 # target_link_libraries(cbrush PUBLIC fmt::fmt)
 target_link_libraries(cbrush PUBLIC fmt::fmt)
+
+# Installing libcbrush.dylib together with _brush (macOS unsolved @rpath problem).
+# Destination is the module folder
+install(TARGETS cbrush DESTINATION pybrush)
 
 ########################################
 # generate python bindings
 
 message("add module")
+message("Bindings: ${bindings}")
 pybind11_add_module(_brush ${bindings})
+
 # pybind11_add_module(_brush ${sources})
 message("target link libraries")
 target_link_libraries(_brush PRIVATE cbrush)
 # target_link_libraries(_brush PRIVATE ${PYTHON_LIBRARIES} fmt::fmt)
 target_compile_definitions(_brush PRIVATE VERSION_INFO=${EXAMPLE_VERSION_INFO})
 
+# Saving the .so inside the module
+install(TARGETS _brush DESTINATION pybrush)
+
+# setting the right rpath
+if (MACOSX)
+    set_target_properties(_brush PROPERTIES INSTALL_RPATH "@loader_path")
+else()
+    set_target_properties(_brush PROPERTIES INSTALL_RPATH "$ORIGIN")
+endif()
 
 ########################################
 # brush cpp tests

@@ -2,7 +2,7 @@ name: brush
 channels:
     - conda-forge
 dependencies:
-    - python>=3.9 #=3.8.2
+    - python>=3.8
     - cmake #=3.18.*
     - eigen #=3.4.*
     - fmt
@@ -15,6 +15,7 @@ dependencies:
     - pytest #=6.2.4
     - pydot
     - scikit-learn
+    - scikit-build-core
     - pandas
     # not required to install the c++ library (but used in the wrapper)
     - jupyter
@@ -27,5 +28,6 @@ dependencies:
     - sphinx
     - pip:
       - graphviz
-      - deap
+      - deap # TODO: deap optional
       - pmlb
+      

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from pybrush import Dataset, SearchSpace
-import _brush
+from pybrush import _brush
 
 import numpy as np
 import pandas as pd

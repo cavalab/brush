@@ -625,8 +625,9 @@ std::optional<Individual<T>> Variation<T>::mutate(
             success = ToggleWeightOffMutation::mutate(child, spot, (*this), parameters);
 
         if (success
-        && ( (child.size()  <= parameters.max_size)
-        &&   (child.depth() <= parameters.max_depth) )){
+            && ( (child.size()  <= parameters.max_size)
+            &&   (child.depth() <= parameters.max_depth) )
+        ){
 
             Individual<T> ind(child);
 

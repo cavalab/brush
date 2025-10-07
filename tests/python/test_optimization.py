@@ -6,7 +6,7 @@ import pandas as pd
 from pmlb import fetch_data
 from sklearn.utils import resample
 
-import _brush
+from pybrush import _brush
 import json
 
 import traceback
@@ -207,15 +207,11 @@ def optimize_3ary_prod_inner_weight():
 
     json_program = {
         "Tree": [
-            {   "node_type":"Prod", "is_weighted": False, 
-                "arg_types"    :["ArrayF", "ArrayF", "ArrayF"],
-                "ret_type"     :"ArrayF",
-                "sig_hash"     :5617655905677279916,
-                "sig_dual_hash":10188582206427064428,
-                "complete_hash":1786662244046809282  },
-                { "node_type":"Terminal", "feature":"x1", "is_weighted": True },
-                { "node_type":"Terminal", "feature":"x2", "is_weighted": False},
-                { "node_type":"Terminal", "feature":"x3", "is_weighted": False}
+            { "node_type":"Mul", "is_weighted": False },
+            { "node_type":"Mul", "is_weighted": False },
+            { "node_type":"Terminal", "feature":"x1", "is_weighted": True },
+            { "node_type":"Terminal", "feature":"x2", "is_weighted": False},
+            { "node_type":"Terminal", "feature":"x3", "is_weighted": False}
         ],
         "is_fitted_":False
     }
@@ -230,15 +226,11 @@ def optimize_3ary_prod_outer_weight():
 
     json_program = {
         "Tree": [
-            {   "node_type":"Prod", "is_weighted": True, 
-                "arg_types"    :["ArrayF", "ArrayF", "ArrayF"],
-                "ret_type"     :"ArrayF",
-                "sig_hash"     :5617655905677279916,
-                "sig_dual_hash":10188582206427064428,
-                "complete_hash":1786662244046809282  },
-                { "node_type":"Terminal", "feature":"x1", "is_weighted": False},
-                { "node_type":"Terminal", "feature":"x2", "is_weighted": False},
-                { "node_type":"Terminal", "feature":"x3", "is_weighted": False}
+            { "node_type":"Mul", "is_weighted": True },
+            { "node_type":"Mul", "is_weighted": False },
+            { "node_type":"Terminal", "feature":"x1", "is_weighted": False},
+            { "node_type":"Terminal", "feature":"x2", "is_weighted": False},
+            { "node_type":"Terminal", "feature":"x3", "is_weighted": False}
         ],
         "is_fitted_":False
     }

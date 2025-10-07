@@ -1,7 +1,7 @@
 import pytest
 
 # import _brush
-from pybrush import BrushRegressor, BrushClassifier
+from pybrush import BrushRegressor, BrushClassifier, Dataset, SearchSpace
 import time
 from multiprocessing import Pool
 import numpy as np
@@ -120,8 +120,18 @@ def test_class_weights():
 
     class_weights = [np.sum(y == 0)/len(y), np.sum(y == 1)/len(y)]
 
+    print(f"Input y: {y}")
+    print(f"Input X: {X}")
+    print(f"Calculated class_weights: {class_weights}")
+
+    data = Dataset(X, y)
+    SS   = SearchSpace(data)
+    # data.print()
+    # SS.print()
+
     clf = BrushClassifier(
         # class_weights=class_weights,
+        # functions=['Logistic', 'Add', 'Mul'],
         max_gens=10, verbosity=2
     ).fit(X, y)
 

@@ -17,7 +17,7 @@ license: GNU/GPL v3
 #include "error.h"
 #include <typeindex>
 #include <iterator> // needed for std::ostram_iterator
-#include <execution> // parallel policies
+// #include <execution> // parallel policies
 
 using namespace Eigen;
 using namespace std;

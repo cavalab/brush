@@ -248,8 +248,6 @@ struct SearchSpace
         return !std::all_of(start, end, [](const auto& w) { return w<=0.0; });
     }
 
-    template<typename F> Node get(const string& name);
-
     /// @brief get a typed node 
     /// @param type the node type 
     /// @param R the return type of the node
@@ -460,7 +458,7 @@ struct SearchSpace
     /// @param type the node type
     /// @param R the return type
     /// @return `std::optional` that may contain a Node of type `type` with return type `R`. 
-    std::optional<Node> sample_op(NodeType type, DataType R)
+    std::optional<Node> sample_op(NodeType type, DataType R, bool force_return=false)
     {
         check(R);
         if (node_map.find(R) == node_map.end())
@@ -472,12 +470,17 @@ struct SearchSpace
         vector<float> weights; 
         for (const auto& [arg_hash, node_type_map]: ret_match)
         {
-            if (node_type_map.find(type) != node_type_map.end()
-            &&  node_map_weights.at(R).at(arg_hash).at(type) > 0.0f)
+            if (node_type_map.find(type) != node_type_map.end())
+            // &&  node_map_weights.at(R).at(arg_hash).at(type) > 0.0f)
             {
                 matches.push_back(node_type_map.at(type));
                 weights.push_back(node_map_weights.at(R).at(arg_hash).at(type));
             }
+        }
+
+        if (force_return)
+        {
+            std::fill(weights.begin(), weights.end(), 1.0f); 
         }
 
         if ( (weights.size()==0)
@@ -599,7 +602,8 @@ struct SearchSpace
         for (const auto& [ret_type, v] : this->node_map) {
             for (const auto& [args_type, v2] : v) {
                 for (const auto& [node_type, node] : v2) {
-                    output += fmt::format("node_map[{}][{}][{}] = {}, weight = {}\n", 
+                    output += fmt::format("{} node_map[{}][{}][{}] = {}, weight = {}\n", 
+                            node_type,
                             ret_type,
                             ArgsName[args_type],
                             node_type,
@@ -723,27 +727,23 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
 
     DataType root_type = DataTypeEnum<typename P::TreeType>::value;
     ProgramType program_type = P::program_type;
-    // ProgramType program_type = ProgramTypeEnum<PT>::value;
     
-    // Tree is pre-filled with some fixed nodes depending on program type
     auto Tree = tree<Node>();
-
-    // building the tree for each program case. Then, we give the spot to PTC2,
-    // and it will fill the rest of the tree
     tree<Node>::iterator spot;
 
-    // building the root node for each program case
     if (P::program_type == ProgramType::BinaryClassifier)
     {
-        Node node_logit = get(NodeType::Logistic, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
+        // sample_op should never return the empty value of optional
+        Node node_logit = sample_op(NodeType::Logistic, DataType::ArrayF, true).value();
+
         node_logit.set_is_weighted(false);
         node_logit.set_prob_change(0.0);
         node_logit.fixed=true;
 
         auto spot_logit = Tree.insert(Tree.begin(), node_logit);
 
-        if (true) { // Logistic(Add(Constant, <>)). TODO: let the user control this
-            Node node_offset = get(NodeType::OffsetSum, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
+        if (true) {
+            Node node_offset = sample_op(NodeType::OffsetSum, DataType::ArrayF, true).value();
 
             node_offset.set_prob_change(0.0);
             node_offset.fixed=true;
@@ -752,13 +752,13 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
             
             spot = Tree.replace(spot_offset, node_offset);
         }
-        else { // If false, then model will be Logistic(<>)
+        else {
             spot = spot_logit;
         }
     }
     else if (P::program_type == ProgramType::MulticlassClassifier)
     {
-        Node node_softmax = get(NodeType::Softmax, DataType::MatrixF, Signature<ArrayXXf(ArrayXXf)>());
+        Node node_softmax = sample_op(NodeType::Softmax, DataType::MatrixF, true).value();
 
         node_softmax.set_prob_change(0.0);
         node_softmax.set_is_weighted(false);
@@ -766,20 +766,19 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
         
         spot = Tree.insert(Tree.begin(), node_softmax);
     }
-    else // regression or representer --- sampling any candidate op or terminal
+    else
     {
         Node root;
-
         std::optional<Node> opt=std::nullopt;
 
         if (max_size>1 && max_d>1)
             opt = sample_op(root_type);
 
-        if (!opt) // if failed, then we dont have any operator to use as root...
+        if (!opt)
             opt = sample_terminal(root_type, true);
 
         root = opt.value();
-    
+
         spot = Tree.insert(Tree.begin(), root);
     }
 

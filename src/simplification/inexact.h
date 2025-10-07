@@ -188,9 +188,7 @@ class Inexact_simplifier
             // cout << tree_copy.begin().node->get_model(true) 
             //     << " with datatype " << static_cast<int>(tree_copy.begin().node->data.ret_type) << endl;
             
-            
             auto hashes = hash<P>(spot, d);
-            
             
             for (size_t i = 0; i < hashes.size(); ++i)
             {
@@ -206,19 +204,6 @@ class Inexact_simplifier
     private:
         int inputDim = 1;
 
-        // template<DataType D>
-        // float compare_predictions_at_node(TreeIter spot,
-        //                                 const tree<Node>& replacement_branch,
-        //                                 const Dataset& d)
-        // {
-        //     using RetType = typename DataEnumType<D>::type;
-
-        //     auto original_pred = spot.node->predict<RetType>(d, nullptr);
-        //     auto replacement_pred = replacement_branch.begin().node->predict<RetType>(d, nullptr);
-
-        //     return (original_pred.array() - replacement_pred.array()).square().mean();
-        // }
-
         template<ProgramType P>
         vector<size_t> hash(TreeIter& spot, const Dataset &d)
         {
@@ -232,8 +217,6 @@ class Inexact_simplifier
             // we cast to float because hash and query are based on matrix multiplications,
             // but we will store the hash only on the corresponding storage instance
             ArrayXf floatClippedInput;
-            
-            
 
             if constexpr (P == PT::Representer) {
                 
@@ -264,22 +247,14 @@ class Inexact_simplifier
                 }
             }
             
-            
-            
-
             assert(floatClippedInput.size() >= inputDim && 
                 "data must have at least inputDim elements");
 
-            
-
             floatClippedInput = floatClippedInput.head(inputDim);
-
-            
 
             vector<size_t> hashes;
             for (size_t planeIdx = 0; planeIdx < uniformPlanes.size(); ++planeIdx)
             {
-                
                 // TODO: handle nan predictions?
 
                 const auto& plane = uniformPlanes[planeIdx];
@@ -293,13 +268,10 @@ class Inexact_simplifier
                 }
                 
                 hashes.push_back(input_hash);
-                
-                
             }
 
             return hashes;
         }
-
 
         template<ProgramType P>
         optional<vector<tree<Node>>> query(TreeIter& spot, const Dataset &d)
@@ -321,16 +293,17 @@ class Inexact_simplifier
 
                 if (newCandidates.size() == 0)
                     continue;
-                    int count = 0;
-                    for (const auto& cand : newCandidates) {
-                        if (cand.begin().node->get_size() < spot_size) {
-                            matches.push_back(cand);
-                            if (++count >= 10) break; // returning only top 10
-                        } else {
-                            // Since candidates are ordered by size, we can break early
-                            break;
-                        }
+                    
+                int count = 0;
+                for (const auto& cand : newCandidates) {
+                    if (cand.begin().node->get_size() < spot_size) {
+                        matches.push_back(cand);
+                        if (++count >= 10) break; // returning only top 10
+                    } else {
+                        // Since candidates are ordered by size, we can break early
+                        break;
                     }
+                }
             }
 
             if (matches.size() > 0)

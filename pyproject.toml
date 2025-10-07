@@ -1,14 +1,55 @@
 [build-system]
 requires = [
-    "setuptools>=42",
-    "wheel",
-    "scikit-build",
-    "cmake",
-    "ninja",
-    "pybind11",
-    "sphinx",
+    "scikit-build-core>=0.8",
     "numpy",
+    "scikit-learn",
+    "sphinx",
+    "pybind11",
     "maisie_sphinx_theme",
     "breathe"
 ]
-build-backend = "setuptools.build_meta"
+build-backend = "scikit_build_core.build"
+
+# - cmake and ninja should not be in build-system.requires - scikit-build-core will inject it as needed
+
+[project]
+name = "pybrush"
+dynamic = ["version"]
+authors = [
+    { name="William La Cava" },
+    { name="Joseph D. Romano" },
+    { name="Guilherme Aldeia" }
+]
+description = "Python bindings for brush"
+readme = "README.md"
+license = { text = "GPL-3.0-or-later" }
+requires-python = ">=3.8"
+optional-dependencies.docs = [
+    "sphinx_rtd_theme",
+    "maisie_sphinx_theme",
+    "breathe"
+]
+optional-dependencies.test = [
+    "pytest",
+    "pmlb"
+]
+
+[project.urls]
+Homepage = "https://github.com/lacava/brush"
+BugTracker = "https://github.com/lacava/brush/issues"
+
+[tool.scikit-build]
+# The module name for the Python extension
+wheel.packages = ["pybrush"]
+cmake.build-type = "Release"
+cmake.args = [
+    "-DGTEST=OFF",
+    "-DDOCS=OFF",
+    "-DCMAKE_VERBOSE=1",
+    "-DPYBIND11_FINDPYTHON=ON"
+]
+metadata.version.provider = "scikit_build_core.metadata.setuptools_scm"
+sdist.include = ["pybrush/_versionstr.py"]
+
+[tool.setuptools_scm]  # Section required
+write_to = "pybrush/_versionstr.py"
