@@ -171,28 +171,25 @@ public:
                 err+= fmt::format("{}\n", k);
             HANDLE_ERROR_THROW(err); 
         }
+        
+        // TODO: is this needed?
         CallVariant callable = map_.at(n).at(sig_hash);
-        try {
-            if (std::holds_alternative<Callable<T>>(map_.at(n).at(sig_hash)))
-                return std::get<Callable<T>>(map_.at(n).at(sig_hash));
-            else{
-                if (map_.at(n).size() > 1){
-                    for (const auto & kv : map_.at(n))
-                    {
-                        if (std::holds_alternative<Callable<T>>(kv.second))
-                            return std::get<Callable<T>>(kv.second);
-                    }
-                }
-                auto msg = fmt::format("Tried get<Callable<{}>> for {} with hash {}; failed"
-                " because map holds index {}\n",
-                    DataTypeEnum<T>::value, n, sig_hash, map_.at(n).at(sig_hash).index() 
-                );
-                HANDLE_ERROR_THROW(msg);
-            }
-        }
-        catch(const std::bad_variant_access& e) {
 
-            auto msg = fmt::format("{}\nTried to ",e.what()); HANDLE_ERROR_THROW(msg);
+        if (std::holds_alternative<Callable<T>>(map_.at(n).at(sig_hash)))
+            return std::get<Callable<T>>(map_.at(n).at(sig_hash));
+        else{
+            if (map_.at(n).size() > 1){
+                for (const auto & kv : map_.at(n))
+                {
+                    if (std::holds_alternative<Callable<T>>(kv.second))
+                        return std::get<Callable<T>>(kv.second);
+                }
+            }
+            auto msg = fmt::format("Tried get<Callable<{}>> for {} with hash {}. failed"
+            " because map holds index {}\n",
+                DataTypeEnum<T>::value, n, sig_hash, map_.at(n).at(sig_hash).index() 
+            );
+            HANDLE_ERROR_THROW(msg);
         }
         
         return std::get<Callable<T>>(map_.at(n).at(sig_hash));

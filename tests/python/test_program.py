@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from pybrush import Dataset, SearchSpace
 import _brush
 
 import numpy as np
@@ -19,13 +20,13 @@ def test_data():
 
 def test_create_search_space(test_data):
     test_X, test_y = test_data
-    data = _brush.Dataset(test_X, test_y)
-    SS   = _brush.SearchSpace(data)
+    data = Dataset(test_X, test_y)
+    SS   = SearchSpace(data)
     
 def test_make_program(test_data):
     test_X, test_y = test_data
-    data = _brush.Dataset(test_X, test_y)
-    SS   = _brush.SearchSpace(data)
+    data = Dataset(test_X, test_y)
+    SS   = SearchSpace(data)
     # pytest.set_trace()
     for d in range(1,4):
         for s in range(1,20):
@@ -34,8 +35,8 @@ def test_make_program(test_data):
 
 def test_fit_regressor(test_data):
     test_X, test_y = test_data
-    data = _brush.Dataset(test_X, test_y)
-    SS   = _brush.SearchSpace(data)
+    data = Dataset(test_X, test_y)
+    SS   = SearchSpace(data)
     # pytest.set_trace()
     for d in range(1,4):
         for s in range(1,20):
@@ -47,8 +48,8 @@ def test_fit_regressor(test_data):
 
 def test_fit_classifier():
     df   = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
-    data = _brush.Dataset(df.drop(columns='target'), df['target'])
-    SS   = _brush.SearchSpace(data)
+    data = Dataset(df.drop(columns='target'), df['target'])
+    SS   = SearchSpace(data)
     # pytest.set_trace()
     for d in range(1,4):
         for s in range(1,20):

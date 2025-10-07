@@ -85,26 +85,30 @@ struct Node {
 
     /// full name of the node, with types
     string name;
-    /// whether to center the operator in pretty printing
-    bool center_op;
-    /// chance of node being selected for variation
-    float prob_change; 
-    /// whether node is modifiable
-    bool fixed;
     /// @brief the node type
     NodeType node_type;
-    /// @brief a hash of the signature
-    std::size_t sig_hash;
-    /// @brief a hash of the dual of the signature (for NLS)
-    std::size_t sig_dual_hash;
+
     /// @brief return data type
     DataType ret_type;
     /// @brief argument data types
     std::vector<DataType> arg_types;
+    /// @brief a hash of the signature
+    std::size_t sig_hash;
+    /// @brief a hash of the dual of the signature (for NLS)
+    std::size_t sig_dual_hash;
+
+    /// whether node is modifiable
+    bool fixed;
     /// @brief whether this node is weighted
     bool is_weighted;
+    /// chance of node being selected for variation
+    float prob_change; 
     /// @brief the weights of the node. also used for splitting thresholds.
     float W; 
+    
+    /// whether to center the operator in pretty printing
+    bool center_op; // TODO: use center_op in printing
+    
     // /// @brief a node hash / unique ID for the node, except weights
     // size_t node_hash; 
     /// @brief tuple type for hashing
@@ -163,10 +167,7 @@ struct Node {
 
         // TODO: confirm that this is really necessary (intializing this variable) and transform this line into a ternary if so
         // cant weight an boolean terminal
-        if (!IsWeighable(this->ret_type)) 
-            this->is_weighted = false;
-        else
-            this->is_weighted = true;
+        this->is_weighted = IsWeighable(this->ret_type);
     }
 
     /// @brief gets a string version of the node for printing.
@@ -197,7 +198,7 @@ struct Node {
         return std::hash<HashTuple>{}(HashTuple{
                 NodeTypes::GetIndex(node_type),
                 sig_hash,
-                is_weighted,
+                get_is_weighted(),
                 feature,
                 fixed,
                 int(W*100)
@@ -249,22 +250,27 @@ struct Node {
     inline void set_feature(string f){ feature = f; };
     inline string get_feature() const { return feature; };
     
-    inline void set_feature_type(DataType ft){ feature_type = ft; };
-    inline DataType get_feature_type() const { return feature_type; };
+    inline void set_feature_type(DataType ft){ this->feature_type = ft; };
+    inline DataType get_feature_type() const { return this->feature_type; };
 
-    inline bool get_is_weighted() const {return this->is_weighted;};
+    // Some types does not have weights, so we completely ignore the weights
+    // if is not weighable
+    inline bool get_is_weighted() const {
+        if (IsWeighable(this->ret_type)) 
+            return this->is_weighted;
+        return false;
+    };
     inline void set_is_weighted(bool is_weighted){
-        // cant change the weight of a boolean terminal
         if (IsWeighable(this->ret_type)) 
             this->is_weighted = is_weighted;
     };
 
-    private:
+    // private:
         /// @brief feature name for terminals or splitting nodes
         string feature; 
         
         /// @brief feature type for terminals or splitting nodes
-        DataType feature_type; 
+        DataType feature_type = DataType::ArrayF; 
         
 };
 
@@ -284,7 +290,9 @@ inline auto IsCommutative(NodeType nt) noexcept -> bool {
     return Is<NodeType::Add,
               NodeType::Mul,
               NodeType::Min,
-              NodeType::Max
+              NodeType::Max,
+              NodeType::And, 
+              NodeType::Or
               >(nt); 
 }
 
@@ -337,8 +345,6 @@ inline auto IsWeighable(NodeType nt) noexcept -> bool {
 
 ostream& operator<<(ostream& os, const Node& n);
 ostream& operator<<(ostream& os, const NodeType& nt);
-
-
 
 void from_json(const json &j, Node& p);
 void to_json(json& j, const Node& p);

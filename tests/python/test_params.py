@@ -1,6 +1,6 @@
 import pytest
 
-import _brush
+# import _brush
 from pybrush import BrushRegressor, BrushClassifier
 import time
 from multiprocessing import Pool

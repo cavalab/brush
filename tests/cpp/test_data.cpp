@@ -1,5 +1,5 @@
 #include "testsHeader.h"
-#include "../../src/bandit/bandit.cpp"
+// #include "../../src/bandit/bandit.cpp"
 
 TEST(Data, ErrorHandling)
 {
@@ -97,7 +97,7 @@ TEST(Data, MixedVariableTypes)
 
             Individual<PT::Regressor> IND(PRG);
             
-            auto [opt, context] = variator.mutate(IND);
+            auto opt = variator.mutate(IND);
 
             if (!opt){
                 fmt::print("Mutation failed to create a child\n");

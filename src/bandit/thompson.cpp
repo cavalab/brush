@@ -3,9 +3,8 @@
 namespace Brush {
 namespace MAB {
 
-template <typename T>
-ThompsonSamplingBandit<T>::ThompsonSamplingBandit(vector<T> arms, bool dynamic)
-    : BanditOperator<T>(arms)
+ThompsonSamplingBandit::ThompsonSamplingBandit(vector<string> arms, bool dynamic)
+    : BanditOperator(arms)
     , dynamic_update(dynamic)
 {
     for (const auto& arm : arms) {
@@ -14,9 +13,8 @@ ThompsonSamplingBandit<T>::ThompsonSamplingBandit(vector<T> arms, bool dynamic)
     }
 }
 
-template <typename T>
-ThompsonSamplingBandit<T>::ThompsonSamplingBandit(map<T, float> arms_probs, bool dynamic)
-    : BanditOperator<T>(arms_probs)
+ThompsonSamplingBandit::ThompsonSamplingBandit(map<string, float> arms_probs, bool dynamic)
+    : BanditOperator(arms_probs)
     , dynamic_update(dynamic)
 {
     for (const auto& pair : arms_probs) {
@@ -26,8 +24,7 @@ ThompsonSamplingBandit<T>::ThompsonSamplingBandit(map<T, float> arms_probs, bool
 };
     
 
-template <typename T>
-std::map<T, float> ThompsonSamplingBandit<T>::sample_probs(bool update) {
+std::map<string, float> ThompsonSamplingBandit::sample_probs(bool update) {
     // gets sampling probabilities using the bandit
 
     // from https://stackoverflow.com/questions/4181403/generate-random-number-based-on-beta-distribution-using-boost
@@ -48,7 +45,7 @@ std::map<T, float> ThompsonSamplingBandit<T>::sample_probs(bool update) {
 
         float alpha, beta, X, Y, prob;
         for (const auto& pair : this->probabilities) {
-            T arm = pair.first;
+            string arm = pair.first;
 
             alpha = alphas[arm];
             beta  = betas[arm];
@@ -77,15 +74,13 @@ std::map<T, float> ThompsonSamplingBandit<T>::sample_probs(bool update) {
     return this->probabilities;
 }
 
-template <typename T>
-T ThompsonSamplingBandit<T>::choose(const VectorXf& context) {
-    std::map<T, float> probs = this->sample_probs(true);
+string ThompsonSamplingBandit::choose() {
+    std::map<string, float> probs = this->sample_probs(true);
 
     return r.random_choice(probs);
 }
 
-template <typename T>
-void ThompsonSamplingBandit<T>::update(T arm, float reward, VectorXf& context) {
+void ThompsonSamplingBandit::update(string arm, float reward) {
     // reward must be either 0 or 1
 
     alphas[arm] += reward;

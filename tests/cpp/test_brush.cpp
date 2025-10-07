@@ -25,10 +25,10 @@
 #include "../../src/eval/evaluation.cpp"
 #include "../../src/pop/archive.cpp"
 #include "../../src/pop/population.cpp"
-#include "../../src/bandit/bandit.cpp"
-#include "../../src/bandit/bandit_operator.cpp"
-#include "../../src/bandit/dummy.cpp"
-#include "../../src/bandit/thompson.cpp"
+// #include "../../src/bandit/bandit.cpp"
+// #include "../../src/bandit/bandit_operator.cpp"
+// #include "../../src/bandit/dummy.cpp"
+// #include "../../src/bandit/thompson.cpp"
 #include "../../src/simplification/constants.cpp"
 #include "../../src/simplification/inexact.cpp"
 
@@ -216,8 +216,7 @@ INSTANTIATE_TEST_SUITE_P(
     ::testing::Values(
         "dummy",
         "thompson",
-        "dynamic_thompson",
-        "linear_thompson"
+        "dynamic_thompson"
     )
 );
 
@@ -302,13 +301,99 @@ TEST(Engine, MaxStall)
 
     Parameters params;
     params.set_pop_size(100);
-    params.set_max_gens(1000000);
+    params.set_max_gens(10000000);
     params.set_mig_prob(0.0);
     params.set_max_stall(10);
-    params.set_verbosity(2);
+    params.set_verbosity(1); // change here for more information. Im keeping it short to avoid long logs
 
+    cout << "Testing max stall termination criterion" << endl;
+    cout << "using 10B generations. The test should not freeze." << endl;
     Brush::RegressorEngine est(params, ss);
     est.run(data);
+}
 
 
+// test working with population files
+// create a population for 2 generations, save it, then load it again. Do
+// it several times so we can test different initializations
+TEST(Engine, engine_save_load_pop_works)
+{
+    // This dataset was causing RuntimeError: [json.exception.type_error.302] type must be number, but is null.
+    // I decided to use it for testing then
+    Dataset data = Data::read_csv("./docs/examples/datasets/d_analcatdata_aids.csv", "target");
+
+    SearchSpace ss(data);
+
+    std::unordered_map<string, float> f = {
+        {"SplitBest", 1.0},
+        {"Add", 1.0},
+        {"Mul", 1.0},
+        {"Sin", 1.0},
+        {"Cos", 1.0},
+        {"Exp", 1.0},
+        {"Logabs", 1.0}
+    };
+
+    Parameters params_save;
+    params_save.set_functions(f);
+    params_save.set_pop_size(200);
+    params_save.set_max_gens(10);
+    params_save.set_scorer("log");
+    params_save.set_verbosity(1);
+    params_save.set_use_arch(false);
+    params_save.set_save_population("./tests/cpp/__pop_analcatdata_aids.json");
+
+    Parameters params_load;
+    params_load.set_functions(f);
+    params_load.set_pop_size(200);
+    params_load.set_max_gens(10);
+    params_load.set_scorer("average_precision_score");
+    params_load.set_verbosity(1);
+    params_load.set_use_arch(true);
+    params_load.set_load_population("./tests/cpp/__pop_analcatdata_aids.json");
+
+    for (int run = 0; run < 10; ++run) {
+        Brush::ClassifierEngine est_save(params_save, ss);
+        est_save.fit(data);
+        
+        Brush::ClassifierEngine est_load(params_load, ss);
+        est_load.fit(data);
+    }
+}
+
+// brute forcing errors with d_enc dataset. This is extremely slow, and I use
+// it to test very rare events.
+TEST(Engine, DEnc)
+{
+    // Dataset data = Data::read_csv("./docs/examples/datasets/d_enc.csv", "label");
+    Dataset data = Data::read_csv("./docs/examples/datasets/d_example_patients.csv", "target");
+
+    SearchSpace ss(data);
+
+    std::vector<std::string> bandits = {"dummy", "thompson", "dynamic_thompson"};
+
+    for (const auto& bandit : bandits) {
+        std::cout << "Running bandit: " << bandit << std::endl;
+        for (int run = 0; run < 5; ++run) {
+            Parameters params;
+            params.set_pop_size(100);
+            params.set_max_gens(50);
+            params.set_max_stall(100); // avoid early stopping
+            params.set_max_depth(10);
+            params.set_objectives({"scorer", "linear_complexity"});
+            params.set_bandit(bandit);
+            params.set_weights_init(false);
+            params.set_use_arch(false);
+            
+            // params.set_constants_simplification(false);
+            // params.set_inexact_simplification(false);
+
+            params.set_verbosity(1);
+
+            Brush::RegressorEngine est(params, ss);
+            est.fit(data);
+
+            std::cout << "model: " << est.best_ind.program.get_model() << std::endl;
+        }
+    }
 }

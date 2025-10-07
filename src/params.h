@@ -62,7 +62,6 @@ public:
         {"toggle_weight_on", 0.167},
         {"toggle_weight_off", 0.167}
     };
-
     float cx_prob=0.2;  ///< cross rate for variation
     float mig_prob = 0.05;
     
@@ -253,36 +252,60 @@ public:
 };
 
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Parameters,
-    verbosity,
     random_state,
+    verbosity,
+
+    mode,
+
+    current_gen,
+
     pop_size,
     max_gens,
     max_stall,
     max_time,
-    scorer,
-    load_population,
-    save_population,
-    logfile,
-    current_gen,
-    num_islands,
+
     max_depth,
-    n_jobs,
     max_size,
+
     objectives,
+    bandit,
     sel,
     surv,
+    functions,
+    num_islands,
+
+    use_arch,
+    val_from_arch,
+    
+    constants_simplification,
+    inexact_simplification,
+
+    mutation_probs,
     cx_prob,
     mig_prob,
-    classification,
-    n_classes,
+
+    scorer,
+
     classes, // TODO: get rid of this parameter? for some reason, when i remove it (or set it to any value) the load population starts to fail with regression
     class_weights,
     sample_weights,
+
+    classification,
+    n_classes,
+
+    shuffle_split,
     validation_size,
     feature_names,
+    feature_types,
     batch_size,
-    mutation_probs,
-    functions
+    weights_init,
+
+    load_population,
+    save_population,
+
+    logfile,
+    
+    n_jobs
 );
 
 } // Brush

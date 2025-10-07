@@ -126,7 +126,8 @@ void to_json(json& j, const Node& p)
         {"sig_dual_hash", p.sig_dual_hash}, 
         {"ret_type", p.ret_type}, 
         {"arg_types", p.arg_types}, 
-        {"feature", p.get_feature()} 
+        {"feature", p.get_feature()},
+        {"feature_type", p.get_feature_type()}
         // {"node_hash", p.get_node_hash()} 
     };
 }
@@ -188,21 +189,23 @@ void init_node_with_default_signature(Node& node)
     {
         node.set_signature<Signature<ArrayXb(ArrayXb,ArrayXb)>>();
     }  
-    // else if (Is<
-    //     NT::Not
-    //     >(n))
-    // {
-    //     node.set_signature<Signature<ArrayXb(ArrayXb)>>();
-    // }  
+    else if (Is<
+        NT::Not
+        >(n))
+    {
+        node.set_signature<Signature<ArrayXb(ArrayXb)>>();
+    }  
     else if (Is<
         NT::Min,
         NT::Max,
         NT::Mean,
         NT::Median,
         NT::Sum,
-        // NT::OffsetSum, // n-ary version
+        // NT::OffsetSum,
         NT::Prod,
-        NT::Softmax
+        NT::Softmax,
+        NT::SplitOn,
+        NT::SplitBest
         >(n))
     {
         auto msg = fmt::format("Can't infer arguments for {} from json."
@@ -218,11 +221,13 @@ void init_node_with_default_signature(Node& node)
     else{
         node.set_signature<Signature<ArrayXf()>>();
     }
-
 }
 
 void from_json(const json &j, Node& p)
 {
+    // First we start with required information, then we set the optional ones
+    // (they can be inferred from the required ones)
+
     if (j.contains("node_type"))
         j.at("node_type").get_to(p.node_type);
     else
@@ -236,14 +241,15 @@ void from_json(const json &j, Node& p)
     if (j.contains("center_op"))
         j.at("center_op").get_to(p.center_op);
 
+    // used in split nodes
     if (j.contains("feature"))
     {
-        // j.at("feature").get_to(p.feature);
-        p.set_feature(j.at("feature"));
+        j.at("feature").get_to(p.feature);
     }
+
     if (j.contains("feature_type"))
     {
-        p.set_feature_type(j.at("feature_type"));
+        j.at("feature_type").get_to(p.feature_type);
     }
 
     // if node has a ret_type and arg_types, get them. if not we need to make 
@@ -268,9 +274,11 @@ void from_json(const json &j, Node& p)
         make_signature=true;
 
     if (make_signature){
-        p.is_weighted = false;
+        p.is_weighted = false; // TODO: remove this line
         init_node_with_default_signature(p);
     }
+
+    // after this point we set attributes that are modified in init
     p.init();
     
     // these 4 below needs to be set after init(), since it resets these values

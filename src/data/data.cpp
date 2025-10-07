@@ -104,7 +104,6 @@ State check_type(const ArrayXf& x, const string t)
                 uniqueMap[x(i)] = true;
         } 
         
-
         if (isBinary)
         {
             tmp = ArrayXb(x.cast<bool>());
@@ -366,11 +365,12 @@ map<string, State> Dataset::make_features(const ArrayXXf& X,
         }
     }
     else {
-    if (ft.size() != X.cols())
-        HANDLE_ERROR_THROW(
-            fmt::format("Feature type names and data size mismatch: "
-            "{} feature type names and {} features in X", 
-            ft.size(),  X.cols()) );
+        if (ft.size() != X.cols())
+            HANDLE_ERROR_THROW(
+                fmt::format("Feature type names and data size mismatch: "
+                "{} feature type names and {} features in X", 
+                ft.size(),  X.cols()) );
+
         var_types = ft;
     }
 
