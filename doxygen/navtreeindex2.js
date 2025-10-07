@@ -1,5 +1,11 @@
 var NAVTREEINDEX2 =
 {
+"d2/d36/classBrush_1_1Data_1_1Dataset.html#a5020e43def6267598be0ba3d2b46e616":[0,0,0,0,0,5],
+"d2/d36/classBrush_1_1Data_1_1Dataset.html#a5020e43def6267598be0ba3d2b46e616":[2,0,0,0,0,5],
+"d2/d36/classBrush_1_1Data_1_1Dataset.html#a52d591cce797480e80f8cf1f1482702e":[0,0,0,0,0,23],
+"d2/d36/classBrush_1_1Data_1_1Dataset.html#a52d591cce797480e80f8cf1f1482702e":[2,0,0,0,0,23],
+"d2/d36/classBrush_1_1Data_1_1Dataset.html#a59ec8554d617a4a99ba7feec09bdc62c":[0,0,0,0,0,17],
+"d2/d36/classBrush_1_1Data_1_1Dataset.html#a59ec8554d617a4a99ba7feec09bdc62c":[2,0,0,0,0,17],
 "d2/d36/classBrush_1_1Data_1_1Dataset.html#a652aba735323fddf7bf79407e7e4fc83":[0,0,0,0,0,25],
 "d2/d36/classBrush_1_1Data_1_1Dataset.html#a652aba735323fddf7bf79407e7e4fc83":[2,0,0,0,0,25],
 "d2/d36/classBrush_1_1Data_1_1Dataset.html#a6ac1f4f56991e43a782dd519c414916a":[0,0,0,0,0,20],
@@ -243,11 +249,5 @@ var NAVTREEINDEX2 =
 "d4/d1b/structBrush_1_1Function_3_01NodeType_1_1Or_01_4.html#a60f4d15045ba85e01cf3b011f24ebc48":[2,0,0,76,0],
 "d4/d1b/structBrush_1_1Function_3_01NodeType_1_1Or_01_4.html#af382cf2bf20f319dddfe2fa34da97d17":[0,0,0,79,1],
 "d4/d1b/structBrush_1_1Function_3_01NodeType_1_1Or_01_4.html#af382cf2bf20f319dddfe2fa34da97d17":[2,0,0,76,1],
-"d4/d1f/variation_8h.html":[3,0,0,10,3],
-"d4/d1f/variation_8h_source.html":[3,0,0,10,3],
-"d4/d42/structfmt_1_1formatter_3_01Brush_1_1NodeType_01_4.html":[2,0,1,5],
-"d4/d42/structfmt_1_1formatter_3_01Brush_1_1NodeType_01_4.html#a66499c22826759622fa847c796886088":[2,0,1,5,0],
-"d4/d46/classBrush_1_1Var_1_1PointMutation.html":[0,0,0,10,3],
-"d4/d46/classBrush_1_1Var_1_1PointMutation.html":[2,0,0,7,3],
-"d4/d46/classBrush_1_1Var_1_1PointMutation.html#abed0c55509e074070bd1068a62a1ca0a":[0,0,0,10,3,0]
+"d4/d1f/variation_8h.html":[3,0,0,10,3]
 };

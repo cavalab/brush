@@ -106,6 +106,7 @@ $(function(){initNavTree('de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="../../da/d7c/classBrush_1_1Simpl_1_1Inexact__simplifier-members.html">List of all members</a>  </div>
@@ -139,6 +140,9 @@ Collaboration diagram for Brush::Simpl::Inexact_simplifier:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:abb9431d42274e6b559249d6b2872d2a2" id="r_abb9431d42274e6b559249d6b2872d2a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb9431d42274e6b559249d6b2872d2a2">init</a> (int hashSize, const <a class="el" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> &amp;data, int numPlanes)</td></tr>
 <tr class="separator:abb9431d42274e6b559249d6b2872d2a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e6645327d19f04e16025a61faaca021" id="r_a9e6645327d19f04e16025a61faaca021"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88b714d0f92b86276366">ProgramType</a> P&gt; </td></tr>
+<tr class="memitem:a9e6645327d19f04e16025a61faaca021"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a9e6645327d19f04e16025a61faaca021">analyze_tree</a> (<a class="el" href="../../db/d88/structBrush_1_1Program.html">Program</a>&lt; P &gt; &amp;program, const <a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html">SearchSpace</a> &amp;ss, const <a class="el" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> &amp;d)</td></tr>
+<tr class="separator:a9e6645327d19f04e16025a61faaca021"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a70383d31da8c7798595f36f2acb2a9" id="r_a8a70383d31da8c7798595f36f2acb2a9"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88b714d0f92b86276366">ProgramType</a> P&gt; </td></tr>
 <tr class="memitem:a8a70383d31da8c7798595f36f2acb2a9"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../db/d88/structBrush_1_1Program.html">Program</a>&lt; P &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a8a70383d31da8c7798595f36f2acb2a9">simplify_tree</a> (<a class="el" href="../../db/d88/structBrush_1_1Program.html">Program</a>&lt; P &gt; &amp;program, const <a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html">SearchSpace</a> &amp;ss, const <a class="el" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> &amp;d)</td></tr>
 <tr class="separator:a8a70383d31da8c7798595f36f2acb2a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,6 +153,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7c78cf61e853e40d9729e4b31cb1ca59" id="r_a7c78cf61e853e40d9729e4b31cb1ca59"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88b714d0f92b86276366">ProgramType</a> P&gt; </td></tr>
 <tr class="memitem:a7c78cf61e853e40d9729e4b31cb1ca59"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a7c78cf61e853e40d9729e4b31cb1ca59">index</a> (<a class="el" href="../../dc/d5c/namespaceBrush.html#a85201aa8f093fe8fdd3b9060a2526dfe">TreeIter</a> &amp;spot, const <a class="el" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> &amp;d)</td></tr>
 <tr class="separator:a7c78cf61e853e40d9729e4b31cb1ca59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcb98569affab47f0a15bac9e99dd4c1" id="r_adcb98569affab47f0a15bac9e99dd4c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adcb98569affab47f0a15bac9e99dd4c1">log_simplification_table</a> (std::ofstream &amp;log)</td></tr>
+<tr class="separator:adcb98569affab47f0a15bac9e99dd4c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ae737baf7821d6027feda169330192272" id="r_ae737baf7821d6027feda169330192272"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae737baf7821d6027feda169330192272">inputDim</a> = 1000</td></tr>
+<tr class="separator:ae737baf7821d6027feda169330192272"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -158,11 +169,11 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a32dabddbcfac94f89741db0c4fd6ffa3" id="r_a32dabddbcfac94f89741db0c4fd6ffa3"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88b714d0f92b86276366">ProgramType</a> P&gt; </td></tr>
 <tr class="memitem:a32dabddbcfac94f89741db0c4fd6ffa3"><td class="memTemplItemLeft" align="right" valign="top">optional&lt; <a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; tree&lt; <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> &gt; &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a32dabddbcfac94f89741db0c4fd6ffa3">query</a> (<a class="el" href="../../dc/d5c/namespaceBrush.html#a85201aa8f093fe8fdd3b9060a2526dfe">TreeIter</a> &amp;spot, const <a class="el" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> &amp;d)</td></tr>
 <tr class="separator:a32dabddbcfac94f89741db0c4fd6ffa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bee6d91769fb8c3bcefaf29e2b4f232" id="r_a1bee6d91769fb8c3bcefaf29e2b4f232"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d92/classstring.html">string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1bee6d91769fb8c3bcefaf29e2b4f232">dt_to_string</a> (<a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> dt)</td></tr>
+<tr class="separator:a1bee6d91769fb8c3bcefaf29e2b4f232"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:ae737baf7821d6027feda169330192272" id="r_ae737baf7821d6027feda169330192272"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae737baf7821d6027feda169330192272">inputDim</a> = 1</td></tr>
-<tr class="separator:ae737baf7821d6027feda169330192272"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac63ac4ab691f7bedb423a60ead721ec9" id="r_ac63ac4ab691f7bedb423a60ead721ec9"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; <a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a>, <a class="el" href="../../d4/d71/classBrush_1_1Simpl_1_1HashStorage.html">HashStorage</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac63ac4ab691f7bedb423a60ead721ec9">equivalentExpressions</a></td></tr>
 <tr class="separator:ac63ac4ab691f7bedb423a60ead721ec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7319339ce256877088504967d3100685" id="r_a7319339ce256877088504967d3100685"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; MatrixXf &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7319339ce256877088504967d3100685">uniformPlanes</a></td></tr>
@@ -170,7 +181,7 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00072">72</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00123">123</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3a6711a4adc8e43324fe675688c8b3cb" name="a3a6711a4adc8e43324fe675688c8b3cb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3a6711a4adc8e43324fe675688c8b3cb">&#9670;&#160;</a></span>Inexact_simplifier()</h2>
@@ -211,6 +222,107 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9e6645327d19f04e16025a61faaca021" name="a9e6645327d19f04e16025a61faaca021"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e6645327d19f04e16025a61faaca021">&#9670;&#160;</a></span>analyze_tree()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88b714d0f92b86276366">ProgramType</a> P&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Brush::Simpl::Inexact_simplifier::analyze_tree </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../db/d88/structBrush_1_1Program.html">Program</a>&lt; P &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>program</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html">SearchSpace</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>ss</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>d</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00133">133</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a9e6645327d19f04e16025a61faaca021_cgraph.png" border="0" usemap="#ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a9e6645327d19f04e16025a61faaca021_cgraph" alt=""/></div>
+<map name="ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a9e6645327d19f04e16025a61faaca021_cgraph" id="ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a9e6645327d19f04e16025a61faaca021_cgraph">
+<area shape="rect" title=" " alt="" coords="5,65,187,110"/>
+<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a7c78cf61e853e40d9729e4b31cb1ca59" title=" " alt="" coords="243,5,402,50"/>
+<area shape="poly" title=" " alt="" coords="182,62,227,50,228,55,183,67"/>
+<area shape="rect" href="../../dc/d5c/namespaceBrush.html#a14447d2f04191fa6607e02077a4137ea" title=" " alt="" coords="277,74,368,102"/>
+<area shape="poly" title=" " alt="" coords="187,85,262,85,262,90,187,90"/>
+<area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a826ef90ae1aaf8f2637f551cfff0746a" title="count the size of a given subtree, optionally including the weights in weighted nodes...." alt="" coords="235,126,410,154"/>
+<area shape="poly" title=" " alt="" coords="188,106,245,119,244,124,186,111"/>
+<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a5f837106982ddf27cb2fcd8d492cc677" title=" " alt="" coords="458,5,617,50"/>
+<area shape="poly" title=" " alt="" coords="402,25,442,25,442,30,402,30"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a9e6645327d19f04e16025a61faaca021_icgraph.png" border="0" usemap="#ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a9e6645327d19f04e16025a61faaca021_icgraph" alt=""/></div>
+<map name="ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a9e6645327d19f04e16025a61faaca021_icgraph" id="ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a9e6645327d19f04e16025a61faaca021_icgraph">
+<area shape="rect" title=" " alt="" coords="236,5,417,50"/>
+<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a8a70383d31da8c7798595f36f2acb2a9" title=" " alt="" coords="5,5,188,50"/>
+<area shape="poly" title=" " alt="" coords="220,30,188,30,188,25,220,25"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1bee6d91769fb8c3bcefaf29e2b4f232" name="a1bee6d91769fb8c3bcefaf29e2b4f232"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bee6d91769fb8c3bcefaf29e2b4f232">&#9670;&#160;</a></span>dt_to_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d5/d92/classstring.html">string</a> Brush::Simpl::Inexact_simplifier::dt_to_string </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a></td>          <td class="paramname"><span class="paramname"><em>dt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00393">393</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a1bee6d91769fb8c3bcefaf29e2b4f232_icgraph.png" border="0" usemap="#ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a1bee6d91769fb8c3bcefaf29e2b4f232_icgraph" alt=""/></div>
+<map name="ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a1bee6d91769fb8c3bcefaf29e2b4f232_icgraph" id="ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a1bee6d91769fb8c3bcefaf29e2b4f232_icgraph">
+<area shape="rect" title=" " alt="" coords="306,5,480,50"/>
+<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#adcb98569affab47f0a15bac9e99dd4c1" title=" " alt="" coords="5,5,258,50"/>
+<area shape="poly" title=" " alt="" coords="290,30,258,30,258,25,290,25"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a5f837106982ddf27cb2fcd8d492cc677" name="a5f837106982ddf27cb2fcd8d492cc677"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5f837106982ddf27cb2fcd8d492cc677">&#9670;&#160;</a></span>hash()</h2>
 
@@ -240,20 +352,22 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00223">223</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00292">292</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a5f837106982ddf27cb2fcd8d492cc677_icgraph.png" border="0" usemap="#ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a5f837106982ddf27cb2fcd8d492cc677_icgraph" alt=""/></div>
 <map name="ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a5f837106982ddf27cb2fcd8d492cc677_icgraph" id="ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a5f837106982ddf27cb2fcd8d492cc677_icgraph">
-<area shape="rect" title=" " alt="" coords="443,40,602,85"/>
-<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a7c78cf61e853e40d9729e4b31cb1ca59" title=" " alt="" coords="236,5,395,50"/>
-<area shape="poly" title=" " alt="" coords="428,49,395,44,396,38,428,44"/>
-<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a32dabddbcfac94f89741db0c4fd6ffa3" title=" " alt="" coords="236,75,395,119"/>
-<area shape="poly" title=" " alt="" coords="428,81,396,86,395,81,428,76"/>
+<area shape="rect" title=" " alt="" coords="672,41,832,86"/>
+<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a7c78cf61e853e40d9729e4b31cb1ca59" title=" " alt="" coords="465,8,624,53"/>
+<area shape="poly" title=" " alt="" coords="657,51,624,46,625,41,657,46"/>
+<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a32dabddbcfac94f89741db0c4fd6ffa3" title=" " alt="" coords="247,75,406,119"/>
+<area shape="poly" title=" " alt="" coords="657,74,407,93,406,88,657,68"/>
+<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a9e6645327d19f04e16025a61faaca021" title=" " alt="" coords="236,5,417,50"/>
+<area shape="poly" title=" " alt="" coords="450,32,417,31,417,26,450,27"/>
 <area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a8a70383d31da8c7798595f36f2acb2a9" title=" " alt="" coords="5,40,188,85"/>
-<area shape="poly" title=" " alt="" coords="221,45,189,50,188,45,220,40"/>
-<area shape="poly" title=" " alt="" coords="220,85,188,79,189,74,221,79"/>
+<area shape="poly" title=" " alt="" coords="221,46,188,51,188,46,220,41"/>
+<area shape="poly" title=" " alt="" coords="231,85,188,79,189,73,231,80"/>
 </map>
 </div>
 
@@ -288,7 +402,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00183">183</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00256">256</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -304,7 +418,9 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a7c78cf61e853e40d9729e4b31cb1ca59_icgraph.png" border="0" usemap="#ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a7c78cf61e853e40d9729e4b31cb1ca59_icgraph" alt=""/></div>
 <map name="ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a7c78cf61e853e40d9729e4b31cb1ca59_icgraph" id="ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a7c78cf61e853e40d9729e4b31cb1ca59_icgraph">
-<area shape="rect" title=" " alt="" coords="236,5,395,50"/>
+<area shape="rect" title=" " alt="" coords="465,5,624,50"/>
+<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a9e6645327d19f04e16025a61faaca021" title=" " alt="" coords="236,5,417,50"/>
+<area shape="poly" title=" " alt="" coords="450,30,417,30,417,25,450,25"/>
 <area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a8a70383d31da8c7798595f36f2acb2a9" title=" " alt="" coords="5,5,188,50"/>
 <area shape="poly" title=" " alt="" coords="220,30,188,30,188,25,220,25"/>
 </map>
@@ -361,6 +477,45 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="adcb98569affab47f0a15bac9e99dd4c1" name="adcb98569affab47f0a15bac9e99dd4c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcb98569affab47f0a15bac9e99dd4c1">&#9670;&#160;</a></span>log_simplification_table()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Brush::Simpl::Inexact_simplifier::log_simplification_table </td>
+          <td>(</td>
+          <td class="paramtype">std::ofstream &amp;</td>          <td class="paramname"><span class="paramname"><em>log</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00275">275</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_adcb98569affab47f0a15bac9e99dd4c1_cgraph.png" border="0" usemap="#ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_adcb98569affab47f0a15bac9e99dd4c1_cgraph" alt=""/></div>
+<map name="ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_adcb98569affab47f0a15bac9e99dd4c1_cgraph" id="ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_adcb98569affab47f0a15bac9e99dd4c1_cgraph">
+<area shape="rect" title=" " alt="" coords="5,40,258,85"/>
+<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a1bee6d91769fb8c3bcefaf29e2b4f232" title=" " alt="" coords="316,5,490,50"/>
+<area shape="poly" title=" " alt="" coords="258,44,300,38,300,43,258,49"/>
+<area shape="rect" href="../../d4/d71/classBrush_1_1Simpl_1_1HashStorage.html#ac57c86930d31872b0add261949855563" title=" " alt="" coords="306,75,500,119"/>
+<area shape="poly" title=" " alt="" coords="258,76,291,80,290,85,258,81"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a32dabddbcfac94f89741db0c4fd6ffa3" name="a32dabddbcfac94f89741db0c4fd6ffa3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a32dabddbcfac94f89741db0c4fd6ffa3">&#9670;&#160;</a></span>query()</h2>
 
@@ -390,7 +545,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00305">305</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00356">356</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -448,26 +603,29 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00081">81</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00161">161</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a8a70383d31da8c7798595f36f2acb2a9_cgraph.png" border="0" usemap="#ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a8a70383d31da8c7798595f36f2acb2a9_cgraph" alt=""/></div>
 <map name="ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a8a70383d31da8c7798595f36f2acb2a9_cgraph" id="ade/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_a8a70383d31da8c7798595f36f2acb2a9_cgraph">
-<area shape="rect" title=" " alt="" coords="5,117,188,162"/>
-<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a7c78cf61e853e40d9729e4b31cb1ca59" title=" " alt="" coords="244,5,403,50"/>
-<area shape="poly" title=" " alt="" coords="134,115,234,60,247,54,249,59,237,65,136,119"/>
-<area shape="rect" href="../../dc/d5c/namespaceBrush.html#a14447d2f04191fa6607e02077a4137ea" title=" " alt="" coords="278,74,368,102"/>
-<area shape="poly" title=" " alt="" coords="187,116,263,99,264,104,188,121"/>
-<area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a68b5b3a1aedf1dfd2769dbba3a01a2ec" title="the standard predict function. Returns the output of the Tree directly." alt="" coords="236,126,410,154"/>
-<area shape="poly" title=" " alt="" coords="188,137,220,137,220,142,188,142"/>
-<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a32dabddbcfac94f89741db0c4fd6ffa3" title=" " alt="" coords="244,177,403,222"/>
-<area shape="poly" title=" " alt="" coords="184,160,229,172,228,177,183,165"/>
-<area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a826ef90ae1aaf8f2637f551cfff0746a" title="count the size of a given subtree, optionally including the weights in weighted nodes...." alt="" coords="236,246,411,274"/>
-<area shape="poly" title=" " alt="" coords="127,160,177,197,237,232,250,238,248,243,234,237,174,201,124,165"/>
-<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a5f837106982ddf27cb2fcd8d492cc677" title=" " alt="" coords="459,92,618,137"/>
-<area shape="poly" title=" " alt="" coords="383,48,412,60,469,83,467,88,410,65,381,53"/>
-<area shape="poly" title=" " alt="" coords="381,174,465,140,467,145,383,179"/>
+<area shape="rect" title=" " alt="" coords="5,143,188,187"/>
+<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a9e6645327d19f04e16025a61faaca021" title=" " alt="" coords="236,57,417,102"/>
+<area shape="poly" title=" " alt="" coords="158,140,249,105,251,110,160,145"/>
+<area shape="rect" href="../../dc/d5c/namespaceBrush.html#a14447d2f04191fa6607e02077a4137ea" title=" " alt="" coords="508,126,598,154"/>
+<area shape="poly" title=" " alt="" coords="188,157,492,140,492,146,188,163"/>
+<area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a68b5b3a1aedf1dfd2769dbba3a01a2ec" title="the standard predict function. Returns the output of the Tree directly." alt="" coords="239,176,414,204"/>
+<area shape="poly" title=" " alt="" coords="189,172,224,176,223,182,188,178"/>
+<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a32dabddbcfac94f89741db0c4fd6ffa3" title=" " alt="" coords="247,228,406,273"/>
+<area shape="poly" title=" " alt="" coords="160,185,251,220,249,225,158,190"/>
+<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a7c78cf61e853e40d9729e4b31cb1ca59" title=" " alt="" coords="473,5,632,50"/>
+<area shape="poly" title=" " alt="" coords="417,56,457,47,458,52,418,61"/>
+<area shape="poly" title=" " alt="" coords="414,100,493,121,492,126,412,105"/>
+<area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a826ef90ae1aaf8f2637f551cfff0746a" title="count the size of a given subtree, optionally including the weights in weighted nodes...." alt="" coords="465,74,640,102"/>
+<area shape="poly" title=" " alt="" coords="417,80,450,81,449,87,417,86"/>
+<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a5f837106982ddf27cb2fcd8d492cc677" title=" " alt="" coords="688,116,848,161"/>
+<area shape="poly" title=" " alt="" coords="616,48,642,60,721,105,718,110,639,65,613,53"/>
+<area shape="poly" title=" " alt="" coords="406,228,673,160,674,165,407,233"/>
 </map>
 </div>
 
@@ -494,7 +652,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00346">346</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00422">422</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
 
 </div>
 </div>
@@ -503,22 +661,14 @@ Here is the call graph for this function:</div>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Brush::Simpl::Inexact_simplifier::inputDim = 1</td>
+          <td class="memname">int Brush::Simpl::Inexact_simplifier::inputDim = 1000</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00207">207</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00289">289</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
 
 </div>
 </div>
@@ -542,7 +692,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00348">348</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00424">424</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
 
 </div>
 </div>

@@ -1,199 +1,68 @@
 
+
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-
-<html lang="en" data-content_root="../" >
-
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Variation (Crossover/Mutation) &#8212; Brush 0.1a documentation</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
-  </script>
-  
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Variation (Crossover/Mutation) &mdash; Brush 0.1.dev1+ga5affc5fe documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
-  
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
-
-    <script src="../_static/documentation_options.js?v=74359811"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'cpp_api/variation';</script>
-    <link rel="icon" href="../_static/paint-brush-solid.svg"/>
+    <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f69ed792"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Selection" href="selection.html" />
-    <link rel="prev" title="Population" href="population.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
-  </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+    <link rel="prev" title="Population" href="population.html" /> 
+</head>
 
-  
-  
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search..."
-         aria-label="Search..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Brush
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-
-  
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
-    </header>
-  
-
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
-      
-      
-      
-      <div class="bd-sidebar-primary bd-sidebar">
-        
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-
-  
-    
-  
-
-<a class="navbar-brand logo" href="../index.html">
-  
-  
-  
-  
-  
-  
-    <p class="title logo__title">Brush 0.1a documentation</p>
-  
-</a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../index.html">
-                    Overview
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quickstart</span></p>
-<ul class="nav bd-sidenav">
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Quickstart</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics.html">Basic Usage</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../guide/index.html">Cookbook</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../guide/data.html">Working with Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../guide/search_space.html">The Search Space</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../guide/working_with_programs.html">Working with Programs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../guide/json.html">JSON Interoperability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../guide/saving_loading_populations.html">Saving and loading populations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../guide/archive.html">The archive</a></li>
-
-<li class="toctree-l2"><a class="reference internal" href="../guide/deap.html">Using Deap</a></li>
-</ul>
-</details></li>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">Cookbook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../guide/contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../guide/development.html">Development</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../python_api/index.html">Python API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/estimator.html">BrushEstimator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/interface.html">EstimatorInterface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/regressor.html">BrushRegressor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/classifier.html">BrushClassifier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/python_api.html">Python API</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">C++ API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C++ API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="data.html">Dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="timeseries.html">TimeSeries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="search_space.html">SearchSpace</a></li>
@@ -203,222 +72,78 @@
 <li class="toctree-l2"><a class="reference internal" href="individual.html">Individual and Fitness</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evaluation.html">Evaluation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="population.html">Population</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Variation (Crossover/Mutation)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Variation (Crossover/Mutation)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N5Brush3Var12MutationBaseE"><code class="docutils literal notranslate"><span class="pre">Brush::Var::MutationBase</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Var12MutationBase4IterE"><code class="docutils literal notranslate"><span class="pre">Iter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase10find_spotsEDaR7ProgramI1TER9VariationI1TERK10Parameters"><code class="docutils literal notranslate"><span class="pre">find_spots()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase6mutateEDaR7ProgramI1TE4IterR9VariationI1TERK10Parameters"><code class="docutils literal notranslate"><span class="pre">mutate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE"><code class="docutils literal notranslate"><span class="pre">Brush::Var::Variation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Var9Variation9VariationEv"><code class="docutils literal notranslate"><span class="pre">Variation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Var9Variation9VariationER10ParametersR11SearchSpaceR7Dataset"><code class="docutils literal notranslate"><span class="pre">Variation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Var9VariationD0Ev"><code class="docutils literal notranslate"><span class="pre">~Variation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Var9Variation4initEv"><code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">cross()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Var9Variation6mutateERK10IndividualI1TE6string"><code class="docutils literal notranslate"><span class="pre">mutate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE"><code class="docutils literal notranslate"><span class="pre">vary()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Var9Variation9update_ssEv"><code class="docutils literal notranslate"><span class="pre">update_ss()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Var9Variation15vary_and_updateER10PopulationI1TEiRK6vectorI6size_tERK7DatasetR10EvaluationI1TEb"><code class="docutils literal notranslate"><span class="pre">vary_and_update()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Var9Variation22bandit_sample_terminalE8DataType"><code class="docutils literal notranslate"><span class="pre">bandit_sample_terminal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Var9Variation20bandit_get_node_likeE4Node"><code class="docutils literal notranslate"><span class="pre">bandit_get_node_like()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Var9Variation25bandit_sample_op_with_argE8DataType8DataTypei"><code class="docutils literal notranslate"><span class="pre">bandit_sample_op_with_arg()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Var9Variation16bandit_sample_opE8DataType"><code class="docutils literal notranslate"><span class="pre">bandit_sample_op()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Var9Variation24log_simplification_tableERNSt8ofstreamE"><code class="docutils literal notranslate"><span class="pre">log_simplification_table()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Var9Variation12search_spaceE"><code class="docutils literal notranslate"><span class="pre">search_space</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Var9Variation4dataE"><code class="docutils literal notranslate"><span class="pre">data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Var9Variation10parametersE"><code class="docutils literal notranslate"><span class="pre">parameters</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="selection.html">Selection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="archive.html">Archive</a></li>
 <li class="toctree-l2"><a class="reference internal" href="engine.html">Engine (and parameters)</a></li>
 </ul>
-</details></li>
-</ul>
-
-    </div>
-</nav></div>
-    </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-  </div>
-  
-  <div id="rtd-footer-container"></div>
-
-
-      </div>
-      
-      <main id="main-content" class="bd-main" role="main">
-        
-        
-
-<div class="sbt-scroll-pixel-helper"></div>
-
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article d-print-none">
-<div class="header-article-items header-article__inner">
-  
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</button></div>
-      
-    </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
-
-
-<a href="https://github.com/cavalab/brush" target="_blank"
-   class="btn btn-sm btn-source-repository-button"
-   title="Source repository"
-   data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-
-</a>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/cpp_api/variation.rst" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.rst</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-<button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-
-
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
-
-
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
-</div></div>
-      
-    </div>
-  
-</div>
-</div>
-              
-              
-
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>Variation (Crossover/Mutation)</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
-            
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var12MutationBaseE"><code class="docutils literal notranslate"><span class="pre">Brush::Var::MutationBase</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var12MutationBase4IterE"><code class="docutils literal notranslate"><span class="pre">Iter</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase10find_spotsEDaR7ProgramI1TER9VariationI1TERK10Parameters"><code class="docutils literal notranslate"><span class="pre">find_spots()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase6mutateEDaR7ProgramI1TE4IterR9VariationI1TERK10Parameters"><code class="docutils literal notranslate"><span class="pre">mutate()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE"><code class="docutils literal notranslate"><span class="pre">Brush::Var::Variation</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation9VariationEv"><code class="docutils literal notranslate"><span class="pre">Variation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation9VariationER10ParametersR11SearchSpaceR7Dataset"><code class="docutils literal notranslate"><span class="pre">Variation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9VariationD0Ev"><code class="docutils literal notranslate"><span class="pre">~Variation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation4initEv"><code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">cross()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation6mutateERK10IndividualI1TE6string"><code class="docutils literal notranslate"><span class="pre">mutate()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE"><code class="docutils literal notranslate"><span class="pre">vary()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation9update_ssEv"><code class="docutils literal notranslate"><span class="pre">update_ss()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation15vary_and_updateER10PopulationI1TEiRK6vectorI6size_tERK7DatasetR10EvaluationI1TEb"><code class="docutils literal notranslate"><span class="pre">vary_and_update()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation22bandit_sample_terminalE8DataType"><code class="docutils literal notranslate"><span class="pre">bandit_sample_terminal()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation20bandit_get_node_likeE4Node"><code class="docutils literal notranslate"><span class="pre">bandit_get_node_like()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation25bandit_sample_op_with_argE8DataType8DataTypei"><code class="docutils literal notranslate"><span class="pre">bandit_sample_op_with_arg()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation16bandit_sample_opE8DataType"><code class="docutils literal notranslate"><span class="pre">bandit_sample_op()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation12search_spaceE"><code class="docutils literal notranslate"><span class="pre">search_space</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation4dataE"><code class="docutils literal notranslate"><span class="pre">data</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation10parametersE"><code class="docutils literal notranslate"><span class="pre">parameters</span></code></a></li>
-</ul>
 </li>
 </ul>
-            </nav>
+
         </div>
-    </div>
-</div>
+      </div>
+    </nav>
 
-              
-                
-<div id="searchbox"></div>
-                <article class="bd-article">
-                  
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Brush</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">C++ API</a></li>
+      <li class="breadcrumb-item active">Variation (Crossover/Mutation)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cpp_api/variation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="variation-crossover-mutation">
-<h1>Variation (Crossover/Mutation)<a class="headerlink" href="#variation-crossover-mutation" title="Link to this heading">#</a></h1>
+<h1>Variation (Crossover/Mutation)<a class="headerlink" href="#variation-crossover-mutation" title="Link to this heading"></a></h1>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var12MutationBaseE">
-<span id="_CPPv3N5Brush3Var12MutationBaseE"></span><span id="_CPPv2N5Brush3Var12MutationBaseE"></span><span id="Brush::Var::MutationBase"></span><span class="target" id="d0/dec/classBrush_1_1Var_1_1MutationBase"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MutationBase</span></span></span><a class="headerlink" href="#_CPPv4N5Brush3Var12MutationBaseE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush3Var12MutationBaseE"></span><span id="_CPPv2N5Brush3Var12MutationBaseE"></span><span id="Brush::Var::MutationBase"></span><span class="target" id="d0/dec/classBrush_1_1Var_1_1MutationBase"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MutationBase</span></span></span><a class="headerlink" href="#_CPPv4N5Brush3Var12MutationBaseE" title="Link to this definition"></a><br /></dt>
 <dd><p>Subclassed by Brush::Var::DeleteMutation, Brush::Var::InsertMutation, Brush::Var::PointMutation, Brush::Var::SplitMutation, Brush::Var::SubtreeMutation, Brush::Var::ToggleWeightOffMutation, Brush::Var::ToggleWeightOnMutation</p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
 <dl class="cpp type">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var12MutationBase4IterE">
-<span id="_CPPv3N5Brush3Var12MutationBase4IterE"></span><span id="_CPPv2N5Brush3Var12MutationBase4IterE"></span><span class="target" id="d0/dec/classBrush_1_1Var_1_1MutationBase_1a4cacb44817dc1e054fca562d703de50c"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Iter</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="node.html#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pre_order_iterator</span></span><a class="headerlink" href="#_CPPv4N5Brush3Var12MutationBase4IterE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush3Var12MutationBase4IterE"></span><span id="_CPPv2N5Brush3Var12MutationBase4IterE"></span><span class="target" id="d0/dec/classBrush_1_1Var_1_1MutationBase_1a4cacb44817dc1e054fca562d703de50c"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Iter</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="node.html#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pre_order_iterator</span></span><a class="headerlink" href="#_CPPv4N5Brush3Var12MutationBase4IterE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </div>
@@ -426,12 +151,12 @@ document.write(`
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase10find_spotsEDaR7ProgramI1TER9VariationI1TERK10Parameters">
-<span id="_CPPv3I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase10find_spotsER7ProgramI1TER9VariationI1TERK10Parameters"></span><span id="_CPPv2I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase10find_spotsER7ProgramI1TER9VariationI1TERK10Parameters"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Brush</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ProgramType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d0/dec/classBrush_1_1Var_1_1MutationBase_1a0f89a4b58f11422d086c684452a4d536"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">find_spots</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="program.html#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program"><span class="n"><span class="pre">Program</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase10find_spotsEDaR7ProgramI1TER9VariationI1TERK10Parameters" title="Brush::Var::MutationBase::find_spots::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">program</span></span>, <a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation"><span class="n"><span class="pre">Variation</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase10find_spotsEDaR7ProgramI1TER9VariationI1TERK10Parameters" title="Brush::Var::MutationBase::find_spots::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variator</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersE" title="Brush::Parameters"><span class="n"><span class="pre">Parameters</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">params</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase10find_spotsEDaR7ProgramI1TER9VariationI1TERK10Parameters" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase10find_spotsER7ProgramI1TER9VariationI1TERK10Parameters"></span><span id="_CPPv2I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase10find_spotsER7ProgramI1TER9VariationI1TERK10Parameters"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Brush</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ProgramType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d0/dec/classBrush_1_1Var_1_1MutationBase_1a0f89a4b58f11422d086c684452a4d536"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">find_spots</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="program.html#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program"><span class="n"><span class="pre">Program</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase10find_spotsEDaR7ProgramI1TER9VariationI1TERK10Parameters" title="Brush::Var::MutationBase::find_spots::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">program</span></span>, <a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation"><span class="n"><span class="pre">Variation</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase10find_spotsEDaR7ProgramI1TER9VariationI1TERK10Parameters" title="Brush::Var::MutationBase::find_spots::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variator</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersE" title="Brush::Parameters"><span class="n"><span class="pre">Parameters</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">params</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase10find_spotsEDaR7ProgramI1TER9VariationI1TERK10Parameters" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase6mutateEDaR7ProgramI1TE4IterR9VariationI1TERK10Parameters">
-<span id="_CPPv3I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase6mutateER7ProgramI1TE4IterR9VariationI1TERK10Parameters"></span><span id="_CPPv2I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase6mutateER7ProgramI1TE4IterR9VariationI1TERK10Parameters"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Brush</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ProgramType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d0/dec/classBrush_1_1Var_1_1MutationBase_1ac24a471ac6236ee1c527e2073dab3d3c"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mutate</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="program.html#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program"><span class="n"><span class="pre">Program</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase6mutateEDaR7ProgramI1TE4IterR9VariationI1TERK10Parameters" title="Brush::Var::MutationBase::mutate::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">program</span></span>, <a class="reference internal" href="#_CPPv4N5Brush3Var12MutationBase4IterE" title="Brush::Var::MutationBase::Iter"><span class="n"><span class="pre">Iter</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">spot</span></span>, <a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation"><span class="n"><span class="pre">Variation</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase6mutateEDaR7ProgramI1TE4IterR9VariationI1TERK10Parameters" title="Brush::Var::MutationBase::mutate::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variator</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersE" title="Brush::Parameters"><span class="n"><span class="pre">Parameters</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">params</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase6mutateEDaR7ProgramI1TE4IterR9VariationI1TERK10Parameters" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase6mutateER7ProgramI1TE4IterR9VariationI1TERK10Parameters"></span><span id="_CPPv2I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase6mutateER7ProgramI1TE4IterR9VariationI1TERK10Parameters"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Brush</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ProgramType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d0/dec/classBrush_1_1Var_1_1MutationBase_1ac24a471ac6236ee1c527e2073dab3d3c"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mutate</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="program.html#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program"><span class="n"><span class="pre">Program</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase6mutateEDaR7ProgramI1TE4IterR9VariationI1TERK10Parameters" title="Brush::Var::MutationBase::mutate::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">program</span></span>, <a class="reference internal" href="#_CPPv4N5Brush3Var12MutationBase4IterE" title="Brush::Var::MutationBase::Iter"><span class="n"><span class="pre">Iter</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">spot</span></span>, <a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation"><span class="n"><span class="pre">Variation</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase6mutateEDaR7ProgramI1TE4IterR9VariationI1TERK10Parameters" title="Brush::Var::MutationBase::mutate::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variator</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersE" title="Brush::Parameters"><span class="n"><span class="pre">Parameters</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">params</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase6mutateEDaR7ProgramI1TE4IterR9VariationI1TERK10Parameters" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </div>
@@ -439,20 +164,20 @@ document.write(`
 
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE">
-<span id="_CPPv3I_11ProgramTypeEN5Brush3Var9VariationE"></span><span id="_CPPv2I_11ProgramTypeEN5Brush3Var9VariationE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">ProgramType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Variation</span></span></span><a class="headerlink" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3I_11ProgramTypeEN5Brush3Var9VariationE"></span><span id="_CPPv2I_11ProgramTypeEN5Brush3Var9VariationE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">ProgramType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Variation</span></span></span><a class="headerlink" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Link to this definition"></a><br /></dt>
 <dd><p>Class representing the variation operators in Brush. </p>
 <p>The <a class="reference internal" href="#d5/d14/classBrush_1_1Var_1_1Variation"><span class="std std-ref">Variation</span></a> class is responsible for performing individual-level variations and handling the variation of a population in Brush. It contains methods for crossing individuals, mutating individuals, and varying a population. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation9VariationEv">
-<span id="_CPPv3N5Brush3Var9Variation9VariationEv"></span><span id="_CPPv2N5Brush3Var9Variation9VariationEv"></span><span id="Brush::Var::Variation::Variation"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a3df7d1814f29d5073fccce5a4c59311c"></span><span class="sig-name descname"><span class="n"><span class="pre">Variation</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation9VariationEv" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush3Var9Variation9VariationEv"></span><span id="_CPPv2N5Brush3Var9Variation9VariationEv"></span><span id="Brush::Var::Variation::Variation"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a3df7d1814f29d5073fccce5a4c59311c"></span><span class="sig-name descname"><span class="n"><span class="pre">Variation</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation9VariationEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Default constructor. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation9VariationER10ParametersR11SearchSpaceR7Dataset">
-<span id="_CPPv3N5Brush3Var9Variation9VariationER10ParametersR11SearchSpaceR7Dataset"></span><span id="_CPPv2N5Brush3Var9Variation9VariationER10ParametersR11SearchSpaceR7Dataset"></span><span id="Brush::Var::Variation::Variation__ParametersR.SearchSpaceR.DatasetR"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1ab37851161965ba93a7f93668d07075cd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Variation</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersE" title="Brush::Parameters"><span class="n"><span class="pre">Parameters</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">params</span></span>, <a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpaceE" title="Brush::SearchSpace"><span class="n"><span class="pre">SearchSpace</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">ss</span></span>, <span class="n"><span class="pre">Dataset</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">d</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation9VariationER10ParametersR11SearchSpaceR7Dataset" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush3Var9Variation9VariationER10ParametersR11SearchSpaceR7Dataset"></span><span id="_CPPv2N5Brush3Var9Variation9VariationER10ParametersR11SearchSpaceR7Dataset"></span><span id="Brush::Var::Variation::Variation__ParametersR.SearchSpaceR.DatasetR"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1ab37851161965ba93a7f93668d07075cd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Variation</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersE" title="Brush::Parameters"><span class="n"><span class="pre">Parameters</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">params</span></span>, <a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpaceE" title="Brush::SearchSpace"><span class="n"><span class="pre">SearchSpace</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">ss</span></span>, <span class="n"><span class="pre">Dataset</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">d</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation9VariationER10ParametersR11SearchSpaceR7Dataset" title="Link to this definition"></a><br /></dt>
 <dd><p>Constructor that initializes the <a class="reference internal" href="#d5/d14/classBrush_1_1Var_1_1Variation"><span class="std std-ref">Variation</span></a> object with parameters and search space. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -466,13 +191,13 @@ document.write(`
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9VariationD0Ev">
-<span id="_CPPv3N5Brush3Var9VariationD0Ev"></span><span id="_CPPv2N5Brush3Var9VariationD0Ev"></span><span id="Brush::Var::Variation::~Variation"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a68dde038b2d0554791ee4a8da2f7e623"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~Variation</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9VariationD0Ev" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush3Var9VariationD0Ev"></span><span id="_CPPv2N5Brush3Var9VariationD0Ev"></span><span id="Brush::Var::Variation::~Variation"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a68dde038b2d0554791ee4a8da2f7e623"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~Variation</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9VariationD0Ev" title="Link to this definition"></a><br /></dt>
 <dd><p>Destructor. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation4initEv">
-<span id="_CPPv3N5Brush3Var9Variation4initEv"></span><span id="_CPPv2N5Brush3Var9Variation4initEv"></span><span id="Brush::Var::Variation::init"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a34e022870eeefe3cf27f1b5575738ce9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation4initEv" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush3Var9Variation4initEv"></span><span id="_CPPv2N5Brush3Var9Variation4initEv"></span><span id="Brush::Var::Variation::init"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a34e022870eeefe3cf27f1b5575738ce9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation4initEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Initializes the <a class="reference internal" href="#d5/d14/classBrush_1_1Var_1_1Variation"><span class="std std-ref">Variation</span></a> object with parameters and search space. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -486,7 +211,7 @@ document.write(`
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE">
-<span id="_CPPv3N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE"></span><span id="_CPPv2N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE"></span><span id="Brush::Var::Variation::cross__Individual:T:CR.Individual:T:CR"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1acf7d5d1c0d6a102eec277180dce590fe"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cross</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">mom</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">dad</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE"></span><span id="_CPPv2N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE"></span><span id="Brush::Var::Variation::cross__Individual:T:CR.Individual:T:CR"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1acf7d5d1c0d6a102eec277180dce590fe"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cross</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">mom</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">dad</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE" title="Link to this definition"></a><br /></dt>
 <dd><p>Performs croearch_spaceover operation on two individuals. </p>
 <p>Stochastically swaps subtrees between root and other, returning a new program.</p>
 <p>
@@ -516,7 +241,7 @@ The spot where the cross will take place in the <code class="docutils literal no
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation6mutateERK10IndividualI1TE6string">
-<span id="_CPPv3N5Brush3Var9Variation6mutateERK10IndividualI1TE6string"></span><span id="_CPPv2N5Brush3Var9Variation6mutateERK10IndividualI1TE6string"></span><span id="Brush::Var::Variation::mutate__Individual:T:CR.string"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1af8a04b3abeea0f0f9e5b6e358aa65c09"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mutate</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">parent</span></span>, <span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">choice</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;&quot;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation6mutateERK10IndividualI1TE6string" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush3Var9Variation6mutateERK10IndividualI1TE6string"></span><span id="_CPPv2N5Brush3Var9Variation6mutateERK10IndividualI1TE6string"></span><span id="Brush::Var::Variation::mutate__Individual:T:CR.string"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1af8a04b3abeea0f0f9e5b6e358aa65c09"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mutate</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">parent</span></span>, <span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">choice</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;&quot;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation6mutateERK10IndividualI1TE6string" title="Link to this definition"></a><br /></dt>
 <dd><p>Performs mutation operation on an individual. </p>
 <p>Stochastically mutate a program.</p>
 <p>
@@ -532,7 +257,7 @@ Types of mutation:</p>
 </p>
 <p>Every mutation has a probability (weight) based on global parameters. The spot where the mutation will take place is sampled based on attribute <code class="docutils literal notranslate"><span class="pre">get_prob_change</span></code> of each node in the tree. Inside each type of mutation, when a new node is inserted, it is sampled based on <code class="docutils literal notranslate"><span class="pre">terminal_weights</span></code>.</p>
 <p>Due to the stochastic behavior, and the several sampling steps, it may come to a case where the search space does not hold any possible modification to do in the program. In this case, the method returns <code class="docutils literal notranslate"><span class="pre">std::nullopt</span></code> (and has overloads so it can be used in a boolean context).</p>
-<p>If the mutation succeeds, the mutated program can be accessed through the <code class="docutils literal notranslate"><span class="pre">.value()</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">std::optional</span></code>.</p>
+<p>If the mutation succeeds, the mutated program can be accessed through the <code class="docutils literal notranslate"><span class="pre">.value()</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">std::optional</span></code>. This method will try to generate a child that is within size and depth constraints. If ater three attempts it failed to generate a solution under these conditions, then the last model is returned regardless of it’s size and depth. This loosens the size and depth constraints by a small factor (the final program will have at most <code class="docutils literal notranslate"><span class="pre">3*max_arity</span></code> extra nodes), and it is better than the alternatives of just replicating the parent or generating a new random solution to add to the population.</p>
 <p>This means that, if you use the mutation as <code class="docutils literal notranslate"><span class="pre">auto</span> <span class="pre">opt</span> <span class="pre">=</span> <span class="pre">mutate(parent,</span> <span class="pre">SS)</span></code>, either <code class="docutils literal notranslate"><span class="pre">opt==false</span></code> or <code class="docutils literal notranslate"><span class="pre">opt.value()</span></code> contains the child program.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -556,7 +281,7 @@ Types of mutation:</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE">
-<span id="_CPPv3N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE"></span><span id="_CPPv2N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE"></span><span id="Brush::Var::Variation::vary__Population:T:R.i.vector:s:CR"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">vary</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Population</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">pop</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">island</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">size_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">parents</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE"></span><span id="_CPPv2N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE"></span><span id="Brush::Var::Variation::vary__Population:T:R.i.vector:s:CR"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">vary</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Population</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">pop</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">island</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">size_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">parents</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE" title="Link to this definition"></a><br /></dt>
 <dd><p>Handles variation of a population. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -572,7 +297,7 @@ Types of mutation:</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation9update_ssEv">
-<span id="_CPPv3N5Brush3Var9Variation9update_ssEv"></span><span id="_CPPv2N5Brush3Var9Variation9update_ssEv"></span><span id="Brush::Var::Variation::update_ss"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1ac3440610a9989704a29120584ab8e123"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">update_ss</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation9update_ssEv" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush3Var9Variation9update_ssEv"></span><span id="_CPPv2N5Brush3Var9Variation9update_ssEv"></span><span id="Brush::Var::Variation::update_ss"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1ac3440610a9989704a29120584ab8e123"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">update_ss</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation9update_ssEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Updates the probability distribution sampling for variation and nodes based on the given rewards.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -586,7 +311,7 @@ Types of mutation:</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation15vary_and_updateER10PopulationI1TEiRK6vectorI6size_tERK7DatasetR10EvaluationI1TEb">
-<span id="_CPPv3N5Brush3Var9Variation15vary_and_updateER10PopulationI1TEiRK6vectorI6size_tERK7DatasetR10EvaluationI1TEb"></span><span id="_CPPv2N5Brush3Var9Variation15vary_and_updateER10PopulationI1TEiRK6vectorI6size_tERK7DatasetR10EvaluationI1TEb"></span><span id="Brush::Var::Variation::vary_and_update__Population:T:R.i.vector:s:CR.DatasetCR.Evaluation:T:R.b"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1abd847a202dc0014b7635713a122436dd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">vary_and_update</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Population</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">pop</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">island</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">size_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">parents</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">Evaluation</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">evaluator</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">even_gen</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation15vary_and_updateER10PopulationI1TEiRK6vectorI6size_tERK7DatasetR10EvaluationI1TEb" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush3Var9Variation15vary_and_updateER10PopulationI1TEiRK6vectorI6size_tERK7DatasetR10EvaluationI1TEb"></span><span id="_CPPv2N5Brush3Var9Variation15vary_and_updateER10PopulationI1TEiRK6vectorI6size_tERK7DatasetR10EvaluationI1TEb"></span><span id="Brush::Var::Variation::vary_and_update__Population:T:R.i.vector:s:CR.DatasetCR.Evaluation:T:R.b"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">vary_and_update</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Population</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">pop</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">island</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">size_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">parents</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">Evaluation</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">evaluator</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">do_simplification</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation15vary_and_updateER10PopulationI1TEiRK6vectorI6size_tERK7DatasetR10EvaluationI1TEb" title="Link to this definition"></a><br /></dt>
 <dd><p>Varies a population and updates the selection strategy based on rewards. </p>
 <p>This function performs variation on a population, calculates rewards, and updates the selection strategy based on the obtained rewards.</p>
 <dl class="field-list simple">
@@ -602,22 +327,27 @@ Types of mutation:</p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation22bandit_sample_terminalE8DataType">
-<span id="_CPPv3N5Brush3Var9Variation22bandit_sample_terminalE8DataType"></span><span id="_CPPv2N5Brush3Var9Variation22bandit_sample_terminalE8DataType"></span><span id="Brush::Var::Variation::bandit_sample_terminal__DataType"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1ad72e239059728afbec698af129abec25"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="node.html#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bandit_sample_terminal</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">R</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation22bandit_sample_terminalE8DataType" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush3Var9Variation22bandit_sample_terminalE8DataType"></span><span id="_CPPv2N5Brush3Var9Variation22bandit_sample_terminalE8DataType"></span><span id="Brush::Var::Variation::bandit_sample_terminal__DataType"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1ad72e239059728afbec698af129abec25"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="node.html#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bandit_sample_terminal</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">R</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation22bandit_sample_terminalE8DataType" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation20bandit_get_node_likeE4Node">
-<span id="_CPPv3N5Brush3Var9Variation20bandit_get_node_likeE4Node"></span><span id="_CPPv2N5Brush3Var9Variation20bandit_get_node_likeE4Node"></span><span id="Brush::Var::Variation::bandit_get_node_like__Node"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1aee4d051cf57caab64e694bdb70622913"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="node.html#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bandit_get_node_like</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="node.html#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">node</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation20bandit_get_node_likeE4Node" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush3Var9Variation20bandit_get_node_likeE4Node"></span><span id="_CPPv2N5Brush3Var9Variation20bandit_get_node_likeE4Node"></span><span id="Brush::Var::Variation::bandit_get_node_like__Node"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1aee4d051cf57caab64e694bdb70622913"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="node.html#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bandit_get_node_like</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="node.html#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">node</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation20bandit_get_node_likeE4Node" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation25bandit_sample_op_with_argE8DataType8DataTypei">
-<span id="_CPPv3N5Brush3Var9Variation25bandit_sample_op_with_argE8DataType8DataTypei"></span><span id="_CPPv2N5Brush3Var9Variation25bandit_sample_op_with_argE8DataType8DataTypei"></span><span id="Brush::Var::Variation::bandit_sample_op_with_arg__DataType.DataType.i"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a79a47baeb7d1583415e514a1c04c2b07"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="node.html#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bandit_sample_op_with_arg</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ret</span></span>, <span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">arg</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">max_args</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation25bandit_sample_op_with_argE8DataType8DataTypei" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush3Var9Variation25bandit_sample_op_with_argE8DataType8DataTypei"></span><span id="_CPPv2N5Brush3Var9Variation25bandit_sample_op_with_argE8DataType8DataTypei"></span><span id="Brush::Var::Variation::bandit_sample_op_with_arg__DataType.DataType.i"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a79a47baeb7d1583415e514a1c04c2b07"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="node.html#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bandit_sample_op_with_arg</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ret</span></span>, <span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">arg</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">max_args</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation25bandit_sample_op_with_argE8DataType8DataTypei" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation16bandit_sample_opE8DataType">
-<span id="_CPPv3N5Brush3Var9Variation16bandit_sample_opE8DataType"></span><span id="_CPPv2N5Brush3Var9Variation16bandit_sample_opE8DataType"></span><span id="Brush::Var::Variation::bandit_sample_op__DataType"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a0abca6376ae18e18765501f36a87136a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="node.html#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bandit_sample_op</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ret</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation16bandit_sample_opE8DataType" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush3Var9Variation16bandit_sample_opE8DataType"></span><span id="_CPPv2N5Brush3Var9Variation16bandit_sample_opE8DataType"></span><span id="Brush::Var::Variation::bandit_sample_op__DataType"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a0abca6376ae18e18765501f36a87136a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="node.html#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bandit_sample_op</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ret</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation16bandit_sample_opE8DataType" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation24log_simplification_tableERNSt8ofstreamE">
+<span id="_CPPv3N5Brush3Var9Variation24log_simplification_tableERNSt8ofstreamE"></span><span id="_CPPv2N5Brush3Var9Variation24log_simplification_tableERNSt8ofstreamE"></span><span id="Brush::Var::Variation::log_simplification_table__std::ofstreamR"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1ae34d61e9fc35cd9dedcca8ee379eade3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">log_simplification_table</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ofstream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">log</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation24log_simplification_tableERNSt8ofstreamE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </div>
@@ -625,17 +355,17 @@ Types of mutation:</p>
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation12search_spaceE">
-<span id="_CPPv3N5Brush3Var9Variation12search_spaceE"></span><span id="_CPPv2N5Brush3Var9Variation12search_spaceE"></span><span id="Brush::Var::Variation::search_space__SearchSpace"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a656380481257dd8f03ceebcb07f0019f"></span><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpaceE" title="Brush::SearchSpace"><span class="n"><span class="pre">SearchSpace</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">search_space</span></span></span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation12search_spaceE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush3Var9Variation12search_spaceE"></span><span id="_CPPv2N5Brush3Var9Variation12search_spaceE"></span><span id="Brush::Var::Variation::search_space__SearchSpace"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a656380481257dd8f03ceebcb07f0019f"></span><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpaceE" title="Brush::SearchSpace"><span class="n"><span class="pre">SearchSpace</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">search_space</span></span></span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation12search_spaceE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation4dataE">
-<span id="_CPPv3N5Brush3Var9Variation4dataE"></span><span id="_CPPv2N5Brush3Var9Variation4dataE"></span><span id="Brush::Var::Variation::data__DatasetR"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a52293d9aac76f8a53394961e11e15752"></span><span class="n"><span class="pre">Dataset</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">data</span></span></span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation4dataE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush3Var9Variation4dataE"></span><span id="_CPPv2N5Brush3Var9Variation4dataE"></span><span id="Brush::Var::Variation::data__DatasetR"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a52293d9aac76f8a53394961e11e15752"></span><span class="n"><span class="pre">Dataset</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">data</span></span></span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation4dataE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation10parametersE">
-<span id="_CPPv3N5Brush3Var9Variation10parametersE"></span><span id="_CPPv2N5Brush3Var9Variation10parametersE"></span><span id="Brush::Var::Variation::parameters__Parameters"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1adae97420f4b1ac89a28903fc473c9f57"></span><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersE" title="Brush::Parameters"><span class="n"><span class="pre">Parameters</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">parameters</span></span></span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation10parametersE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush3Var9Variation10parametersE"></span><span id="_CPPv2N5Brush3Var9Variation10parametersE"></span><span id="Brush::Var::Variation::parameters__Parameters"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1adae97420f4b1ac89a28903fc473c9f57"></span><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersE" title="Brush::Parameters"><span class="n"><span class="pre">Parameters</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">parameters</span></span></span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation10parametersE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </div>
@@ -644,127 +374,34 @@ Types of mutation:</p>
 </section>
 
 
-                </article>
-              
-
-              
-              
-              
-              
-                <footer class="prev-next-footer d-print-none">
-                  
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="population.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Population</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="selection.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Selection</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
-</div>
-                </footer>
-              
-            </div>
-            
-            
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var12MutationBaseE"><code class="docutils literal notranslate"><span class="pre">Brush::Var::MutationBase</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var12MutationBase4IterE"><code class="docutils literal notranslate"><span class="pre">Iter</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase10find_spotsEDaR7ProgramI1TER9VariationI1TERK10Parameters"><code class="docutils literal notranslate"><span class="pre">find_spots()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I_N5Brush11ProgramTypeEEN5Brush3Var12MutationBase6mutateEDaR7ProgramI1TE4IterR9VariationI1TERK10Parameters"><code class="docutils literal notranslate"><span class="pre">mutate()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE"><code class="docutils literal notranslate"><span class="pre">Brush::Var::Variation</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation9VariationEv"><code class="docutils literal notranslate"><span class="pre">Variation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation9VariationER10ParametersR11SearchSpaceR7Dataset"><code class="docutils literal notranslate"><span class="pre">Variation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9VariationD0Ev"><code class="docutils literal notranslate"><span class="pre">~Variation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation4initEv"><code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">cross()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation6mutateERK10IndividualI1TE6string"><code class="docutils literal notranslate"><span class="pre">mutate()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE"><code class="docutils literal notranslate"><span class="pre">vary()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation9update_ssEv"><code class="docutils literal notranslate"><span class="pre">update_ss()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation15vary_and_updateER10PopulationI1TEiRK6vectorI6size_tERK7DatasetR10EvaluationI1TEb"><code class="docutils literal notranslate"><span class="pre">vary_and_update()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation22bandit_sample_terminalE8DataType"><code class="docutils literal notranslate"><span class="pre">bandit_sample_terminal()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation20bandit_get_node_likeE4Node"><code class="docutils literal notranslate"><span class="pre">bandit_get_node_like()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation25bandit_sample_op_with_argE8DataType8DataTypei"><code class="docutils literal notranslate"><span class="pre">bandit_sample_op_with_arg()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation16bandit_sample_opE8DataType"><code class="docutils literal notranslate"><span class="pre">bandit_sample_op()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation12search_spaceE"><code class="docutils literal notranslate"><span class="pre">search_space</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation4dataE"><code class="docutils literal notranslate"><span class="pre">data</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation10parametersE"><code class="docutils literal notranslate"><span class="pre">parameters</span></code></a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
-            
+           </div>
           </div>
-          <footer class="bd-footer-content">
-            
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By William La Cava and Joseph D. Romano
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-
-  <p class="copyright">
-    
-      © Copyright 2021, William La Cava and Joseph D. Romano.
-      <br/>
-    
-  </p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div>
-          </footer>
-        
-
-      </main>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="population.html" class="btn btn-neutral float-left" title="Population" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="selection.html" class="btn btn-neutral float-right" title="Selection" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  </div>
-  
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-  <footer class="bd-footer">
-  </footer>
-  </body>
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, William La Cava and Joseph D. Romano.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>

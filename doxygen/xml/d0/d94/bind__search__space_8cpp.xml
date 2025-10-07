@@ -6,7 +6,7 @@
     <includes refid="d9/d99/search__space_8h" local="yes">../vary/search_space.h</includes>
     <includes refid="d1/dea/program_8h" local="yes">../program/program.h</includes>
     <incdepgraph>
-      <node id="54">
+      <node id="53">
         <label>../../thirdparty/tree.hh</label>
       </node>
       <node id="1">
@@ -16,7 +16,7 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="58" relation="include">
+        <childnode refid="57" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -44,18 +44,18 @@
         </childnode>
         <childnode refid="33" relation="include">
         </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
         <childnode refid="38" relation="include">
         </childnode>
-        <childnode refid="39" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
+        <childnode refid="41" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
       </node>
-      <node id="42">
+      <node id="41">
         <label>timeseries.h</label>
         <link refid="d9/df7/timeseries_8h"/>
         <childnode refid="10" relation="include">
@@ -99,48 +99,48 @@
         <childnode refid="24" relation="include">
         </childnode>
       </node>
-      <node id="57">
+      <node id="56">
         <label>../params.h</label>
         <link refid="da/d33/params_8h"/>
-        <childnode refid="38" relation="include">
+        <childnode refid="37" relation="include">
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
       </node>
-      <node id="55">
+      <node id="54">
         <label>dispatch_table.h</label>
         <link refid="df/d61/dispatch__table_8h"/>
         <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
         <childnode refid="28" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
-        <childnode refid="56" relation="include">
+        <childnode refid="55" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
       </node>
-      <node id="51">
+      <node id="50">
         <label>functions.h</label>
         <link refid="d8/d5c/functions_8h"/>
-        <childnode refid="52" relation="include">
+        <childnode refid="51" relation="include">
         </childnode>
         <childnode refid="35" relation="include">
         </childnode>
-        <childnode refid="53" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
@@ -154,21 +154,21 @@
         <link refid="d1/d77/node_8h"/>
         <childnode refid="29" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="44">
+      <node id="43">
         <label>nodetype.h</label>
         <link refid="de/d26/nodetype_8h"/>
+        <childnode refid="44" relation="include">
+        </childnode>
         <childnode refid="45" relation="include">
         </childnode>
         <childnode refid="46" relation="include">
-        </childnode>
-        <childnode refid="47" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
@@ -176,18 +176,20 @@
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="39" relation="include">
+        <childnode refid="38" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
       </node>
-      <node id="66">
+      <node id="65">
         <label>tiny_cost_function.h</label>
         <link refid="dd/d1b/tiny__cost__function_8h"/>
       </node>
-      <node id="60">
+      <node id="59">
         <label>optimizer/weight_optimizer.h</label>
         <link refid="d7/de3/weight__optimizer_8h"/>
+        <childnode refid="60" relation="include">
+        </childnode>
         <childnode refid="61" relation="include">
         </childnode>
         <childnode refid="62" relation="include">
@@ -198,43 +200,41 @@
         </childnode>
         <childnode refid="65" relation="include">
         </childnode>
-        <childnode refid="66" relation="include">
-        </childnode>
       </node>
-      <node id="58">
+      <node id="57">
         <label>../program/program.h</label>
         <link refid="d1/dea/program_8h"/>
         <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="59" relation="include">
+        <childnode refid="58" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="49" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
         <childnode refid="28" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="57" relation="include">
+        <childnode refid="56" relation="include">
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="51" relation="include">
+        <childnode refid="50" relation="include">
         </childnode>
-        <childnode refid="60" relation="include">
+        <childnode refid="59" relation="include">
         </childnode>
       </node>
-      <node id="48">
+      <node id="47">
         <label>signatures.h</label>
         <link refid="d8/d8b/signatures_8h"/>
       </node>
-      <node id="49">
+      <node id="48">
         <label>../program/tree_node.h</label>
         <link refid="d1/da6/tree__node_8h"/>
-        <childnode refid="37" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
+        <childnode refid="49" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
@@ -242,13 +242,13 @@
         </childnode>
         <childnode refid="28" relation="include">
         </childnode>
-        <childnode refid="51" relation="include">
+        <childnode refid="50" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
         </childnode>
         <childnode refid="54" relation="include">
-        </childnode>
-        <childnode refid="55" relation="include">
         </childnode>
       </node>
       <node id="24">
@@ -269,18 +269,18 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="38">
+      <node id="37">
         <label>../util/logger.h</label>
         <link refid="d1/d8c/logger_8h"/>
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="39">
+      <node id="38">
         <label>../util/rnd.h</label>
         <link refid="d2/da9/rnd_8h"/>
-        <childnode refid="40" relation="include">
+        <childnode refid="39" relation="include">
         </childnode>
-        <childnode refid="41" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
@@ -314,8 +314,6 @@
         </childnode>
         <childnode refid="36" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
-        </childnode>
       </node>
       <node id="9">
         <label>../vary/search_space.h</label>
@@ -324,21 +322,21 @@
         </childnode>
         <childnode refid="28" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
-        <childnode refid="49" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
         <childnode refid="33" relation="include">
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="39" relation="include">
+        <childnode refid="38" relation="include">
         </childnode>
-        <childnode refid="57" relation="include">
+        <childnode refid="56" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
@@ -346,44 +344,41 @@
       <node id="12">
         <label>Eigen/Dense</label>
       </node>
-      <node id="59">
+      <node id="58">
         <label>assert.h</label>
       </node>
-      <node id="45">
+      <node id="44">
         <label>bitset</label>
       </node>
-      <node id="61">
+      <node id="60">
         <label>ceres/dynamic_autodiff_cost_function.h</label>
       </node>
-      <node id="62">
+      <node id="61">
         <label>ceres/dynamic_numeric_diff_cost_function.h</label>
       </node>
       <node id="26">
         <label>ceres/jet.h</label>
       </node>
-      <node id="63">
+      <node id="62">
         <label>ceres/loss_function.h</label>
       </node>
-      <node id="64">
+      <node id="63">
         <label>ceres/solver.h</label>
       </node>
-      <node id="65">
+      <node id="64">
         <label>ceres/tiny_solver.h</label>
       </node>
       <node id="31">
         <label>chrono</label>
       </node>
-      <node id="52">
+      <node id="51">
         <label>cmath</label>
       </node>
       <node id="27">
         <label>concepts</label>
       </node>
-      <node id="56">
+      <node id="55">
         <label>cstddef</label>
-      </node>
-      <node id="36">
-        <label>execution</label>
       </node>
       <node id="22">
         <label>fmt/format.h</label>
@@ -397,7 +392,7 @@
       <node id="15">
         <label>fstream</label>
       </node>
-      <node id="53">
+      <node id="52">
         <label>functional</label>
       </node>
       <node id="14">
@@ -406,7 +401,7 @@
       <node id="35">
         <label>iterator</label>
       </node>
-      <node id="41">
+      <node id="40">
         <label>limits</label>
       </node>
       <node id="17">
@@ -421,7 +416,7 @@
       <node id="16">
         <label>numeric</label>
       </node>
-      <node id="43">
+      <node id="42">
         <label>optional</label>
       </node>
       <node id="32">
@@ -442,7 +437,7 @@
       <node id="7">
         <label>pybind11_json/pybind11_json.hpp</label>
       </node>
-      <node id="40">
+      <node id="39">
         <label>random</label>
       </node>
       <node id="18">
@@ -454,19 +449,19 @@
       <node id="20">
         <label>string</label>
       </node>
-      <node id="37">
+      <node id="36">
         <label>tuple</label>
       </node>
-      <node id="46">
+      <node id="45">
         <label>type_traits</label>
       </node>
       <node id="34">
         <label>typeindex</label>
       </node>
-      <node id="50">
+      <node id="49">
         <label>unordered_map</label>
       </node>
-      <node id="47">
+      <node id="46">
         <label>utility</label>
       </node>
       <node id="25">
@@ -508,12 +503,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/bindings/bind_search_space.cpp" line="10" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_search_space.cpp" bodystart="10" bodyend="51"/>
-        <references refid="d4/dc3/structBrush_1_1SearchSpace_1afe2365c907e5a0ca98d42e2e9720cb4a" compoundref="da/d48/search__space_8cpp" startline="451" endline="454">Brush::SearchSpace::make_classifier</references>
-        <references refid="d4/dc3/structBrush_1_1SearchSpace_1ae8832d26aceb0bb18e97d1a3a6b7f9bc" compoundref="da/d48/search__space_8cpp" startline="456" endline="460">Brush::SearchSpace::make_multiclass_classifier</references>
-        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a60d418b0c8931f1b8db363a6ab56410f" compoundref="da/d48/search__space_8cpp" startline="446" endline="449">Brush::SearchSpace::make_regressor</references>
-        <references refid="d4/dc3/structBrush_1_1SearchSpace_1ad08d52e3d3b0e8ce2af8b504ba33fc2b" compoundref="da/d48/search__space_8cpp" startline="462" endline="465">Brush::SearchSpace::make_representer</references>
-        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a1cfbfca3a45987de45159bc4699a61bb" compoundref="da/d48/search__space_8cpp" startline="173" endline="175">Brush::SearchSpace::print</references>
-        <references refid="d4/dc3/structBrush_1_1SearchSpace_1ab671dbf7c62fca02f2ccf263a2ad9a6a" compoundref="d9/d99/search__space_8h" startline="594" endline="613">Brush::SearchSpace::repr</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1afe2365c907e5a0ca98d42e2e9720cb4a" compoundref="da/d48/search__space_8cpp" startline="450" endline="453">Brush::SearchSpace::make_classifier</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1ae8832d26aceb0bb18e97d1a3a6b7f9bc" compoundref="da/d48/search__space_8cpp" startline="455" endline="459">Brush::SearchSpace::make_multiclass_classifier</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a60d418b0c8931f1b8db363a6ab56410f" compoundref="da/d48/search__space_8cpp" startline="445" endline="448">Brush::SearchSpace::make_regressor</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1ad08d52e3d3b0e8ce2af8b504ba33fc2b" compoundref="da/d48/search__space_8cpp" startline="461" endline="464">Brush::SearchSpace::make_representer</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a1cfbfca3a45987de45159bc4699a61bb" compoundref="da/d48/search__space_8cpp" startline="174" endline="176">Brush::SearchSpace::print</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1ab671dbf7c62fca02f2ccf263a2ad9a6a" compoundref="d9/d99/search__space_8h" startline="597" endline="617">Brush::SearchSpace::repr</references>
         <references refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d">Brush::SS</references>
         <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>

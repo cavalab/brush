@@ -1,204 +1,121 @@
 
+
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-
-<html lang="en" data-content_root="../" >
-
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Node &#8212; Brush 0.1a documentation</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
-  </script>
-  
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Node &mdash; Brush 0.1.dev1+ga5affc5fe documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
-  
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
-
-    <script src="../_static/documentation_options.js?v=74359811"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'cpp_api/node';</script>
-    <link rel="icon" href="../_static/paint-brush-solid.svg"/>
+    <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f69ed792"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="NodeTypes" href="nodetypes.html" />
-    <link rel="prev" title="Program" href="program.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
-  </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+    <link rel="prev" title="Program" href="program.html" /> 
+</head>
 
-  
-  
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search..."
-         aria-label="Search..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Brush
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-
-  
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
-    </header>
-  
-
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
-      
-      
-      
-      <div class="bd-sidebar-primary bd-sidebar">
-        
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-
-  
-    
-  
-
-<a class="navbar-brand logo" href="../index.html">
-  
-  
-  
-  
-  
-  
-    <p class="title logo__title">Brush 0.1a documentation</p>
-  
-</a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../index.html">
-                    Overview
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quickstart</span></p>
-<ul class="nav bd-sidenav">
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Quickstart</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics.html">Basic Usage</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../guide/index.html">Cookbook</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../guide/data.html">Working with Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../guide/search_space.html">The Search Space</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../guide/working_with_programs.html">Working with Programs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../guide/json.html">JSON Interoperability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../guide/saving_loading_populations.html">Saving and loading populations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../guide/archive.html">The archive</a></li>
-
-<li class="toctree-l2"><a class="reference internal" href="../guide/deap.html">Using Deap</a></li>
-</ul>
-</details></li>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">Cookbook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../guide/contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../guide/development.html">Development</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../python_api/index.html">Python API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/estimator.html">BrushEstimator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/interface.html">EstimatorInterface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/regressor.html">BrushRegressor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/classifier.html">BrushClassifier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/python_api.html">Python API</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">C++ API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C++ API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="data.html">Dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="timeseries.html">TimeSeries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="search_space.html">SearchSpace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="program.html">Program</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Node</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Node</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N5Brush4NodeE"><code class="docutils literal notranslate"><span class="pre">Brush::Node</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node9HashTupleE"><code class="docutils literal notranslate"><span class="pre">HashTuple</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node4NodeEv"><code class="docutils literal notranslate"><span class="pre">Node()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EN5Brush4Node4NodeE8NodeType1Sb6string"><code class="docutils literal notranslate"><span class="pre">Node()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EN5Brush4Node13set_signatureEvv"><code class="docutils literal notranslate"><span class="pre">set_signature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node4initEv"><code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush4Node8get_nameEb"><code class="docutils literal notranslate"><span class="pre">get_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush4Node9get_modelERK6vectorI6stringE"><code class="docutils literal notranslate"><span class="pre">get_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush4Node12get_ret_typeEv"><code class="docutils literal notranslate"><span class="pre">get_ret_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush4Node9args_typeEv"><code class="docutils literal notranslate"><span class="pre">args_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush4Node13get_arg_typesEv"><code class="docutils literal notranslate"><span class="pre">get_arg_types()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush4Node13get_arg_countEv"><code class="docutils literal notranslate"><span class="pre">get_arg_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush4Node13get_node_hashEb"><code class="docutils literal notranslate"><span class="pre">get_node_hash()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush4NodeeqERK4Node"><code class="docutils literal notranslate"><span class="pre">operator==()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush4NodeneERK4Node"><code class="docutils literal notranslate"><span class="pre">operator!=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush4NodeltERK4Node"><code class="docutils literal notranslate"><span class="pre">operator&lt;()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush4NodeleERK4Node"><code class="docutils literal notranslate"><span class="pre">operator&lt;=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush4NodegtERK4Node"><code class="docutils literal notranslate"><span class="pre">operator&gt;()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush4NodegeERK4Node"><code class="docutils literal notranslate"><span class="pre">operator&gt;=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush4Node15get_prob_changeEv"><code class="docutils literal notranslate"><span class="pre">get_prob_change()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node15set_prob_changeEf"><code class="docutils literal notranslate"><span class="pre">set_prob_change()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush4Node13get_prob_keepEv"><code class="docutils literal notranslate"><span class="pre">get_prob_keep()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node11set_featureE6string"><code class="docutils literal notranslate"><span class="pre">set_feature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush4Node11get_featureEv"><code class="docutils literal notranslate"><span class="pre">get_feature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node16set_feature_typeE8DataType"><code class="docutils literal notranslate"><span class="pre">set_feature_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush4Node16get_feature_typeEv"><code class="docutils literal notranslate"><span class="pre">get_feature_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node22set_keep_split_featureEb"><code class="docutils literal notranslate"><span class="pre">set_keep_split_feature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush4Node22get_keep_split_featureEv"><code class="docutils literal notranslate"><span class="pre">get_keep_split_feature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush4Node15get_is_weightedEv"><code class="docutils literal notranslate"><span class="pre">get_is_weighted()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node15set_is_weightedEb"><code class="docutils literal notranslate"><span class="pre">set_is_weighted()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node4nameE"><code class="docutils literal notranslate"><span class="pre">name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node9node_typeE"><code class="docutils literal notranslate"><span class="pre">node_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node8ret_typeE"><code class="docutils literal notranslate"><span class="pre">ret_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node9arg_typesE"><code class="docutils literal notranslate"><span class="pre">arg_types</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node8sig_hashE"><code class="docutils literal notranslate"><span class="pre">sig_hash</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node13sig_dual_hashE"><code class="docutils literal notranslate"><span class="pre">sig_dual_hash</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node5fixedE"><code class="docutils literal notranslate"><span class="pre">fixed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node11is_weightedE"><code class="docutils literal notranslate"><span class="pre">is_weighted</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node11prob_changeE"><code class="docutils literal notranslate"><span class="pre">prob_change</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node1WE"><code class="docutils literal notranslate"><span class="pre">W</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node9center_opE"><code class="docutils literal notranslate"><span class="pre">center_op</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node7featureE"><code class="docutils literal notranslate"><span class="pre">feature</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node12feature_typeE"><code class="docutils literal notranslate"><span class="pre">feature_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Node18keep_split_featureE"><code class="docutils literal notranslate"><span class="pre">keep_split_feature</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="nodetypes.html">NodeTypes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="individual.html">Individual and Fitness</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evaluation.html">Evaluation</a></li>
@@ -208,235 +125,45 @@
 <li class="toctree-l2"><a class="reference internal" href="archive.html">Archive</a></li>
 <li class="toctree-l2"><a class="reference internal" href="engine.html">Engine (and parameters)</a></li>
 </ul>
-</details></li>
-</ul>
-
-    </div>
-</nav></div>
-    </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-  </div>
-  
-  <div id="rtd-footer-container"></div>
-
-
-      </div>
-      
-      <main id="main-content" class="bd-main" role="main">
-        
-        
-
-<div class="sbt-scroll-pixel-helper"></div>
-
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article d-print-none">
-<div class="header-article-items header-article__inner">
-  
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</button></div>
-      
-    </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
-
-
-<a href="https://github.com/cavalab/brush" target="_blank"
-   class="btn btn-sm btn-source-repository-button"
-   title="Source repository"
-   data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-
-</a>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/cpp_api/node.rst" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.rst</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-<button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-
-
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
-
-
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
-</div></div>
-      
-    </div>
-  
-</div>
-</div>
-              
-              
-
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>Node</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
-            
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4NodeE"><code class="docutils literal notranslate"><span class="pre">Brush::Node</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node9HashTupleE"><code class="docutils literal notranslate"><span class="pre">HashTuple</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node4NodeEv"><code class="docutils literal notranslate"><span class="pre">Node()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I0EN5Brush4Node4NodeE8NodeType1Sb6string"><code class="docutils literal notranslate"><span class="pre">Node()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I0EN5Brush4Node13set_signatureEvv"><code class="docutils literal notranslate"><span class="pre">set_signature()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node4initEv"><code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node8get_nameEb"><code class="docutils literal notranslate"><span class="pre">get_name()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node9get_modelERK6vectorI6stringE"><code class="docutils literal notranslate"><span class="pre">get_model()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node12get_ret_typeEv"><code class="docutils literal notranslate"><span class="pre">get_ret_type()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node9args_typeEv"><code class="docutils literal notranslate"><span class="pre">args_type()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node13get_arg_typesEv"><code class="docutils literal notranslate"><span class="pre">get_arg_types()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node13get_arg_countEv"><code class="docutils literal notranslate"><span class="pre">get_arg_count()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node13get_node_hashEv"><code class="docutils literal notranslate"><span class="pre">get_node_hash()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4NodeeqERK4Node"><code class="docutils literal notranslate"><span class="pre">operator==()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4NodeneERK4Node"><code class="docutils literal notranslate"><span class="pre">operator!=()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4NodeltERK4Node"><code class="docutils literal notranslate"><span class="pre">operator&lt;()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4NodeleERK4Node"><code class="docutils literal notranslate"><span class="pre">operator&lt;=()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4NodegtERK4Node"><code class="docutils literal notranslate"><span class="pre">operator&gt;()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4NodegeERK4Node"><code class="docutils literal notranslate"><span class="pre">operator&gt;=()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node15get_prob_changeEv"><code class="docutils literal notranslate"><span class="pre">get_prob_change()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node15set_prob_changeEf"><code class="docutils literal notranslate"><span class="pre">set_prob_change()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node13get_prob_keepEv"><code class="docutils literal notranslate"><span class="pre">get_prob_keep()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node11set_featureE6string"><code class="docutils literal notranslate"><span class="pre">set_feature()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node11get_featureEv"><code class="docutils literal notranslate"><span class="pre">get_feature()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node16set_feature_typeE8DataType"><code class="docutils literal notranslate"><span class="pre">set_feature_type()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node16get_feature_typeEv"><code class="docutils literal notranslate"><span class="pre">get_feature_type()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node15get_is_weightedEv"><code class="docutils literal notranslate"><span class="pre">get_is_weighted()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node15set_is_weightedEb"><code class="docutils literal notranslate"><span class="pre">set_is_weighted()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node4nameE"><code class="docutils literal notranslate"><span class="pre">name</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node9node_typeE"><code class="docutils literal notranslate"><span class="pre">node_type</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node8ret_typeE"><code class="docutils literal notranslate"><span class="pre">ret_type</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node9arg_typesE"><code class="docutils literal notranslate"><span class="pre">arg_types</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node8sig_hashE"><code class="docutils literal notranslate"><span class="pre">sig_hash</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node13sig_dual_hashE"><code class="docutils literal notranslate"><span class="pre">sig_dual_hash</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node5fixedE"><code class="docutils literal notranslate"><span class="pre">fixed</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node11is_weightedE"><code class="docutils literal notranslate"><span class="pre">is_weighted</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node11prob_changeE"><code class="docutils literal notranslate"><span class="pre">prob_change</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node1WE"><code class="docutils literal notranslate"><span class="pre">W</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node9center_opE"><code class="docutils literal notranslate"><span class="pre">center_op</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node7featureE"><code class="docutils literal notranslate"><span class="pre">feature</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node12feature_typeE"><code class="docutils literal notranslate"><span class="pre">feature_type</span></code></a></li>
-</ul>
 </li>
 </ul>
-            </nav>
+
         </div>
-    </div>
-</div>
+      </div>
+    </nav>
 
-              
-                
-<div id="searchbox"></div>
-                <article class="bd-article">
-                  
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Brush</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">C++ API</a></li>
+      <li class="breadcrumb-item active">Node</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cpp_api/node.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="node">
-<h1>Node<a class="headerlink" href="#node" title="Link to this heading">#</a></h1>
+<h1>Node<a class="headerlink" href="#node" title="Link to this heading"></a></h1>
 <dl class="cpp struct">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4NodeE">
-<span id="_CPPv3N5Brush4NodeE"></span><span id="_CPPv2N5Brush4NodeE"></span><span id="Brush::Node"></span><span class="target" id="d1/d3a/structBrush_1_1Node"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Node</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4NodeE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4NodeE"></span><span id="_CPPv2N5Brush4NodeE"></span><span id="Brush::Node"></span><span class="target" id="d1/d3a/structBrush_1_1Node"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Node</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4NodeE" title="Link to this definition"></a><br /></dt>
 <dd><p>class holding the data for a node in a tree. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
 <dl class="cpp type">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node9HashTupleE">
-<span id="_CPPv3N5Brush4Node9HashTupleE"></span><span id="_CPPv2N5Brush4Node9HashTupleE"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1abd1037d20f96e122bc1305d70aab418a"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HashTuple</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">tuple</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">UnderlyingNodeType</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N5Brush4Node9HashTupleE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Node9HashTupleE"></span><span id="_CPPv2N5Brush4Node9HashTupleE"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1abd1037d20f96e122bc1305d70aab418a"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HashTuple</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">tuple</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">UnderlyingNodeType</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N5Brush4Node9HashTupleE" title="Link to this definition"></a><br /></dt>
 <dd><p>tuple type for hashing </p>
 </dd></dl>
 
@@ -445,12 +172,12 @@ document.write(`
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node4NodeEv">
-<span id="_CPPv3N5Brush4Node4NodeEv"></span><span id="_CPPv2N5Brush4Node4NodeEv"></span><span id="Brush::Node::Node"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1adcd17b2d50bd124218a1ed472369d461"></span><span class="sig-name descname"><span class="n"><span class="pre">Node</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N5Brush4Node4NodeEv" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Node4NodeEv"></span><span id="_CPPv2N5Brush4Node4NodeEv"></span><span id="Brush::Node::Node"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1adcd17b2d50bd124218a1ed472369d461"></span><span class="sig-name descname"><span class="n"><span class="pre">Node</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N5Brush4Node4NodeEv" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4I0EN5Brush4Node4NodeE8NodeType1Sb6string">
-<span id="_CPPv3I0EN5Brush4Node4NodeE8NodeType1Sb6string"></span><span id="_CPPv2I0EN5Brush4Node4NodeE8NodeType1Sb6string"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">S</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Node</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeTypeE" title="Brush::NodeType"><span class="n"><span class="pre">NodeType</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span>, <a class="reference internal" href="#_CPPv4I0EN5Brush4Node4NodeE8NodeType1Sb6string" title="Brush::Node::Node::S"><span class="n"><span class="pre">S</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">signature</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">weighted</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span>, <span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">feature_name</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;&quot;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4I0EN5Brush4Node4NodeE8NodeType1Sb6string" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3I0EN5Brush4Node4NodeE8NodeType1Sb6string"></span><span id="_CPPv2I0EN5Brush4Node4NodeE8NodeType1Sb6string"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">S</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Node</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeTypeE" title="Brush::NodeType"><span class="n"><span class="pre">NodeType</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span>, <a class="reference internal" href="#_CPPv4I0EN5Brush4Node4NodeE8NodeType1Sb6string" title="Brush::Node::Node::S"><span class="n"><span class="pre">S</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">signature</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">weighted</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span>, <span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">feature_name</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;&quot;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4I0EN5Brush4Node4NodeE8NodeType1Sb6string" title="Link to this definition"></a><br /></dt>
 <dd><p>Constructor used by search space. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
@@ -468,17 +195,17 @@ document.write(`
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4I0EN5Brush4Node13set_signatureEvv">
-<span id="_CPPv3I0EN5Brush4Node13set_signatureEv"></span><span id="_CPPv2I0EN5Brush4Node13set_signatureEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">S</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d1/d3a/structBrush_1_1Node_1a24ab653c36833ab9cd301efe99b39d5f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_signature</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN5Brush4Node13set_signatureEvv" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3I0EN5Brush4Node13set_signatureEv"></span><span id="_CPPv2I0EN5Brush4Node13set_signatureEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">S</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d1/d3a/structBrush_1_1Node_1a24ab653c36833ab9cd301efe99b39d5f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_signature</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN5Brush4Node13set_signatureEvv" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node4initEv">
-<span id="_CPPv3N5Brush4Node4initEv"></span><span id="_CPPv2N5Brush4Node4initEv"></span><span id="Brush::Node::init"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Node4initEv" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Node4initEv"></span><span id="_CPPv2N5Brush4Node4initEv"></span><span id="Brush::Node::init"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Node4initEv" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node8get_nameEb">
-<span id="_CPPv3NK5Brush4Node8get_nameEb"></span><span id="_CPPv2NK5Brush4Node8get_nameEb"></span><span id="Brush::Node::get_name__bC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1aaddaf7903795dfdcad487234d6dc380e"></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_name</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">include_weight</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node8get_nameEb" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3NK5Brush4Node8get_nameEb"></span><span id="_CPPv2NK5Brush4Node8get_nameEb"></span><span id="Brush::Node::get_name__bC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1aaddaf7903795dfdcad487234d6dc380e"></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_name</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">include_weight</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node8get_nameEb" title="Link to this definition"></a><br /></dt>
 <dd><p>gets a string version of the node for printing. </p>
 <p>get the name of the node.</p>
 <dl class="field-list simple">
@@ -496,107 +223,117 @@ document.write(`
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node9get_modelERK6vectorI6stringE">
-<span id="_CPPv3NK5Brush4Node9get_modelERK6vectorI6stringE"></span><span id="_CPPv2NK5Brush4Node9get_modelERK6vectorI6stringE"></span><span id="Brush::Node::get_model__vector:string:CRC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1af621eb9463a3ed3434841565a849c03b"></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_model</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node9get_modelERK6vectorI6stringE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3NK5Brush4Node9get_modelERK6vectorI6stringE"></span><span id="_CPPv2NK5Brush4Node9get_modelERK6vectorI6stringE"></span><span id="Brush::Node::get_model__vector:string:CRC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1af621eb9463a3ed3434841565a849c03b"></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_model</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node9get_modelERK6vectorI6stringE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node12get_ret_typeEv">
-<span id="_CPPv3NK5Brush4Node12get_ret_typeEv"></span><span id="_CPPv2NK5Brush4Node12get_ret_typeEv"></span><span id="Brush::Node::get_ret_typeC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a2d4b7a1f21f80ce980f4748432911964"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_ret_type</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node12get_ret_typeEv" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3NK5Brush4Node12get_ret_typeEv"></span><span id="_CPPv2NK5Brush4Node12get_ret_typeEv"></span><span id="Brush::Node::get_ret_typeC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a2d4b7a1f21f80ce980f4748432911964"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_ret_type</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node12get_ret_typeEv" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node9args_typeEv">
-<span id="_CPPv3NK5Brush4Node9args_typeEv"></span><span id="_CPPv2NK5Brush4Node9args_typeEv"></span><span id="Brush::Node::args_typeC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a9ec6ba08b0baebc0cd105e4ef774b7fb"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">args_type</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node9args_typeEv" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3NK5Brush4Node9args_typeEv"></span><span id="_CPPv2NK5Brush4Node9args_typeEv"></span><span id="Brush::Node::args_typeC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a9ec6ba08b0baebc0cd105e4ef774b7fb"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">args_type</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node9args_typeEv" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node13get_arg_typesEv">
-<span id="_CPPv3NK5Brush4Node13get_arg_typesEv"></span><span id="_CPPv2NK5Brush4Node13get_arg_typesEv"></span><span id="Brush::Node::get_arg_typesC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a754e5efb828686e30ebfa2174d56e37a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_arg_types</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node13get_arg_typesEv" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3NK5Brush4Node13get_arg_typesEv"></span><span id="_CPPv2NK5Brush4Node13get_arg_typesEv"></span><span id="Brush::Node::get_arg_typesC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a754e5efb828686e30ebfa2174d56e37a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_arg_types</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node13get_arg_typesEv" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node13get_arg_countEv">
-<span id="_CPPv3NK5Brush4Node13get_arg_countEv"></span><span id="_CPPv2NK5Brush4Node13get_arg_countEv"></span><span id="Brush::Node::get_arg_countC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1ac2f0913b7a3e238d879722eb7f62aee2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_arg_count</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node13get_arg_countEv" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3NK5Brush4Node13get_arg_countEv"></span><span id="_CPPv2NK5Brush4Node13get_arg_countEv"></span><span id="Brush::Node::get_arg_countC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1ac2f0913b7a3e238d879722eb7f62aee2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_arg_count</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node13get_arg_countEv" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node13get_node_hashEv">
-<span id="_CPPv3NK5Brush4Node13get_node_hashEv"></span><span id="_CPPv2NK5Brush4Node13get_node_hashEv"></span><span id="Brush::Node::get_node_hashC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_node_hash</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node13get_node_hashEv" title="Link to this definition">#</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node13get_node_hashEb">
+<span id="_CPPv3NK5Brush4Node13get_node_hashEb"></span><span id="_CPPv2NK5Brush4Node13get_node_hashEb"></span><span id="Brush::Node::get_node_hash__bC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a3365cec003572b3ea248bd6647437d73"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_node_hash</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">include_const</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node13get_node_hashEb" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush4NodeeqERK4Node">
-<span id="_CPPv3NK5Brush4NodeeqERK4Node"></span><span id="_CPPv2NK5Brush4NodeeqERK4Node"></span><span id="Brush::Node::eq-operator__NodeCRC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a7c46bb16fb006691be230d29b6e731fe"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5Brush4NodeeqERK4Node" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3NK5Brush4NodeeqERK4Node"></span><span id="_CPPv2NK5Brush4NodeeqERK4Node"></span><span id="Brush::Node::eq-operator__NodeCRC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a7c46bb16fb006691be230d29b6e731fe"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5Brush4NodeeqERK4Node" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush4NodeneERK4Node">
-<span id="_CPPv3NK5Brush4NodeneERK4Node"></span><span id="_CPPv2NK5Brush4NodeneERK4Node"></span><span id="Brush::Node::neq-operator__NodeCRC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1ac854a6c4b96a0524e1371397c6fba4b1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5Brush4NodeneERK4Node" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3NK5Brush4NodeneERK4Node"></span><span id="_CPPv2NK5Brush4NodeneERK4Node"></span><span id="Brush::Node::neq-operator__NodeCRC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1ac854a6c4b96a0524e1371397c6fba4b1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5Brush4NodeneERK4Node" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush4NodeltERK4Node">
-<span id="_CPPv3NK5Brush4NodeltERK4Node"></span><span id="_CPPv2NK5Brush4NodeltERK4Node"></span><span id="Brush::Node::lt-operator__NodeCRC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1aea5769142b80b211a53eb20d8a14507b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5Brush4NodeltERK4Node" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3NK5Brush4NodeltERK4Node"></span><span id="_CPPv2NK5Brush4NodeltERK4Node"></span><span id="Brush::Node::lt-operator__NodeCRC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1aea5769142b80b211a53eb20d8a14507b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5Brush4NodeltERK4Node" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush4NodeleERK4Node">
-<span id="_CPPv3NK5Brush4NodeleERK4Node"></span><span id="_CPPv2NK5Brush4NodeleERK4Node"></span><span id="Brush::Node::lte-operator__NodeCRC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a62ae8b64fc43f5f13d697c481efb6588"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5Brush4NodeleERK4Node" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3NK5Brush4NodeleERK4Node"></span><span id="_CPPv2NK5Brush4NodeleERK4Node"></span><span id="Brush::Node::lte-operator__NodeCRC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a62ae8b64fc43f5f13d697c481efb6588"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5Brush4NodeleERK4Node" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush4NodegtERK4Node">
-<span id="_CPPv3NK5Brush4NodegtERK4Node"></span><span id="_CPPv2NK5Brush4NodegtERK4Node"></span><span id="Brush::Node::gt-operator__NodeCRC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a6dabaf6f3fcd362ff8fbc9e0bd37756f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&gt;</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5Brush4NodegtERK4Node" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3NK5Brush4NodegtERK4Node"></span><span id="_CPPv2NK5Brush4NodegtERK4Node"></span><span id="Brush::Node::gt-operator__NodeCRC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a6dabaf6f3fcd362ff8fbc9e0bd37756f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&gt;</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5Brush4NodegtERK4Node" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush4NodegeERK4Node">
-<span id="_CPPv3NK5Brush4NodegeERK4Node"></span><span id="_CPPv2NK5Brush4NodegeERK4Node"></span><span id="Brush::Node::gte-operator__NodeCRC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1aa020471209858e31cb4cf26453033929"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&gt;=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5Brush4NodegeERK4Node" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3NK5Brush4NodegeERK4Node"></span><span id="_CPPv2NK5Brush4NodegeERK4Node"></span><span id="Brush::Node::gte-operator__NodeCRC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1aa020471209858e31cb4cf26453033929"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&gt;=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5Brush4NodegeERK4Node" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node15get_prob_changeEv">
-<span id="_CPPv3NK5Brush4Node15get_prob_changeEv"></span><span id="_CPPv2NK5Brush4Node15get_prob_changeEv"></span><span id="Brush::Node::get_prob_changeC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a4fcf7feccb71d538f8614d3c51247eb4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_prob_change</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node15get_prob_changeEv" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3NK5Brush4Node15get_prob_changeEv"></span><span id="_CPPv2NK5Brush4Node15get_prob_changeEv"></span><span id="Brush::Node::get_prob_changeC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a4fcf7feccb71d538f8614d3c51247eb4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_prob_change</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node15get_prob_changeEv" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node15set_prob_changeEf">
-<span id="_CPPv3N5Brush4Node15set_prob_changeEf"></span><span id="_CPPv2N5Brush4Node15set_prob_changeEf"></span><span id="Brush::Node::set_prob_change__float"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1ad9e4f8654978a40e8266b20a4bb0950f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_prob_change</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">w</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Node15set_prob_changeEf" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Node15set_prob_changeEf"></span><span id="_CPPv2N5Brush4Node15set_prob_changeEf"></span><span id="Brush::Node::set_prob_change__float"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1ad9e4f8654978a40e8266b20a4bb0950f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_prob_change</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">w</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Node15set_prob_changeEf" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node13get_prob_keepEv">
-<span id="_CPPv3NK5Brush4Node13get_prob_keepEv"></span><span id="_CPPv2NK5Brush4Node13get_prob_keepEv"></span><span id="Brush::Node::get_prob_keepC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a087a9c51b46b3e801506415376cd0518"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_prob_keep</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node13get_prob_keepEv" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3NK5Brush4Node13get_prob_keepEv"></span><span id="_CPPv2NK5Brush4Node13get_prob_keepEv"></span><span id="Brush::Node::get_prob_keepC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a087a9c51b46b3e801506415376cd0518"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_prob_keep</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node13get_prob_keepEv" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node11set_featureE6string">
-<span id="_CPPv3N5Brush4Node11set_featureE6string"></span><span id="_CPPv2N5Brush4Node11set_featureE6string"></span><span id="Brush::Node::set_feature__string"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a7e8460b645f3d58c3093eda1d5d3166c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_feature</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Node11set_featureE6string" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Node11set_featureE6string"></span><span id="_CPPv2N5Brush4Node11set_featureE6string"></span><span id="Brush::Node::set_feature__string"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a7e8460b645f3d58c3093eda1d5d3166c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_feature</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Node11set_featureE6string" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node11get_featureEv">
-<span id="_CPPv3NK5Brush4Node11get_featureEv"></span><span id="_CPPv2NK5Brush4Node11get_featureEv"></span><span id="Brush::Node::get_featureC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a85a62efd4f1f99fa45eb52e4c0a1a26f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_feature</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node11get_featureEv" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3NK5Brush4Node11get_featureEv"></span><span id="_CPPv2NK5Brush4Node11get_featureEv"></span><span id="Brush::Node::get_featureC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a85a62efd4f1f99fa45eb52e4c0a1a26f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_feature</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node11get_featureEv" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node16set_feature_typeE8DataType">
-<span id="_CPPv3N5Brush4Node16set_feature_typeE8DataType"></span><span id="_CPPv2N5Brush4Node16set_feature_typeE8DataType"></span><span id="Brush::Node::set_feature_type__DataType"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a9ceebb9b686a6f6784ae90c558385410"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_feature_type</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ft</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Node16set_feature_typeE8DataType" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Node16set_feature_typeE8DataType"></span><span id="_CPPv2N5Brush4Node16set_feature_typeE8DataType"></span><span id="Brush::Node::set_feature_type__DataType"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a9ceebb9b686a6f6784ae90c558385410"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_feature_type</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ft</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Node16set_feature_typeE8DataType" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node16get_feature_typeEv">
-<span id="_CPPv3NK5Brush4Node16get_feature_typeEv"></span><span id="_CPPv2NK5Brush4Node16get_feature_typeEv"></span><span id="Brush::Node::get_feature_typeC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a5d3a467bbb0b2fa914594c735579926d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_feature_type</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node16get_feature_typeEv" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3NK5Brush4Node16get_feature_typeEv"></span><span id="_CPPv2NK5Brush4Node16get_feature_typeEv"></span><span id="Brush::Node::get_feature_typeC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a5d3a467bbb0b2fa914594c735579926d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_feature_type</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node16get_feature_typeEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node22set_keep_split_featureEb">
+<span id="_CPPv3N5Brush4Node22set_keep_split_featureEb"></span><span id="_CPPv2N5Brush4Node22set_keep_split_featureEb"></span><span id="Brush::Node::set_keep_split_feature__b"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a31f2f60b25fa6a8fa8f420070da2863d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_keep_split_feature</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">keep</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Node22set_keep_split_featureEb" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node22get_keep_split_featureEv">
+<span id="_CPPv3NK5Brush4Node22get_keep_split_featureEv"></span><span id="_CPPv2NK5Brush4Node22get_keep_split_featureEv"></span><span id="Brush::Node::get_keep_split_featureC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a27183f178a41394fea61c7f5b1fdc751"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_keep_split_feature</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node22get_keep_split_featureEv" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node15get_is_weightedEv">
-<span id="_CPPv3NK5Brush4Node15get_is_weightedEv"></span><span id="_CPPv2NK5Brush4Node15get_is_weightedEv"></span><span id="Brush::Node::get_is_weightedC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a8d884d5ad5f6825aa8f50039fb6baf9f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_is_weighted</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node15get_is_weightedEv" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3NK5Brush4Node15get_is_weightedEv"></span><span id="_CPPv2NK5Brush4Node15get_is_weightedEv"></span><span id="Brush::Node::get_is_weightedC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a8d884d5ad5f6825aa8f50039fb6baf9f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_is_weighted</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node15get_is_weightedEv" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node15set_is_weightedEb">
-<span id="_CPPv3N5Brush4Node15set_is_weightedEb"></span><span id="_CPPv2N5Brush4Node15set_is_weightedEb"></span><span id="Brush::Node::set_is_weighted__b"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a70fb9b583f72b67f6c24c2bbaae55267"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_is_weighted</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">is_weighted</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Node15set_is_weightedEb" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Node15set_is_weightedEb"></span><span id="_CPPv2N5Brush4Node15set_is_weightedEb"></span><span id="Brush::Node::set_is_weighted__b"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a70fb9b583f72b67f6c24c2bbaae55267"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_is_weighted</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">is_weighted</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Node15set_is_weightedEb" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </div>
@@ -604,80 +341,86 @@ document.write(`
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node4nameE">
-<span id="_CPPv3N5Brush4Node4nameE"></span><span id="_CPPv2N5Brush4Node4nameE"></span><span id="Brush::Node::name__string"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1ad6b3fd4a54c813d066370defc8a85af1"></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">name</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node4nameE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Node4nameE"></span><span id="_CPPv2N5Brush4Node4nameE"></span><span id="Brush::Node::name__string"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1ad6b3fd4a54c813d066370defc8a85af1"></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">name</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node4nameE" title="Link to this definition"></a><br /></dt>
 <dd><p>full name of the node, with types </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node9node_typeE">
-<span id="_CPPv3N5Brush4Node9node_typeE"></span><span id="_CPPv2N5Brush4Node9node_typeE"></span><span id="Brush::Node::node_type__NodeType"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a522791afe93c92442564356ff19ff55a"></span><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeTypeE" title="Brush::NodeType"><span class="n"><span class="pre">NodeType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">node_type</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node9node_typeE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Node9node_typeE"></span><span id="_CPPv2N5Brush4Node9node_typeE"></span><span id="Brush::Node::node_type__NodeType"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a522791afe93c92442564356ff19ff55a"></span><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeTypeE" title="Brush::NodeType"><span class="n"><span class="pre">NodeType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">node_type</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node9node_typeE" title="Link to this definition"></a><br /></dt>
 <dd><p>the node type </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node8ret_typeE">
-<span id="_CPPv3N5Brush4Node8ret_typeE"></span><span id="_CPPv2N5Brush4Node8ret_typeE"></span><span id="Brush::Node::ret_type__DataType"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a65b283648fe779d81ac11f9e4714d920"></span><span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ret_type</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node8ret_typeE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Node8ret_typeE"></span><span id="_CPPv2N5Brush4Node8ret_typeE"></span><span id="Brush::Node::ret_type__DataType"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a65b283648fe779d81ac11f9e4714d920"></span><span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ret_type</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node8ret_typeE" title="Link to this definition"></a><br /></dt>
 <dd><p>return data type </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node9arg_typesE">
-<span id="_CPPv3N5Brush4Node9arg_typesE"></span><span id="_CPPv2N5Brush4Node9arg_typesE"></span><span id="Brush::Node::arg_types__std::vector:DataType:"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a237b9208864ace5209edca01623f6b1e"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">DataType</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arg_types</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node9arg_typesE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Node9arg_typesE"></span><span id="_CPPv2N5Brush4Node9arg_typesE"></span><span id="Brush::Node::arg_types__std::vector:DataType:"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a237b9208864ace5209edca01623f6b1e"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">DataType</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arg_types</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node9arg_typesE" title="Link to this definition"></a><br /></dt>
 <dd><p>argument data types </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node8sig_hashE">
-<span id="_CPPv3N5Brush4Node8sig_hashE"></span><span id="_CPPv2N5Brush4Node8sig_hashE"></span><span id="Brush::Node::sig_hash__std::s"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a889e0361b55a63a4510a3edabd2fa57c"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sig_hash</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node8sig_hashE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Node8sig_hashE"></span><span id="_CPPv2N5Brush4Node8sig_hashE"></span><span id="Brush::Node::sig_hash__std::s"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a889e0361b55a63a4510a3edabd2fa57c"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sig_hash</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node8sig_hashE" title="Link to this definition"></a><br /></dt>
 <dd><p>a hash of the signature </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node13sig_dual_hashE">
-<span id="_CPPv3N5Brush4Node13sig_dual_hashE"></span><span id="_CPPv2N5Brush4Node13sig_dual_hashE"></span><span id="Brush::Node::sig_dual_hash__std::s"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1aed6c2af0fae3dd8e5a8aa2fab77479fd"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sig_dual_hash</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node13sig_dual_hashE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Node13sig_dual_hashE"></span><span id="_CPPv2N5Brush4Node13sig_dual_hashE"></span><span id="Brush::Node::sig_dual_hash__std::s"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1aed6c2af0fae3dd8e5a8aa2fab77479fd"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sig_dual_hash</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node13sig_dual_hashE" title="Link to this definition"></a><br /></dt>
 <dd><p>a hash of the dual of the signature (for NLS) </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node5fixedE">
-<span id="_CPPv3N5Brush4Node5fixedE"></span><span id="_CPPv2N5Brush4Node5fixedE"></span><span id="Brush::Node::fixed__b"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a32c73293ee4e02b6d828c2c213e06154"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fixed</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node5fixedE" title="Link to this definition">#</a><br /></dt>
-<dd><p>whether node is modifiable </p>
+<span id="_CPPv3N5Brush4Node5fixedE"></span><span id="_CPPv2N5Brush4Node5fixedE"></span><span id="Brush::Node::fixed__b"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a32c73293ee4e02b6d828c2c213e06154"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fixed</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node5fixedE" title="Link to this definition"></a><br /></dt>
+<dd><p>whether the node is replaceable. Weights are still optimized. </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node11is_weightedE">
-<span id="_CPPv3N5Brush4Node11is_weightedE"></span><span id="_CPPv2N5Brush4Node11is_weightedE"></span><span id="Brush::Node::is_weighted__b"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1ab72b791f57011a032c6c89238db85845"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_weighted</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node11is_weightedE" title="Link to this definition">#</a><br /></dt>
-<dd><p>whether this node is weighted </p>
+<span id="_CPPv3N5Brush4Node11is_weightedE"></span><span id="_CPPv2N5Brush4Node11is_weightedE"></span><span id="Brush::Node::is_weighted__b"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1ab72b791f57011a032c6c89238db85845"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_weighted</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node11is_weightedE" title="Link to this definition"></a><br /></dt>
+<dd><p>whether this node is weighted (ignored in nodes that must have weights, such as meanLabel, constants, splits) </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node11prob_changeE">
-<span id="_CPPv3N5Brush4Node11prob_changeE"></span><span id="_CPPv2N5Brush4Node11prob_changeE"></span><span id="Brush::Node::prob_change__float"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a9f5b2e34d8ba752e0f6bffebec8afdc0"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">prob_change</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node11prob_changeE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Node11prob_changeE"></span><span id="_CPPv2N5Brush4Node11prob_changeE"></span><span id="Brush::Node::prob_change__float"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a9f5b2e34d8ba752e0f6bffebec8afdc0"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">prob_change</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node11prob_changeE" title="Link to this definition"></a><br /></dt>
 <dd><p>chance of node being selected for variation </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node1WE">
-<span id="_CPPv3N5Brush4Node1WE"></span><span id="_CPPv2N5Brush4Node1WE"></span><span id="Brush::Node::W__float"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1ab719e64b13753515be49327d98bf2224"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">W</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node1WE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Node1WE"></span><span id="_CPPv2N5Brush4Node1WE"></span><span id="Brush::Node::W__float"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1ab719e64b13753515be49327d98bf2224"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">W</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node1WE" title="Link to this definition"></a><br /></dt>
 <dd><p>the weights of the node. also used for splitting thresholds. </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node9center_opE">
-<span id="_CPPv3N5Brush4Node9center_opE"></span><span id="_CPPv2N5Brush4Node9center_opE"></span><span id="Brush::Node::center_op__b"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a0971012cfb2ae944f4bea0ea0dc9e5a3"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">center_op</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node9center_opE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Node9center_opE"></span><span id="_CPPv2N5Brush4Node9center_opE"></span><span id="Brush::Node::center_op__b"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a0971012cfb2ae944f4bea0ea0dc9e5a3"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">center_op</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node9center_opE" title="Link to this definition"></a><br /></dt>
 <dd><p>whether to center the operator in pretty printing </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node7featureE">
-<span id="_CPPv3N5Brush4Node7featureE"></span><span id="_CPPv2N5Brush4Node7featureE"></span><span id="Brush::Node::feature__string"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1ac5f37d638625468ed68de599a2a7d968"></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">feature</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node7featureE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Node7featureE"></span><span id="_CPPv2N5Brush4Node7featureE"></span><span id="Brush::Node::feature__string"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1ac5f37d638625468ed68de599a2a7d968"></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">feature</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node7featureE" title="Link to this definition"></a><br /></dt>
 <dd><p>feature name for terminals or splitting nodes </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node12feature_typeE">
-<span id="_CPPv3N5Brush4Node12feature_typeE"></span><span id="_CPPv2N5Brush4Node12feature_typeE"></span><span id="Brush::Node::feature_type__DataType"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a2875e5aa77054658c071f7b0d7103e68"></span><span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">feature_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">DataType</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ArrayF</span></span><a class="headerlink" href="#_CPPv4N5Brush4Node12feature_typeE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Node12feature_typeE"></span><span id="_CPPv2N5Brush4Node12feature_typeE"></span><span id="Brush::Node::feature_type__DataType"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a2875e5aa77054658c071f7b0d7103e68"></span><span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">feature_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">DataType</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ArrayF</span></span><a class="headerlink" href="#_CPPv4N5Brush4Node12feature_typeE" title="Link to this definition"></a><br /></dt>
 <dd><p>feature type for terminals or splitting nodes </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node18keep_split_featureE">
+<span id="_CPPv3N5Brush4Node18keep_split_featureE"></span><span id="_CPPv2N5Brush4Node18keep_split_featureE"></span><span id="Brush::Node::keep_split_feature__b"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1abee9ab1ef7eb2e12dcf45db1bbddf25a"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">keep_split_feature</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N5Brush4Node18keep_split_featureE" title="Link to this definition"></a><br /></dt>
+<dd><p>fix the SplitBest feature when the node is fixed </p>
 </dd></dl>
 
 </div>
@@ -686,145 +429,34 @@ document.write(`
 </section>
 
 
-                </article>
-              
-
-              
-              
-              
-              
-                <footer class="prev-next-footer d-print-none">
-                  
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="program.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Program</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="nodetypes.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">NodeTypes</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
-</div>
-                </footer>
-              
-            </div>
-            
-            
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4NodeE"><code class="docutils literal notranslate"><span class="pre">Brush::Node</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node9HashTupleE"><code class="docutils literal notranslate"><span class="pre">HashTuple</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node4NodeEv"><code class="docutils literal notranslate"><span class="pre">Node()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I0EN5Brush4Node4NodeE8NodeType1Sb6string"><code class="docutils literal notranslate"><span class="pre">Node()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I0EN5Brush4Node13set_signatureEvv"><code class="docutils literal notranslate"><span class="pre">set_signature()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node4initEv"><code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node8get_nameEb"><code class="docutils literal notranslate"><span class="pre">get_name()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node9get_modelERK6vectorI6stringE"><code class="docutils literal notranslate"><span class="pre">get_model()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node12get_ret_typeEv"><code class="docutils literal notranslate"><span class="pre">get_ret_type()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node9args_typeEv"><code class="docutils literal notranslate"><span class="pre">args_type()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node13get_arg_typesEv"><code class="docutils literal notranslate"><span class="pre">get_arg_types()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node13get_arg_countEv"><code class="docutils literal notranslate"><span class="pre">get_arg_count()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node13get_node_hashEv"><code class="docutils literal notranslate"><span class="pre">get_node_hash()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4NodeeqERK4Node"><code class="docutils literal notranslate"><span class="pre">operator==()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4NodeneERK4Node"><code class="docutils literal notranslate"><span class="pre">operator!=()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4NodeltERK4Node"><code class="docutils literal notranslate"><span class="pre">operator&lt;()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4NodeleERK4Node"><code class="docutils literal notranslate"><span class="pre">operator&lt;=()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4NodegtERK4Node"><code class="docutils literal notranslate"><span class="pre">operator&gt;()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4NodegeERK4Node"><code class="docutils literal notranslate"><span class="pre">operator&gt;=()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node15get_prob_changeEv"><code class="docutils literal notranslate"><span class="pre">get_prob_change()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node15set_prob_changeEf"><code class="docutils literal notranslate"><span class="pre">set_prob_change()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node13get_prob_keepEv"><code class="docutils literal notranslate"><span class="pre">get_prob_keep()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node11set_featureE6string"><code class="docutils literal notranslate"><span class="pre">set_feature()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node11get_featureEv"><code class="docutils literal notranslate"><span class="pre">get_feature()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node16set_feature_typeE8DataType"><code class="docutils literal notranslate"><span class="pre">set_feature_type()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node16get_feature_typeEv"><code class="docutils literal notranslate"><span class="pre">get_feature_type()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush4Node15get_is_weightedEv"><code class="docutils literal notranslate"><span class="pre">get_is_weighted()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node15set_is_weightedEb"><code class="docutils literal notranslate"><span class="pre">set_is_weighted()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node4nameE"><code class="docutils literal notranslate"><span class="pre">name</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node9node_typeE"><code class="docutils literal notranslate"><span class="pre">node_type</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node8ret_typeE"><code class="docutils literal notranslate"><span class="pre">ret_type</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node9arg_typesE"><code class="docutils literal notranslate"><span class="pre">arg_types</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node8sig_hashE"><code class="docutils literal notranslate"><span class="pre">sig_hash</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node13sig_dual_hashE"><code class="docutils literal notranslate"><span class="pre">sig_dual_hash</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node5fixedE"><code class="docutils literal notranslate"><span class="pre">fixed</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node11is_weightedE"><code class="docutils literal notranslate"><span class="pre">is_weighted</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node11prob_changeE"><code class="docutils literal notranslate"><span class="pre">prob_change</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node1WE"><code class="docutils literal notranslate"><span class="pre">W</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node9center_opE"><code class="docutils literal notranslate"><span class="pre">center_op</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node7featureE"><code class="docutils literal notranslate"><span class="pre">feature</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Node12feature_typeE"><code class="docutils literal notranslate"><span class="pre">feature_type</span></code></a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
-            
+           </div>
           </div>
-          <footer class="bd-footer-content">
-            
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By William La Cava and Joseph D. Romano
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-
-  <p class="copyright">
-    
-      © Copyright 2021, William La Cava and Joseph D. Romano.
-      <br/>
-    
-  </p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div>
-          </footer>
-        
-
-      </main>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="program.html" class="btn btn-neutral float-left" title="Program" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nodetypes.html" class="btn btn-neutral float-right" title="NodeTypes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  </div>
-  
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-  <footer class="bd-footer">
-  </footer>
-  </body>
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, William La Cava and Joseph D. Romano.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>

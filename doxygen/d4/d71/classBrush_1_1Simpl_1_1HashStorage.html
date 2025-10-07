@@ -134,14 +134,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac60eb12f5119da28941e61efac059e42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a150bed4ddabbe973e01d4555724fb086" id="r_a150bed4ddabbe973e01d4555724fb086"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a150bed4ddabbe973e01d4555724fb086">~HashStorage</a> ()</td></tr>
 <tr class="separator:a150bed4ddabbe973e01d4555724fb086"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa05ae428c61e9709c2521d1af384d960" id="r_aa05ae428c61e9709c2521d1af384d960"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa05ae428c61e9709c2521d1af384d960">append</a> (const int &amp;storage_n, const size_t &amp;key, const tree&lt; <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> &gt; Tree)</td></tr>
-<tr class="separator:aa05ae428c61e9709c2521d1af384d960"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5d5707f9f68b5ebddeae53988ee5d63" id="r_ab5d5707f9f68b5ebddeae53988ee5d63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5d5707f9f68b5ebddeae53988ee5d63">append</a> (const int &amp;storage_n, const size_t &amp;key, const tree&lt; <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Brush::Node</a> &gt; Tree)</td></tr>
+<tr class="separator:ab5d5707f9f68b5ebddeae53988ee5d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88fbcc63b2b89bf016dcd15c1463307f" id="r_a88fbcc63b2b89bf016dcd15c1463307f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; tree&lt; <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88fbcc63b2b89bf016dcd15c1463307f">getList</a> (const int &amp;storage_n, const size_t &amp;key)</td></tr>
 <tr class="separator:a88fbcc63b2b89bf016dcd15c1463307f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4cc087bda9fd98d2e7fe416e3e3ad4ba" id="r_a4cc087bda9fd98d2e7fe416e3e3ad4ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4cc087bda9fd98d2e7fe416e3e3ad4ba">clear</a> ()</td></tr>
 <tr class="separator:a4cc087bda9fd98d2e7fe416e3e3ad4ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6052dacde0f387c0a94c4db6a716546" id="r_ac6052dacde0f387c0a94c4db6a716546"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6052dacde0f387c0a94c4db6a716546">keys</a> (const int &amp;storage_n)</td></tr>
 <tr class="separator:ac6052dacde0f387c0a94c4db6a716546"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac57c86930d31872b0add261949855563" id="r_ac57c86930d31872b0add261949855563"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac57c86930d31872b0add261949855563">print</a> (const <a class="el" href="../../d5/d92/classstring.html">string</a> &amp;prefix, std::ofstream &amp;log) const</td></tr>
+<tr class="separator:ac57c86930d31872b0add261949855563"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -207,8 +209,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aa05ae428c61e9709c2521d1af384d960" name="aa05ae428c61e9709c2521d1af384d960"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa05ae428c61e9709c2521d1af384d960">&#9670;&#160;</a></span>append()</h2>
+<a id="ab5d5707f9f68b5ebddeae53988ee5d63" name="ab5d5707f9f68b5ebddeae53988ee5d63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5d5707f9f68b5ebddeae53988ee5d63">&#9670;&#160;</a></span>append()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -229,7 +231,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const tree&lt; <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>Tree</em></span>&#160;)</td>
+          <td class="paramtype">const tree&lt; <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Brush::Node</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>Tree</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -266,7 +268,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00053">53</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00087">87</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
 
 </div>
 </div>
@@ -297,7 +299,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00045">45</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00079">79</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
 
 </div>
 </div>
@@ -324,7 +326,48 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00059">59</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00093">93</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
+
+</div>
+</div>
+<a id="ac57c86930d31872b0add261949855563" name="ac57c86930d31872b0add261949855563"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac57c86930d31872b0add261949855563">&#9670;&#160;</a></span>print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Brush::Simpl::HashStorage::print </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/d92/classstring.html">string</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>prefix</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::ofstream &amp;</td>          <td class="paramname"><span class="paramname"><em>log</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00101">101</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/d71/classBrush_1_1Simpl_1_1HashStorage_ac57c86930d31872b0add261949855563_icgraph.png" border="0" usemap="#ad4/d71/classBrush_1_1Simpl_1_1HashStorage_ac57c86930d31872b0add261949855563_icgraph" alt=""/></div>
+<map name="ad4/d71/classBrush_1_1Simpl_1_1HashStorage_ac57c86930d31872b0add261949855563_icgraph" id="ad4/d71/classBrush_1_1Simpl_1_1HashStorage_ac57c86930d31872b0add261949855563_icgraph">
+<area shape="rect" title=" " alt="" coords="306,5,500,50"/>
+<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#adcb98569affab47f0a15bac9e99dd4c1" title=" " alt="" coords="5,5,258,50"/>
+<area shape="poly" title=" " alt="" coords="290,30,258,30,258,25,290,25"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -349,7 +392,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00069">69</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/db6/inexact_8h_source.html#l00120">120</a> of file <a class="el" href="../../d1/db6/inexact_8h_source.html">inexact.h</a>.</p>
 
 </div>
 </div>
