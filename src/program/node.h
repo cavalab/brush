@@ -97,9 +97,9 @@ struct Node {
     /// @brief a hash of the dual of the signature (for NLS)
     std::size_t sig_dual_hash;
 
-    /// whether node is modifiable
+    /// whether the node is replaceable. Weights are still optimized.
     bool fixed;
-    /// @brief whether this node is weighted
+    /// @brief whether this node is weighted (ignored in nodes that must have weights, such as meanLabel, constants, splits)
     bool is_weighted;
     /// chance of node being selected for variation
     float prob_change; 
@@ -124,7 +124,6 @@ struct Node {
 
     // Node(){init();}; 
     Node() = default;
-
 
     /// @brief Constructor used by search space 
     /// @tparam S signature 
@@ -194,20 +193,29 @@ struct Node {
     //     });
     //     // fmt::print("nodetype:{}; hash tuple:{}; node_hash={}\n", node_type, tmp, node_hash);
     // }
-    size_t get_node_hash() const {
+    size_t get_node_hash(bool include_const=true) const {
+        // we ignore the constant only on simplification, because it will be tuned anyways
+
         return std::hash<HashTuple>{}(HashTuple{
                 NodeTypes::GetIndex(node_type),
                 sig_hash,
                 get_is_weighted(),
                 feature,
                 fixed,
-                int(W*100)
+                // include weights only if we want exact matches.
+                // but we will indicate that constants are on using get is weighted,
+                // just so we differentiate whether the weight exists or is ignored
+                include_const ? int(W * 100) : (get_is_weighted() ? 1 : 0)
         });
     }
     ////////////////////////////////////////////////////////////////////////////////
     //comparison operators
     inline auto operator==(const Node& rhs) const noexcept -> bool
     {
+        // obs: this is declared as a member operator, so the lhs is implicit.
+        // If i were to declare this outsize class definition, then I would have
+        // to include lhs in the function signature
+        
         /* return CalculatedHashValue == rhs.CalculatedHashValue; */
         return get_node_hash() == rhs.get_node_hash();
         /* return (*this) == rhs; */
@@ -253,6 +261,9 @@ struct Node {
     inline void set_feature_type(DataType ft){ this->feature_type = ft; };
     inline DataType get_feature_type() const { return this->feature_type; };
 
+    inline void set_keep_split_feature(bool keep){ this->keep_split_feature = keep; };
+    inline bool get_keep_split_feature() const { return this->keep_split_feature; };
+
     // Some types does not have weights, so we completely ignore the weights
     // if is not weighable
     inline bool get_is_weighted() const {
@@ -271,7 +282,9 @@ struct Node {
     
     /// @brief feature type for terminals or splitting nodes
     DataType feature_type = DataType::ArrayF; 
-        
+
+    /// @brief fix the SplitBest feature when the node is fixed
+    bool keep_split_feature = false; // TODO: unittests for keep_split_feature
 };
 
 template <NodeType... T>

@@ -13,6 +13,7 @@ class OptimizerTest
      * are used to create a program based on `PRGjson`, fit it with the given 
      * dataset with filename `dataset_name`, and check if the adjusted weights
      * are as expected by the `check_fit` function.
+     * Notice these tests works for regression problems only.
     */
     protected:
         void SetUp() override {

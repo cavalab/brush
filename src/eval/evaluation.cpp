@@ -34,7 +34,7 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
             {
                 ind.program.fit(data.get_training_data());
             }
-            
+
             assign_fit(ind, data, params, validation);
         }
     }
@@ -71,7 +71,9 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
     if (std::isnan(f_v) || std::isinf(f_v))
         f_v = error_weight > 0 ? -MAX_FLT : MAX_FLT;
 
-    // This is what is going to determine the weights for the individual's fitness
+    // This is what is going to determine the weights for the individual's fitness.
+    // OBS: always use get_objectives, as it will replace the "scorer" string with
+    // the actual scorer function name
     ind.set_objectives(params.get_objectives());
 
     // when we use these setters, it updates its previous values references

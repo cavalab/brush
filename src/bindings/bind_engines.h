@@ -84,12 +84,7 @@ void bind_engine(py::module& m, string name)
             .def("lock_nodes",
                 &T::lock_nodes,
                 py::arg("end_depth") = 0,
-                py::arg("skip_leaves") = true,
-                stream_redirect()
-            )
-            .def("unlock_nodes",
-                &T::unlock_nodes,
-                py::arg("start_depth") = 0,
+                py::arg("keep_leaves_unlocked") = true,
                 stream_redirect()
             )
             .def(py::pickle(

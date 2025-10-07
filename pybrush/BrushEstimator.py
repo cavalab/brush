@@ -14,9 +14,11 @@ from sklearn.base import BaseEstimator, ClassifierMixin, \
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils import check_X_y
 
-from pybrush import Parameters, Dataset, SearchSpace, brush_rng
+from pybrush import Parameters, Dataset, SearchSpace, brush_rng, individual
 from pybrush.EstimatorInterface import EstimatorInterface
 from pybrush import RegressorEngine, ClassifierEngine, MultiClassifierEngine
+
+from pandas.api.types import is_float_dtype, is_bool_dtype, is_integer_dtype
 
 class BrushEstimator(EstimatorInterface, BaseEstimator):
     """
@@ -59,13 +61,34 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         """
         
         self.feature_names_ = []
+        self.feature_types_ = []
         if isinstance(X, pd.DataFrame):
             self.feature_names_ = X.columns.to_list()
+            for values, dtype in zip(X.values.T, X.dtypes):
+                if is_bool_dtype(dtype):
+                    self.feature_types_.append('ArrayB')
+                elif is_integer_dtype(dtype):
+                    # For Brush, it does matter if it is realy an integer or a boolean in disguise
+                    if np.all(np.logical_or(values == 0, values == 1)):
+                        self.feature_types_.append('ArrayB')
+                    else:
+                        if len(np.unique(values))<=10: # Categories, encoded
+                            self.feature_types_.append('ArrayI')
+                        else: # Integers, we'll treat as floats so we can do all the math normally
+                            self.feature_types_.append('ArrayF')
+                elif is_float_dtype(dtype):
+                    self.feature_types_.append('ArrayF')
+                else:
+                    raise ValueError(
+                        "Unsupported data type. Please try using an "
+                        "encoding method to convert the data to a supported "
+                        "format.")
 
         X, y = check_X_y(X, y)
 
         self.data_ = self._make_data(X, y, 
                                      feature_names=self.feature_names_,
+                                     feature_types=self.feature_types_,
                                      validation_size=self.validation_size,
                                      shuffle_split=self.shuffle_split)
 
@@ -95,10 +118,10 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         self.archive_ = self.engine_.get_archive()
         self.population_ = self.engine_.get_population()
         self.best_estimator_ = self.engine_.best_ind
-
+        
         return self
     
-    def partial_fit(self, X, y, lock_nodes_depth=0, skip_leaves=True):
+    def partial_fit(self, X, y, lock_nodes_depth=0, keep_leaves_unlocked=True):
         """
         Fit an estimator to X,y, without reseting the estimator.
 
@@ -110,7 +133,7 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
             1-d array of (boolean) target values.
         lock_nodes_depth : int, optional
             The depth of the tree to lock. Default is 0.
-        skip_leaves : bool, optional
+        keep_leaves_unlocked : bool, optional
             Whether to skip leaves when locking nodes. Default is True.
         """
 
@@ -120,25 +143,32 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         new_data = self._make_data(X, y, 
                                      feature_names=self.feature_names_,
+                                     feature_types=self.feature_types_,
                                      validation_size=self.validation_size,
                                      shuffle_split=self.shuffle_split)
         
+        # We need to update class weights, this is what is happening here.
         new_parameters = self._wrap_parameters(new_data.get_training_data().y)
 
         assert self.engine_ is not None, \
             "You must call `fit` before calling `partial_fit`"
         
-        # protecting the logistic model root nodes
-        clf_root = 2 if self.mode=='classification' else 0
+        # The logistic root is not affected by locking or unlocking.
+        # It is fixed due to prob_change==0.0.
 
+        # This updates the parameters (such as class weights)
         self.engine_.params = new_parameters
-        self.engine_.lock_nodes(lock_nodes_depth+clf_root, skip_leaves)
+        
+        self.engine_.lock_nodes(lock_nodes_depth, keep_leaves_unlocked)
         self.engine_.fit(new_data)
-        self.engine_.unlock_nodes(clf_root)
+        self.engine_.lock_nodes(0, False) # unlocking everything
 
         self.archive_ = self.engine_.get_archive()
         self.population_ = self.engine_.get_population()
         self.best_estimator_ = self.engine_.best_ind
+
+        if self.final_model_selection != "":
+            self._update_final_model()
 
         return self
 
@@ -147,20 +177,19 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         check_is_fitted(self)
 
-        if self.data_ is None:
-            self.data_ = self._make_data(X, 
-                                    feature_names=self.feature_names_,
-                                    validation_size=self.validation_size,
-                                    shuffle_split=self.shuffle_split)
-            
         if isinstance(X, pd.DataFrame):
             X = X.values
 
         assert isinstance(X, np.ndarray)
 
-        # Need to provide feature names because reference does not store order
-        data = Dataset(X=X, ref_dataset=self.data_, 
-                              feature_names=self.feature_names_)
+        # Need to provide feature names because reference does not store order.
+        # Some of the self.<attr> are created just after fitting the estimator,
+        # and they are properly serialized in the python-side.
+        data = Dataset(X=X, # ref_dataset=self.data_, 
+                            feature_types=self.feature_types_,
+                            feature_names=self.feature_names_,
+                            validation_size=0.0,
+                            )
         
         return self.best_estimator_.program.predict(data)
 
@@ -179,20 +208,16 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         check_is_fitted(self)
 
-        if self.data_ is None:
-            self.data_ = self._make_data(X, 
-                                    feature_names=self.feature_names_,
-                                    validation_size=self.validation_size,
-                                    shuffle_split=self.shuffle_split)
-            
         if isinstance(X, pd.DataFrame):
             X = X.values
 
         assert isinstance(X, np.ndarray)
 
         # Need to provide feature names because reference does not store order
-        data = Dataset(X=X, ref_dataset=self.data_, 
-                            feature_names=self.feature_names_)
+        data = Dataset(X=X, 
+                            feature_types=self.feature_types_,
+                            feature_names=self.feature_names_,
+                            validation_size=0.0)
 
         archive = self.engine_.get_archive()
 
@@ -206,6 +231,41 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         return preds
     
+    def _update_final_model(self):
+        # selecting the final individual based on the final_model_selection function
+        # if the user specified something other than the default cpp pick method
+
+        candidate = None
+        if self.final_model_selection == "smallest_complexity":
+            candidates = [p for p in self.archive_ if p['fitness']['size'] > 1 + (4 if self.mode == 'classification' else 0)]
+            if len(candidates)==0: # fallback to all elements
+                candidates = self.archive_
+
+            idx = np.argmin([p['fitness']['complexity'] for p in candidates])
+
+            candidate = candidates[idx]
+        elif callable(self.final_model_selection):
+            try:
+                candidate = self.final_model_selection(self.population_, self.archive_)
+            except Exception as e:
+                raise RuntimeError("Failed to use the provided model "
+                                   "selection function. Raised the following "
+                                   f"error: {e}")
+        else:
+            raise ValueError("Unknown model selection method. Please try using "
+                             "a valid function or one of the default methods.")
+        
+        # Casting the json from the archive_ or population_ into something callable
+        if isinstance(candidate, dict):
+            if self.mode == 'classification':
+                self.best_estimator_ = (
+                    individual.ClassifierIndividual
+                    if self.parameters_.n_classes == 2 else
+                    individual.MultiClassifierIndividual
+                ).from_json(candidate)
+            else:
+                self.best_estimator_ = individual.RegressorIndividual.from_json(candidate)
+
 
 class BrushClassifier(BrushEstimator, ClassifierMixin):
     """Brush with c++ engine for classification.
@@ -247,21 +307,18 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
         """
         
         check_is_fitted(self)
-
-        if self.data_ is None:
-            self.data_ = self._make_data(X, 
-                                    feature_names=self.feature_names_,
-                                    validation_size=self.validation_size,
-                                    shuffle_split=self.shuffle_split)
-            
+    
         if isinstance(X, pd.DataFrame):
             X = X.values
 
         assert isinstance(X, np.ndarray)
 
         # Need to provide feature names because reference does not store order
-        data = Dataset(X=X, ref_dataset=self.data_, 
-                              feature_names=self.feature_names_)
+        data = Dataset(X=X, # ref_dataset=self.data_, 
+                            feature_types=self.feature_types_,
+                            feature_names=self.feature_names_,
+                            validation_size=0.0)
+
 
         prob = self.best_estimator_.program.predict_proba(data)
 
@@ -277,20 +334,16 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
 
         check_is_fitted(self)
 
-        if self.data_ is None:
-            self.data_ = self._make_data(X, 
-                                    feature_names=self.feature_names_,
-                                    validation_size=self.validation_size,
-                                    shuffle_split=self.shuffle_split)
-            
         if isinstance(X, pd.DataFrame):
             X = X.values
 
         assert isinstance(X, np.ndarray)
 
         # Need to provide feature names because reference does not store order
-        data = Dataset(X=X, ref_dataset=self.data_, 
-                            feature_names=self.feature_names_)
+        data = Dataset(X=X, 
+                        feature_types=self.feature_types_,
+                        feature_names=self.feature_names_,
+                        validation_size=0.0)
         
         archive = self.engine_.get_archive()
 

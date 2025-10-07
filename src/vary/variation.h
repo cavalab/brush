@@ -151,6 +151,7 @@ public:
             }
         }
 
+        // ensuring all terminals exists as a simplification option
         inexact_simplifier.init(256, data, 1);
         for (const auto& entry : this->search_space.terminal_weights) {
             map<string, float> terminal_probs;
@@ -162,7 +163,7 @@ public:
                     tree<Node> dummy_tree;
                     dummy_tree.insert(dummy_tree.begin(), node);
                     auto it = dummy_tree.begin();
-                    inexact_simplifier.index<T>(it, data.get_training_data());
+                    inexact_simplifier.index<T>(it, data.get_training_data());                    
                 }
         }
     };
@@ -217,7 +218,7 @@ public:
      * @param parents The indices of the parent individuals.
      */
     void vary_and_update(Population<T>& pop, int island, const vector<size_t>& parents,
-                         const Dataset& data, Evaluation<T>& evaluator, bool even_gen) {
+                         const Dataset& data, Evaluation<T>& evaluator, bool do_simplification) {
 
         // TODO: move implementation to cpp file and keep only declarations here
         // TODO: rewrite this entire function to avoid repetition (this is a frankenstein)
@@ -255,8 +256,18 @@ public:
             if (std::all_of(mom.program.Tree.begin(), mom.program.Tree.end(),
                 [](const auto& n) { return n.get_prob_change()<=0.0; }))
             {
-                ind = Individual<T>(mom);
+                // Notice that if everything is locked then the entire population
+                // may be replaced (if the new random individuals dominates the old
+                // fixed ones)
+                ind = Individual<T>();
                 ind.variation = "born";
+
+                ind.init(search_space, parameters);
+
+                // Alternative: keep it as it is, and just re-fit the constants
+                // (comment out just the line below to disable, but keep ind.init)
+                Program<T> copy(mom.program);
+                ind.program = copy;
             }
             else
             {
@@ -282,11 +293,10 @@ public:
                     ind.set_parents(ind_parents);
                 }
                 else {  // no optional value was returned. creating a new random individual
-                    ind = Individual<T>(mom);
+                    ind = Individual<T>();
+                    ind.init(search_space, parameters);
                     ind.variation = "born";
-                    // ind.init(search_space, parameters); // ind.variation is born by default
                 }
-                
             }
             
             // ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
@@ -306,29 +316,40 @@ public:
 
             ind.program.fit(data.get_training_data());
 
-            
-
             // simplify before calculating fitness (order matters, as they are not refitted and constants simplifier does not replace with the right value.)
             // TODO: constants_simplifier should set the correct value for the constant (so we dont have to refit).
             // simplify constants first to avoid letting the lsh simplifier to visit redundant branches
-
-            // we alternate simplification to run faster
             
-            
-            if (parameters.constants_simplification && even_gen)
+            if (parameters.constants_simplification && do_simplification)
             {
                 constants_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());  
-                
             }
-            if (parameters.inexact_simplification && even_gen)
+
+            if (parameters.inexact_simplification)
             {
-                inexact_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());
-                
+                auto inputDim = std::min(inexact_simplifier.inputDim, data.get_training_data().get_n_samples());
+
+                vector<size_t> idx(inputDim);
+                std::iota(idx.begin(), idx.end(), 0);
+                Dataset data_simp = data(idx);
+
+                if (do_simplification)
+                {
+                    // string prg_str = ind.program.get_model();
+
+                    inexact_simplifier.simplify_tree<T>(ind.program, search_space, data_simp);
+
+                    // if (ind.program.get_model().compare(prg_str)!= 0)
+                    //     cout << prg_str << endl << ind.program.get_model() << endl << "=====" << endl;
+                }
+                else
+                {
+                    inexact_simplifier.analyze_tree<T>(ind.program, search_space, data_simp);
+                }
             }
         
             evaluator.assign_fit(ind, data, parameters, false);
             
-
             // vector<float> deltas(ind.get_objectives().size(), 0.0f);
             vector<float> deltas;
 
@@ -436,8 +457,6 @@ public:
     // bandit_sample_terminal
     std::optional<Node> bandit_sample_terminal(DataType R)
     {
-
-
         if (terminal_bandits.find(R) == terminal_bandits.end()) {
 
             return std::nullopt;
@@ -445,7 +464,6 @@ public:
 
         auto& bandit = terminal_bandits.at(R);
         string terminal_name = bandit.choose();
-
 
         auto it = std::find_if(
             search_space.terminal_map.at(R).begin(),
@@ -458,15 +476,12 @@ public:
             return search_space.terminal_map.at(R).at(index);
         }
 
-
         return std::nullopt;
     };
 
     // bandit_get_node_like
     std::optional<Node> bandit_get_node_like(Node node)
     {
-
-
         // TODO: use search_space.terminal_types here (and in search_space get_node_like as well)
         if (Is<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>(node.node_type)){
 
@@ -485,15 +500,11 @@ public:
         auto& bandit = op_bandits[node.ret_type][node.args_type()];
         string node_name = bandit.choose();
 
-
         auto entries = search_space.node_map[node.ret_type][node.args_type()];
-
 
         for (const auto& [node_type, node_value]: entries)
         {
-
             if (node_value.name == node_name) {
-
                 return node_value;
             }
         }
@@ -565,6 +576,10 @@ public:
         }
 
         return std::nullopt;
+    };
+
+    inline void log_simplification_table(std::ofstream& log) {
+        inexact_simplifier.log_simplification_table(log);
     };
 
     // bandit_sample_subtree // TODO: should I implement this? (its going to be hard).

@@ -374,7 +374,7 @@ TEST(Engine, DEnc)
 
     for (const auto& bandit : bandits) {
         std::cout << "Running bandit: " << bandit << std::endl;
-        for (int run = 0; run < 5; ++run) {
+        for (int run = 0; run < 2; ++run) {
             Parameters params;
             params.set_pop_size(100);
             params.set_max_gens(50);

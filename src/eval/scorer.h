@@ -123,16 +123,23 @@ public:
         
         auto class_weights = params.class_weights;
 
-        // calculate class weights based on data instead of using a predetermined value
-        if (!class_weights.empty())
+        // calculate class weights based on current data --- instead of using a pre-calculated value.
+        // This is only true for the scoring. For other usages of class weights, then
+        // the training data is used.
+        if (true)
         {            
             class_weights.resize(params.n_classes);
             for (unsigned i = 0; i < params.n_classes; ++i){
-                class_weights.at(i) = float((data.y.cast<int>().array() == i).count())/data.y.size(); 
-                class_weights.at(i) = (1.0 - class_weights.at(i));
+                // weighting by support 
+                int support = (data.y.cast<int>().array() == i).count();
+
+                if (support==0)
+                    class_weights.at(i) = 0.0;
+                else
+                    class_weights.at(i) = float(data.y.size()) / float(params.n_classes * support);
             }
         }
-
+        
         return score(data.y, y_pred, loss, class_weights);
     }
 };
@@ -153,7 +160,7 @@ public:
     std::map<string, funcPointer> score_hash;
     string scorer;
 
-    // TODO: I actually need to test this stuff
+    // TODO: I need to test this stuff
     Scorer(string scorer="multi_log") {
         score_hash["multi_log"] = &mean_multi_log_loss; 
         score_hash["accuracy"] = &multi_zero_one_loss;
@@ -193,13 +200,17 @@ public:
         
         auto class_weights = params.class_weights;
 
-        // calculate class weights based on data instead of using a predetermined value
-        if (!class_weights.empty())
+        if (true)
         {            
             class_weights.resize(params.n_classes);
             for (unsigned i = 0; i < params.n_classes; ++i){
-                class_weights.at(i) = float((data.y.cast<int>().array() == i).count())/data.y.size(); 
-                class_weights.at(i) = (1.0 - class_weights.at(i));
+                // weighting by support 
+                int support = (data.y.cast<int>().array() == i).count();
+
+                if (support==0)
+                    class_weights.at(i) = 0.0;
+                else
+                    class_weights.at(i) = float(data.y.size()) / float(params.n_classes * support);
             }
         }
 

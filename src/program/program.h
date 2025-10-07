@@ -273,7 +273,9 @@ template<PT PType> struct Program
         for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
         {
             const auto& node = i.node->data; 
-            // some nodes cannot have their weights optimized, others must have
+            // some nodes cannot have their weights optimized, others must have.
+            // It is important that this condition also matches the condition in 
+            // the methods get_weights, set_weights, .
             if ( Is<NodeType::OffsetSum>(node.node_type)
             ||   (node.get_is_weighted() && IsWeighable(node.ret_type)) )
                 ++count;
@@ -331,12 +333,13 @@ template<PT PType> struct Program
     /**
      * @brief Iterates over the program, locking the nodes until it reaches
      * a certain depth.
+     * If the node is a SplitBest and leaves are kept, then the split feature is fixed.
      * 
      * @param end_depth the depth to stop locking nodes. Default 0.
-     * @param skip_leaves whether to skip leaves and leave them unlocked. 
+     * @param keep_leaves_unlocked whether to skip leaves and leave them unlocked. 
      * Default true.  
      */
-    void lock_nodes(int end_depth=0, bool skip_leaves=true)
+    void lock_nodes(int end_depth=0, bool keep_leaves_unlocked=true)
     {
         // iterate over the nodes, locking them if their depth does not exceed end_depth.
         if (end_depth<=0)
@@ -352,35 +355,27 @@ template<PT PType> struct Program
                 auto d = Tree.depth(tree_iter);
                 std::advance(tree_iter, 1);
 
-                if (skip_leaves && IsLeaf(n.node_type))
+                if (keep_leaves_unlocked && IsLeaf(n.node_type))
                     return;
+
+                // If we are skipping leaves, then the split feature is unlocked;
+                // Otherwise, then we lock based on depth.
+                if (n.node_type==NodeType::SplitBest)
+                {
+                    if (keep_leaves_unlocked)
+                    {
+                        n.set_keep_split_feature(false);
+                    }
+                    else // leaves can be locked
+                    {
+                        // check if we should lock based on depth
+                        n.set_keep_split_feature(d+1<=end_depth);
+                    }
+                }
 
                 if (d<=end_depth)
                     n.fixed = true; 
                     // n.set_prob_change(0.0f); 
-            }
-        );
-    }
-
-    /**
-     * @brief Iterates over the program, unlocking the nodes until it reaches
-     * a certain depth. It does not protect the root nodes of logistic regression
-     * models.
-     * 
-     * @param start_depth the depth to start unlocking nodes. Default 0.
-     */
-    void unlock_nodes(int start_depth=0)
-    {
-        auto tree_iter = Tree.begin();
-
-        std::for_each(Tree.begin(), Tree.end(),
-            [&](auto& n){ 
-                auto d = Tree.depth(tree_iter);
-                std::advance(tree_iter, 1);
-
-                if (d>=start_depth)                
-                    n.fixed = false; 
-                    // n.set_prob_change(1.0f); 
             }
         );
     }
@@ -460,12 +455,14 @@ template<PT PType> struct Program
             string node_label = parent->data.get_name(is_constant);
 
             if (Is<NodeType::SplitBest>(parent->data.node_type)){
-                node_label = fmt::format("{}>{:.2f}?", parent->data.get_feature(), parent->data.W); 
+                node_label = fmt::format("{}>={:.2f}?", parent->data.get_feature(), parent->data.W); 
             }
             if (Is<NodeType::OffsetSum>(parent->data.node_type)){
                 node_label = fmt::format("Add"); 
             }
-            out += fmt::format("\"{}\" [label=\"{}\"];\n", parent_id, node_label); 
+            
+            string node_style = parent->data.get_prob_change() >0.0 ? "" : ", style=filled, fillcolor=lightcoral";
+            out += fmt::format("\"{}\" [label=\"{}\"{}];\n", parent_id, node_label, node_style);
 
             // add edges to the node's children
             auto kid = iter.node->first_child;
@@ -490,7 +487,7 @@ template<PT PType> struct Program
                 if (Is<NodeType::SplitOn>(parent->data.node_type)){
                     use_head_tail_labels=true;
                     if (j == 0)
-                        tail_label = fmt::format(">{:.2f}",parent->data.W); 
+                        tail_label = fmt::format(">={:.2f}",parent->data.W); 
                     else if (j==1)
                         tail_label = "Y"; 
                     else
@@ -536,12 +533,13 @@ template<PT PType> struct Program
                         );
                         
                 // drawing the node
-                out += fmt::format("\"{}\" [label=\"{:.2f}\"];\n",
+                out += fmt::format("\"{}\" [label=\"{:.2f}\"{}];\n",
                         parent_id+"Offset",
-                        parent->data.W
+                        parent->data.W,
+                        node_style
                         ); 
             }
-                        
+                 
             ++i;
         }
         out += "}\n";

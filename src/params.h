@@ -78,7 +78,7 @@ public:
 
     // validation partition
     bool shuffle_split = false;
-    float validation_size = 0.75;
+    float validation_size = 0.2;
     vector<string> feature_names = {};
     vector<string> feature_types = {};
     float batch_size = 0.0;
@@ -217,8 +217,13 @@ public:
     void set_class_weights(const ArrayXf& y){
         class_weights.resize(n_classes); // set_n_classes must be called first
         for (unsigned i = 0; i < n_classes; ++i){
-            class_weights.at(i) = float((y.cast<int>().array() == i).count())/y.size(); 
-            class_weights.at(i) = (1.0 - class_weights.at(i));
+            // weighting by support 
+            int support = (y.cast<int>().array() == i).count();
+
+            if (support==0)
+                class_weights.at(i) = 0.0;
+            else
+                class_weights.at(i) = float(y.size()) / float(n_classes * support);
         }
     };
     void set_sample_weights(const ArrayXf& y){

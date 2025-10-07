@@ -32,8 +32,8 @@ float calc_initial_weight(const ArrayXf& value, const ArrayXf& y)
                                        data.col(1).array() )); // y=target
 
     // having a minimum feature weight if it was not set to zero
-    if (std::abs(prob_change)<1e-2)
-        prob_change = 1e-2;
+    if (std::abs(prob_change)<1e-5)
+        prob_change = 1e-5;
 
     // prob_change will evaluate to nan if variance(x)==0. Features with
     // zero variance should not be used (as they behave just like a constant).
@@ -153,9 +153,10 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
     cXi.set_prob_change(signature_avg(cXi.ret_type));
     terminals.push_back(cXi);
 
-    auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>(), false, "constB");
-    cXb.set_prob_change(signature_avg(cXb.ret_type));
-    terminals.push_back(cXb);
+    // Constants for booleans are rarely useful. Our special terminal `MeanLabel` provides a better way of dealing with that
+    // auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>(), false, "constB");
+    // cXb.set_prob_change(signature_avg(cXb.ret_type));
+    // terminals.push_back(cXb);
 
     // mean label node. Does not need to be part of symbols. works only for classification
     if (d.classification)
@@ -323,15 +324,11 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
     Node root = spot.node->data;
 
     // updating size accordingly to root node
-    if (Is<NodeType::SplitBest>(root.node_type))
-        s += 3;
-    else if (Is<NodeType::SplitOn>(root.node_type)){
+    if (Is<NodeType::SplitBest>(root.node_type) || Is<NodeType::SplitOn>(root.node_type)){
         s += 2;
-        // cout << "sampled split on node\n";
-    }
-        
-    if ( root.get_is_weighted()==true
-    &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(root.node_type) )
+    }        
+    else if ( root.get_is_weighted()==true
+              && Isnt<NodeType::Constant, NodeType::MeanLabel>(root.node_type) )
         s += 2;
         
     //For each argument position a of n, Enqueue(a; g) 
@@ -344,8 +341,11 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
     int max_arity = 4;
 
     Node n;
-    // Now we actually start the PTC2 procedure to create the program tree
-    while ( queue.size() + s < max_size && queue.size() > 0) 
+
+    // Now we actually start the PTC2 procedure to create the program tree.
+    // we are considering that all nodes in the queue will be weighted, so we
+    // multiply the queue size by 3
+    while ( 3*queue.size() + s < max_size && queue.size() > 0) 
     {            
         // including the queue size in the max_size, since each element in queue
         // can grow up exponentially
@@ -396,9 +396,6 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
             }
 
             n = opt.value();
-            // if (Is<NodeType::And>(n.node_type)){
-            //     cout << "AND\n";
-            // }
             
             auto newspot = Tree.replace(qspot, n);
 
@@ -414,15 +411,12 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
         // increment is different based on node weights
         ++s;
         
-        if (Is<NodeType::SplitBest>(n.node_type))
-            s += 3;
-        else if (Is<NodeType::SplitOn>(n.node_type)){
+        if (Is<NodeType::SplitBest>(n.node_type) || Is<NodeType::SplitOn>(n.node_type)){
             // cout << "sampled split on node/n";
             s += 2;
         }
-
-        if ( n.get_is_weighted()==true
-        &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(n.node_type) )
+        else if ( n.get_is_weighted()==true
+                  && Isnt<NodeType::Constant, NodeType::MeanLabel>(n.node_type) )
             s += 2;
     } 
 

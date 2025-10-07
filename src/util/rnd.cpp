@@ -77,6 +77,32 @@ namespace Brush { namespace Util{
         return dist(rg[omp_get_thread_num()]);
     }
 
+    float Rnd::rnd_alpha_beta(float alpha, float beta)
+    {
+        // use a beta distribution based on alphas and betas to sample probabilities.
+
+        // from https://stackoverflow.com/questions/4181403/generate-random-number-based-on-beta-distribution-using-boost
+        // You'll first want to draw a random number uniformly from the
+        // range (0,1). Given any distribution, you can then plug that number
+        // into the distribution's "quantile function," and the result is as
+        // if a random value was drawn from the distribution. 
+
+        // from https://stackoverflow.com/questions/10358064/random-numbers-from-beta-distribution-c
+        // The beta distribution is related to the gamma distribution. Let X be a
+        // random number drawn from Gamma(α,1) and Y from Gamma(β,1), where the
+        // first argument to the gamma distribution is the shape parameter.
+        // Then Z=X/(X+Y) has distribution Beta(α,β). 
+        
+        std::gamma_distribution<float> distA(alpha, 1.0f);
+        std::gamma_distribution<float> distB(beta, 1.0f);
+
+        float X = distA(rg[omp_get_thread_num()]);
+        float Y = distB(rg[omp_get_thread_num()]);
+
+        float prob = X/(X+Y+0.001f);
+        
+        return prob;
+    }
     float Rnd::rnd_dbl(float min, float max)
     {
         std::uniform_real_distribution<float> dist(min, max);

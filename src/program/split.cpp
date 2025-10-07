@@ -15,8 +15,8 @@ tuple<string,float> get_best_variable_and_threshold(const Dataset& d, TreeNode& 
     return std::make_tuple(feature, threshold);
 }
 
-template<> vector<float> get_thresholds<ArrayXb>(const ArrayXb& x){ return vector<float>{0.0}; }
-template<> vector<float> get_thresholds<ArrayXbJet>(const ArrayXbJet& x){ return vector<float>{0.0}; }
+template<> vector<float> get_thresholds<ArrayXb>(const ArrayXb& x){ return vector<float>{1.0}; }
+template<> vector<float> get_thresholds<ArrayXbJet>(const ArrayXbJet& x){ return vector<float>{1.0}; }
 template<> vector<float> get_thresholds<ArrayXi>(const ArrayXi& x){ 
     vector<float> thresholds;
     for (const auto& val : unique(x))
@@ -35,7 +35,8 @@ template<> vector<float> get_thresholds<ArrayXf>(const ArrayXf& x){
     auto s = unique(x);
     for (unsigned i =0; i<s.size()-1; ++i)
     {
-        thresholds.push_back((s.at(i) + s.at(i+1))/2.0);
+        // thresholds.push_back((s.at(i) + s.at(i+1))/2.0);
+        thresholds.push_back(s.at(i+1));
     }
     return thresholds;
 }
@@ -44,7 +45,8 @@ template<> vector<float> get_thresholds<ArrayXfJet>(const ArrayXfJet& x){
     auto s = unique(x);
     for (unsigned i =0; i<s.size()-1; ++i)
     {
-        thresholds.push_back((s.at(i).a + s.at(i+1).a)/float(2.0));
+        // thresholds.push_back((s.at(i).a + s.at(i+1).a)/float(2.0));
+        thresholds.push_back(s.at(i+1).a);
     }
     return thresholds;
 }

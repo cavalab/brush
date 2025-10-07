@@ -1,13 +1,5 @@
 #include "bandit_operator.h"
 
-// #include <boost/random.hpp>
-// #include <boost/random/gamma_distribution.hpp>
-
-#include <boost/math/distributions/gamma.hpp>
-
-// // https://www.boost.org/doc/libs/1_85_0/doc/html/boost/random/beta_distribution.html
-// #include <boost/random/beta_distribution.hpp>
-
 #include "../util/utils.h" // to use random generator
 
 #ifndef THOMPSON_H

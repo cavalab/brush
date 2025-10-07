@@ -24,14 +24,14 @@ namespace Split{
     }
     template<typename T> requires same_as<typename T::Scalar, float>
     ArrayXb threshold_mask(const T& x, const float& threshold) { 
-        return (x > threshold); 
+        return (x >= threshold); 
     }
     template<typename T> requires same_as<typename T::Scalar, fJet>
     ArrayXb threshold_mask(const T& x, const float& threshold) { 
         ArrayXb ret(x.size()); 
         std::transform(
             x.begin(), x.end(), ret.begin(), 
-            [&](const auto& e){return e > threshold;}
+            [&](const auto& e){return e >= threshold;}
         );
         return ret; 
     }
@@ -74,10 +74,13 @@ namespace Split{
         //////////////////// shared //////////////////////
         float best_thresh, best_score = MAX_FLT;
         int i = 0 ;
+
         vector<float> unique_classes;
         if (classification)
             unique_classes = unique(y);
 
+        // all_thresholds contains the unique values to be used as thresholds
+        // with a >= operator  
         for (const auto thresh: all_thresholds)
         {
 
@@ -233,12 +236,30 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
             // get the best splitting threshold
             tie(threshold, ignore) = Split::best_threshold(split_feature, d.y, d.classification);
         }
-        else
+        else // splitbest
         {
-            string feature = "";
-            tie(feature, threshold) = Split::get_best_variable_and_threshold(d, tn);
-            tn.data.set_feature(feature);
-            tn.data.set_feature_type(d.get_feature_type(feature));
+            // avoid updating the split feature
+            if (tn.data.get_keep_split_feature() && tn.data.get_feature()!="")
+            {
+                // TODO: I think the if-else clausules could be simplified
+
+                auto values = d[tn.data.get_feature()];
+
+                // Threshold will be optimized regardless.
+                if (std::holds_alternative<ArrayXf>(values))
+                    tie(threshold, ignore) = Split::best_threshold(std::get<ArrayXf>(values), d.y, d.classification);
+                else if (std::holds_alternative<ArrayXi>(values))
+                    tie(threshold, ignore) = Split::best_threshold(std::get<ArrayXi>(values), d.y, d.classification);
+                else if (std::holds_alternative<ArrayXb>(values))
+                    tie(threshold, ignore) = Split::best_threshold(std::get<ArrayXb>(values), d.y, d.classification);
+            }
+            else // keep_split_feature == false
+            {
+                string feature = "";
+                tie(feature, threshold) = Split::get_best_variable_and_threshold(d, tn);
+                tn.data.set_feature(feature);
+                tn.data.set_feature_type(d.get_feature_type(feature));
+            }
         }
 
         return predict(d, tn);

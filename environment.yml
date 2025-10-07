@@ -9,7 +9,6 @@ dependencies:
     - cxx-compiler
     - ninja
     - ceres-solver=2.1.0
-    - boost-cpp=1.82.0
     - pybind11>=2.6.2
     - taskflow
     - pytest #=6.2.4
@@ -28,6 +27,6 @@ dependencies:
     - sphinx
     - pip:
       - graphviz
-      - deap # TODO: deap optional
-      - pmlb
+      # - deap # optional
+      # - pmlb # used only for testing
       

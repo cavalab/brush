@@ -6,6 +6,10 @@ requires = [
     "sphinx",
     "pybind11",
     "maisie_sphinx_theme",
+    "sphinx-copybutton",
+    "sphinx_math_dollar",
+    "sphinx-rtd-theme",
+    "myst-nb",
     "breathe"
 ]
 build-backend = "scikit_build_core.build"
@@ -24,14 +28,24 @@ description = "Python bindings for brush"
 readme = "README.md"
 license = { text = "GPL-3.0-or-later" }
 requires-python = ">=3.8"
-optional-dependencies.docs = [
+[project.optional-dependencies]
+docs = [
+    "numpydoc",
     "sphinx_rtd_theme",
+    "sphinx-copybutton",
+    "sphinx-rtd-theme",
+    "sphinx_math_dollar",
     "maisie_sphinx_theme",
+    "myst-nb",
     "breathe"
 ]
-optional-dependencies.test = [
+test = [
+    "deap",
     "pytest",
     "pmlb"
+]
+deap = [
+    "deap"
 ]
 
 [project.urls]

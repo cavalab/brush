@@ -7,9 +7,9 @@ provides documentation for the hyperparameters.
 
 import numpy as np
 import pandas as pd
-from pandas.api.types import is_float_dtype, is_bool_dtype, is_integer_dtype
 from pybrush import Parameters, Dataset
 from typing import Union, List, Dict
+from collections.abc import Callable
 
 class EstimatorInterface():
     """
@@ -67,7 +67,7 @@ class EstimatorInterface():
         Distribution of sizes on the initial population. If `max_size`, then every
         expression is created with `max_size` nodes. If `uniform`, size will be
         uniformly distributed between 1 and `max_size`.
-    objectives : list[str], default ["scorer", "size"]
+    objectives : list[str], default ["scorer", "linear_complexity"]
         list with one or more objectives to use. The first objective is the main.
         If `"scorer"` is used, then the metric in `scorer` will be used as objective.
         Possible values are "scorer", "size", "complexity", "linear_complexity",
@@ -85,7 +85,7 @@ class EstimatorInterface():
         based on the correlation with the output y. If `False`, then all terminal nodes
         will have the same probability of 1.0. This parameter is ignored if the bandit
         strategy is used, and weights will be learned dynamically during the run.
-    validation_size : float, default 0.0
+    validation_size : float, default 0.2
         Percentage of samples to use as a hold-out partition. These samples are used
         to calculate statistics during evolution, but not used to train the models.
         The `best_estimator_` will be selected using this partition. If zero, then
@@ -127,6 +127,25 @@ class EstimatorInterface():
     load_population: str, optional (default "")
         string containing the path to load the initial population. Ignored
         if not provided.
+    final_model_selection : {"", "smallest_complexity"} or function, optional (default "")
+        specifies how the final model should be selected. If a function is 
+        passed, then it will be applied over the population to select the
+        final model. If a string is passed, then it should be one of the
+        available options:
+        * `""`: the model selected by the C++ engine is used. The C++ picks the
+        model with best `scorer` objective value on the inner validation
+        partition. If `validation_size` is set to zero, then the training 
+        partition is used;
+        * `"smallest_complexity"`: the non-dominated individual with the 
+        smallest complexity, and more than one node in size (asserting it is
+        a non-constant solution);
+
+        If a custom function is passed, then it should hhave the signature
+        `Callable[[List[Dict], List[Dict]], Dict]]`, which means that it takes
+        as arguments two lists of dicts (the entire population and the 
+        pareto front represented as a list of individuals serialized as
+        dictionaries, respectively), and returns a single individual (one 
+        individual from any of the lists).
     bandit : str, optional (default: "dynamic_thompson")
         The bandit strategy to use for the estimator. Options are `"dummy"` that
         does not change the probabilities; `"thompson"` that uses static Thompson
@@ -176,7 +195,7 @@ class EstimatorInterface():
         scorer: str = None,
         algorithm: str = "nsga2",
         weights_init: bool = True,
-        validation_size: float = 0.0,
+        validation_size: float = 0.2,
         use_arch: bool = False,
         val_from_arch: bool = True,
         constants_simplification=True,
@@ -184,6 +203,7 @@ class EstimatorInterface():
         batch_size: float = 1.0,
         sel: str = "lexicase",
         surv: str = "nsga2",
+        final_model_selection: Union[str, Callable[[List[Dict], List[Dict]], Dict]] = "",
         save_population: str = "",
         load_population: str = "",
         bandit: str = 'dynamic_thompson',
@@ -207,6 +227,7 @@ class EstimatorInterface():
         self.cx_prob = cx_prob
         self.bandit = bandit
         self.logfile = logfile
+        self.final_model_selection = final_model_selection
         self.save_population = save_population
         self.load_population = load_population
         self.mutation_probs = mutation_probs
@@ -333,7 +354,7 @@ class EstimatorInterface():
 
     
     def _make_data(self, X, y=None,
-                    feature_names=[],
+                    feature_names=[], feature_types=[],
                     validation_size=0.0, shuffle_split=False):
         """
         Prepare the data for training or prediction.
@@ -361,26 +382,9 @@ class EstimatorInterface():
         # before calling `_make_data` (so predict can be made with np arrays or
         # pd dataframes).
 
-        feature_types = []
         if isinstance(y, pd.Series):
             y = y.values
         if isinstance(X, pd.DataFrame):
-            feature_names = X.columns
-            for values, dtype in zip(X.values.T, X.dtypes):
-                if is_bool_dtype(dtype):
-                    feature_types.append('ArrayB')
-                elif is_integer_dtype(dtype):
-                    if np.all(np.logical_or(values == 0, values == 1)):
-                        feature_types.append('ArrayB')
-                    else:
-                        feature_types.append('ArrayI')
-                elif is_float_dtype(dtype):
-                    feature_types.append('ArrayF')
-                else:
-                    raise ValueError(
-                        "Unsupported data type. Please try using an "
-                        "encoding method to convert the data to a supported "
-                        "format.")
             X = X.values
 
         assert isinstance(X, np.ndarray)
@@ -414,4 +418,7 @@ class EstimatorInterface():
 
     def __setstate__(self, state):
         self.__dict__.update(state)
-        self.data_ = None
+        # self.data_ = None
+        # self.train_ = None
+        # self.validation_ = None
+        # self.search_space_ = None

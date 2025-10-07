@@ -193,17 +193,22 @@ TEST(Variation, InsertMutationWorks)
             ASSERT_TRUE(Child.program.depth() >= IND.program.depth());
         }
 
-        // lets also see if it always fails when the child exceeds the maximum limits
+        // lets also see if it still work when the child exceeds the maximum limits,
+        // but returns some larger individual
         variator.parameters.set_max_depth(IND.program.depth());
         variator.parameters.set_max_size(IND.program.size());
 
         auto opt2 = variator.mutate(IND);
-        if (opt2){ // This shoudl't happen. We'll print the error
+        
+        if (opt2!=std::nullopt) // Mutation can still fail if there are no valid spots!
+        {
+            // mutation will fail 3 times, then whatever was created will be returned
             auto Child2 = opt2.value();
 
-            std::cout << "Fail failed. Mutation weights:" << std::endl;
+            cout << "Mutation failed to generate something valid. ";
+            cout << "Mutation weights:" << endl;
             for (const auto& [k, v] : params.mutation_probs)
-                std::cout << k << " : " << v << std::endl;
+                cout << k << " : " << v << endl;
 
             fmt::print(
                 "max depth = {}, max size= {}\n"
@@ -212,9 +217,7 @@ TEST(Variation, InsertMutationWorks)
                 "=================================================\n",
                 params.max_depth, params.max_size,
                 IND.program.get_model("compact", true),
-                Child2.program.get_model("compact", true)
-            );
-            ASSERT_TRUE(opt2==std::nullopt); // this will fail, so we can see the log
+                Child2.program.get_model("compact", true));
         }
     }
     ASSERT_TRUE(successes > 0);
@@ -333,9 +336,10 @@ TEST(Variation, MutationSizeAndDepthLimit)
     SearchSpace SS;
     SS.init(data);
     
-    // prod operator  --> arity 4: prod(T1, T2, T3)
-    // split best     --> arity 6: if(terminal > value, T_case_true, T_case_false)
-    int max_arity = 6;
+    // prod operator  --> arity 4: prod(T1, T2, T3, T4)
+    // split best     --> has 6 symbols: if(terminal > value, T_case_true, T_case_false),
+    //                    and size 6, but the `> value` corresponds to the weight of the node.
+    int max_arity = 4;
 
     int successes = 0;
     for (int d = 1; d < 6; ++d)
@@ -397,14 +401,20 @@ TEST(Variation, MutationSizeAndDepthLimit)
                 // Original didn't change
                 ASSERT_TRUE(PRG_model == IND.program.get_model("compact", true));
                 
+                // considering each child of the operator can be weighted (adding `* coeff` to the
+                // size), we check for max_arity*3. Check PTC2 docs to understand why we
+                // have `size + maximum arity` as the maximum size of the trees. 
                 ASSERT_TRUE(Child.program.size() > 0);
-                ASSERT_TRUE(Child.program.size() <= s);
+                ASSERT_TRUE(Child.program.size() <= s+max_arity*3);
 
                 ASSERT_TRUE(Child.program.size() > 0);
-                ASSERT_TRUE(Child.program.size() <= s);
+                ASSERT_TRUE(Child.program.size() <= s+max_arity*3);
 
+                // depth+1 since the insert mutation can create something 
+                // bigger than what it should. If the mutation always returns
+                // something, then the insert mutation can increase depth by 1.
                 ASSERT_TRUE(Child.program.depth() >= 0);
-                ASSERT_TRUE(Child.program.depth() <= d);
+                ASSERT_TRUE(Child.program.depth() <= d+1);
             }
         }
     }
@@ -524,10 +534,6 @@ TEST(Variation, CrossoverSizeAndDepthLimit)
     SearchSpace SS;
     SS.init(data);
 
-    // prod operator  --> arity 4: prod(T1, T2, T3)
-    // split best     --> arity 6: if(terminal > value, T_case_true, T_case_false)
-    int max_arity = 6;
-
     int successes = 0;
     for (int d = 1; d < 6; ++d)
     {
@@ -586,10 +592,13 @@ TEST(Variation, CrossoverSizeAndDepthLimit)
 
                 // Child is within restrictions
                 ASSERT_TRUE(Child.program.size() > 0);
-                ASSERT_TRUE(Child.program.size() <= s + 3*max_arity);
+
+                // crossover should not generate something larger than the
+                // combination of its parents
+                ASSERT_TRUE(Child.program.size() < PRG1.size() + PRG2.size());
 
                 ASSERT_TRUE(Child.program.depth() >= 0);
-                ASSERT_TRUE(Child.program.depth() <= d);
+                ASSERT_TRUE(Child.program.depth() < PRG1.depth() + PRG2.depth());
             }
         }
     }

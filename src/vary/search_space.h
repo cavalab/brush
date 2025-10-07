@@ -677,6 +677,7 @@ struct SearchSpace
         {
             if (Is<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>(NT))
                 return;
+                
             bool use_all = user_ops.size() == 0;
             auto name = NodeTypeName.at(NT);
 

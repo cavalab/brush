@@ -119,8 +119,7 @@ public:
     void set_population(vector<json> pop_vector);
 
     // locking and unlocking parts of the solutions
-    void lock_nodes(int end_depth=0, bool skip_leaves=true);
-    void unlock_nodes(int start_depth=0);
+    void lock_nodes(int end_depth=0, bool keep_leaves_unlocked=true);
 
     /// predict on unseen data from the archive             
     auto predict_archive(int id, const Dataset& data);

@@ -35,10 +35,11 @@ add_custom_command(OUTPUT ${SPHINX_INDEX_FILE}
                    COMMAND
                       ${SPHINX_EXECUTABLE} -b html
                       -Dbreathe_projects.brush=${DOXYGEN_OUTPUT_DIR}/xml
+                      -D master_doc=index
                       ${SPHINX_SOURCE} ${SPHINX_BUILD}
                    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
                    DEPENDS
-                      ${CMAKE_CURRENT_SOURCE_DIR}/index.rst
+                      ${CMAKE_CURRENT_SOURCE_DIR}/index.md
                       ${DOXYGEN_INDEX_FILE}
                    MAIN_DEPENDENCY ${SPHINX_SOURCE}/conf.py
                    COMMENT "Generating documentation pages with Sphinx")
