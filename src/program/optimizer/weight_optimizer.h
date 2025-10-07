@@ -70,7 +70,6 @@ struct ResidualEvaluator {
             // we are biasing the predictions away from 0 and 1
             float eps = 1e-6f;
 
-
             auto y = GetTarget();
 
             // cout << T(1.0) << ", " << T(eps) << endl;
