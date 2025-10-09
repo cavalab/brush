@@ -228,6 +228,20 @@ struct Signatures<N, enable_if_t<is_in_v<N,
         >; 
     }; 
 
+// template<NodeType N>
+// struct Signatures<N, enable_if_t<is_in_v<N, 
+//     NodeType::Equals
+//     >>>{
+//         using type = std::tuple< 
+//             // converting float/int to bool
+//             // Signature<ArrayXb(ArrayXf,ArrayXf)>,
+//             // Signature<ArrayXb(ArrayXi,ArrayXi)>,
+//             Signature<ArrayXb(ArrayXb,ArrayXb)>
+//             // Signature<ArrayXXb(ArrayXXf,ArrayXXf)>,
+//             // Signature<ArrayXXb(ArrayXXi,ArrayXXi)>
+//         >; 
+//     }; 
+
 template<NodeType N>
 struct Signatures<N, enable_if_t<is_in_v<N,
     NodeType::And,
@@ -356,21 +370,6 @@ struct Signatures<N, enable_if_t<is_in_v<N,
             Signature<ArrayXi(ArrayXXb)>
         >;
     }; 
-
-/* template<NodeType N> */
-/* struct Signatures<N, enable_if_t<is_in_v<N, */ 
-/*     NodeType::Equals, */
-/*     NodeType::LessThan, */
-/*     NodeType::GreaterThan, */
-/*     NodeType::Leq, */
-/*     NodeType::Geq, */
-/*     NodeType::CustomBinaryOp */
-/*     >>>{ */ 
-/*         using type = std::tuple< */
-/*             Signature<ArrayXb(ArrayXf,ArrayXf)> */
-/*             /1* Signature<ArrayXXf(ArrayXXf,ArrayXXf)>, *1/ */
-/*         >; */
-/*     }; */ 
 
 template<NodeType N>
 struct Signatures<N, enable_if_t<is_in_v<N, NodeType::SplitBest, NodeType::CustomSplit>>>

@@ -2,6 +2,7 @@
 #define METRICS_H
 
 #include "../data/data.h"
+#include "../util/utils.h"
 
 namespace Brush {
 /**

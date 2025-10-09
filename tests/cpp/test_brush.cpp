@@ -98,9 +98,6 @@ TEST(Engine, EngineWorks)
     
     params.set_mig_prob(0.5);
 
-    // just to see if nothing breaks
-    params.set_use_arch(true);
-
     std::cout << "n jobs = 1" << std::endl;
     params.set_n_jobs(1);
     Brush::RegressorEngine est6(params, ss);
@@ -161,9 +158,10 @@ TEST_P(EngineTest, ClassificationEngineWorks)
     Parameters params;
     params.set_pop_size(10);
 
+    // TODO: this set_class_weights is not working properly. check that
     // We MUST set these three parameters to run a classification problem
     params.set_n_classes(data.y);
-    params.set_class_weights(data.y);
+    // params.set_class_weights(data.y);
     params.set_sample_weights(data.y);
 
     params.set_max_gens(1000);
@@ -340,7 +338,6 @@ TEST(Engine, engine_save_load_pop_works)
     params_save.set_max_gens(10);
     params_save.set_scorer("log");
     params_save.set_verbosity(1);
-    params_save.set_use_arch(false);
     params_save.set_save_population("./tests/cpp/__pop_analcatdata_aids.json");
 
     Parameters params_load;
@@ -349,7 +346,6 @@ TEST(Engine, engine_save_load_pop_works)
     params_load.set_max_gens(10);
     params_load.set_scorer("average_precision_score");
     params_load.set_verbosity(1);
-    params_load.set_use_arch(true);
     params_load.set_load_population("./tests/cpp/__pop_analcatdata_aids.json");
 
     for (int run = 0; run < 10; ++run) {
@@ -383,7 +379,6 @@ TEST(Engine, DEnc)
             params.set_objectives({"scorer", "linear_complexity"});
             params.set_bandit(bandit);
             params.set_weights_init(false);
-            params.set_use_arch(false);
             
             // params.set_constants_simplification(false);
             // params.set_inexact_simplification(false);

@@ -439,8 +439,11 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
     {
         template<typename T>
         inline auto operator()(const ArrayBase<T>& t1, const ArrayBase<T>& t2) {
-            return t1 && t2;
+            // return t1 && t2; // old, wasnt sure if it works
+
+            return (t1 * t2).template cast<typename T::Scalar>();
         }
+
         template<typename T> requires same_as<typename T::Scalar, bJet>
         inline auto operator()(const ArrayBase<T>& t1, const ArrayBase<T>& t2) {
             // ArrayXb t1_bool(t1.size());
@@ -452,7 +455,10 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
             //     t2_bool(i) = t2(i).a;
             
             // return (t1_bool || t2_bool).cast<bool>();
-            return t1 * t2;
+
+            // line below may work better than logic above
+            // ---
+            return t1 * t2; // relies on bJet::operator*
         }
     };
 
@@ -462,11 +468,12 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
     {
         template<typename T>
         inline auto operator()(const ArrayBase<T>& t1, const ArrayBase<T>& t2) {
-            return t1 || t2;
+            // return t1 || t2;
+            return ((t1 + t2).min(1)).template cast<typename T::Scalar>();
         }
         template<typename T> requires same_as<typename T::Scalar, bJet>
         inline auto operator()(const ArrayBase<T>& t1, const ArrayBase<T>& t2) {
-            return t1 + t2;
+            return t1 + t2; // bJet::operator+
         }
     };
 
@@ -476,20 +483,55 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
     {
         template<typename T> 
         inline auto operator()(const ArrayBase<T>& t) {
-            return !t;
+            // return !t;
+            return (1 - t).template cast<typename T::Scalar>();
         }
         template<typename T> requires same_as<typename T::Scalar, bJet>
         inline auto operator()(const ArrayBase<T>& t) {
-            auto trues = ArrayXb::Constant(t.size(), true);
-            return (t - trues);
+            // auto trues = ArrayXb::Constant(t.size(), true);
+            // return (t - trues);
          
             // for (size_t i = 0; i < t.size(); ++i) {
             //     t.at(i).a = !t.at(i).a;
             // }
 
             // return t;
+
+            return T(1) - t; 
         }
     };
-} // Brush
 
+    // comparison operators. These will help changing the types along the tree
+
+    /* coefficient-wise greater than or equal */
+    // template<>
+    // struct Function<NodeType::Geq>
+    // {
+    //     template<typename T1, typename T2>
+    //     inline auto operator()(const ArrayBase<T1>& t1, const ArrayBase<T2>& t2) const {
+    //         return (t1 >= t2);
+    //     }
+
+    //     template<typename T1, typename T2> requires same_as<typename T1::Scalar, bJet>
+    //     inline auto operator()(const ArrayBase<T1>& t1, const ArrayBase<T2>& t2) const {
+    //         return (t1 - t2) >= bJet(0);
+    //     }
+    // };
+
+    /* coefficient-wise equal */
+    // template<>
+    // struct Function<NodeType::Equals>
+    // {
+    //     template<typename T>
+    //     inline auto operator()(const ArrayBase<T>& t1, const ArrayBase<T>& t2) {
+    //         return (t1 - t2).template cast<typename T::Scalar>();
+    //     }
+
+    //     template<typename T> requires same_as<typename T::Scalar, bJet>
+    //     inline auto operator()(const ArrayBase<T>& t1, const ArrayBase<T>& t2) {
+    //         return t1 * t2; // relies on bJet::operator*
+    //     }
+    // };
+
+} // Brush
 #endif

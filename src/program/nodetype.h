@@ -80,18 +80,18 @@ enum class NodeType : uint64_t { // Each node type must have a complexity
     SplitBest           = 1UL << 36UL,
     SplitOn             = 1UL << 37UL,
 
-    // these ones change type
-    /* Equals              = 1UL << 39UL, */
-    /* LessThan            = 1UL << 40UL, */
-    /* GreaterThan         = 1UL << 41UL, */
-    /* Leq                 = 1UL << 42UL, */
-    /* Geq                 = 1UL << 43UL, */
-
     // boolean
     And                 = 1UL << 38UL,
     Or                  = 1UL << 39UL,
     Not                 = 1UL << 40UL,
     // Xor                 = 1UL << 39UL,
+
+    // comparison
+    // Equals              = 1UL << 41UL,
+    // Geq                 = 1UL << 42UL,
+    /* GreaterThan         = 1UL << 41UL, */
+    /* Leq                 = 1UL << 42UL, */
+    /* LessThan            = 1UL << 43UL, */
 
     // leaves (must be the last ones in this enum)
     MeanLabel           = 1UL << 41UL,
@@ -116,7 +116,8 @@ struct NodeTypes {
     // magic number keeping track of the number of different node types
     
     // index of last available node visible to search_space.
-    // It must match the highest bit used in the enum
+    // It must match the highest bit used in the enum.
+    //notice that we will create the nodetypes until this count
     static constexpr size_t Count = 44;
 
     // subtracting leaves (leaving just the ops into this)
@@ -198,9 +199,9 @@ NLOHMANN_JSON_SERIALIZE_ENUM( NodeType, {
     // {NodeType::Xor,"Xor" },
 
     // decision (same)
-    /* {NodeType::Equals,"Equals" }, */
+    // {NodeType::Equals,"Equals" },
+    // {NodeType::Geq,"Geq" },
     /* {NodeType::LessThan,"LessThan" }, */
-    /* {NodeType::GreaterThan,"GreaterThan" }, */
     /* {NodeType::Leq,"Leq" }, */
     /* {NodeType::Geq,"Geq" }, */
 
@@ -290,8 +291,8 @@ static constexpr bool UnaryOp = is_in_v<nt,
     NT::Sqrt,
     NT::Sqrtabs,
     NT::Square,
-    NT::Logistic
-    // NT::Not
+    NT::Logistic,
+    NT::Not
 >;
 
 template<NT nt>
@@ -300,13 +301,19 @@ static constexpr bool BinaryOp = is_in_v<nt,
     NT::Sub,
     NT::Mul,
     NT::Div,
-    NT::Pow
+    NT::Pow,
+    NT::And,
+    NT::Or
+    // NT::Equals
 >;
 
 template<NT nt>
 static constexpr bool AssociativeBinaryOp = is_in_v<nt, 
     NT::Add,
-    NT::Mul
+    NT::Mul,
+    NT::And,
+    NT::Or
+    // NT::Equals
 >;
 
 template<NT nt>

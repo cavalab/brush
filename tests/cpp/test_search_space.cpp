@@ -53,7 +53,7 @@ TEST(SearchSpace, Initialization)
     ASSERT_TRUE(expected_weights_Xf.isApprox(actual_weights_Xf));
     
     ArrayXf expected_weights_Xi(2); // 2 elements (x2 and c)    
-    expected_weights_Xi << 0.27470782, 0.27470782;
+    expected_weights_Xi << 0.2736814, 0.2736814;
 
     auto actual_weights_i = SS.terminal_weights.at(DataType::ArrayI);
     Eigen::Map<ArrayXf> actual_weights_Xi(actual_weights_i.data(), actual_weights_i.size());

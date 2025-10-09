@@ -81,17 +81,17 @@ void Archive<T>::init(Population<T>& pop)
 
     individuals.resize(0);
 
-    // dealing with islands --> fast nds for each island
+    vector<size_t> indices;
+    
     for (int island =0; island< pop.num_islands; ++island) {
-        vector<size_t> indices = pop.get_island_indexes(island);
-
-        selector.fast_nds(pop, indices); 
+        vector<size_t> island_indices = pop.get_island_indexes(island);
+        indices.insert(indices.end(), island_indices.begin(), island_indices.end());
     }
-
-    // OBS: fast_nds will change all individual fitness inplace.
-    // It will update the values for dcounter, rank, and dominated individuals.
-
-    // TODO: fix this way of getting pareto front (the pareto front of different islands combined will not necessarily be the final pareto front). Also fix this in update
+    vector<vector<int>> front = selector.fast_nds(pop, indices); 
+    for (const auto& i : front[0])
+    {
+        individuals.push_back( *pop.individuals.at(i) );
+    }
 
     /* vector<size_t> front = this->sorted_front(); */
     for (int island =0; island< pop.num_islands; ++island) {
@@ -126,19 +126,19 @@ void Archive<T>::update(Population<T>& pop, const Parameters& params)
 {
     individuals.resize(0);  // clear archive
 
-    // refill archive with new pareto fronts (one pareto front for each island!)
-    // TODO: refill with fast nds just like hall of fame
+    vector<size_t> indices;
+    
     for (int island =0; island< pop.num_islands; ++island) {
-        vector<size_t> indices = pop.get_island_indexes(island);
-
-        // TODO: can i just call fast nds with all indexes in indices?
-        vector<vector<int>> front = selector.fast_nds(pop, indices); 
-        for (const auto& i : front[0])
-        {
-            individuals.push_back( *pop.individuals.at(i) );
-        }
+        vector<size_t> island_indices = pop.get_island_indexes(island);
+        indices.insert(indices.end(), island_indices.begin(), island_indices.end());
     }
     
+    vector<vector<int>> front = selector.fast_nds(pop, indices); 
+    for (const auto& i : front[0])
+    {
+        individuals.push_back( *pop.individuals.at(i) );
+    }
+
     if (this->sort_complexity) {
         if (this->linear_complexity)
             std::sort(individuals.begin(), individuals.end(), &sortLinearComplexity); 

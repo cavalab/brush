@@ -179,13 +179,11 @@ void Engine<T>::print_stats(std::ofstream& log, float fraction)
 }
 
 template <ProgramType T>
-vector<json> Engine<T>::get_archive(bool front)
+vector<json> Engine<T>::get_archive_as_json()
 {
-    vector<json> archive_vector; // Use a vector to store serialized individuals
-    
-    // TODO: use this front argument (or remove it). I think I can remove 
+    vector<json> archive_vector; 
     for (const auto& ind : archive.individuals) {
-        json j;  // Serialize each individual
+        json j;
         to_json(j, ind);
         archive_vector.push_back(j);
     }
@@ -193,28 +191,59 @@ vector<json> Engine<T>::get_archive(bool front)
     return archive_vector;
 }
 
+// TODO: dont have a get_pop and get_serialized_pop --> make them the same name but overloaded.
+// Also fix this in the pybind wrapper
 template <ProgramType T>
-vector<json> Engine<T>::get_population()
+vector<json> Engine<T>::get_population_as_json()
 {
-    vector<json> pop_vector; // Use a vector to store serialized individuals
+    vector<json> pop_vector;
     for (const auto& ind : pop.individuals) {
         if (ind == nullptr) {
             // HANDLE_ERROR_THROW("get_population found a nullptr individual");
             continue;
         }
 
-        json j;  // Serialize each individual
+        json j;
         to_json(j, *ind);
         pop_vector.push_back(j);
     }
 
-    if(pop_vector.size() != params.pop_size)  HANDLE_ERROR_THROW("Population size is different from pop_size");
+    if(pop_vector.size() != params.pop_size)
+        HANDLE_ERROR_THROW("Population size is different from pop_size");
 
     return pop_vector;
 }
 
 template <ProgramType T>
-void Engine<T>::set_population(vector<json> pop_vector)
+vector<Individual<T>> Engine<T>::get_archive()
+{
+    vector<Individual<T>> archive_vector;
+    for (const auto& ind : archive.individuals) {
+        archive_vector.push_back(ind);
+    }
+
+    return archive_vector;
+}
+
+template <ProgramType T>
+vector<Individual<T>> Engine<T>::get_population()
+{
+    vector<Individual<T>> pop_vector; 
+    for (const auto& ind : pop.individuals) {
+        if (ind == nullptr) {
+            continue;
+        }
+        pop_vector.push_back(*ind);
+    }
+
+    if(pop_vector.size() != params.pop_size)
+        HANDLE_ERROR_THROW("Population size is different from pop_size");
+
+    return pop_vector;
+}
+
+template <ProgramType T>
+void Engine<T>::set_population_from_json(vector<json> pop_vector)
 {
     vector<Individual<T>> new_pop;
 
@@ -239,88 +268,24 @@ void Engine<T>::set_population(vector<json> pop_vector)
     this->pop.init(new_pop, params);
 }
 
-
-// TODO: private function called find_individual that searches for it based on id. Then,
-// use this function in predict_archive and predict_proba_archive.
 template <ProgramType T>
-auto Engine<T>::predict_archive(int id, const Dataset& data)
+void Engine<T>::set_population(vector<Individual<T>> pop_vector)
 {
-    if (id == best_ind.id)
-        return best_ind.predict(data);
+    vector<Individual<T>> new_pop;
+    for (const auto& ind_j : pop_vector) {
+        Individual<T> ind;
+        ind.program = ind_j.program;
+        ind.set_objectives(ind_j.get_objectives());
 
-    for (int i = 0; i < this->archive.individuals.size(); ++i)
-    {
-        Individual<T>& ind = this->archive.individuals.at(i);
-
-        if (id == ind.id)
-            return ind.predict(data);
-    }
-    for (int island=0; island<pop.num_islands; ++island) {
-        auto indices = pop.get_island_indexes(island);
-
-        for (unsigned i = 0; i<indices.size(); ++i)
-        {
-            const auto& ind = pop.individuals.at(indices.at(i));
-
-            if (id == ind->id)
-                return ind->predict(data);
-        } 
+        new_pop.push_back(ind);
     }
 
-    std::runtime_error("Could not find id = "
-            + to_string(id) + "in archive or population.");
-        
-    return best_ind.predict(data);
+    if(new_pop.size() != params.pop_size)
+        HANDLE_ERROR_THROW("set_population size is different from params.pop_size");
+
+    this->pop.init(new_pop, params);
 }
 
-template <ProgramType T>
-auto Engine<T>::predict_archive(int id, const Ref<const ArrayXXf>& X)
-{
-    Dataset d(X);
-    return predict_archive(id, d);
-}
-
-template <ProgramType T>
-template <ProgramType P>
-    requires((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))
-auto Engine<T>::predict_proba_archive(int id, const Dataset& data)
-{
-    if (id == best_ind.id)
-        return best_ind.predict_proba(data);
-
-    for (int i = 0; i < this->archive.individuals.size(); ++i)
-    {
-        Individual<T>& ind = this->archive.individuals.at(i);
-
-        if (id == ind.id)
-            return ind.predict_proba(data);
-    }
-    for (int island=0; island<pop.num_islands; ++island) {
-        auto indices = pop.get_island_indexes(island);
-
-        for (unsigned i = 0; i<indices.size(); ++i)
-        {
-            const auto& ind = pop.individuals.at(indices.at(i));
-
-            if (id == ind->id)
-                return ind->predict_proba(data);
-        } 
-    }
-     
-    std::runtime_error("Could not find id = "
-            + to_string(id) + "in archive or population.");
-            
-    return best_ind.predict_proba(data);
-}
-
-template <ProgramType T>
-template <ProgramType P>
-    requires((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))
-auto Engine<T>::predict_proba_archive(int id, const Ref<const ArrayXXf>& X)
-{
-    Dataset d(X);
-    return predict_proba_archive(id, d);
-}
 
 template <ProgramType T>
 void Engine<T>::lock_nodes(int end_depth, bool keep_leaves_unlocked)
@@ -400,26 +365,21 @@ void Engine<T>::run(Dataset &data)
         if (params.load_population != "") {
             this->pop.load(params.load_population);
         }
-        else if (this->pop.individuals.size() > 0) {
-            // This only works because the Population constructor resizes individuals to zero.
-        }
-        else
+        else if (this->pop.individuals.size() == 0)
         {
+            // This only works because the Population constructor resizes individuals to zero.
             this->pop.init(this->ss, this->params);
         }
     }
-    else
-    {
-
-    }
     
+    // TODO: Should I refit them? or use the values at it is? (the fitness WILL BE recalculated regardless)
     // invalidating all individuals (so they are fitted with current data)
-    for (auto& individual : this->pop.individuals) {
-        if (individual != nullptr) {
-            // will force re-fit and calc all fitness information
-            individual->set_is_fitted(false);
-        }
-    }
+    // for (auto& individual : this->pop.individuals) {
+    //     if (individual != nullptr) {
+    //         // will force re-fit and calc all fitness information
+    //         individual->set_is_fitted(false);
+    //     }
+    // }
 
     // This is data dependent so we initialize it everytime, regardless of partial fit
     // TODO: make variator have a default constructor and make it an attribute of engine
@@ -458,9 +418,6 @@ void Engine<T>::run(Dataset &data)
                || (params.max_stall != 0 && stall_count > params.max_stall) 
                || (params.max_time != -1 && timer.Elapsed().count() > params.max_time)
         );
-
-        if (condition)
-            cout << "Stop condition reached" << endl;
 
         return condition;
     };
@@ -561,28 +518,24 @@ void Engine<T>::run(Dataset &data)
             }).name("update, migrate and disentangle indexes between islands");
             
             auto finish_gen = subflow.emplace([&]() {
-                if (params.use_arch) {
-                    archive.update(pop, params);
-                }
-                
                 // Set validation loss before calling update best
                 for (int island = 0; island < this->params.num_islands; ++island) {
                     evaluator.update_fitness(this->pop, island, data, params, false, true);
                 }
+
+                archive.update(pop, params);
 
                 bool updated_best = this->update_best();
                 
                 fraction = params.max_time == -1 ? ((generation+1)*1.0)/params.max_gens : 
                                                     timer.Elapsed().count()/params.max_time;
 
-                if ( params.verbosity>1 || !params.logfile.empty() || params.use_arch ) {
+                if ( params.verbosity>1 || !params.logfile.empty()) {
                     calculate_stats();
                 }
 
                 if(params.verbosity>1)
-                {
                     print_stats(log, fraction);
-                }
                 else if(params.verbosity == 1)
                     print_progress(fraction);
 
@@ -607,20 +560,13 @@ void Engine<T>::run(Dataset &data)
         [&]() { return 0; }, // jump back to the next iteration
 
         [&](tf::Subflow& subflow) {
-            // set training loss for archive
+            // set VALIDATION loss for archive, without refitting the model
             for (int island = 0; island < this->params.num_islands; ++island) {
-                evaluator.update_fitness(this->pop, island, data, params, true, false);
+                evaluator.update_fitness(this->pop, island, data, params, false, true);
             }
 
-            // TODO: if we're not using an archive, let's store the final population in the 
-            // archive
-            if (!params.use_arch)
-            {
-                std::cout << "saving final population as archive..." << std::endl;
-
-                calculate_stats();
-                archive.update(pop, params);
-            }
+            archive.update(pop, params);
+            // calculate_stats();
 
             if (params.save_population != "")
                 this->pop.save(params.save_population);

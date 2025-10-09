@@ -103,7 +103,7 @@ def test_max_gens():
     
     for max_gen in [0, 1, 10]:
         print(f"Testing with max_gen={max_gen}")
-        reg = BrushRegressor(max_gens=max_gen, verbosity=2).fit(X, y)
+        reg = BrushRegressor(max_gens=max_gen, verbosity=0).fit(X, y)
 
         predictions = reg.predict(X)
         assert predictions is not None, "Prediction failed"
@@ -137,7 +137,7 @@ def test_class_weights():
     clf = BrushClassifier(
         # class_weights=class_weights,
         # functions=['Logistic', 'Add', 'Mul'],
-        max_gens=10, verbosity=2,
+        max_gens=10, verbosity=0,
         validation_size=0, # So the calculated class_weights match
     ).fit(X, y)
 
