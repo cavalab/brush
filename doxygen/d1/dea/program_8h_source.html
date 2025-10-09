@@ -352,304 +352,306 @@ $(function(){initNavTree('d1/dea/program_8h_source.html','../../'); initResizabl
 <div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>        <span class="keywordflow">for</span> (<a class="code hl_typedef" href="../../dc/d5c/namespaceBrush.html#a8b77eb5253f95aaff5dcf63d29734d10">PostIter</a> i = <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.begin_post(); i != <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.end_post(); ++i)</div>
 <div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>        {</div>
 <div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>            <span class="keyword">const</span> <span class="keyword">auto</span>&amp; node = i.node-&gt;data; </div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>            <span class="comment">// some nodes cannot have their weights optimized, others must have</span></div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>            <span class="keywordflow">if</span> ( <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::OffsetSum&gt;</a>(node.node_type)</div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>            ||   (node.get_is_weighted() &amp;&amp; <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a1d5a63450bcdb77bd08283c9f74ca53f">IsWeighable</a>(node.ret_type)) )</div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>                ++count;</div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>        }</div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>        <span class="keywordflow">return</span> count;</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    }</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>            <span class="comment">// some nodes cannot have their weights optimized, others must have.</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>            <span class="comment">// It is important that this condition also matches the condition in </span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>            <span class="comment">// the methods get_weights, set_weights, .</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>            <span class="keywordflow">if</span> ( <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::OffsetSum&gt;</a>(node.node_type)</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>            ||   (node.get_is_weighted() &amp;&amp; <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a1d5a63450bcdb77bd08283c9f74ca53f">IsWeighable</a>(node.ret_type)) )</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>                ++count;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>        }</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>        <span class="keywordflow">return</span> count;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    }</div>
 </div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span></div>
-<div class="foldopen" id="foldopen00289" data-start="{" data-end="}">
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno"><a class="line" href="../../db/d88/structBrush_1_1Program.html#a8bee1c866051b3e11c017cdf29b46eb7">  289</a></span>    ArrayXf <a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#a8bee1c866051b3e11c017cdf29b46eb7">get_weights</a>()</div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    {</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>        ArrayXf weights(<a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#a990bd3691f3b3e2b7ff479bcd4231479">get_n_weights</a>()); </div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>        <span class="keywordtype">int</span> i = 0;</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>        <span class="keywordflow">for</span> (<a class="code hl_typedef" href="../../dc/d5c/namespaceBrush.html#a8b77eb5253f95aaff5dcf63d29734d10">PostIter</a> t = <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.begin_post(); t != <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.end_post(); ++t)</div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>        {</div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>            <span class="keyword">const</span> <span class="keyword">auto</span>&amp; node = t.node-&gt;data; </div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>            <span class="keywordflow">if</span> ( <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::OffsetSum&gt;</a>(node.node_type)</div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>            ||   (node.get_is_weighted() &amp;&amp; <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a1d5a63450bcdb77bd08283c9f74ca53f">IsWeighable</a>(node.ret_type)) )</div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>            {</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>                weights(i) = node.W;</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>                ++i;</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>            }</div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>        }</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>        <span class="keywordflow">return</span> weights;</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    }</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span></div>
+<div class="foldopen" id="foldopen00291" data-start="{" data-end="}">
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno"><a class="line" href="../../db/d88/structBrush_1_1Program.html#a8bee1c866051b3e11c017cdf29b46eb7">  291</a></span>    ArrayXf <a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#a8bee1c866051b3e11c017cdf29b46eb7">get_weights</a>()</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    {</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>        ArrayXf weights(<a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#a990bd3691f3b3e2b7ff479bcd4231479">get_n_weights</a>()); </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>        <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>        <span class="keywordflow">for</span> (<a class="code hl_typedef" href="../../dc/d5c/namespaceBrush.html#a8b77eb5253f95aaff5dcf63d29734d10">PostIter</a> t = <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.begin_post(); t != <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.end_post(); ++t)</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>        {</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>            <span class="keyword">const</span> <span class="keyword">auto</span>&amp; node = t.node-&gt;data; </div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>            <span class="keywordflow">if</span> ( <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::OffsetSum&gt;</a>(node.node_type)</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>            ||   (node.get_is_weighted() &amp;&amp; <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a1d5a63450bcdb77bd08283c9f74ca53f">IsWeighable</a>(node.ret_type)) )</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>            {</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>                weights(i) = node.W;</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>                ++i;</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>            }</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>        }</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>        <span class="keywordflow">return</span> weights;</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    }</div>
 </div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span></div>
-<div class="foldopen" id="foldopen00312" data-start="{" data-end="}">
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno"><a class="line" href="../../db/d88/structBrush_1_1Program.html#a5ba9c69ade043cacb917dfb654a57834">  312</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#a5ba9c69ade043cacb917dfb654a57834">set_weights</a>(<span class="keyword">const</span> ArrayXf&amp; weights)</div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    {</div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>        <span class="comment">// take the weights set them in the tree. </span></div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>        <span class="comment">// return the weights of the tree as an array </span></div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        <span class="keywordflow">if</span> (weights.size() != <a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#a990bd3691f3b3e2b7ff479bcd4231479">get_n_weights</a>())</div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>            <a class="code hl_define" href="../../da/d41/error_8h.html#aa4c550bcd71e4ec1c97b111e1360509a">HANDLE_ERROR_THROW</a>(<span class="stringliteral">&quot;Tried to set_weights of incorrect size&quot;</span>);</div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>        <span class="keywordtype">int</span> j = 0;</div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>        <span class="keywordflow">for</span> (<a class="code hl_typedef" href="../../dc/d5c/namespaceBrush.html#a8b77eb5253f95aaff5dcf63d29734d10">PostIter</a> i = <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.begin_post(); i != <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.end_post(); ++i)</div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>        {</div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>            <span class="keyword">auto</span>&amp; node = i.node-&gt;data; </div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>            <span class="keywordflow">if</span> ( <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::OffsetSum&gt;</a>(node.node_type)</div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>            ||   (node.get_is_weighted() &amp;&amp; <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a1d5a63450bcdb77bd08283c9f74ca53f">IsWeighable</a>(node.node_type)) )</div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>            {</div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>                node.W = weights(j);</div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>                ++j;</div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>            }</div>
-<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>        }</div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    }</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span></div>
+<div class="foldopen" id="foldopen00314" data-start="{" data-end="}">
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno"><a class="line" href="../../db/d88/structBrush_1_1Program.html#a5ba9c69ade043cacb917dfb654a57834">  314</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#a5ba9c69ade043cacb917dfb654a57834">set_weights</a>(<span class="keyword">const</span> ArrayXf&amp; weights)</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    {</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        <span class="comment">// take the weights set them in the tree. </span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>        <span class="comment">// return the weights of the tree as an array </span></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>        <span class="keywordflow">if</span> (weights.size() != <a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#a990bd3691f3b3e2b7ff479bcd4231479">get_n_weights</a>())</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>            <a class="code hl_define" href="../../da/d41/error_8h.html#aa4c550bcd71e4ec1c97b111e1360509a">HANDLE_ERROR_THROW</a>(<span class="stringliteral">&quot;Tried to set_weights of incorrect size&quot;</span>);</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>        <span class="keywordtype">int</span> j = 0;</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>        <span class="keywordflow">for</span> (<a class="code hl_typedef" href="../../dc/d5c/namespaceBrush.html#a8b77eb5253f95aaff5dcf63d29734d10">PostIter</a> i = <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.begin_post(); i != <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.end_post(); ++i)</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>        {</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>            <span class="keyword">auto</span>&amp; node = i.node-&gt;data; </div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>            <span class="keywordflow">if</span> ( <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::OffsetSum&gt;</a>(node.node_type)</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>            ||   (node.get_is_weighted() &amp;&amp; <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a1d5a63450bcdb77bd08283c9f74ca53f">IsWeighable</a>(node.node_type)) )</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>            {</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>                node.W = weights(j);</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>                ++j;</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>            }</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>        }</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    }</div>
 </div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span></div>
-<div class="foldopen" id="foldopen00339" data-start="{" data-end="}">
-<div class="line"><a id="l00339" name="l00339"></a><span class="lineno"><a class="line" href="../../db/d88/structBrush_1_1Program.html#ac95fc63e130e0e594b92a0c160db44aa">  339</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#ac95fc63e130e0e594b92a0c160db44aa">lock_nodes</a>(<span class="keywordtype">int</span> end_depth=0, <span class="keywordtype">bool</span> skip_leaves=<span class="keyword">true</span>)</div>
-<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>    {</div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>        <span class="comment">// iterate over the nodes, locking them if their depth does not exceed end_depth.</span></div>
-<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>        <span class="keywordflow">if</span> (end_depth&lt;=0)</div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span> </div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>        <span class="comment">// we need the iterator to calculate the depth, but </span></div>
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>        <span class="comment">// the lambda below iterate using nodes. So we are creating an iterator</span></div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>        <span class="comment">// and using it to access depth.</span></div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>        <span class="keyword">auto</span> tree_iter = <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.begin();</div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span> </div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>        std::for_each(<a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.begin(), <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.end(),</div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>            [&amp;](<span class="keyword">auto</span>&amp; n){ </div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>                auto d = Tree.depth(tree_iter);</div>
-<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>                std::advance(tree_iter, 1);</div>
-<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span> </div>
-<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>                if (skip_leaves &amp;&amp; IsLeaf(n.node_type))</div>
-<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>                    return;</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span></div>
+<div class="foldopen" id="foldopen00342" data-start="{" data-end="}">
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno"><a class="line" href="../../db/d88/structBrush_1_1Program.html#a17d8eaf6b1623cefc4d4888e8ed81330">  342</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#a17d8eaf6b1623cefc4d4888e8ed81330">lock_nodes</a>(<span class="keywordtype">int</span> end_depth=0, <span class="keywordtype">bool</span> keep_leaves_unlocked=<span class="keyword">true</span>)</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    {</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>        <span class="comment">// iterate over the nodes, locking them if their depth does not exceed end_depth.</span></div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>        <span class="keywordflow">if</span> (end_depth&lt;=0)</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span> </div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>        <span class="comment">// we need the iterator to calculate the depth, but </span></div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>        <span class="comment">// the lambda below iterate using nodes. So we are creating an iterator</span></div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>        <span class="comment">// and using it to access depth.</span></div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>        <span class="keyword">auto</span> tree_iter = <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.begin();</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span> </div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>        std::for_each(<a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.begin(), <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.end(),</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>            [&amp;](<span class="keyword">auto</span>&amp; n){ </div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>                auto d = Tree.depth(tree_iter);</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>                std::advance(tree_iter, 1);</div>
 <div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span> </div>
-<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>                if (d&lt;=end_depth)</div>
-<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>                    n.fixed = true; </div>
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>                    <span class="comment">// n.set_prob_change(0.0f); </span></div>
-<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>            }</div>
-<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>        );</div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    }</div>
-</div>
-<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span></div>
-<div class="foldopen" id="foldopen00372" data-start="{" data-end="}">
-<div class="line"><a id="l00372" name="l00372"></a><span class="lineno"><a class="line" href="../../db/d88/structBrush_1_1Program.html#a9a48839ac5f4e68f5b0468cc50f35439">  372</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#a9a48839ac5f4e68f5b0468cc50f35439">unlock_nodes</a>(<span class="keywordtype">int</span> start_depth=0)</div>
-<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>    {</div>
-<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>        <span class="keyword">auto</span> tree_iter = <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.begin();</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>                if (keep_leaves_unlocked &amp;&amp; IsLeaf(n.node_type))</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>                    return;</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span> </div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>                <span class="comment">// If we are skipping leaves, then the split feature is unlocked;</span></div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>                <span class="comment">// Otherwise, then we lock based on depth.</span></div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>                if (n.node_type==NodeType::SplitBest)</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>                {</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>                    if (keep_leaves_unlocked)</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>                    {</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>                        n.set_keep_split_feature(false);</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>                    }</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>                    else <span class="comment">// leaves can be locked</span></div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>                    {</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>                        <span class="comment">// check if we should lock based on depth</span></div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>                        n.set_keep_split_feature(d+1&lt;=end_depth);</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>                    }</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>                }</div>
 <div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span> </div>
-<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>        std::for_each(<a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.begin(), <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.end(),</div>
-<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>            [&amp;](<span class="keyword">auto</span>&amp; n){ </div>
-<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>                auto d = Tree.depth(tree_iter);</div>
-<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>                std::advance(tree_iter, 1);</div>
-<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span> </div>
-<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>                if (d&gt;=start_depth)                </div>
-<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>                    n.fixed = false; </div>
-<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>                    <span class="comment">// n.set_prob_change(1.0f); </span></div>
-<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>            }</div>
-<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>        );</div>
-<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>    }</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>                if (d&lt;=end_depth)</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>                    n.fixed = <span class="keyword">true</span>; </div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>                    <span class="comment">// n.set_prob_change(0.0f); </span></div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>            }</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>        );</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>    }</div>
 </div>
-<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span></div>
-<div class="foldopen" id="foldopen00400" data-start="{" data-end="}">
-<div class="line"><a id="l00400" name="l00400"></a><span class="lineno"><a class="line" href="../../db/d88/structBrush_1_1Program.html#ac87e13742552236e1dc9fd9b62078331">  400</a></span>    <span class="keywordtype">string</span> <a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#ac87e13742552236e1dc9fd9b62078331">get_model</a>(<span class="keywordtype">string</span> fmt=<span class="stringliteral">&quot;compact&quot;</span>, <span class="keywordtype">bool</span> pretty=<span class="keyword">false</span>)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>        <span class="keyword">auto</span> head = <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.begin(); </div>
-<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>        <span class="keywordflow">if</span> (fmt==<span class="stringliteral">&quot;tree&quot;</span>)</div>
-<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>            <span class="keywordflow">return</span> head.node-&gt;get_tree_model(pretty);</div>
-<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (fmt==<span class="stringliteral">&quot;dot&quot;</span>)</div>
-<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#ab288bd389c68ab3c0776ef14a9e5e331">get_dot_model</a>(); ;</div>
-<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>        <span class="keywordflow">return</span> head.node-&gt;get_model(pretty);</div>
-<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>    }</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span></div>
+<div class="foldopen" id="foldopen00395" data-start="{" data-end="}">
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno"><a class="line" href="../../db/d88/structBrush_1_1Program.html#ac87e13742552236e1dc9fd9b62078331">  395</a></span>    <span class="keywordtype">string</span> <a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#ac87e13742552236e1dc9fd9b62078331">get_model</a>(<span class="keywordtype">string</span> fmt=<span class="stringliteral">&quot;compact&quot;</span>, <span class="keywordtype">bool</span> pretty=<span class="keyword">false</span>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>        <span class="keyword">auto</span> head = <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.begin(); </div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>        <span class="keywordflow">if</span> (fmt==<span class="stringliteral">&quot;tree&quot;</span>)</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>            <span class="keywordflow">return</span> head.node-&gt;get_tree_model(pretty);</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (fmt==<span class="stringliteral">&quot;dot&quot;</span>)</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#ab288bd389c68ab3c0776ef14a9e5e331">get_dot_model</a>(); ;</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>        <span class="keywordflow">return</span> head.node-&gt;get_model(pretty);</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>    }</div>
 </div>
-<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span></div>
-<div class="foldopen" id="foldopen00416" data-start="{" data-end="}">
-<div class="line"><a id="l00416" name="l00416"></a><span class="lineno"><a class="line" href="../../db/d88/structBrush_1_1Program.html#ab288bd389c68ab3c0776ef14a9e5e331">  416</a></span>    <span class="keywordtype">string</span> <a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#ab288bd389c68ab3c0776ef14a9e5e331">get_dot_model</a>(<span class="keywordtype">string</span> extras=<span class="stringliteral">&quot;&quot;</span>)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>        <span class="comment">// TODO: make the node names their hash or index, and the node label the nodetype name. </span></div>
-<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>        <span class="comment">// ref: https://stackoverflow.com/questions/10579041/graphviz-create-new-node-with-this-same-label#10579155</span></div>
-<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>        <span class="keywordtype">string</span> out = <span class="stringliteral">&quot;digraph G {\n&quot;</span>;</div>
-<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>        <span class="keywordflow">if</span> (! extras.empty())</div>
-<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>            out += fmt::format(<span class="stringliteral">&quot;{}\n&quot;</span>, extras);</div>
-<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span> </div>
-<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>        <span class="keyword">auto</span> get_id = [](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; n){</div>
-<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::Terminal&gt;</a>(n-&gt;data.node_type)) </div>
-<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>                <span class="keywordflow">return</span> n-&gt;data.get_name(<span class="keyword">false</span>);</div>
-<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span> </div>
-<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>            <span class="keywordflow">return</span> fmt::format(<span class="stringliteral">&quot;{}&quot;</span>,fmt::ptr(n)).substr(2);</div>
-<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>        };</div>
-<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>        <span class="comment">// bool first = true;</span></div>
-<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>        std::map&lt;string, unsigned int&gt; node_count;</div>
-<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>        <span class="keywordtype">int</span> i = 0;</div>
-<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>        <span class="keywordflow">for</span> (<a class="code hl_typedef" href="../../dc/d5c/namespaceBrush.html#a822ae4ce07ba14ae433977a635675764">Iter</a> iter = <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.begin(); iter!=<a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.end(); iter++)</div>
-<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>        {</div>
-<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>            <span class="keyword">const</span> <span class="keyword">auto</span>&amp; parent = iter.node;</div>
-<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>            <span class="comment">// const auto&amp; parent_data = iter.node-&gt;data;</span></div>
-<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span> </div>
-<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>            <span class="keywordtype">string</span> parent_id = get_id(parent);</div>
-<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>            <span class="comment">// if (Is&lt;NodeType::Terminal&gt;(parent_data.node_type)) </span></div>
-<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>            <span class="comment">//     parent_id = parent_data.get_name(false);</span></div>
-<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>            <span class="comment">// else{</span></div>
-<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>            <span class="comment">//     parent_id = fmt::format(&quot;{}&quot;,fmt::ptr(iter.node)).substr(2);</span></div>
-<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>            <span class="comment">// }</span></div>
-<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>            <span class="comment">// // parent_id = parent_id.substr(2);</span></div>
-<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span> </div>
-<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>            <span class="comment">// if the first node is weighted, make a dummy output node so that the </span></div>
-<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>            <span class="comment">// first node&#39;s weight can be shown</span></div>
-<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>            <span class="keywordflow">if</span> (i==0 &amp;&amp; parent-&gt;data.get_is_weighted())</div>
-<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>            {</div>
-<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>                out += <span class="stringliteral">&quot;y [shape=box];\n&quot;</span>;</div>
-<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>                out += fmt::format(<span class="stringliteral">&quot;y -&gt; \&quot;{}\&quot; [label=\&quot;{:.2f}\&quot;];\n&quot;</span>, </div>
-<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>                        <span class="comment">// parent_data.get_name(false),</span></div>
-<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>                        parent_id,</div>
-<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>                        parent-&gt;data.W</div>
-<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>                        );</div>
-<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span>            }</div>
-<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span> </div>
-<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>            <span class="comment">// add the node</span></div>
-<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>            <span class="keywordtype">bool</span> is_constant = <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::Constant, NodeType::MeanLabel&gt;</a>(parent-&gt;data.node_type);</div>
-<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>            <span class="keywordtype">string</span> node_label = parent-&gt;data.get_name(is_constant);</div>
-<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span> </div>
-<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::SplitBest&gt;</a>(parent-&gt;data.node_type)){</div>
-<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>                node_label = fmt::format(<span class="stringliteral">&quot;{}&gt;{:.2f}?&quot;</span>, parent-&gt;data.get_feature(), parent-&gt;data.W); </div>
-<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>            }</div>
-<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::OffsetSum&gt;</a>(parent-&gt;data.node_type)){</div>
-<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>                node_label = fmt::format(<span class="stringliteral">&quot;Add&quot;</span>); </div>
-<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>            }</div>
-<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>            out += fmt::format(<span class="stringliteral">&quot;\&quot;{}\&quot; [label=\&quot;{}\&quot;];\n&quot;</span>, parent_id, node_label); </div>
-<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span> </div>
-<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span>            <span class="comment">// add edges to the node&#39;s children</span></div>
-<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span>            <span class="keyword">auto</span> kid = iter.node-&gt;first_child;</div>
-<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; iter.number_of_children(); ++j)</div>
-<div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span>            {</div>
-<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span>                <span class="keywordtype">string</span> edge_label=<span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span>                <span class="keywordtype">string</span> head_label=<span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span>                <span class="keywordtype">string</span> tail_label=<span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a id="l00477" name="l00477"></a><span class="lineno">  477</span>                <span class="keywordtype">bool</span> use_head_tail_labels = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00478" name="l00478"></a><span class="lineno">  478</span>                </div>
-<div class="line"><a id="l00479" name="l00479"></a><span class="lineno">  479</span>                <span class="keywordtype">string</span> kid_id = get_id(kid);</div>
-<div class="line"><a id="l00480" name="l00480"></a><span class="lineno">  480</span>                <span class="comment">// string kid_id = fmt::format(&quot;{}&quot;,fmt::ptr(kid));</span></div>
-<div class="line"><a id="l00481" name="l00481"></a><span class="lineno">  481</span>                <span class="comment">// kid_id = kid_id.substr(2);</span></div>
-<div class="line"><a id="l00482" name="l00482"></a><span class="lineno">  482</span> </div>
-<div class="line"><a id="l00483" name="l00483"></a><span class="lineno">  483</span>                <span class="keywordflow">if</span> (kid-&gt;data.get_is_weighted()</div>
-<div class="line"><a id="l00484" name="l00484"></a><span class="lineno">  484</span>                &amp;&amp; <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a14447d2f04191fa6607e02077a4137ea">Isnt</a>&lt;<a class="code hl_enumvalue" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8acb17869fe51048b5a5c4c6106551a255">NodeType::Constant</a>, <a class="code hl_enumvalue" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a2636ffd13bc710aebeeb21c41a89eec9">NodeType::MeanLabel</a>, </div>
-<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span>                        <a class="code hl_enumvalue" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a4d83dec288ae3948fe9a8e21a3c3c734">NodeType::OffsetSum</a>, <a class="code hl_enumvalue" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8af8c481a92abba984160fae1003dfad55">NodeType::SplitBest</a>&gt;(kid-&gt;data.node_type))</div>
-<div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span>                {</div>
-<div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span>                    edge_label = fmt::format(<span class="stringliteral">&quot;{:.2f}&quot;</span>,kid-&gt;data.W);</div>
-<div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span>                }</div>
-<div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span> </div>
-<div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span>                <span class="keywordflow">if</span> (<a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::SplitOn&gt;</a>(parent-&gt;data.node_type)){</div>
-<div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span>                    use_head_tail_labels=<span class="keyword">true</span>;</div>
-<div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span>                    <span class="keywordflow">if</span> (j == 0)</div>
-<div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span>                        tail_label = fmt::format(<span class="stringliteral">&quot;&gt;{:.2f}&quot;</span>,parent-&gt;data.W); </div>
-<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span>                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (j==1)</div>
-<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span>                        tail_label = <span class="stringliteral">&quot;Y&quot;</span>; </div>
-<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span>                    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>                        tail_label = <span class="stringliteral">&quot;N&quot;</span>;</div>
-<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span> </div>
-<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span>                    head_label=edge_label;</div>
-<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span>                }</div>
-<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::SplitBest&gt;</a>(parent-&gt;data.node_type)){</div>
-<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span>                    use_head_tail_labels=<span class="keyword">true</span>;</div>
-<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span>                    <span class="keywordflow">if</span> (j == 0){</div>
-<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span>                        tail_label = <span class="stringliteral">&quot;Y&quot;</span>; </div>
-<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>                    }</div>
-<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span>                    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span>                        tail_label = <span class="stringliteral">&quot;N&quot;</span>;</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span></div>
+<div class="foldopen" id="foldopen00411" data-start="{" data-end="}">
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno"><a class="line" href="../../db/d88/structBrush_1_1Program.html#ab288bd389c68ab3c0776ef14a9e5e331">  411</a></span>    <span class="keywordtype">string</span> <a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#ab288bd389c68ab3c0776ef14a9e5e331">get_dot_model</a>(<span class="keywordtype">string</span> extras=<span class="stringliteral">&quot;&quot;</span>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>        <span class="comment">// TODO: make the node names their hash or index, and the node label the nodetype name. </span></div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>        <span class="comment">// ref: https://stackoverflow.com/questions/10579041/graphviz-create-new-node-with-this-same-label#10579155</span></div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>        <span class="keywordtype">string</span> out = <span class="stringliteral">&quot;digraph G {\n&quot;</span>;</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>        <span class="keywordflow">if</span> (! extras.empty())</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>            out += fmt::format(<span class="stringliteral">&quot;{}\n&quot;</span>, extras);</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span> </div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>        <span class="keyword">auto</span> get_id = [](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; n){</div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::Terminal&gt;</a>(n-&gt;data.node_type)) </div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>                <span class="keywordflow">return</span> n-&gt;data.get_name(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span> </div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>            <span class="keywordflow">return</span> fmt::format(<span class="stringliteral">&quot;{}&quot;</span>,fmt::ptr(n)).substr(2);</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>        };</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>        <span class="comment">// bool first = true;</span></div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>        std::map&lt;string, unsigned int&gt; node_count;</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>        <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>        <span class="keywordflow">for</span> (<a class="code hl_typedef" href="../../dc/d5c/namespaceBrush.html#a822ae4ce07ba14ae433977a635675764">Iter</a> iter = <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.begin(); iter!=<a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.end(); iter++)</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>        {</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>            <span class="keyword">const</span> <span class="keyword">auto</span>&amp; parent = iter.node;</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>            <span class="comment">// const auto&amp; parent_data = iter.node-&gt;data;</span></div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span> </div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>            <span class="keywordtype">string</span> parent_id = get_id(parent);</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>            <span class="comment">// if (Is&lt;NodeType::Terminal&gt;(parent_data.node_type)) </span></div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>            <span class="comment">//     parent_id = parent_data.get_name(false);</span></div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>            <span class="comment">// else{</span></div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>            <span class="comment">//     parent_id = fmt::format(&quot;{}&quot;,fmt::ptr(iter.node)).substr(2);</span></div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>            <span class="comment">// }</span></div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>            <span class="comment">// // parent_id = parent_id.substr(2);</span></div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span> </div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>            <span class="comment">// if the first node is weighted, make a dummy output node so that the </span></div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>            <span class="comment">// first node&#39;s weight can be shown</span></div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>            <span class="keywordflow">if</span> (i==0 &amp;&amp; parent-&gt;data.get_is_weighted())</div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>            {</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>                out += <span class="stringliteral">&quot;y [shape=box];\n&quot;</span>;</div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>                out += fmt::format(<span class="stringliteral">&quot;y -&gt; \&quot;{}\&quot; [label=\&quot;{:.2f}\&quot;];\n&quot;</span>, </div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>                        <span class="comment">// parent_data.get_name(false),</span></div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>                        parent_id,</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>                        parent-&gt;data.W</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>                        );</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>            }</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span> </div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>            <span class="comment">// add the node</span></div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>            <span class="keywordtype">bool</span> is_constant = <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::Constant, NodeType::MeanLabel&gt;</a>(parent-&gt;data.node_type);</div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>            <span class="keywordtype">string</span> node_label = parent-&gt;data.get_name(is_constant);</div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span> </div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::SplitBest&gt;</a>(parent-&gt;data.node_type)){</div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>                node_label = fmt::format(<span class="stringliteral">&quot;{}&gt;={:.2f}?&quot;</span>, parent-&gt;data.get_feature(), parent-&gt;data.W); </div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>            }</div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::OffsetSum&gt;</a>(parent-&gt;data.node_type)){</div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>                node_label = fmt::format(<span class="stringliteral">&quot;Add&quot;</span>); </div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>            }</div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>            </div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>            <span class="keywordtype">string</span> node_style = parent-&gt;data.get_prob_change() &gt;0.0 ? <span class="stringliteral">&quot;&quot;</span> : <span class="stringliteral">&quot;, style=filled, fillcolor=lightcoral&quot;</span>;</div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>            out += fmt::format(<span class="stringliteral">&quot;\&quot;{}\&quot; [label=\&quot;{}\&quot;{}];\n&quot;</span>, parent_id, node_label, node_style);</div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span> </div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>            <span class="comment">// add edges to the node&#39;s children</span></div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>            <span class="keyword">auto</span> kid = iter.node-&gt;first_child;</div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; iter.number_of_children(); ++j)</div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span>            {</div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span>                <span class="keywordtype">string</span> edge_label=<span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>                <span class="keywordtype">string</span> head_label=<span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span>                <span class="keywordtype">string</span> tail_label=<span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span>                <span class="keywordtype">bool</span> use_head_tail_labels = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span>                </div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span>                <span class="keywordtype">string</span> kid_id = get_id(kid);</div>
+<div class="line"><a id="l00477" name="l00477"></a><span class="lineno">  477</span>                <span class="comment">// string kid_id = fmt::format(&quot;{}&quot;,fmt::ptr(kid));</span></div>
+<div class="line"><a id="l00478" name="l00478"></a><span class="lineno">  478</span>                <span class="comment">// kid_id = kid_id.substr(2);</span></div>
+<div class="line"><a id="l00479" name="l00479"></a><span class="lineno">  479</span> </div>
+<div class="line"><a id="l00480" name="l00480"></a><span class="lineno">  480</span>                <span class="keywordflow">if</span> (kid-&gt;data.get_is_weighted()</div>
+<div class="line"><a id="l00481" name="l00481"></a><span class="lineno">  481</span>                &amp;&amp; <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a14447d2f04191fa6607e02077a4137ea">Isnt</a>&lt;<a class="code hl_enumvalue" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8acb17869fe51048b5a5c4c6106551a255">NodeType::Constant</a>, <a class="code hl_enumvalue" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a2636ffd13bc710aebeeb21c41a89eec9">NodeType::MeanLabel</a>, </div>
+<div class="line"><a id="l00482" name="l00482"></a><span class="lineno">  482</span>                        <a class="code hl_enumvalue" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a4d83dec288ae3948fe9a8e21a3c3c734">NodeType::OffsetSum</a>, <a class="code hl_enumvalue" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8af8c481a92abba984160fae1003dfad55">NodeType::SplitBest</a>&gt;(kid-&gt;data.node_type))</div>
+<div class="line"><a id="l00483" name="l00483"></a><span class="lineno">  483</span>                {</div>
+<div class="line"><a id="l00484" name="l00484"></a><span class="lineno">  484</span>                    edge_label = fmt::format(<span class="stringliteral">&quot;{:.2f}&quot;</span>,kid-&gt;data.W);</div>
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span>                }</div>
+<div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span> </div>
+<div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span>                <span class="keywordflow">if</span> (<a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::SplitOn&gt;</a>(parent-&gt;data.node_type)){</div>
+<div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span>                    use_head_tail_labels=<span class="keyword">true</span>;</div>
+<div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span>                    <span class="keywordflow">if</span> (j == 0)</div>
+<div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span>                        tail_label = fmt::format(<span class="stringliteral">&quot;&gt;={:.2f}&quot;</span>,parent-&gt;data.W); </div>
+<div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span>                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (j==1)</div>
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span>                        tail_label = <span class="stringliteral">&quot;Y&quot;</span>; </div>
+<div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span>                    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span>                        tail_label = <span class="stringliteral">&quot;N&quot;</span>;</div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span> </div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span>                    head_label=edge_label;</div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>                }</div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::SplitBest&gt;</a>(parent-&gt;data.node_type)){</div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span>                    use_head_tail_labels=<span class="keyword">true</span>;</div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span>                    <span class="keywordflow">if</span> (j == 0){</div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span>                        tail_label = <span class="stringliteral">&quot;Y&quot;</span>; </div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span>                    }</div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span>                    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span>                        tail_label = <span class="stringliteral">&quot;N&quot;</span>;</div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span> </div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span>                    head_label = edge_label;</div>
+<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span>                }</div>
 <div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span> </div>
-<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span>                    head_label = edge_label;</div>
-<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span>                }</div>
-<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span> </div>
-<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>                <span class="keywordflow">if</span> (use_head_tail_labels){</div>
-<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>                    out += fmt::format(<span class="stringliteral">&quot;\&quot;{}\&quot; -&gt; \&quot;{}\&quot; [headlabel=\&quot;{}\&quot;,taillabel=\&quot;{}\&quot;];\n&quot;</span>, </div>
-<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span>                            parent_id,</div>
-<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>                            kid_id,</div>
-<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>                            head_label,</div>
-<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>                            tail_label</div>
-<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span>                            );</div>
-<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span>                }</div>
-<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span>                <span class="keywordflow">else</span>{</div>
-<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span>                    out += fmt::format(<span class="stringliteral">&quot;\&quot;{}\&quot; -&gt; \&quot;{}\&quot; [label=\&quot;{}\&quot;];\n&quot;</span>, </div>
-<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span>                            parent_id,</div>
-<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span>                            kid_id,</div>
-<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span>                            edge_label</div>
-<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span>                            );</div>
-<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span>                }</div>
-<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span>                kid = kid-&gt;next_sibling;</div>
-<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span>            }</div>
-<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span>        </div>
-<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span>            <span class="comment">// adding the offset as the last child</span></div>
-<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::OffsetSum&gt;</a>(parent-&gt;data.node_type)){</div>
-<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span>                <span class="comment">// drawing the edge</span></div>
-<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span>                out += fmt::format(<span class="stringliteral">&quot;\&quot;{}\&quot; -&gt; \&quot;{}\&quot; [label=\&quot;\&quot;];\n&quot;</span>, </div>
-<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span>                        parent_id,</div>
-<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span>                        parent_id+<span class="stringliteral">&quot;Offset&quot;</span></div>
-<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span>                        );</div>
-<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span>                        </div>
-<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>                <span class="comment">// drawing the node</span></div>
-<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span>                out += fmt::format(<span class="stringliteral">&quot;\&quot;{}\&quot; [label=\&quot;{:.2f}\&quot;];\n&quot;</span>,</div>
-<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>                        parent_id+<span class="stringliteral">&quot;Offset&quot;</span>,</div>
-<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>                        parent-&gt;data.W</div>
-<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span>                        ); </div>
-<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span>            }</div>
-<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>                        </div>
-<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span>            ++i;</div>
-<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span>        }</div>
-<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>        out += <span class="stringliteral">&quot;}\n&quot;</span>;</div>
-<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>        <span class="keywordflow">return</span> out;</div>
-<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>    }</div>
+<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span>                <span class="keywordflow">if</span> (use_head_tail_labels){</div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span>                    out += fmt::format(<span class="stringliteral">&quot;\&quot;{}\&quot; -&gt; \&quot;{}\&quot; [headlabel=\&quot;{}\&quot;,taillabel=\&quot;{}\&quot;];\n&quot;</span>, </div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span>                            parent_id,</div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>                            kid_id,</div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>                            head_label,</div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span>                            tail_label</div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>                            );</div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>                }</div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>                <span class="keywordflow">else</span>{</div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span>                    out += fmt::format(<span class="stringliteral">&quot;\&quot;{}\&quot; -&gt; \&quot;{}\&quot; [label=\&quot;{}\&quot;];\n&quot;</span>, </div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span>                            parent_id,</div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span>                            kid_id,</div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span>                            edge_label</div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span>                            );</div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span>                }</div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span>                kid = kid-&gt;next_sibling;</div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span>            }</div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span>        </div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span>            <span class="comment">// adding the offset as the last child</span></div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::OffsetSum&gt;</a>(parent-&gt;data.node_type)){</div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span>                <span class="comment">// drawing the edge</span></div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span>                out += fmt::format(<span class="stringliteral">&quot;\&quot;{}\&quot; -&gt; \&quot;{}\&quot; [label=\&quot;\&quot;];\n&quot;</span>, </div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span>                        parent_id,</div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span>                        parent_id+<span class="stringliteral">&quot;Offset&quot;</span></div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span>                        );</div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span>                        </div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span>                <span class="comment">// drawing the node</span></div>
+<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span>                out += fmt::format(<span class="stringliteral">&quot;\&quot;{}\&quot; [label=\&quot;{:.2f}\&quot;{}];\n&quot;</span>,</div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span>                        parent_id+<span class="stringliteral">&quot;Offset&quot;</span>,</div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>                        parent-&gt;data.W,</div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span>                        node_style</div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>                        ); </div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>            }</div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span>                 </div>
+<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span>            ++i;</div>
+<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>        }</div>
+<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span>        out += <span class="stringliteral">&quot;}\n&quot;</span>;</div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span>        <span class="keywordflow">return</span> out;</div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>    }</div>
 </div>
-<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span></div>
-<div class="foldopen" id="foldopen00553" data-start="{" data-end="}">
-<div class="line"><a id="l00553" name="l00553"></a><span class="lineno"><a class="line" href="../../db/d88/structBrush_1_1Program.html#a9db890cb3b1bd9f07764bb3bc7f75d64">  553</a></span>    vector&lt;Node&gt; <a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#a9db890cb3b1bd9f07764bb3bc7f75d64">linearize</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span>        vector&lt;Node&gt; linear_program;</div>
-<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span>        <span class="keywordflow">for</span> (<a class="code hl_typedef" href="../../dc/d5c/namespaceBrush.html#a8b77eb5253f95aaff5dcf63d29734d10">PostIter</a> i = <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.begin_post(); i != <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.end_post(); ++i)</div>
-<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span>            linear_program.push_back(i.node-&gt;data);</div>
-<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>        <span class="keywordflow">return</span> linear_program;</div>
-<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span>    }</div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span></div>
+<div class="foldopen" id="foldopen00551" data-start="{" data-end="}">
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno"><a class="line" href="../../db/d88/structBrush_1_1Program.html#a9db890cb3b1bd9f07764bb3bc7f75d64">  551</a></span>    vector&lt;Node&gt; <a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#a9db890cb3b1bd9f07764bb3bc7f75d64">linearize</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span>        vector&lt;Node&gt; linear_program;</div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span>        <span class="keywordflow">for</span> (<a class="code hl_typedef" href="../../dc/d5c/namespaceBrush.html#a8b77eb5253f95aaff5dcf63d29734d10">PostIter</a> i = <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.begin_post(); i != <a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>.end_post(); ++i)</div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span>            linear_program.push_back(i.node-&gt;data);</div>
+<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span>        <span class="keywordflow">return</span> linear_program;</div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span>    }</div>
 </div>
-<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>}; <span class="comment">// Program</span></div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>}; <span class="comment">// Program</span></div>
 </div>
-<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>} <span class="comment">// Brush</span></div>
-<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span></div>
-<div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span><span class="comment">// weight optimization</span></div>
-<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span><span class="preprocessor">#include &quot;<a class="code" href="../../d7/de3/weight__optimizer_8h.html">optimizer/weight_optimizer.h</a>&quot;</span></div>
-<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span><span class="comment">// #include &quot;../variation.h&quot;</span></div>
-<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../dc/d5c/namespaceBrush.html">Brush</a>{</div>
-<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span> </div>
-<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span><span class="keyword">template</span>&lt;ProgramType PType&gt; </div>
-<div class="foldopen" id="foldopen00569" data-start="{" data-end="}">
-<div class="line"><a id="l00569" name="l00569"></a><span class="lineno"><a class="line" href="../../db/d88/structBrush_1_1Program.html#a1cc0fd2af851933b54ef5fb6fb6c941b">  569</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#a1cc0fd2af851933b54ef5fb6fb6c941b">Program&lt;PType&gt;::update_weights</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a>&amp; d)</div>
-<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span>{</div>
-<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span>    <span class="comment">// Updates the weights within a tree. </span></div>
-<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>    <span class="comment">// make an optimizer</span></div>
-<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>    <span class="keyword">auto</span> WO = <a class="code hl_struct" href="../../d7/d79/structBrush_1_1WeightOptimizer.html">WeightOptimizer</a>(); </div>
-<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>    <span class="comment">// get new weights from optimization.</span></div>
-<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>    WO.update((*<span class="keyword">this</span>), d);</div>
-<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span>};</div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span>} <span class="comment">// Brush</span></div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span></div>
+<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span><span class="comment">// weight optimization</span></div>
+<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span><span class="preprocessor">#include &quot;<a class="code" href="../../d7/de3/weight__optimizer_8h.html">optimizer/weight_optimizer.h</a>&quot;</span></div>
+<div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span><span class="comment">// #include &quot;../variation.h&quot;</span></div>
+<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../dc/d5c/namespaceBrush.html">Brush</a>{</div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span> </div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span><span class="keyword">template</span>&lt;ProgramType PType&gt; </div>
+<div class="foldopen" id="foldopen00567" data-start="{" data-end="}">
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno"><a class="line" href="../../db/d88/structBrush_1_1Program.html#a1cc0fd2af851933b54ef5fb6fb6c941b">  567</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../db/d88/structBrush_1_1Program.html#a1cc0fd2af851933b54ef5fb6fb6c941b">Program&lt;PType&gt;::update_weights</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a>&amp; d)</div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>{</div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span>    <span class="comment">// Updates the weights within a tree. </span></div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span>    <span class="comment">// make an optimizer</span></div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span>    <span class="keyword">auto</span> WO = <a class="code hl_struct" href="../../d7/d79/structBrush_1_1WeightOptimizer.html">WeightOptimizer</a>(); </div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>    <span class="comment">// get new weights from optimization.</span></div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>    WO.update((*<span class="keyword">this</span>), d);</div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>};</div>
 </div>
-<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span> </div>
-<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span></div>
-<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span><span class="comment">// serialization</span></div>
-<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span><span class="comment">// serialization for program</span></div>
-<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span><span class="keyword">template</span>&lt;ProgramType PType&gt;</div>
-<div class="foldopen" id="foldopen00583" data-start="{" data-end="}">
-<div class="line"><a id="l00583" name="l00583"></a><span class="lineno"><a class="line" href="../../dc/d5c/namespaceBrush.html#ab70b101224f05ee7cb285e1212137053">  583</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a8cfe33753dda03e1480fdcbe62e1885d">to_json</a>(json &amp;j, <span class="keyword">const</span> <a class="code hl_struct" href="../../db/d88/structBrush_1_1Program.html">Program&lt;PType&gt;</a> &amp;p)</div>
-<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span>{</div>
-<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span>    j = json{{<span class="stringliteral">&quot;Tree&quot;</span>,p.<a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>}, {<span class="stringliteral">&quot;is_fitted_&quot;</span>, p.<a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a66e9a1ae33267ee5132ba3b3757b8a01">is_fitted_</a>}}; </div>
-<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>}</div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span> </div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span></div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span><span class="comment">// serialization</span></div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span><span class="comment">// serialization for program</span></div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span><span class="keyword">template</span>&lt;ProgramType PType&gt;</div>
+<div class="foldopen" id="foldopen00581" data-start="{" data-end="}">
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno"><a class="line" href="../../dc/d5c/namespaceBrush.html#ab70b101224f05ee7cb285e1212137053">  581</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a8cfe33753dda03e1480fdcbe62e1885d">to_json</a>(json &amp;j, <span class="keyword">const</span> <a class="code hl_struct" href="../../db/d88/structBrush_1_1Program.html">Program&lt;PType&gt;</a> &amp;p)</div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>{</div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>    j = json{{<span class="stringliteral">&quot;Tree&quot;</span>,p.<a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>}, {<span class="stringliteral">&quot;is_fitted_&quot;</span>, p.<a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a66e9a1ae33267ee5132ba3b3757b8a01">is_fitted_</a>}}; </div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span>}</div>
 </div>
-<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span> </div>
-<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span><span class="keyword">template</span>&lt;ProgramType PType&gt;</div>
-<div class="foldopen" id="foldopen00589" data-start="{" data-end="}">
-<div class="line"><a id="l00589" name="l00589"></a><span class="lineno"><a class="line" href="../../dc/d5c/namespaceBrush.html#a2360e8e22462df83dc799c8096ce5938">  589</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a20d08fdc417fcb203d6cae91abfa4bff">from_json</a>(<span class="keyword">const</span> json &amp;j, <a class="code hl_struct" href="../../db/d88/structBrush_1_1Program.html">Program&lt;PType&gt;</a>&amp; p)</div>
-<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span>{</div>
-<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span>    j.at(<span class="stringliteral">&quot;Tree&quot;</span>).get_to(p.<a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>);</div>
-<div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span>    j.at(<span class="stringliteral">&quot;is_fitted_&quot;</span>).get_to(p.<a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a66e9a1ae33267ee5132ba3b3757b8a01">is_fitted_</a>);</div>
-<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span>}</div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span> </div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span><span class="keyword">template</span>&lt;ProgramType PType&gt;</div>
+<div class="foldopen" id="foldopen00587" data-start="{" data-end="}">
+<div class="line"><a id="l00587" name="l00587"></a><span class="lineno"><a class="line" href="../../dc/d5c/namespaceBrush.html#a2360e8e22462df83dc799c8096ce5938">  587</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a20d08fdc417fcb203d6cae91abfa4bff">from_json</a>(<span class="keyword">const</span> json &amp;j, <a class="code hl_struct" href="../../db/d88/structBrush_1_1Program.html">Program&lt;PType&gt;</a>&amp; p)</div>
+<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>{</div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span>    j.at(<span class="stringliteral">&quot;Tree&quot;</span>).get_to(p.<a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Tree</a>);</div>
+<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span>    j.at(<span class="stringliteral">&quot;is_fitted_&quot;</span>).get_to(p.<a class="code hl_variable" href="../../db/d88/structBrush_1_1Program.html#a66e9a1ae33267ee5132ba3b3757b8a01">is_fitted_</a>);</div>
+<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span>}</div>
 </div>
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span> </div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span>}<span class="comment">//namespace Brush</span></div>
 <div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span> </div>
-<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span>}<span class="comment">//namespace Brush</span></div>
+<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span> </div>
 <div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span> </div>
-<div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span> </div>
-<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span> </div>
-<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassBrush_1_1Data_1_1Dataset_html"><div class="ttname"><a href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Brush::Data::Dataset</a></div><div class="ttdoc">holds variable type data.</div><div class="ttdef"><b>Definition</b> <a href="../../d2/dbd/data_8h_source.html#l00050">data.h:51</a></div></div>
 <div class="ttc" id="aerror_8h_html_aa4c550bcd71e4ec1c97b111e1360509a"><div class="ttname"><a href="../../da/d41/error_8h.html#aa4c550bcd71e4ec1c97b111e1360509a">HANDLE_ERROR_THROW</a></div><div class="ttdeci">#define HANDLE_ERROR_THROW(err)</div><div class="ttdef"><b>Definition</b> <a href="../../da/d41/error_8h_source.html#l00027">error.h:27</a></div></div>
 <div class="ttc" id="afunctions_8h_html"><div class="ttname"><a href="../../d8/d5c/functions_8h.html">functions.h</a></div></div>
@@ -664,7 +666,7 @@ $(function(){initNavTree('d1/dea/program_8h_source.html','../../'); initResizabl
 <div class="ttc" id="anamespaceBrush_html_a1d5a63450bcdb77bd08283c9f74ca53f"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#a1d5a63450bcdb77bd08283c9f74ca53f">Brush::IsWeighable</a></div><div class="ttdeci">auto IsWeighable() noexcept -&gt; bool</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d77/node_8h_source.html#l00046">node.h:46</a></div></div>
 <div class="ttc" id="anamespaceBrush_html_a1d836cd56c93c1a9e89f76768fa59582"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#a1d836cd56c93c1a9e89f76768fa59582">Brush::PT</a></div><div class="ttdeci">ProgramType PT</div><div class="ttdef"><b>Definition</b> <a href="#l00040">program.h:40</a></div></div>
 <div class="ttc" id="anamespaceBrush_html_a20d08fdc417fcb203d6cae91abfa4bff"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#a20d08fdc417fcb203d6cae91abfa4bff">Brush::from_json</a></div><div class="ttdeci">void from_json(const json &amp;j, Fitness &amp;f)</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d5c/fitness_8cpp_source.html#l00031">fitness.cpp:31</a></div></div>
-<div class="ttc" id="anamespaceBrush_html_a4f135739df5fe55a0ff81d943bec8be2"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Brush::Is</a></div><div class="ttdeci">auto Is(NodeType nt) -&gt; bool</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d77/node_8h_source.html#l00278">node.h:278</a></div></div>
+<div class="ttc" id="anamespaceBrush_html_a4f135739df5fe55a0ff81d943bec8be2"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Brush::Is</a></div><div class="ttdeci">auto Is(NodeType nt) -&gt; bool</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d77/node_8h_source.html#l00291">node.h:291</a></div></div>
 <div class="ttc" id="anamespaceBrush_html_a822ae4ce07ba14ae433977a635675764"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#a822ae4ce07ba14ae433977a635675764">Brush::Iter</a></div><div class="ttdeci">tree&lt; Node &gt;::pre_order_iterator Iter</div><div class="ttdef"><b>Definition</b> <a href="#l00037">program.h:37</a></div></div>
 <div class="ttc" id="anamespaceBrush_html_a8b77eb5253f95aaff5dcf63d29734d10"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#a8b77eb5253f95aaff5dcf63d29734d10">Brush::PostIter</a></div><div class="ttdeci">tree&lt; Node &gt;::post_order_iterator PostIter</div><div class="ttdef"><b>Definition</b> <a href="#l00038">program.h:38</a></div></div>
 <div class="ttc" id="anamespaceBrush_html_a8cfe33753dda03e1480fdcbe62e1885d"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#a8cfe33753dda03e1480fdcbe62e1885d">Brush::to_json</a></div><div class="ttdeci">void to_json(json &amp;j, const Fitness &amp;f)</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d5c/fitness_8cpp_source.html#l00006">fitness.cpp:6</a></div></div>
@@ -681,12 +683,13 @@ $(function(){initNavTree('d1/dea/program_8h_source.html','../../'); initResizabl
 <div class="ttc" id="astructBrush_1_1Program_html"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html">Brush::Program</a></div><div class="ttdoc">An individual program, a.k.a. model.</div><div class="ttdef"><b>Definition</b> <a href="#l00049">program.h:50</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_a00356ac7bbc5c1d8f70bc8d90f41d4ac"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a00356ac7bbc5c1d8f70bc8d90f41d4ac">Brush::Program::Program</a></div><div class="ttdeci">Program(const std::reference_wrapper&lt; SearchSpace &gt; s, const tree&lt; Node &gt; t)</div><div class="ttdef"><b>Definition</b> <a href="#l00078">program.h:78</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_a166fc75406fd631070f4477a367c4bb8"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a166fc75406fd631070f4477a367c4bb8">Brush::Program::predict_proba</a></div><div class="ttdeci">TreeType predict_proba(const Dataset &amp;d)</div><div class="ttdef"><b>Definition</b> <a href="#l00222">program.h:222</a></div></div>
-<div class="ttc" id="astructBrush_1_1Program_html_a1cc0fd2af851933b54ef5fb6fb6c941b"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a1cc0fd2af851933b54ef5fb6fb6c941b">Brush::Program::update_weights</a></div><div class="ttdeci">void update_weights(const Dataset &amp;d)</div><div class="ttdoc">Updates the program&#39;s weights using non-linear least squares.</div><div class="ttdef"><b>Definition</b> <a href="#l00569">program.h:569</a></div></div>
+<div class="ttc" id="astructBrush_1_1Program_html_a17d8eaf6b1623cefc4d4888e8ed81330"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a17d8eaf6b1623cefc4d4888e8ed81330">Brush::Program::lock_nodes</a></div><div class="ttdeci">void lock_nodes(int end_depth=0, bool keep_leaves_unlocked=true)</div><div class="ttdoc">Iterates over the program, locking the nodes until it reaches a certain depth. If the node is a Split...</div><div class="ttdef"><b>Definition</b> <a href="#l00342">program.h:342</a></div></div>
+<div class="ttc" id="astructBrush_1_1Program_html_a1cc0fd2af851933b54ef5fb6fb6c941b"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a1cc0fd2af851933b54ef5fb6fb6c941b">Brush::Program::update_weights</a></div><div class="ttdeci">void update_weights(const Dataset &amp;d)</div><div class="ttdoc">Updates the program&#39;s weights using non-linear least squares.</div><div class="ttdef"><b>Definition</b> <a href="#l00567">program.h:567</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_a2a669a8179423af25fb10d26c67c27eb"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a2a669a8179423af25fb10d26c67c27eb">Brush::Program::RetType</a></div><div class="ttdeci">typename std::conditional_t&lt; PType==PT::Regressor, ArrayXf, std::conditional_t&lt; PType==PT::BinaryClassifier, ArrayXb, std::conditional_t&lt; PType==PT::MulticlassClassifier, ArrayXi, std::conditional_t&lt; PType==PT::Representer, ArrayXXf, ArrayXf &gt; &gt; &gt; &gt; RetType</div><div class="ttdoc">the return type of the tree when calling :func:predict.</div><div class="ttdef"><b>Definition</b> <a href="#l00055">program.h:55</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_a349a42d743b44ad4515bbeb9a93a95f1"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a349a42d743b44ad4515bbeb9a93a95f1">Brush::Program&lt; PT::Regressor &gt;::SSref</a></div><div class="ttdeci">std::optional&lt; std::reference_wrapper&lt; SearchSpace &gt; &gt; SSref</div><div class="ttdef"><b>Definition</b> <a href="#l00075">program.h:75</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_a4ac36b2680c5fa0aae06db61fa2ffae6"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a4ac36b2680c5fa0aae06db61fa2ffae6">Brush::Program::linear_complexity</a></div><div class="ttdeci">int linear_complexity() const</div><div class="ttdoc">count the linear complexity of the program.</div><div class="ttdef"><b>Definition</b> <a href="#l00101">program.h:101</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_a59371dd699ddbb0bdb3b27237cb40e76"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a59371dd699ddbb0bdb3b27237cb40e76">Brush::Program::predict</a></div><div class="ttdeci">RetType predict(const Ref&lt; const ArrayXXf &gt; &amp;X)</div><div class="ttdoc">Convenience function to call predict directly from X data.</div><div class="ttdef"><b>Definition</b> <a href="#l00240">program.h:240</a></div></div>
-<div class="ttc" id="astructBrush_1_1Program_html_a5ba9c69ade043cacb917dfb654a57834"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a5ba9c69ade043cacb917dfb654a57834">Brush::Program::set_weights</a></div><div class="ttdeci">void set_weights(const ArrayXf &amp;weights)</div><div class="ttdoc">Set the weights in the tree from an array of weights.</div><div class="ttdef"><b>Definition</b> <a href="#l00312">program.h:312</a></div></div>
+<div class="ttc" id="astructBrush_1_1Program_html_a5ba9c69ade043cacb917dfb654a57834"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a5ba9c69ade043cacb917dfb654a57834">Brush::Program::set_weights</a></div><div class="ttdeci">void set_weights(const ArrayXf &amp;weights)</div><div class="ttdoc">Set the weights in the tree from an array of weights.</div><div class="ttdef"><b>Definition</b> <a href="#l00314">program.h:314</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_a66e9a1ae33267ee5132ba3b3757b8a01"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a66e9a1ae33267ee5132ba3b3757b8a01">Brush::Program&lt; PT::Regressor &gt;::is_fitted_</a></div><div class="ttdeci">bool is_fitted_</div><div class="ttdef"><b>Definition</b> <a href="#l00067">program.h:67</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_a68b5b3a1aedf1dfd2769dbba3a01a2ec"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a68b5b3a1aedf1dfd2769dbba3a01a2ec">Brush::Program::predict</a></div><div class="ttdeci">TreeType predict(const Dataset &amp;d)</div><div class="ttdoc">the standard predict function. Returns the output of the Tree directly.</div><div class="ttdef"><b>Definition</b> <a href="#l00183">program.h:183</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_a695b4178894f8703f2b539cf3a51b098"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a695b4178894f8703f2b539cf3a51b098">Brush::Program&lt; PT::Regressor &gt;::program_type</a></div><div class="ttdeci">static constexpr PT program_type</div><div class="ttdef"><b>Definition</b> <a href="#l00052">program.h:52</a></div></div>
@@ -695,28 +698,26 @@ $(function(){initNavTree('d1/dea/program_8h_source.html','../../'); initResizabl
 <div class="ttc" id="astructBrush_1_1Program_html_a6fc6aa2a6ecbe639aa3f80accf0c2798"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a6fc6aa2a6ecbe639aa3f80accf0c2798">Brush::Program::complexity</a></div><div class="ttdeci">int complexity() const</div><div class="ttdoc">count the (recursive) complexity of the program.</div><div class="ttdef"><b>Definition</b> <a href="#l00093">program.h:93</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_a7435fb84d7b056a108f142bb19956da5"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a7435fb84d7b056a108f142bb19956da5">Brush::Program&lt; PT::Regressor &gt;::Tree</a></div><div class="ttdeci">tree&lt; Node &gt; Tree</div><div class="ttdef"><b>Definition</b> <a href="#l00073">program.h:73</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_a826ef90ae1aaf8f2637f551cfff0746a"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a826ef90ae1aaf8f2637f551cfff0746a">Brush::Program::size_at</a></div><div class="ttdeci">int size_at(Iter &amp;top, bool include_weight=true) const</div><div class="ttdoc">count the size of a given subtree, optionally including the weights in weighted nodes....</div><div class="ttdef"><b>Definition</b> <a href="#l00121">program.h:121</a></div></div>
-<div class="ttc" id="astructBrush_1_1Program_html_a8bee1c866051b3e11c017cdf29b46eb7"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a8bee1c866051b3e11c017cdf29b46eb7">Brush::Program::get_weights</a></div><div class="ttdeci">ArrayXf get_weights()</div><div class="ttdoc">Get the weights of the tree as an array.</div><div class="ttdef"><b>Definition</b> <a href="#l00289">program.h:289</a></div></div>
+<div class="ttc" id="astructBrush_1_1Program_html_a8bee1c866051b3e11c017cdf29b46eb7"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a8bee1c866051b3e11c017cdf29b46eb7">Brush::Program::get_weights</a></div><div class="ttdeci">ArrayXf get_weights()</div><div class="ttdoc">Get the weights of the tree as an array.</div><div class="ttdef"><b>Definition</b> <a href="#l00291">program.h:291</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_a8ed721f103dd63c7adfc2934340097b4"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a8ed721f103dd63c7adfc2934340097b4">Brush::Program::fit</a></div><div class="ttdeci">Program&lt; PType &gt; &amp; fit(const Dataset &amp;d)</div><div class="ttdef"><b>Definition</b> <a href="#l00150">program.h:150</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_a91dd138edc7ecb5bc6d013ae68bf0e42"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a91dd138edc7ecb5bc6d013ae68bf0e42">Brush::Program::depth</a></div><div class="ttdeci">int depth() const</div><div class="ttdoc">count the tree depth of the program. The depth is not influenced by weighted nodes.</div><div class="ttdef"><b>Definition</b> <a href="#l00128">program.h:128</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_a93735deb988101774e8e58c5402e1a21"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a93735deb988101774e8e58c5402e1a21">Brush::Program::predict_with_weights</a></div><div class="ttdeci">auto predict_with_weights(const Dataset &amp;d, const ArrayXf &amp;weights)</div><div class="ttdef"><b>Definition</b> <a href="#l00168">program.h:168</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_a990bd3691f3b3e2b7ff479bcd4231479"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a990bd3691f3b3e2b7ff479bcd4231479">Brush::Program::get_n_weights</a></div><div class="ttdeci">int get_n_weights() const</div><div class="ttdoc">returns the number of weights in the program.</div><div class="ttdef"><b>Definition</b> <a href="#l00269">program.h:269</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_a9a1dd47fb6491ad830c147cced29752b"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a9a1dd47fb6491ad830c147cced29752b">Brush::Program::depth_at</a></div><div class="ttdeci">int depth_at(Iter &amp;top) const</div><div class="ttdoc">count the depth of a given subtree. The depth is not influenced by weighted nodes....</div><div class="ttdef"><b>Definition</b> <a href="#l00138">program.h:138</a></div></div>
-<div class="ttc" id="astructBrush_1_1Program_html_a9a48839ac5f4e68f5b0468cc50f35439"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a9a48839ac5f4e68f5b0468cc50f35439">Brush::Program::unlock_nodes</a></div><div class="ttdeci">void unlock_nodes(int start_depth=0)</div><div class="ttdoc">Iterates over the program, unlocking the nodes until it reaches a certain depth. It does not protect ...</div><div class="ttdef"><b>Definition</b> <a href="#l00372">program.h:372</a></div></div>
-<div class="ttc" id="astructBrush_1_1Program_html_a9db890cb3b1bd9f07764bb3bc7f75d64"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a9db890cb3b1bd9f07764bb3bc7f75d64">Brush::Program::linearize</a></div><div class="ttdeci">vector&lt; Node &gt; linearize() const</div><div class="ttdoc">turns program tree into a linear program.</div><div class="ttdef"><b>Definition</b> <a href="#l00553">program.h:553</a></div></div>
+<div class="ttc" id="astructBrush_1_1Program_html_a9db890cb3b1bd9f07764bb3bc7f75d64"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a9db890cb3b1bd9f07764bb3bc7f75d64">Brush::Program::linearize</a></div><div class="ttdeci">vector&lt; Node &gt; linearize() const</div><div class="ttdoc">turns program tree into a linear program.</div><div class="ttdef"><b>Definition</b> <a href="#l00551">program.h:551</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_a9e0114cb8da8698b0db76f67ce5d22e3"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#a9e0114cb8da8698b0db76f67ce5d22e3">Brush::Program::predict</a></div><div class="ttdeci">ArrayXi predict(const Dataset &amp;d)</div><div class="ttdoc">Specialized predict function for multiclass classification.</div><div class="ttdef"><b>Definition</b> <a href="#l00209">program.h:209</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_aa24681261d191fdc486973820394d411"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#aa24681261d191fdc486973820394d411">Brush::Program::set_search_space</a></div><div class="ttdeci">void set_search_space(const std::reference_wrapper&lt; SearchSpace &gt; s)</div><div class="ttdef"><b>Definition</b> <a href="#l00086">program.h:86</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_aae1a9e6d998ac210bb41566bf74d2cbf"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#aae1a9e6d998ac210bb41566bf74d2cbf">Brush::Program::predict</a></div><div class="ttdeci">ArrayXb predict(const Dataset &amp;d)</div><div class="ttdoc">Specialized predict function for binary classification.</div><div class="ttdef"><b>Definition</b> <a href="#l00196">program.h:196</a></div></div>
-<div class="ttc" id="astructBrush_1_1Program_html_ab288bd389c68ab3c0776ef14a9e5e331"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#ab288bd389c68ab3c0776ef14a9e5e331">Brush::Program::get_dot_model</a></div><div class="ttdeci">string get_dot_model(string extras=&quot;&quot;) const</div><div class="ttdoc">Get the model as a dot object.</div><div class="ttdef"><b>Definition</b> <a href="#l00416">program.h:416</a></div></div>
+<div class="ttc" id="astructBrush_1_1Program_html_ab288bd389c68ab3c0776ef14a9e5e331"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#ab288bd389c68ab3c0776ef14a9e5e331">Brush::Program&lt; PT::Regressor &gt;::get_dot_model</a></div><div class="ttdeci">string get_dot_model(string extras=&quot;&quot;) const</div><div class="ttdef"><b>Definition</b> <a href="#l00411">program.h:411</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_ab5df93b7b0bf914455ffeb5cc7574543"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#ab5df93b7b0bf914455ffeb5cc7574543">Brush::Program::Program</a></div><div class="ttdeci">Program()=default</div></div>
-<div class="ttc" id="astructBrush_1_1Program_html_ac87e13742552236e1dc9fd9b62078331"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#ac87e13742552236e1dc9fd9b62078331">Brush::Program::get_model</a></div><div class="ttdeci">string get_model(string fmt=&quot;compact&quot;, bool pretty=false) const</div><div class="ttdoc">Get the model as a string.</div><div class="ttdef"><b>Definition</b> <a href="#l00400">program.h:400</a></div></div>
-<div class="ttc" id="astructBrush_1_1Program_html_ac95fc63e130e0e594b92a0c160db44aa"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#ac95fc63e130e0e594b92a0c160db44aa">Brush::Program::lock_nodes</a></div><div class="ttdeci">void lock_nodes(int end_depth=0, bool skip_leaves=true)</div><div class="ttdoc">Iterates over the program, locking the nodes until it reaches a certain depth.</div><div class="ttdef"><b>Definition</b> <a href="#l00339">program.h:339</a></div></div>
+<div class="ttc" id="astructBrush_1_1Program_html_ac87e13742552236e1dc9fd9b62078331"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#ac87e13742552236e1dc9fd9b62078331">Brush::Program::get_model</a></div><div class="ttdeci">string get_model(string fmt=&quot;compact&quot;, bool pretty=false) const</div><div class="ttdoc">Get the model as a string.</div><div class="ttdef"><b>Definition</b> <a href="#l00395">program.h:395</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_ad63eebe3f515f9b229617c1df623b30d"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#ad63eebe3f515f9b229617c1df623b30d">Brush::Program::predict_proba</a></div><div class="ttdeci">TreeType predict_proba(const Ref&lt; const ArrayXXf &gt; &amp;X)</div><div class="ttdoc">Predict probabilities from X.</div><div class="ttdef"><b>Definition</b> <a href="#l00255">program.h:255</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_af1f9858cdb8c05bdcf5db55cab745f7c"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#af1f9858cdb8c05bdcf5db55cab745f7c">Brush::Program::depth_to_reach</a></div><div class="ttdeci">int depth_to_reach(Iter &amp;top) const</div><div class="ttdoc">count the depth until reaching the given subtree. The depth is not influenced by weighted nodes....</div><div class="ttdef"><b>Definition</b> <a href="#l00146">program.h:146</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_af50c7ca669b20b48971b5108cd24525c"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#af50c7ca669b20b48971b5108cd24525c">Brush::Program::copy</a></div><div class="ttdeci">Program&lt; PType &gt; copy()</div><div class="ttdef"><b>Definition</b> <a href="#l00084">program.h:84</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_af62fee4f37c3a748c68505986a979ba3"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#af62fee4f37c3a748c68505986a979ba3">Brush::Program::fit</a></div><div class="ttdeci">Program&lt; PType &gt; &amp; fit(const Ref&lt; const ArrayXXf &gt; &amp;X, const Ref&lt; const ArrayXf &gt; &amp;y)</div><div class="ttdoc">Convenience function to call fit directly from X,y data.</div><div class="ttdef"><b>Definition</b> <a href="#l00231">program.h:231</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html_af64e3100027b89fd4fffd50bfb843993"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html#af64e3100027b89fd4fffd50bfb843993">Brush::Program::size</a></div><div class="ttdeci">int size(bool include_weight=true) const</div><div class="ttdoc">count the tree size of the program, including the weights in weighted nodes.</div><div class="ttdef"><b>Definition</b> <a href="#l00110">program.h:110</a></div></div>
 <div class="ttc" id="astructBrush_1_1SearchSpace_html"><div class="ttname"><a href="../../d4/dc3/structBrush_1_1SearchSpace.html">Brush::SearchSpace</a></div><div class="ttdoc">Holds a search space, consisting of operations and terminals and functions, and methods to sample tha...</div><div class="ttdef"><b>Definition</b> <a href="../../d9/d99/search__space_8h_source.html#l00083">search_space.h:84</a></div></div>
-<div class="ttc" id="astructBrush_1_1WeightOptimizer_html"><div class="ttname"><a href="../../d7/d79/structBrush_1_1WeightOptimizer.html">Brush::WeightOptimizer</a></div><div class="ttdef"><b>Definition</b> <a href="../../d7/de3/weight__optimizer_8h_source.html#l00078">weight_optimizer.h:79</a></div></div>
+<div class="ttc" id="astructBrush_1_1WeightOptimizer_html"><div class="ttname"><a href="../../d7/d79/structBrush_1_1WeightOptimizer.html">Brush::WeightOptimizer</a></div><div class="ttdef"><b>Definition</b> <a href="../../d7/de3/weight__optimizer_8h_source.html#l00105">weight_optimizer.h:106</a></div></div>
 <div class="ttc" id="atree__node_8h_html"><div class="ttname"><a href="../../d1/da6/tree__node_8h.html">tree_node.h</a></div></div>
 <div class="ttc" id="autils_8h_html"><div class="ttname"><a href="../../d5/d60/utils_8h.html">utils.h</a></div></div>
 <div class="ttc" id="aweight__optimizer_8h_html"><div class="ttname"><a href="../../d7/de3/weight__optimizer_8h.html">weight_optimizer.h</a></div></div>

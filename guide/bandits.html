@@ -1,390 +1,94 @@
 
+
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-
-<html lang="en" data-content_root="../" >
-
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Using bandits to learn probabilities for the search space &#8212; Brush 0.1a documentation</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
-  </script>
-  
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using bandits to learn probabilities for the search space &mdash; Brush 0.1.dev1+gb285298b0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
-  
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
-
-    <script src="../_static/documentation_options.js?v=74359811"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/bandits';</script>
-    <link rel="icon" href="../_static/paint-brush-solid.svg"/>
+    <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=27f31e90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
-  </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
 
-  
-  
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search..."
-         aria-label="Search..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Brush
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-
-  
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
-    </header>
-  
-
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
-      
-      
-      
-        
-      
-      <div class="bd-sidebar-primary bd-sidebar">
-        
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-
-  
-    
-  
-
-<a class="navbar-brand logo" href="../index.html">
-  
-  
-  
-  
-  
-  
-    <p class="title logo__title">Brush 0.1a documentation</p>
-  
-</a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../index.html">
-                    Overview
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quickstart</span></p>
-<ul class="nav bd-sidenav">
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Quickstart</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics.html">Basic Usage</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">Cookbook</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="data.html">Working with Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="search_space.html">The Search Space</a></li>
-<li class="toctree-l2"><a class="reference internal" href="working_with_programs.html">Working with Programs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="json.html">JSON Interoperability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="saving_loading_populations.html">Saving and loading populations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="archive.html">The archive</a></li>
-<li class="toctree-l2"><a class="reference internal" href="deap.html">Using Deap</a></li>
-</ul>
-</details></li>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Cookbook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../python_api/index.html">Python API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/estimator.html">BrushEstimator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/interface.html">EstimatorInterface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/regressor.html">BrushRegressor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/classifier.html">BrushClassifier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/python_api.html">Python API</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../cpp_api/index.html">C++ API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cpp_api/data.html">Dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cpp_api/timeseries.html">TimeSeries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cpp_api/search_space.html">SearchSpace</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cpp_api/program.html">Program</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cpp_api/node.html">Node</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cpp_api/nodetypes.html">NodeTypes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cpp_api/individual.html">Individual and Fitness</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cpp_api/evaluation.html">Evaluation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cpp_api/population.html">Population</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cpp_api/variation.html">Variation (Crossover/Mutation)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cpp_api/selection.html">Selection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cpp_api/archive.html">Archive</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cpp_api/engine.html">Engine (and parameters)</a></li>
-</ul>
-</details></li>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/index.html">C++ API</a></li>
 </ul>
 
-    </div>
-</nav></div>
-    </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-  </div>
-  
-  <div id="rtd-footer-container"></div>
-
-
-      </div>
-      
-      <main id="main-content" class="bd-main" role="main">
-        
-        
-
-<div class="sbt-scroll-pixel-helper"></div>
-
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article d-print-none">
-<div class="header-article-items header-article__inner">
-  
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</button></div>
-      
-    </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
-
-
-<a href="https://github.com/cavalab/brush" target="_blank"
-   class="btn btn-sm btn-source-repository-button"
-   title="Source repository"
-   data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-
-</a>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/guide/bandits.ipynb" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-<button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-
-
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
-
-
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
-</div></div>
-      
-    </div>
-  
-</div>
-</div>
-              
-              
-
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>Using bandits to learn probabilities for the search space</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
-            
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-convergences">Comparing convergences</a></li>
-</ul>
-            </nav>
         </div>
-    </div>
-</div>
+      </div>
+    </nav>
 
-              
-                
-<div id="searchbox"></div>
-                <article class="bd-article">
-                  
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Brush</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Using bandits to learn probabilities for the search space</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/guide/bandits.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="using-bandits-to-learn-probabilities-for-the-search-space">
-<h1>Using bandits to learn probabilities for the search space<a class="headerlink" href="#using-bandits-to-learn-probabilities-for-the-search-space" title="Link to this heading">#</a></h1>
+<h1>Using bandits to learn probabilities for the search space<a class="headerlink" href="#using-bandits-to-learn-probabilities-for-the-search-space" title="Link to this heading"></a></h1>
 <p>To learn probabilities for the search space, the <code class="docutils literal notranslate"><span class="pre">Brush</span></code> estimators (not the DEAP!) uses a multi-armed bandit approach.</p>
 <p>This allows it to dynamically adjust the sampling probabilities of different operations based on their performance.</p>
 <p>Not only it can learn how to sample terminals, but it also learns which mutations are useful and which are not. This is also important, as the mutations are responsible for sampling from the search space.</p>
@@ -415,125 +119,125 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
-terminal_map: {&quot;ArrayB&quot;: [&quot;1.00&quot;], &quot;ArrayI&quot;: [&quot;x_5&quot;, &quot;x_7&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;x_0&quot;, &quot;x_1&quot;, &quot;x_2&quot;, &quot;x_3&quot;, &quot;x_4&quot;, &quot;x_6&quot;, &quot;1.00&quot;]}
-terminal_weights: {&quot;ArrayB&quot;: [1], &quot;ArrayI&quot;: [0.014733159, 0.037457366, 0.026095262], &quot;ArrayF&quot;: [0.6343385, 0.67299956, 0.42711574, 0.8625447, 0.8957853, 0.20750472, 0.6167148]}
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 1
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Pow] = 1.00*Pow, weight = 1
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Div] = 1.00*Div, weight = 1
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Mul] = 1.00*Mul, weight = 1
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Sub] = 1.00*Sub, weight = 1
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Add] = 1.00*Add, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logistic] = 1.00*Logistic, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Square] = 1.00*Square, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sqrtabs] = 1.00*Sqrtabs, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sqrt] = 1.00*Sqrt, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Log1p] = 1.00*Log1p, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Log] = 1.00*Log, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Abs] = 1.00*Abs, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][OffsetSum] = 0.00+Sum, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Acos] = 1.00*Acos, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Softmax] = 1.00*Softmax, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Asin] = 1.00*Asin, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Atan] = 1.00*Atan, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cosh] = 1.00*Cosh, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sinh] = 1.00*Sinh, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Tan] = 1.00*Tan, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Tanh] = 1.00*Tanh, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Ceil] = 1.00*Ceil, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Floor] = 1.00*Floor, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logistic] = 1.00*Logistic, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Square] = 1.00*Square, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sqrtabs] = 1.00*Sqrtabs, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sqrt] = 1.00*Sqrt, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Log1p] = 1.00*Log1p, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Log] = 1.00*Log, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Abs] = 1.00*Abs, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][OffsetSum] = 0.00+Sum, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Acos] = 1.00*Acos, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Softmax] = 1.00*Softmax, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Asin] = 1.00*Asin, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Atan] = 1.00*Atan, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cosh] = 1.00*Cosh, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sinh] = 1.00*Sinh, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Tan] = 1.00*Tan, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Tanh] = 1.00*Tanh, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Ceil] = 1.00*Ceil, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Floor] = 1.00*Floor, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logistic] = 1.00*Logistic, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Square] = 1.00*Square, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sqrtabs] = 1.00*Sqrtabs, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sqrt] = 1.00*Sqrt, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Log1p] = 1.00*Log1p, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Log] = 1.00*Log, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Abs] = 1.00*Abs, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][OffsetSum] = 0.00+Sum, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Acos] = 1.00*Acos, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Softmax] = 1.00*Softmax, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Asin] = 1.00*Asin, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Atan] = 1.00*Atan, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cosh] = 1.00*Cosh, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sinh] = 1.00*Sinh, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Tan] = 1.00*Tan, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Tanh] = 1.00*Tanh, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Ceil] = 1.00*Ceil, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Floor] = 1.00*Floor, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sum] = 1.00*Sum, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Prod] = 1.00*Prod, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Median] = 1.00*Median, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mean] = 1.00*Mean, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Max] = 1.00*Max, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Min] = 1.00*Min, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sum] = 1.00*Sum, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Prod] = 1.00*Prod, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Median] = 1.00*Median, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mean] = 1.00*Mean, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Max] = 1.00*Max, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Min] = 1.00*Min, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Div] = 1.00*Div, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mul] = 1.00*Mul, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sub] = 1.00*Sub, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = 1.00*Add, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sum] = 1.00*Sum, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Prod] = 1.00*Prod, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Median] = 1.00*Median, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mean] = 1.00*Mean, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Max] = 1.00*Max, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Pow] = 1.00*Pow, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Min] = 1.00*Min, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Logistic] = 1.00*Logistic, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Square] = 1.00*Square, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Sqrtabs] = 1.00*Sqrtabs, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Sqrt] = 1.00*Sqrt, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Log1p] = 1.00*Log1p, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Log] = 1.00*Log, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Abs] = 1.00*Abs, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][OffsetSum] = 0.00+Sum, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Acos] = 1.00*Acos, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Asin] = 1.00*Asin, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Atan] = 1.00*Atan, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Cosh] = 1.00*Cosh, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Sinh] = 1.00*Sinh, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Tan] = 1.00*Tan, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Tanh] = 1.00*Tanh, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Ceil] = 1.00*Ceil, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Floor] = 1.00*Floor, weight = 1
+terminal_map: {&quot;ArrayI&quot;: [&quot;x_5&quot;, &quot;x_7&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;x_0&quot;, &quot;x_1&quot;, &quot;x_2&quot;, &quot;x_3&quot;, &quot;x_4&quot;, &quot;x_6&quot;, &quot;1.00&quot;]}
+terminal_weights: {&quot;ArrayI&quot;: [0.011619061, 0.03579926, 0.023709161], &quot;ArrayF&quot;: [0.6343385, 0.67299956, 0.42711574, 0.8625447, 0.8957853, 0.20750472, 0.6167148]}
+SplitBest node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 1
+Div node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Div] = 1.00*Div, weight = 1
+Mul node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Mul] = 1.00*Mul, weight = 1
+Sub node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Sub] = 1.00*Sub, weight = 1
+Pow node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Pow] = 1.00*Pow, weight = 1
+Add node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Add] = 1.00*Add, weight = 1
+Tanh node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Tanh] = 1.00*Tanh, weight = 1
+Softmax node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Softmax] = 1.00*Softmax, weight = 1
+Logistic node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logistic] = 1.00*Logistic, weight = 1
+Tan node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Tan] = 1.00*Tan, weight = 1
+OffsetSum node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][OffsetSum] = 0.00+Sum, weight = 1
+Square node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Square] = 1.00*Square, weight = 1
+Sinh node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sinh] = 1.00*Sinh, weight = 1
+Sqrtabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sqrtabs] = 1.00*Sqrtabs, weight = 1
+Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
+Sqrt node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sqrt] = 1.00*Sqrt, weight = 1
+Cosh node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cosh] = 1.00*Cosh, weight = 1
+Logabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
+Atan node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Atan] = 1.00*Atan, weight = 1
+Log node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Log] = 1.00*Log, weight = 1
+Asin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Asin] = 1.00*Asin, weight = 1
+Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
+Acos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Acos] = 1.00*Acos, weight = 1
+Log1p node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Log1p] = 1.00*Log1p, weight = 1
+Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
+Ceil node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Ceil] = 1.00*Ceil, weight = 1
+Floor node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Floor] = 1.00*Floor, weight = 1
+Abs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Abs] = 1.00*Abs, weight = 1
+Tanh node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Tanh] = 1.00*Tanh, weight = 1
+Softmax node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Softmax] = 1.00*Softmax, weight = 1
+Logistic node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logistic] = 1.00*Logistic, weight = 1
+Tan node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Tan] = 1.00*Tan, weight = 1
+OffsetSum node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][OffsetSum] = 0.00+Sum, weight = 1
+Square node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Square] = 1.00*Square, weight = 1
+Sinh node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sinh] = 1.00*Sinh, weight = 1
+Sqrtabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sqrtabs] = 1.00*Sqrtabs, weight = 1
+Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
+Sqrt node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sqrt] = 1.00*Sqrt, weight = 1
+Cosh node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cosh] = 1.00*Cosh, weight = 1
+Logabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
+Atan node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Atan] = 1.00*Atan, weight = 1
+Log node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Log] = 1.00*Log, weight = 1
+Asin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Asin] = 1.00*Asin, weight = 1
+Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
+Acos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Acos] = 1.00*Acos, weight = 1
+Log1p node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Log1p] = 1.00*Log1p, weight = 1
+Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
+Ceil node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Ceil] = 1.00*Ceil, weight = 1
+Floor node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Floor] = 1.00*Floor, weight = 1
+Abs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Abs] = 1.00*Abs, weight = 1
+Tanh node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Tanh] = 1.00*Tanh, weight = 1
+Softmax node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Softmax] = 1.00*Softmax, weight = 1
+Logistic node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logistic] = 1.00*Logistic, weight = 1
+Tan node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Tan] = 1.00*Tan, weight = 1
+OffsetSum node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][OffsetSum] = 0.00+Sum, weight = 1
+Square node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Square] = 1.00*Square, weight = 1
+Sinh node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sinh] = 1.00*Sinh, weight = 1
+Sqrtabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sqrtabs] = 1.00*Sqrtabs, weight = 1
+Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
+Sqrt node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sqrt] = 1.00*Sqrt, weight = 1
+Cosh node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cosh] = 1.00*Cosh, weight = 1
+Logabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
+Atan node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Atan] = 1.00*Atan, weight = 1
+Log node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Log] = 1.00*Log, weight = 1
+Asin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Asin] = 1.00*Asin, weight = 1
+Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
+Acos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Acos] = 1.00*Acos, weight = 1
+Log1p node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Log1p] = 1.00*Log1p, weight = 1
+Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
+Ceil node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Ceil] = 1.00*Ceil, weight = 1
+Floor node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Floor] = 1.00*Floor, weight = 1
+Abs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Abs] = 1.00*Abs, weight = 1
+Sum node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sum] = 1.00*Sum, weight = 1
+Median node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Median] = 1.00*Median, weight = 1
+Mean node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mean] = 1.00*Mean, weight = 1
+Max node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Max] = 1.00*Max, weight = 1
+Prod node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Prod] = 1.00*Prod, weight = 1
+Min node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Min] = 1.00*Min, weight = 1
+Sum node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sum] = 1.00*Sum, weight = 1
+Median node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Median] = 1.00*Median, weight = 1
+Mean node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mean] = 1.00*Mean, weight = 1
+Max node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Max] = 1.00*Max, weight = 1
+Prod node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Prod] = 1.00*Prod, weight = 1
+Min node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Min] = 1.00*Min, weight = 1
+Sub node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sub] = 1.00*Sub, weight = 1
+Add node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = 1.00*Add, weight = 1
+Sum node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sum] = 1.00*Sum, weight = 1
+Median node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Median] = 1.00*Median, weight = 1
+Max node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Max] = 1.00*Max, weight = 1
+Pow node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Pow] = 1.00*Pow, weight = 1
+SplitBest node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 1
+Mean node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mean] = 1.00*Mean, weight = 1
+Min node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Min] = 1.00*Min, weight = 1
+Div node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Div] = 1.00*Div, weight = 1
+Prod node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Prod] = 1.00*Prod, weight = 1
+Mul node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mul] = 1.00*Mul, weight = 1
+Tanh node_map[ArrayF][[&quot;ArrayF&quot;]][Tanh] = 1.00*Tanh, weight = 1
+Logistic node_map[ArrayF][[&quot;ArrayF&quot;]][Logistic] = 1.00*Logistic, weight = 1
+Tan node_map[ArrayF][[&quot;ArrayF&quot;]][Tan] = 1.00*Tan, weight = 1
+OffsetSum node_map[ArrayF][[&quot;ArrayF&quot;]][OffsetSum] = 0.00+Sum, weight = 1
+Square node_map[ArrayF][[&quot;ArrayF&quot;]][Square] = 1.00*Square, weight = 1
+Sinh node_map[ArrayF][[&quot;ArrayF&quot;]][Sinh] = 1.00*Sinh, weight = 1
+Sqrtabs node_map[ArrayF][[&quot;ArrayF&quot;]][Sqrtabs] = 1.00*Sqrtabs, weight = 1
+Sin node_map[ArrayF][[&quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
+Sqrt node_map[ArrayF][[&quot;ArrayF&quot;]][Sqrt] = 1.00*Sqrt, weight = 1
+Cosh node_map[ArrayF][[&quot;ArrayF&quot;]][Cosh] = 1.00*Cosh, weight = 1
+Logabs node_map[ArrayF][[&quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
+Atan node_map[ArrayF][[&quot;ArrayF&quot;]][Atan] = 1.00*Atan, weight = 1
+Log node_map[ArrayF][[&quot;ArrayF&quot;]][Log] = 1.00*Log, weight = 1
+Asin node_map[ArrayF][[&quot;ArrayF&quot;]][Asin] = 1.00*Asin, weight = 1
+Exp node_map[ArrayF][[&quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
+Acos node_map[ArrayF][[&quot;ArrayF&quot;]][Acos] = 1.00*Acos, weight = 1
+Log1p node_map[ArrayF][[&quot;ArrayF&quot;]][Log1p] = 1.00*Log1p, weight = 1
+Cos node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
+Ceil node_map[ArrayF][[&quot;ArrayF&quot;]][Ceil] = 1.00*Ceil, weight = 1
+Floor node_map[ArrayF][[&quot;ArrayF&quot;]][Floor] = 1.00*Floor, weight = 1
+Abs node_map[ArrayF][[&quot;ArrayF&quot;]][Abs] = 1.00*Abs, weight = 1
 
 None
 </pre></div>
@@ -558,7 +262,6 @@ None
     <span class="c1"># Changing search space sampling probabilities</span>
     <span class="n">bandit</span><span class="o">=</span><span class="s1">&#39;thompson&#39;</span><span class="p">,</span>
     <span class="n">weights_init</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">use_arch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span>
 <span class="p">)</span>
@@ -573,12 +276,13 @@ None
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed  80% [================    ]saving final population as archive...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed  66% [=============       ]
 </pre></div>
 </div>
 <div class="output text_html"><style>#sk-container-id-1 {
   /* Definition of color scheme common for light and dark mode */
-  --sklearn-color-text: black;
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
   --sklearn-color-line: gray;
   /* Definition of color scheme for unfitted estimators */
   --sklearn-color-unfitted-level-0: #fff5e6;
@@ -723,12 +427,21 @@ clickable and can be expanded/collapsed.
 /* Toggleable label */
 #sk-container-id-1 label.sk-toggleable__label {
   cursor: pointer;
-  display: block;
+  display: flex;
   width: 100%;
   margin-bottom: 0;
   padding: 0.5em;
   box-sizing: border-box;
   text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-1 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
 }
 
 #sk-container-id-1 label.sk-toggleable__label-arrow:before {
@@ -746,9 +459,7 @@ clickable and can be expanded/collapsed.
 /* Toggleable content - dropdown */
 
 #sk-container-id-1 div.sk-toggleable__content {
-  max-height: 0;
-  max-width: 0;
-  overflow: hidden;
+  display: none;
   text-align: left;
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-0);
@@ -774,9 +485,9 @@ clickable and can be expanded/collapsed.
 
 #sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
   /* Expand drop-down */
-  max-height: 200px;
-  max-width: 100%;
-  overflow: auto;
+  display: block;
+  width: 100%;
+  overflow: visible;
 }
 
 #sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
@@ -881,7 +592,8 @@ a:visited.sk-estimator-doc-link {
   height: 1em;
   width: 1em;
   text-decoration: none !important;
-  margin-left: 1ex;
+  margin-left: 0.5em;
+  text-align: center;
   /* unfitted */
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
   color: var(--sklearn-color-unfitted-level-1);
@@ -980,13 +692,79 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
-</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>BrushRegressor(algorithm=&#x27;nsga2&#x27;, bandit=&#x27;thompson&#x27;, batch_size=1.0,
-               constants_simplification=True, cx_prob=0.14285714285714285,
+
+.estimator-table summary {
+    padding: .5rem;
+    font-family: monospace;
+    cursor: pointer;
+}
+
+.estimator-table details[open] {
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    padding-bottom: 0.3rem;
+}
+
+.estimator-table .parameters-table {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.estimator-table .parameters-table tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.estimator-table .parameters-table tr:nth-child(even) {
+    background-color: #f6f6f6;
+}
+
+.estimator-table .parameters-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+.estimator-table table td {
+    border: 1px solid rgba(106, 105, 104, 0.232);
+}
+
+.user-set td {
+    color:rgb(255, 94, 0);
+    text-align: left;
+}
+
+.user-set td.value pre {
+    color:rgb(255, 94, 0) !important;
+    background-color: transparent !important;
+}
+
+.default td {
+    color: black;
+    text-align: left;
+}
+
+.user-set td i,
+.default td i {
+    color: black;
+}
+
+.copy-paste-icon {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTIwOCAwTDMzMi4xIDBjMTIuNyAwIDI0LjkgNS4xIDMzLjkgMTQuMWw2Ny45IDY3LjljOSA5IDE0LjEgMjEuMiAxNC4xIDMzLjlMNDQ4IDMzNmMwIDI2LjUtMjEuNSA0OC00OCA0OGwtMTkyIDBjLTI2LjUgMC00OC0yMS41LTQ4LTQ4bDAtMjg4YzAtMjYuNSAyMS41LTQ4IDQ4LTQ4ek00OCAxMjhsODAgMCAwIDY0LTY0IDAgMCAyNTYgMTkyIDAgMC0zMiA2NCAwIDAgNDhjMCAyNi41LTIxLjUgNDgtNDggNDhMNDggNTEyYy0yNi41IDAtNDgtMjEuNS00OC00OEwwIDE3NmMwLTI2LjUgMjEuNS00OCA0OC00OHoiLz48L3N2Zz4=);
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    background-position: 0;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+</style><body><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>BrushRegressor(algorithm=&#x27;nsga2&#x27;, bandit=&#x27;thompson&#x27;, batch_size=1.0,
+               class_weights=&#x27;support&#x27;, constants_simplification=True,
+               cx_prob=0.14285714285714285, final_model_selection=&#x27;&#x27;,
                functions=[&#x27;SplitOn&#x27;, &#x27;Add&#x27;, &#x27;Exp&#x27;, &#x27;Sub&#x27;, &#x27;SplitBest&#x27;, &#x27;Mul&#x27;,
                           &#x27;Sin&#x27;, &#x27;Cos&#x27;, &#x27;Exp&#x27;, &#x27;Logabs&#x27;],
                inexact_simplification=True, initialization=&#x27;uniform&#x27;,
-               load_population=&#x27;&#x27;, logfile=&#x27;&#x27;, max_depth=10, max_gens=100,
-               max_size=100, max_stall=20, max_ti...
+               load_population=&#x27;&#x27;, logfile=&#x27;&#x27;, max_depth...
+               mutation_probs={&#x27;delete&#x27;: 0.16666666666666666,
+                               &#x27;insert&#x27;: 0.16666666666666666,
                                &#x27;point&#x27;: 0.16666666666666666,
                                &#x27;subtree&#x27;: 0.16666666666666666,
                                &#x27;toggle_weight_off&#x27;: 0.16666666666666666,
@@ -994,23 +772,389 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                n_jobs=1, num_islands=5,
                objectives=[&#x27;scorer&#x27;, &#x27;linear_complexity&#x27;], pop_size=100,
                random_state=None, save_population=&#x27;&#x27;, scorer=&#x27;mse&#x27;,
-               sel=&#x27;lexicase&#x27;, shuffle_split=False, surv=&#x27;nsga2&#x27;,
-               use_arch=False, val_from_arch=True, ...)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;BrushRegressor<span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>BrushRegressor(algorithm=&#x27;nsga2&#x27;, bandit=&#x27;thompson&#x27;, batch_size=1.0,
-               constants_simplification=True, cx_prob=0.14285714285714285,
-               functions=[&#x27;SplitOn&#x27;, &#x27;Add&#x27;, &#x27;Exp&#x27;, &#x27;Sub&#x27;, &#x27;SplitBest&#x27;, &#x27;Mul&#x27;,
-                          &#x27;Sin&#x27;, &#x27;Cos&#x27;, &#x27;Exp&#x27;, &#x27;Logabs&#x27;],
-               inexact_simplification=True, initialization=&#x27;uniform&#x27;,
-               load_population=&#x27;&#x27;, logfile=&#x27;&#x27;, max_depth=10, max_gens=100,
-               max_size=100, max_stall=20, max_ti...
-                               &#x27;point&#x27;: 0.16666666666666666,
-                               &#x27;subtree&#x27;: 0.16666666666666666,
-                               &#x27;toggle_weight_off&#x27;: 0.16666666666666666,
-                               &#x27;toggle_weight_on&#x27;: 0.16666666666666666},
-               n_jobs=1, num_islands=5,
-               objectives=[&#x27;scorer&#x27;, &#x27;linear_complexity&#x27;], pop_size=100,
-               random_state=None, save_population=&#x27;&#x27;, scorer=&#x27;mse&#x27;,
-               sel=&#x27;lexicase&#x27;, shuffle_split=False, surv=&#x27;nsga2&#x27;,
-               use_arch=False, val_from_arch=True, ...)</pre></div> </div></div></div></div></div></div>
+               sel=&#x27;lexicase&#x27;, shuffle_split=False, surv=&#x27;nsga2&#x27;, ...)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>BrushRegressor</div></div><div><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                <table class="parameters-table">
+                  <tbody>
+                    
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('pop_size',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">pop_size&nbsp;</td>
+            <td class="value">100</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('max_gens',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">max_gens&nbsp;</td>
+            <td class="value">100</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('max_stall',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">max_stall&nbsp;</td>
+            <td class="value">20</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('max_time',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">max_time&nbsp;</td>
+            <td class="value">-1</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('verbosity',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">verbosity&nbsp;</td>
+            <td class="value">1</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('algorithm',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">algorithm&nbsp;</td>
+            <td class="value">&#x27;nsga2&#x27;</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('mode',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">mode&nbsp;</td>
+            <td class="value">&#x27;regression&#x27;</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('max_depth',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">max_depth&nbsp;</td>
+            <td class="value">10</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('max_size',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">max_size&nbsp;</td>
+            <td class="value">100</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('num_islands',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">num_islands&nbsp;</td>
+            <td class="value">5</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('mig_prob',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">mig_prob&nbsp;</td>
+            <td class="value">0.05</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('n_jobs',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">n_jobs&nbsp;</td>
+            <td class="value">1</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('cx_prob',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">cx_prob&nbsp;</td>
+            <td class="value">0.14285714285714285</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('bandit',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">bandit&nbsp;</td>
+            <td class="value">&#x27;thompson&#x27;</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('logfile',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">logfile&nbsp;</td>
+            <td class="value">&#x27;&#x27;</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('final_model_selection',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">final_model_selection&nbsp;</td>
+            <td class="value">&#x27;&#x27;</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('save_population',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">save_population&nbsp;</td>
+            <td class="value">&#x27;&#x27;</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('load_population',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">load_population&nbsp;</td>
+            <td class="value">&#x27;&#x27;</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('mutation_probs',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">mutation_probs&nbsp;</td>
+            <td class="value">{&#x27;delete&#x27;: 0.16666666666666666, &#x27;insert&#x27;: 0.16666666666666666, &#x27;point&#x27;: 0.16666666666666666, &#x27;subtree&#x27;: 0.16666666666666666, ...}</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('functions',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">functions&nbsp;</td>
+            <td class="value">[&#x27;SplitOn&#x27;, &#x27;Add&#x27;, ...]</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('objectives',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">objectives&nbsp;</td>
+            <td class="value">[&#x27;scorer&#x27;, &#x27;linear_complexity&#x27;]</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('constants_simplification',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">constants_simplification&nbsp;</td>
+            <td class="value">True</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('inexact_simplification',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">inexact_simplification&nbsp;</td>
+            <td class="value">True</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('scorer',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">scorer&nbsp;</td>
+            <td class="value">&#x27;mse&#x27;</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('shuffle_split',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">shuffle_split&nbsp;</td>
+            <td class="value">False</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('initialization',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">initialization&nbsp;</td>
+            <td class="value">&#x27;uniform&#x27;</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('random_state',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">random_state&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('batch_size',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">batch_size&nbsp;</td>
+            <td class="value">1.0</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('sel',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">sel&nbsp;</td>
+            <td class="value">&#x27;lexicase&#x27;</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('surv',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">surv&nbsp;</td>
+            <td class="value">&#x27;nsga2&#x27;</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('weights_init',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">weights_init&nbsp;</td>
+            <td class="value">True</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('validation_size',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">validation_size&nbsp;</td>
+            <td class="value">0.2</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('class_weights',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">class_weights&nbsp;</td>
+            <td class="value">&#x27;support&#x27;</td>
+        </tr>
+    
+                  </tbody>
+                </table>
+            </details>
+        </div>
+    </div></div></div></div></div><script>function copyToClipboard(text, element) {
+    // Get the parameter prefix from the closest toggleable content
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const fullParamName = paramPrefix ? `${paramPrefix}${text}` : text;
+
+    const originalStyle = element.style;
+    const computedStyle = window.getComputedStyle(element);
+    const originalWidth = computedStyle.width;
+    const originalHTML = element.innerHTML.replace('Copied!', '');
+
+    navigator.clipboard.writeText(fullParamName)
+        .then(() => {
+            element.style.width = originalWidth;
+            element.style.color = 'green';
+            element.innerHTML = "Copied!";
+
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        })
+        .catch(err => {
+            console.error('Failed to copy:', err);
+            element.style.color = 'red';
+            element.innerHTML = "Failed!";
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        });
+    return false;
+}
+
+document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const paramName = element.parentElement.nextElementSibling.textContent.trim();
+    const fullParamName = paramPrefix ? `${paramPrefix}${paramName}` : paramName;
+
+    element.setAttribute('title', fullParamName);
+});
+</script></body></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1023,8 +1167,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 score: 0.9644483834047515
-RMSE    : 1.792578548833604
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 score: 0.9614723556399375
+RMSE    : 1.8660992848153004
 </pre></div>
 </div>
 </div>
@@ -1041,10 +1185,10 @@ RMSE    : 1.792578548833604
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model: If(x0&gt;0.75,-81.71*Sub(If(x0&gt;0.81,0.37*Sub(1.73*Cos(1.00*x3),-0.10*x4),0.44*Cos(1.00*x3)),0.23*x6),Add(If(x0&gt;0.70,12.45,Add(31.19*Sin(16.22*x0),If(x0&gt;0.63,Add(x0,42.65),Add(x0,30.64)))),10.57*x6))
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model: Sub(If(x0&gt;=0.76,0.20*Sub(If(x0&gt;=0.82,If(x6&gt;=0.25,If(x0&gt;=0.86,0.55*x2,146.57),0.53*x2),0.82*Add(x3,109.98)),33.31),Sub(If(x0&gt;=0.64,If(x0&gt;=0.66,12.61,17.75),0.03*x2),9.24*x6)),-20.76*x6)
 </pre></div>
 </div>
-<img alt="../_images/26b41f58391b5bf700d8471b07d64e2014cfae0d38c798d615d08071a0ae7a88.svg" src="../_images/26b41f58391b5bf700d8471b07d64e2014cfae0d38c798d615d08071a0ae7a88.svg" />
+<img alt="../_images/317d3a4563ec06b6556f584fb89c354fa54a4bcf0c56780cb89e3c2d22c45d6f.svg" src="../_images/317d3a4563ec06b6556f584fb89c354fa54a4bcf0c56780cb89e3c2d22c45d6f.svg" />
 </div>
 </div>
 <p>The attribute <code class="docutils literal notranslate"><span class="pre">search_space_</span></code> is an original copy and it is not changed.</p>
@@ -1056,32 +1200,32 @@ RMSE    : 1.792578548833604
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
-terminal_map: {&quot;ArrayB&quot;: [&quot;1.00&quot;], &quot;ArrayI&quot;: [&quot;x5&quot;, &quot;x7&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;x0&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;x3&quot;, &quot;x4&quot;, &quot;x6&quot;, &quot;1.00&quot;]}
-terminal_weights: {&quot;ArrayB&quot;: [1], &quot;ArrayI&quot;: [0.014733159, 0.037457366, 0.026095262], &quot;ArrayF&quot;: [0.6343385, 0.67299956, 0.42711574, 0.8625447, 0.8957853, 0.20750472, 0.6167148]}
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 1
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Mul] = 1.00*Mul, weight = 1
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Sub] = 1.00*Sub, weight = 1
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Add] = 1.00*Add, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mul] = 1.00*Mul, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sub] = 1.00*Sub, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = 1.00*Add, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
+terminal_map: {&quot;ArrayI&quot;: [&quot;x5&quot;, &quot;x7&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;x0&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;x3&quot;, &quot;x4&quot;, &quot;x6&quot;, &quot;1.00&quot;]}
+terminal_weights: {&quot;ArrayI&quot;: [0.011619061, 0.03579926, 0.023709161], &quot;ArrayF&quot;: [0.6343385, 0.67299956, 0.42711574, 0.8625447, 0.8957853, 0.20750472, 0.6167148]}
+Mul node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Mul] = 1.00*Mul, weight = 1
+SplitBest node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 1
+Sub node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Sub] = 1.00*Sub, weight = 1
+Add node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Add] = 1.00*Add, weight = 1
+Logabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
+Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
+Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
+Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
+Logabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
+Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
+Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
+Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
+Logabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
+Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
+Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
+Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
+Mul node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mul] = 1.00*Mul, weight = 1
+SplitBest node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 1
+Sub node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sub] = 1.00*Sub, weight = 1
+Add node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = 1.00*Add, weight = 1
+Logabs node_map[ArrayF][[&quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
+Sin node_map[ArrayF][[&quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
+Exp node_map[ArrayF][[&quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
+Cos node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
 </pre></div>
 </div>
 </div>
@@ -1095,32 +1239,32 @@ node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
-terminal_map: {&quot;ArrayB&quot;: [&quot;1.00&quot;], &quot;ArrayI&quot;: [&quot;x5&quot;, &quot;x7&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;x0&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;x3&quot;, &quot;x4&quot;, &quot;x6&quot;, &quot;1.00&quot;]}
-terminal_weights: {&quot;ArrayB&quot;: [0.31641042], &quot;ArrayI&quot;: [0.40001643, 0.7300561, 0.33041582], &quot;ArrayF&quot;: [0.5862769, 0.37799728, 0.5130713, 0.41667598, 0.28544503, 0.8411703, 0.3747217]}
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.38799778
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Mul] = 1.00*Mul, weight = 0.21231566
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Sub] = 1.00*Sub, weight = 0.47975916
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Add] = 1.00*Add, weight = 0.62021255
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.35245612
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.8055198
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.3553904
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.9379348
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.29540697
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.5393347
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.52640975
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.7617483
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.37520972
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.43845758
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.20359929
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.5781435
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.53659433
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mul] = 1.00*Mul, weight = 0.48227155
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sub] = 1.00*Sub, weight = 0.66283673
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = 1.00*Add, weight = 0.20790648
-node_map[ArrayF][[&quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.36600778
-node_map[ArrayF][[&quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.66059244
-node_map[ArrayF][[&quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.37146825
-node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.30392477
+terminal_map: {&quot;ArrayI&quot;: [&quot;x5&quot;, &quot;x7&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;x0&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;x3&quot;, &quot;x4&quot;, &quot;x6&quot;, &quot;1.00&quot;]}
+terminal_weights: {&quot;ArrayI&quot;: [0.5745307, 0.3762818, 0.6570763], &quot;ArrayF&quot;: [0.56798345, 0.39192685, 0.21743383, 0.3388331, 0.45449397, 0.9229001, 0.6466379]}
+Mul node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Mul] = 1.00*Mul, weight = 0.25473055
+Sub node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Sub] = 1.00*Sub, weight = 0.5238385
+SplitBest node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.22267354
+Add node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Add] = 1.00*Add, weight = 0.7520275
+Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.17283083
+Logabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.39821008
+Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.3113194
+Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.6387676
+Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.1678889
+Logabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.95612997
+Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.8862753
+Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.11717595
+Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.54468775
+Logabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.8213394
+Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.6942738
+Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.66134083
+Mul node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mul] = 1.00*Mul, weight = 0.52579325
+SplitBest node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.5293526
+Sub node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sub] = 1.00*Sub, weight = 0.6919736
+Add node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = 1.00*Add, weight = 0.41315702
+Sin node_map[ArrayF][[&quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.6600165
+Logabs node_map[ArrayF][[&quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.65961236
+Cos node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.5428014
+Exp node_map[ArrayF][[&quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.24429339
 </pre></div>
 </div>
 </div>
@@ -1148,14 +1292,14 @@ node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.30392477
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.009999999776482582
-{&#39;delete&#39;: 0.009999999776482582, &#39;insert&#39;: 0.009999999776482582, &#39;point&#39;: 0.009999999776482582, &#39;subtree&#39;: 0.009999999776482582, &#39;toggle_weight_off&#39;: 0.009999999776482582, &#39;toggle_weight_on&#39;: 0.009999999776482582}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.004904525354504585
+{&#39;delete&#39;: 0.00485138688236475, &#39;insert&#39;: 0.0012616771273314953, &#39;point&#39;: 0.00492620887234807, &#39;subtree&#39;: 0.005468408111482859, &#39;toggle_weight_off&#39;: 0.0010000000474974513, &#39;toggle_weight_on&#39;: 0.003289791289716959}
 </pre></div>
 </div>
 </div>
 </div>
 <section id="comparing-convergences">
-<h2>Comparing convergences<a class="headerlink" href="#comparing-convergences" title="Link to this heading">#</a></h2>
+<h2>Comparing convergences<a class="headerlink" href="#comparing-convergences" title="Link to this heading"></a></h2>
 <p>In the code below we run a simple experiment using the evolution log to compare convergence curves using different types of bandits</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1191,7 +1335,6 @@ node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.30392477
                     <span class="s2">&quot;subtree&quot;</span>           <span class="p">:</span> <span class="mi">2</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
                     <span class="s2">&quot;toggle_weight_on&quot;</span>  <span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
                     <span class="s2">&quot;toggle_weight_off&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span> <span class="p">},</span>
-                <span class="n">use_arch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                 <span class="n">logfile</span><span class="o">=</span><span class="n">logfile</span><span class="p">,</span>
                 <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span>
             <span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span><span class="n">y</span><span class="p">)</span>
@@ -1212,97 +1355,67 @@ node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.30392477
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running bandit: dummy
 Completed 100% [====================]
-saving final population as archive...
-model: Sub(If(x0&gt;0.75,Add(If(x0&gt;0.81,213.55,281.18*x0),-0.04*x3),If(x0&gt;0.70,0.44*Add(-0.07*x2,82.46*x0),If(x0&gt;0.63,0.02*x1,11.00))),15.48*Add(If(x0&gt;0.75,12.67,1.79*x0),Sub(-0.00*x2,0.96*x6)))
+model: If(x0&gt;=0.76,If(x0&gt;=0.82,If(x6&gt;=0.25,If(x0&gt;=0.86,32.79,28.71),27.58),Add(-0.14*Sub(-139.46*x6,x3),19.14*x0)),If(x0&gt;=0.64,If(x0&gt;=0.66,-0.06*Sub(-207.45*x6,x3),19.81),If(x6&gt;=0.10,0.02*x1,3.46*x4)))
 Completed 100% [====================]
-saving final population as archive...
-model: 0.67*Add(Add(28.29*x6,If(x0&gt;0.75,-0.06*Add(-1.76*x2,9.44*x1),-33.32*x0)),If(x0&gt;0.75,If(x0&gt;0.81,Add(0.49*x1,26.00),50.54*x4),Sub(42.72,12.62*x6)))
+model: 0.32*Sub(If(x0&gt;=0.76,If(x0&gt;=0.82,113.71,0.60*Sub(x3,-0.15*x1)),0.08*x1),10.27*Exp(0.02*Add(8.83*x4,-166.84*x6)))
 Completed 100% [====================]
-saving final population as archive...
-model: If(x0&gt;0.75,Add(If(x0&gt;0.81,0.50*Add(61.01,-0.07*x3),Sub(127.74*x0,65.14)),19.07*x6),Sub(Add(137.19,0.28*Sub(-484.59*x0,0.40*x2)),-10.57*x6))
+model: 0.01*Sub(0.02*Sub(Add(179.40*x2,If(x0&gt;=0.76,If(x0&gt;=0.82,If(x6&gt;=0.25,204349.56,347.39*x1),If(x0&gt;=0.79,1862.88*x3,1793.21*x3)),If(x0&gt;=0.64,If(x0&gt;=0.66,If(x6&gt;=0.40,193238.52*x0,40694.29*x4),47973.04*x4),574.33*x3))),486.35*x3),-2068.87*x6)
 Completed 100% [====================]
-saving final population as archive...
-model: -1.08*Add(If(x0&gt;0.75,If(x0&gt;0.81,If(x6&gt;0.17,-25.19,-3.48*x4),Sub(-118.41*x0,-59.63)),0.00*Add(If(x0&gt;0.70,x1,1235.15*x6),-965.41*x4)),-14.45*x6)
+model: 0.62*Add(If(x0&gt;=0.76,16.09*Add(Add(If(x0&gt;=0.82,11.41,15.76*x0),Sub(2.07*x6,15.45)),x4),If(x0&gt;=0.64,If(x0&gt;=0.66,If(x6&gt;=0.40,37.55,9.40*x4),If(x6&gt;=0.10,42.11,0.05*x1)),If(x6&gt;=0.10,33.77,8.32*x4))),-0.04*x3)
 Completed 100% [====================]
-saving final population as archive...
-model: If(x0&gt;0.75,Add(Add(-65.15,19.07*x6),If(x0&gt;0.81,0.97*Add(88.60,5.76*x0),127.74*x0)),Sub(10.28*x6,If(x0&gt;0.70,-12.51,If(x0&gt;0.63,-0.02*x1,-20.70*x0))))
+model: Sub(0.51*Sub(If(x0&gt;=0.76,If(x0&gt;=0.82,301.78,405.99*x0),If(x0&gt;=0.64,If(x0&gt;=0.66,If(x6&gt;=0.40,149.55,43.44*x4),45.59*x4),42.47*x4)),-33.64*x6),-0.02*Sub(-1.29*Sub(798.03*x4,-1.32*x3),-1.08*x2))
 Completed 100% [====================]
-saving final population as archive...
-model: Add(If(x0&gt;0.75,Add(If(x0&gt;0.81,91.17,127.74*x0),0.69*Add(-94.43,12.47*x6)),0.02*x1),10.47*x6)
+model: 0.02*Add(If(x0&gt;=0.76,If(x0&gt;=0.82,Add(If(x6&gt;=0.25,If(x0&gt;=0.86,0.53*x2,-211.63*x0),x4),5.16*x2),Add(3360.61,-3.31*x2)),If(x0&gt;=0.64,If(x0&gt;=0.66,x1,1035.94),728.69)),888.03*x6)
 Completed 100% [====================]
-saving final population as archive...
-model: Add(If(x0&gt;0.75,If(x0&gt;0.81,Sub(30.52,0.03*x3),0.96*Sub(-67.57,-132.49*x0)),2.16*Sub(0.07*Add(0.13*x1,-12.33*x0),3.93*x6)),19.07*x6)
+model: If(x0&gt;=0.76,0.09*Add(Add(If(x0&gt;=0.82,x2,555.48*x0),0.19*Add(-1.81*x2,506.75*x0)),226.98*x6),Add(If(x0&gt;=0.64,0.05*x2,If(x6&gt;=0.10,12.85,12.17)),0.32*Sub(-0.32*x0,-34.86*x6)))
 Completed 100% [====================]
-saving final population as archive...
-model: Sub(If(x0&gt;0.75,If(x0&gt;0.81,0.06*x2,0.19*x3),Add(-8.50*x6,If(x0&gt;0.70,12.02,0.02*x1))),-0.56*Sub(33.94*x6,Sub(If(x0&gt;0.75,0.07*x3,3.37*x4),3.58*x4)))
+model: If(x0&gt;=0.76,3.60*Add(If(x0&gt;=0.82,1.76*Exp(Add(0.00*x2,0.48*x0)),0.05*Sub(x3,-69.29)),5.68*x6),Sub(If(x0&gt;=0.64,Sub(If(x0&gt;=0.66,6.05*x4,25.58),12.25*x0),12.65),-11.55*x6))
 Completed 100% [====================]
-saving final population as archive...
-model: 0.85*Sub(0.06*Add(1.66*Add(0.98*Add(2026.03,167.46*x6),Sub(-840.44*x0,1.03*x3)),-0.94*x1),If(x0&gt;0.75,If(x0&gt;0.81,If(x6&gt;0.17,0.07*x1,43.22),0.10*x2),57.97))
+model: 0.05*Add(Add(If(x0&gt;=0.76,If(x0&gt;=0.82,x2,3.53*x3),0.76*Add(If(x0&gt;=0.64,Add(1.16*x2,35.30*x6),521.40*x0),-258.36*x6)),383.57*x6),If(x0&gt;=0.76,196.10*x0,-5.58))
 Completed 100% [====================]
-saving final population as archive...
-model: If(x0&gt;0.75,-0.01*Add(If(x0&gt;0.81,-865.31*x0,-1915.73*x0),202.45*Add(-1.12*x4,-8.55*x6)),-0.13*Add(-30.34*Sub(0.01*x1,-2.70*x6),5.36*x4))
+model: Add(0.05*Sub(If(x0&gt;=0.76,If(x0&gt;=0.82,x2,3.37*x3),If(x0&gt;=0.64,If(x0&gt;=0.66,0.28*x2,174.40),80.25)),0.10*Sub(-2571.41,-5.41*x3)),16.22*x6)
 Running bandit: thompson
 Completed 100% [====================]
-saving final population as archive...
-model: Add(0.02*Add(19.56*Sub(48.22*x6,1.36*Sub(54.91*x4,0.67*x3)),-3.17*x2),If(x0&gt;0.75,If(x0&gt;0.81,0.26*Sub(x2,-383.94*x0),0.27*x1),If(x0&gt;0.70,0.06*x1,If(x0&gt;0.63,0.15*x2,48.62))))
+model: If(x0&gt;=0.76,0.76*Sub(If(x0&gt;=0.82,0.06*Add(x2,287.29),If(x0&gt;=0.79,46.84,41.55)),-26.81*x6),If(x0&gt;=0.64,If(x0&gt;=0.66,If(x6&gt;=0.40,0.08*x3,14.43),If(x6&gt;=0.10,20.09,4.79*x4)),If(x6&gt;=0.10,If(x6&gt;=0.40,17.19,14.73),12.10)))
 Completed 100% [====================]
-saving final population as archive...
-model: If(x0&gt;0.75,Add(4.36*Add(0.03*x3,x4),-0.22*Sub(If(x0&gt;0.81,0.77*x3,0.10*x1),87.55*x6)),Sub(If(x0&gt;0.70,-0.00*x1,-0.48*x0),0.60*Sub(-17.57*x6,0.03*x1)))
+model: Sub(-1.39*Sub(-1.10*Sub(Add(Sub(If(x0&gt;=0.76,Sub(If(x0&gt;=0.82,24.07,0.20*x3),-6.02*x6),If(x0&gt;=0.64,2.47,-0.12*x5)),Sub(-0.42*x2,-4.00*x4)),7.38*x6),-0.09*x5),12.25),0.59*x2)
 Completed 100% [====================]
-saving final population as archive...
-model: Sub(0.07*Sub(Add(154.21*x6,Sub(-796.99*x0,x2)),-0.52*x1),If(x0&gt;0.75,Add(If(x0&gt;0.81,0.29*x3,0.05*x1),-10.38*Add(1.57*x4,0.82*x6)),-44.75))
+model: Sub(-0.02*Sub(Sub(-700.38*x6,-0.35*x1),143.68*x0),If(x0&gt;=0.76,-0.16*Add(If(x0&gt;=0.82,If(x6&gt;=0.25,0.26*x2,80.13),x3),Add(92.72,62.24*x6)),If(x0&gt;=0.64,-0.06*x2,-15.79)))
 Completed 100% [====================]
-saving final population as archive...
-model: Add(0.18*Sub(Add(Add(0.15*x2,-0.49*x3),If(x0&gt;0.75,100.99*x6,-0.11*x1)),77.76*x0),If(x0&gt;0.75,If(x0&gt;0.81,Sub(41.43,-1.49*x6),0.34*x3),Add(48.35,10.57*x6)))
+model: Sub(If(x0&gt;=0.76,Sub(Sub(28.04,Add(If(x0&gt;=0.82,0.03*x7,-8.20),-9.17*x6)),-0.17*x7),If(x0&gt;=0.64,If(x0&gt;=0.66,15.92,If(x6&gt;=0.10,21.43,0.09*x3)),16.36)),Sub(0.00*x1,11.31*x6))
 Completed 100% [====================]
-saving final population as archive...
-model: Sub(If(x0&gt;0.75,If(x0&gt;0.81,0.61*Add(49.68,-0.06*x3),0.05*Sub(147.01*x4,x2)),If(x0&gt;0.70,2.30*x4,0.04*x3)),0.02*Sub(-620.58*x6,If(x0&gt;0.75,499.46*x6,x2)))
+model: 0.05*Add(If(x0&gt;=0.76,Add(If(x0&gt;=0.82,33.10,1.48*x3),191.45*x6),If(x0&gt;=0.64,If(x0&gt;=0.66,52.25*x6,33.99*x4),0.02*x1)),72.21*Add(3.10*x6,x4))
 Completed 100% [====================]
-saving final population as archive...
-model: 0.24*Add(If(x0&gt;0.75,If(x0&gt;0.81,0.74*Sub(-6.26*x4,x3),Add(-0.33*x2,16.46*x6)),If(x0&gt;0.70,If(x6&gt;0.05,-234.59,-0.34*x1),If(x0&gt;0.63,-244.32,-431.73*x0))),Add(59.82*Add(0.80*x0,x6),0.36*x1))
+model: If(x0&gt;=0.76,Add(Add(If(x0&gt;=0.82,0.12*x2,49.14),0.03*Add(Add(783.11*x6,-0.65*x1),550.39)),-0.05*x2),If(x0&gt;=0.64,If(x0&gt;=0.66,If(x6&gt;=0.40,17.28,14.43),19.81),14.72))
 Completed 100% [====================]
-saving final population as archive...
-model: Add(If(x0&gt;0.75,Add(19.07*x6,-0.29*x2),10.57*x6),Sub(If(x0&gt;0.75,If(x0&gt;0.81,-204.28*x0,-21.52*x4),Add(-22.46*x0,-1250.99)),Sub(-389.30,If(x0&gt;0.75,-0.71*x3,254.42*x4))))
+model: 0.16*Sub(If(x0&gt;=0.76,Sub(217.02,0.44*Sub(If(x0&gt;=0.82,x3,0.07*x2),127.44*x6)),If(x0&gt;=0.64,0.28*x2,0.35*x3)),-68.60*x6)
 Completed 100% [====================]
-saving final population as archive...
-model: Sub(If(x0&gt;0.75,3.18*Add(If(x0&gt;0.81,50.16,67.27*x0),2.67*x6),82.65),Sub(0.02*Add(Sub(1003.98*x4,1.18*x2),1.94*x3),10.57*x6))
+model: If(x0&gt;=0.76,-35.77*Sub(-0.00*Sub(If(x0&gt;=0.82,x2,3.32*x3),0.60*x3),Add(0.56*x6,0.35)),Sub(If(x0&gt;=0.64,If(x0&gt;=0.66,12.61,17.75),12.66),-11.52*x6))
 Completed 100% [====================]
-saving final population as archive...
-model: If(x0&gt;0.75,Sub(Sub(19.07*x6,-0.04*x2),If(x0&gt;0.81,-15.28,-0.21*Sub(x3,0.09*x2))),Add(If(x0&gt;0.70,Add(72.51,10.95*x6),If(x0&gt;0.63,0.10*x1,121.61*x0)),-60.16))
+model: Add(Add(If(x0&gt;=0.76,2.92*Add(Add(If(x0&gt;=0.82,0.01*x2,0.05*x3),0.06*x5),3.08*x6),0.02*x2),1.77*Add(x4,-0.69*Exp(-113.21*x6))),11.28*x6)
 Completed 100% [====================]
-saving final population as archive...
-model: If(x0&gt;0.75,-0.05*Add(If(x0&gt;0.81,-499.15,Add(-1029.05,x2)),-365.75*x6),Add(10.57*x6,-0.00*Sub(-344.06*Add(x1,-65.62),2.71*Sub(-165.07*x2,46352.27*x0))))
+model: 0.15*Sub(Add(If(x0&gt;=0.76,If(x0&gt;=0.82,158.14,66.25*Sub(13.11*x0,x4)),If(x0&gt;=0.64,If(x0&gt;=0.66,0.09*x1,148.82*x0),100.59*x0)),104.69*x6),-13.89)
 Running bandit: dynamic_thompson
 Completed 100% [====================]
-saving final population as archive...
-model: -0.02*Sub(-1045.36*x6,If(x0&gt;0.75,Sub(If(x0&gt;0.81,3.54*x1,3567.66*x0),2.31*Sub(1.75*x1,105.99*x4)),Add(x1,-472.58*x6)))
+model: If(x0&gt;=0.76,Add(If(x0&gt;=0.82,25.82,33.73),20.46*x6),3.35*Add(If(x0&gt;=0.64,If(x0&gt;=0.66,3.76,5.30),3.78),3.44*x6))
 Completed 100% [====================]
-saving final population as archive...
-model: Sub(If(x0&gt;0.75,-4.34*Add(If(x0&gt;0.81,-21.02,-29.45*x0),15.02),0.07*Add(Sub(0.31*x1,121.86*x6),-9.89*x4)),-19.07*x6)
+model: Add(Add(If(x0&gt;=0.76,If(x0&gt;=0.82,-28.77,-0.05*x2),0.03*x2),11.96*x6),If(x0&gt;=0.76,Add(54.59,8.51*x6),If(x0&gt;=0.64,If(x0&gt;=0.66,Add(4.02,-0.07*x6),7.29),0.37*x5)))
 Completed 100% [====================]
-saving final population as archive...
-model: If(x0&gt;0.75,Add(0.93*Sub(Add(-231.42,21.41*x6),-0.07*x2),If(x0&gt;0.81,7.79*Add(16.40*x0,0.02*x1),If(x6&gt;0.32,287.93*x0,289.03*x0))),Add(-22.46*x0,Add(10.57*x6,28.79)))
+model: If(x0&gt;=0.76,If(x0&gt;=0.82,If(x6&gt;=0.25,If(x0&gt;=0.86,32.79,4.10*x4),27.58),-0.16*Sub(Add(x1,-119.64*x6),854.83)),If(x0&gt;=0.64,If(x0&gt;=0.66,Add(0.02*x1,11.92*x6),19.81),Add(12.93,10.02*x6)))
 Completed 100% [====================]
-saving final population as archive...
-model: Add(If(x0&gt;0.75,If(x0&gt;0.81,Add(68.03,-0.13*x3),0.03*Sub(2988.39*x0,x2)),Add(5.29*x0,10.57*x6)),0.13*Add(If(x0&gt;0.75,146.03*x6,x3),-212.49*x0))
+model: Sub(21.67*Sub(Exp(Add(0.26*x4,-0.64*x0)),-0.94*x6),0.69*Sub(If(x0&gt;=0.76,If(x0&gt;=0.82,0.29*x3,0.09*x2),13.29*x6),-30.38))
 Completed 100% [====================]
-saving final population as archive...
-model: 0.57*Add(If(x0&gt;0.75,If(x0&gt;0.81,If(x6&gt;0.17,6.76*x4,0.15*x2),0.43*x3),7.75*x4),0.02*Add(1267.54*x6,17.48*Add(0.11*x1,-0.43*x3)))
+model: 1.16*Add(If(x0&gt;=0.76,Sub(17.93*x6,If(x0&gt;=0.82,x4,x6)),-4.99*Add(x4,-1.87*x6)),29.13)
 Completed 100% [====================]
-saving final population as archive...
-model: 0.02*Add(Add(If(x0&gt;0.75,If(x0&gt;0.81,4999.81,7005.36*x0),x1),-271.46*Sub(If(x0&gt;0.75,13.16,1.74*x6),-2282.78*x6)),620738.56*x6)
+model: Add(If(x0&gt;=0.76,3.16*Sub(0.14*Sub(If(x0&gt;=0.82,207.65,292.02*x0),0.01*x1),19.94),If(x0&gt;=0.64,If(x0&gt;=0.66,0.02*x1,4.83*x4),19.05*x0)),16.24*x6)
 Completed 100% [====================]
-saving final population as archive...
-model: Add(Sub(18.83*x6,If(x0&gt;0.75,0.04*x3,-0.02*x1)),If(x0&gt;0.75,If(x0&gt;0.81,If(x6&gt;0.17,31.02,0.10*x2),0.07*Sub(1607.87*x0,x1)),-8.36*x6))
+model: Sub(0.06*Sub(Add(42.90*x4,200.36*x6),0.18*x1),If(x0&gt;=0.76,-0.05*Add(If(x0&gt;=0.82,x2,3.64*x3),191.96*x6),If(x0&gt;=0.64,If(x0&gt;=0.66,-0.02*x1,-17.13),-0.02*x1)))
 Completed 100% [====================]
-saving final population as archive...
-model: Sub(0.17*Sub(If(x0&gt;0.75,If(x0&gt;0.81,0.28*x2,x3),Sub(-133.79*x0,50.48*x6)),-113.41*x6),If(x0&gt;0.75,-0.01*Add(1295.14*x0,x2),-28.79))
+model: 0.60*Add(33.84*x6,If(x0&gt;=0.76,If(x0&gt;=0.82,42.70,0.46*Sub(508.72,0.60*x1)),0.25*Add(If(x0&gt;=0.64,0.31*x2,136.75*x0),-61.71*x6)))
 Completed 100% [====================]
-saving final population as archive...
-model: Sub(If(x0&gt;0.75,Sub(If(x0&gt;0.81,16.62,0.18*x3),-8.39*Add(x6,0.79*x0)),0.01*x1),3.01*Sub(-3.54*x6,0.00*x2))
+model: If(x0&gt;=0.76,0.26*Sub(0.37*Add(Add(209.82*x6,Sub(If(x0&gt;=0.82,140.92,-0.36*Add(-8253.71*x0,840.87*x4)),0.18*x1)),1.87*x5),-0.26*x2),Sub(If(x0&gt;=0.64,If(x0&gt;=0.66,0.02*x1,17.74),12.64),-11.60*x6))
 Completed 100% [====================]
-saving final population as archive...
-model: If(x0&gt;0.75,Add(Add(If(x0&gt;0.81,17.74,0.19*x3),19.07*x6),Add(12.78,-0.03*x3)),Add(0.02*x1,0.52*Sub(20.38*x6,4.66)))
+model: Add(0.70*Sub(0.16*Sub(-17.95*Sub(0.05*x1,x4),-123.56*x6),0.88*Add(If(x0&gt;=0.76,Add(If(x0&gt;=0.82,-0.24*x2,-0.15*x1),-0.30*x5),0.88*Sub(0.76*Sub(If(x0&gt;=0.64,-0.36*x2,-0.33*x2),0.29*x4),-17.04*x6)),-11.29*x6)),0.16*x3)
 </pre></div>
 </div>
 </div>
@@ -1335,7 +1448,7 @@ model: If(x0&gt;0.75,Add(Add(If(x0&gt;0.81,17.74,0.19*x3),19.07*x6),Add(12.78,-0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a753e30d5be6fe7412ca987fb1dd3f0f81532432f42dddc16a0c8dabc05030f2.png" src="../_images/a753e30d5be6fe7412ca987fb1dd3f0f81532432f42dddc16a0c8dabc05030f2.png" />
+<img alt="../_images/f5887add28761ed29e6b94e9d4c96ed9bbf2849f73e9415d243c5c790229fd4e.png" src="../_images/f5887add28761ed29e6b94e9d4c96ed9bbf2849f73e9415d243c5c790229fd4e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1365,92 +1478,38 @@ model: If(x0&gt;0.75,Add(Add(If(x0&gt;0.81,17.74,0.19*x3),19.07*x6),Add(12.78,-0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d62fc3cf285e74cfc07eb3500d523c1342c1e96df1f52e0467be73f50ef0063b.png" src="../_images/d62fc3cf285e74cfc07eb3500d523c1342c1e96df1f52e0467be73f50ef0063b.png" />
+<img alt="../_images/52d6315caa62a29ec134f5ee7c908d0bcf9246de2fb76556a1973f908ff7d772.png" src="../_images/52d6315caa62a29ec134f5ee7c908d0bcf9246de2fb76556a1973f908ff7d772.png" />
 </div>
 </div>
 </section>
 </section>
 
 
-                </article>
-              
-
-              
-              
-              
-              
-                <footer class="prev-next-footer d-print-none">
-                  
-<div class="prev-next-area">
-</div>
-                </footer>
-              
-            </div>
-            
-            
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-convergences">Comparing convergences</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
-            
+           </div>
           </div>
-          <footer class="bd-footer-content">
-            
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By William La Cava and Joseph D. Romano
-</p>
+          <footer>
 
-  </div>
-  
-  <div class="footer-item">
-    
+  <hr/>
 
-  <p class="copyright">
-    
-      © Copyright 2021, William La Cava and Joseph D. Romano.
-      <br/>
-    
-  </p>
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, William La Cava and Joseph D. Romano.</p>
+  </div>
 
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div>
-          </footer>
-        
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
-      </main>
-    </div>
+</footer>
+        </div>
+      </div>
+    </section>
   </div>
-  
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-  <footer class="bd-footer">
-  </footer>
-  </body>
+</body>
 </html>

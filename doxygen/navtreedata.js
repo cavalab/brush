@@ -66,20 +66,20 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d1/d3a/structBrush_1_1Node.html#a0971012cfb2ae944f4bea0ea0dc9e5a3",
-"d2/d36/classBrush_1_1Data_1_1Dataset.html#a652aba735323fddf7bf79407e7e4fc83",
-"d4/d46/classBrush_1_1Var_1_1PointMutation.html#abed0c55509e074070bd1068a62a1ca0a",
-"d5/d14/classBrush_1_1Var_1_1Variation.html#a656380481257dd8f03ceebcb07f0019f",
-"d6/dd0/structBrush_1_1Fitness.html#a52c42c28deffbad276611722fdd58859",
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#af1ff3934c359ca5bd910a61fe083d5ce",
-"d8/dca/structBrush_1_1Function_3_01NodeType_1_1After_01_4.html#a190369bc3a200689efc6832b36428554",
-"da/d54/structBrush_1_1WeightType.html",
-"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ad6978c4386468c44dd252345c11ca126",
-"dc/d5c/namespaceBrush.html#a01fb70aacb9cbd44254dbed1a2cbba39",
-"dc/db4/structBrush_1_1DataEnumType_3_01DT_1_1ArrayIJet_01_4.html",
+"d1/d3a/structBrush_1_1Node.html#a24ab653c36833ab9cd301efe99b39d5f",
+"d2/d36/classBrush_1_1Data_1_1Dataset.html#a52d591cce797480e80f8cf1f1482702e",
+"d4/d42/structfmt_1_1formatter_3_01Brush_1_1NodeType_01_4.html#a66499c22826759622fa847c796886088",
+"d5/d14/classBrush_1_1Var_1_1Variation.html#a3df7d1814f29d5073fccce5a4c59311c",
+"d6/dd0/structBrush_1_1Fitness.html#a4ca966e6cb92024ad7a29c420094a14e",
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aed1941ba67ba92fd9c3bb1fe2d136125",
+"d8/dc0/init_8h.html#a34d9416d559c78e525082e3b25582658",
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#ae0f2e1477d465c8a5f4db4e0c8554865",
+"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#a8d36cca3c88663adf33e28043d025b56",
+"dc/d31/structBrush_1_1Operator.html#ab4b156eb563db21ac32223aabfb9b92c",
+"dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#ab50d4ebcba078dfe4b43f6fd3dbf5810",
 "de/d30/structBrush_1_1Jetify.html#a41a88664219f863ac8fe341e03f5c21f",
-"de/deb/structBrush_1_1Parameters.html#a2054b866fb2d2a08114ae9c468ad3863",
-"df/dbb/selection_8cpp_source.html"
+"de/deb/structBrush_1_1Parameters.html#a139004f9fa652376afabd690dac242e5",
+"df/d54/structBrush_1_1is__tuple_3_01std_1_1tuple_3_01T_8_8_8_01_4_01_4.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

@@ -208,12 +208,9 @@ requires ((P == <a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af2
 <tr class="memitem:a5ba9c69ade043cacb917dfb654a57834" id="r_a5ba9c69ade043cacb917dfb654a57834"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ba9c69ade043cacb917dfb654a57834">set_weights</a> (const ArrayXf &amp;weights)</td></tr>
 <tr class="memdesc:a5ba9c69ade043cacb917dfb654a57834"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the weights in the tree from an array of weights.  <br /></td></tr>
 <tr class="separator:a5ba9c69ade043cacb917dfb654a57834"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac95fc63e130e0e594b92a0c160db44aa" id="r_ac95fc63e130e0e594b92a0c160db44aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac95fc63e130e0e594b92a0c160db44aa">lock_nodes</a> (int end_depth=0, bool skip_leaves=true)</td></tr>
-<tr class="memdesc:ac95fc63e130e0e594b92a0c160db44aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates over the program, locking the nodes until it reaches a certain depth.  <br /></td></tr>
-<tr class="separator:ac95fc63e130e0e594b92a0c160db44aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a48839ac5f4e68f5b0468cc50f35439" id="r_a9a48839ac5f4e68f5b0468cc50f35439"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a48839ac5f4e68f5b0468cc50f35439">unlock_nodes</a> (int start_depth=0)</td></tr>
-<tr class="memdesc:a9a48839ac5f4e68f5b0468cc50f35439"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates over the program, unlocking the nodes until it reaches a certain depth. It does not protect the root nodes of logistic regression models.  <br /></td></tr>
-<tr class="separator:a9a48839ac5f4e68f5b0468cc50f35439"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17d8eaf6b1623cefc4d4888e8ed81330" id="r_a17d8eaf6b1623cefc4d4888e8ed81330"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17d8eaf6b1623cefc4d4888e8ed81330">lock_nodes</a> (int end_depth=0, bool keep_leaves_unlocked=true)</td></tr>
+<tr class="memdesc:a17d8eaf6b1623cefc4d4888e8ed81330"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates over the program, locking the nodes until it reaches a certain depth. If the node is a SplitBest and leaves are kept, then the split feature is fixed.  <br /></td></tr>
+<tr class="separator:a17d8eaf6b1623cefc4d4888e8ed81330"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac87e13742552236e1dc9fd9b62078331" id="r_ac87e13742552236e1dc9fd9b62078331"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d92/classstring.html">string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac87e13742552236e1dc9fd9b62078331">get_model</a> (<a class="el" href="../../d5/d92/classstring.html">string</a> fmt=&quot;compact&quot;, bool pretty=false) const</td></tr>
 <tr class="memdesc:ac87e13742552236e1dc9fd9b62078331"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the model as a string.  <br /></td></tr>
 <tr class="separator:ac87e13742552236e1dc9fd9b62078331"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -481,7 +478,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="776,65,744,65,744,60,776,60"/>
 <area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a344233ce053ca4b267539182fecbbc91" title="Handles variation of a population." alt="" coords="389,5,542,50"/>
 <area shape="poly" title=" " alt="" coords="575,49,542,43,543,38,576,44"/>
-<area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#abd847a202dc0014b7635713a122436dd" title="Varies a population and updates the selection strategy based on rewards." alt="" coords="389,75,542,119"/>
+<area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a2efd0b4d27f160c92d528d7623669975" title="Varies a population and updates the selection strategy based on rewards." alt="" coords="389,75,542,119"/>
 <area shape="poly" title=" " alt="" coords="576,81,543,86,542,81,575,75"/>
 <area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#a4248c80ebcd035a70953065045e04705" title="train the model" alt="" coords="202,83,341,111"/>
 <area shape="poly" title=" " alt="" coords="374,100,342,100,342,94,374,94"/>
@@ -575,7 +572,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="776,65,744,65,744,60,776,60"/>
 <area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a344233ce053ca4b267539182fecbbc91" title="Handles variation of a population." alt="" coords="389,5,542,50"/>
 <area shape="poly" title=" " alt="" coords="575,49,542,43,543,38,576,44"/>
-<area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#abd847a202dc0014b7635713a122436dd" title="Varies a population and updates the selection strategy based on rewards." alt="" coords="389,75,542,119"/>
+<area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a2efd0b4d27f160c92d528d7623669975" title="Varies a population and updates the selection strategy based on rewards." alt="" coords="389,75,542,119"/>
 <area shape="poly" title=" " alt="" coords="576,81,543,86,542,81,575,75"/>
 <area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#a4248c80ebcd035a70953065045e04705" title="train the model" alt="" coords="202,83,341,111"/>
 <area shape="poly" title=" " alt="" coords="374,100,342,100,342,94,374,94"/>
@@ -622,7 +619,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="621,80,542,53,544,48,623,75"/>
 <area shape="rect" href="../../d1/de5/classBrush_1_1Eval_1_1Evaluation.html#a6ca34005b1a4ab87038a4c391e77d786" title="Update the fitness of individuals in a population." alt="" coords="389,75,560,119"/>
 <area shape="poly" title=" " alt="" coords="593,100,561,100,561,94,593,94"/>
-<area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#abd847a202dc0014b7635713a122436dd" title="Varies a population and updates the selection strategy based on rewards." alt="" coords="398,144,551,189"/>
+<area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a2efd0b4d27f160c92d528d7623669975" title="Varies a population and updates the selection strategy based on rewards." alt="" coords="398,144,551,189"/>
 <area shape="poly" title=" " alt="" coords="623,119,544,146,542,141,621,114"/>
 <area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#a4248c80ebcd035a70953065045e04705" title="train the model" alt="" coords="202,152,341,180"/>
 <area shape="poly" title=" " alt="" coords="382,169,341,169,341,164,382,164"/>
@@ -710,17 +707,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>string the model in dot language. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00416">416</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/d88/structBrush_1_1Program_ab288bd389c68ab3c0776ef14a9e5e331_icgraph.png" border="0" usemap="#adb/d88/structBrush_1_1Program_ab288bd389c68ab3c0776ef14a9e5e331_icgraph" alt=""/></div>
-<map name="adb/d88/structBrush_1_1Program_ab288bd389c68ab3c0776ef14a9e5e331_icgraph" id="adb/d88/structBrush_1_1Program_ab288bd389c68ab3c0776ef14a9e5e331_icgraph">
-<area shape="rect" title="Get the model as a dot object." alt="" coords="240,5,390,50"/>
-<area shape="rect" href="../../db/d88/structBrush_1_1Program.html#ac87e13742552236e1dc9fd9b62078331" title=" " alt="" coords="5,5,192,50"/>
-<area shape="poly" title=" " alt="" coords="224,30,192,30,192,25,224,25"/>
-</map>
-</div>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00411">411</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -774,7 +761,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>string the model in string form. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00400">400</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00395">395</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -847,7 +834,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 <p>Get the weights of the tree as an array. </p>
 <dl class="section return"><dt>Returns</dt><dd>ArrayXf of weights in the program, encoded in post-fix order. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00289">289</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00291">291</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -911,12 +898,12 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 <p>turns program tree into a linear program. </p>
 <dl class="section return"><dt>Returns</dt><dd>a vector of nodes encoding the program in reverse polish notation </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00553">553</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00551">551</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
-<a id="ac95fc63e130e0e594b92a0c160db44aa" name="ac95fc63e130e0e594b92a0c160db44aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac95fc63e130e0e594b92a0c160db44aa">&#9670;&#160;</a></span>lock_nodes()</h2>
+<a id="a17d8eaf6b1623cefc4d4888e8ed81330" name="a17d8eaf6b1623cefc4d4888e8ed81330"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17d8eaf6b1623cefc4d4888e8ed81330">&#9670;&#160;</a></span>lock_nodes()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -934,7 +921,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>skip_leaves</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>keep_leaves_unlocked</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -944,16 +931,16 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p>Iterates over the program, locking the nodes until it reaches a certain depth. </p>
+<p>Iterates over the program, locking the nodes until it reaches a certain depth. If the node is a SplitBest and leaves are kept, then the split feature is fixed. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">end_depth</td><td>the depth to stop locking nodes. Default 0. </td></tr>
-    <tr><td class="paramname">skip_leaves</td><td>whether to skip leaves and leave them unlocked. Default true. </td></tr>
+    <tr><td class="paramname">keep_leaves_unlocked</td><td>whether to skip leaves and leave them unlocked. Default true. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00339">339</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00342">342</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -1342,9 +1329,9 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../db/d88/structBrush_1_1Program_aa24681261d191fdc486973820394d411_icgraph.png" border="0" usemap="#adb/d88/structBrush_1_1Program_aa24681261d191fdc486973820394d411_icgraph" alt=""/></div>
 <map name="adb/d88/structBrush_1_1Program_aa24681261d191fdc486973820394d411_icgraph" id="adb/d88/structBrush_1_1Program_aa24681261d191fdc486973820394d411_icgraph">
-<area shape="rect" title=" " alt="" coords="192,5,341,50"/>
-<area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#a7936896228b5c00b6e87070b7caeed00" title=" " alt="" coords="5,5,144,50"/>
-<area shape="poly" title=" " alt="" coords="176,30,144,30,144,25,176,25"/>
+<area shape="rect" title=" " alt="" coords="223,5,372,50"/>
+<area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#ae8b79f5ffa6323af3e7287c0a6005bec" title=" " alt="" coords="5,5,175,50"/>
+<area shape="poly" title=" " alt="" coords="207,30,175,30,175,25,207,25"/>
 </map>
 </div>
 
@@ -1383,7 +1370,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00312">312</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00314">314</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -1432,7 +1419,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="776,70,743,65,744,59,777,65"/>
 <area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a344233ce053ca4b267539182fecbbc91" title="Handles variation of a population." alt="" coords="389,27,542,71"/>
 <area shape="poly" title=" " alt="" coords="836,63,793,37,743,17,690,9,635,10,583,18,537,29,536,23,582,12,635,5,690,4,744,12,795,32,838,58"/>
-<area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#abd847a202dc0014b7635713a122436dd" title="Varies a population and updates the selection strategy based on rewards." alt="" coords="389,96,542,141"/>
+<area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a2efd0b4d27f160c92d528d7623669975" title="Varies a population and updates the selection strategy based on rewards." alt="" coords="389,96,542,141"/>
 <area shape="poly" title=" " alt="" coords="838,109,795,135,744,155,690,163,635,162,582,155,536,144,537,139,583,149,635,157,690,158,743,150,793,130,836,104"/>
 <area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#af8a04b3abeea0f0f9e5b6e358aa65c09" title="Performs mutation operation on an individual." alt="" coords="590,96,744,141"/>
 <area shape="poly" title=" " alt="" coords="777,102,744,108,743,102,776,97"/>
@@ -1494,58 +1481,23 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../db/d88/structBrush_1_1Program_a826ef90ae1aaf8f2637f551cfff0746a_icgraph.png" border="0" usemap="#adb/d88/structBrush_1_1Program_a826ef90ae1aaf8f2637f551cfff0746a_icgraph" alt=""/></div>
 <map name="adb/d88/structBrush_1_1Program_a826ef90ae1aaf8f2637f551cfff0746a_icgraph" id="adb/d88/structBrush_1_1Program_a826ef90ae1aaf8f2637f551cfff0746a_icgraph">
-<area shape="rect" title="count the size of a given subtree, optionally including the weights in weighted nodes...." alt="" coords="821,83,996,111"/>
-<area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#acf7d5d1c0d6a102eec277180dce590fe" title="Performs croearch_spaceover operation on two individuals." alt="" coords="605,40,758,85"/>
-<area shape="poly" title=" " alt="" coords="805,84,758,77,759,71,806,79"/>
-<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a8a70383d31da8c7798595f36f2acb2a9" title=" " alt="" coords="590,109,773,154"/>
-<area shape="poly" title=" " alt="" coords="806,115,773,120,773,115,805,110"/>
-<area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a344233ce053ca4b267539182fecbbc91" title="Handles variation of a population." alt="" coords="389,5,542,50"/>
-<area shape="poly" title=" " alt="" coords="589,50,542,43,543,37,590,45"/>
-<area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#abd847a202dc0014b7635713a122436dd" title="Varies a population and updates the selection strategy based on rewards." alt="" coords="389,75,542,119"/>
-<area shape="poly" title=" " alt="" coords="590,80,543,87,542,82,589,74"/>
-<area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#a4248c80ebcd035a70953065045e04705" title="train the model" alt="" coords="202,83,341,111"/>
-<area shape="poly" title=" " alt="" coords="374,100,342,100,342,94,374,94"/>
-<area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#a55f5d4ccc161d1674c1ca63a917abd9f" title=" " alt="" coords="5,75,154,119"/>
-<area shape="poly" title=" " alt="" coords="186,100,154,100,154,94,186,94"/>
+<area shape="rect" title="count the size of a given subtree, optionally including the weights in weighted nodes...." alt="" coords="849,48,1024,76"/>
+<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a9e6645327d19f04e16025a61faaca021" title=" " alt="" coords="619,5,801,50"/>
+<area shape="poly" title=" " alt="" coords="833,49,801,44,802,39,834,44"/>
+<area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#acf7d5d1c0d6a102eec277180dce590fe" title="Performs croearch_spaceover operation on two individuals." alt="" coords="633,75,787,119"/>
+<area shape="poly" title=" " alt="" coords="834,81,787,88,787,83,833,75"/>
+<area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a8a70383d31da8c7798595f36f2acb2a9" title=" " alt="" coords="389,5,571,50"/>
+<area shape="poly" title=" " alt="" coords="604,30,572,30,572,25,604,25"/>
+<area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a344233ce053ca4b267539182fecbbc91" title="Handles variation of a population." alt="" coords="404,75,557,119"/>
+<area shape="poly" title=" " alt="" coords="618,100,557,100,557,94,618,94"/>
+<area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a2efd0b4d27f160c92d528d7623669975" title="Varies a population and updates the selection strategy based on rewards." alt="" coords="404,144,557,189"/>
+<area shape="poly" title=" " alt="" coords="620,127,558,146,556,141,619,122"/>
+<area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#a4248c80ebcd035a70953065045e04705" title="train the model" alt="" coords="202,152,341,180"/>
+<area shape="poly" title=" " alt="" coords="388,169,341,169,341,164,388,164"/>
+<area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#a55f5d4ccc161d1674c1ca63a917abd9f" title=" " alt="" coords="5,144,154,189"/>
+<area shape="poly" title=" " alt="" coords="186,169,154,169,154,164,186,164"/>
 </map>
 </div>
-
-</div>
-</div>
-<a id="a9a48839ac5f4e68f5b0468cc50f35439" name="a9a48839ac5f4e68f5b0468cc50f35439"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9a48839ac5f4e68f5b0468cc50f35439">&#9670;&#160;</a></span>unlock_nodes()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88b714d0f92b86276366">PT</a> PType&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="../../db/d88/structBrush_1_1Program.html">Brush::Program</a>&lt; PType &gt;::unlock_nodes </td>
-          <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>start_depth</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Iterates over the program, unlocking the nodes until it reaches a certain depth. It does not protect the root nodes of logistic regression models. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">start_depth</td><td>the depth to start unlocking nodes. Default 0. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00372">372</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -1574,7 +1526,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00569">569</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00567">567</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">

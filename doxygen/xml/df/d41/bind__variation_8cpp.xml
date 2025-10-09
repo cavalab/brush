@@ -53,8 +53,6 @@
         <link refid="db/ddd/thompson_8h"/>
         <childnode refid="72" relation="include">
         </childnode>
-        <childnode refid="75" relation="include">
-        </childnode>
         <childnode refid="11" relation="include">
         </childnode>
       </node>
@@ -85,6 +83,8 @@
         </childnode>
         <childnode refid="36" relation="include">
         </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
         <childnode refid="76" relation="include">
         </childnode>
         <childnode refid="77" relation="include">
@@ -95,9 +95,7 @@
         </childnode>
         <childnode refid="80" relation="include">
         </childnode>
-        <childnode refid="81" relation="include">
-        </childnode>
-        <childnode refid="85" relation="include">
+        <childnode refid="84" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -146,7 +144,7 @@
         <childnode refid="32" relation="include">
         </childnode>
       </node>
-      <node id="82">
+      <node id="81">
         <label>../eval/evaluation.h</label>
         <link refid="d3/df9/evaluation_8h"/>
         <childnode refid="24" relation="include">
@@ -157,21 +155,23 @@
         </childnode>
         <childnode refid="41" relation="include">
         </childnode>
-        <childnode refid="83" relation="include">
+        <childnode refid="82" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="84">
+      <node id="83">
         <label>metrics.h</label>
         <link refid="df/d34/metrics_8h"/>
         <childnode refid="41" relation="include">
         </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
       </node>
-      <node id="83">
+      <node id="82">
         <label>scorer.h</label>
         <link refid="da/d3b/scorer_8h"/>
-        <childnode refid="84" relation="include">
+        <childnode refid="83" relation="include">
         </childnode>
         <childnode refid="32" relation="include">
         </childnode>
@@ -188,7 +188,7 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="76">
+      <node id="75">
         <label>../ind/individual.cpp</label>
         <link refid="db/df6/individual_8cpp"/>
         <childnode refid="36" relation="include">
@@ -406,13 +406,13 @@
         <childnode refid="58" relation="include">
         </childnode>
       </node>
-      <node id="77">
+      <node id="76">
         <label>../simplification/constants.cpp</label>
         <link refid="d6/d80/constants_8cpp"/>
-        <childnode refid="78" relation="include">
+        <childnode refid="77" relation="include">
         </childnode>
       </node>
-      <node id="78">
+      <node id="77">
         <label>constants.h</label>
         <link refid="d2/d6f/constants_8h"/>
         <childnode refid="19" relation="include">
@@ -426,13 +426,13 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="79">
+      <node id="78">
         <label>../simplification/inexact.cpp</label>
         <link refid="de/d79/inexact_8cpp"/>
-        <childnode refid="80" relation="include">
+        <childnode refid="79" relation="include">
         </childnode>
       </node>
-      <node id="80">
+      <node id="79">
         <label>inexact.h</label>
         <link refid="d1/db6/inexact_8h"/>
         <childnode refid="19" relation="include">
@@ -536,13 +536,13 @@
         <childnode refid="22" relation="include">
         </childnode>
       </node>
-      <node id="85">
+      <node id="84">
         <label>../vary/variation.cpp</label>
         <link refid="d1/d64/variation_8cpp"/>
-        <childnode refid="81" relation="include">
+        <childnode refid="80" relation="include">
         </childnode>
       </node>
-      <node id="81">
+      <node id="80">
         <label>../vary/variation.h</label>
         <link refid="d4/d1f/variation_8h"/>
         <childnode refid="36" relation="include">
@@ -555,11 +555,11 @@
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
+        <childnode refid="81" relation="include">
         </childnode>
-        <childnode refid="78" relation="include">
+        <childnode refid="77" relation="include">
         </childnode>
-        <childnode refid="80" relation="include">
+        <childnode refid="79" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
@@ -574,9 +574,6 @@
       </node>
       <node id="50">
         <label>bitset</label>
-      </node>
-      <node id="75">
-        <label>boost/math/distributions/gamma.hpp</label>
       </node>
       <node id="63">
         <label>ceres/dynamic_autodiff_cost_function.h</label>

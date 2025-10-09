@@ -32,7 +32,7 @@
         <location file="/home/runner/work/brush/brush/src/program/split.h" line="13" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="16" bodyend="18" declfile="/home/runner/work/brush/brush/src/program/split.h" declline="13" declcolumn="13"/>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
         <references refid="dc/d5c/namespaceBrush_1a7e323244b7b57c08d6816a009e74eec6" compoundref="d9/d49/types_8h" startline="33">Brush::is_one_of_v</references>
-        <referencedby refid="d7/da9/namespaceBrush_1_1Split_1a31a254e869c995a17b22b0bd5adf9aa4" compoundref="d4/d59/split_8cpp" startline="54" endline="65">threshold_mask&lt; State &gt;</referencedby>
+        <referencedby refid="d7/da9/namespaceBrush_1_1Split_1a31a254e869c995a17b22b0bd5adf9aa4" compoundref="d4/d59/split_8cpp" startline="56" endline="67">threshold_mask&lt; State &gt;</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1ad3da08bcc3527be129a2dee104d10125" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -210,7 +210,7 @@
         <location file="/home/runner/work/brush/brush/src/program/split.h" line="45" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="45" bodyend="53"/>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
         <references refid="dc/d5c/namespaceBrush_1a7e323244b7b57c08d6816a009e74eec6" compoundref="d9/d49/types_8h" startline="33">Brush::is_one_of_v</references>
-        <referencedby refid="d7/da9/namespaceBrush_1_1Split_1a31a254e869c995a17b22b0bd5adf9aa4" compoundref="d4/d59/split_8cpp" startline="54" endline="65">threshold_mask&lt; State &gt;</referencedby>
+        <referencedby refid="d7/da9/namespaceBrush_1_1Split_1a31a254e869c995a17b22b0bd5adf9aa4" compoundref="d4/d59/split_8cpp" startline="56" endline="67">threshold_mask&lt; State &gt;</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a702498ef9571a67ddbd364fa57bd97ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -232,8 +232,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/split.cpp" line="93" column="7" bodyfile="/home/runner/work/brush/brush/src/program/split.cpp" bodystart="93" bodyend="107" declfile="/home/runner/work/brush/brush/src/program/split.h" declline="54" declcolumn="11"/>
-        <referencedby refid="d7/da9/namespaceBrush_1_1Split_1a34b904a04926a4b4280fb922618cfe19" compoundref="d4/d59/split_8cpp" startline="66" endline="91">gain</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/split.cpp" line="95" column="7" bodyfile="/home/runner/work/brush/brush/src/program/split.cpp" bodystart="95" bodyend="109" declfile="/home/runner/work/brush/brush/src/program/split.h" declline="54" declcolumn="11"/>
+        <referencedby refid="d7/da9/namespaceBrush_1_1Split_1a34b904a04926a4b4280fb922618cfe19" compoundref="d4/d59/split_8cpp" startline="68" endline="93">gain</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a34b904a04926a4b4280fb922618cfe19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -263,8 +263,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/split.cpp" line="66" column="7" bodyfile="/home/runner/work/brush/brush/src/program/split.cpp" bodystart="66" bodyend="91" declfile="/home/runner/work/brush/brush/src/program/split.h" declline="55" declcolumn="11"/>
-        <references refid="d7/da9/namespaceBrush_1_1Split_1a702498ef9571a67ddbd364fa57bd97ea" compoundref="d4/d59/split_8cpp" startline="93" endline="107">gini_impurity_index</references>
+        <location file="/home/runner/work/brush/brush/src/program/split.cpp" line="68" column="7" bodyfile="/home/runner/work/brush/brush/src/program/split.cpp" bodystart="68" bodyend="93" declfile="/home/runner/work/brush/brush/src/program/split.h" declline="55" declcolumn="11"/>
+        <references refid="d7/da9/namespaceBrush_1_1Split_1a702498ef9571a67ddbd364fa57bd97ea" compoundref="d4/d59/split_8cpp" startline="95" endline="109">gini_impurity_index</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1ad88c0170839ba79e41dc5715e77abfc8" compoundref="de/d06/utils_8cpp" startline="317" endline="320">Brush::Util::variance</references>
       </memberdef>
       <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a001740e0281a7ba6e86bb1107751126c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -311,7 +311,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/split.cpp" line="7" column="7" bodyfile="/home/runner/work/brush/brush/src/program/split.cpp" bodystart="7" bodyend="16" declfile="/home/runner/work/brush/brush/src/program/split.h" declline="59" declcolumn="11"/>
-        <references refid="d7/da9/namespaceBrush_1_1Split_1acd04486b86f474e72160c903df755c7d" compoundref="d7/de0/operator_8h" startline="154" endline="169">get_best_thresholds</references>
+        <references refid="d7/da9/namespaceBrush_1_1Split_1acd04486b86f474e72160c903df755c7d" compoundref="d7/de0/operator_8h" startline="157" endline="172">get_best_thresholds</references>
       </memberdef>
       <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1af6b5bdffd15b23bf2116c7732b3364f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -342,7 +342,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/split.h" line="62" column="11" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="62" bodyend="113"/>
+        <location file="/home/runner/work/brush/brush/src/program/split.h" line="62" column="11" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="62" bodyend="116"/>
       </memberdef>
       <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1ae36bf5405bc3681fef1f97bb36c2af36" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -369,7 +369,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/split.h" line="116" column="10" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="116" bodyend="151"/>
+        <location file="/home/runner/work/brush/brush/src/program/split.h" line="119" column="10" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="119" bodyend="154"/>
       </memberdef>
       <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1acd04486b86f474e72160c903df755c7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -400,9 +400,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/split.h" line="154" column="10" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="154" bodyend="169"/>
+        <location file="/home/runner/work/brush/brush/src/program/split.h" line="157" column="10" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="157" bodyend="172"/>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
-        <references refid="dc/d5c/namespaceBrush_1a6225fa35f6e06e54d4a31a8f25cd4a66" compoundref="d9/d49/types_8h" startline="253">Brush::is_eigen_array_v</references>
         <references refid="dc/d5c/namespaceBrush_1af0a72d6e11b43912abc5bc15d19e66f3" compoundref="d9/d49/types_8h" startline="245">Brush::is_std_array_v</references>
         <referencedby refid="d7/da9/namespaceBrush_1_1Split_1a24c9cbb45621f1a04737674db9e224e2" compoundref="d4/d59/split_8cpp" startline="7" endline="16">get_best_variable_and_threshold</referencedby>
       </memberdef>
@@ -432,7 +431,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/split.h" line="173" column="7" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="173" bodyend="183"/>
+        <location file="/home/runner/work/brush/brush/src/program/split.h" line="176" column="7" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="176" bodyend="186"/>
       </memberdef>
       <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a2458c3bb89a9a2245899c6ab26ecf515" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -532,7 +531,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/split.cpp" line="7" column="7" bodyfile="/home/runner/work/brush/brush/src/program/split.cpp" bodystart="33" bodyend="41"/>
+        <location file="/home/runner/work/brush/brush/src/program/split.cpp" line="7" column="7" bodyfile="/home/runner/work/brush/brush/src/program/split.cpp" bodystart="33" bodyend="42"/>
       </memberdef>
       <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a2e0e2f52d0fe0a55b22d95cb6af72771" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -552,7 +551,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/split.cpp" line="7" column="7" bodyfile="/home/runner/work/brush/brush/src/program/split.cpp" bodystart="42" bodyend="50"/>
+        <location file="/home/runner/work/brush/brush/src/program/split.cpp" line="7" column="7" bodyfile="/home/runner/work/brush/brush/src/program/split.cpp" bodystart="43" bodyend="52"/>
       </memberdef>
       <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a31a254e869c995a17b22b0bd5adf9aa4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -576,7 +575,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/split.cpp" line="54" column="1" bodyfile="/home/runner/work/brush/brush/src/program/split.cpp" bodystart="54" bodyend="65"/>
+        <location file="/home/runner/work/brush/brush/src/program/split.cpp" line="56" column="1" bodyfile="/home/runner/work/brush/brush/src/program/split.cpp" bodystart="56" bodyend="67"/>
         <references refid="d7/da9/namespaceBrush_1_1Split_1ae5981aac972763c24e7b668bfca35e96" compoundref="d7/de0/operator_8h" startline="16" endline="18">threshold_mask</references>
       </memberdef>
     </sectiondef>

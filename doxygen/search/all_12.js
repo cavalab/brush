@@ -31,10 +31,11 @@ var searchData=
   ['rnd_28',['Rnd',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html',1,'Brush::Util::Rnd'],['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9bd56ea15679d17f3577f59e46d6e065',1,'Brush::Util::Rnd::Rnd()']]],
   ['rnd_2ecpp_29',['rnd.cpp',['../de/d67/rnd_8cpp.html',1,'']]],
   ['rnd_2eh_30',['rnd.h',['../d2/da9/rnd_8h.html',1,'']]],
-  ['rnd_5fdbl_31',['rnd_dbl',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#aa7cedc8c08588c4740e07da8d6c2cb9f',1,'Brush::Util::Rnd']]],
-  ['rnd_5fflt_32',['rnd_flt',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a450979f31af93d8dffd7be006ee5d50b',1,'Brush::Util::Rnd']]],
-  ['rnd_5fint_33',['rnd_int',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#aef0f2836321f651d5887d29739e180f5',1,'Brush::Util::Rnd']]],
-  ['rows_34',['rows',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a79babb7d5c6bf6a94601eea0d1d176b4',1,'Brush::Data::TimeSeries::rows()'],['../d0/d8e/structTimeSeries.html#a79babb7d5c6bf6a94601eea0d1d176b4',1,'TimeSeries::rows()']]],
-  ['rtrim_35',['rtrim',['../d6/d2e/namespaceBrush_1_1Util.html#a7ee435e912b43d1efe927860141fdafa',1,'Brush::Util']]],
-  ['run_36',['run',['../d0/d75/classBrush_1_1Engine.html#a4248c80ebcd035a70953065045e04705',1,'Brush::Engine']]]
+  ['rnd_5falpha_5fbeta_31',['rnd_alpha_beta',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a20753601c00c28c431ced39c8c5a216d',1,'Brush::Util::Rnd']]],
+  ['rnd_5fdbl_32',['rnd_dbl',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#aa7cedc8c08588c4740e07da8d6c2cb9f',1,'Brush::Util::Rnd']]],
+  ['rnd_5fflt_33',['rnd_flt',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a450979f31af93d8dffd7be006ee5d50b',1,'Brush::Util::Rnd']]],
+  ['rnd_5fint_34',['rnd_int',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#aef0f2836321f651d5887d29739e180f5',1,'Brush::Util::Rnd']]],
+  ['rows_35',['rows',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a79babb7d5c6bf6a94601eea0d1d176b4',1,'Brush::Data::TimeSeries::rows()'],['../d0/d8e/structTimeSeries.html#a79babb7d5c6bf6a94601eea0d1d176b4',1,'TimeSeries::rows()']]],
+  ['rtrim_36',['rtrim',['../d6/d2e/namespaceBrush_1_1Util.html#a7ee435e912b43d1efe927860141fdafa',1,'Brush::Util']]],
+  ['run_37',['run',['../d0/d75/classBrush_1_1Engine.html#a4248c80ebcd035a70953065045e04705',1,'Brush::Engine']]]
 ];

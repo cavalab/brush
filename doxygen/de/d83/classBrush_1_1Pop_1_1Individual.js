@@ -8,6 +8,7 @@ var classBrush_1_1Pop_1_1Individual =
     [ "get_depth", "de/d83/classBrush_1_1Pop_1_1Individual.html#ad17e7fd9fab8894a38aa6a46653198d4", null ],
     [ "get_dot_model", "de/d83/classBrush_1_1Pop_1_1Individual.html#aafddbfcf357d73a1ced6c4f50c21009d", null ],
     [ "get_fitness", "de/d83/classBrush_1_1Pop_1_1Individual.html#a7b16f9c3d62d3cc345abdd12ab3105f6", null ],
+    [ "get_id", "de/d83/classBrush_1_1Pop_1_1Individual.html#a1437cb5915bf88cc6f66ffb439fa3ea2", null ],
     [ "get_is_fitted", "de/d83/classBrush_1_1Pop_1_1Individual.html#afe255c458bb9558fdab16cccd01de0c6", null ],
     [ "get_linear_complexity", "de/d83/classBrush_1_1Pop_1_1Individual.html#ae82cf291f4e18cc85b74ecc2c6d11ce4", null ],
     [ "get_model", "de/d83/classBrush_1_1Pop_1_1Individual.html#a17a796fd1d02a07d6bba2d1f1fd4e4d8", null ],

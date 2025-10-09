@@ -145,53 +145,54 @@ $(function(){initNavTree('d6/ddc/bind__individuals_8h_source.html','../../'); in
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>       .def_property(<span class="stringliteral">&quot;objectives&quot;</span>, &amp;Class::get_objectives, &amp;Class::set_objectives)</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>       .def_property_readonly(<span class="stringliteral">&quot;program&quot;</span>, &amp;Class::get_program)</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>       .def_property_readonly(<span class="stringliteral">&quot;fitness&quot;</span>, &amp;Class::get_fitness)</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>       .def(<span class="stringliteral">&quot;get_model&quot;</span>, &amp;Class::get_model, </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            py::arg(<span class="stringliteral">&quot;fmt&quot;</span>) = <span class="stringliteral">&quot;compact&quot;</span>,</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            py::arg(<span class="stringliteral">&quot;pretty&quot;</span>) = <span class="keyword">false</span>)</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>       .def(<span class="stringliteral">&quot;get_dot_model&quot;</span>, &amp;Class::get_dot_model,</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            py::arg(<span class="stringliteral">&quot;extras&quot;</span>) = <span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>       .def(<span class="stringliteral">&quot;fit&quot;</span>,</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            <span class="keyword">static_cast&lt;</span>Class &amp;(Class::*)(<span class="keyword">const </span><a class="code hl_class" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> &amp;d)<span class="keyword">&gt;</span>(&amp;Class::fit),</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            <span class="stringliteral">&quot;fit from Dataset object&quot;</span>)</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        .def(<span class="stringliteral">&quot;fit&quot;</span>,</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            <span class="keyword">static_cast&lt;</span>Class &amp;(Class::*)(<span class="keyword">const </span>Ref&lt;const ArrayXXf&gt; &amp;X, <span class="keyword">const </span>Ref&lt;const ArrayXf&gt; &amp;y)<span class="keyword">&gt;</span>(&amp;Class::fit),</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="stringliteral">&quot;fit from X,y data&quot;</span>)</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        .def(<span class="stringliteral">&quot;predict&quot;</span>,</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            <span class="keyword">static_cast&lt;</span>RetType (Class::*)(<span class="keyword">const </span><a class="code hl_class" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> &amp;d)<span class="keyword">&gt;</span>(&amp;Class::predict),</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            <span class="stringliteral">&quot;predict from Dataset object&quot;</span>)</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        .def(<span class="stringliteral">&quot;predict&quot;</span>,</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            <span class="keyword">static_cast&lt;</span>RetType (Class::*)(<span class="keyword">const </span>Ref&lt;const ArrayXXf&gt; &amp;X)<span class="keyword">&gt;</span>(&amp;Class::predict),</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <span class="stringliteral">&quot;predict from X data&quot;</span>)</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>       .def_static(<span class="stringliteral">&quot;from_json&quot;</span>, [](<span class="keyword">const</span> nl::json j) -&gt; Class {</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                                                                Class p = j;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                                                                <span class="keywordflow">return</span> p; })</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>       .def(py::pickle(</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            [](<span class="keyword">const</span> Class &amp;p) { <span class="comment">// __getstate__</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                <span class="comment">/* Return a tuple that fully encodes the state of the object */</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                <span class="comment">// return py::make_tuple(p.value(), p.extra());</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                nl::json j = p;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                <span class="keywordflow">return</span> j;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            },</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            [](nl::json j) { <span class="comment">// __setstate__</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                Class p = j;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                <span class="keywordflow">return</span> p;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            }</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>            )</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>       )</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>       ;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same_v&lt;Class,Cls&gt;)</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    {</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        ind.def(<span class="stringliteral">&quot;predict_proba&quot;</span>,</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                <span class="keyword">static_cast&lt;</span>ArrayXf (Class::*)(<span class="keyword">const </span><a class="code hl_class" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> &amp;d)<span class="keyword">&gt;</span>(&amp;Class::predict_proba),</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                <span class="stringliteral">&quot;predict from Dataset object&quot;</span>)</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>           .def(<span class="stringliteral">&quot;predict_proba&quot;</span>,</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                <span class="keyword">static_cast&lt;</span>ArrayXf (Class::*)(<span class="keyword">const </span>Ref&lt;const ArrayXXf&gt; &amp;X)<span class="keyword">&gt;</span>(&amp;Class::predict_proba),</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                <span class="stringliteral">&quot;predict from X data&quot;</span>)</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            ;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    }</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>}</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>       .def_property_readonly(<span class="stringliteral">&quot;id&quot;</span>, &amp;Class::get_id)</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>       .def(<span class="stringliteral">&quot;get_model&quot;</span>, &amp;Class::get_model, </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            py::arg(<span class="stringliteral">&quot;fmt&quot;</span>) = <span class="stringliteral">&quot;compact&quot;</span>,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            py::arg(<span class="stringliteral">&quot;pretty&quot;</span>) = <span class="keyword">false</span>)</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>       .def(<span class="stringliteral">&quot;get_dot_model&quot;</span>, &amp;Class::get_dot_model,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>            py::arg(<span class="stringliteral">&quot;extras&quot;</span>) = <span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>       .def(<span class="stringliteral">&quot;fit&quot;</span>,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            <span class="keyword">static_cast&lt;</span>Class &amp;(Class::*)(<span class="keyword">const </span><a class="code hl_class" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> &amp;d)<span class="keyword">&gt;</span>(&amp;Class::fit),</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            <span class="stringliteral">&quot;fit from Dataset object&quot;</span>)</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        .def(<span class="stringliteral">&quot;fit&quot;</span>,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="keyword">static_cast&lt;</span>Class &amp;(Class::*)(<span class="keyword">const </span>Ref&lt;const ArrayXXf&gt; &amp;X, <span class="keyword">const </span>Ref&lt;const ArrayXf&gt; &amp;y)<span class="keyword">&gt;</span>(&amp;Class::fit),</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            <span class="stringliteral">&quot;fit from X,y data&quot;</span>)</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        .def(<span class="stringliteral">&quot;predict&quot;</span>,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            <span class="keyword">static_cast&lt;</span>RetType (Class::*)(<span class="keyword">const </span><a class="code hl_class" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> &amp;d)<span class="keyword">&gt;</span>(&amp;Class::predict),</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <span class="stringliteral">&quot;predict from Dataset object&quot;</span>)</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        .def(<span class="stringliteral">&quot;predict&quot;</span>,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <span class="keyword">static_cast&lt;</span>RetType (Class::*)(<span class="keyword">const </span>Ref&lt;const ArrayXXf&gt; &amp;X)<span class="keyword">&gt;</span>(&amp;Class::predict),</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            <span class="stringliteral">&quot;predict from X data&quot;</span>)</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>       .def_static(<span class="stringliteral">&quot;from_json&quot;</span>, [](<span class="keyword">const</span> nl::json j) -&gt; Class {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                                                                Class p = j;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                                                                <span class="keywordflow">return</span> p; })</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>       .def(py::pickle(</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            [](<span class="keyword">const</span> Class &amp;p) { <span class="comment">// __getstate__</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                <span class="comment">/* Return a tuple that fully encodes the state of the object */</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                <span class="comment">// return py::make_tuple(p.value(), p.extra());</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                nl::json j = p;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                <span class="keywordflow">return</span> j;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            },</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            [](nl::json j) { <span class="comment">// __setstate__</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                Class p = j;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                <span class="keywordflow">return</span> p;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>            }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            )</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>       )</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>       ;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same_v&lt;Class,Cls&gt;)</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        ind.def(<span class="stringliteral">&quot;predict_proba&quot;</span>,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                <span class="keyword">static_cast&lt;</span>ArrayXf (Class::*)(<span class="keyword">const </span><a class="code hl_class" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> &amp;d)<span class="keyword">&gt;</span>(&amp;Class::predict_proba),</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                <span class="stringliteral">&quot;predict from Dataset object&quot;</span>)</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>           .def(<span class="stringliteral">&quot;predict_proba&quot;</span>,</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                <span class="keyword">static_cast&lt;</span>ArrayXf (Class::*)(<span class="keyword">const </span>Ref&lt;const ArrayXXf&gt; &amp;X)<span class="keyword">&gt;</span>(&amp;Class::predict_proba),</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                <span class="stringliteral">&quot;predict from X data&quot;</span>)</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>            ;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>}</div>
 </div>
 <div class="ttc" id="abind__engines_8h_html_a084be09673d3166527c9976ec673da17"><div class="ttname"><a href="../../d4/d93/bind__engines_8h.html#a084be09673d3166527c9976ec673da17">Rep</a></div><div class="ttdeci">Brush::RepresenterEngine Rep</div><div class="ttdef"><b>Definition</b> <a href="../../d4/d93/bind__engines_8h_source.html#l00036">bind_engines.h:36</a></div></div>
 <div class="ttc" id="abind__engines_8h_html_a4c2c8e22f82c433ee9261f4a48c1ed18"><div class="ttname"><a href="../../d4/d93/bind__engines_8h.html#a4c2c8e22f82c433ee9261f4a48c1ed18">MCls</a></div><div class="ttdeci">Brush::MulticlassClassifierEngine MCls</div><div class="ttdef"><b>Definition</b> <a href="../../d4/d93/bind__engines_8h_source.html#l00037">bind_engines.h:37</a></div></div>

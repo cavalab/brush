@@ -1,198 +1,68 @@
 
+
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-
-<html lang="en" data-content_root="../" >
-
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Evaluation &#8212; Brush 0.1a documentation</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
-  </script>
-  
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evaluation &mdash; Brush 0.1.dev1+gb285298b0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
-  
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
-
-    <script src="../_static/documentation_options.js?v=74359811"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'cpp_api/evaluation';</script>
-    <link rel="icon" href="../_static/paint-brush-solid.svg"/>
+    <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=27f31e90"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Population" href="population.html" />
-    <link rel="prev" title="Individual and Fitness" href="individual.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
-  </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+    <link rel="prev" title="Individual and Fitness" href="individual.html" /> 
+</head>
 
-  
-  
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search..."
-         aria-label="Search..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Brush
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-
-  
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
-    </header>
-  
-
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
-      
-      
-      
-      <div class="bd-sidebar-primary bd-sidebar">
-        
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-
-  
-    
-  
-
-<a class="navbar-brand logo" href="../index.html">
-  
-  
-  
-  
-  
-  
-    <p class="title logo__title">Brush 0.1a documentation</p>
-  
-</a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../index.html">
-                    Overview
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quickstart</span></p>
-<ul class="nav bd-sidenav">
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Quickstart</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basics.html">Basic Usage</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../guide/index.html">Cookbook</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../guide/data.html">Working with Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../guide/search_space.html">The Search Space</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../guide/working_with_programs.html">Working with Programs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../guide/json.html">JSON Interoperability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../guide/saving_loading_populations.html">Saving and loading populations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../guide/archive.html">The archive</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../guide/deap.html">Using Deap</a></li>
-</ul>
-</details></li>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">Cookbook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../guide/contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../guide/development.html">Development</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../python_api/index.html">Python API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/estimator.html">BrushEstimator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/interface.html">EstimatorInterface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/regressor.html">BrushRegressor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/classifier.html">BrushClassifier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_api/python_api.html">Python API</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">C++ API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C++ API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="data.html">Dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="timeseries.html">TimeSeries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="search_space.html">SearchSpace</a></li>
@@ -200,231 +70,86 @@
 <li class="toctree-l2"><a class="reference internal" href="node.html">Node</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nodetypes.html">NodeTypes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="individual.html">Individual and Fitness</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Evaluation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Evaluation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval10EvaluationE"><code class="docutils literal notranslate"><span class="pre">Brush::Eval::Evaluation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Eval10Evaluation10EvaluationEv"><code class="docutils literal notranslate"><span class="pre">Evaluation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Eval10EvaluationD0Ev"><code class="docutils literal notranslate"><span class="pre">~Evaluation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Eval10Evaluation10set_scorerE6string"><code class="docutils literal notranslate"><span class="pre">set_scorer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Eval10Evaluation10get_scorerEv"><code class="docutils literal notranslate"><span class="pre">get_scorer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Eval10Evaluation14update_fitnessER10PopulationI1TEiRK7DatasetRK10Parametersbb"><code class="docutils literal notranslate"><span class="pre">update_fitness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Eval10Evaluation10assign_fitER10IndividualI1TERK7DatasetRK10Parametersb"><code class="docutils literal notranslate"><span class="pre">assign_fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Eval10Evaluation1SE"><code class="docutils literal notranslate"><span class="pre">S</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval6ScorerE"><code class="docutils literal notranslate"><span class="pre">Brush::Eval::Scorer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Eval6Scorer6ScorerE6string"><code class="docutils literal notranslate"><span class="pre">Scorer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Eval6Scorer10set_scorerE6string"><code class="docutils literal notranslate"><span class="pre">set_scorer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Eval6Scorer10get_scorerEv"><code class="docutils literal notranslate"><span class="pre">get_scorer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Eval6Scorer5scoreERK8VectorXfRK8VectorXfR8VectorXfRK6vectorIfE"><code class="docutils literal notranslate"><span class="pre">score()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Eval6Scorer5scoreER10IndividualI1PER7DatasetR8VectorXfRK10Parameters"><code class="docutils literal notranslate"><span class="pre">score()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Eval6Scorer10score_hashE"><code class="docutils literal notranslate"><span class="pre">score_hash</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush4Eval6Scorer6scorerE"><code class="docutils literal notranslate"><span class="pre">scorer</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="population.html">Population</a></li>
 <li class="toctree-l2"><a class="reference internal" href="variation.html">Variation (Crossover/Mutation)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="selection.html">Selection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="archive.html">Archive</a></li>
 <li class="toctree-l2"><a class="reference internal" href="engine.html">Engine (and parameters)</a></li>
 </ul>
-</details></li>
-</ul>
-
-    </div>
-</nav></div>
-    </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-  </div>
-  
-  <div id="rtd-footer-container"></div>
-
-
-      </div>
-      
-      <main id="main-content" class="bd-main" role="main">
-        
-        
-
-<div class="sbt-scroll-pixel-helper"></div>
-
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article d-print-none">
-<div class="header-article-items header-article__inner">
-  
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</button></div>
-      
-    </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
-
-
-<a href="https://github.com/cavalab/brush" target="_blank"
-   class="btn btn-sm btn-source-repository-button"
-   title="Source repository"
-   data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-
-</a>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/cpp_api/evaluation.rst" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.rst</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-<button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-
-
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
-
-
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
-</div></div>
-      
-    </div>
-  
-</div>
-</div>
-              
-              
-
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>Evaluation</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
-            
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval10EvaluationE"><code class="docutils literal notranslate"><span class="pre">Brush::Eval::Evaluation</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval10Evaluation10EvaluationEv"><code class="docutils literal notranslate"><span class="pre">Evaluation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval10EvaluationD0Ev"><code class="docutils literal notranslate"><span class="pre">~Evaluation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval10Evaluation10set_scorerE6string"><code class="docutils literal notranslate"><span class="pre">set_scorer()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval10Evaluation10get_scorerEv"><code class="docutils literal notranslate"><span class="pre">get_scorer()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval10Evaluation14update_fitnessER10PopulationI1TEiRK7DatasetRK10Parametersbb"><code class="docutils literal notranslate"><span class="pre">update_fitness()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval10Evaluation10assign_fitER10IndividualI1TERK7DatasetRK10Parametersb"><code class="docutils literal notranslate"><span class="pre">assign_fit()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval10Evaluation1SE"><code class="docutils literal notranslate"><span class="pre">S</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval6ScorerE"><code class="docutils literal notranslate"><span class="pre">Brush::Eval::Scorer</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval6Scorer6ScorerE6string"><code class="docutils literal notranslate"><span class="pre">Scorer()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval6Scorer10set_scorerE6string"><code class="docutils literal notranslate"><span class="pre">set_scorer()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval6Scorer10get_scorerEv"><code class="docutils literal notranslate"><span class="pre">get_scorer()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval6Scorer5scoreERK8VectorXfRK8VectorXfR8VectorXfRK6vectorIfE"><code class="docutils literal notranslate"><span class="pre">score()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval6Scorer5scoreER10IndividualI1PER7DatasetR8VectorXfRK10Parameters"><code class="docutils literal notranslate"><span class="pre">score()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval6Scorer10score_hashE"><code class="docutils literal notranslate"><span class="pre">score_hash</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval6Scorer6scorerE"><code class="docutils literal notranslate"><span class="pre">scorer</span></code></a></li>
-</ul>
 </li>
 </ul>
-            </nav>
+
         </div>
-    </div>
-</div>
+      </div>
+    </nav>
 
-              
-                
-<div id="searchbox"></div>
-                <article class="bd-article">
-                  
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Brush</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">C++ API</a></li>
+      <li class="breadcrumb-item active">Evaluation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cpp_api/evaluation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="evaluation">
-<h1>Evaluation<a class="headerlink" href="#evaluation" title="Link to this heading">#</a></h1>
+<h1>Evaluation<a class="headerlink" href="#evaluation" title="Link to this heading"></a></h1>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv4I_11ProgramTypeEN5Brush4Eval10EvaluationE">
-<span id="_CPPv3I_11ProgramTypeEN5Brush4Eval10EvaluationE"></span><span id="_CPPv2I_11ProgramTypeEN5Brush4Eval10EvaluationE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">ProgramType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d1/de5/classBrush_1_1Eval_1_1Evaluation"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Evaluation</span></span></span><a class="headerlink" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval10EvaluationE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3I_11ProgramTypeEN5Brush4Eval10EvaluationE"></span><span id="_CPPv2I_11ProgramTypeEN5Brush4Eval10EvaluationE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">ProgramType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d1/de5/classBrush_1_1Eval_1_1Evaluation"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Evaluation</span></span></span><a class="headerlink" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval10EvaluationE" title="Link to this definition"></a><br /></dt>
 <dd><p>Class for evaluating the fitness of individuals in a population. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Eval10Evaluation10EvaluationEv">
-<span id="_CPPv3N5Brush4Eval10Evaluation10EvaluationEv"></span><span id="_CPPv2N5Brush4Eval10Evaluation10EvaluationEv"></span><span id="Brush::Eval::Evaluation::Evaluation"></span><span class="target" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a97f33d97eef93cbe4f38168957a7ee7e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Evaluation</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval10Evaluation10EvaluationEv" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Eval10Evaluation10EvaluationEv"></span><span id="_CPPv2N5Brush4Eval10Evaluation10EvaluationEv"></span><span id="Brush::Eval::Evaluation::Evaluation"></span><span class="target" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a97f33d97eef93cbe4f38168957a7ee7e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Evaluation</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval10Evaluation10EvaluationEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Constructor for <a class="reference internal" href="#d1/de5/classBrush_1_1Eval_1_1Evaluation"><span class="std std-ref">Evaluation</span></a> class. </p>
 <p>Initializes the scorer based on the program type. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Eval10EvaluationD0Ev">
-<span id="_CPPv3N5Brush4Eval10EvaluationD0Ev"></span><span id="_CPPv2N5Brush4Eval10EvaluationD0Ev"></span><span id="Brush::Eval::Evaluation::~Evaluation"></span><span class="target" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a7a35cc80ebd4d2573151270caacaa03e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~Evaluation</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval10EvaluationD0Ev" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Eval10EvaluationD0Ev"></span><span id="_CPPv2N5Brush4Eval10EvaluationD0Ev"></span><span id="Brush::Eval::Evaluation::~Evaluation"></span><span class="target" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a7a35cc80ebd4d2573151270caacaa03e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~Evaluation</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval10EvaluationD0Ev" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Eval10Evaluation10set_scorerE6string">
-<span id="_CPPv3N5Brush4Eval10Evaluation10set_scorerE6string"></span><span id="_CPPv2N5Brush4Eval10Evaluation10set_scorerE6string"></span><span id="Brush::Eval::Evaluation::set_scorer__string"></span><span class="target" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a87c9ee9700af58b3d96469b6cd50bf1b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_scorer</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">scorer</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval10Evaluation10set_scorerE6string" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Eval10Evaluation10set_scorerE6string"></span><span id="_CPPv2N5Brush4Eval10Evaluation10set_scorerE6string"></span><span id="Brush::Eval::Evaluation::set_scorer__string"></span><span class="target" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a87c9ee9700af58b3d96469b6cd50bf1b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_scorer</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">scorer</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval10Evaluation10set_scorerE6string" title="Link to this definition"></a><br /></dt>
 <dd><p>Set the scorer for evaluation. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -435,7 +160,7 @@ document.write(`
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Eval10Evaluation10get_scorerEv">
-<span id="_CPPv3N5Brush4Eval10Evaluation10get_scorerEv"></span><span id="_CPPv2N5Brush4Eval10Evaluation10get_scorerEv"></span><span id="Brush::Eval::Evaluation::get_scorer"></span><span class="target" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ab85a890810fbb2f047ddd689aea80ed9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_scorer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval10Evaluation10get_scorerEv" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Eval10Evaluation10get_scorerEv"></span><span id="_CPPv2N5Brush4Eval10Evaluation10get_scorerEv"></span><span id="Brush::Eval::Evaluation::get_scorer"></span><span class="target" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ab85a890810fbb2f047ddd689aea80ed9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_scorer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval10Evaluation10get_scorerEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Get the current scorer. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -446,7 +171,7 @@ document.write(`
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Eval10Evaluation14update_fitnessER10PopulationI1TEiRK7DatasetRK10Parametersbb">
-<span id="_CPPv3N5Brush4Eval10Evaluation14update_fitnessER10PopulationI1TEiRK7DatasetRK10Parametersbb"></span><span id="_CPPv2N5Brush4Eval10Evaluation14update_fitnessER10PopulationI1TEiRK7DatasetRK10Parametersbb"></span><span id="Brush::Eval::Evaluation::update_fitness__Population:T:R.i.DatasetCR.ParametersCR.b.b"></span><span class="target" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a6ca34005b1a4ab87038a4c391e77d786"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">update_fitness</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Population</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval10EvaluationE" title="Brush::Eval::Evaluation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">pop</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">island</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersE" title="Brush::Parameters"><span class="n"><span class="pre">Parameters</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">params</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fit</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">validation</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval10Evaluation14update_fitnessER10PopulationI1TEiRK7DatasetRK10Parametersbb" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Eval10Evaluation14update_fitnessER10PopulationI1TEiRK7DatasetRK10Parametersbb"></span><span id="_CPPv2N5Brush4Eval10Evaluation14update_fitnessER10PopulationI1TEiRK7DatasetRK10Parametersbb"></span><span id="Brush::Eval::Evaluation::update_fitness__Population:T:R.i.DatasetCR.ParametersCR.b.b"></span><span class="target" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a6ca34005b1a4ab87038a4c391e77d786"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">update_fitness</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Population</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval10EvaluationE" title="Brush::Eval::Evaluation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">pop</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">island</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersE" title="Brush::Parameters"><span class="n"><span class="pre">Parameters</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">params</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fit</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">validation</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval10Evaluation14update_fitnessER10PopulationI1TEiRK7DatasetRK10Parametersbb" title="Link to this definition"></a><br /></dt>
 <dd><p>Update the fitness of individuals in a population. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -464,7 +189,7 @@ document.write(`
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Eval10Evaluation10assign_fitER10IndividualI1TERK7DatasetRK10Parametersb">
-<span id="_CPPv3N5Brush4Eval10Evaluation10assign_fitER10IndividualI1TERK7DatasetRK10Parametersb"></span><span id="_CPPv2N5Brush4Eval10Evaluation10assign_fitER10IndividualI1TERK7DatasetRK10Parametersb"></span><span id="Brush::Eval::Evaluation::assign_fit__Individual:T:R.DatasetCR.ParametersCR.b"></span><span class="target" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">assign_fit</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval10EvaluationE" title="Brush::Eval::Evaluation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">ind</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersE" title="Brush::Parameters"><span class="n"><span class="pre">Parameters</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">params</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">val</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval10Evaluation10assign_fitER10IndividualI1TERK7DatasetRK10Parametersb" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Eval10Evaluation10assign_fitER10IndividualI1TERK7DatasetRK10Parametersb"></span><span id="_CPPv2N5Brush4Eval10Evaluation10assign_fitER10IndividualI1TERK7DatasetRK10Parametersb"></span><span id="Brush::Eval::Evaluation::assign_fit__Individual:T:R.DatasetCR.ParametersCR.b"></span><span class="target" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">assign_fit</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval10EvaluationE" title="Brush::Eval::Evaluation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">ind</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersE" title="Brush::Parameters"><span class="n"><span class="pre">Parameters</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">params</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">val</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval10Evaluation10assign_fitER10IndividualI1TERK7DatasetRK10Parametersb" title="Link to this definition"></a><br /></dt>
 <dd><p>Assign fitness to an individual. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -483,7 +208,7 @@ document.write(`
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Eval10Evaluation1SE">
-<span id="_CPPv3N5Brush4Eval10Evaluation1SE"></span><span id="_CPPv2N5Brush4Eval10Evaluation1SE"></span><span id="Brush::Eval::Evaluation::S__Scorer:T:"></span><span class="target" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a8b0cbe86a7f12660f9ff1df7d4ef6835"></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval6ScorerE" title="Brush::Eval::Scorer"><span class="n"><span class="pre">Scorer</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval10EvaluationE" title="Brush::Eval::Evaluation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">S</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Eval10Evaluation1SE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Eval10Evaluation1SE"></span><span id="_CPPv2N5Brush4Eval10Evaluation1SE"></span><span id="Brush::Eval::Evaluation::S__Scorer:T:"></span><span class="target" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a8b0cbe86a7f12660f9ff1df7d4ef6835"></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval6ScorerE" title="Brush::Eval::Scorer"><span class="n"><span class="pre">Scorer</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval10EvaluationE" title="Brush::Eval::Evaluation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">S</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Eval10Evaluation1SE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </div>
@@ -491,32 +216,32 @@ document.write(`
 
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv4I_11ProgramTypeEN5Brush4Eval6ScorerE">
-<span id="_CPPv3I_11ProgramTypeEN5Brush4Eval6ScorerE"></span><span id="_CPPv2I_11ProgramTypeEN5Brush4Eval6ScorerE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">ProgramType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">P</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="da/d4c/classBrush_1_1Eval_1_1Scorer"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Scorer</span></span></span><a class="headerlink" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval6ScorerE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3I_11ProgramTypeEN5Brush4Eval6ScorerE"></span><span id="_CPPv2I_11ProgramTypeEN5Brush4Eval6ScorerE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">ProgramType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">P</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="da/d4c/classBrush_1_1Eval_1_1Scorer"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Scorer</span></span></span><a class="headerlink" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval6ScorerE" title="Link to this definition"></a><br /></dt>
 <dd><div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Eval6Scorer6ScorerE6string">
-<span id="_CPPv3N5Brush4Eval6Scorer6ScorerE6string"></span><span id="_CPPv2N5Brush4Eval6Scorer6ScorerE6string"></span><span id="Brush::Eval::Scorer::Scorer__string"></span><span class="target" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1ad88baa386d47e6464c130f0da3858325"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Scorer</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">scorer</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;mse&quot;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval6Scorer6ScorerE6string" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Eval6Scorer6ScorerE6string"></span><span id="_CPPv2N5Brush4Eval6Scorer6ScorerE6string"></span><span id="Brush::Eval::Scorer::Scorer__string"></span><span class="target" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1ad88baa386d47e6464c130f0da3858325"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Scorer</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">scorer</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;mse&quot;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval6Scorer6ScorerE6string" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Eval6Scorer10set_scorerE6string">
-<span id="_CPPv3N5Brush4Eval6Scorer10set_scorerE6string"></span><span id="_CPPv2N5Brush4Eval6Scorer10set_scorerE6string"></span><span id="Brush::Eval::Scorer::set_scorer__string"></span><span class="target" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1a29a78f6ded6e276708939f562e3b1153"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_scorer</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">scorer</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval6Scorer10set_scorerE6string" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Eval6Scorer10set_scorerE6string"></span><span id="_CPPv2N5Brush4Eval6Scorer10set_scorerE6string"></span><span id="Brush::Eval::Scorer::set_scorer__string"></span><span class="target" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1a29a78f6ded6e276708939f562e3b1153"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_scorer</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">scorer</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval6Scorer10set_scorerE6string" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Eval6Scorer10get_scorerEv">
-<span id="_CPPv3N5Brush4Eval6Scorer10get_scorerEv"></span><span id="_CPPv2N5Brush4Eval6Scorer10get_scorerEv"></span><span id="Brush::Eval::Scorer::get_scorer"></span><span class="target" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1a074ffe387edb4090061c5aa0402ebb1d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_scorer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval6Scorer10get_scorerEv" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Eval6Scorer10get_scorerEv"></span><span id="_CPPv2N5Brush4Eval6Scorer10get_scorerEv"></span><span id="Brush::Eval::Scorer::get_scorer"></span><span class="target" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1a074ffe387edb4090061c5aa0402ebb1d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_scorer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval6Scorer10get_scorerEv" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Eval6Scorer5scoreERK8VectorXfRK8VectorXfR8VectorXfRK6vectorIfE">
-<span id="_CPPv3N5Brush4Eval6Scorer5scoreERK8VectorXfRK8VectorXfR8VectorXfRK6vectorIfE"></span><span id="_CPPv2N5Brush4Eval6Scorer5scoreERK8VectorXfRK8VectorXfR8VectorXfRK6vectorIfE"></span><span id="Brush::Eval::Scorer::score__VectorXfCR.VectorXfCR.VectorXfR.vector:float:CR"></span><span class="target" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1ae953bbf0a5e4f2d1d7feccfae1593193"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">score</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">VectorXf</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">y_true</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">VectorXf</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">y_pred</span></span>, <span class="n"><span class="pre">VectorXf</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">loss</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">w</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval6Scorer5scoreERK8VectorXfRK8VectorXfR8VectorXfRK6vectorIfE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Eval6Scorer5scoreERK8VectorXfRK8VectorXfR8VectorXfRK6vectorIfE"></span><span id="_CPPv2N5Brush4Eval6Scorer5scoreERK8VectorXfRK8VectorXfR8VectorXfRK6vectorIfE"></span><span id="Brush::Eval::Scorer::score__VectorXfCR.VectorXfCR.VectorXfR.vector:float:CR"></span><span class="target" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1ae953bbf0a5e4f2d1d7feccfae1593193"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">score</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">VectorXf</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">y_true</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">VectorXf</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">y_pred</span></span>, <span class="n"><span class="pre">VectorXf</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">loss</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">w</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval6Scorer5scoreERK8VectorXfRK8VectorXfR8VectorXfRK6vectorIfE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Eval6Scorer5scoreER10IndividualI1PER7DatasetR8VectorXfRK10Parameters">
-<span id="_CPPv3N5Brush4Eval6Scorer5scoreER10IndividualI1PER7DatasetR8VectorXfRK10Parameters"></span><span id="_CPPv2N5Brush4Eval6Scorer5scoreER10IndividualI1PER7DatasetR8VectorXfRK10Parameters"></span><span id="Brush::Eval::Scorer::score__Individual:P:R.DatasetR.VectorXfR.ParametersCR"></span><span class="target" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1a3797d5ee458a9b91b165b53a8e53cbf6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">score</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval6ScorerE" title="Brush::Eval::Scorer::P"><span class="n"><span class="pre">P</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">ind</span></span>, <span class="n"><span class="pre">Dataset</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">VectorXf</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">loss</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersE" title="Brush::Parameters"><span class="n"><span class="pre">Parameters</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">params</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval6Scorer5scoreER10IndividualI1PER7DatasetR8VectorXfRK10Parameters" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Eval6Scorer5scoreER10IndividualI1PER7DatasetR8VectorXfRK10Parameters"></span><span id="_CPPv2N5Brush4Eval6Scorer5scoreER10IndividualI1PER7DatasetR8VectorXfRK10Parameters"></span><span id="Brush::Eval::Scorer::score__Individual:P:R.DatasetR.VectorXfR.ParametersCR"></span><span class="target" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1a3797d5ee458a9b91b165b53a8e53cbf6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">score</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval6ScorerE" title="Brush::Eval::Scorer::P"><span class="n"><span class="pre">P</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">ind</span></span>, <span class="n"><span class="pre">Dataset</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">VectorXf</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">loss</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersE" title="Brush::Parameters"><span class="n"><span class="pre">Parameters</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">params</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Eval6Scorer5scoreER10IndividualI1PER7DatasetR8VectorXfRK10Parameters" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </div>
@@ -524,12 +249,12 @@ document.write(`
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Eval6Scorer10score_hashE">
-<span id="_CPPv3N5Brush4Eval6Scorer10score_hashE"></span><span id="_CPPv2N5Brush4Eval6Scorer10score_hashE"></span><span id="Brush::Eval::Scorer::score_hash__std::map:string.funcPointer:"></span><span class="target" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1ae0f2e1477d465c8a5f4db4e0c8554865"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">map</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">funcPointer</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">score_hash</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Eval6Scorer10score_hashE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Eval6Scorer10score_hashE"></span><span id="_CPPv2N5Brush4Eval6Scorer10score_hashE"></span><span id="Brush::Eval::Scorer::score_hash__std::map:string.funcPointer:"></span><span class="target" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1ae0f2e1477d465c8a5f4db4e0c8554865"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">map</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">funcPointer</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">score_hash</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Eval6Scorer10score_hashE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Eval6Scorer6scorerE">
-<span id="_CPPv3N5Brush4Eval6Scorer6scorerE"></span><span id="_CPPv2N5Brush4Eval6Scorer6scorerE"></span><span id="Brush::Eval::Scorer::scorer__string"></span><span class="target" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1a9c85e27fd1be5f7bab4431332c30bae6"></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scorer</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Eval6Scorer6scorerE" title="Link to this definition">#</a><br /></dt>
+<span id="_CPPv3N5Brush4Eval6Scorer6scorerE"></span><span id="_CPPv2N5Brush4Eval6Scorer6scorerE"></span><span id="Brush::Eval::Scorer::scorer__string"></span><span class="target" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1a9c85e27fd1be5f7bab4431332c30bae6"></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scorer</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Eval6Scorer6scorerE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </div>
@@ -538,122 +263,34 @@ document.write(`
 </section>
 
 
-                </article>
-              
-
-              
-              
-              
-              
-                <footer class="prev-next-footer d-print-none">
-                  
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="individual.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Individual and Fitness</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="population.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Population</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
-</div>
-                </footer>
-              
-            </div>
-            
-            
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval10EvaluationE"><code class="docutils literal notranslate"><span class="pre">Brush::Eval::Evaluation</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval10Evaluation10EvaluationEv"><code class="docutils literal notranslate"><span class="pre">Evaluation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval10EvaluationD0Ev"><code class="docutils literal notranslate"><span class="pre">~Evaluation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval10Evaluation10set_scorerE6string"><code class="docutils literal notranslate"><span class="pre">set_scorer()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval10Evaluation10get_scorerEv"><code class="docutils literal notranslate"><span class="pre">get_scorer()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval10Evaluation14update_fitnessER10PopulationI1TEiRK7DatasetRK10Parametersbb"><code class="docutils literal notranslate"><span class="pre">update_fitness()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval10Evaluation10assign_fitER10IndividualI1TERK7DatasetRK10Parametersb"><code class="docutils literal notranslate"><span class="pre">assign_fit()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval10Evaluation1SE"><code class="docutils literal notranslate"><span class="pre">S</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I_11ProgramTypeEN5Brush4Eval6ScorerE"><code class="docutils literal notranslate"><span class="pre">Brush::Eval::Scorer</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval6Scorer6ScorerE6string"><code class="docutils literal notranslate"><span class="pre">Scorer()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval6Scorer10set_scorerE6string"><code class="docutils literal notranslate"><span class="pre">set_scorer()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval6Scorer10get_scorerEv"><code class="docutils literal notranslate"><span class="pre">get_scorer()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval6Scorer5scoreERK8VectorXfRK8VectorXfR8VectorXfRK6vectorIfE"><code class="docutils literal notranslate"><span class="pre">score()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval6Scorer5scoreER10IndividualI1PER7DatasetR8VectorXfRK10Parameters"><code class="docutils literal notranslate"><span class="pre">score()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval6Scorer10score_hashE"><code class="docutils literal notranslate"><span class="pre">score_hash</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush4Eval6Scorer6scorerE"><code class="docutils literal notranslate"><span class="pre">scorer</span></code></a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
-            
+           </div>
           </div>
-          <footer class="bd-footer-content">
-            
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By William La Cava and Joseph D. Romano
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-
-  <p class="copyright">
-    
-      © Copyright 2021, William La Cava and Joseph D. Romano.
-      <br/>
-    
-  </p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div>
-          </footer>
-        
-
-      </main>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="individual.html" class="btn btn-neutral float-left" title="Individual and Fitness" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="population.html" class="btn btn-neutral float-right" title="Population" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  </div>
-  
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-  <footer class="bd-footer">
-  </footer>
-  </body>
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, William La Cava and Joseph D. Romano.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>

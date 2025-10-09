@@ -1,0 +1,1059 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "e9776d12",
+   "metadata": {},
+   "source": [
+    "# Working with Programs\n",
+    "\n",
+    "In Brush, a *Program* is an executable data structure. \n",
+    "You may think of it as a *model* or a *function* mapping feature inputs to data labels. \n",
+    "We call them programs because that's what they are: executable data structures,  \n",
+    "and that is what they are called in the genetic algorithm literature, to distinguish them from optimizing bits or strings. \n",
+    "\n",
+    "The Brush Program class operates similarly to a [sklearn](scikit-learn.org) estimator: it has `fit` and `predict` methods that are called in during training or inference, respectively. \n",
+    "\n",
+    "\n",
+    "## Types of Programs \n",
+    "\n",
+    "There are four fundamental \"types\" of Brush programs:\n",
+    "\n",
+    "- **Regressors**: map inputs to a continous endpoint \n",
+    "- **Binary Classifiers**: map inputs to a binary endpoint, as well as a continuous value in $[0, 1]$  \n",
+    "- **Multi-class Classifiers**: map inputs to a category\n",
+    "    - Under development\n",
+    "- **Representors**: map inputs to a lower dimensional space. \n",
+    "    - Under development\n",
+    "\n",
+    "## Representation \n",
+    "\n",
+    "Internally, the programs are represented as syntax trees. \n",
+    "We use the [tree.hh tree class](https://github.com/kpeeters/tree.hh) which gives trees an STL-like feel. \n",
+    "\n",
+    "\n",
+    "\n",
+    "## Generation\n",
+    "\n",
+    "We generate random programs using Sean Luke's PTC2 algorithm.  \n",
+    "\n",
+    "\n",
+    "## Evaluation\n",
+    "\n",
+    "TODO\n",
+    "\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8c258669",
+   "metadata": {},
+   "source": [
+    "## Visualizing Programs\n",
+    "\n",
+    "Programs in Brush are symbolic tree structures, and can be viewed in a few ways: \n",
+    "\n",
+    "\n",
+    "1. As a string using `get_model()`\n",
+    "2. As a string-like tree using `get_model(\"tree\")`\n",
+    "2. As a graph using `graphviz` and `get_model(\"dot\")`. \n",
+    "\n",
+    "Let's look at a regresion example."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "102e3fcb",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "from pybrush import BrushRegressor\n",
+    "\n",
+    "# load data\n",
+    "df = pd.read_csv('../examples/datasets/d_enc.csv')\n",
+    "X = df.drop(columns='label')\n",
+    "y = df['label']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "ac39c9ca",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Completed 100% [====================]\n",
+      "score: 0.9441623847546605\n"
+     ]
+    }
+   ],
+   "source": [
+    "# import and make a regressor\n",
+    "est = BrushRegressor(\n",
+    "    functions=['SplitBest','Mul','Add','Cos','Exp','Sin'],\n",
+    "    max_depth=5,\n",
+    "    verbosity=1 # set verbosity==1 to see a progress bar\n",
+    ")\n",
+    "\n",
+    "# use like you would a sklearn regressor\n",
+    "est.fit(X,y)\n",
+    "y_pred = est.predict(X)\n",
+    "print('score:', est.score(X,y))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5bbd24cd",
+   "metadata": {},
+   "source": [
+    "You can see the fitness of the final individual by accessing the `fitness` attribute. Each fitness value corresponds to the objective of same index defined earlier for the `BrushRegressor` class. By default, it will try to minimize `\"scorer\"` and `\"size\"`, where `scorer` is a string with a loss function name, set with `scorer` parameter."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "166415c2",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Fitness(4.757904 74.000000 )\n",
+      "['scorer', 'linear_complexity']\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(est.best_estimator_.fitness)\n",
+    "print(est.objectives)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "38b6364e",
+   "metadata": {},
+   "source": [
+    "A `fitness` in Brush is actually more than a tuple. It is a class that has all boolean comparison operators overloaded to allow an ease of use when prototyping with Brush.\n",
+    "\n",
+    "It also infers the weight of each objective to automatically handle minimization or maximization objetives.\n",
+    "\n",
+    "To see the weights, you can try:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "13d0ac5f",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[-1.0, -1.0]"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "est.best_estimator_.fitness.weights"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2fc9fe80",
+   "metadata": {},
+   "source": [
+    "Other information of the best estimator can also be accessed through its fitness attribute:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "de5255e7",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "28\n",
+      "134628\n",
+      "5\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(est.best_estimator_.fitness.size)\n",
+    "print(est.best_estimator_.fitness.complexity)\n",
+    "print(est.best_estimator_.fitness.depth)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "fe594691",
+   "metadata": {},
+   "source": [
+    "## Serialization \n",
+    "\n",
+    "Brush let's you serialize the entire individual, or just the program or fitness it wraps. It uses JSON to serialize the objects, and this is implemented with the get and set states of an object:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "b01ab1fa",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "fitness {'complexity': 134628, 'crowding_dist': 0.0984368622303009, 'dcounter': 0, 'depth': 5, 'dominated': [0, 15], 'linear_complexity': 74, 'loss': 5.118783950805664, 'loss_v': 4.757904052734375, 'prev_complexity': 134628, 'prev_depth': 5, 'prev_linear_complexity': 74, 'prev_loss': 5.118783950805664, 'prev_loss_v': 4.757904052734375, 'prev_size': 28, 'rank': 1, 'size': 28, 'values': [4.757904052734375, 74.0], 'weights': [-1.0, -1.0], 'wvalues': [-4.757904052734375, -74.0]}\n",
+      "id 227\n",
+      "is_fitted_ False\n",
+      "objectives ['mse', 'linear_complexity']\n",
+      "parent_id [245]\n",
+      "program {'Tree': [{'W': 0.5537276268005371, 'arg_types': ['ArrayF', 'ArrayF'], 'center_op': True, 'feature': '', 'feature_type': 'ArrayF', 'fixed': False, 'is_weighted': False, 'name': 'Add', 'node_type': 'Add', 'prob_change': 1.0, 'ret_type': 'ArrayF', 'sig_dual_hash': 14679000877885575597, 'sig_hash': 14400282083458657357}, {'W': 11.378684043884277, 'arg_types': ['ArrayF'], 'center_op': True, 'feature': '', 'feature_type': 'ArrayF', 'fixed': False, 'is_weighted': True, 'name': 'Exp', 'node_type': 'Exp', 'prob_change': 1.0, 'ret_type': 'ArrayF', 'sig_dual_hash': 13056393536346412951, 'sig_hash': 14128685871577087634}, {'W': 0.9108647704124451, 'arg_types': [], 'center_op': True, 'feature': 'x6', 'feature_type': 'ArrayF', 'fixed': False, 'is_weighted': False, 'name': 'Terminal', 'node_type': 'Terminal', 'prob_change': 0.20750471949577332, 'ret_type': 'ArrayF', 'sig_dual_hash': 7018942542468397869, 'sig_hash': 14162902253047951597}, {'W': 0.7599999904632568, 'arg_types': ['ArrayF', 'ArrayF'], 'center_op': True, 'feature': 'x0', 'feature_type': 'ArrayI', 'fixed': False, 'is_weighted': True, 'name': 'SplitBest', 'node_type': 'SplitBest', 'prob_change': 1.0, 'ret_type': 'ArrayF', 'sig_dual_hash': 14679000877885575597, 'sig_hash': 14400282083458657357}, {'W': 0.8199999928474426, 'arg_types': ['ArrayF', 'ArrayF'], 'center_op': True, 'feature': 'x0', 'feature_type': 'ArrayI', 'fixed': False, 'is_weighted': True, 'name': 'SplitBest', 'node_type': 'SplitBest', 'prob_change': 1.0, 'ret_type': 'ArrayF', 'sig_dual_hash': 14679000877885575597, 'sig_hash': 14400282083458657357}, {'W': 15.890183448791504, 'arg_types': [], 'center_op': True, 'feature': 'constF', 'feature_type': 'ArrayF', 'fixed': False, 'is_weighted': True, 'name': 'Constant', 'node_type': 'Constant', 'prob_change': 0.6167147755622864, 'ret_type': 'ArrayF', 'sig_dual_hash': 7018942542468397869, 'sig_hash': 14162902253047951597}, {'W': 0.17655502259731293, 'arg_types': [], 'center_op': True, 'feature': 'x3', 'feature_type': 'ArrayF', 'fixed': False, 'is_weighted': True, 'name': 'Terminal', 'node_type': 'Terminal', 'prob_change': 0.8625447154045105, 'ret_type': 'ArrayF', 'sig_dual_hash': 7018942542468397869, 'sig_hash': 14162902253047951597}, {'W': 0.14056099951267242, 'arg_types': ['ArrayF'], 'center_op': True, 'feature': '', 'feature_type': 'ArrayF', 'fixed': False, 'is_weighted': False, 'name': 'Exp', 'node_type': 'Exp', 'prob_change': 1.0, 'ret_type': 'ArrayF', 'sig_dual_hash': 13056393536346412951, 'sig_hash': 14128685871577087634}, {'W': 1.7882635593414307, 'arg_types': ['ArrayF'], 'center_op': True, 'feature': '', 'feature_type': 'ArrayF', 'fixed': False, 'is_weighted': True, 'name': 'Sin', 'node_type': 'Sin', 'prob_change': 1.0, 'ret_type': 'ArrayF', 'sig_dual_hash': 13056393536346412951, 'sig_hash': 14128685871577087634}, {'W': 0.8196039795875549, 'arg_types': [], 'center_op': True, 'feature': 'x1', 'feature_type': 'ArrayF', 'fixed': False, 'is_weighted': True, 'name': 'Terminal', 'node_type': 'Terminal', 'prob_change': 0.6729995608329773, 'ret_type': 'ArrayF', 'sig_dual_hash': 7018942542468397869, 'sig_hash': 14162902253047951597}], 'is_fitted_': True}\n",
+      "variation point\n"
+     ]
+    }
+   ],
+   "source": [
+    "estimator_dict = est.best_estimator_.__getstate__()\n",
+    "\n",
+    "for k, v in estimator_dict.items():\n",
+    "    print(k, v)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "6bcb071b",
+   "metadata": {},
+   "source": [
+    "With serialization, you can use pickle to save and load just programs or even the entire individual."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "b4537631",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pickle\n",
+    "import os, tempfile\n",
+    "\n",
+    "individual_file = os.path.join(tempfile.mkdtemp(), 'individual.json')\n",
+    "with open(individual_file, \"wb\") as f:\n",
+    "    pickle.dump(est.best_estimator_, f)\n",
+    "\n",
+    "program_file = os.path.join(tempfile.mkdtemp(), 'program.json')\n",
+    "with open(program_file, \"wb\") as f:\n",
+    "    pickle.dump(est.best_estimator_.program, f)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "fff5693d",
+   "metadata": {},
+   "source": [
+    "Then we can load it later with:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "ee7a20c6",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Add(11.38*Exp(x6),If(x0>=0.76,If(x0>=0.82,15.89,0.18*x3),Exp(1.79*Sin(0.82*x1))))\n"
+     ]
+    }
+   ],
+   "source": [
+    "with open(individual_file, \"rb\") as f:\n",
+    "    loaded_estimator = pickle.load(f)\n",
+    "    print(loaded_estimator.get_model())"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a355d8f3",
+   "metadata": {},
+   "source": [
+    "### String\n",
+    "\n",
+    "Now that we have trained a model, `est.best_estimator_` contains our symbolic model. \n",
+    "We can view it as a string:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "316964d5",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Add(11.38*Exp(x6),If(x0>=0.76,If(x0>=0.82,15.89,0.18*x3),Exp(1.79*Sin(0.82*x1))))\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(est.best_estimator_.get_model())"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e7d578bb",
+   "metadata": {},
+   "source": [
+    "### Quick Little Tree\n",
+    "\n",
+    "Or, we can view it as a compact tree:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "dad68d01",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Add\n",
+      "|- 11.38*Exp\n",
+      "|  |- x6\n",
+      "|- If(x0>=0.76)\n",
+      "|  |- If(x0>=0.82)\n",
+      "|  |  |- 15.89\n",
+      "|  |  |- 0.18*x3\n",
+      "|  |- Exp\n",
+      "|  |  |- 1.79*Sin\n",
+      "|  |  |  |- 0.82*x1\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(est.best_estimator_.get_model(\"tree\"))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "90068143",
+   "metadata": {},
+   "source": [
+    "### GraphViz\n",
+    "\n",
+    "If we are feeling fancy 🎩, we can also view it as a graph in dot format. \n",
+    "Let's import graphviz and make a nicer plot."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "3ef1a735",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "image/svg+xml": [
+       "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n",
+       "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\"\n",
+       " \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n",
+       "<!-- Generated by graphviz version 12.0.0 (0)\n",
+       " -->\n",
+       "<!-- Title: G Pages: 1 -->\n",
+       "<svg width=\"256pt\" height=\"383pt\"\n",
+       " viewBox=\"0.00 0.00 256.00 382.50\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n",
+       "<g id=\"graph0\" class=\"graph\" transform=\"scale(1 1) rotate(0) translate(4 378.5)\">\n",
+       "<title>G</title>\n",
+       "<polygon fill=\"white\" stroke=\"none\" points=\"-4,4 -4,-378.5 252,-378.5 252,4 -4,4\"/>\n",
+       "<!-- 141fd3450 -->\n",
+       "<g id=\"node1\" class=\"node\">\n",
+       "<title>141fd3450</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"75\" cy=\"-356.5\" rx=\"27\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"75\" y=\"-351.45\" font-family=\"Times,serif\" font-size=\"14.00\">Add</text>\n",
+       "</g>\n",
+       "<!-- 141fd2090 -->\n",
+       "<g id=\"node2\" class=\"node\">\n",
+       "<title>141fd2090</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"27\" cy=\"-268\" rx=\"27\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"27\" y=\"-262.95\" font-family=\"Times,serif\" font-size=\"14.00\">Exp</text>\n",
+       "</g>\n",
+       "<!-- 141fd3450&#45;&gt;141fd2090 -->\n",
+       "<g id=\"edge1\" class=\"edge\">\n",
+       "<title>141fd3450&#45;&gt;141fd2090</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M65.97,-339.23C59.07,-326.79 49.41,-309.38 41.43,-295.01\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"44.63,-293.57 36.72,-286.52 38.51,-296.96 44.63,-293.57\"/>\n",
+       "<text text-anchor=\"middle\" x=\"70.38\" y=\"-307.2\" font-family=\"Times,serif\" font-size=\"14.00\">11.38</text>\n",
+       "</g>\n",
+       "<!-- 141fcbe00 -->\n",
+       "<g id=\"node3\" class=\"node\">\n",
+       "<title>141fcbe00</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"124\" cy=\"-268\" rx=\"51.86\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"124\" y=\"-262.95\" font-family=\"Times,serif\" font-size=\"14.00\">x0&gt;=0.76?</text>\n",
+       "</g>\n",
+       "<!-- 141fd3450&#45;&gt;141fcbe00 -->\n",
+       "<g id=\"edge2\" class=\"edge\">\n",
+       "<title>141fd3450&#45;&gt;141fcbe00</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M84.22,-339.23C91.13,-327.02 100.75,-310.04 108.8,-295.83\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"111.69,-297.83 113.58,-287.4 105.6,-294.38 111.69,-297.83\"/>\n",
+       "</g>\n",
+       "<!-- x6 -->\n",
+       "<g id=\"node4\" class=\"node\">\n",
+       "<title>x6</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"27\" cy=\"-195\" rx=\"27\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"27\" y=\"-189.95\" font-family=\"Times,serif\" font-size=\"14.00\">x6</text>\n",
+       "</g>\n",
+       "<!-- 141fd2090&#45;&gt;x6 -->\n",
+       "<g id=\"edge3\" class=\"edge\">\n",
+       "<title>141fd2090&#45;&gt;x6</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M27,-249.81C27,-242.23 27,-233.1 27,-224.54\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"30.5,-224.54 27,-214.54 23.5,-224.54 30.5,-224.54\"/>\n",
+       "</g>\n",
+       "<!-- 141fe2370 -->\n",
+       "<g id=\"node5\" class=\"node\">\n",
+       "<title>141fe2370</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"124\" cy=\"-195\" rx=\"51.86\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"124\" y=\"-189.95\" font-family=\"Times,serif\" font-size=\"14.00\">x0&gt;=0.82?</text>\n",
+       "</g>\n",
+       "<!-- 141fcbe00&#45;&gt;141fe2370 -->\n",
+       "<g id=\"edge4\" class=\"edge\">\n",
+       "<title>141fcbe00&#45;&gt;141fe2370</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M124,-249.81C124,-242.23 124,-233.1 124,-224.54\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"127.5,-224.54 124,-214.54 120.5,-224.54 127.5,-224.54\"/>\n",
+       "<text text-anchor=\"middle\" x=\"119.12\" y=\"-236.51\" font-family=\"Times,serif\" font-size=\"14.00\">Y</text>\n",
+       "</g>\n",
+       "<!-- 141ff19f0 -->\n",
+       "<g id=\"node6\" class=\"node\">\n",
+       "<title>141ff19f0</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"221\" cy=\"-195\" rx=\"27\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"221\" y=\"-189.95\" font-family=\"Times,serif\" font-size=\"14.00\">Exp</text>\n",
+       "</g>\n",
+       "<!-- 141fcbe00&#45;&gt;141ff19f0 -->\n",
+       "<g id=\"edge5\" class=\"edge\">\n",
+       "<title>141fcbe00&#45;&gt;141ff19f0</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M145.53,-251.24C159.95,-240.69 179.03,-226.72 194.4,-215.47\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"196.2,-218.49 202.2,-209.76 192.06,-212.84 196.2,-218.49\"/>\n",
+       "<text text-anchor=\"middle\" x=\"147.96\" y=\"-237.94\" font-family=\"Times,serif\" font-size=\"14.00\">N</text>\n",
+       "</g>\n",
+       "<!-- 141fe2420 -->\n",
+       "<g id=\"node7\" class=\"node\">\n",
+       "<title>141fe2420</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"59\" cy=\"-106.5\" rx=\"31.9\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"59\" y=\"-101.45\" font-family=\"Times,serif\" font-size=\"14.00\">15.89</text>\n",
+       "</g>\n",
+       "<!-- 141fe2370&#45;&gt;141fe2420 -->\n",
+       "<g id=\"edge6\" class=\"edge\">\n",
+       "<title>141fe2370&#45;&gt;141fe2420</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M111.47,-177.32C101.9,-164.6 88.58,-146.86 77.75,-132.45\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"80.77,-130.64 71.96,-124.75 75.17,-134.85 80.77,-130.64\"/>\n",
+       "<text text-anchor=\"middle\" x=\"106.59\" y=\"-164.02\" font-family=\"Times,serif\" font-size=\"14.00\">Y</text>\n",
+       "</g>\n",
+       "<!-- x3 -->\n",
+       "<g id=\"node8\" class=\"node\">\n",
+       "<title>x3</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"136\" cy=\"-106.5\" rx=\"27\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"136\" y=\"-101.45\" font-family=\"Times,serif\" font-size=\"14.00\">x3</text>\n",
+       "</g>\n",
+       "<!-- 141fe2370&#45;&gt;x3 -->\n",
+       "<g id=\"edge7\" class=\"edge\">\n",
+       "<title>141fe2370&#45;&gt;x3</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M126.37,-176.91C127.99,-165.26 130.17,-149.55 132.04,-136.02\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"135.48,-136.74 133.39,-126.35 128.54,-135.77 135.48,-136.74\"/>\n",
+       "<text text-anchor=\"middle\" x=\"121.59\" y=\"-128.05\" font-family=\"Times,serif\" font-size=\"14.00\">0.18</text>\n",
+       "<text text-anchor=\"middle\" x=\"121.5\" y=\"-163.61\" font-family=\"Times,serif\" font-size=\"14.00\">N</text>\n",
+       "</g>\n",
+       "<!-- 141fd89e0 -->\n",
+       "<g id=\"node9\" class=\"node\">\n",
+       "<title>141fd89e0</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"221\" cy=\"-106.5\" rx=\"27\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"221\" y=\"-101.45\" font-family=\"Times,serif\" font-size=\"14.00\">Sin</text>\n",
+       "</g>\n",
+       "<!-- 141ff19f0&#45;&gt;141fd89e0 -->\n",
+       "<g id=\"edge8\" class=\"edge\">\n",
+       "<title>141ff19f0&#45;&gt;141fd89e0</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M221,-176.91C221,-165.26 221,-149.55 221,-136.02\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"224.5,-136.36 221,-126.36 217.5,-136.36 224.5,-136.36\"/>\n",
+       "<text text-anchor=\"middle\" x=\"233\" y=\"-145.7\" font-family=\"Times,serif\" font-size=\"14.00\">1.79</text>\n",
+       "</g>\n",
+       "<!-- x1 -->\n",
+       "<g id=\"node10\" class=\"node\">\n",
+       "<title>x1</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"221\" cy=\"-18\" rx=\"27\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"221\" y=\"-12.95\" font-family=\"Times,serif\" font-size=\"14.00\">x1</text>\n",
+       "</g>\n",
+       "<!-- 141fd89e0&#45;&gt;x1 -->\n",
+       "<g id=\"edge9\" class=\"edge\">\n",
+       "<title>141fd89e0&#45;&gt;x1</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M221,-88.41C221,-76.76 221,-61.05 221,-47.52\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"224.5,-47.86 221,-37.86 217.5,-47.86 224.5,-47.86\"/>\n",
+       "<text text-anchor=\"middle\" x=\"233\" y=\"-57.2\" font-family=\"Times,serif\" font-size=\"14.00\">0.82</text>\n",
+       "</g>\n",
+       "</g>\n",
+       "</svg>\n"
+      ],
+      "text/plain": [
+       "<graphviz.sources.Source at 0x140a746e0>"
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import graphviz\n",
+    "\n",
+    "model = est.best_estimator_.get_model(\"dot\")\n",
+    "graphviz.Source(model)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a2f93509",
+   "metadata": {},
+   "source": [
+    "The `model` variable is now a little program in the [dot language](https://graphviz.org/docs/layouts/dot/), which we can inspect directly. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "1f7e725e",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "digraph G {\n",
+      "\"141fd3450\" [label=\"Add\"];\n",
+      "\"141fd3450\" -> \"141fd2090\" [label=\"11.38\"];\n",
+      "\"141fd3450\" -> \"141fcbe00\" [label=\"\"];\n",
+      "\"141fd2090\" [label=\"Exp\"];\n",
+      "\"141fd2090\" -> \"x6\" [label=\"\"];\n",
+      "\"x6\" [label=\"x6\"];\n",
+      "\"141fcbe00\" [label=\"x0>=0.76?\"];\n",
+      "\"141fcbe00\" -> \"141fe2370\" [headlabel=\"\",taillabel=\"Y\"];\n",
+      "\"141fcbe00\" -> \"141ff19f0\" [headlabel=\"\",taillabel=\"N\"];\n",
+      "\"141fe2370\" [label=\"x0>=0.82?\"];\n",
+      "\"141fe2370\" -> \"141fe2420\" [headlabel=\"\",taillabel=\"Y\"];\n",
+      "\"141fe2370\" -> \"x3\" [headlabel=\"0.18\",taillabel=\"N\"];\n",
+      "\"141fe2420\" [label=\"15.89\"];\n",
+      "\"x3\" [label=\"x3\"];\n",
+      "\"141ff19f0\" [label=\"Exp\"];\n",
+      "\"141ff19f0\" -> \"141fd89e0\" [label=\"1.79\"];\n",
+      "\"141fd89e0\" [label=\"Sin\"];\n",
+      "\"141fd89e0\" -> \"x1\" [label=\"0.82\"];\n",
+      "\"x1\" [label=\"x1\"];\n",
+      "}\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(model)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b9c0154a",
+   "metadata": {},
+   "source": [
+    "### Tweaking Graphs\n",
+    "\n",
+    "The [dot manual](https://graphviz.org/docs/layouts/dot/) has lots of options for tweaking the graphs. \n",
+    "You can do this by manually editing `model`, but brush also provides a function, `get_dot_model()`, to which you can pass additional arguments to dot. \n",
+    "\n",
+    "For example, let's view the graph from Left-to-Right: "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "f35b1e05",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "image/svg+xml": [
+       "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n",
+       "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\"\n",
+       " \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n",
+       "<!-- Generated by graphviz version 12.0.0 (0)\n",
+       " -->\n",
+       "<!-- Title: G Pages: 1 -->\n",
+       "<svg width=\"611pt\" height=\"152pt\"\n",
+       " viewBox=\"0.00 0.00 611.01 152.00\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n",
+       "<g id=\"graph0\" class=\"graph\" transform=\"scale(1 1) rotate(0) translate(4 148)\">\n",
+       "<title>G</title>\n",
+       "<polygon fill=\"white\" stroke=\"none\" points=\"-4,4 -4,-148 607.01,-148 607.01,4 -4,4\"/>\n",
+       "<!-- 141fd3450 -->\n",
+       "<g id=\"node1\" class=\"node\">\n",
+       "<title>141fd3450</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"27\" cy=\"-98\" rx=\"27\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"27\" y=\"-92.95\" font-family=\"Times,serif\" font-size=\"14.00\">Add</text>\n",
+       "</g>\n",
+       "<!-- 141fd2090 -->\n",
+       "<g id=\"node2\" class=\"node\">\n",
+       "<title>141fd2090</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"172.61\" cy=\"-126\" rx=\"27\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"172.61\" y=\"-120.95\" font-family=\"Times,serif\" font-size=\"14.00\">Exp</text>\n",
+       "</g>\n",
+       "<!-- 141fd3450&#45;&gt;141fd2090 -->\n",
+       "<g id=\"edge1\" class=\"edge\">\n",
+       "<title>141fd3450&#45;&gt;141fd2090</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M53.34,-102.94C76.11,-107.38 109.79,-113.95 135.4,-118.94\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"134.55,-122.34 145.04,-120.82 135.89,-115.47 134.55,-122.34\"/>\n",
+       "<text text-anchor=\"middle\" x=\"87.38\" y=\"-115.2\" font-family=\"Times,serif\" font-size=\"14.00\">11.38</text>\n",
+       "</g>\n",
+       "<!-- 141fcbe00 -->\n",
+       "<g id=\"node3\" class=\"node\">\n",
+       "<title>141fcbe00</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"172.61\" cy=\"-72\" rx=\"51.86\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"172.61\" y=\"-66.95\" font-family=\"Times,serif\" font-size=\"14.00\">x0&gt;=0.76?</text>\n",
+       "</g>\n",
+       "<!-- 141fd3450&#45;&gt;141fcbe00 -->\n",
+       "<g id=\"edge2\" class=\"edge\">\n",
+       "<title>141fd3450&#45;&gt;141fcbe00</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M53.34,-93.41C70.34,-90.33 93.42,-86.16 114.68,-82.31\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"115.22,-85.77 124.44,-80.54 113.97,-78.88 115.22,-85.77\"/>\n",
+       "</g>\n",
+       "<!-- x6 -->\n",
+       "<g id=\"node4\" class=\"node\">\n",
+       "<title>x6</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"313.34\" cy=\"-126\" rx=\"27\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"313.34\" y=\"-120.95\" font-family=\"Times,serif\" font-size=\"14.00\">x6</text>\n",
+       "</g>\n",
+       "<!-- 141fd2090&#45;&gt;x6 -->\n",
+       "<g id=\"edge3\" class=\"edge\">\n",
+       "<title>141fd2090&#45;&gt;x6</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M200.03,-126C221.15,-126 251.02,-126 274.65,-126\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"274.5,-129.5 284.5,-126 274.5,-122.5 274.5,-129.5\"/>\n",
+       "</g>\n",
+       "<!-- 141fe2370 -->\n",
+       "<g id=\"node5\" class=\"node\">\n",
+       "<title>141fe2370</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"313.34\" cy=\"-72\" rx=\"51.86\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"313.34\" y=\"-66.95\" font-family=\"Times,serif\" font-size=\"14.00\">x0&gt;=0.82?</text>\n",
+       "</g>\n",
+       "<!-- 141fcbe00&#45;&gt;141fe2370 -->\n",
+       "<g id=\"edge4\" class=\"edge\">\n",
+       "<title>141fcbe00&#45;&gt;141fe2370</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M224.88,-72C233.05,-72 241.58,-72 249.97,-72\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"249.77,-75.5 259.77,-72 249.77,-68.5 249.77,-75.5\"/>\n",
+       "<text text-anchor=\"middle\" x=\"229.75\" y=\"-58.7\" font-family=\"Times,serif\" font-size=\"14.00\">Y</text>\n",
+       "</g>\n",
+       "<!-- 141ff19f0 -->\n",
+       "<g id=\"node6\" class=\"node\">\n",
+       "<title>141ff19f0</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"313.34\" cy=\"-18\" rx=\"27\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"313.34\" y=\"-12.95\" font-family=\"Times,serif\" font-size=\"14.00\">Exp</text>\n",
+       "</g>\n",
+       "<!-- 141fcbe00&#45;&gt;141ff19f0 -->\n",
+       "<g id=\"edge5\" class=\"edge\">\n",
+       "<title>141fcbe00&#45;&gt;141ff19f0</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M208.26,-58.51C229.86,-50.11 257.5,-39.35 278.87,-31.03\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"279.95,-34.36 288,-27.47 277.41,-27.84 279.95,-34.36\"/>\n",
+       "<text text-anchor=\"middle\" x=\"203.39\" y=\"-45.21\" font-family=\"Times,serif\" font-size=\"14.00\">N</text>\n",
+       "</g>\n",
+       "<!-- 141fe2420 -->\n",
+       "<g id=\"node7\" class=\"node\">\n",
+       "<title>141fe2420</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"457.11\" cy=\"-126\" rx=\"31.9\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"457.11\" y=\"-120.95\" font-family=\"Times,serif\" font-size=\"14.00\">15.89</text>\n",
+       "</g>\n",
+       "<!-- 141fe2370&#45;&gt;141fe2420 -->\n",
+       "<g id=\"edge6\" class=\"edge\">\n",
+       "<title>141fe2370&#45;&gt;141fe2420</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M349.38,-85.35C370.61,-93.43 397.65,-103.74 419.21,-111.95\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"417.91,-115.2 428.5,-115.49 420.4,-108.66 417.91,-115.2\"/>\n",
+       "<text text-anchor=\"middle\" x=\"344.51\" y=\"-88.55\" font-family=\"Times,serif\" font-size=\"14.00\">Y</text>\n",
+       "</g>\n",
+       "<!-- x3 -->\n",
+       "<g id=\"node8\" class=\"node\">\n",
+       "<title>x3</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"457.11\" cy=\"-72\" rx=\"27\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"457.11\" y=\"-66.95\" font-family=\"Times,serif\" font-size=\"14.00\">x3</text>\n",
+       "</g>\n",
+       "<!-- 141fe2370&#45;&gt;x3 -->\n",
+       "<g id=\"edge7\" class=\"edge\">\n",
+       "<title>141fe2370&#45;&gt;x3</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M365.52,-72C383.01,-72 402.23,-72 418.45,-72\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"418.16,-75.5 428.16,-72 418.16,-68.5 418.16,-75.5\"/>\n",
+       "<text text-anchor=\"middle\" x=\"417.67\" y=\"-58.7\" font-family=\"Times,serif\" font-size=\"14.00\">0.18</text>\n",
+       "<text text-anchor=\"middle\" x=\"370.4\" y=\"-58.7\" font-family=\"Times,serif\" font-size=\"14.00\">N</text>\n",
+       "</g>\n",
+       "<!-- 141fd89e0 -->\n",
+       "<g id=\"node9\" class=\"node\">\n",
+       "<title>141fd89e0</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"457.11\" cy=\"-18\" rx=\"27\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"457.11\" y=\"-12.95\" font-family=\"Times,serif\" font-size=\"14.00\">Sin</text>\n",
+       "</g>\n",
+       "<!-- 141ff19f0&#45;&gt;141fd89e0 -->\n",
+       "<g id=\"edge8\" class=\"edge\">\n",
+       "<title>141ff19f0&#45;&gt;141fd89e0</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M340.67,-18C362.56,-18 393.96,-18 418.5,-18\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"418.4,-21.5 428.4,-18 418.4,-14.5 418.4,-21.5\"/>\n",
+       "<text text-anchor=\"middle\" x=\"395.2\" y=\"-21.2\" font-family=\"Times,serif\" font-size=\"14.00\">1.79</text>\n",
+       "</g>\n",
+       "<!-- x1 -->\n",
+       "<g id=\"node10\" class=\"node\">\n",
+       "<title>x1</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"576.01\" cy=\"-18\" rx=\"27\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"576.01\" y=\"-12.95\" font-family=\"Times,serif\" font-size=\"14.00\">x1</text>\n",
+       "</g>\n",
+       "<!-- 141fd89e0&#45;&gt;x1 -->\n",
+       "<g id=\"edge9\" class=\"edge\">\n",
+       "<title>141fd89e0&#45;&gt;x1</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M484.34,-18C499.98,-18 520.1,-18 537.41,-18\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"537.35,-21.5 547.35,-18 537.35,-14.5 537.35,-21.5\"/>\n",
+       "<text text-anchor=\"middle\" x=\"519.01\" y=\"-21.2\" font-family=\"Times,serif\" font-size=\"14.00\">0.82</text>\n",
+       "</g>\n",
+       "</g>\n",
+       "</svg>\n"
+      ],
+      "text/plain": [
+       "<graphviz.sources.Source at 0x140a4ca50>"
+      ]
+     },
+     "execution_count": 13,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "model = est.best_estimator_.get_dot_model(\"rankdir=LR;\")\n",
+    "graphviz.Source(model)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "512434e7",
+   "metadata": {},
+   "source": [
+    "### A classification example"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "4ca564f3",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Completed 100% [====================]\n",
+      "Best model: Logistic\n",
+      "|- -0.23+Sum\n",
+      "|  |- Sin\n",
+      "|  |  |- If(AIDS>=16068.00)\n",
+      "|  |  |  |- 70.58\n",
+      "|  |  |  |- If(Total>=1601948.00)\n",
+      "|  |  |  |  |- -1.43\n",
+      "|  |  |  |  |- If(AIDS>=258.00)\n",
+      "|  |  |  |  |  |- 70.58\n",
+      "|  |  |  |  |  |- Total\n"
+     ]
+    }
+   ],
+   "source": [
+    "from pybrush import BrushClassifier\n",
+    "from sklearn.preprocessing import StandardScaler\n",
+    "\n",
+    "# load data\n",
+    "df = pd.read_csv('../examples/datasets/d_analcatdata_aids.csv')\n",
+    "X = df.drop(columns='target')\n",
+    "y = df['target']\n",
+    "\n",
+    "est = BrushClassifier(\n",
+    "    functions=['SplitBest', 'And', 'Sin', 'Cos', 'Exp'],\n",
+    "    max_gens=500,\n",
+    "    max_size=50,\n",
+    "    max_depth=15,\n",
+    "    objectives=[\"scorer\", \"linear_complexity\"],  \n",
+    "    scorer=\"log\",\n",
+    "    pop_size=100,\n",
+    "    bandit='dynamic_thompson',\n",
+    "    verbosity=1\n",
+    ")\n",
+    "\n",
+    "est.fit(X,y)\n",
+    "\n",
+    "print(\"Best model:\", est.best_estimator_.get_model(\"tree\"))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b1e8c636",
+   "metadata": {},
+   "source": [
+    "Notice that classification problems have a fixed logistic root on their programs. When printing the dot model, Brush will highlight fixed nodes using a light coral color."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "05a76db6",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "=== Search space ===\n",
+      "terminal_map: {\"ArrayB\": [\"1.00\"], \"ArrayI\": [\"Age\", \"Race\", \"1.00\"], \"ArrayF\": [\"AIDS\", \"Total\", \"1.00\"]}\n",
+      "terminal_weights: {\"ArrayB\": [0.27714446], \"ArrayI\": [0.5782708, 0.85288507, 0.491237], \"ArrayF\": [0.47180814, 0.6575688, 0.07907883]}\n",
+      "SplitBest node_map[ArrayI][[\"ArrayI\", \"ArrayI\"]][SplitBest] = 1.00*SplitBest, weight = 0.58001214\n",
+      "OffsetSum node_map[MatrixF][[\"ArrayF\", \"ArrayF\", \"ArrayF\", \"ArrayF\"]][OffsetSum] = 0.00+Sum, weight = 0\n",
+      "Logistic node_map[MatrixF][[\"ArrayF\", \"ArrayF\", \"ArrayF\", \"ArrayF\"]][Logistic] = 1.00*Logistic, weight = 0\n",
+      "Sin node_map[MatrixF][[\"ArrayF\", \"ArrayF\", \"ArrayF\", \"ArrayF\"]][Sin] = 1.00*Sin, weight = 0.9063738\n",
+      "Cos node_map[MatrixF][[\"ArrayF\", \"ArrayF\", \"ArrayF\", \"ArrayF\"]][Cos] = 1.00*Cos, weight = 0.60503954\n",
+      "Exp node_map[MatrixF][[\"ArrayF\", \"ArrayF\", \"ArrayF\", \"ArrayF\"]][Exp] = 1.00*Exp, weight = 0.620445\n",
+      "OffsetSum node_map[MatrixF][[\"ArrayF\", \"ArrayF\", \"ArrayF\"]][OffsetSum] = 0.00+Sum, weight = 0\n",
+      "Logistic node_map[MatrixF][[\"ArrayF\", \"ArrayF\", \"ArrayF\"]][Logistic] = 1.00*Logistic, weight = 0\n",
+      "Sin node_map[MatrixF][[\"ArrayF\", \"ArrayF\", \"ArrayF\"]][Sin] = 1.00*Sin, weight = 0.7408498\n",
+      "Cos node_map[MatrixF][[\"ArrayF\", \"ArrayF\", \"ArrayF\"]][Cos] = 1.00*Cos, weight = 0.5123497\n",
+      "Exp node_map[MatrixF][[\"ArrayF\", \"ArrayF\", \"ArrayF\"]][Exp] = 1.00*Exp, weight = 0.59719974\n",
+      "OffsetSum node_map[MatrixF][[\"ArrayF\", \"ArrayF\"]][OffsetSum] = 0.00+Sum, weight = 0\n",
+      "Logistic node_map[MatrixF][[\"ArrayF\", \"ArrayF\"]][Logistic] = 1.00*Logistic, weight = 0\n",
+      "Sin node_map[MatrixF][[\"ArrayF\", \"ArrayF\"]][Sin] = 1.00*Sin, weight = 0.58827883\n",
+      "Cos node_map[MatrixF][[\"ArrayF\", \"ArrayF\"]][Cos] = 1.00*Cos, weight = 0.04645303\n",
+      "Exp node_map[MatrixF][[\"ArrayF\", \"ArrayF\"]][Exp] = 1.00*Exp, weight = 0.5686126\n",
+      "SplitBest node_map[ArrayF][[\"ArrayF\", \"ArrayF\"]][SplitBest] = 1.00*SplitBest, weight = 0.35056993\n",
+      "OffsetSum node_map[ArrayF][[\"ArrayF\"]][OffsetSum] = 0.00+Sum, weight = 0\n",
+      "Logistic node_map[ArrayF][[\"ArrayF\"]][Logistic] = 1.00*Logistic, weight = 0\n",
+      "Sin node_map[ArrayF][[\"ArrayF\"]][Sin] = 1.00*Sin, weight = 0.90100724\n",
+      "Cos node_map[ArrayF][[\"ArrayF\"]][Cos] = 1.00*Cos, weight = 0.17278638\n",
+      "Exp node_map[ArrayF][[\"ArrayF\"]][Exp] = 1.00*Exp, weight = 0.43059298\n",
+      "\n",
+      "Best model: Logistic(Sum(-0.23,Sin(If(AIDS>=16068.00,70.58,If(Total>=1601948.00,-1.43,If(AIDS>=258.00,70.58,Total))))))\n",
+      "score: 0.82\n",
+      "Best model: Logistic\n",
+      "|- -0.23+Sum\n",
+      "|  |- Sin\n",
+      "|  |  |- If(AIDS>=16068.00)\n",
+      "|  |  |  |- 70.58\n",
+      "|  |  |  |- If(Total>=1601948.00)\n",
+      "|  |  |  |  |- -1.43\n",
+      "|  |  |  |  |- If(AIDS>=258.00)\n",
+      "|  |  |  |  |  |- 70.58\n",
+      "|  |  |  |  |  |- Total\n"
+     ]
+    },
+    {
+     "data": {
+      "image/svg+xml": [
+       "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n",
+       "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\"\n",
+       " \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n",
+       "<!-- Generated by graphviz version 12.0.0 (0)\n",
+       " -->\n",
+       "<!-- Title: G Pages: 1 -->\n",
+       "<svg width=\"314pt\" height=\"476pt\"\n",
+       " viewBox=\"0.00 0.00 314.26 476.00\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n",
+       "<g id=\"graph0\" class=\"graph\" transform=\"scale(1 1) rotate(0) translate(4 472)\">\n",
+       "<title>G</title>\n",
+       "<polygon fill=\"white\" stroke=\"none\" points=\"-4,4 -4,-472 310.26,-472 310.26,4 -4,4\"/>\n",
+       "<!-- 140d6f660 -->\n",
+       "<g id=\"node1\" class=\"node\">\n",
+       "<title>140d6f660</title>\n",
+       "<ellipse fill=\"lightcoral\" stroke=\"black\" cx=\"138.9\" cy=\"-450\" rx=\"41.12\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"138.9\" y=\"-444.95\" font-family=\"Times,serif\" font-size=\"14.00\">Logistic</text>\n",
+       "</g>\n",
+       "<!-- 140d9d760 -->\n",
+       "<g id=\"node2\" class=\"node\">\n",
+       "<title>140d9d760</title>\n",
+       "<ellipse fill=\"lightcoral\" stroke=\"black\" cx=\"138.9\" cy=\"-378\" rx=\"27\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"138.9\" y=\"-372.95\" font-family=\"Times,serif\" font-size=\"14.00\">Add</text>\n",
+       "</g>\n",
+       "<!-- 140d6f660&#45;&gt;140d9d760 -->\n",
+       "<g id=\"edge1\" class=\"edge\">\n",
+       "<title>140d6f660&#45;&gt;140d9d760</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M138.9,-431.7C138.9,-424.41 138.9,-415.73 138.9,-407.54\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"142.4,-407.62 138.9,-397.62 135.4,-407.62 142.4,-407.62\"/>\n",
+       "</g>\n",
+       "<!-- 140d8e9c0 -->\n",
+       "<g id=\"node3\" class=\"node\">\n",
+       "<title>140d8e9c0</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"101.9\" cy=\"-306\" rx=\"27\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"101.9\" y=\"-300.95\" font-family=\"Times,serif\" font-size=\"14.00\">Sin</text>\n",
+       "</g>\n",
+       "<!-- 140d9d760&#45;&gt;140d8e9c0 -->\n",
+       "<g id=\"edge2\" class=\"edge\">\n",
+       "<title>140d9d760&#45;&gt;140d8e9c0</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M130.32,-360.76C125.98,-352.55 120.6,-342.37 115.69,-333.09\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"118.91,-331.69 111.15,-324.49 112.72,-334.96 118.91,-331.69\"/>\n",
+       "</g>\n",
+       "<!-- 140d9d760Offset -->\n",
+       "<g id=\"node4\" class=\"node\">\n",
+       "<title>140d9d760Offset</title>\n",
+       "<ellipse fill=\"lightcoral\" stroke=\"black\" cx=\"176.9\" cy=\"-306\" rx=\"30.37\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"176.9\" y=\"-300.95\" font-family=\"Times,serif\" font-size=\"14.00\">&#45;0.23</text>\n",
+       "</g>\n",
+       "<!-- 140d9d760&#45;&gt;140d9d760Offset -->\n",
+       "<g id=\"edge3\" class=\"edge\">\n",
+       "<title>140d9d760&#45;&gt;140d9d760Offset</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M147.72,-360.76C152.11,-352.67 157.54,-342.66 162.52,-333.49\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"165.46,-335.42 167.15,-324.96 159.3,-332.08 165.46,-335.42\"/>\n",
+       "</g>\n",
+       "<!-- 140d856e0 -->\n",
+       "<g id=\"node5\" class=\"node\">\n",
+       "<title>140d856e0</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"101.9\" cy=\"-234\" rx=\"82.57\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"101.9\" y=\"-228.95\" font-family=\"Times,serif\" font-size=\"14.00\">AIDS&gt;=16068.00?</text>\n",
+       "</g>\n",
+       "<!-- 140d8e9c0&#45;&gt;140d856e0 -->\n",
+       "<g id=\"edge4\" class=\"edge\">\n",
+       "<title>140d8e9c0&#45;&gt;140d856e0</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M101.9,-287.7C101.9,-280.41 101.9,-271.73 101.9,-263.54\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"105.4,-263.62 101.9,-253.62 98.4,-263.62 105.4,-263.62\"/>\n",
+       "</g>\n",
+       "<!-- 140de5660 -->\n",
+       "<g id=\"node6\" class=\"node\">\n",
+       "<title>140de5660</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"31.9\" cy=\"-162\" rx=\"31.9\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"31.9\" y=\"-156.95\" font-family=\"Times,serif\" font-size=\"14.00\">70.58</text>\n",
+       "</g>\n",
+       "<!-- 140d856e0&#45;&gt;140de5660 -->\n",
+       "<g id=\"edge5\" class=\"edge\">\n",
+       "<title>140d856e0&#45;&gt;140de5660</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M84.96,-216.05C75.85,-206.95 64.51,-195.6 54.64,-185.74\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"57.41,-183.55 47.86,-178.96 52.46,-188.5 57.41,-183.55\"/>\n",
+       "<text text-anchor=\"middle\" x=\"80.08\" y=\"-202.75\" font-family=\"Times,serif\" font-size=\"14.00\">Y</text>\n",
+       "</g>\n",
+       "<!-- 140d74b80 -->\n",
+       "<g id=\"node7\" class=\"node\">\n",
+       "<title>140d74b80</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"171.9\" cy=\"-162\" rx=\"89.74\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"171.9\" y=\"-156.95\" font-family=\"Times,serif\" font-size=\"14.00\">Total&gt;=1601948.00?</text>\n",
+       "</g>\n",
+       "<!-- 140d856e0&#45;&gt;140d74b80 -->\n",
+       "<g id=\"edge6\" class=\"edge\">\n",
+       "<title>140d856e0&#45;&gt;140d74b80</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M118.85,-216.05C127.36,-207.54 137.83,-197.07 147.22,-187.68\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"149.45,-190.41 154.04,-180.86 144.5,-185.46 149.45,-190.41\"/>\n",
+       "<text text-anchor=\"middle\" x=\"113.97\" y=\"-202.75\" font-family=\"Times,serif\" font-size=\"14.00\">N</text>\n",
+       "</g>\n",
+       "<!-- 140d894a0 -->\n",
+       "<g id=\"node8\" class=\"node\">\n",
+       "<title>140d894a0</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"110.9\" cy=\"-90\" rx=\"30.37\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"110.9\" y=\"-84.95\" font-family=\"Times,serif\" font-size=\"14.00\">&#45;1.43</text>\n",
+       "</g>\n",
+       "<!-- 140d74b80&#45;&gt;140d894a0 -->\n",
+       "<g id=\"edge7\" class=\"edge\">\n",
+       "<title>140d74b80&#45;&gt;140d894a0</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M157.14,-144.05C149.55,-135.35 140.17,-124.59 131.85,-115.03\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"134.49,-112.74 125.28,-107.5 129.21,-117.34 134.49,-112.74\"/>\n",
+       "<text text-anchor=\"middle\" x=\"152.26\" y=\"-130.75\" font-family=\"Times,serif\" font-size=\"14.00\">Y</text>\n",
+       "</g>\n",
+       "<!-- 140db6d30 -->\n",
+       "<g id=\"node9\" class=\"node\">\n",
+       "<title>140db6d30</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"232.9\" cy=\"-90\" rx=\"73.36\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"232.9\" y=\"-84.95\" font-family=\"Times,serif\" font-size=\"14.00\">AIDS&gt;=258.00?</text>\n",
+       "</g>\n",
+       "<!-- 140d74b80&#45;&gt;140db6d30 -->\n",
+       "<g id=\"edge8\" class=\"edge\">\n",
+       "<title>140d74b80&#45;&gt;140db6d30</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M186.67,-144.05C193.94,-135.71 202.85,-125.49 210.9,-116.25\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"213.35,-118.77 217.28,-108.93 208.07,-114.17 213.35,-118.77\"/>\n",
+       "<text text-anchor=\"middle\" x=\"181.79\" y=\"-130.75\" font-family=\"Times,serif\" font-size=\"14.00\">N</text>\n",
+       "</g>\n",
+       "<!-- 140ddf8d0 -->\n",
+       "<g id=\"node10\" class=\"node\">\n",
+       "<title>140ddf8d0</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"192.9\" cy=\"-18\" rx=\"31.9\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"192.9\" y=\"-12.95\" font-family=\"Times,serif\" font-size=\"14.00\">70.58</text>\n",
+       "</g>\n",
+       "<!-- 140db6d30&#45;&gt;140ddf8d0 -->\n",
+       "<g id=\"edge9\" class=\"edge\">\n",
+       "<title>140db6d30&#45;&gt;140ddf8d0</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M223.02,-71.7C218.49,-63.78 213.03,-54.23 208.01,-45.44\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"211.15,-43.88 203.15,-36.94 205.07,-47.36 211.15,-43.88\"/>\n",
+       "<text text-anchor=\"middle\" x=\"218.14\" y=\"-58.4\" font-family=\"Times,serif\" font-size=\"14.00\">Y</text>\n",
+       "</g>\n",
+       "<!-- Total -->\n",
+       "<g id=\"node11\" class=\"node\">\n",
+       "<title>Total</title>\n",
+       "<ellipse fill=\"none\" stroke=\"black\" cx=\"272.9\" cy=\"-18\" rx=\"30.37\" ry=\"18\"/>\n",
+       "<text text-anchor=\"middle\" x=\"272.9\" y=\"-12.95\" font-family=\"Times,serif\" font-size=\"14.00\">Total</text>\n",
+       "</g>\n",
+       "<!-- 140db6d30&#45;&gt;Total -->\n",
+       "<g id=\"edge10\" class=\"edge\">\n",
+       "<title>140db6d30&#45;&gt;Total</title>\n",
+       "<path fill=\"none\" stroke=\"black\" d=\"M242.79,-71.7C247.38,-63.67 252.93,-53.95 258.01,-45.05\"/>\n",
+       "<polygon fill=\"black\" stroke=\"black\" points=\"261,-46.88 262.93,-36.46 254.93,-43.4 261,-46.88\"/>\n",
+       "<text text-anchor=\"middle\" x=\"251.68\" y=\"-38.34\" font-family=\"Times,serif\" font-size=\"14.00\">1.00</text>\n",
+       "<text text-anchor=\"middle\" x=\"237.92\" y=\"-58.4\" font-family=\"Times,serif\" font-size=\"14.00\">N</text>\n",
+       "</g>\n",
+       "</g>\n",
+       "</svg>\n"
+      ],
+      "text/plain": [
+       "<graphviz.sources.Source at 0x140a4c690>"
+      ]
+     },
+     "execution_count": 15,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "est.engine_.search_space.print()\n",
+    "\n",
+    "print(\"Best model:\", est.best_estimator_.get_model())\n",
+    "print('score:', est.score(X,y))\n",
+    "\n",
+    "print(\"Best model:\", est.best_estimator_.get_model(\"tree\"))\n",
+    "\n",
+    "model = est.best_estimator_.get_dot_model()\n",
+    "graphviz.Source(model)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "brush",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
