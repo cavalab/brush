@@ -94,8 +94,8 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
     print("Prevalence of y:", prevalence)
 
     est = BrushClassifier(
-        max_gens=10,
-        pop_size=10,
+        max_gens=50,
+        pop_size=50,
         final_model_selection="best_validation_ci",
         scorer=scorer,
         class_weights=class_weights,
