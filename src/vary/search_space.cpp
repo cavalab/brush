@@ -223,10 +223,21 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
         
         if (!use_all)
         {
+            // Brush can start from a population of decision trees. Thess `if`s
+            // below ensures that split nodes will always be in the search space
+            if (extended_user_ops.find("SplitOn") == extended_user_ops.end()){
+                extended_user_ops.insert({"SplitOn", 0.0f});
+                op_names.push_back("SplitOn");
+            }
+            if (extended_user_ops.find("SplitBest") == extended_user_ops.end()){
+                extended_user_ops.insert({"SplitBest", 0.0f});
+                op_names.push_back("SplitBest");
+            }
+
             // We need some ops in the search space so we can have the logit and offset
             if (extended_user_ops.find("OffsetSum") == extended_user_ops.end()){
-            extended_user_ops.insert({"OffsetSum", 0.0f});
-            op_names.push_back("OffsetSum");
+                extended_user_ops.insert({"OffsetSum", 0.0f});
+                op_names.push_back("OffsetSum");
             }
 
             // Convert ArrayXf to std::vector<float> for compatibility with std::set
@@ -234,12 +245,12 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
             std::set<float> unique_classes(vec.begin(), vec.end());
 
             if (unique_classes.size()==2 && (extended_user_ops.find("Logistic") == extended_user_ops.end())) {
-            extended_user_ops.insert({"Logistic", 0.0f});
-            op_names.push_back("Logistic");
+                extended_user_ops.insert({"Logistic", 0.0f});
+                op_names.push_back("Logistic");
             }
             else if (extended_user_ops.find("Softmax") == extended_user_ops.end()) {
-            extended_user_ops.insert({"Softmax", 0.0f});
-            op_names.push_back("Softmax");
+                extended_user_ops.insert({"Softmax", 0.0f});
+                op_names.push_back("Softmax");
             }
         }
 
@@ -297,13 +308,13 @@ std::optional<tree<Node>> SearchSpace::sample_subtree(Node root, int max_d, int 
     // we should notice the difference between size of a PROGRAM and a TREE.
     // program count weights in its size, while the TREE structure dont. Wenever
     // using size of a program/tree, make sure you use the function from the correct class
-    PTC2(Tree, spot, max_d, max_size);
+    PTC2(Tree, spot, max_d, max_size, false);
     
     return Tree;
 };
 
 tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
-    tree<Node>::iterator spot, int max_d, int max_size) const
+    tree<Node>::iterator spot, int max_d, int max_size, bool start_from_decision_trees) const
 {
     // PTC2 is agnostic of program type
 
@@ -377,7 +388,17 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
         else
         {
             //choose a nonterminal of matching type
-            auto opt = sample_op(t);
+            std::optional<Node> opt;
+    
+            if (start_from_decision_trees) { // 
+                // this sample_op is likely to never fail. Only case scenario is
+                // a logistic root (arrayF arg type) with no arrayF arguments. 
+                // (in this case, sample_terminal will also fail)
+                opt = sample_op(NodeType::SplitBest, t, true);
+            }
+            else {
+                opt = sample_op(t);
+            }
 
             if (!opt) { // there is no operator for this node. sample a terminal instead
                 opt = sample_terminal(t);

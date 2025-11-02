@@ -106,6 +106,9 @@ class EstimatorInterface():
         The inexact simplification algorithm works by mapping similar expressions
         to the same hash, and retrieving the simplest one when doing the
         simplification of an expression.
+    start_from_decision_trees: boolean, optional (default: false)
+        Whether the initial population should only contain decision trees
+        (that is, trees using only SplitOn and SplitBest operators).
     batch_size : float, default 1.0
         Percentage of training data to sample every generation. If `1.0`, then
         all data is used. Very small values can improve execution time, but 
@@ -203,6 +206,7 @@ class EstimatorInterface():
         validation_size: float = 0.2,
         constants_simplification=True,
         inexact_simplification=True,
+        start_from_decision_trees=False,
         batch_size: float = 1.0,
         sel: str = "lexicase",
         surv: str = "nsga2",
@@ -238,6 +242,7 @@ class EstimatorInterface():
         self.objectives = objectives
         self.constants_simplification=constants_simplification
         self.inexact_simplification=inexact_simplification
+        self.start_from_decision_trees=start_from_decision_trees
         self.scorer = scorer
         self.shuffle_split = shuffle_split
         self.initialization = initialization
@@ -318,6 +323,9 @@ class EstimatorInterface():
         # Stop criteria 
         params.max_stall = self.max_stall
         params.max_time = self.max_time
+
+        # Initial population
+        params.start_from_decision_trees = self.start_from_decision_trees
 
         # Sampling probabilities
         params.weights_init = self.weights_init

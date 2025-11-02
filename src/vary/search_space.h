@@ -458,7 +458,7 @@ struct SearchSpace
     /// @param type the node type
     /// @param R the return type
     /// @return `std::optional` that may contain a Node of type `type` with return type `R`. 
-    std::optional<Node> sample_op(NodeType type, DataType R, bool force_return=false)
+    std::optional<Node> sample_op(NodeType type, DataType R, bool force_return=false) const
     {
         check(R);
         if (node_map.find(R) == node_map.end())
@@ -617,7 +617,7 @@ struct SearchSpace
     };
 
     private:
-        tree<Node>& PTC2(tree<Node>& Tree, tree<Node>::iterator root, int max_d, int max_size) const;
+        tree<Node>& PTC2(tree<Node>& Tree, tree<Node>::iterator root, int max_d, int max_size, bool start_from_decision_trees) const;
 
         template<NodeType NT, typename S>
         requires (!is_in_v<NT, NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>)
@@ -772,8 +772,14 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
         Node root;
         std::optional<Node> opt=std::nullopt;
 
-        if (max_size>1 && max_d>1)
-            opt = sample_op(root_type);
+        if (max_size>1 && max_d>1){
+            if (params.start_from_decision_trees) {
+                opt = sample_op(NodeType::SplitBest, root_type, true);
+            }
+            else {
+                opt = sample_op(root_type);
+            }
+        }
 
         if (!opt)
             opt = sample_terminal(root_type, true);
@@ -784,7 +790,7 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
     }
 
     // max_d-1 because we always pick the root before calling ptc2
-    PTC2(Tree, spot, max_d-1, max_size); // change inplace
+    PTC2(Tree, spot, max_d-1, max_size, params.start_from_decision_trees); // change inplace
 
     // weighting the tree if classification problem (so it can optimize the scale by default)
     // if (P::program_type == ProgramType::BinaryClassifier

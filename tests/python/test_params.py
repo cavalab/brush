@@ -154,3 +154,85 @@ def test_class_weights():
     print(f"Best individual program: {clf.best_estimator_.program.get_model()}")
     print(f"Best individual fitness: {clf.best_estimator_.fitness}")
     print(f"Best individual score (acc): {clf.score(X, y)}")
+
+
+def _collect_models_from_estimator(estimator):
+    return [ind.program.get_model() for ind in estimator.population_]
+
+
+def _has_split_node_in_models(models):
+    for m in models:
+        if "If" in m:
+            return True
+    return False
+
+
+def test_population_split_nodes_start_from_decision_trees_on_and_off():
+    y = np.array([0, 1, 0, 1, 0, 1, 0, 1, 0, 1])
+
+    # multiply by a float so X is filled with float values
+    X = np.vstack([np.linspace(0, 1, 10), np.linspace(1, 2, 10)]).T* np.e
+
+    for start_trees in (True, False):
+        print(f"\nTesting start_from_decision_trees={start_trees}")
+
+        # create a very small run (1 generation, small pop) so splits dont get lost completely
+        reg = BrushRegressor(
+            max_gens=0,
+            pop_size=10,
+            start_from_decision_trees=start_trees,
+            verbosity=2,
+        ).fit(X, y)
+
+        models = _collect_models_from_estimator(reg)
+        print(f"Collected {len(models)} model(s) for start_from_decision_trees={start_trees}")
+        for i, m in enumerate(models):
+            print(f"Individual {i}: {m}")
+
+        # If starting from decision trees we expect at least one split-like node
+        if start_trees:
+            assert _has_split_node_in_models(models), (
+                "Expected at least one individual to contain a split node when "
+                "start_from_decision_trees=True"
+            )
+        else:
+            # When not starting from trees it's acceptable not to have split nodes,
+            # but we still ensure we collected at least one model string.
+            assert len(models) > 0, "No individuals were collected from the population"
+
+
+def test_population_split_nodes_with_and_without_SplitOn_function():
+    y = np.array([1, 1, 0, 0, 1, 0, 1, 0, 1, 0])
+
+    # multiply by a float so X is filled with float values
+    X = np.vstack([np.arange(10), np.arange(10)[::-1]]).T * np.e
+
+    configs = [
+        ("with_Splits", ["SplitOn", "SplitBest", "Add", "Mul"]),
+        ("without_Splits", ["Add", "Mul", "Logistic"]),
+    ]
+
+    for name, functions in configs:
+        print(f"\nTesting functions config: {name} -> {functions}")
+        clf = BrushClassifier(
+            max_gens=0,
+            pop_size=10,
+            functions=functions,
+            start_from_decision_trees=True,
+            verbosity=2,
+            validation_size=0,
+        ).fit(X, y)
+
+        models = _collect_models_from_estimator(clf)
+
+        print(f"Collected {len(models)} model(s) for config {name}")
+        for i, m in enumerate(models):
+            print(f"Individual {i}: {m}")
+
+        if "SplitOn" in functions or "SplitBest" in functions:
+            assert _has_split_node_in_models(models), (
+                f"Expected split nodes present when 'SplitOn' or 'SplitBest', is in functions ({functions})"
+            )
+        else:
+            # If SplitOn not provided, ensure at least population exists but do not require splits
+            assert len(models) > 0, f"No individuals collected for config {name}"
