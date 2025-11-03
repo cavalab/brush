@@ -411,11 +411,9 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
             if (!opt) { // no operator or terminal - search space is ill defined
                 auto msg = fmt::format(
                     "Failed to sample operator AND terminal of data type {} during PTC2.\n"
-                    "start_from_decision_trees: {}\nops_available: {}\nterminals_available: {}\n",
+                    "start_from_decision_trees: {}\n",
                     DataTypeName[t],
-                    start_from_decision_trees ? "true" : "false",
-                    ops_count,
-                    terms_count
+                    start_from_decision_trees ? "true" : "false"
                 );
 
                 HANDLE_ERROR_THROW(msg);
