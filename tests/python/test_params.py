@@ -236,3 +236,49 @@ def test_population_split_nodes_with_and_without_SplitOn_function():
         else:
             # If SplitOn not provided, ensure at least population exists but do not require splits
             assert len(models) > 0, f"No individuals collected for config {name}"
+
+
+@pytest.mark.parametrize("scorer, expected_weights", [
+    # Second objective is always minimization for these test cases
+    ("mse",              [-1.0, -1.0]),                    # lower is better
+    ("accuracy",         [+1.0, -1.0]),                  # higher is better
+    ("balanced_accuracy", [+1.0, -1.0]),         # higher is better
+    ("log",               [-1.0, -1.0]),                      # lower is better
+    ("average_precision_score", [+1.0, -1.0]),         # higher is better
+])
+def test_fitness_weights_match_scorer_sign(scorer, expected_weights):
+    """Ensure fitness.weights has correct sign according to the scorer function,
+    both at estimator and individual (population) level.
+    """
+
+    # simple toy dataset
+    X = np.array([[1.2, 2.0], [2.0, 3.5], [3.0, 4.0], [4.0, 5.0]])
+    y_reg = np.array([1.0, 2.0, 3.0, 4.0])
+    y_clf = np.array([0, 1, 0, 1])
+
+    # Choose estimator type based on scorer
+    # (by default objectives are ["scorer", "linear_complexity"])
+    if scorer in ("mse"):
+        est = BrushRegressor(scorer=scorer, pop_size=20, max_gens=10, verbosity=0)
+        est.fit(X, y_reg)
+    else:
+        est = BrushClassifier(scorer=scorer, pop_size=20, max_gens=10, verbosity=0)
+        est.fit(X, y_clf)
+
+    # Check estimator-level weights
+    print(f"\nTesting scorer={scorer}")
+    print(f"Estimator fitness.weights={est.best_estimator_.fitness.weights}")
+    assert np.allclose(est.best_estimator_.fitness.weights, expected_weights), (
+        f"For scorer={scorer}, expected fitness.weights={expected_weights}, "
+        f"but got {est.best_estimator_.fitness.weights}"
+    )
+
+    # Check that every individual in the population follows the same sign convention
+    for i, ind in enumerate(est.population_):
+        print(f"Individual {i} fitness.weights={ind.fitness.weights}")
+
+        assert hasattr(ind, "fitness"), f"Individual {i} has no fitness attribute"
+        assert np.isclose(ind.fitness.weights[0], expected_weights[0]), (
+            f"For scorer={scorer}, individual {i} has fitness.weights[0]={ind.fitness.weights[0]}, "
+            f"expected {expected_weights[0]}"
+        )

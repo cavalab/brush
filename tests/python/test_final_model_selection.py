@@ -174,13 +174,18 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
     candidates = [(l, p) for l, p in zip(new_losses, est.archive_) if lower_ci <= l <= upper_ci]
 
     print('first arch ind', est.archive_[0].get_model())
-    print("Original losses from archive", [ind.fitness.loss for ind in est.archive_])
-    print("Original losses_v from archive", [ind.fitness.loss_v for ind in est.archive_])
-    print("Recalculated losses (should match)", new_losses)
+    print("Original losses from archive (brush's auprc)   ", [ind.fitness.loss for ind in est.archive_])
+    print("Original losses_v from archive (brush's auprc) ", [ind.fitness.loss_v for ind in est.archive_])
+    print("Recalculated losses with sklearn (should match)", new_losses)
     print(f"Num candidates in CI: {len(candidates)}")
+
+    for i, ind in enumerate(est.archive_):
+        print(f"archive[{i}] program.get_model(): {ind.program.get_model()}")
 
     # TODO: make the assert below work
     assert np.allclose([ind.fitness.loss_v for ind in est.archive_], new_losses)
+
+
 
     if candidates:
         chosen = min(candidates, key=lambda lp: lp[1].fitness.complexity)[1]
