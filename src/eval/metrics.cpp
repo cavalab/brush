@@ -169,7 +169,7 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
 
         y_sorted[i] = y(idx);
         p_sorted[i] = predict_proba(idx);
-        w_sorted[i] = class_weights.empty() ? 1.0f : class_weights.at(y_sorted[i]);
+        w_sorted[i] = class_weights.empty() ? 1.0f : class_weights.at(y(idx));
 
         ysum += y_sorted[i] * w_sorted[i];
     }
@@ -177,15 +177,31 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
     // when all scores are the same, the sort order is arbitrary, so the PR curve
     // you integrate is a staircase instead of a flat line. Sklearn avoids this by
     // treating ties as one threshold.
+    // however, this does not produce consistent results, so we will handle flat
+    // lines below
+
+    // detect constant prediction case (all p_sorted equal within tolerance).
+    // because p_sorted is sorted, the first element is the maximum, and the last is the minimum,
+    float tol = 1e-6f;
+    if (fabs(p_sorted.front() - p_sorted.back()) <= tol) {
+        // All predictions are (effectively) constant.
+        float total_weight = 0.0f;
+        for (int i = 0; i < num_instances; ++i)
+            total_weight += w_sorted[i];
+
+        // Return weighted positives / total weight, matching sklearn's result for constant scores.
+        return total_weight == 0.0f ? 0.0f : ysum / total_weight;
+    }
 
     // Find the indexes where prediction changes, so we can treat it as one block
-    vector<int> unique_indices = {};
-    set<int> unique_probas = {}; // keep track of unique elements
+    vector<int> unique_indices = {}; // this one will be used to calculate the AUC
+    set<int> unique_probas = {}; // keep track of unique elements (this wont be used other than that)
     
-    for (int i=0; i<p_sorted.size(); --i)
+    for (int i=0; i<p_sorted.size(); ++i)
         if (unique_probas.insert(p_sorted.at(i)).second)
             unique_indices.push_back(i);
-    unique_indices.push_back(num_instances); // last index
+
+    unique_indices.push_back(num_instances); // last index is the number of elements
 
     float tp = 0.0f;
     float fp = 0.0f;
@@ -200,16 +216,17 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
         for (int j = start; j < end; ++j) {
             tp += y_sorted.at(j) * w_sorted.at(j);
             fp += (1.0f - y_sorted.at(j)) * w_sorted.at(j);
+
+            float relevant = tp + fp;
+            precision.push_back(relevant == 0.0f ? 0.0f : tp / relevant);
+            recall.push_back(ysum == 0.0f ? 1.0f : tp / ysum);
         }
 
-        float relevant = tp + fp;
-        precision.push_back(relevant == 0.0f ? 0.0f : tp / relevant);
-        recall.push_back(ysum == 0.0f ? 1.0f : tp / ysum);
     }
 
     // integrate PR curve
     float average_precision = 0.0f;
-    for (size_t i = 0; i < precision.size() - 1; ++i) {
+    for (size_t i = 0; i < num_instances; ++i) {
         average_precision += (recall[i+1] - recall[i]) * precision[i+1];
     }
 
@@ -273,8 +290,6 @@ float mean_multi_log_loss(const VectorXf& y,
         const vector<float>& class_weights)
 {
     loss = multi_log_loss(y, predict_proba, class_weights);
-
-
 
     return loss.mean();
 }  

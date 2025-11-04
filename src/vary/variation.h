@@ -302,7 +302,6 @@ public:
             // ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
 
             ind.set_id(id);
-
             ind.fitness.set_loss(mom.fitness.get_loss());
             ind.fitness.set_loss_v(mom.fitness.get_loss_v());
             ind.fitness.set_size(mom.fitness.get_size());
