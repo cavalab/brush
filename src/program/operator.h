@@ -92,7 +92,7 @@ namespace util{
             // and the setter for `is_weighted` prevent enabling weight on 
             // boolean values. 
             HANDLE_ERROR_THROW(fmt::format("boolean terminal is weighted, but "
-            "it should not\n"));
+            "it should not be\n"));
 
         // std::cout << "Returning weight: Scalar(true) for a boolean node tn " << tn.data.name << std::endl;
         return Scalar(true);
