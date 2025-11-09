@@ -259,7 +259,7 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
                 # if user_defined, sample_weight is given by his custom weights. if
                 # support, I calculate it here. otherwise, no weight is used
-                if self.class_weights not in ['unbalanced', 'balanced_accuracy']:
+                if self.class_weights not in ['unbalanced'] and self.parameters_.scorer not in ['balanced_accuracy']:
                     sample_weight = []
                     if isinstance(self.class_weights, list): # using user-defined values
                         sample_weight = [self.class_weights[int(label)] for label in y]

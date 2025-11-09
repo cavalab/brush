@@ -147,7 +147,7 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
             print(np.round(y, 2))
             print(np.round(y_pred, 2))
 
-        if est.class_weights not in ['unbalanced', 'balanced_accuracy']:
+        if est.class_weights not in ['unbalanced'] and est.parameters_.scorer not in ['balanced_accuracy']:
             sample_weight = None
             if isinstance(est.class_weights, list):
                 if log:
