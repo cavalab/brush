@@ -121,7 +121,7 @@ def test_brush_classifier_checkpoint_training(tmp_path):
         verbosity=0,
     )
 
-    step = 4
+    step = 10
     max_gens = est.max_gens
     est.max_gens = step
     est.save_population = str(checkpoint)

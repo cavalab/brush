@@ -103,7 +103,7 @@ def test_max_gens():
     
     for max_gen in [0, 1, 10]:
         print(f"Testing with max_gen={max_gen}")
-        reg = BrushRegressor(max_gens=max_gen, verbosity=0).fit(X, y)
+        reg = BrushRegressor(max_gens=max_gen, pop_size=10, verbosity=0).fit(X, y)
 
         predictions = reg.predict(X)
         assert predictions is not None, "Prediction failed"
