@@ -116,6 +116,7 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
     # Replicate the selection logic here
     data = est.validation_
     y = np.array(data.y).astype(int)
+    print("Unique values in validation data", np.unique(y, return_counts=True))
 
     loss_f_dict = {
         "mse": mean_squared_error,
@@ -128,14 +129,17 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
 
     def eval(individual, sample=None):
         if sample is None:
-            sample = np.arange(len(y))
+            sample = np.arange(len(data.y))
 
         y_pred = None
+
         if est.parameters_.scorer in ["log", "average_precision_score"]:
-            y_pred = np.array(individual.predict_proba(data))
+            y_pred = np.array(individual.predict_proba(data)).astype(float)
         else:
-            y_pred = np.array(individual.predict(data))
-        # y_pred = np.nan_to_num(y_pred)
+            y_pred = np.array(individual.predict(data)).astype(float)
+
+        # print(np.round(y, 2))
+        # print(np.round(y_pred, 2))
 
         if est.class_weights not in ['unbalanced', 'balanced_accuracy']:
             sample_weight = None
@@ -150,7 +154,7 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
                     "Sampled data does not have same number of classes"
 
                 support_weights = {
-                    cls: len(y) / (len(classes)*count) 
+                    cls: len(y[sample]) / (len(classes)*count) 
                     if count > 0 else 0.0 for cls, count in zip(classes, counts)}
                 
                 sample_weight = np.array([support_weights[label] for label in y])
@@ -159,6 +163,7 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
             return loss_f(y[sample], y_pred[sample])
 
     # Bootstrap validation samples
+    print("scorer and class weights;", scorer, class_weights)
     print("original loss", est.best_estimator_.fitness.loss)
     print("original loss_v", est.best_estimator_.fitness.loss_v)
     print("recalculated loss", eval(est.best_estimator_))
@@ -195,7 +200,6 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
 
         # Assert that Brush picked the same candidate
         assert est.best_estimator_.get_model() == chosen.get_model()
-
 
 if __name__ == "__main__":
     pytest.main()

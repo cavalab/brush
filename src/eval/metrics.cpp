@@ -182,14 +182,12 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
 
     // detect constant prediction case (all p_sorted equal within tolerance).
     // because p_sorted is sorted, the first element is the maximum, and the last is the minimum,
-    float tol = 1e-6f;
-    if (fabs(p_sorted.front() - p_sorted.back()) <= tol) {
+    if (abs(p_sorted.front() - p_sorted.back()) <= eps) {
         // All predictions are (effectively) constant.
-        float total_weight = 0.0f;
-        for (int i = 0; i < num_instances; ++i)
-            total_weight += w_sorted[i];
+        float total_weight = std::accumulate(w_sorted.begin(), w_sorted.end(), 0.0f);
 
-        // Return weighted positives / total weight, matching sklearn's result for constant scores.
+        // Return weighted positives / total weight, matching sklearn's result for constant scores
+        // (kinda weighted prevalence)
         return total_weight == 0.0f ? 0.0f : ysum / total_weight;
     }
 
@@ -221,7 +219,6 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
             precision.push_back(relevant == 0.0f ? 0.0f : tp / relevant);
             recall.push_back(ysum == 0.0f ? 1.0f : tp / ysum);
         }
-
     }
 
     // integrate PR curve

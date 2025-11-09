@@ -115,7 +115,7 @@ def test_brush_classifier_checkpoint_training(tmp_path):
         objectives=["scorer", "linear_complexity"],
         scorer="balanced_accuracy",
         max_gens=10,
-        pop_size=25,
+        pop_size=20,
         max_depth=4,
         max_size=10,
         verbosity=0,

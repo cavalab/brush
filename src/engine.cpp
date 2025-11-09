@@ -520,7 +520,9 @@ void Engine<T>::run(Dataset &data)
             auto finish_gen = subflow.emplace([&]() {
                 // Set validation loss before calling update best
                 for (int island = 0; island < this->params.num_islands; ++island) {
-                    evaluator.update_fitness(this->pop, island, data, params, false, true);
+                    // we can set fit to true, because already fitted individuals will be skipped,
+                    // and we ensure we fit everyone
+                    evaluator.update_fitness(this->pop, island, data, params, true, true);
                 }
 
                 archive.update(pop, params);

@@ -141,6 +141,8 @@ public:
         }
         else // else it is either unbalanced or user_defined
         { 
+            // if unbalanced, class_weights is empty. if user_defined,
+            // then we should use the provided values anyways
             class_weights = params.class_weights;
         }
         

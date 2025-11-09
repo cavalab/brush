@@ -225,6 +225,8 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         if data is None:
             data = self.validation_ #.get_validation_data()
 
+        y = np.array(data.y)
+
         candidate = None
         if self.final_model_selection == "smallest_complexity":
             candidates = [p for p in self.archive_ if p.fitness.size > 1 + (4 if self.mode == 'classification' else 0)]
@@ -244,48 +246,49 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
             }
             loss_f = loss_f_dict[self.parameters_.scorer]
 
-            def eval(ind, data, sample=None):
+            def eval(ind, sample=None):
                 if sample is None:
-                    sample = np.arange(len(data.y))
+                    sample = np.arange(len(y))
 
                 if self.parameters_.scorer in ["log", "average_precision_score"]:
                     y_pred = np.array(ind.predict_proba(data))
                 else: # accuracy, balanced accuracy, or regression metrics
                     y_pred = np.array(ind.predict(data))
 
-                y_pred = np.nan_to_num(y_pred) # Protecting the evaluation
+                # y_pred = np.nan_to_num(y_pred) # Protecting the evaluation
 
                 # if user_defined, sample_weight is given by his custom weights. if
                 # support, I calculate it here. otherwise, no weight is used
                 if self.class_weights not in ['unbalanced', 'balanced_accuracy']:
                     sample_weight = []
                     if isinstance(self.class_weights, list): # using user-defined values
-                        sample_weight = [self.class_weights[int(label)] for label in data.y]
+                        sample_weight = [self.class_weights[int(label)] for label in y]
                     else: # support
                         # Calculate class weights by support
-                        classes, counts = np.unique(data.y, return_counts=True)
+                        classes, counts = np.unique(y[sample], return_counts=True)
         
                         support_weights = {
-                            int(cls): len(data.y) / (len(classes)*count) 
+                            int(cls): len(y[sample]) / (len(classes)*count) 
                             if count > 0 else 0.0 for cls, count in zip(classes, counts)}
                         
-                        sample_weight = [support_weights[int(label)] for label in data.y]
+                        # classes and support weights are calculated with y[sample].
+                        # sample_weight will be indexed in the function call, so we use raw y.
+                        sample_weight = [support_weights[int(label)] for label in y]
                     sample_weight = np.array(sample_weight)
                     return loss_f(y[sample], y_pred[sample], sample_weight=sample_weight[sample])
                 else: # unbalanced metrics, ignoring weights
                     return loss_f(y[sample], y_pred[sample])
 
-            y = np.array(data.y)
             np.random.seed(0)
             val_samples = []
             for i in range(100):
                 sample = np.random.randint(0, len(y), size=len(y))
-                val_samples.append( eval(self.best_estimator_, data, sample) )
+                val_samples.append( eval(self.best_estimator_, sample) )
 
             lower_ci, upper_ci = np.quantile(val_samples,0.05), np.quantile(val_samples,0.95)
 
             # Recalculate metric with new data
-            new_losses = [eval(ind, data) for ind in self.archive_]
+            new_losses = [eval(ind) for ind in self.archive_]
 
             # Filter for overlapping points. Adding the best estimator to assert there is at least one sample
             candidates = [(l, p) for l, p in zip(new_losses, self.archive_) if lower_ci <= l <= upper_ci]
