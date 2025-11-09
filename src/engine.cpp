@@ -563,13 +563,12 @@ void Engine<T>::run(Dataset &data)
         [&]() { return 0; }, // jump back to the next iteration
 
         [&](tf::Subflow& subflow) {
-            // TODO: make sure I do not need to re-fit here and remove this later
-            // set VALIDATION loss for archive, without refitting the model
-            // for (int island = 0; island < this->params.num_islands; ++island) {
-            //     evaluator.update_fitness(this->pop, island, data, params, false, true);
-            // }
+            // set validation loss, refit (will work only on individuals not fitted)
+            for (int island = 0; island < this->params.num_islands; ++island) {
+                evaluator.update_fitness(this->pop, island, data, params, true, true);
+            }
 
-            // archive.update(pop, params);
+            archive.update(pop, params);
             // calculate_stats();
 
             if (params.save_population != "")

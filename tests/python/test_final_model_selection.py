@@ -95,7 +95,7 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
 
     est = BrushClassifier(
         max_gens=1,
-        pop_size=10,
+        pop_size=50,
         final_model_selection="best_validation_ci",
         scorer=scorer,
         functions=['Add', 'Sub', 'SplitBest'],
