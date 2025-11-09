@@ -115,7 +115,8 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
         
     # Replicate the selection logic here
     data = est.validation_
-    y = np.array(data.y).astype(int)
+    y = np.array(data.y)
+
     print("Unique values in validation data", np.unique(y, return_counts=True))
 
     loss_f_dict = {
@@ -127,9 +128,12 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
     }
     loss_f = loss_f_dict[est.parameters_.scorer]
 
-    def eval(individual, sample=None):
+    def eval(individual, sample=None, log=False):
         if sample is None:
             sample = np.arange(len(data.y))
+
+        if log:
+            print('(eval) sample index', sample)
 
         y_pred = None
 
@@ -138,16 +142,24 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
         else:
             y_pred = np.array(individual.predict(data)).astype(float)
 
-        # print(np.round(y, 2))
-        # print(np.round(y_pred, 2))
+        if log: # silencing eval() during bootstrap, but enabling detailed info when re-calculating losses and comparing with brush's metrics
+            print('evaluating', individual.program.get_model())
+            print(np.round(y, 2))
+            print(np.round(y_pred, 2))
 
         if est.class_weights not in ['unbalanced', 'balanced_accuracy']:
             sample_weight = None
             if isinstance(est.class_weights, list):
-                sample_weight = np.array([est.class_weights[label] for label in y])
+                if log:
+                    print('(eval) using class weights as a list')
+
+                sample_weight = np.array([est.class_weights[int(label)] for label in y])
             # elif est.class_weights == 'support' and est.scorer == "average_precision_score": # using support as a way of weighting
             #     return loss_f(y[sample], y_pred[sample], average='weighted')
             else:
+                if log:
+                    print('(eval) using class weights as support')
+
                 classes, counts = np.unique(y[sample], return_counts=True)
                 
                 assert len(classes) == est.parameters_.n_classes, \
@@ -156,10 +168,23 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
                 support_weights = {
                     cls: len(y[sample]) / (len(classes)*count) 
                     if count > 0 else 0.0 for cls, count in zip(classes, counts)}
-                
-                sample_weight = np.array([support_weights[label] for label in y])
+
+                if log:
+                    print("(eval) support weights", support_weights)    
+
+                sample_weight = np.array([support_weights[int(label)] for label in y])
+
+            if log:
+                print('(eval) sample weights', sample_weight)
+                print('(eval) loss', loss_f(y[sample], y_pred[sample], sample_weight=sample_weight[sample]))
+
             return loss_f(y[sample], y_pred[sample], sample_weight=sample_weight[sample])
         else: # Cases where we ignore weights
+            if log: 
+                print('(eval) using no class weights')
+                print('(eval) sample weights not defined. using unbalanced version')
+                print('(eval) loss', loss_f(y[sample], y_pred[sample]))
+
             return loss_f(y[sample], y_pred[sample])
 
     # Bootstrap validation samples
@@ -176,7 +201,7 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
     print(f"CI bounds: {lower_ci:.4f}, {upper_ci:.4f}")
 
     # Evaluate all archive members
-    new_losses = [eval(ind) for ind in est.archive_]
+    new_losses = [eval(ind, log=True) for ind in est.archive_]
     candidates = [(l, p) for l, p in zip(new_losses, est.archive_) if lower_ci <= l <= upper_ci]
 
     print('first arch ind', est.archive_[0].get_model())

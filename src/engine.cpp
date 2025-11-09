@@ -490,7 +490,8 @@ void Engine<T>::run(Dataset &data)
                 // TODO: optimize this and make it work with multiple islands in parallel.
                 for (int island = 0; island < this->params.num_islands; ++island) {
 
-                    // TODO: do I have to pass data as an argument here? or can I use the instance reference
+                    // TODO: do I have to pass data as an argument here? or can I use the instance reference.
+                    // OBS: this function already calls fit internally!
                     variator.vary_and_update(this->pop, island, island_parents.at(island),
                                              data, evaluator, 
                                              
@@ -562,12 +563,13 @@ void Engine<T>::run(Dataset &data)
         [&]() { return 0; }, // jump back to the next iteration
 
         [&](tf::Subflow& subflow) {
+            // TODO: make sure I do not need to re-fit here and remove this later
             // set VALIDATION loss for archive, without refitting the model
-            for (int island = 0; island < this->params.num_islands; ++island) {
-                evaluator.update_fitness(this->pop, island, data, params, false, true);
-            }
+            // for (int island = 0; island < this->params.num_islands; ++island) {
+            //     evaluator.update_fitness(this->pop, island, data, params, false, true);
+            // }
 
-            archive.update(pop, params);
+            // archive.update(pop, params);
             // calculate_stats();
 
             if (params.save_population != "")

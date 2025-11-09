@@ -140,7 +140,7 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
     // Assuming y contains binary labels (0 or 1)
     int num_instances = y.size();
 
-    float eps = 1e-6f; // first we set the loss vector values
+    float eps = 1e-4f; // first we set the loss vector values
     loss.resize(num_instances);
     for (int i = 0; i < num_instances; ++i) {
         float p = predict_proba(i);
@@ -182,7 +182,7 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
 
     // detect constant prediction case (all p_sorted equal within tolerance).
     // because p_sorted is sorted, the first element is the maximum, and the last is the minimum,
-    if (abs(p_sorted.front() - p_sorted.back()) <= eps) {
+    if (abs(p_sorted.back() - p_sorted.front()) <= eps) {
         // All predictions are (effectively) constant.
         float total_weight = std::accumulate(w_sorted.begin(), w_sorted.end(), 0.0f);
 
