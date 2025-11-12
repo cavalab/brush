@@ -133,7 +133,8 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         return self
     
-    def partial_fit(self, X, y, lock_nodes_depth=0, keep_leaves_unlocked=True):
+    def partial_fit(self, X, y, *, 
+                    lock_nodes_depth=0, keep_leaves_unlocked=True, keep_current_weights=False):
         """
         Fit an estimator to X,y, without reseting the estimator.
 
@@ -147,6 +148,9 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
             The depth of the tree to lock. Default is 0.
         keep_leaves_unlocked : bool, optional
             Whether to skip leaves when locking nodes. Default is True.
+        keep_current_weights : bool, optional
+            Whether to keep current weights at the spot they appear, and preventing 
+            them to be changed during optimization. Default is False.
         """
 
         if isinstance(X, pd.DataFrame):
@@ -172,9 +176,12 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         # This updates the parameters (such as class weights)
         self.engine_.params = new_parameters
         
-        self.engine_.lock_nodes(lock_nodes_depth, keep_leaves_unlocked)
+        # replicating the best individual
+        self.engine_.set_population([self.best_estimator_ for _ in range(self.pop_size)])
+
+        self.engine_.lock_nodes(lock_nodes_depth, keep_leaves_unlocked, keep_current_weights)
         self.engine_.fit(new_data)
-        self.engine_.lock_nodes(0, False) # unlocking everything
+        # self.engine_.lock_nodes(0, False, False) # unlocking everything
 
         self.archive_ = self.engine_.get_archive()
         self.population_ = self.engine_.get_population()
