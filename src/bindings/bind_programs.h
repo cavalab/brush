@@ -40,6 +40,7 @@ void bind_program(py::module& m, string name)
             &T::lock_nodes,
             py::arg("end_depth") = 0,
             py::arg("keep_leaves_unlocked") = true,
+            py::arg("keep_current_weights") = false,
             stream_redirect()
         )
         .def("get_model",

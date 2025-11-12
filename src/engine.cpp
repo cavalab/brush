@@ -288,7 +288,7 @@ void Engine<T>::set_population(vector<Individual<T>> pop_vector)
 
 
 template <ProgramType T>
-void Engine<T>::lock_nodes(int end_depth, bool keep_leaves_unlocked)
+void Engine<T>::lock_nodes(int end_depth, bool keep_leaves_unlocked, bool keep_current_weights)
 {
     // iterate over the population, locking the program's tree nodes
     for (int island=0; island<pop.num_islands; ++island) {
@@ -297,7 +297,7 @@ void Engine<T>::lock_nodes(int end_depth, bool keep_leaves_unlocked)
         for (unsigned i = 0; i<indices.size(); ++i)
         {
             const auto& ind = pop.individuals.at(indices.at(i));
-            ind->program.lock_nodes(end_depth, keep_leaves_unlocked);
+            ind->program.lock_nodes(end_depth, keep_leaves_unlocked, keep_current_weights);
         }
     }
 }

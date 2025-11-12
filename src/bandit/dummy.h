@@ -8,8 +8,6 @@
 namespace Brush {
 namespace MAB {
 
-// TODO: rename dummy to static or fixed
-
 class DummyBandit : public BanditOperator
 {
 public:

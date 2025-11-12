@@ -18,22 +18,27 @@ https://github.com/heal-research/operon/
 // #include "nodes/split.h"
 // #include "nodes/terminal.h"
 ////////////////////////////////////////////////////////////////////////////////
+
 /*
 Node overhaul:
 
 - Incorporating new design principles, learning much from operon:
     - make Node trivial, so that it is easily copied around. 
-    - use Enums and maps to define node information. This kind of abandons the object oriented approach taken thus far, but it should make extensibility easier and performance better in the long run. 
+    - use Enums and maps to define node information. This kind of abandons the 
+      object oriented approach taken thus far, but it should make extensibility 
+      easier and performance better in the long run. 
     - Leverage ceres for parameter optimization. No more defining analytical 
-    derivatives for every function. Let ceres do that. 
+      derivatives for every function. Let ceres do that. 
         - sidenote: not sure ceres can handle the data flow of split nodes. 
-        need to figure out. 
+          need to figure out. 
         - this also suggests turning TimeSeries back into EigenSparse matrices.
     - forget all the runtime node generation. It saves space at the cost of 
-    unclear code. I might as well just define all the nodes that are available, plainly. At run-time this will be faster. 
-    - keep an eye towards extensibility by defining a custom node registration function that works.
-
+      unclear code. I might as well just define all the nodes that are available, 
+      plainly. At run-time this will be faster. 
+    - keep an eye towards extensibility by defining a custom node registration 
+      function that works.
 */
+
 using Brush::DataType;
 using Brush::Data::Dataset;
 
@@ -97,12 +102,22 @@ struct Node {
     /// @brief a hash of the dual of the signature (for NLS)
     std::size_t sig_dual_hash;
 
-    /// whether the node is replaceable. Weights are still optimized.
-    bool fixed;
+    // TODO: node_is_fixed, weight_is_fixed, and is_weighted accessed via getters/setters
+
+    // The three flags below will help determine how to handle the node during mutation,
+    // and can also be changed by the locking mechanism. prob_change is user-defined and
+    // also interact with the flags
+
+    /// @brief whether the node is replaceable. Weights are still optimized.
+    bool node_is_fixed;
+    /// @brief whether the weight should be kept during variation. Notice that weight_is_fixed alows us to fix the weight of certain nodes.
+    bool weight_is_fixed;
     /// @brief whether this node is weighted (ignored in nodes that must have weights, such as meanLabel, constants, splits)
     bool is_weighted;
-    /// chance of node being selected for variation
+    /// @brief chance of node being selected for variation. This will take into account if the node is fixed, but not the weight
+    /// (a fixed weight just gets propagated). Can be affected by node_is_fixed. should not be accessed directly.
     float prob_change; 
+
     /// @brief the weights of the node. also used for splitting thresholds.
     float W; 
     
@@ -117,7 +132,8 @@ struct Node {
         size_t,                 // sig_hash
         bool,                   // is_weighted
         string,                 // feature
-        bool,                   // fixed
+        bool,                   // node_is_fixed
+        bool,                   // weight_is_fixed
         int                     // rounded W
         // float                   // prob_change
     >;
@@ -155,13 +171,18 @@ struct Node {
     }
 
     void init(){
-
         // starting weights with neutral element of the operation. offsetsum
-        // is the only node that does not multiply the weight --- instead, it adds it
+        // is the only node that does not multiply the weight --- instead, it adds it,
+        // so we need to handle it differently
         W = (node_type == NodeType::OffsetSum) ? 0.0 : 1.0;
 
         // set_node_hash();
-        fixed=false;
+
+        // everything is unlocked. Special nodes (like the logistic root)
+        // should be fixed during its creation (check `vary` source code)
+        node_is_fixed=false;
+        weight_is_fixed=false;
+
         set_prob_change(1.0);
 
         // TODO: confirm that this is really necessary (intializing this variable) and transform this line into a ternary if so
@@ -201,7 +222,8 @@ struct Node {
                 sig_hash,
                 get_is_weighted(),
                 feature,
-                fixed,
+                node_is_fixed,
+                weight_is_fixed,
                 // include weights only if we want exact matches.
                 // but we will indicate that constants are on using get is weighted,
                 // just so we differentiate whether the weight exists or is ignored
@@ -251,9 +273,9 @@ struct Node {
     ////////////////////////////////////////////////////////////////////////////////
     // getters and setters
     //TODO revisit
-    float get_prob_change() const { return fixed ? 0.0 : this->prob_change;};
+    float get_prob_change() const { return node_is_fixed ? 0.0 : this->prob_change;};
     void set_prob_change(float w){ this->prob_change = w;};
-    float get_prob_keep() const { return fixed ? 1.0 : 1.0-this->prob_change;};
+    float get_prob_keep() const { return node_is_fixed ? 1.0 : 1.0-this->prob_change;};
 
     inline void set_feature(string f){ feature = f; };
     inline string get_feature() const { return feature; };
@@ -264,7 +286,7 @@ struct Node {
     inline void set_keep_split_feature(bool keep){ this->keep_split_feature = keep; };
     inline bool get_keep_split_feature() const { return this->keep_split_feature; };
 
-    // Some types does not have weights, so we completely ignore the weights
+    // Some types does not support weights, so we completely ignore the weights
     // if is not weighable
     inline bool get_is_weighted() const {
         if (IsWeighable(this->ret_type)) 

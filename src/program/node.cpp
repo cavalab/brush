@@ -116,7 +116,8 @@ void to_json(json& j, const Node& p)
     j = json{
         {"name", p.name},
         {"center_op", p.center_op}, 
-        {"fixed", p.fixed}, 
+        {"node_is_fixed", p.node_is_fixed}, 
+        {"weight_is_fixed", p.weight_is_fixed}, 
         {"prob_change", p.prob_change}, 
         {"is_weighted", p.is_weighted}, 
         {"W", p.W}, 
@@ -301,10 +302,15 @@ void from_json(const json &j, Node& p)
     // after this point we set attributes that are modified in init
     p.init();
     
-    // these 4 below needs to be set after init(), since it resets these values
-    if (j.contains("fixed"))
+    // these below needs to be set after init(), since `init` sets these values
+    if (j.contains("node_is_fixed"))
     {
-        j.at("fixed").get_to(p.fixed);
+        j.at("node_is_fixed").get_to(p.node_is_fixed);
+    }
+
+    if (j.contains("weight_is_fixed"))
+    {
+        j.at("weight_is_fixed").get_to(p.weight_is_fixed);
     }
 
     if (j.contains("is_weighted"))

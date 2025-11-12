@@ -272,12 +272,20 @@ template<PT PType> struct Program
         // check tree nodes for weights
         for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
         {
-            const auto& node = i.node->data; 
+            const auto& node = i.node->data;
+
+            // we do not want to include fixed weights, because they should not be changed.
+            // get_n_weights, get_weights, and set_weights, are functions used in 
+            // parameter optimization --- we can simply make weights invisible to parameter
+            // optimization, and they will not be changed (so they remain fixed).
+            if (node.weight_is_fixed)
+                continue;
+
             // some nodes cannot have their weights optimized, others must have.
             // It is important that this condition also matches the condition in 
-            // the methods get_weights, set_weights, .
-            if ( Is<NodeType::OffsetSum>(node.node_type)
-            ||   (node.get_is_weighted() && IsWeighable(node.ret_type)) )
+            // the methods get_weights and set_weights.
+            if (Is<NodeType::OffsetSum>(node.node_type)
+            || (node.get_is_weighted() && IsWeighable(node.ret_type)) )
                 ++count;
         }
         return count;
@@ -295,6 +303,11 @@ template<PT PType> struct Program
         for (PostIter t = Tree.begin_post(); t != Tree.end_post(); ++t)
         {
             const auto& node = t.node->data; 
+
+            // skip fixed weights
+            if (node.weight_is_fixed)
+                continue;
+
             if ( Is<NodeType::OffsetSum>(node.node_type)
             ||   (node.get_is_weighted() && IsWeighable(node.ret_type)) )
             {
@@ -317,10 +330,16 @@ template<PT PType> struct Program
         // return the weights of the tree as an array 
         if (weights.size() != get_n_weights())
             HANDLE_ERROR_THROW("Tried to set_weights of incorrect size");
+
         int j = 0;
         for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
         {
             auto& node = i.node->data; 
+
+            // skip fixed weights
+            if (node.weight_is_fixed)
+                continue;
+
             if ( Is<NodeType::OffsetSum>(node.node_type)
             ||   (node.get_is_weighted() && IsWeighable(node.node_type)) )
             {
@@ -337,13 +356,22 @@ template<PT PType> struct Program
      * 
      * @param end_depth the depth to stop locking nodes. Default 0.
      * @param keep_leaves_unlocked whether to skip leaves and leave them unlocked. 
+     * @param keep_current_weights whether to keep current weights at the spot they appear. 
      * Default true.  
      */
-    void lock_nodes(int end_depth=0, bool keep_leaves_unlocked=true)
+    void lock_nodes(int end_depth=0, bool keep_leaves_unlocked=true, bool keep_current_weights=false)
     {
+        // This also support unlocking the ndoes by setting 0, true, false.
+        // OBS for unlocking the node: Do not change prob_change here, because some
+        // nodes are meant to never be replaced (e.g. logistic root).
+        // unlocking and changing probabilities are different things.
+        // every `if` performing a lock should have its counterpart `else` performing
+        // unlocking.
+        
         // iterate over the nodes, locking them if their depth does not exceed end_depth.
-        if (end_depth<=0)
+        if (end_depth<0) {
             return;
+        }
 
         // we need the iterator to calculate the depth, but 
         // the lambda below iterate using nodes. So we are creating an iterator
@@ -355,9 +383,33 @@ template<PT PType> struct Program
                 auto d = Tree.depth(tree_iter);
                 std::advance(tree_iter, 1);
 
-                if (keep_leaves_unlocked && IsLeaf(n.node_type))
-                    return;
+                // weights (this will work for all nodes)
+                if (n.get_is_weighted() && d<end_depth) // this will lock and unlock weights!
+                    n.weight_is_fixed = keep_current_weights;
+                else{
+                    n.weight_is_fixed = false;
+                }
 
+                // leaves (terminals, constants, and splitbest variables)
+                if (IsLeaf(n.node_type)) {
+                    if (d<end_depth && !keep_leaves_unlocked)
+                        n.node_is_fixed = true; // leaves should be locked based on depth 
+                    else {
+                        // either we are outside end_depth or leaves should be unlocked.
+                        // this `else` also helps unlocking th enode
+                        n.node_is_fixed = false;
+                    }
+
+                    return; // stop here
+                }
+
+                // non-terminal nodes
+                if (d<end_depth) // This if-else could be a single line, but im trying to make it readable
+                    n.node_is_fixed = true;
+                else // this else clausure helps unlocking the node
+                    n.node_is_fixed = false;
+
+                // special case - split best nodes.
                 // If we are skipping leaves, then the split feature is unlocked;
                 // Otherwise, then we lock based on depth.
                 if (n.node_type==NodeType::SplitBest)
@@ -369,13 +421,9 @@ template<PT PType> struct Program
                     else // leaves can be locked
                     {
                         // check if we should lock based on depth
-                        n.set_keep_split_feature(d+1<=end_depth);
+                        n.set_keep_split_feature(d+1<end_depth);
                     }
                 }
-
-                if (d<=end_depth)
-                    n.fixed = true; 
-                    // n.set_prob_change(0.0f); 
             }
         );
     }
@@ -438,15 +486,23 @@ template<PT PType> struct Program
             // }
             // // parent_id = parent_id.substr(2);
 
+            // This is for the root --------------------------------------------
             // if the first node is weighted, make a dummy output node so that the 
             // first node's weight can be shown
             if (i==0 && parent->data.get_is_weighted())
             {
+                // making the weight red if fixed
+                string font_color = "";
+                if (parent->data.weight_is_fixed) {
+                    font_color = ", fontcolor=lightcoral";
+                }
+
                 out += "y [shape=box];\n";
-                out += fmt::format("y -> \"{}\" [label=\"{:.2f}\"];\n", 
+                out += fmt::format("y -> \"{}\" [label=\"{:.2f}\"{}];\n", 
                         // parent_data.get_name(false),
                         parent_id,
-                        parent->data.W
+                        parent->data.W,
+                        font_color
                         );
             }
 
@@ -454,8 +510,17 @@ template<PT PType> struct Program
             bool is_constant = Is<NodeType::Constant, NodeType::MeanLabel>(parent->data.node_type);
             string node_label = parent->data.get_name(is_constant);
 
-            if (Is<NodeType::SplitBest>(parent->data.node_type)){
-                node_label = fmt::format("{}>={:.2f}?", parent->data.get_feature(), parent->data.W); 
+            if (Is<NodeType::SplitBest>(parent->data.node_type)) {
+                std::string feature = parent->data.get_feature();
+                std::string threshold = fmt::format("{:.2f}", parent->data.W);
+
+                // Append markers for fixed flags
+                if (parent->data.keep_split_feature)
+                    feature += "^";  // split feature fixed
+                if (parent->data.weight_is_fixed)
+                    threshold += "*"; // split weight fixed
+
+                node_label = fmt::format("{} >= {}?", feature, threshold);
             }
             if (Is<NodeType::OffsetSum>(parent->data.node_type)){
                 node_label = fmt::format("Add"); 
@@ -487,7 +552,7 @@ template<PT PType> struct Program
                 if (Is<NodeType::SplitOn>(parent->data.node_type)){
                     use_head_tail_labels=true;
                     if (j == 0)
-                        tail_label = fmt::format(">={:.2f}",parent->data.W); 
+                        tail_label = fmt::format(">= {:.2f}",parent->data.W); 
                     else if (j==1)
                         tail_label = "Y"; 
                     else
@@ -506,19 +571,27 @@ template<PT PType> struct Program
                     head_label = edge_label;
                 }
 
+                // drawing the edges
+                string font_color = "";
+                if (kid->data.weight_is_fixed) {
+                    font_color = ", fontcolor=lightcoral";
+                }
+
                 if (use_head_tail_labels){
-                    out += fmt::format("\"{}\" -> \"{}\" [headlabel=\"{}\",taillabel=\"{}\"];\n", 
+                    out += fmt::format("\"{}\" -> \"{}\" [headlabel=\"{}\",taillabel=\"{}\"{}];\n", 
                             parent_id,
                             kid_id,
                             head_label,
-                            tail_label
+                            tail_label,
+                            font_color
                             );
                 }
                 else{
-                    out += fmt::format("\"{}\" -> \"{}\" [label=\"{}\"];\n", 
+                    out += fmt::format("\"{}\" -> \"{}\" [label=\"{}\"{}];\n", 
                             parent_id,
                             kid_id,
-                            edge_label
+                            edge_label,
+                            font_color
                             );
                 }
                 kid = kid->next_sibling;
@@ -542,7 +615,10 @@ template<PT PType> struct Program
                  
             ++i;
         }
+
+        out += "label=\"^ split feature fixed, * split threshold fixed\";\nlabelloc=bottom;\nfontsize=10;";
         out += "}\n";
+
         return out;
     }
 
