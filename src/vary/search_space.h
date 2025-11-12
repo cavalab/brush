@@ -737,9 +737,10 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
         // sample_op should never return the empty value of optional
         Node node_logit = sample_op(NodeType::Logistic, DataType::ArrayF, true).value();
 
-        node_logit.set_is_weighted(false);
+        node_logit.set_is_weighted(false); // doesn't matter for logistic (when at the root level)
         node_logit.set_prob_change(0.0);
-        node_logit.fixed=true;
+        node_logit.node_is_fixed=true;
+        node_logit.weight_is_fixed=true; 
 
         auto spot_logit = Tree.insert(Tree.begin(), node_logit);
 
@@ -747,7 +748,8 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
             Node node_offset = sample_op(NodeType::OffsetSum, DataType::ArrayF, true).value();
 
             node_offset.set_prob_change(0.0);
-            node_offset.fixed=true;
+            node_offset.node_is_fixed=true;
+            node_offset.weight_is_fixed=false;
 
             auto spot_offset = Tree.append_child(spot_logit);
             
@@ -762,8 +764,9 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
         Node node_softmax = sample_op(NodeType::Softmax, DataType::MatrixF, true).value();
 
         node_softmax.set_prob_change(0.0);
-        node_softmax.set_is_weighted(false);
-        node_softmax.fixed=true;
+        node_softmax.set_is_weighted(false); // same as logistic roots
+        node_softmax.node_is_fixed=true;
+        node_softmax.weight_is_fixed=false;
         
         spot = Tree.insert(Tree.begin(), node_softmax);
     }
