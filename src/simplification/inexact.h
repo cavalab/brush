@@ -171,7 +171,7 @@ class Inexact_simplifier
             Program<P> simplified_program(program);
             
             // prediction at the root already performs template cast and always returns a float
-            auto original_predictions = simplified_program.predict(d).template cast<float>();
+            auto original_predictions = simplified_program.predict(d);
             
             // iterate over the tree, trying to replace each node with a constant, and keeping the change if the pred does not change.
             // notice it is a post order iterator.
@@ -214,9 +214,9 @@ class Inexact_simplifier
 
                                 spot = simplified_program.Tree.move_ontop(spot, simplified_branch.begin());
                                 
-                                auto new_predictions = simplified_program.predict(d).template cast<float>();
+                                auto new_predictions = simplified_program.predict(d);
                                 
-                                float diff = (original_predictions - new_predictions).square().mean();
+                                float diff = (original_predictions.template cast<float>() - new_predictions.template cast<float>()).square().mean();
                                 
                                 if (diff < best_distance) {    
                                     best_distance = diff;
