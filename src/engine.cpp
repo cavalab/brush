@@ -496,11 +496,10 @@ void Engine<T>::run(Dataset &data)
                                              data, evaluator, 
                                              
                                              // conditions to apply simplification.
-                                             // It starts only on the second half of generations,
-                                             // and it is not applied every generation. 
+                                             // It starts only on the second half of generations.
                                              // Also, we garantee that the final generation
                                              // will be simplified.
-                                             (generation>=params.max_gens/2) || (stall_count == params.max_stall-1) 
+                                             (generation>=params.max_gens/2) || (stall_count == params.max_stall) || (generation==params.max_gens-1)
                                             );
                 }
 

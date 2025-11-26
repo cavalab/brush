@@ -250,7 +250,7 @@ TEST(Engine, SavingLoadingFixedNodes)
 
         ASSERT_TRUE(cx_child_root.node_type == NodeType::Logistic);
         ASSERT_TRUE(cx_child_root.get_prob_change()==0.0);
-        ASSERT_TRUE(cx_child_root.fixed==true);
+        ASSERT_TRUE(cx_child_root.node_is_fixed==true);
     }
 
     // TODO: why if I set cx_prob to 0.0 it does not work? (maybe because Im using the same params object for the two engines? do i need to remove save_pop file first?)
@@ -276,7 +276,7 @@ TEST(Engine, SavingLoadingFixedNodes)
 
         ASSERT_TRUE(cx_child_root.node_type == NodeType::Logistic);
         ASSERT_TRUE(cx_child_root.get_prob_change()==0.0);
-        ASSERT_TRUE(cx_child_root.fixed==true);
+        ASSERT_TRUE(cx_child_root.node_is_fixed==true);
     }
 }
 

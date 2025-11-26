@@ -150,7 +150,7 @@ class Inexact_simplifier
                     &&  Isnt<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>(spot.node->data.node_type))
                     {
                         index<P>(spot, d);
-                        // terminals are indexed on initialization 
+                        // terminals are already indexed on initialization 
                     }
                 }
                 ++spot;
@@ -171,7 +171,7 @@ class Inexact_simplifier
             Program<P> simplified_program(program);
             
             // prediction at the root already performs template cast and always returns a float
-            auto original_predictions = simplified_program.predict(d);
+            auto original_predictions = simplified_program.predict(d).template cast<float>();
             
             // iterate over the tree, trying to replace each node with a constant, and keeping the change if the pred does not change.
             // notice it is a post order iterator.
@@ -181,7 +181,8 @@ class Inexact_simplifier
                 // we dont index or simplify fixed stuff.
                 // non-wheightable nodes are not simplified. TODO: revisit this and see if they should (then implement it)
                 // This is avoiding using booleans.
-                if (spot.node->data.get_prob_change() > 0
+                // we do not simplify branches with fixed weights, because the simplification ignores the weight (it uses normalized predictions)
+                if (spot.node->data.get_prob_change() > 0 && !spot.node->data.weight_is_fixed
                 // &&  IsWeighable(spot.node->data.ret_type) && IsWeighable(spot.node->data.node_type)
                 ) {
                     // TODO: use IsLeaf here instead of checking for each possible nodetype. also search throughout the code and replace it
@@ -213,9 +214,9 @@ class Inexact_simplifier
 
                                 spot = simplified_program.Tree.move_ontop(spot, simplified_branch.begin());
                                 
-                                auto new_predictions = simplified_program.predict(d);
-
-                                float diff = (original_predictions.template cast<float>() - new_predictions.template cast<float>()).square().mean();
+                                auto new_predictions = simplified_program.predict(d).template cast<float>();
+                                
+                                float diff = (original_predictions - new_predictions).square().mean();
                                 
                                 if (diff < best_distance) {    
                                     best_distance = diff;

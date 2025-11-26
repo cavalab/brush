@@ -304,7 +304,7 @@ template<PT PType> struct Program
         {
             const auto& node = t.node->data; 
 
-            // skip fixed weights
+            // skip fixed weights (this also avoid changing offsetSum weight if is locked)
             if (node.weight_is_fixed)
                 continue;
 
@@ -336,7 +336,7 @@ template<PT PType> struct Program
         {
             auto& node = i.node->data; 
 
-            // skip fixed weights
+            // skip fixed weights (this also avoid changing offsetSum weight if is locked)
             if (node.weight_is_fixed)
                 continue;
 
