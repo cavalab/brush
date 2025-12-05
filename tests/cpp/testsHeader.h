@@ -8,7 +8,8 @@
 #include <omp.h>
 #include <string>
 #include <stack>
-#include <gtest/gtest.h>	
+#include <gtest/gtest.h>
+#include <limits>
 
 // stuff being used
 
