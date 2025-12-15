@@ -19,10 +19,13 @@ ostream& operator<<(ostream& os, const Node& n)
 /// @return name 
 auto Node::get_name(bool include_weight) const noexcept -> std::string 
 {
+    constexpr float atol = 1e-6f;
+    const bool weight_is_one = std::fabs(W - 1.0f) <= atol;
+
     if (Is<NodeType::Terminal>(node_type))
     {
-        if (is_weighted && W != 1.0 && include_weight)
-            return fmt::format("{:.2f}*{}",W,feature);
+        if (is_weighted && !weight_is_one && include_weight)
+            return fmt::format("{:.2f}*{}", W, feature);
         else
             return feature;
     }
@@ -32,22 +35,25 @@ auto Node::get_name(bool include_weight) const noexcept -> std::string
     }
     else if (Is<NodeType::MeanLabel>(node_type))
     {
-        // this will show (MeanLabel) in the terminal name
-        // return fmt::format("{:.2f} ({})", W, feature);
-
+        // this will show (MeanLabel) in the terminal name so we can differentiate 
+        // a meanLabel from a constant.
         return fmt::format("{:.2f}", W);
     }
-    else if (Is<NodeType::OffsetSum>(node_type)){
-        if (is_weighted && W != 1.0)
-            return fmt::format("{:.2f}+Sum", W);
+    else if (Is<NodeType::OffsetSum>(node_type))
+    {
+        if (is_weighted && !weight_is_one)
+            return fmt::format("{:.2f}+Add", W);
 
-        return fmt::format("Sum");
+        return "Sum";
     }
-    else if (is_weighted && include_weight)
-        return fmt::format("{:.2f}*{}",W,name);
+    else if (is_weighted && !weight_is_one && include_weight)
+    {
+        return fmt::format("{:.2f}*{}", W, name);
+    }
 
     return name;
 }
+
 
 string Node::get_model(const vector<string>& children) const noexcept
 {
@@ -91,7 +97,7 @@ string Node::get_model(const vector<string>& children) const noexcept
                 args += ",";
         }
 
-        return fmt::format("Sum({})", args);
+        return fmt::format("Add({})", args);
     }
     else{
         string args = "";
