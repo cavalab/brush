@@ -1,6 +1,8 @@
 import pytest
 import numpy as np
 
+import pickle
+
 from pybrush import BrushRegressor, BrushClassifier, Dataset
 
 from sklearn.model_selection import GridSearchCV
@@ -227,5 +229,68 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
         # Assert that Brush picked the same candidate
         assert est.best_estimator_.get_model() == chosen.get_model()
 
-if __name__ == "__main__":
-    pytest.main()
+@pytest.mark.parametrize(
+    "final_model_selection",
+    [
+        "smallest_complexity",
+        "best_validation_ci",
+        "",  # default behavior
+    ],
+)
+def test_pickle_unpickle_with_different_final_model_selection(final_model_selection):
+    # previous test is using a classification problem. this one focuses on regression
+    
+    X, y = make_regression(
+        n_samples=80, n_features=6, noise=0.1, random_state=1
+    )
+
+    model = BrushRegressor(
+        max_gens=5,
+        pop_size=12,
+        final_model_selection=final_model_selection,
+    )
+    model.fit(X, y)
+
+    # Pickle / unpickle
+    dumped = pickle.dumps(model)
+    loaded = pickle.loads(dumped)
+
+    # Basic sanity checks
+    assert loaded.final_model_selection == model.final_model_selection
+    assert loaded.best_estimator_ is not None
+    assert loaded.archive_ is not None
+    assert len(loaded.archive_) == len(model.archive_)
+
+    # Best estimator should still belong to archive or be valid
+    assert loaded.best_estimator_ in loaded.archive_ + [loaded.best_estimator_]
+
+# Pickle cant serialize local functions (functions defined inside another function).
+# we need to declare it at the module level if we want to avoid extra dependencies
+def pick_last(pop, archive):
+        return archive[-1]
+
+def test_pickle_unpickle_with_callable_final_model_selection():
+    
+    X, y = make_classification(
+        n_samples=60, n_features=5, random_state=7
+    )
+
+    model = BrushClassifier(
+        max_gens=5,
+        pop_size=10,
+        final_model_selection=pick_last,
+    )
+    model.fit(X, y)
+
+    # Ensure callable selection worked pre-pickle
+    assert model.best_estimator_ == model.archive_[-1]
+
+    # Pickle / unpickle
+    dumped = pickle.dumps(model)
+    loaded = pickle.loads(dumped)
+
+    # Callable must still exist and be callable
+    assert callable(loaded.final_model_selection)
+
+    # Selection logic must still hold
+    assert loaded.best_estimator_ == loaded.archive_[-1]
