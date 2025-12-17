@@ -29,7 +29,7 @@ def DEAP_classification_setup():
     X  = df.drop(columns='target')
     y  = df['target']
 
-    return pybrush.DeapClassifier, X, y
+    return pybrush.deap_api.DeapClassifier, X, y
 
 @pytest.fixture
 def DEAP_multiclass_classification_setup():
@@ -37,7 +37,7 @@ def DEAP_multiclass_classification_setup():
     X  = df.drop(columns='target')
     y  = df['target']
 
-    return pybrush.DeapClassifier, X, y
+    return pybrush.deap_api.DeapClassifier, X, y
 
 @pytest.fixture
 def DEAP_regression_setup():
@@ -45,7 +45,7 @@ def DEAP_regression_setup():
     X  = df.drop(columns='label')
     y  = df['label']
 
-    return pybrush.DeapRegressor, X, y
+    return pybrush.deap_api.DeapRegressor, X, y
 
 
 @pytest.fixture

@@ -22,7 +22,7 @@ from sklearn.base import BaseEstimator, ClassifierMixin, RegressorMixin, \
 from pandas.api.types import is_float_dtype, is_bool_dtype, is_integer_dtype
 
 from pybrush.EstimatorInterface import EstimatorInterface
-from pybrush.deap_api import nsga2
+from pybrush.deap_api.nsga2 import nsga2
 from pybrush import individual
 from pybrush import RegressorEvaluator, ClassifierEvaluator, MultiClassifierEvaluator
 from pybrush import RegressorSelector, ClassifierSelector, MultiClassifierSelector

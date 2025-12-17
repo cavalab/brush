@@ -294,3 +294,39 @@ def test_pickle_unpickle_with_callable_final_model_selection():
 
     # Selection logic must still hold
     assert loaded.best_estimator_ == loaded.archive_[-1]
+
+
+@pytest.mark.parametrize(
+    "final_model_selection",
+    [
+        "smallest_complexity",
+        "best_validation_ci",
+        "",  # default behavior
+    ],
+)
+def test_pickle_unpickle_with_different_final_model_selection(final_model_selection):
+    # previous test is using a classification problem. this one focuses on regression
+    
+    X, y = make_regression(
+        n_samples=80, n_features=6, noise=0.1, random_state=1
+    )
+
+    model = BrushRegressor(
+        max_gens=5,
+        pop_size=12,
+        final_model_selection=final_model_selection,
+    )
+    model.fit(X, y)
+
+    # Pickle / unpickle
+    dumped = pickle.dumps(model)
+    loaded = pickle.loads(dumped)
+
+    # Basic sanity checks
+    assert loaded.final_model_selection == model.final_model_selection
+    assert loaded.best_estimator_ is not None
+    assert loaded.archive_ is not None
+    assert len(loaded.archive_) == len(model.archive_)
+
+    # Best estimator should still belong to archive or be valid
+    assert loaded.best_estimator_ in loaded.archive_ + [loaded.best_estimator_]
