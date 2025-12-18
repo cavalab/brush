@@ -105,7 +105,7 @@ vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island,
 
     // fmt::print("crowding distance\n");
     crowding_distance(pop, front, i);   // calculate crowding in final front to include
-    std::sort(front.at(i).begin(),front.at(i).end(),sort_n(pop));
+    std::stable_sort(front.at(i).begin(),front.at(i).end(),sort_n(pop));
     
     // fmt::print("adding last front)\n");
     const int extra = params.pop_size - selected.size();
@@ -166,7 +166,7 @@ vector<vector<int>> NSGA2<T>::fast_nds(Population<T>& pop, vector<size_t>& islan
     // using OpenMP can have different orders in the front.at(0)
     // so let's sort it so that the algorithm is deterministic
     // given a seed
-    std::sort(front.at(0).begin(), front.at(0).end());    
+    std::stable_sort(front.at(0).begin(), front.at(0).end());    
 
     int fi = 1;
     while (front.at(fi-1).size() > 0) {
@@ -227,7 +227,7 @@ void NSGA2<T>::crowding_distance(Population<T>& pop, vector<vector<int>>& front,
     for (int m = 0; m < limit; ++m) {
         // fmt::print("m {}\n", m);
 
-        std::sort(F.begin(), F.end(), comparator_obj(pop,m));
+        std::stable_sort(F.begin(), F.end(), comparator_obj(pop,m));
 
         // in the paper dist=INF for the first and last, in the code
         // this is only done to the first one or to the two first when size=2

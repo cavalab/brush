@@ -7,44 +7,59 @@ from multiprocessing import Pool
 import numpy as np
 
 
-# TODO; get this to work again
-# def test_param_random_state():
-#     # Check if make_regressor, mutation and crossover will create the same expressions
-#     test_y = np.array( [1. , 0. , 1.4, 1. , 0. , 1. , 1. , 0. , 0. , 0.  ])
-#     test_X = np.array([[1.1, 2.0, 3.0, 4.0, 5.0, 6.5, 7.0, 8.0, 9.0, 10.0],
-#                        [2.0, 1.2, 6.0, 4.0, 5.0, 8.0, 7.0, 5.0, 9.0, 10.0]]).T
+def test_param_random_state():
+    """Test that random_state produces deterministic results."""
+    test_y = np.array([1., 0., 1.4, 1., 0., 1., 1., 0., 0., 0.])
+    test_X = np.array([[1.1, 2.0, 3.0, 4.0, 5.0, 6.5, 7.0, 8.0, 9.0, 10.0],
+                       [2.0, 1.2, 6.0, 4.0, 5.0, 8.0, 7.0, 5.0, 9.0, 10.0]]).T
     
-#     data = _brush.Dataset(test_X, test_y)
-#     SS   = _brush.SearchSpace(data)
+    # First run with random_state=123
+    reg1 = BrushRegressor(
+        random_state=123,
+        max_gens=50,
+        pop_size=10,
+        num_islands=4,
+        verbosity=0
+    ).fit(test_X, test_y)
     
-#     _brush.set_random_state(123)
-
-#     first_run = []
-#     for d in range(1,4):
-#         for s in range(1,20):
-#             prg = SS.make_regressor(d, s)
-#             prg, _ = prg.mutate()
-            
-#             if prg != None: prg, _ = prg.cross(prg)    
-#             if prg != None: first_run.append(prg.get_model())
+    first_run_models = [ind.program.get_model() for ind in reg1.population_]
+    first_run_best = reg1.best_estimator_.program.get_model()
+    first_run_fitness = reg1.best_estimator_.fitness.values
     
-#     assert len(first_run) > 0, "either mutation or crossover is always failing"
-
-#     _brush.set_random_state(123)
-
-#     second_run = []
-#     for d in range(1,4):
-#         for s in range(1,20):
-#             prg = SS.make_regressor(d, s)
-#             prg, _ = prg.mutate()
-
-#             if prg != None: prg, _ = prg.cross(prg)
-#             if prg != None: second_run.append(prg.get_model())
-        
-#     assert len(second_run) > 0, "either mutation or crossover is always failing"
-
-#     for fr, sr in zip(first_run, second_run):
-#         assert fr==sr,  "random state failed to generate same expressions"
+    assert len(first_run_models) > 0, "First run produced no individuals"
+    
+    # Second run with same random_state=123
+    reg2 = BrushRegressor(
+        random_state=123,
+        max_gens=50,
+        pop_size=10,
+        num_islands=4,
+        verbosity=0
+    ).fit(test_X, test_y)
+    
+    second_run_models = [ind.program.get_model() for ind in reg2.population_]
+    second_run_best = reg2.best_estimator_.program.get_model()
+    second_run_fitness = reg2.best_estimator_.fitness.values
+    
+    assert len(second_run_models) > 0, "Second run produced no individuals"
+    
+    # Check that populations match
+    assert len(first_run_models) == len(second_run_models), \
+        f"Population sizes differ: {len(first_run_models)} vs {len(second_run_models)}"
+    
+    for i, (fr, sr) in enumerate(zip(first_run_models, second_run_models)):
+        print(f"{fr} vs {sr}")
+        assert fr == sr, f"Individual {i} differs: '{fr}' vs '{sr}'"
+    
+    # Check that best individuals match
+    assert first_run_best == second_run_best, \
+        f"Best models differ: '{first_run_best}' vs '{second_run_best}'"
+    
+    assert np.allclose(first_run_fitness, second_run_fitness), \
+        f"Best fitness values differ: {first_run_fitness} vs {second_run_fitness}"
+    
+    print(f"Best model: {first_run_best}")
+    print(f"Best fitness: {first_run_fitness}")
 
 
 # def _change_and_wait(config):

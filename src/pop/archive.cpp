@@ -112,12 +112,12 @@ void Archive<T>::init(Population<T>& pop)
     }
     if (this->sort_complexity) {
         if (this->linear_complexity)
-            std::sort(individuals.begin(), individuals.end(), &sortLinearComplexity); 
+            std::stable_sort(individuals.begin(), individuals.end(), &sortLinearComplexity); 
         else
-            std::sort(individuals.begin(), individuals.end(), &sortComplexity);
+            std::stable_sort(individuals.begin(), individuals.end(), &sortComplexity);
     }
     else
-        std::sort(individuals.begin(),individuals.end(), &sortObj1); 
+        std::stable_sort(individuals.begin(),individuals.end(), &sortObj1); 
 
 }
 
@@ -141,12 +141,12 @@ void Archive<T>::update(Population<T>& pop, const Parameters& params)
 
     if (this->sort_complexity) {
         if (this->linear_complexity)
-            std::sort(individuals.begin(), individuals.end(), &sortLinearComplexity); 
+            std::stable_sort(individuals.begin(), individuals.end(), &sortLinearComplexity); 
         else
-            std::sort(individuals.begin(), individuals.end(), &sortComplexity);
+            std::stable_sort(individuals.begin(), individuals.end(), &sortComplexity);
     }
     else {
-        std::sort(individuals.begin(), individuals.end(), &sortObj1); 
+        std::stable_sort(individuals.begin(), individuals.end(), &sortObj1); 
     }
     
     /* auto it = std::unique(individuals.begin(),individuals.end(), &sameFitComplexity); */

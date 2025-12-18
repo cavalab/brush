@@ -250,9 +250,9 @@ vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
         }
 
         if (this->linear_complexity)
-            std::sort(pf.begin(),pf.end(),SortLinearComplexity(*this)); 
+            std::stable_sort(pf.begin(),pf.end(),SortLinearComplexity(*this)); 
         else
-            std::sort(pf.begin(),pf.end(),SortComplexity(*this)); 
+            std::stable_sort(pf.begin(),pf.end(),SortComplexity(*this)); 
 
         auto it = std::unique(pf.begin(),pf.end(),SameFitComplexity(*this));
         
@@ -312,9 +312,9 @@ vector<size_t> Population<T>::hall_of_fame(unsigned rank)
     }
 
     if (this->linear_complexity)
-        std::sort(hof.begin(),hof.end(),SortLinearComplexity(*this)); 
+        std::stable_sort(hof.begin(),hof.end(),SortLinearComplexity(*this)); 
     else
-        std::sort(hof.begin(),hof.end(),SortComplexity(*this)); 
+        std::stable_sort(hof.begin(),hof.end(),SortComplexity(*this)); 
         
     auto it = std::unique(hof.begin(),hof.end(),SameFitComplexity(*this));
     
