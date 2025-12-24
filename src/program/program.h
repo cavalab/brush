@@ -64,7 +64,7 @@ template<PT PType> struct Program
         RetType>>;
 
     /// whether fit has been called
-    bool is_fitted_;
+    bool is_fitted_ = false;
 
     /// fitness 
     // Fitness fitness;
@@ -76,7 +76,7 @@ template<PT PType> struct Program
 
     Program() = default;
     Program(const std::reference_wrapper<SearchSpace> s, const tree<Node> t)
-        : Tree(t) 
+        : Tree(t), is_fitted_(false)
     {
         SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
     }
