@@ -433,105 +433,113 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
        // }
     };
 
-    /* logical and -- mul with boolean inputs */
+    /* logical and -- boolean AND operation */
     template<>
     struct Function<NodeType::And>
     {
         template<typename T>
         inline auto operator()(const ArrayBase<T>& t1, const ArrayBase<T>& t2) {
-            // return t1 && t2; // old, wasnt sure if it works
-
-            return (t1 * t2).template cast<typename T::Scalar>();
+            // For boolean arrays, use element-wise logical AND
+            return t1 && t2;
         }
 
         template<typename T> requires same_as<typename T::Scalar, bJet>
         inline auto operator()(const ArrayBase<T>& t1, const ArrayBase<T>& t2) {
-            // ArrayXb t1_bool(t1.size());
-            // for (int i = 0; i< t1.size(); ++i)
-            //     t1_bool(i) = t1(i).a;
-
-            // ArrayXb t2_bool(t2.size());
-            // for (int i = 0; i< t2.size(); ++i)
-            //     t2_bool(i) = t2(i).a;
-            
-            // return (t1_bool || t2_bool).cast<bool>();
-
-            // line below may work better than logic above
-            // ---
-            return t1 * t2; // relies on bJet::operator*
+            // For bJet, operate on the underlying boolean value (.a).
+            // Boolean logic doesn't have meaningful derivatives, here (And, Or, Not) we set them to zero
+            ArrayXbJet result(t1.size());
+            for (int i = 0; i < t1.size(); ++i) {
+                result(i).a = t1(i).a && t2(i).a;
+                result(i).v.setZero();
+            }
+            return result;
         }
     };
 
-    /* logical or -- add with boolean inputs */
+    /* logical or -- boolean OR operation */
     template<>
     struct Function<NodeType::Or>
     {
         template<typename T>
         inline auto operator()(const ArrayBase<T>& t1, const ArrayBase<T>& t2) {
-            // return t1 || t2;
-            return ((t1 + t2).min(1)).template cast<typename T::Scalar>();
+            // use element-wise logical OR
+            return t1 || t2;
         }
         template<typename T> requires same_as<typename T::Scalar, bJet>
         inline auto operator()(const ArrayBase<T>& t1, const ArrayBase<T>& t2) {
-            return t1 + t2; // bJet::operator+
+            // For bJet, operate on the underlying boolean value (.a)
+            ArrayXbJet result(t1.size());
+            for (int i = 0; i < t1.size(); ++i) {
+                result(i).a = t1(i).a || t2(i).a;
+                result(i).v.setZero();
+            }
+            return result;
         }
     };
 
-    /* logical not -- negate the input */
+    /* logical not -- boolean NOT operation */
     template<>
     struct Function<NodeType::Not>
     {
         template<typename T> 
         inline auto operator()(const ArrayBase<T>& t) {
-            // return !t;
-            return (1 - t).template cast<typename T::Scalar>();
+            // use element-wise logical NOT
+            return !t;
         }
         template<typename T> requires same_as<typename T::Scalar, bJet>
         inline auto operator()(const ArrayBase<T>& t) {
-            // auto trues = ArrayXb::Constant(t.size(), true);
-            // return (t - trues);
-         
-            // for (size_t i = 0; i < t.size(); ++i) {
-            //     t.at(i).a = !t.at(i).a;
-            // }
-
-            // return t;
-
-            return T(1) - t; 
+            ArrayXbJet result(t.size());
+            for (int i = 0; i < t.size(); ++i) {
+                result(i).a = !t(i).a;
+                result(i).v.setZero();
+            }
+            return result;
         }
     };
 
     // comparison operators. These will help changing the types along the tree
 
-    /* coefficient-wise greater than or equal */
-    // template<>
-    // struct Function<NodeType::Geq>
-    // {
-    //     template<typename T1, typename T2>
-    //     inline auto operator()(const ArrayBase<T1>& t1, const ArrayBase<T2>& t2) const {
-    //         return (t1 >= t2);
-    //     }
+    /* coefficient-wise greater than or equal - works with ArrayXf */
+    template<>
+    struct Function<NodeType::Geq>
+    {
+        template<typename T1, typename T2>
+        inline auto operator()(const ArrayBase<T1>& t1, const ArrayBase<T2>& t2) const {
+            // Element-wise >= comparison
+            return t1 >= t2;
+        }
 
-    //     template<typename T1, typename T2> requires same_as<typename T1::Scalar, bJet>
-    //     inline auto operator()(const ArrayBase<T1>& t1, const ArrayBase<T2>& t2) const {
-    //         return (t1 - t2) >= bJet(0);
-    //     }
-    // };
+        template<typename T1, typename T2> requires same_as<typename T1::Scalar, fJet>
+        inline auto operator()(const ArrayBase<T1>& t1, const ArrayBase<T2>& t2) const {
+            ArrayXbJet result(t1.size());
+            for (int i = 0; i < t1.size(); ++i) {
+                result(i).a = t1(i).a >= t2(i).a;
+                result(i).v.setZero();
+            }
+            return result;
+        }
+    };
 
-    /* coefficient-wise equal */
-    // template<>
-    // struct Function<NodeType::Equals>
-    // {
-    //     template<typename T>
-    //     inline auto operator()(const ArrayBase<T>& t1, const ArrayBase<T>& t2) {
-    //         return (t1 - t2).template cast<typename T::Scalar>();
-    //     }
+    /* coefficient-wise equality - works with ArrayXi for exact integer comparison */
+    template<>
+    struct Function<NodeType::Equals>
+    {
+        template<typename T1, typename T2>
+        inline auto operator()(const ArrayBase<T1>& t1, const ArrayBase<T2>& t2) const {
+            // Element-wise == comparison, returns boolean array
+            return t1 == t2;
+        }
 
-    //     template<typename T> requires same_as<typename T::Scalar, bJet>
-    //     inline auto operator()(const ArrayBase<T>& t1, const ArrayBase<T>& t2) {
-    //         return t1 * t2; // relies on bJet::operator*
-    //     }
-    // };
+        template<typename T1, typename T2> requires same_as<typename T1::Scalar, iJet>
+        inline auto operator()(const ArrayBase<T1>& t1, const ArrayBase<T2>& t2) const {
+            ArrayXbJet result(t1.size());
+            for (int i = 0; i < t1.size(); ++i) {
+                result(i).a = t1(i).a == t2(i).a;
+                result(i).v.setZero();
+            }
+            return result;
+        }
+    };
 
 } // Brush
 #endif

@@ -243,6 +243,22 @@ void init_node_with_default_signature(Node& node)
     } 
     else if (Is<NT::MeanLabel>(n))
         node.set_signature<Signature<ArrayXb()>>();
+    else if (Is<NT::Terminal>(n))
+    {
+        // For terminals, use feature_type to determine the correct signature
+        switch (node.get_feature_type()) {
+            case DataType::ArrayB:
+                node.set_signature<Signature<ArrayXb()>>();
+                break;
+            case DataType::ArrayI:
+                node.set_signature<Signature<ArrayXi()>>();
+                break;
+            case DataType::ArrayF:
+            default:
+                node.set_signature<Signature<ArrayXf()>>();
+                break;
+        }
+    }
     else
         node.set_signature<Signature<ArrayXf()>>();
 }

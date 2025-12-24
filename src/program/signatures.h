@@ -259,6 +259,20 @@ struct Signatures<NodeType::Not>{
         >;
     }; 
 
+template<>
+struct Signatures<NodeType::Geq>{ 
+        using type = std::tuple<
+              Signature<ArrayXb(ArrayXf,ArrayXf)>
+        >;
+    }; 
+
+template<>
+struct Signatures<NodeType::Equals>{ 
+        using type = std::tuple<
+              Signature<ArrayXb(ArrayXi,ArrayXi)>
+        >;
+    }; 
+
 template<NodeType N> 
 struct Signatures<N, enable_if_t<is_in_v<N,
     NodeType::Abs,
@@ -386,6 +400,10 @@ struct Signatures<N, enable_if_t<is_in_v<N, NodeType::SplitBest, NodeType::Custo
 
 template<>
 struct Signatures<NodeType::SplitOn>{ 
+    // NOTE: the problem of having different values for first child
+    // is that serialization does not handle it pretty good atm.
+    // TODO: improve to fix the note above.
+
     // spliton and splitbest will always compare to the weight if is a number, otherwise will use the boolean value
     // TODO: idea: if we have the LEQ or GEQ, we can have splitOn with all different data types without
     // having to make it explicit in the signature. I think there is too many types of splitOn that makes it hard to actually be used
