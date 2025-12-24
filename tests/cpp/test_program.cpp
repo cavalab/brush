@@ -82,12 +82,26 @@ TEST(Program, FitRegressor)
                 RegressorProgram PRG = SS.make_regressor(0, 0, params);
                 fmt::print(
                     "=================================================\n"
-                    "Tree model for depth = {}, size= {}: {}\n"
+                    "Tree model for depth = {}, size= {}\n"
                     "=================================================\n",
-                    d, s, PRG.get_model("compact", true)
+                    d, s
                 );
+                
+                // Get model string before fitting
+                auto model_before = PRG.get_model("compact", true);
+                fmt::print("Before fit: {}\n", model_before);
+                
+                // Fit the program
                 PRG.fit(data);
-                auto y = PRG.predict(data);
+                
+                // Get model string after fitting
+                auto model_after = PRG.get_model("compact", true);
+                fmt::print("After fit:  {}\n", model_after);
+                
+                // Get predictions and score after fitting
+                auto y_pred = PRG.predict(data);
+                float mse = ((data.y - y_pred).square()).mean();
+                fmt::print("MSE after fit: {:.6f}\n", mse);
             }
         }
     // }
@@ -169,15 +183,33 @@ TEST(Program, FitClassifier)
 
             fmt::print(
                 "=================================================\n"
-                "Tree model for depth = {}, size= {}: {}\n"
+                "Tree model for depth = {}, size= {}\n"
                 "=================================================\n",
-                d, s, PRG.get_model("compact", true)
+                d, s
             );
+
+            // Get model string before fitting
+            auto model_before = PRG.get_model("compact", true);
+            fmt::print("Before fit: {}\n", model_before);
 
             fmt::print( "Fitting the model...\n");
             PRG.fit(data);
-            fmt::print( "predict...\n");
-            auto y = PRG.predict(data);
+            
+            // Get model string after fitting
+            auto model_after = PRG.get_model("compact", true);
+            fmt::print("After fit:  {}\n", model_after);
+            
+            // Calculate accuracy after fitting
+            auto y_pred = PRG.predict(data);
+            int correct = 0;
+            for (int i = 0; i < data.y.size(); ++i) {
+                if (std::abs(y_pred(i) - data.y(i)) < 0.5) {
+                    correct++;
+                }
+            }
+            float accuracy = static_cast<float>(correct) / data.y.size();
+            fmt::print("Accuracy after fit: {:.4f}\n", accuracy);
+            
             fmt::print( "predict proba...\n");
             auto yproba = PRG.predict_proba(data);
         }
@@ -301,5 +333,68 @@ TEST(Operators, ProgramSizeAndDepthPARAMS)
             ASSERT_TRUE(PRG.depth() <= d+1);
             ASSERT_TRUE(PRG.depth() > 0); // depth is always positive
         }
+    }
+}
+
+TEST(Program, ComparisonAndBooleanOperators)
+{
+    Parameters params;
+    
+    // dataset with float and integer features
+    MatrixXf X(10,6);
+    X <<  2.5,  1.5,  0.5, 15, 12, 0,
+          3.7, -2.3,  1.0, 11, 10, 0,
+         -1.2,  4.1, -0.5, 17, 11, 0,
+         -1.0,  2.5,  3.0, 12, 12, 1,
+          4.0, -1.0,  0.0, 13, 11, 1,
+          1.0,  1.0,  1.0, 15, 15, 0,
+         -2.0,  0.5,  2.5, 11, 12, 1,
+          3.5,  4.0, -3.0, 14, 14, 0,
+          0.0,  0.0,  0.0, 10, 10, 1,
+          2.0,  2.0,  2.0, 16, 13, 1;
+
+    ArrayXf y(10); 
+    y << 1, 0, 1, 1, 0, 1, 0, 1, 0, 1;
+    
+    Dataset dt(X, y);
+    fmt::print("\n=== Dataset Info ===\n");
+    dt.print();
+    
+    // search space with only comparison and boolean operators
+    params.functions = {
+        {"Equals",   1.0},  // ArrayXb(ArrayXi, ArrayXi)
+        {"Geq",      1.0},  // ArrayXb(ArrayXf, ArrayXf)
+        {"And",      1.0},  // ArrayXb(ArrayXb, ArrayXb)
+        {"Or",       1.0},  // ArrayXb(ArrayXb, ArrayXb)
+        {"Not",      1.0},  // ArrayXb(ArrayXb)
+        {"SplitOn",  1.0}   
+    };
+    
+    SearchSpace SS;
+    SS.init(dt, params.functions);
+
+    fmt::print("\n=== SS===\n");
+    SS.print();
+    
+    params.max_depth = 10;
+    params.max_size = 50;
+    
+    // Generate several programs to see these operators in action
+    for (int trial = 0; trial < 100; ++trial) {
+        RegressorProgram PRG = SS.make_regressor(0, 0, params);
+        
+        fmt::print("--- Trial {} ---\n", trial);
+        
+        // Show model before and after fit
+        auto model_before = PRG.get_model("compact", true);
+        fmt::print("Before fit: {}\n", model_before);
+        
+        PRG.fit(dt);
+        
+        auto model_after = PRG.get_model("compact", true);
+        fmt::print("After fit:  {}\n", model_after);
+        
+        ASSERT_GT(PRG.depth(), 0);
+        ASSERT_GT(PRG.size(), 0);
     }
 }
