@@ -200,7 +200,39 @@ void init_node_with_default_signature(Node& node)
         >(n))
     {
         node.set_signature<Signature<ArrayXb(ArrayXb)>>();
-    }  
+    }
+    else if (Is<
+        NT::Geq
+        >(n))
+    {
+        node.set_signature<Signature<ArrayXb(ArrayXf,ArrayXf)>>();
+    }
+    else if (Is<
+        NT::Equals
+        >(n))
+    {
+        node.set_signature<Signature<ArrayXb(ArrayXi,ArrayXi)>>();
+    }
+    else if (Is<
+        NT::Before,
+        NT::After,
+        NT::During
+        >(n))
+    {
+        node.set_signature<Signature<TimeSeriesf(TimeSeriesf,TimeSeriesf)>>();
+    }
+    else if (Is<
+        NT::Count
+        >(n))
+    {
+        node.set_signature<Signature<ArrayXf(TimeSeriesf)>>();
+    }
+    else if (Is<
+        NT::ArgMax
+        >(n))
+    {
+        node.set_signature<Signature<ArrayXi(ArrayXXf)>>();
+    }
     else if (Is<
         NT::Min,
         NT::Max,
