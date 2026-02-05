@@ -65,7 +65,7 @@ class Dataset
         std::vector<DataType> feature_types; 
 
         /// @brief names of the feature types as string representations.
-        std::vector<string> feature_names; // TODO: remove?
+        std::vector<string> feature_names;
 
         /// @brief map from data types to features having that type.
         std::unordered_map<DataType,vector<string>> features_of_type;
@@ -218,6 +218,7 @@ class Dataset
         // if split is not set, then training = validation.
         Dataset get_training_data() const;
         Dataset get_validation_data() const;
+        vector<string> get_feature_types() const;
 
         inline int get_n_samples() const { 
             return std::visit(

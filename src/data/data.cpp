@@ -197,6 +197,34 @@ array<Dataset, 2> Dataset::split(const ArrayXb& mask) const
 Dataset Dataset::get_training_data() const { return (*this)(training_data_idx); }
 Dataset Dataset::get_validation_data() const { return (*this)(validation_data_idx); }
 
+vector<string> Dataset::get_feature_types() const {
+    // iterate through each feature name, get the data type, and returns it. This is
+    // used in the python front-end to save the feature types from the training dataset
+    // when calling predict. 
+
+    vector<string> python_feature_types;
+    for (const auto& [name, value]: this->features)
+    {
+        // fmt::print("name:{}\n",name);
+        // save feature types
+        auto feature_type = StateType(value);
+
+        if (feature_type == DataType::ArrayB)
+            python_feature_types.push_back("ArrayB");
+        else if (feature_type == DataType::ArrayI)
+            python_feature_types.push_back("ArrayI");
+        else if (feature_type == DataType::ArrayF)
+            python_feature_types.push_back("ArrayF");
+        else
+            HANDLE_ERROR_THROW(
+                "get_feature_type does not support the type of this feature yet: " + name + 
+                "as a notice, this function is suposed to be used in the python side, to extract data types inferred by Brush type sniffer.");
+    }
+
+    return python_feature_types;
+}
+
+
 /// call init at the end of constructors
 /// to define metafeatures of the data.
 void Dataset::init()
@@ -225,6 +253,9 @@ void Dataset::init()
 
         // add feature to appropriate map list 
         this->features_of_type[feature_type].push_back(name);
+
+        // populate feature names
+        this->feature_names.push_back(name);
     }
 
     // setting the training and validation data indexes
@@ -335,14 +366,14 @@ map<string, State> Dataset::make_features(const ArrayXXf& X,
     // fmt::print("vn: {}\n",vn);
 
     // check variable names
-    feature_names.resize(0);
+    vector<string> tmp_feature_names = {};
     if (vn.empty())
     {
         // fmt::print("vn empty\n");
         for (int i = 0; i < X.cols(); ++i)
         {
             string v = "x_"+to_string(i);
-            feature_names.push_back(v);
+            tmp_feature_names.push_back(v);
         }
     }
     else
@@ -352,7 +383,7 @@ map<string, State> Dataset::make_features(const ArrayXXf& X,
                 fmt::format("Variable names and data size mismatch: "
                 "{} variable names and {} features in X", 
                 vn.size(), X.cols()) );
-        feature_names = vn;
+        tmp_feature_names = vn;
     }
 
     // check variable types
@@ -376,10 +407,10 @@ map<string, State> Dataset::make_features(const ArrayXXf& X,
 
     for (int i = 0; i < X.cols(); ++i)
     {
-        // fmt::print("X({}): {} \n",i,feature_names.at(i));
+        // fmt::print("X({}): {} \n",i,tmp_feature_names.at(i));
         State tmp = check_type(X.col(i).array(), var_types.at(i));
 
-        tmp_features[feature_names.at(i)] = tmp;
+        tmp_features[tmp_feature_names.at(i)] = tmp;
     }
     // fmt::print("tmp_features insert\n");
     tmp_features.insert(Z.begin(), Z.end());
@@ -393,13 +424,13 @@ map<string,State> Dataset::copy_and_make_features(const ArrayXXf& X,
                                          const vector<string>& vn
                                         )
 {
-    feature_names.resize(0);
+    vector<string> tmp_feature_names = {};
     if (vn.empty())
     {
         for (int i = 0; i < X.cols(); ++i)
         {
             string v = "x_"+to_string(i);
-            feature_names.push_back(v);
+            tmp_feature_names.push_back(v);
         }
     }
     else
@@ -412,15 +443,15 @@ map<string,State> Dataset::copy_and_make_features(const ArrayXXf& X,
                 X.cols()
                 )
             );
-        feature_names = vn;
+        tmp_feature_names = vn;
     }
 
-    if (ref_dataset.features.size() != feature_names.size())
+    if (ref_dataset.features.size() != tmp_feature_names.size())
         HANDLE_ERROR_THROW(
             fmt::format("Reference dataset with incompatible number of variables: "
             "Reference has {} variable names, but X has {}", 
             ref_dataset.features.size(), 
-            feature_names.size()
+            tmp_feature_names.size()
             )
         );
 
@@ -429,10 +460,10 @@ map<string,State> Dataset::copy_and_make_features(const ArrayXXf& X,
     {
         State tmp = cast_type(
             X.col(i).array(),
-            ref_dataset.features.at(feature_names.at(i))
+            ref_dataset.features.at(tmp_feature_names.at(i))
         );
 
-        tmp_features[feature_names.at(i)] = tmp;
+        tmp_features[tmp_feature_names.at(i)] = tmp;
     }
 
     return tmp_features;

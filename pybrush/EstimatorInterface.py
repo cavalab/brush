@@ -140,7 +140,7 @@ class EstimatorInterface():
         * `"best_validation_ci"`: The less complex solution that is within
         the 95% confidence interval of the best solution's validation loss, with
         the confidence interval estimated with the inner validation partition of
-        the data passed to `fit` or `fit_partial`;
+        the data passed to `fit` or `partial_fit`;
 
         If a custom function is passed, then it should hhave the signature
         `Callable[[List[Dict], List[Dict]], Dict]]`, which means that it takes

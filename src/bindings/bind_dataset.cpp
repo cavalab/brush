@@ -64,8 +64,12 @@ void bind_dataset(py::module & m)
             py::arg("ref_dataset"),
             py::arg("feature_names")
         )
-        
-        .def_readwrite("y", &br::Data::Dataset::y)
+
+        .def("get_feature_types", &br::Data::Dataset::get_feature_types)
+        .def("get_feature_names", [](const br::Data::Dataset &d) {return d.feature_names; }) // wrapping it into a function to keep consistent with get_feature_types. brush feature types are not native to python, so that's why we need that function to cast it to something python can understand.
+
+        .def_readwrite("y", &br::Data::Dataset::y) // TODO: should this be read only?
+
         // .def_readwrite("features", &br::Data::Dataset::features)
         .def("get_n_samples", &br::Data::Dataset::get_n_samples)
         .def("get_n_features", &br::Data::Dataset::get_n_features)
@@ -76,7 +80,7 @@ void bind_dataset(py::module & m)
         .def("get_batch_size", &br::Data::Dataset::get_batch_size)
         .def("set_batch_size", &br::Data::Dataset::set_batch_size)
         .def("split", &br::Data::Dataset::split)
-        .def("get_X", &br::Data::Dataset::get_X)
+        .def("get_X", &br::Data::Dataset::get_X)        
         ;
 
     m.def("read_csv", &br::Data::read_csv, py::arg("path"), py::arg("target"), py::arg("sep")=',');

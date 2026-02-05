@@ -94,6 +94,13 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
                                      feature_types=self.feature_types_,
                                      validation_size=self.validation_size,
                                      shuffle_split=self.shuffle_split)
+        
+        # If it failed to infer datatypes from a dict, we will retrieve it
+        # from the brush type sniffer, because this helps calling predict later
+        # (it keeps data type consistent, which is important since brush is strongly typed)             
+        if not isinstance(X, pd.DataFrame): 
+            self.feature_names_ = self.data_.get_feature_names()
+            self.feature_types_ = self.data_.get_feature_types()
 
         # These have a default behavior to return something meaningfull if 
         # no values are set
@@ -107,6 +114,7 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
                                          self.parameters_.functions,
                                          self.parameters_.weights_init)
                 
+        # Creating a new brush engine
         self.engine_ = None
         if self.mode == 'classification':
             self.engine_ = ( ClassifierEngine
@@ -182,6 +190,11 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         self.engine_.lock_nodes(lock_nodes_depth, keep_leaves_unlocked, keep_current_weights)
         self.engine_.fit(new_data)
         # self.engine_.lock_nodes(0, False, False) # unlocking everything
+
+        # getting a new reference to the search space (it is not serialized, so 
+        # this ensures that loading a model with pickle and calling either fit()
+        # or partial_fit() will restore the search space reference)
+        self.search_space_ = self.engine_.search_space
 
         self.archive_ = self.engine_.get_archive()
         self.population_ = self.engine_.get_population()
