@@ -242,7 +242,7 @@ void init_node_with_default_signature(Node& node)
         // NT::OffsetSum,
         NT::Prod,
         NT::Softmax,
-        NT::SplitOn,
+        // NT::SplitOn,
         NT::SplitBest
         >(n))
     {
@@ -252,6 +252,12 @@ void init_node_with_default_signature(Node& node)
     }
     else if (Is<NT::SplitOn>(n))
     {
+        // lets make split on always defaults to floats (so it will work
+        // regardless of datatype).
+        // This only matters for weakly defined nodes when doing manual
+        // construction of brush programs as json objects, and this behavior
+        // can be ignored by avoiding the need of generating the signature 
+        // (that is, defining the node with missing hash values and ret types)
         node.set_signature<Signature<ArrayXf(ArrayXb,ArrayXf,ArrayXf)>>();
     }
     else if (Is<NT::Constant>(n))
