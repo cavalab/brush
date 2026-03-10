@@ -47,6 +47,9 @@ void bind_individual(py::module& m, string name)
         .def("fit",
             static_cast<Class &(Class::*)(const Ref<const ArrayXXf> &X, const Ref<const ArrayXf> &y)>(&Class::fit),
             "fit from X,y data")
+        .def("replace_program", &Class::replace_program,
+            py::arg("new_program"),
+            "Replace the current program with a new program, invalidating fitness")
         .def("predict",
             static_cast<RetType (Class::*)(const Dataset &d)>(&Class::predict),
             "predict from Dataset object")

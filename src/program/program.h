@@ -156,6 +156,21 @@ template<PT PType> struct Program
         return *this;
     };
 
+    /**
+     * @brief Replace the current program with a new program, invalidating fitness.
+     */
+    Program<PType>& replace_program(const Program<PType>& new_program)
+    {
+        this->Tree = new_program.Tree;
+        this->is_fitted_ = false;
+        
+        // Update search space reference if the new program has one
+        if (new_program.SSref.has_value())
+            this->SSref = new_program.SSref;
+        
+        return *this;
+    };
+
     template <typename R, typename W>
     R predict_with_weights(const Dataset &d, const W** weights)
     {

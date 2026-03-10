@@ -30,6 +30,9 @@ void bind_program(py::module& m, string name)
         .def("fit",
             static_cast<T &(T::*)(const Ref<const ArrayXXf> &X, const Ref<const ArrayXf> &y)>(&T::fit),
             "fit from X,y data")
+        .def("replace_program", &T::replace_program,
+            py::arg("new_program"),
+            "Replace the current program with a new program, invalidating fitness")
         .def("predict",
             static_cast<RetType (T::*)(const Dataset &d)>(&T::predict),
             "predict from Dataset object")

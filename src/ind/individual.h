@@ -76,6 +76,17 @@ public: // TODO: make these private (and work with nlohman json)
         return fit(d);
     };
 
+    /**
+     * @brief Replace the current program with a new program, invalidating fitness
+     */
+    Individual<T>& replace_program(const Program<T>& new_program)
+    {
+        program.replace_program(new_program);
+        this->is_fitted_ = false;
+        fitness.clearValues();
+        return *this;
+    };
+
     auto predict(const Dataset& data) { return program.predict(data); };
     auto predict(const Ref<const ArrayXXf>& X)
     {
