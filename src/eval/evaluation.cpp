@@ -18,7 +18,17 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
 
     for (unsigned i = 0; i<indices.size(); ++i)
     {
-        Individual<T>& ind = *pop.individuals.at(indices.at(i)).get(); // we are modifying it, so operator[] wont work
+        auto& ind_ptr = pop.individuals.at(indices.at(i));
+        
+        // Skip nullptr individuals (offspring slots not yet filled)
+        if (!ind_ptr) {
+            HANDLE_ERROR_THROW(fmt::format(
+                "Evaluation::update_fitness - attempted to update fitness of a nullptr. "
+                "This suggests population integrity was damaged by another manipulation method."));
+    
+        }
+            
+        Individual<T>& ind = *ind_ptr.get(); // we are modifying it, so operator[] wont work
 
         if (false) // pass
         {
