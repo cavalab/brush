@@ -43,6 +43,17 @@ vector<size_t> NSGA2<T>::select(Population<T>& pop, int island,
     
     // TODO: move this to tournament selection file, and throw not implemented error in nsga.
     auto island_pool = pop.get_island_indexes(island);
+    
+    // Filter out nullptr individuals (offspring slots)
+    island_pool.erase(
+        std::remove_if(island_pool.begin(), island_pool.end(),
+            [&pop](size_t idx) { return pop.individuals.at(idx) == nullptr; }),
+        island_pool.end()
+    );
+    
+    // If all individuals were nullptr, return empty selection
+    if (island_pool.empty())
+        return island_pool;
 
     // if this is first generation, just return indices to pop
     if (params.current_gen==0)
@@ -80,6 +91,20 @@ vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island,
         island_pool.insert(island_pool.end(), indexes.begin(), indexes.end());
     }
     
+    // Filter out nullptr individuals (offspring slots that haven't been filled yet)
+    island_pool.erase(
+        std::remove_if(island_pool.begin(), island_pool.end(),
+            [&pop](size_t idx) { return pop.individuals.at(idx) == nullptr; }),
+        island_pool.end()
+    );
+    
+    // If all individuals were nullptr, throw error
+    if (island_pool.empty()) {
+        HANDLE_ERROR_THROW(fmt::format(
+            "NSGA2::survive - island_pool is empty after filtering nullptrs. "
+            "This suggests population was not properly initialized or variation failed."));
+    }
+    
     // fast non-dominated sort
     auto front = fast_nds(pop, island_pool);
     
@@ -109,8 +134,21 @@ vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island,
     
     // fmt::print("adding last front)\n");
     const int extra = params.pop_size - selected.size();
-    for (int j = 0; j < extra; ++j) // Pt+1 = Pt+1 U Fi[1:N-|Pt+1|]
+    
+    // Safety check: ensure we don't try to add more than what's available
+    const int available = front.at(i).size();
+    const int to_add = std::min(extra, available);
+    
+    for (int j = 0; j < to_add; ++j) // Pt+1 = Pt+1 U Fi[1:N-|Pt+1|]
         selected.push_back(front.at(i).at(j));
+    
+    // If we still don't have enough individuals after all fronts, something is wrong
+    if (selected.size() != params.pop_size) {
+        throw std::runtime_error(fmt::format(
+            "NSGA2 survive: Could not select {} survivors. Only found {} valid individuals in population.",
+            params.pop_size, selected.size()
+        ));
+    }
     
     // fmt::print("returning\n");
     return selected;

@@ -74,6 +74,10 @@ void Engine<T>::calculate_stats()
         for (unsigned int i=0; i<indices.size(); ++i)
         {
             const auto& p = this->pop.individuals.at(indices[i]);
+            
+            // Skip nullptr individuals (offspring slots not yet filled)
+            if (!p)
+                continue;
 
             // Fitness class will store every information that can be used as
             // fitness. you just need to access them. Multiplying by weight
@@ -88,18 +92,23 @@ void Engine<T>::calculate_stats()
         }
     }
 
-    assert (pop_size == this->params.pop_size);
+    // index now contains the actual count of non-null individuals
+    // Resize arrays to only include valid individuals
+    scores.conservativeResize(index);
+    scores_v.conservativeResize(index);
+    sizes.conservativeResize(index);
+    complexities.conservativeResize(index);
 
     // Multiply by weight to make it a maximization problem.
     // Then, multiply again to get rid of signal
-    float    best_score     = (scores*error_weight).maxCoeff()*error_weight;
+    float    best_score     = index > 0 ? (scores*error_weight).maxCoeff()*error_weight : 0.0f;
     float    best_score_v   = this->best_ind.fitness.get_loss_v();
-    float    med_score      = median(scores); 
-    float    med_score_v    = median(scores_v); 
-    unsigned med_size       = median(sizes);                        
-    unsigned med_complexity = median(complexities);
-    unsigned max_size       = sizes.maxCoeff();
-    unsigned max_complexity = complexities.maxCoeff();
+    float    med_score      = index > 0 ? median(scores) : 0.0f; 
+    float    med_score_v    = index > 0 ? median(scores_v) : 0.0f; 
+    unsigned med_size       = index > 0 ? median(sizes) : 0;                        
+    unsigned med_complexity = index > 0 ? median(complexities) : 0;
+    unsigned max_size       = index > 0 ? sizes.maxCoeff() : 0;
+    unsigned max_complexity = index > 0 ? complexities.maxCoeff() : 0;
     
     // update stats
     stats.update(params.current_gen,
@@ -169,7 +178,7 @@ void Engine<T>::print_stats(std::ofstream& log, float fraction)
             << ") [" + bar + space + "]\n";
         
     std::cout << std::fixed
-              << "Best model on Val:" << best_ind.program.get_model() << "\n" 
+              << "Best model on Val:" << best_ind.program.get_model() << "\n"
               << "Train Loss (Med): " << stats.best_score.back() << " (" << stats.med_score.back() << ")\n"
               << "Val Loss (Med): " << stats.best_score_v.back() << " (" << stats.med_score_v.back() << ")\n"
               << "Median Size (Max): " << stats.med_size.back() << " (" << stats.max_size.back() << ")\n"
@@ -208,8 +217,9 @@ vector<json> Engine<T>::get_population_as_json()
         pop_vector.push_back(j);
     }
 
-    if(pop_vector.size() != params.pop_size)
-        HANDLE_ERROR_THROW("Population size is different from pop_size");
+    // Note: pop_vector.size() may be less than pop_size during evolution
+    // when offspring slots (nullptrs) haven't been filled by variation yet.
+    // This is a valid transient state and should not throw an error.
 
     return pop_vector;
 }
@@ -236,8 +246,9 @@ vector<Individual<T>> Engine<T>::get_population()
         pop_vector.push_back(*ind);
     }
 
-    if(pop_vector.size() != params.pop_size)
-        HANDLE_ERROR_THROW("Population size is different from pop_size");
+    // Note: pop_vector.size() may be less than pop_size during evolution
+    // when offspring slots (nullptrs) haven't been filled by variation yet.
+    // This is a valid transient state and should not throw an error.
 
     return pop_vector;
 }
@@ -297,6 +308,11 @@ void Engine<T>::lock_nodes(int end_depth, bool keep_leaves_unlocked, bool keep_c
         for (unsigned i = 0; i<indices.size(); ++i)
         {
             const auto& ind = pop.individuals.at(indices.at(i));
+            
+            // Skip nullptr individuals (offspring slots not yet filled)
+            if (!ind)
+                continue;
+                
             ind->program.lock_nodes(end_depth, keep_leaves_unlocked, keep_current_weights);
         }
     }
@@ -320,7 +336,13 @@ bool Engine<T>::update_best()
 
     for (int i=0; i < merged_islands.size(); ++i) 
     {
-        const auto& ind = *pop.individuals.at(merged_islands[i]);
+        const auto& ind_ptr = pop.individuals.at(merged_islands[i]);
+        
+        // Skip nullptr individuals (offspring slots not yet filled)
+        if (!ind_ptr)
+            continue;
+            
+        const auto& ind = *ind_ptr;
 
         // TODO: use intermediary variables for wvalues
         // Iterate over the weighted values to compare (everything is a maximization problem here)
