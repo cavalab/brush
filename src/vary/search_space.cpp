@@ -153,10 +153,11 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
     cXi.set_prob_change(signature_avg(cXi.ret_type));
     terminals.push_back(cXi);
 
-    // Constants for booleans are rarely useful. Our special terminal `MeanLabel` provides a better way of dealing with that
-    // auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>(), false, "constB");
-    // cXb.set_prob_change(signature_avg(cXb.ret_type));
-    // terminals.push_back(cXb);
+    // Boolean constants are needed to prevent crashes when logical operators (And, Or, Not, Geq, Equals) 
+    // appear in programs and need boolean terminals as arguments, even in regression problems
+    auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>(), true, "constB");
+    cXb.set_prob_change(signature_avg(cXb.ret_type));
+    terminals.push_back(cXb);
 
     // mean label node. Does not need to be part of symbols. works only for classification
     if (d.classification)
