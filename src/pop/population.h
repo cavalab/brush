@@ -45,8 +45,20 @@ public:
     void update(vector<vector<size_t>> survivors);
     
     /// setting and getting from individuals vector (will ignore islands)
-    const Individual<T>& operator [](size_t i) const {return *individuals.at(i);}
-    const Individual<T>& operator [](size_t i) {return *individuals.at(i);}
+    const Individual<T>& operator [](size_t i) const {
+        auto& ind_ptr = individuals.at(i);
+        if (!ind_ptr) {
+            HANDLE_ERROR_THROW(fmt::format("Attempted to access null individual at index {}", i));
+        }
+        return *ind_ptr;
+    }
+    const Individual<T>& operator [](size_t i) {
+        auto& ind_ptr = individuals.at(i);
+        if (!ind_ptr) {
+            HANDLE_ERROR_THROW(fmt::format("Attempted to access null individual at index {}", i));
+        }
+        return *ind_ptr;
+    }
 
     /// return population equations. 
     string print_models(string sep="\n");
