@@ -330,13 +330,22 @@ class Inexact_simplifier
 
             // Equalize floatClippedInput 
             float floatClippedInput_mean = floatClippedInput.mean();
+            
+            // Check for NaN/Inf in mean - if present, skip simplification for this node.
+            // Otherwise, we are at changes of having wrong simplifications and terrible
+            // replacements due to numeric error.
+            if (std::isnan(floatClippedInput_mean) || std::isinf(floatClippedInput_mean)) {
+                return {}; // Return empty hashes to skip this node
+            }
+            
             floatClippedInput = floatClippedInput - floatClippedInput_mean;
+            
+            // No need to check for NaN/Inf in the normalized predictions --- 
+            // the mean is already a valid numeric value.
 
             vector<size_t> hashes;
             for (size_t planeIdx = 0; planeIdx < uniformPlanes.size(); ++planeIdx)
             {
-                // TODO: handle nan predictions?
-
                 const auto& plane = uniformPlanes[planeIdx];
                 Eigen::ArrayXf projection = plane * floatClippedInput.matrix();
                 Eigen::Array<bool, Eigen::Dynamic, 1> comparison = (projection > 0);
