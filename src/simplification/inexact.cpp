@@ -1,5 +1,7 @@
 #include "inexact.h"
+#include "../util/rnd.h"
 
+using Brush::Util::r;
 
 // simplification maps are based on trainingdata
 // should ignore fixed nodes ---> does not change subtrees if they contain fixed nodes 
@@ -24,7 +26,14 @@ void Inexact_simplifier::init(int hashSize, const Dataset &data, int numPlanes)
     uniformPlanes.clear();
     for (int i=0; i<numPlanes; ++i)
     {
-        MatrixXf plane = MatrixXf::Random(hashSize, inputDim);
+        // Use deterministic random number generator instead of Eigen::Random()
+        // to ensure reproducibility with seed
+        MatrixXf plane(hashSize, inputDim);
+        for (int row = 0; row < hashSize; ++row) {
+            for (int col = 0; col < inputDim; ++col) {
+                plane(row, col) = r.rnd_flt(-1.0f, 1.0f);
+            }
+        }
         // plane /= plane.norm();
         uniformPlanes.push_back(plane);
     }
