@@ -78,6 +78,9 @@ public: // TODO: make these private (and work with nlohman json)
 
     /**
      * @brief Replace the current program with a new program, invalidating fitness
+     * 
+     * @param new_program The new program to replace the current one with
+     * @return reference to this individual
      */
     Individual<T>& replace_program(const Program<T>& new_program)
     {
@@ -85,6 +88,18 @@ public: // TODO: make these private (and work with nlohman json)
         this->is_fitted_ = false;
         fitness.clearValues();
         return *this;
+    };
+
+    /**
+     * @brief Replace the current program from a JSON representation, invalidating fitness
+     * 
+     * @param j JSON object containing the serialized program
+     * @return reference to this individual
+     */
+    Individual<T>& replace_program(const json& j)
+    {
+        Program<T> new_program = j;
+        return replace_program(new_program);
     };
 
     auto predict(const Dataset& data) { return program.predict(data); };

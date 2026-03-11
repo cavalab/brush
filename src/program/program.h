@@ -71,6 +71,7 @@ template<PT PType> struct Program
     
     /// the underlying tree
     tree<Node> Tree; 
+    
     /// reference to search space
     std::optional<std::reference_wrapper<SearchSpace>> SSref;
 
@@ -158,17 +159,33 @@ template<PT PType> struct Program
 
     /**
      * @brief Replace the current program with a new program, invalidating fitness.
+     * 
+     * @param new_program The new program to replace the current one with
+     * @return reference to this program
      */
     Program<PType>& replace_program(const Program<PType>& new_program)
     {
         this->Tree = new_program.Tree;
         this->is_fitted_ = false;
         
-        // Update search space reference if the new program has one
+        // Update search space reference if the new program has one, otherwise keep current
         if (new_program.SSref.has_value())
             this->SSref = new_program.SSref;
+        // If new_program doesn't have a search space, keep this->SSref as is
         
         return *this;
+    };
+
+    /**
+     * @brief Replace the current program from a JSON representation, invalidating fitness.
+     * 
+     * @param j JSON object containing the serialized program
+     * @return reference to this program
+     */
+    Program<PType>& replace_program(const json& j)
+    {
+        Program<PType> new_program = j;
+        return replace_program(new_program);
     };
 
     template <typename R, typename W>
