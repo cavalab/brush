@@ -48,7 +48,7 @@ def test_param_random_state():
         f"Population sizes differ: {len(first_run_models)} vs {len(second_run_models)}"
     
     for i, (fr, sr) in enumerate(zip(first_run_models, second_run_models)):
-        print(f"{fr} vs {sr}")
+        print(f"{i}-th individual: {fr} vs {sr}")
         assert fr == sr, f"Individual {i} differs: '{fr}' vs '{sr}'"
     
     # Check that best individuals match
