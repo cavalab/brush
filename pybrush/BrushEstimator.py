@@ -86,7 +86,12 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
                         "Unsupported data type. Please try using an "
                         "encoding method to convert the data to a supported "
                         "format.")
+        else:
+            # For numpy arrays, generate feature names in the correct order
+            # BEFORE creating the Dataset, so we maintain the column order
+            self.feature_names_ = [f"x_{i}" for i in range(X.shape[1])]
 
+        # Beyong this point, X is not a dataframe anymore
         X, y = check_X_y(X, y)
 
         self.data_ = self._make_data(X, y, 
@@ -95,11 +100,10 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
                                      validation_size=self.validation_size,
                                      shuffle_split=self.shuffle_split)
         
-        # If it failed to infer datatypes from a dict, we will retrieve it
-        # from the brush type sniffer, because this helps calling predict later
-        # (it keeps data type consistent, which is important since brush is strongly typed)             
-        if not isinstance(X, pd.DataFrame): 
-            self.feature_names_ = self.data_.get_feature_names()
+        # Get feature_types from the dataset if we didn't have them (numpy array case)
+        # but DON'T overwrite feature_names_ because the dataset may return them
+        # in alphabetical order due to std::map sorting!
+        if not self.feature_types_: # if it is not a pandas dataframe, then feature_types will be empty
             self.feature_types_ = self.data_.get_feature_types()
 
         # These have a default behavior to return something meaningfull if 

@@ -56,6 +56,8 @@ class Dataset
     private:
         vector<size_t> training_data_idx;
         vector<size_t> validation_data_idx;
+        /// @brief stores the original feature name order before map sorting
+        vector<string> feature_name_order_;
 
     public:
         /// @brief keeps track of the unique data types in the dataset. 
@@ -239,8 +241,7 @@ class Dataset
 
             bool has_feature = false;
             for (auto& [ftype, names] : features_of_type){
-                auto it = std::find_if(names.begin(), names.end(),
-                    [&](const auto& name){ return name == name; });
+                auto it = std::find(names.begin(), names.end(), name);
 
                 if (it != names.end())
                 {

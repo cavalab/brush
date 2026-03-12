@@ -161,7 +161,24 @@ Dataset Dataset::operator()(const vector<size_t>& idx) const
         new_y = this->y(idx);
     }
     // using constructor 1
-    return Dataset(new_features, new_y, this->classification);
+    Dataset result(new_features, new_y, this->classification);
+    // Preserve the original feature name and type order from parent
+    // The constructor's init() may have reordered them, so we fix that here
+    result.feature_names = this->feature_names;
+    result.feature_types = this->feature_types;
+    result.feature_name_order_ = this->feature_names;
+    
+    // Rebuild features_of_type to match the corrected order
+    result.features_of_type.clear();
+    result.unique_data_types.clear();
+    for (size_t i = 0; i < result.feature_names.size(); ++i) {
+        const auto& name = result.feature_names[i];
+        const auto& ftype = result.feature_types[i];
+        result.features_of_type[ftype].push_back(name);
+        Util::unique_insert(result.unique_data_types, ftype);
+    }
+    
+    return result;
 }
 
 
@@ -198,14 +215,17 @@ Dataset Dataset::get_training_data() const { return (*this)(training_data_idx); 
 Dataset Dataset::get_validation_data() const { return (*this)(validation_data_idx); }
 
 vector<string> Dataset::get_feature_types() const {
-    // iterate through each feature name, get the data type, and returns it. This is
+    // iterate through each feature name in order, get the data type, and return it. This is
     // used in the python front-end to save the feature types from the training dataset
     // when calling predict. 
 
     vector<string> python_feature_types;
-    for (const auto& [name, value]: this->features)
+    // Iterate through feature_names to preserve order, not through features map
+    for (const auto& name: this->feature_names)
     {
         // fmt::print("name:{}\n",name);
+        const auto& value = this->features.at(name);
+        
         // save feature types
         auto feature_type = StateType(value);
 
@@ -242,9 +262,22 @@ void Dataset::init()
     }
 
     // fmt::print("Dataset::init()\n");
-    for (const auto& [name, value]: this->features)
+    // Use the stored original feature name order if available, otherwise iterate through the map
+    const auto& names_to_use = this->feature_name_order_.empty() 
+        ? [this]() {
+            vector<string> names;
+            for (const auto& [name, value] : this->features) {
+                names.push_back(name);
+            }
+            return names;
+        }()
+        : this->feature_name_order_;
+
+    for (const auto& name : names_to_use)
     {
         // fmt::print("name:{}\n",name);
+        const auto& value = this->features.at(name);
+        
         // save feature types
         auto feature_type = StateType(value);
 
@@ -254,7 +287,7 @@ void Dataset::init()
         // add feature to appropriate map list 
         this->features_of_type[feature_type].push_back(name);
 
-        // populate feature names
+        // populate feature names in the original order
         this->feature_names.push_back(name);
     }
 
@@ -415,6 +448,12 @@ map<string, State> Dataset::make_features(const ArrayXXf& X,
     // fmt::print("tmp_features insert\n");
     tmp_features.insert(Z.begin(), Z.end());
 
+    // Store the original feature name order (X features first, then Z features)
+    this->feature_name_order_ = tmp_feature_names;
+    for (const auto& [name, value] : Z) {
+        this->feature_name_order_.push_back(name);
+    }
+
     return tmp_features;
 };
 
@@ -465,6 +504,9 @@ map<string,State> Dataset::copy_and_make_features(const ArrayXXf& X,
 
         tmp_features[tmp_feature_names.at(i)] = tmp;
     }
+
+    // Store the original feature name order
+    this->feature_name_order_ = tmp_feature_names;
 
     return tmp_features;
 };
