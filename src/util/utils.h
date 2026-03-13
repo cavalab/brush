@@ -409,6 +409,20 @@ struct Log_Stats
     vector<unsigned> max_size;
     vector<unsigned> max_complexity;
 
+        // Keep stats vectors non-empty so .back() calls are always safe for logging/printing.
+        Log_Stats()
+                : generation{0},
+                    time{0.0f},
+                    best_score{0.0f},
+                    best_score_v{0.0f},
+                    med_score{0.0f},
+                    med_score_v{0.0f},
+                    med_size{0},
+                    med_complexity{0},
+                    max_size{0},
+                    max_complexity{0}
+        {}
+
     void update(int index,
                 float timer_count,
 

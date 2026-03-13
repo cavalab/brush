@@ -55,12 +55,43 @@ def test_brush_classifier():
     assert acc > 0.5
 
 
-def test_brush_simplification_log():
+@pytest.mark.parametrize("verbosity", [0, 1, 2])
+def test_brush_classifier_verbosity_levels(verbosity):
+    X, y = make_classification(n_samples=60, n_features=8, n_classes=2, random_state=42)
+
+    clf = BrushClassifier(
+        max_gens=3,
+        pop_size=10,
+        verbosity=verbosity,
+        random_state=42,
+    )
+    clf.fit(X, y)
+
+    y_pred = clf.predict(X)
+
+    assert y_pred.shape[0] == X.shape[0]
+    assert clf.best_estimator_ is not None
+
+
+def test_brush_logfile_output(tmp_path):
     # Generate synthetic regression data
     X, y = make_regression(n_samples=80, n_features=3, noise=0.1, random_state=42)
-    
-    # Define the BrushRegressor
-    model = BrushRegressor(inexact_simplification=True, max_gens=20, logfile='./temp.log').fit(X, y)
+
+    logfile = tmp_path / "brush_run.log"
+
+    BrushRegressor(
+        inexact_simplification=True,
+        max_gens=5,
+        pop_size=10,
+        logfile=str(logfile),
+        verbosity=0,
+    ).fit(X, y)
+
+    assert logfile.exists()
+    assert logfile.stat().st_size > 0
+
+    simplification_log = tmp_path / "brush_run.log_simplification_table"
+    assert simplification_log.exists()
 
 
 def test_brush_classifier_population_reuse(tmp_path):

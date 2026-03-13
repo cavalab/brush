@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <cmath>
 
 namespace Brush{
 
@@ -52,6 +53,15 @@ template <ProgramType T>
 void Engine<T>::calculate_stats()
 {
     int pop_size = 0;
+    if (params.num_islands < 0) {
+        HANDLE_ERROR_THROW("Invalid params.num_islands: cannot be negative");
+    }
+
+    if (static_cast<size_t>(params.num_islands) > pop.island_indexes.size()) {
+        HANDLE_ERROR_THROW(
+            "params.num_islands is greater than pop.island_indexes size in calculate_stats");
+    }
+
     for (int island=0; island<params.num_islands; ++island)
     {
         auto indices = pop.island_indexes.at(island);
@@ -73,21 +83,54 @@ void Engine<T>::calculate_stats()
         auto indices = pop.island_indexes.at(island);
         for (unsigned int i=0; i<indices.size(); ++i)
         {
-            const auto& p = this->pop.individuals.at(indices[i]);
+            const size_t population_index = indices[i];
+            if (population_index >= this->pop.individuals.size()) {
+                HANDLE_ERROR_THROW(
+                    "Invalid population index in island " + to_string(island)
+                    + ": " + to_string(population_index)
+                    + " (individuals size=" + to_string(this->pop.individuals.size()) + ")");
+            }
+
+            const auto& p = this->pop.individuals.at(population_index);
             
             // Skip nullptr individuals (offspring slots not yet filled)
             if (!p)
                 continue;
+
+            float fitness_loss = 0.0f;
+            float fitness_loss_v = 0.0f;
+            unsigned individual_size = 0;
+            unsigned individual_complexity = 0;
+            try {
+                fitness_loss = p->fitness.get_loss();
+                fitness_loss_v = p->fitness.get_loss_v();
+                individual_size = p->get_size();
+                individual_complexity = p->get_complexity();
+            } catch (const std::exception& e) {
+                HANDLE_ERROR_THROW(
+                    "Failed to get fitness/size/complexity from individual at population index "
+                    + to_string(population_index) + ": " + e.what());
+            } catch (...) {
+                HANDLE_ERROR_THROW(
+                    "Failed to get fitness/size/complexity from individual at population index "
+                    + to_string(population_index) + ": unknown error");
+            }
+
+            if (!std::isfinite(fitness_loss) || !std::isfinite(fitness_loss_v)) {
+                HANDLE_ERROR_THROW(
+                    "Invalid non-finite fitness values at population index "
+                    + to_string(population_index));
+            }
 
             // Fitness class will store every information that can be used as
             // fitness. you just need to access them. Multiplying by weight
             // so we can find best score. From Fitness::dominates:
             //     the proper way of comparing weighted values is considering
             //     everything as a maximization problem
-            scores(index)       = p->fitness.get_loss();
-            scores_v(index)     = p->fitness.get_loss_v();
-            sizes(index)        = p->get_size(); 
-            complexities(index) = p->get_complexity(); 
+            scores(index)       = fitness_loss;
+            scores_v(index)     = fitness_loss_v;
+            sizes(index)        = individual_size;
+            complexities(index) = individual_complexity;
             ++index;
         }
     }
@@ -103,6 +146,10 @@ void Engine<T>::calculate_stats()
     // Then, multiply again to get rid of signal
     float    best_score     = index > 0 ? (scores*error_weight).maxCoeff()*error_weight : 0.0f;
     float    best_score_v   = this->best_ind.fitness.get_loss_v();
+
+    if (!std::isfinite(best_score_v)) {
+        HANDLE_ERROR_THROW("Invalid non-finite validation loss in best_ind while calculating stats");
+    }
     float    med_score      = index > 0 ? median(scores) : 0.0f; 
     float    med_score_v    = index > 0 ? median(scores_v) : 0.0f; 
     unsigned med_size       = index > 0 ? median(sizes) : 0;                        
@@ -409,8 +456,12 @@ void Engine<T>::run(Dataset &data)
     
     // log file stream
     std::ofstream log;
-    if (!params.logfile.empty())
+    if (!params.logfile.empty()) {
         log.open(params.logfile, std::ofstream::app);
+        if (!log.is_open()) {
+            HANDLE_ERROR_THROW("Failed to open logfile: " + params.logfile);
+        }
+    }
 
     evaluator.set_scorer(params.scorer);
 
@@ -563,7 +614,7 @@ void Engine<T>::run(Dataset &data)
                 else if(params.verbosity == 1)
                     print_progress(fraction);
 
-                if (!params.logfile.empty())
+                if (!params.logfile.empty() && log.is_open())
                     log_stats(log);
                     
                 if (generation == 0 || updated_best )
@@ -599,7 +650,7 @@ void Engine<T>::run(Dataset &data)
             
             if (!params.logfile.empty()) {
                 std::ofstream log_simplification;
-                log_simplification.open(params.logfile+"simplification_table", std::ofstream::app);
+                log_simplification.open(params.logfile+"_simplification_table", std::ofstream::app);
                 variator.log_simplification_table(log_simplification);
                 
                 log_simplification.close();

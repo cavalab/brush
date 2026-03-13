@@ -262,16 +262,17 @@ void Dataset::init()
     }
 
     // fmt::print("Dataset::init()\n");
-    // Use the stored original feature name order if available, otherwise iterate through the map
-    const auto& names_to_use = this->feature_name_order_.empty() 
-        ? [this]() {
-            vector<string> names;
-            for (const auto& [name, value] : this->features) {
-                names.push_back(name);
-            }
-            return names;
-        }()
-        : this->feature_name_order_;
+    // Use the stored original feature name order if available, otherwise iterate through the map.
+    // IMPORTANT: use a value (not a const-ref) to avoid a dangling reference from binding
+    // a const-ref to the temporary produced by a mixed lvalue/prvalue ternary expression.
+    vector<string> names_to_use;
+    if (this->feature_name_order_.empty()) {
+        for (const auto& [name, value] : this->features) {
+            names_to_use.push_back(name);
+        }
+    } else {
+        names_to_use = this->feature_name_order_;
+    }
 
     for (const auto& name : names_to_use)
     {
