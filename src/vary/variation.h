@@ -152,19 +152,22 @@ public:
         }
 
         // ensuring all terminals exists as a simplification option
-        inexact_simplifier.init(256, data, 1);
-        for (const auto& entry : this->search_space.terminal_weights) {
-            map<string, float> terminal_probs;
-            for (int i = 0; i < entry.second.size(); i++)
-                if (entry.second[i] > 0.0)
-                {
-                    Node node = search_space.terminal_map.at(entry.first).at(i);
+        // Only initialize simplification tables if inexact_simplification is enabled
+        if (parameters.inexact_simplification) {
+            inexact_simplifier.init(256, data, 1);
+            for (const auto& entry : this->search_space.terminal_weights) {
+                map<string, float> terminal_probs;
+                for (int i = 0; i < entry.second.size(); i++)
+                    if (entry.second[i] > 0.0)
+                    {
+                        Node node = search_space.terminal_map.at(entry.first).at(i);
 
-                    tree<Node> dummy_tree;
-                    dummy_tree.insert(dummy_tree.begin(), node);
-                    auto it = dummy_tree.begin();
-                    inexact_simplifier.index<T>(it, data.get_training_data());                    
-                }
+                        tree<Node> dummy_tree;
+                        dummy_tree.insert(dummy_tree.begin(), node);
+                        auto it = dummy_tree.begin();
+                        inexact_simplifier.index<T>(it, data.get_training_data());                    
+                    }
+            }
         }
     };
 

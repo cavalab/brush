@@ -150,6 +150,7 @@ void Engine<T>::calculate_stats()
     if (!std::isfinite(best_score_v)) {
         HANDLE_ERROR_THROW("Invalid non-finite validation loss in best_ind while calculating stats");
     }
+    
     float    med_score      = index > 0 ? median(scores) : 0.0f; 
     float    med_score_v    = index > 0 ? median(scores_v) : 0.0f; 
     unsigned med_size       = index > 0 ? median(sizes) : 0;                        
@@ -648,7 +649,8 @@ void Engine<T>::run(Dataset &data)
 
             set_is_fitted(true);
             
-            if (!params.logfile.empty()) {
+            // logging the simplifications performed
+            if (!params.logfile.empty() && params.inexact_simplification) {
                 std::ofstream log_simplification;
                 log_simplification.open(params.logfile+"_simplification_table", std::ofstream::app);
                 variator.log_simplification_table(log_simplification);
