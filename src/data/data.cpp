@@ -161,7 +161,24 @@ Dataset Dataset::operator()(const vector<size_t>& idx) const
         new_y = this->y(idx);
     }
     // using constructor 1
-    return Dataset(new_features, new_y, this->classification);
+    Dataset result(new_features, new_y, this->classification);
+    // Preserve the original feature name and type order from parent
+    // The constructor's init() may have reordered them, so we fix that here
+    result.feature_names = this->feature_names;
+    result.feature_types = this->feature_types;
+    result.feature_name_order_ = this->feature_names;
+    
+    // Rebuild features_of_type to match the corrected order
+    result.features_of_type.clear();
+    result.unique_data_types.clear();
+    for (size_t i = 0; i < result.feature_names.size(); ++i) {
+        const auto& name = result.feature_names[i];
+        const auto& ftype = result.feature_types[i];
+        result.features_of_type[ftype].push_back(name);
+        Util::unique_insert(result.unique_data_types, ftype);
+    }
+    
+    return result;
 }
 
 
@@ -197,6 +214,37 @@ array<Dataset, 2> Dataset::split(const ArrayXb& mask) const
 Dataset Dataset::get_training_data() const { return (*this)(training_data_idx); }
 Dataset Dataset::get_validation_data() const { return (*this)(validation_data_idx); }
 
+vector<string> Dataset::get_feature_types() const {
+    // iterate through each feature name in order, get the data type, and return it. This is
+    // used in the python front-end to save the feature types from the training dataset
+    // when calling predict. 
+
+    vector<string> python_feature_types;
+    // Iterate through feature_names to preserve order, not through features map
+    for (const auto& name: this->feature_names)
+    {
+        // fmt::print("name:{}\n",name);
+        const auto& value = this->features.at(name);
+        
+        // save feature types
+        auto feature_type = StateType(value);
+
+        if (feature_type == DataType::ArrayB)
+            python_feature_types.push_back("ArrayB");
+        else if (feature_type == DataType::ArrayI)
+            python_feature_types.push_back("ArrayI");
+        else if (feature_type == DataType::ArrayF)
+            python_feature_types.push_back("ArrayF");
+        else
+            HANDLE_ERROR_THROW(
+                "get_feature_type does not support the type of this feature yet: " + name + 
+                "as a notice, this function is suposed to be used in the python side, to extract data types inferred by Brush type sniffer.");
+    }
+
+    return python_feature_types;
+}
+
+
 /// call init at the end of constructors
 /// to define metafeatures of the data.
 void Dataset::init()
@@ -214,9 +262,23 @@ void Dataset::init()
     }
 
     // fmt::print("Dataset::init()\n");
-    for (const auto& [name, value]: this->features)
+    // Use the stored original feature name order if available, otherwise iterate through the map.
+    // IMPORTANT: use a value (not a const-ref) to avoid a dangling reference from binding
+    // a const-ref to the temporary produced by a mixed lvalue/prvalue ternary expression.
+    vector<string> names_to_use;
+    if (this->feature_name_order_.empty()) {
+        for (const auto& [name, value] : this->features) {
+            names_to_use.push_back(name);
+        }
+    } else {
+        names_to_use = this->feature_name_order_;
+    }
+
+    for (const auto& name : names_to_use)
     {
         // fmt::print("name:{}\n",name);
+        const auto& value = this->features.at(name);
+        
         // save feature types
         auto feature_type = StateType(value);
 
@@ -225,6 +287,9 @@ void Dataset::init()
 
         // add feature to appropriate map list 
         this->features_of_type[feature_type].push_back(name);
+
+        // populate feature names in the original order
+        this->feature_names.push_back(name);
     }
 
     // setting the training and validation data indexes
@@ -335,14 +400,14 @@ map<string, State> Dataset::make_features(const ArrayXXf& X,
     // fmt::print("vn: {}\n",vn);
 
     // check variable names
-    feature_names.resize(0);
+    vector<string> tmp_feature_names = {};
     if (vn.empty())
     {
         // fmt::print("vn empty\n");
         for (int i = 0; i < X.cols(); ++i)
         {
             string v = "x_"+to_string(i);
-            feature_names.push_back(v);
+            tmp_feature_names.push_back(v);
         }
     }
     else
@@ -352,7 +417,7 @@ map<string, State> Dataset::make_features(const ArrayXXf& X,
                 fmt::format("Variable names and data size mismatch: "
                 "{} variable names and {} features in X", 
                 vn.size(), X.cols()) );
-        feature_names = vn;
+        tmp_feature_names = vn;
     }
 
     // check variable types
@@ -376,13 +441,19 @@ map<string, State> Dataset::make_features(const ArrayXXf& X,
 
     for (int i = 0; i < X.cols(); ++i)
     {
-        // fmt::print("X({}): {} \n",i,feature_names.at(i));
+        // fmt::print("X({}): {} \n",i,tmp_feature_names.at(i));
         State tmp = check_type(X.col(i).array(), var_types.at(i));
 
-        tmp_features[feature_names.at(i)] = tmp;
+        tmp_features[tmp_feature_names.at(i)] = tmp;
     }
     // fmt::print("tmp_features insert\n");
     tmp_features.insert(Z.begin(), Z.end());
+
+    // Store the original feature name order (X features first, then Z features)
+    this->feature_name_order_ = tmp_feature_names;
+    for (const auto& [name, value] : Z) {
+        this->feature_name_order_.push_back(name);
+    }
 
     return tmp_features;
 };
@@ -393,13 +464,13 @@ map<string,State> Dataset::copy_and_make_features(const ArrayXXf& X,
                                          const vector<string>& vn
                                         )
 {
-    feature_names.resize(0);
+    vector<string> tmp_feature_names = {};
     if (vn.empty())
     {
         for (int i = 0; i < X.cols(); ++i)
         {
             string v = "x_"+to_string(i);
-            feature_names.push_back(v);
+            tmp_feature_names.push_back(v);
         }
     }
     else
@@ -412,15 +483,15 @@ map<string,State> Dataset::copy_and_make_features(const ArrayXXf& X,
                 X.cols()
                 )
             );
-        feature_names = vn;
+        tmp_feature_names = vn;
     }
 
-    if (ref_dataset.features.size() != feature_names.size())
+    if (ref_dataset.features.size() != tmp_feature_names.size())
         HANDLE_ERROR_THROW(
             fmt::format("Reference dataset with incompatible number of variables: "
             "Reference has {} variable names, but X has {}", 
             ref_dataset.features.size(), 
-            feature_names.size()
+            tmp_feature_names.size()
             )
         );
 
@@ -429,11 +500,14 @@ map<string,State> Dataset::copy_and_make_features(const ArrayXXf& X,
     {
         State tmp = cast_type(
             X.col(i).array(),
-            ref_dataset.features.at(feature_names.at(i))
+            ref_dataset.features.at(tmp_feature_names.at(i))
         );
 
-        tmp_features[feature_names.at(i)] = tmp;
+        tmp_features[tmp_feature_names.at(i)] = tmp;
     }
+
+    // Store the original feature name order
+    this->feature_name_order_ = tmp_feature_names;
 
     return tmp_features;
 };

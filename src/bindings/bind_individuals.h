@@ -47,6 +47,14 @@ void bind_individual(py::module& m, string name)
         .def("fit",
             static_cast<Class &(Class::*)(const Ref<const ArrayXXf> &X, const Ref<const ArrayXf> &y)>(&Class::fit),
             "fit from X,y data")
+        .def("replace_program",
+            static_cast<Class &(Class::*)(const br::Program<PT>&)>(&Class::replace_program),
+            py::arg("new_program"),
+            "Replace the current program with a new program, invalidating fitness")
+        .def("replace_program",
+            static_cast<Class &(Class::*)(const json&)>(&Class::replace_program),
+            py::arg("json_program"),
+            "Replace the current program from a JSON representation, invalidating fitness")
         .def("predict",
             static_cast<RetType (Class::*)(const Dataset &d)>(&Class::predict),
             "predict from Dataset object")

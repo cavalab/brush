@@ -29,7 +29,17 @@ public:
         if (!newNode) // overload to check if newNode == nullopt
             return false;
 
-        // if optional contains a Node, we access its contained value
+        // keeping the weight if it is fixed
+        if (IsWeighable(spot.node->data.node_type) && spot.node->data.weight_is_fixed){
+            // we do not need to check if the new node is also weightable, because
+            // the return type will be equivalent.
+
+            (*newNode).W = spot.node->data.W;
+            (*newNode).set_is_weighted(true);
+            (*newNode).weight_is_fixed=true;
+        }
+
+        // if optional contains a Node, we access its contained value as an address
         program.Tree.replace(spot, *newNode);
 
         return true;
@@ -97,9 +107,26 @@ public:
         if (!n) // there is no operator with compatible arguments
             return false;
 
-        // make node n wrap the subtree at the chosen spot
-        auto parent_node = program.Tree.wrap(spot, *n);
+        // moving the fixed weight to the new inserted node
+        // (this should be done before Tree.wrap, because that function affects the spot reference)
+        if (IsWeighable(spot.node->data.node_type) && spot.node->data.weight_is_fixed){
+            Node& prev_n = spot.node->data;
 
+            // moving the fixed weight to the inserted node (n is the new node).
+            // because n is optional<node>, we need to solve the reference to access the node itself
+            // (it is wrapped in the optional<>)
+            (*n).W = spot.node->data.W;
+            (*n).set_is_weighted(true);
+            (*n).weight_is_fixed=true;
+
+            // toggling off the weight of the previous node
+            prev_n.set_is_weighted(false);
+            prev_n.weight_is_fixed=false;
+        }
+
+        // make node `n` wrap the subtree at the chosen spot
+        auto parent_node = program.Tree.wrap(spot, *n);
+        
         // now fill the arguments of n appropriately
         bool spot_filled = false;
         for (auto a: (*n).arg_types)
@@ -141,6 +168,29 @@ public:
 class DeleteMutation : public MutationBase
 {
 public:
+    template<Brush::ProgramType T>
+    static auto find_spots(Program<T>& program, Variation<T>& variator,
+                            const Parameters& params)
+    {
+        vector<float> weights(program.Tree.size());
+
+        // by default, mutation can happen anywhere, based on node weights
+        std::transform(program.Tree.begin(), program.Tree.end(), weights.begin(),
+                       [&](const auto& n){
+                            // keeping the node if the weight is fixed
+                            if (n.weight_is_fixed){
+                                // we cant delete a node if its weight is fixed. 
+                                // we will let other mutations do their job and avoid deletion.
+                                return 0.0f;
+                            }
+                            
+                            return n.get_prob_change(); // this already checks for node_is_fixed
+                        });
+        
+        // Must have same size as tree, even if all weights <= 0.0
+        return weights;
+    }
+
     template<Brush::ProgramType T>
     static auto mutate(Program<T>& program, Iter spot, Variation<T>& variator,
                     const Parameters& params)
@@ -184,7 +234,8 @@ public:
                                 return 0.0f;
 
                             // only weighted nodes can be toggled off
-                            if (!n.get_is_weighted()
+                            if ((!n.get_is_weighted())
+                            &&  (!n.weight_is_fixed)
                             &&  IsWeighable(n.node_type))
                             {
                                 return n.get_prob_change();
@@ -236,6 +287,7 @@ public:
                             return 0.0f;
                             
                         if (n.get_is_weighted()
+                        &&  (!n.weight_is_fixed)
                         &&  IsWeighable(n.node_type))
                             return n.get_prob_change();
                         else
@@ -329,63 +381,23 @@ public:
         if (!subtree) // there is no terminal with compatible arguments
             return false;
 
+        // keeping the weight if it is fixed.
+        // I need to manipulate spot before Tree.erase_children!
+        if (IsWeighable(spot.node->data.node_type) && spot.node->data.weight_is_fixed){
+            Node& n = subtree.value().begin().node->data;
+
+            // moving the weight and fixing it
+            n.W = spot.node->data.W;
+            n.set_is_weighted(true);
+            n.weight_is_fixed=true;
+        }
+
         // if optional contains a Node, we access its contained value
         program.Tree.erase_children(spot); 
 
         program.Tree.move_ontop(spot, subtree.value().begin());
 
         return true;
-    }
-};
-
-/// @brief Inserts an split node in the `spot`
-/// @param prog the program
-/// @param Tree the program tree
-/// @param spot an iterator to the node that is being mutated
-/// @param SS the search space to generate a compatible subtree
-/// @return boolean indicating the success (true) or fail (false) of the operation
-class SplitMutation : public MutationBase
-{
-public:
-    template<Brush::ProgramType T>
-    static auto find_spots(Program<T>& program, Variation<T>& variator,
-                    const Parameters& params)
-    {
-        vector<float> weights;
-
-        if (program.Tree.size() < params.get_max_size()) {
-            Iter iter = program.Tree.begin();
-            std::transform(program.Tree.begin(), program.Tree.end(), std::back_inserter(weights),
-                        [&](const auto& n){ 
-                            size_t d = 1+program.Tree.depth(iter);
-                            std::advance(iter, 1);
-
-                            // check if SS holds an operator to avoid failing `check` in sample_op_with_arg
-                            if (d >= params.get_max_depth()
-                            ||  variator.search_space.node_map.find(n.ret_type) == variator.search_space.node_map.end()
-                            // ||  check if n.ret_type can be splitted (e.g. DataType::ArrayF)
-                            ) {
-                                return 0.0f;
-                            }
-                            else {
-                                return n.get_prob_change(); 
-                            }
-                        });
-        }
-        else {
-            // fill the vector with zeros, since we're already at max_size
-            weights.resize(program.Tree.size());
-            std::fill(weights.begin(), weights.end(), 0.0f); 
-        }
-        
-        return weights;
-    }
-
-    template<Brush::ProgramType T>
-    static auto mutate(Program<T>& program, Iter spot, Variation<T>& variator,
-                    const Parameters& params)
-    {
-        return false;
     }
 };
 
@@ -432,9 +444,9 @@ std::optional<Individual<T>> Variation<T>::cross(
 
                     std::advance(child_iter, 1);
 
+                    // We don't have to check size here, because it will be replaced
+                    // by something with a valid new size.
                     if (
-                        // We don't have to check size here, because it will be replaced
-                        // by something with a valid new size.
                         // s_at<parameters.max_size &&
                         d_at<parameters.max_depth
                     )
@@ -482,7 +494,10 @@ std::optional<Individual<T>> Variation<T>::cross(
                 std::advance(other_iter, 1);
 
                 // Check feasibility and matching return type
-                if (s <= allowed_size && d <= allowed_depth && n.ret_type == child_ret_type) {
+                if ( (s <= allowed_size)
+                &&   (d <= allowed_depth)
+                &&   (n.ret_type == child_ret_type) // this condition helps making sure the crossover will succeed, and also that we can keep fixed weights
+                ) {
                     return n.get_prob_change();
                 }
 
@@ -494,14 +509,21 @@ std::optional<Individual<T>> Variation<T>::cross(
                                         [](float w) { return w > 0.0f; });
 
         if (matching_spots_found) {
-
             auto other_spot = r.select_randomly(
-                other.Tree.begin(), 
-                other.Tree.end(), 
-                other_weights.begin(), 
-                other_weights.end()
+                other.Tree.begin(), other.Tree.end(), 
+                other_weights.begin(), other_weights.end()
             );
-                 
+            
+            // manipulate before move_ontop (it will mess references)
+            if (IsWeighable(child_spot.node->data.node_type) && child_spot.node->data.weight_is_fixed){
+                Node& n = other_spot.node->data;
+
+                // moving the weight and fixing it
+                n.W = child_spot.node->data.W;
+                n.set_is_weighted(true);
+                n.weight_is_fixed=true;
+            }
+             
             // fmt::print("other_spot : {}\n",other_spot.node->data);
             // swap subtrees at child_spot and other_spot
             child.Tree.move_ontop(child_spot, other_spot);
@@ -639,8 +661,9 @@ std::optional<Individual<T>> Variation<T>::mutate(
             && (child.size()  <= parameters.max_size)
             && (child.depth() <= parameters.max_depth) )
 
+            // TODO: delete 2 commented lines below
             // loose mutation --- it will try its best, but may return something slightly larger.
-            || attempts==3 // this is the final attempt, return whatever we got.
+            // || attempts==3 // this is the final attempt, return whatever we got.
         ){
             Individual<T> ind(child);
 

@@ -233,8 +233,10 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
         {
             // split on first child
             FirstArg split_feature = tn.first_child->fit<FirstArg>(d);
+
             // get the best splitting threshold
-            tie(threshold, ignore) = Split::best_threshold(split_feature, d.y, d.classification);
+            if (!tn.data.weight_is_fixed) // avoid changing fixed weights
+                tie(threshold, ignore) = Split::best_threshold(split_feature, d.y, d.classification);
         }
         else // splitbest
         {
@@ -245,20 +247,26 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
 
                 auto values = d[tn.data.get_feature()];
 
-                // Threshold will be optimized regardless.
-                if (std::holds_alternative<ArrayXf>(values))
-                    tie(threshold, ignore) = Split::best_threshold(std::get<ArrayXf>(values), d.y, d.classification);
-                else if (std::holds_alternative<ArrayXi>(values))
-                    tie(threshold, ignore) = Split::best_threshold(std::get<ArrayXi>(values), d.y, d.classification);
-                else if (std::holds_alternative<ArrayXb>(values))
-                    tie(threshold, ignore) = Split::best_threshold(std::get<ArrayXb>(values), d.y, d.classification);
+                if (!tn.data.weight_is_fixed){
+                    // Threshold will be optimized regardless.
+                    if (std::holds_alternative<ArrayXf>(values))
+                        tie(threshold, ignore) = Split::best_threshold(std::get<ArrayXf>(values), d.y, d.classification);
+                    else if (std::holds_alternative<ArrayXi>(values))
+                        tie(threshold, ignore) = Split::best_threshold(std::get<ArrayXi>(values), d.y, d.classification);
+                    else if (std::holds_alternative<ArrayXb>(values))
+                        tie(threshold, ignore) = Split::best_threshold(std::get<ArrayXb>(values), d.y, d.classification);
+                }
+                
             }
             else // keep_split_feature == false
             {
-                string feature = "";
-                tie(feature, threshold) = Split::get_best_variable_and_threshold(d, tn);
-                tn.data.set_feature(feature);
-                tn.data.set_feature_type(d.get_feature_type(feature));
+                if (!tn.data.weight_is_fixed){
+                    string feature = "";
+                    tie(feature, threshold) = Split::get_best_variable_and_threshold(d, tn);
+    
+                    tn.data.set_feature(feature);
+                    tn.data.set_feature_type(d.get_feature_type(feature));
+                }
             }
         }
 

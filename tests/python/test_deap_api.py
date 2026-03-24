@@ -18,6 +18,7 @@ def brush_args():
         max_size=50, 
         max_depth=6,
         cx_prob= 1/7,
+        # validation_size=0.2,
         num_islands=1,
         mutation_probs = {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6,
                             "toggle_weight_on":1/6, "toggle_weight_off":1/6},
@@ -29,7 +30,7 @@ def DEAP_classification_setup():
     X  = df.drop(columns='target')
     y  = df['target']
 
-    return pybrush.DeapClassifier, X, y
+    return pybrush.deap_api.DeapClassifier, X, y
 
 @pytest.fixture
 def DEAP_multiclass_classification_setup():
@@ -37,7 +38,7 @@ def DEAP_multiclass_classification_setup():
     X  = df.drop(columns='target')
     y  = df['target']
 
-    return pybrush.DeapClassifier, X, y
+    return pybrush.deap_api.DeapClassifier, X, y
 
 @pytest.fixture
 def DEAP_regression_setup():
@@ -45,7 +46,7 @@ def DEAP_regression_setup():
     X  = df.drop(columns='label')
     y  = df['label']
 
-    return pybrush.DeapRegressor, X, y
+    return pybrush.deap_api.DeapRegressor, X, y
 
 
 @pytest.fixture
@@ -92,10 +93,34 @@ def test_fit(setup, algorithm, brush_args, request):
     
     Estimator, X, y = request.getfixturevalue(setup)
 
+    print(X.info())
+
     brush_args["algorithm"] = algorithm
     try:
         est = Estimator(**brush_args)
         est.fit(X, y)
+        
+        # assertion block ------------------------------------------------------
+        data_types = est.data_.get_feature_types()
+        train_types = est.train_.get_feature_types()
+        val_types = est.validation_.get_feature_types()
+        assert data_types == train_types == val_types, \
+            (f"Feature types not replicated among datasets.\n"
+             f"  data_: {data_types}\n"
+             f"  train_: {train_types}\n"
+             f"  validation_: {val_types}")
+        
+        data_names = est.data_.get_feature_names()
+        train_names = est.train_.get_feature_names()
+        val_names = est.validation_.get_feature_names()
+        assert data_names == train_names == val_names, \
+            (f"Feature names not replicated among datasets.\n"
+             f"  data_: {data_names}\n"
+             f"  train_: {train_names}\n"
+             f"  validation_: {val_names}")
+        # assertion block ------------------------------------------------------
+
+        print('best model:', est.best_estimator_.program.get_model())
         
         print('score:',est.score(X,y))
         

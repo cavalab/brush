@@ -56,6 +56,8 @@ class Dataset
     private:
         vector<size_t> training_data_idx;
         vector<size_t> validation_data_idx;
+        /// @brief stores the original feature name order before map sorting
+        vector<string> feature_name_order_;
 
     public:
         /// @brief keeps track of the unique data types in the dataset. 
@@ -65,7 +67,7 @@ class Dataset
         std::vector<DataType> feature_types; 
 
         /// @brief names of the feature types as string representations.
-        std::vector<string> feature_names; // TODO: remove?
+        std::vector<string> feature_names;
 
         /// @brief map from data types to features having that type.
         std::unordered_map<DataType,vector<string>> features_of_type;
@@ -218,6 +220,7 @@ class Dataset
         // if split is not set, then training = validation.
         Dataset get_training_data() const;
         Dataset get_validation_data() const;
+        vector<string> get_feature_types() const;
 
         inline int get_n_samples() const { 
             return std::visit(
@@ -238,8 +241,7 @@ class Dataset
 
             bool has_feature = false;
             for (auto& [ftype, names] : features_of_type){
-                auto it = std::find_if(names.begin(), names.end(),
-                    [&](const auto& name){ return name == name; });
+                auto it = std::find(names.begin(), names.end(), name);
 
                 if (it != names.end())
                 {

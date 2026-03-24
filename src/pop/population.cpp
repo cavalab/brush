@@ -168,7 +168,8 @@ void Population<T>::update(vector<vector<size_t>> survivors)
         new_pop.push_back( *individuals.at(survivors.at(0).at(k)) );
     }
 
-    assert(new_pop.size() == individuals.size() && " migration ended up with a different popsize");
+    // Verify we got the right number of survivors (should equal pop_size, not 2*pop_size)
+    assert(new_pop.size() == pop_size && " number of survivors is different from pop size");
 
     for (int j=0; j<num_islands; ++j)
     {
@@ -244,15 +245,21 @@ vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
 
         for (int i=0; i<indices.size(); ++i)
         {
+            auto& ind_ptr = individuals.at(indices.at(i));
+            
+            // Skip nullptr individuals (offspring slots)
+            if (!ind_ptr)
+                continue;
+                
             // this assumes that rank was previously calculated. It is set in selection (ie nsga2) if the information is useful to select/survive
-            if (individuals.at(indices.at(i))->fitness.rank == rank)
+            if (ind_ptr->fitness.rank == rank)
                 pf.push_back(i);
         }
 
         if (this->linear_complexity)
-            std::sort(pf.begin(),pf.end(),SortLinearComplexity(*this)); 
+            std::stable_sort(pf.begin(),pf.end(),SortLinearComplexity(*this)); 
         else
-            std::sort(pf.begin(),pf.end(),SortComplexity(*this)); 
+            std::stable_sort(pf.begin(),pf.end(),SortComplexity(*this)); 
 
         auto it = std::unique(pf.begin(),pf.end(),SameFitComplexity(*this));
         
@@ -295,9 +302,19 @@ vector<size_t> Population<T>::hall_of_fame(unsigned rank)
         int dcount = 0;
     
         auto p = individuals.at(merged_islands[i]);
+        
+        // Skip nullptr individuals
+        if (!p)
+            continue;
 
         for (int j = 0; j < merged_islands.size(); ++j) {
-            const Individual<T>& q = (*individuals.at(merged_islands[j]));
+            auto q_ptr = individuals.at(merged_islands[j]);
+            
+            // Skip nullptr individuals
+            if (!q_ptr)
+                continue;
+                
+            const Individual<T>& q = *q_ptr;
         
             int compare = p->fitness.dominates(q.fitness);
             if (compare == -1) { // q dominates p
@@ -312,9 +329,9 @@ vector<size_t> Population<T>::hall_of_fame(unsigned rank)
     }
 
     if (this->linear_complexity)
-        std::sort(hof.begin(),hof.end(),SortLinearComplexity(*this)); 
+        std::stable_sort(hof.begin(),hof.end(),SortLinearComplexity(*this)); 
     else
-        std::sort(hof.begin(),hof.end(),SortComplexity(*this)); 
+        std::stable_sort(hof.begin(),hof.end(),SortComplexity(*this)); 
         
     auto it = std::unique(hof.begin(),hof.end(),SameFitComplexity(*this));
     
@@ -383,8 +400,13 @@ void Population<T>::migrate()
     for (int j=0; j<num_islands; ++j)
     {
         for (int k=0; k<new_island_indexes.at(j).size(); ++k){
-            new_pop.push_back(
-                *individuals.at(new_island_indexes.at(j).at(k)) );
+            auto& ind_ptr = individuals.at(new_island_indexes.at(j).at(k));
+            
+            // Skip nullptr individuals (should not happen in migrate, but be safe)
+            if (!ind_ptr)
+                continue;
+                
+            new_pop.push_back(*ind_ptr);
         }
 
         // need to make island point to original range

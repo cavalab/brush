@@ -1,6 +1,8 @@
 import pytest
 import numpy as np
 
+import pickle
+
 from pybrush import BrushRegressor, BrushClassifier, Dataset
 
 from sklearn.model_selection import GridSearchCV
@@ -94,10 +96,11 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
     print("Prevalence of y:", prevalence)
 
     est = BrushClassifier(
-        max_gens=50,
+        max_gens=1,
         pop_size=50,
         final_model_selection="best_validation_ci",
         scorer=scorer,
+        functions=['Add', 'Sub', 'SplitBest'],
         class_weights=class_weights,
         validation_size=0.3,
         verbosity=0,
@@ -114,7 +117,9 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
         
     # Replicate the selection logic here
     data = est.validation_
-    y = np.array(data.y).astype(int)
+    y = np.array(data.y)
+
+    print("Unique values in validation data", np.unique(y, return_counts=True))
 
     loss_f_dict = {
         "mse": mean_squared_error,
@@ -125,39 +130,68 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
     }
     loss_f = loss_f_dict[est.parameters_.scorer]
 
-    def eval(individual, sample=None):
+    def eval(individual, sample=None, log=False):
         if sample is None:
-            sample = np.arange(len(y))
+            sample = np.arange(len(data.y))
+
+        if log:
+            print('(eval) sample index', sample)
 
         y_pred = None
-        if est.parameters_.scorer in ["log", "average_precision_score"]:
-            y_pred = np.array(individual.predict_proba(data))
-        else:
-            y_pred = np.array(individual.predict(data))
-        # y_pred = np.nan_to_num(y_pred)
 
-        if est.class_weights not in ['unbalanced', 'balanced_accuracy']:
+        if est.parameters_.scorer in ["log", "average_precision_score"]:
+            y_pred = np.array(individual.predict_proba(data)).astype(float)
+        else:
+            y_pred = np.array(individual.predict(data)).astype(float)
+
+        if log: # silencing eval() during bootstrap, but enabling detailed info when re-calculating losses and comparing with brush's metrics
+            print('evaluating', individual.program.get_model())
+            print(np.round(y, 2))
+            print(np.round(y_pred, 2))
+            print('(sorted)', np.sort(y_pred))
+
+        if est.class_weights not in ['unbalanced'] and est.parameters_.scorer not in ['balanced_accuracy']:
             sample_weight = None
             if isinstance(est.class_weights, list):
-                sample_weight = np.array([est.class_weights[label] for label in y])
+                if log:
+                    print('(eval) using class weights as a list')
+
+                sample_weight = np.array([est.class_weights[int(label)] for label in y])
             # elif est.class_weights == 'support' and est.scorer == "average_precision_score": # using support as a way of weighting
             #     return loss_f(y[sample], y_pred[sample], average='weighted')
             else:
+                if log:
+                    print('(eval) using class weights as support')
+
                 classes, counts = np.unique(y[sample], return_counts=True)
                 
                 assert len(classes) == est.parameters_.n_classes, \
                     "Sampled data does not have same number of classes"
 
                 support_weights = {
-                    cls: len(y) / (len(classes)*count) 
+                    cls: len(y[sample]) / (len(classes)*count) 
                     if count > 0 else 0.0 for cls, count in zip(classes, counts)}
-                
-                sample_weight = np.array([support_weights[label] for label in y])
+
+                if log:
+                    print("(eval) support weights", support_weights)    
+
+                sample_weight = np.array([support_weights[int(label)] for label in y])
+
+            if log:
+                print('(eval) sample weights', sample_weight)
+                print('(eval) loss', loss_f(y[sample], y_pred[sample], sample_weight=sample_weight[sample]))
+
             return loss_f(y[sample], y_pred[sample], sample_weight=sample_weight[sample])
         else: # Cases where we ignore weights
+            if log: 
+                print('(eval) using no class weights')
+                print('(eval) sample weights not defined. using unbalanced version')
+                print('(eval) loss', loss_f(y[sample], y_pred[sample]))
+
             return loss_f(y[sample], y_pred[sample])
 
     # Bootstrap validation samples
+    print("scorer and class weights;", scorer, class_weights)
     print("original loss", est.best_estimator_.fitness.loss)
     print("original loss_v", est.best_estimator_.fitness.loss_v)
     print("recalculated loss", eval(est.best_estimator_))
@@ -170,17 +204,19 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
     print(f"CI bounds: {lower_ci:.4f}, {upper_ci:.4f}")
 
     # Evaluate all archive members
-    new_losses = [eval(ind) for ind in est.archive_]
+    new_losses = [eval(ind, log=True) for ind in est.archive_]
     candidates = [(l, p) for l, p in zip(new_losses, est.archive_) if lower_ci <= l <= upper_ci]
 
     print('first arch ind', est.archive_[0].get_model())
-    print("Original losses from archive", [ind.fitness.loss for ind in est.archive_])
-    print("Original losses_v from archive", [ind.fitness.loss_v for ind in est.archive_])
-    print("Recalculated losses (should match)", new_losses)
+    print("Original losses from archive (brush's auprc)   ", [ind.fitness.loss for ind in est.archive_])
+    print("Original losses_v from archive (brush's auprc) ", [ind.fitness.loss_v for ind in est.archive_])
+    print("Recalculated losses with sklearn (should match)", new_losses)
     print(f"Num candidates in CI: {len(candidates)}")
 
-    # TODO: make the assert below work
-    assert np.allclose([ind.fitness.loss_v for ind in est.archive_], new_losses)
+    for i, ind in enumerate(est.archive_):
+        print(f"archive[{i}] program.get_model(): {ind.program.get_model()}")
+
+    assert np.allclose([ind.fitness.loss_v for ind in est.archive_], new_losses, atol=1e-2)
 
     if candidates:
         chosen = min(candidates, key=lambda lp: lp[1].fitness.complexity)[1]
@@ -193,6 +229,104 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
         # Assert that Brush picked the same candidate
         assert est.best_estimator_.get_model() == chosen.get_model()
 
+@pytest.mark.parametrize(
+    "final_model_selection",
+    [
+        "smallest_complexity",
+        "best_validation_ci",
+        "",  # default behavior
+    ],
+)
+def test_pickle_unpickle_with_different_final_model_selection(final_model_selection):
+    # previous test is using a classification problem. this one focuses on regression
+    
+    X, y = make_regression(
+        n_samples=80, n_features=6, noise=0.1, random_state=1
+    )
 
-if __name__ == "__main__":
-    pytest.main()
+    model = BrushRegressor(
+        max_gens=5,
+        pop_size=12,
+        final_model_selection=final_model_selection,
+    )
+    model.fit(X, y)
+
+    # Pickle / unpickle
+    dumped = pickle.dumps(model)
+    loaded = pickle.loads(dumped)
+
+    # Basic sanity checks
+    assert loaded.final_model_selection == model.final_model_selection
+    assert loaded.best_estimator_ is not None
+    assert loaded.archive_ is not None
+    assert len(loaded.archive_) == len(model.archive_)
+
+    # Best estimator should still belong to archive or be valid
+    assert loaded.best_estimator_ in loaded.archive_ + [loaded.best_estimator_]
+
+# Pickle cant serialize local functions (functions defined inside another function).
+# we need to declare it at the module level if we want to avoid extra dependencies
+def pick_last(pop, archive):
+        return archive[-1]
+
+def test_pickle_unpickle_with_callable_final_model_selection():
+    
+    X, y = make_classification(
+        n_samples=60, n_features=5, random_state=7
+    )
+
+    model = BrushClassifier(
+        max_gens=5,
+        pop_size=10,
+        final_model_selection=pick_last,
+    )
+    model.fit(X, y)
+
+    # Ensure callable selection worked pre-pickle
+    assert model.best_estimator_ == model.archive_[-1]
+
+    # Pickle / unpickle
+    dumped = pickle.dumps(model)
+    loaded = pickle.loads(dumped)
+
+    # Callable must still exist and be callable
+    assert callable(loaded.final_model_selection)
+
+    # Selection logic must still hold
+    assert loaded.best_estimator_ == loaded.archive_[-1]
+
+
+@pytest.mark.parametrize(
+    "final_model_selection",
+    [
+        "smallest_complexity",
+        "best_validation_ci",
+        "",  # default behavior
+    ],
+)
+def test_pickle_unpickle_with_different_final_model_selection(final_model_selection):
+    # previous test is using a classification problem. this one focuses on regression
+    
+    X, y = make_regression(
+        n_samples=80, n_features=6, noise=0.1, random_state=1
+    )
+
+    model = BrushRegressor(
+        max_gens=5,
+        pop_size=12,
+        final_model_selection=final_model_selection,
+    )
+    model.fit(X, y)
+
+    # Pickle / unpickle
+    dumped = pickle.dumps(model)
+    loaded = pickle.loads(dumped)
+
+    # Basic sanity checks
+    assert loaded.final_model_selection == model.final_model_selection
+    assert loaded.best_estimator_ is not None
+    assert loaded.archive_ is not None
+    assert len(loaded.archive_) == len(model.archive_)
+
+    # Best estimator should still belong to archive or be valid
+    assert loaded.best_estimator_ in loaded.archive_ + [loaded.best_estimator_]

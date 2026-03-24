@@ -123,7 +123,7 @@ public:
     void set_population(vector<Individual<T>> pop_vector);
 
     // locking and unlocking parts of the solutions
-    void lock_nodes(int end_depth=0, bool keep_leaves_unlocked=true);
+    void lock_nodes(int end_depth=0, bool keep_leaves_unlocked=true, bool keep_current_weights=false);
 
     // TODO: predict/predict_proba/archive with longitudinal data
 

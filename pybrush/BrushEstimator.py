@@ -86,7 +86,12 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
                         "Unsupported data type. Please try using an "
                         "encoding method to convert the data to a supported "
                         "format.")
+        else:
+            # For numpy arrays, generate feature names in the correct order
+            # BEFORE creating the Dataset, so we maintain the column order
+            self.feature_names_ = [f"x_{i}" for i in range(X.shape[1])]
 
+        # Beyong this point, X is not a dataframe anymore
         X, y = check_X_y(X, y)
 
         self.data_ = self._make_data(X, y, 
@@ -94,6 +99,12 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
                                      feature_types=self.feature_types_,
                                      validation_size=self.validation_size,
                                      shuffle_split=self.shuffle_split)
+        
+        # Get feature_types from the dataset if we didn't have them (numpy array case)
+        # but DON'T overwrite feature_names_ because the dataset may return them
+        # in alphabetical order due to std::map sorting!
+        if not self.feature_types_: # if it is not a pandas dataframe, then feature_types will be empty
+            self.feature_types_ = self.data_.get_feature_types()
 
         # These have a default behavior to return something meaningfull if 
         # no values are set
@@ -107,6 +118,7 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
                                          self.parameters_.functions,
                                          self.parameters_.weights_init)
                 
+        # Creating a new brush engine
         self.engine_ = None
         if self.mode == 'classification':
             self.engine_ = ( ClassifierEngine
@@ -133,7 +145,8 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         return self
     
-    def partial_fit(self, X, y, lock_nodes_depth=0, keep_leaves_unlocked=True):
+    def partial_fit(self, X, y, *, 
+                    lock_nodes_depth=0, keep_leaves_unlocked=True, keep_current_weights=False):
         """
         Fit an estimator to X,y, without reseting the estimator.
 
@@ -147,6 +160,9 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
             The depth of the tree to lock. Default is 0.
         keep_leaves_unlocked : bool, optional
             Whether to skip leaves when locking nodes. Default is True.
+        keep_current_weights : bool, optional
+            Whether to keep current weights at the spot they appear, and preventing 
+            them to be changed during optimization. Default is False.
         """
 
         if isinstance(X, pd.DataFrame):
@@ -172,9 +188,17 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         # This updates the parameters (such as class weights)
         self.engine_.params = new_parameters
         
-        self.engine_.lock_nodes(lock_nodes_depth, keep_leaves_unlocked)
+        # replicating the best individual
+        self.engine_.set_population([self.best_estimator_ for _ in range(self.pop_size)])
+
+        self.engine_.lock_nodes(lock_nodes_depth, keep_leaves_unlocked, keep_current_weights)
         self.engine_.fit(new_data)
-        self.engine_.lock_nodes(0, False) # unlocking everything
+        # self.engine_.lock_nodes(0, False, False) # unlocking everything
+
+        # getting a new reference to the search space (it is not serialized, so 
+        # this ensures that loading a model with pickle and calling either fit()
+        # or partial_fit() will restore the search space reference)
+        self.search_space_ = self.engine_.search_space
 
         self.archive_ = self.engine_.get_archive()
         self.population_ = self.engine_.get_population()
@@ -225,6 +249,8 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         if data is None:
             data = self.validation_ #.get_validation_data()
 
+        y = np.array(data.y)
+
         candidate = None
         if self.final_model_selection == "smallest_complexity":
             candidates = [p for p in self.archive_ if p.fitness.size > 1 + (4 if self.mode == 'classification' else 0)]
@@ -244,48 +270,50 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
             }
             loss_f = loss_f_dict[self.parameters_.scorer]
 
-            def eval(ind, data, sample=None):
+            def eval(ind, sample=None):
                 if sample is None:
-                    sample = np.arange(len(data.y))
+                    sample = np.arange(len(y))
 
                 if self.parameters_.scorer in ["log", "average_precision_score"]:
                     y_pred = np.array(ind.predict_proba(data))
                 else: # accuracy, balanced accuracy, or regression metrics
                     y_pred = np.array(ind.predict(data))
 
-                y_pred = np.nan_to_num(y_pred) # Protecting the evaluation
+                # y_pred = np.nan_to_num(y_pred) # Protecting the evaluation
 
                 # if user_defined, sample_weight is given by his custom weights. if
                 # support, I calculate it here. otherwise, no weight is used
-                if self.class_weights not in ['unbalanced', 'balanced_accuracy']:
+                if self.mode == 'classification' \
+                and (self.class_weights not in ['unbalanced'] and self.parameters_.scorer not in ['balanced_accuracy']):
                     sample_weight = []
                     if isinstance(self.class_weights, list): # using user-defined values
-                        sample_weight = [self.class_weights[int(label)] for label in data.y]
+                        sample_weight = [self.class_weights[int(label)] for label in y]
                     else: # support
                         # Calculate class weights by support
-                        classes, counts = np.unique(data.y, return_counts=True)
+                        classes, counts = np.unique(y[sample], return_counts=True)
         
                         support_weights = {
-                            int(cls): len(data.y) / (len(classes)*count) 
+                            int(cls): len(y[sample]) / (len(classes)*count) 
                             if count > 0 else 0.0 for cls, count in zip(classes, counts)}
                         
-                        sample_weight = [support_weights[int(label)] for label in data.y]
+                        # classes and support weights are calculated with y[sample].
+                        # sample_weight will be indexed in the function call, so we use raw y.
+                        sample_weight = [support_weights[int(label)] for label in y]
                     sample_weight = np.array(sample_weight)
                     return loss_f(y[sample], y_pred[sample], sample_weight=sample_weight[sample])
                 else: # unbalanced metrics, ignoring weights
                     return loss_f(y[sample], y_pred[sample])
 
-            y = np.array(data.y)
             np.random.seed(0)
             val_samples = []
             for i in range(100):
                 sample = np.random.randint(0, len(y), size=len(y))
-                val_samples.append( eval(self.best_estimator_, data, sample) )
+                val_samples.append( eval(self.best_estimator_, sample) )
 
             lower_ci, upper_ci = np.quantile(val_samples,0.05), np.quantile(val_samples,0.95)
 
             # Recalculate metric with new data
-            new_losses = [eval(ind, data) for ind in self.archive_]
+            new_losses = [eval(ind) for ind in self.archive_]
 
             # Filter for overlapping points. Adding the best estimator to assert there is at least one sample
             candidates = [(l, p) for l, p in zip(new_losses, self.archive_) if lower_ci <= l <= upper_ci]

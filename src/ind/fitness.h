@@ -51,10 +51,10 @@ struct Fitness {
 
     // store the values and weights for the objectives
     vector<float> values;
-    vector<float> weights;
+    vector<float> weights = {};
 
     // weighted values
-    vector<float> wvalues;
+    vector<float> wvalues = {};
 
     void set_dominated(vector<unsigned int>& dom){ dominated=dom; };
     vector<unsigned int> get_dominated() const { return dominated; };

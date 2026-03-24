@@ -48,6 +48,9 @@ public:
     bool constants_simplification=true;
     bool inexact_simplification=true;
 
+    // population initialization
+    bool start_from_decision_trees=false;
+
     // variation
     std::map<std::string, float> mutation_probs = {
         {"point", 0.167},
@@ -244,6 +247,9 @@ public:
     string get_class_weights_type(){ return class_weights_type; };
     void set_class_weights_type(string cwt){ class_weights_type = cwt; };
 
+    bool get_start_from_decision_trees(){ return start_from_decision_trees; };
+    void set_start_from_decision_trees(bool start_dt){ start_from_decision_trees = start_dt; };
+
     void set_validation_size(float s){ validation_size = s; };
     float get_validation_size(){ return validation_size; };
 
@@ -301,6 +307,8 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Parameters,
 
     classification,
     n_classes,
+
+    start_from_decision_trees,
 
     shuffle_split,
     validation_size,

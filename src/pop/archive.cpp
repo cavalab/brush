@@ -90,7 +90,9 @@ void Archive<T>::init(Population<T>& pop)
     vector<vector<int>> front = selector.fast_nds(pop, indices); 
     for (const auto& i : front[0])
     {
-        individuals.push_back( *pop.individuals.at(i) );
+        auto& ind_ptr = pop.individuals.at(i);
+        if (ind_ptr)  // Skip nullptr
+            individuals.push_back( *ind_ptr );
     }
 
     /* vector<size_t> front = this->sorted_front(); */
@@ -99,7 +101,13 @@ void Archive<T>::init(Population<T>& pop)
 
         for (unsigned i = 0; i<indices.size(); ++i)
         {
-            const auto& t = *pop.individuals.at(indices.at(i));
+            const auto& ind_ptr = pop.individuals.at(indices.at(i));
+            
+            // Skip nullptr individuals (offspring slots not yet filled)
+            if (!ind_ptr)
+                continue;
+                
+            const auto& t = *ind_ptr;
 
             if (t.fitness.rank ==1){
                 // we can store a reference for the original ind, since
@@ -112,12 +120,12 @@ void Archive<T>::init(Population<T>& pop)
     }
     if (this->sort_complexity) {
         if (this->linear_complexity)
-            std::sort(individuals.begin(), individuals.end(), &sortLinearComplexity); 
+            std::stable_sort(individuals.begin(), individuals.end(), &sortLinearComplexity); 
         else
-            std::sort(individuals.begin(), individuals.end(), &sortComplexity);
+            std::stable_sort(individuals.begin(), individuals.end(), &sortComplexity);
     }
     else
-        std::sort(individuals.begin(),individuals.end(), &sortObj1); 
+        std::stable_sort(individuals.begin(),individuals.end(), &sortObj1); 
 
 }
 
@@ -141,12 +149,12 @@ void Archive<T>::update(Population<T>& pop, const Parameters& params)
 
     if (this->sort_complexity) {
         if (this->linear_complexity)
-            std::sort(individuals.begin(), individuals.end(), &sortLinearComplexity); 
+            std::stable_sort(individuals.begin(), individuals.end(), &sortLinearComplexity); 
         else
-            std::sort(individuals.begin(), individuals.end(), &sortComplexity);
+            std::stable_sort(individuals.begin(), individuals.end(), &sortComplexity);
     }
     else {
-        std::sort(individuals.begin(), individuals.end(), &sortObj1); 
+        std::stable_sort(individuals.begin(), individuals.end(), &sortObj1); 
     }
     
     /* auto it = std::unique(individuals.begin(),individuals.end(), &sameFitComplexity); */

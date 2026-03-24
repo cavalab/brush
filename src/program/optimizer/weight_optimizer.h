@@ -135,7 +135,17 @@ struct WeightOptimizer
         //     init_weights, 
         //     parameters
         // );
-        if (solver.summary.final_cost < solver.summary.initial_cost)
+        
+        // Validate optimizer results before applying
+        bool costs_valid = !std::isnan(solver.summary.final_cost) && 
+                          !std::isinf(solver.summary.final_cost) &&
+                          !std::isnan(solver.summary.initial_cost) && 
+                          !std::isinf(solver.summary.initial_cost);
+        
+        bool weights_valid = parameters.allFinite();
+        
+        if (costs_valid && weights_valid && 
+            solver.summary.final_cost < solver.summary.initial_cost)
         {
             program.set_weights(parameters);
         }

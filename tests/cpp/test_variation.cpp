@@ -51,7 +51,7 @@ TEST(Variation, FixedRootDoesntChange)
                 ASSERT_TRUE(root.ret_type == DataType::ArrayF);
                 ASSERT_TRUE(root.sig_hash == logistic_hash);
                 ASSERT_TRUE(root.get_prob_change()==0.0);
-                ASSERT_TRUE(root.fixed==true);
+                ASSERT_TRUE(root.node_is_fixed==true);
 
                 Individual<PT::BinaryClassifier> IND(PRG);
                 auto opt_mutation = variator.mutate(IND);
@@ -69,7 +69,7 @@ TEST(Variation, FixedRootDoesntChange)
                     ASSERT_TRUE(mut_child_root.ret_type == DataType::ArrayF);
                     ASSERT_TRUE(mut_child_root.sig_hash == logistic_hash);
                     ASSERT_TRUE(mut_child_root.get_prob_change()==0.0);
-                    ASSERT_TRUE(mut_child_root.fixed==true);
+                    ASSERT_TRUE(mut_child_root.node_is_fixed==true);
                 }
 
                 ClassifierProgram PRG2 = SS.make_classifier(0, 0, params);
@@ -90,7 +90,7 @@ TEST(Variation, FixedRootDoesntChange)
                     ASSERT_TRUE(cx_child_root.ret_type == DataType::ArrayF);
                     ASSERT_TRUE(cx_child_root.sig_hash == logistic_hash);
                     ASSERT_TRUE(cx_child_root.get_prob_change()==0.0);
-                    ASSERT_TRUE(cx_child_root.fixed==true);
+                    ASSERT_TRUE(cx_child_root.node_is_fixed==true);
                 }
 
                 // root remained unchanged
@@ -98,7 +98,7 @@ TEST(Variation, FixedRootDoesntChange)
                 ASSERT_TRUE(root.ret_type == DataType::ArrayF);
                 ASSERT_TRUE(root.sig_hash == logistic_hash);
                 ASSERT_TRUE(root.get_prob_change()==0.0);
-                ASSERT_TRUE(root.fixed==true);
+                ASSERT_TRUE(root.node_is_fixed==true);
             }
             ASSERT_TRUE(successes > 0);
         }

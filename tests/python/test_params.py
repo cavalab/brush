@@ -7,44 +7,59 @@ from multiprocessing import Pool
 import numpy as np
 
 
-# TODO; get this to work again
-# def test_param_random_state():
-#     # Check if make_regressor, mutation and crossover will create the same expressions
-#     test_y = np.array( [1. , 0. , 1.4, 1. , 0. , 1. , 1. , 0. , 0. , 0.  ])
-#     test_X = np.array([[1.1, 2.0, 3.0, 4.0, 5.0, 6.5, 7.0, 8.0, 9.0, 10.0],
-#                        [2.0, 1.2, 6.0, 4.0, 5.0, 8.0, 7.0, 5.0, 9.0, 10.0]]).T
+def test_param_random_state():
+    """Test that random_state produces deterministic results."""
+    test_y = np.array([1., 0., 1.4, 1., 0., 1., 1., 0., 0., 0.])
+    test_X = np.array([[1.1, 2.0, 3.0, 4.0, 5.0, 6.5, 7.0, 8.0, 9.0, 10.0],
+                       [2.0, 1.2, 6.0, 4.0, 5.0, 8.0, 7.0, 5.0, 9.0, 10.0]]).T
     
-#     data = _brush.Dataset(test_X, test_y)
-#     SS   = _brush.SearchSpace(data)
+    # First run with random_state=123
+    reg1 = BrushRegressor(
+        random_state=123,
+        max_gens=50,
+        pop_size=10,
+        num_islands=4,
+        verbosity=0
+    ).fit(test_X, test_y)
     
-#     _brush.set_random_state(123)
-
-#     first_run = []
-#     for d in range(1,4):
-#         for s in range(1,20):
-#             prg = SS.make_regressor(d, s)
-#             prg, _ = prg.mutate()
-            
-#             if prg != None: prg, _ = prg.cross(prg)    
-#             if prg != None: first_run.append(prg.get_model())
+    first_run_models = [ind.program.get_model() for ind in reg1.population_]
+    first_run_best = reg1.best_estimator_.program.get_model()
+    first_run_fitness = reg1.best_estimator_.fitness.values
     
-#     assert len(first_run) > 0, "either mutation or crossover is always failing"
-
-#     _brush.set_random_state(123)
-
-#     second_run = []
-#     for d in range(1,4):
-#         for s in range(1,20):
-#             prg = SS.make_regressor(d, s)
-#             prg, _ = prg.mutate()
-
-#             if prg != None: prg, _ = prg.cross(prg)
-#             if prg != None: second_run.append(prg.get_model())
-        
-#     assert len(second_run) > 0, "either mutation or crossover is always failing"
-
-#     for fr, sr in zip(first_run, second_run):
-#         assert fr==sr,  "random state failed to generate same expressions"
+    assert len(first_run_models) > 0, "First run produced no individuals"
+    
+    # Second run with same random_state=123
+    reg2 = BrushRegressor(
+        random_state=123,
+        max_gens=50,
+        pop_size=10,
+        num_islands=4,
+        verbosity=0
+    ).fit(test_X, test_y)
+    
+    second_run_models = [ind.program.get_model() for ind in reg2.population_]
+    second_run_best = reg2.best_estimator_.program.get_model()
+    second_run_fitness = reg2.best_estimator_.fitness.values
+    
+    assert len(second_run_models) > 0, "Second run produced no individuals"
+    
+    # Check that populations match
+    assert len(first_run_models) == len(second_run_models), \
+        f"Population sizes differ: {len(first_run_models)} vs {len(second_run_models)}"
+    
+    for i, (fr, sr) in enumerate(zip(first_run_models, second_run_models)):
+        print(f"{i}-th individual: {fr} vs {sr}")
+        assert fr == sr, f"Individual {i} differs: '{fr}' vs '{sr}'"
+    
+    # Check that best individuals match
+    assert first_run_best == second_run_best, \
+        f"Best models differ: '{first_run_best}' vs '{second_run_best}'"
+    
+    assert np.allclose(first_run_fitness, second_run_fitness), \
+        f"Best fitness values differ: {first_run_fitness} vs {second_run_fitness}"
+    
+    print(f"Best model: {first_run_best}")
+    print(f"Best fitness: {first_run_fitness}")
 
 
 # def _change_and_wait(config):
@@ -103,7 +118,7 @@ def test_max_gens():
     
     for max_gen in [0, 1, 10]:
         print(f"Testing with max_gen={max_gen}")
-        reg = BrushRegressor(max_gens=max_gen, verbosity=0).fit(X, y)
+        reg = BrushRegressor(max_gens=max_gen, pop_size=10, verbosity=0).fit(X, y)
 
         predictions = reg.predict(X)
         assert predictions is not None, "Prediction failed"
@@ -154,3 +169,131 @@ def test_class_weights():
     print(f"Best individual program: {clf.best_estimator_.program.get_model()}")
     print(f"Best individual fitness: {clf.best_estimator_.fitness}")
     print(f"Best individual score (acc): {clf.score(X, y)}")
+
+
+def _collect_models_from_estimator(estimator):
+    return [ind.program.get_model() for ind in estimator.population_]
+
+
+def _has_split_node_in_models(models):
+    for m in models:
+        if "If" in m:
+            return True
+    return False
+
+
+def test_population_split_nodes_start_from_decision_trees_on_and_off():
+    y = np.array([0, 1, 0, 1, 0, 1, 0, 1, 0, 1])
+
+    # multiply by a float so X is filled with float values
+    X = np.vstack([np.linspace(0, 1, 10), np.linspace(1, 2, 10)]).T* np.e
+
+    for start_trees in (True, False):
+        print(f"\nTesting start_from_decision_trees={start_trees}")
+
+        # create a very small run (1 generation, small pop) so splits dont get lost completely
+        reg = BrushRegressor(
+            max_gens=0,
+            pop_size=10,
+            start_from_decision_trees=start_trees,
+            verbosity=2,
+        ).fit(X, y)
+
+        models = _collect_models_from_estimator(reg)
+        print(f"Collected {len(models)} model(s) for start_from_decision_trees={start_trees}")
+        for i, m in enumerate(models):
+            print(f"Individual {i}: {m}")
+
+        # If starting from decision trees we expect at least one split-like node
+        if start_trees:
+            assert _has_split_node_in_models(models), (
+                "Expected at least one individual to contain a split node when "
+                "start_from_decision_trees=True"
+            )
+        else:
+            # When not starting from trees it's acceptable not to have split nodes,
+            # but we still ensure we collected at least one model string.
+            assert len(models) > 0, "No individuals were collected from the population"
+
+
+def test_population_split_nodes_with_and_without_SplitOn_function():
+    y = np.array([1, 1, 0, 0, 1, 0, 1, 0, 1, 0])
+
+    # multiply by a float so X is filled with float values
+    X = np.vstack([np.arange(10), np.arange(10)[::-1]]).T * np.e
+
+    configs = [
+        ("with_Splits", ["SplitOn", "SplitBest", "Add", "Mul"]),
+        ("without_Splits", ["Add", "Mul", "Logistic"]),
+    ]
+
+    for name, functions in configs:
+        print(f"\nTesting functions config: {name} -> {functions}")
+        clf = BrushClassifier(
+            max_gens=0,
+            pop_size=10,
+            functions=functions,
+            start_from_decision_trees=True,
+            verbosity=2,
+            validation_size=0,
+        ).fit(X, y)
+
+        models = _collect_models_from_estimator(clf)
+
+        print(f"Collected {len(models)} model(s) for config {name}")
+        for i, m in enumerate(models):
+            print(f"Individual {i}: {m}")
+
+        if "SplitOn" in functions or "SplitBest" in functions:
+            assert _has_split_node_in_models(models), (
+                f"Expected split nodes present when 'SplitOn' or 'SplitBest', is in functions ({functions})"
+            )
+        else:
+            # If SplitOn not provided, ensure at least population exists but do not require splits
+            assert len(models) > 0, f"No individuals collected for config {name}"
+
+
+@pytest.mark.parametrize("scorer, expected_weights", [
+    # Second objective is always minimization for these test cases
+    ("mse",              [-1.0, -1.0]),                    # lower is better
+    ("accuracy",         [+1.0, -1.0]),                  # higher is better
+    ("balanced_accuracy", [+1.0, -1.0]),         # higher is better
+    ("log",               [-1.0, -1.0]),                      # lower is better
+    ("average_precision_score", [+1.0, -1.0]),         # higher is better
+])
+def test_fitness_weights_match_scorer_sign(scorer, expected_weights):
+    """Ensure fitness.weights has correct sign according to the scorer function,
+    both at estimator and individual (population) level.
+    """
+
+    # simple toy dataset
+    X = np.array([[1.2, 2.0], [2.0, 3.5], [3.0, 4.0], [4.0, 5.0]])
+    y_reg = np.array([1.0, 2.0, 3.0, 4.0])
+    y_clf = np.array([0, 1, 0, 1])
+
+    # Choose estimator type based on scorer
+    # (by default objectives are ["scorer", "linear_complexity"])
+    if scorer in ("mse"):
+        est = BrushRegressor(scorer=scorer, pop_size=20, max_gens=10, verbosity=0)
+        est.fit(X, y_reg)
+    else:
+        est = BrushClassifier(scorer=scorer, pop_size=20, max_gens=10, verbosity=0)
+        est.fit(X, y_clf)
+
+    # Check estimator-level weights
+    print(f"\nTesting scorer={scorer}")
+    print(f"Estimator fitness.weights={est.best_estimator_.fitness.weights}")
+    assert np.allclose(est.best_estimator_.fitness.weights, expected_weights), (
+        f"For scorer={scorer}, expected fitness.weights={expected_weights}, "
+        f"but got {est.best_estimator_.fitness.weights}"
+    )
+
+    # Check that every individual in the population follows the same sign convention
+    for i, ind in enumerate(est.population_):
+        print(f"Individual {i} fitness.weights={ind.fitness.weights}")
+
+        assert hasattr(ind, "fitness"), f"Individual {i} has no fitness attribute"
+        assert np.isclose(ind.fitness.weights[0], expected_weights[0]), (
+            f"For scorer={scorer}, individual {i} has fitness.weights[0]={ind.fitness.weights[0]}, "
+            f"expected {expected_weights[0]}"
+        )

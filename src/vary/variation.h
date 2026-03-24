@@ -152,19 +152,22 @@ public:
         }
 
         // ensuring all terminals exists as a simplification option
-        inexact_simplifier.init(256, data, 1);
-        for (const auto& entry : this->search_space.terminal_weights) {
-            map<string, float> terminal_probs;
-            for (int i = 0; i < entry.second.size(); i++)
-                if (entry.second[i] > 0.0)
-                {
-                    Node node = search_space.terminal_map.at(entry.first).at(i);
+        // Only initialize simplification tables if inexact_simplification is enabled
+        if (parameters.inexact_simplification) {
+            inexact_simplifier.init(256, data, 1);
+            for (const auto& entry : this->search_space.terminal_weights) {
+                map<string, float> terminal_probs;
+                for (int i = 0; i < entry.second.size(); i++)
+                    if (entry.second[i] > 0.0)
+                    {
+                        Node node = search_space.terminal_map.at(entry.first).at(i);
 
-                    tree<Node> dummy_tree;
-                    dummy_tree.insert(dummy_tree.begin(), node);
-                    auto it = dummy_tree.begin();
-                    inexact_simplifier.index<T>(it, data.get_training_data());                    
-                }
+                        tree<Node> dummy_tree;
+                        dummy_tree.insert(dummy_tree.begin(), node);
+                        auto it = dummy_tree.begin();
+                        inexact_simplifier.index<T>(it, data.get_training_data());                    
+                    }
+            }
         }
     };
 
@@ -229,7 +232,6 @@ public:
         {
             if (pop.individuals.at(indices.at(i)) != nullptr)
             {
-
                 continue; // skipping if it is an individual --- we just want to fill invalid positions
             }
 
@@ -258,16 +260,15 @@ public:
             {
                 // Notice that if everything is locked then the entire population
                 // may be replaced (if the new random individuals dominates the old
-                // fixed ones)
+                // fixed ones). below we force to repeat individuals
                 ind = Individual<T>();
-                ind.variation = "born";
-
                 ind.init(search_space, parameters);
 
                 // Alternative: keep it as it is, and just re-fit the constants
                 // (comment out just the line below to disable, but keep ind.init)
                 Program<T> copy(mom.program);
                 ind.program = copy;
+                ind.variation = "clone";
             }
             else
             {
@@ -295,14 +296,42 @@ public:
                 else {  // no optional value was returned. creating a new random individual
                     ind = Individual<T>();
                     ind.init(search_space, parameters);
-                    ind.variation = "born";
+
+                    // creates a new random individual
+                    // ind.init(search_space, parameters);
+                    // ind.variation = "born";
+                    // ---------------------------------------------------------------
+
+                    // instead of creating something new (code above), I will apply
+                    // subtree mutation, so we can still have the fixed part of programs
+                    int tries = 0;
+                    while (tries++<=3 && !opt) { // try subtree mutation a few times before giving up
+                        opt = this->mutate(mom, "subtree");
+                    }
+
+                    // it is very unlikely that subtree will fail, but in case it does, then
+                    // we set variation to be a clone so we know it happened
+                    if (opt) {
+                        ind = opt.value();
+                        ind.set_parents(ind_parents);
+                        ind.variation = "subtree";
+                    } else {
+                        // fallback: mark as a subtree attempt that failed to produce a new individual
+                        Program<T> copy(mom.program);
+                        ind.program = copy;
+                        ind.variation = "clone";
+                    }
                 }
             }
             
+            // for debugging
+            // cout << "tried " << choice << ", got " << ind.variation << endl;
+            // cout << "mom  : " << mom.program.get_model() << endl;
+            // cout << "child: " << ind.program.get_model() << endl;
+
             // ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
 
             ind.set_id(id);
-
             ind.fitness.set_loss(mom.fitness.get_loss());
             ind.fitness.set_loss_v(mom.fitness.get_loss_v());
             ind.fitness.set_size(mom.fitness.get_size());

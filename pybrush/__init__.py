@@ -18,6 +18,21 @@ from ._brush import RegressorEvaluator, ClassifierEvaluator, MultiClassifierEval
 from ._brush import RegressorSelector, ClassifierSelector, MultiClassifierSelector
 from ._brush import RegressorVariator, ClassifierVariator, MultiClassifierVariator
 
-# full estimator implementations --------------------
-from pybrush.DeapEstimator import DeapClassifier, DeapRegressor
 from pybrush.BrushEstimator import BrushClassifier, BrushRegressor
+
+# deap api
+try:
+    from pybrush import deap_api 
+except ImportError:
+    import warnings
+    
+    class _DeapAPIWarning:
+        def __getattr__(self, name):
+            warnings.warn(
+                "deap_api could not be imported. Please install required dependencies.",
+                ImportWarning,
+                stacklevel=2
+            )
+            raise AttributeError(f"deap_api is not available")
+    
+    deap_api = _DeapAPIWarning()

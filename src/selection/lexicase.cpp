@@ -23,6 +23,17 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
     // error vectors are filled 
 
     auto island_pool = pop.get_island_indexes(island);
+    
+    // Filter out nullptr individuals (offspring slots)
+    island_pool.erase(
+        std::remove_if(island_pool.begin(), island_pool.end(),
+            [&pop](size_t idx) { return pop.individuals.at(idx) == nullptr; }),
+        island_pool.end()
+    );
+    
+    // If all individuals were nullptr, return empty selection
+    if (island_pool.empty())
+        return island_pool;
 
     // if this is first generation, just return indices to pop
     if (params.current_gen==0)

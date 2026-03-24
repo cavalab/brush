@@ -333,7 +333,7 @@ struct Operator<NodeType::Terminal, S, Fit>
         HANDLE_ERROR_THROW(fmt::format("Failed to return type {} for '{}'. The feature's original ret type is {}.\n",
             DataTypeEnum<T>::value,
             feature,
-            DataTypeEnum<RetType>::value
+            DataTypeName.at(d.get_feature_type(feature))
         ));
 
         return T(); 

@@ -43,6 +43,17 @@ vector<size_t> NSGA2<T>::select(Population<T>& pop, int island,
     
     // TODO: move this to tournament selection file, and throw not implemented error in nsga.
     auto island_pool = pop.get_island_indexes(island);
+    
+    // Filter out nullptr individuals (offspring slots)
+    island_pool.erase(
+        std::remove_if(island_pool.begin(), island_pool.end(),
+            [&pop](size_t idx) { return pop.individuals.at(idx) == nullptr; }),
+        island_pool.end()
+    );
+    
+    // If all individuals were nullptr, return empty selection
+    if (island_pool.empty())
+        return island_pool;
 
     // if this is first generation, just return indices to pop
     if (params.current_gen==0)
@@ -80,6 +91,20 @@ vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island,
         island_pool.insert(island_pool.end(), indexes.begin(), indexes.end());
     }
     
+    // Filter out nullptr individuals (offspring slots that haven't been filled yet)
+    island_pool.erase(
+        std::remove_if(island_pool.begin(), island_pool.end(),
+            [&pop](size_t idx) { return pop.individuals.at(idx) == nullptr; }),
+        island_pool.end()
+    );
+    
+    // If all individuals were nullptr, throw error
+    if (island_pool.empty()) {
+        HANDLE_ERROR_THROW(fmt::format(
+            "NSGA2::survive - island_pool is empty after filtering nullptrs. "
+            "This suggests population was not properly initialized or variation failed."));
+    }
+    
     // fast non-dominated sort
     auto front = fast_nds(pop, island_pool);
     
@@ -105,12 +130,25 @@ vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island,
 
     // fmt::print("crowding distance\n");
     crowding_distance(pop, front, i);   // calculate crowding in final front to include
-    std::sort(front.at(i).begin(),front.at(i).end(),sort_n(pop));
+    std::stable_sort(front.at(i).begin(),front.at(i).end(),sort_n(pop));
     
     // fmt::print("adding last front)\n");
     const int extra = params.pop_size - selected.size();
-    for (int j = 0; j < extra; ++j) // Pt+1 = Pt+1 U Fi[1:N-|Pt+1|]
+    
+    // Safety check: ensure we don't try to add more than what's available
+    const int available = front.at(i).size();
+    const int to_add = std::min(extra, available);
+    
+    for (int j = 0; j < to_add; ++j) // Pt+1 = Pt+1 U Fi[1:N-|Pt+1|]
         selected.push_back(front.at(i).at(j));
+    
+    // If we still don't have enough individuals after all fronts, something is wrong
+    if (selected.size() != params.pop_size) {
+        throw std::runtime_error(fmt::format(
+            "NSGA2 survive: Could not select {} survivors. Only found {} valid individuals in population.",
+            params.pop_size, selected.size()
+        ));
+    }
     
     // fmt::print("returning\n");
     return selected;
@@ -166,7 +204,7 @@ vector<vector<int>> NSGA2<T>::fast_nds(Population<T>& pop, vector<size_t>& islan
     // using OpenMP can have different orders in the front.at(0)
     // so let's sort it so that the algorithm is deterministic
     // given a seed
-    std::sort(front.at(0).begin(), front.at(0).end());    
+    std::stable_sort(front.at(0).begin(), front.at(0).end());    
 
     int fi = 1;
     while (front.at(fi-1).size() > 0) {
@@ -227,7 +265,7 @@ void NSGA2<T>::crowding_distance(Population<T>& pop, vector<vector<int>>& front,
     for (int m = 0; m < limit; ++m) {
         // fmt::print("m {}\n", m);
 
-        std::sort(F.begin(), F.end(), comparator_obj(pop,m));
+        std::stable_sort(F.begin(), F.end(), comparator_obj(pop,m));
 
         // in the paper dist=INF for the first and last, in the code
         // this is only done to the first one or to the two first when size=2

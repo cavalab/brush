@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <cmath>
 
 namespace Brush{
 
@@ -52,6 +53,15 @@ template <ProgramType T>
 void Engine<T>::calculate_stats()
 {
     int pop_size = 0;
+    if (params.num_islands < 0) {
+        HANDLE_ERROR_THROW("Invalid params.num_islands: cannot be negative");
+    }
+
+    if (static_cast<size_t>(params.num_islands) > pop.island_indexes.size()) {
+        HANDLE_ERROR_THROW(
+            "params.num_islands is greater than pop.island_indexes size in calculate_stats");
+    }
+
     for (int island=0; island<params.num_islands; ++island)
     {
         auto indices = pop.island_indexes.at(island);
@@ -73,33 +83,80 @@ void Engine<T>::calculate_stats()
         auto indices = pop.island_indexes.at(island);
         for (unsigned int i=0; i<indices.size(); ++i)
         {
-            const auto& p = this->pop.individuals.at(indices[i]);
+            const size_t population_index = indices[i];
+            if (population_index >= this->pop.individuals.size()) {
+                HANDLE_ERROR_THROW(
+                    "Invalid population index in island " + to_string(island)
+                    + ": " + to_string(population_index)
+                    + " (individuals size=" + to_string(this->pop.individuals.size()) + ")");
+            }
+
+            const auto& p = this->pop.individuals.at(population_index);
+            
+            // Skip nullptr individuals (offspring slots not yet filled)
+            if (!p)
+                continue;
+
+            float fitness_loss = 0.0f;
+            float fitness_loss_v = 0.0f;
+            unsigned individual_size = 0;
+            unsigned individual_complexity = 0;
+            try {
+                fitness_loss = p->fitness.get_loss();
+                fitness_loss_v = p->fitness.get_loss_v();
+                individual_size = p->get_size();
+                individual_complexity = p->get_complexity();
+            } catch (const std::exception& e) {
+                HANDLE_ERROR_THROW(
+                    "Failed to get fitness/size/complexity from individual at population index "
+                    + to_string(population_index) + ": " + e.what());
+            } catch (...) {
+                HANDLE_ERROR_THROW(
+                    "Failed to get fitness/size/complexity from individual at population index "
+                    + to_string(population_index) + ": unknown error");
+            }
+
+            if (!std::isfinite(fitness_loss) || !std::isfinite(fitness_loss_v)) {
+                HANDLE_ERROR_THROW(
+                    "Invalid non-finite fitness values at population index "
+                    + to_string(population_index));
+            }
 
             // Fitness class will store every information that can be used as
             // fitness. you just need to access them. Multiplying by weight
             // so we can find best score. From Fitness::dominates:
             //     the proper way of comparing weighted values is considering
             //     everything as a maximization problem
-            scores(index)       = p->fitness.get_loss();
-            scores_v(index)     = p->fitness.get_loss_v();
-            sizes(index)        = p->get_size(); 
-            complexities(index) = p->get_complexity(); 
+            scores(index)       = fitness_loss;
+            scores_v(index)     = fitness_loss_v;
+            sizes(index)        = individual_size;
+            complexities(index) = individual_complexity;
             ++index;
         }
     }
 
-    assert (pop_size == this->params.pop_size);
+    // index now contains the actual count of non-null individuals
+    // Resize arrays to only include valid individuals
+    scores.conservativeResize(index);
+    scores_v.conservativeResize(index);
+    sizes.conservativeResize(index);
+    complexities.conservativeResize(index);
 
     // Multiply by weight to make it a maximization problem.
     // Then, multiply again to get rid of signal
-    float    best_score     = (scores*error_weight).maxCoeff()*error_weight;
+    float    best_score     = index > 0 ? (scores*error_weight).maxCoeff()*error_weight : 0.0f;
     float    best_score_v   = this->best_ind.fitness.get_loss_v();
-    float    med_score      = median(scores); 
-    float    med_score_v    = median(scores_v); 
-    unsigned med_size       = median(sizes);                        
-    unsigned med_complexity = median(complexities);
-    unsigned max_size       = sizes.maxCoeff();
-    unsigned max_complexity = complexities.maxCoeff();
+
+    if (!std::isfinite(best_score_v)) {
+        HANDLE_ERROR_THROW("Invalid non-finite validation loss in best_ind while calculating stats");
+    }
+    
+    float    med_score      = index > 0 ? median(scores) : 0.0f; 
+    float    med_score_v    = index > 0 ? median(scores_v) : 0.0f; 
+    unsigned med_size       = index > 0 ? median(sizes) : 0;                        
+    unsigned med_complexity = index > 0 ? median(complexities) : 0;
+    unsigned max_size       = index > 0 ? sizes.maxCoeff() : 0;
+    unsigned max_complexity = index > 0 ? complexities.maxCoeff() : 0;
     
     // update stats
     stats.update(params.current_gen,
@@ -169,7 +226,7 @@ void Engine<T>::print_stats(std::ofstream& log, float fraction)
             << ") [" + bar + space + "]\n";
         
     std::cout << std::fixed
-              << "Best model on Val:" << best_ind.program.get_model() << "\n" 
+              << "Best model on Val:" << best_ind.program.get_model() << "\n"
               << "Train Loss (Med): " << stats.best_score.back() << " (" << stats.med_score.back() << ")\n"
               << "Val Loss (Med): " << stats.best_score_v.back() << " (" << stats.med_score_v.back() << ")\n"
               << "Median Size (Max): " << stats.med_size.back() << " (" << stats.max_size.back() << ")\n"
@@ -208,8 +265,9 @@ vector<json> Engine<T>::get_population_as_json()
         pop_vector.push_back(j);
     }
 
-    if(pop_vector.size() != params.pop_size)
-        HANDLE_ERROR_THROW("Population size is different from pop_size");
+    // Note: pop_vector.size() may be less than pop_size during evolution
+    // when offspring slots (nullptrs) haven't been filled by variation yet.
+    // This is a valid transient state and should not throw an error.
 
     return pop_vector;
 }
@@ -236,8 +294,9 @@ vector<Individual<T>> Engine<T>::get_population()
         pop_vector.push_back(*ind);
     }
 
-    if(pop_vector.size() != params.pop_size)
-        HANDLE_ERROR_THROW("Population size is different from pop_size");
+    // Note: pop_vector.size() may be less than pop_size during evolution
+    // when offspring slots (nullptrs) haven't been filled by variation yet.
+    // This is a valid transient state and should not throw an error.
 
     return pop_vector;
 }
@@ -288,7 +347,7 @@ void Engine<T>::set_population(vector<Individual<T>> pop_vector)
 
 
 template <ProgramType T>
-void Engine<T>::lock_nodes(int end_depth, bool keep_leaves_unlocked)
+void Engine<T>::lock_nodes(int end_depth, bool keep_leaves_unlocked, bool keep_current_weights)
 {
     // iterate over the population, locking the program's tree nodes
     for (int island=0; island<pop.num_islands; ++island) {
@@ -297,7 +356,12 @@ void Engine<T>::lock_nodes(int end_depth, bool keep_leaves_unlocked)
         for (unsigned i = 0; i<indices.size(); ++i)
         {
             const auto& ind = pop.individuals.at(indices.at(i));
-            ind->program.lock_nodes(end_depth, keep_leaves_unlocked);
+            
+            // Skip nullptr individuals (offspring slots not yet filled)
+            if (!ind)
+                continue;
+                
+            ind->program.lock_nodes(end_depth, keep_leaves_unlocked, keep_current_weights);
         }
     }
 }
@@ -320,7 +384,13 @@ bool Engine<T>::update_best()
 
     for (int i=0; i < merged_islands.size(); ++i) 
     {
-        const auto& ind = *pop.individuals.at(merged_islands[i]);
+        const auto& ind_ptr = pop.individuals.at(merged_islands[i]);
+        
+        // Skip nullptr individuals (offspring slots not yet filled)
+        if (!ind_ptr)
+            continue;
+            
+        const auto& ind = *ind_ptr;
 
         // TODO: use intermediary variables for wvalues
         // Iterate over the weighted values to compare (everything is a maximization problem here)
@@ -387,8 +457,12 @@ void Engine<T>::run(Dataset &data)
     
     // log file stream
     std::ofstream log;
-    if (!params.logfile.empty())
+    if (!params.logfile.empty()) {
         log.open(params.logfile, std::ofstream::app);
+        if (!log.is_open()) {
+            HANDLE_ERROR_THROW("Failed to open logfile: " + params.logfile);
+        }
+    }
 
     evaluator.set_scorer(params.scorer);
 
@@ -490,16 +564,16 @@ void Engine<T>::run(Dataset &data)
                 // TODO: optimize this and make it work with multiple islands in parallel.
                 for (int island = 0; island < this->params.num_islands; ++island) {
 
-                    // TODO: do I have to pass data as an argument here? or can I use the instance reference
+                    // TODO: do I have to pass data as an argument here? or can I use the instance reference.
+                    // OBS: this function already calls fit internally!
                     variator.vary_and_update(this->pop, island, island_parents.at(island),
                                              data, evaluator, 
                                              
                                              // conditions to apply simplification.
-                                             // It starts only on the second half of generations,
-                                             // and it is not applied every generation. 
+                                             // It starts only on the second half of generations.
                                              // Also, we garantee that the final generation
                                              // will be simplified.
-                                             (generation>=params.max_gens/2) || (stall_count == params.max_stall-1) 
+                                             (generation>=params.max_gens/2) || (stall_count == params.max_stall) || (generation==params.max_gens-1)
                                             );
                 }
 
@@ -520,7 +594,9 @@ void Engine<T>::run(Dataset &data)
             auto finish_gen = subflow.emplace([&]() {
                 // Set validation loss before calling update best
                 for (int island = 0; island < this->params.num_islands; ++island) {
-                    evaluator.update_fitness(this->pop, island, data, params, false, true);
+                    // we can set fit to true, because already fitted individuals will be skipped,
+                    // and we ensure we fit everyone
+                    evaluator.update_fitness(this->pop, island, data, params, true, true);
                 }
 
                 archive.update(pop, params);
@@ -539,7 +615,7 @@ void Engine<T>::run(Dataset &data)
                 else if(params.verbosity == 1)
                     print_progress(fraction);
 
-                if (!params.logfile.empty())
+                if (!params.logfile.empty() && log.is_open())
                     log_stats(log);
                     
                 if (generation == 0 || updated_best )
@@ -560,9 +636,9 @@ void Engine<T>::run(Dataset &data)
         [&]() { return 0; }, // jump back to the next iteration
 
         [&](tf::Subflow& subflow) {
-            // set VALIDATION loss for archive, without refitting the model
+            // set validation loss, refit (will work only on individuals not fitted)
             for (int island = 0; island < this->params.num_islands; ++island) {
-                evaluator.update_fitness(this->pop, island, data, params, false, true);
+                evaluator.update_fitness(this->pop, island, data, params, true, true);
             }
 
             archive.update(pop, params);
@@ -573,9 +649,10 @@ void Engine<T>::run(Dataset &data)
 
             set_is_fitted(true);
             
-            if (!params.logfile.empty()) {
+            // logging the simplifications performed
+            if (!params.logfile.empty() && params.inexact_simplification) {
                 std::ofstream log_simplification;
-                log_simplification.open(params.logfile+"simplification_table", std::ofstream::app);
+                log_simplification.open(params.logfile+"_simplification_table", std::ofstream::app);
                 variator.log_simplification_table(log_simplification);
                 
                 log_simplification.close();

@@ -150,7 +150,7 @@ class Inexact_simplifier
                     &&  Isnt<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>(spot.node->data.node_type))
                     {
                         index<P>(spot, d);
-                        // terminals are indexed on initialization 
+                        // terminals are already indexed on initialization 
                     }
                 }
                 ++spot;
@@ -181,7 +181,8 @@ class Inexact_simplifier
                 // we dont index or simplify fixed stuff.
                 // non-wheightable nodes are not simplified. TODO: revisit this and see if they should (then implement it)
                 // This is avoiding using booleans.
-                if (spot.node->data.get_prob_change() > 0
+                // we do not simplify branches with fixed weights, because the simplification ignores the weight (it uses normalized predictions)
+                if (spot.node->data.get_prob_change() > 0 && !spot.node->data.weight_is_fixed
                 // &&  IsWeighable(spot.node->data.ret_type) && IsWeighable(spot.node->data.node_type)
                 ) {
                     // TODO: use IsLeaf here instead of checking for each possible nodetype. also search throughout the code and replace it
@@ -214,7 +215,7 @@ class Inexact_simplifier
                                 spot = simplified_program.Tree.move_ontop(spot, simplified_branch.begin());
                                 
                                 auto new_predictions = simplified_program.predict(d);
-
+                                
                                 float diff = (original_predictions.template cast<float>() - new_predictions.template cast<float>()).square().mean();
                                 
                                 if (diff < best_distance) {    
@@ -329,13 +330,22 @@ class Inexact_simplifier
 
             // Equalize floatClippedInput 
             float floatClippedInput_mean = floatClippedInput.mean();
+            
+            // Check for NaN/Inf in mean - if present, skip simplification for this node.
+            // Otherwise, we are at changes of having wrong simplifications and terrible
+            // replacements due to numeric error.
+            if (std::isnan(floatClippedInput_mean) || std::isinf(floatClippedInput_mean)) {
+                return {}; // Return empty hashes to skip this node
+            }
+            
             floatClippedInput = floatClippedInput - floatClippedInput_mean;
+            
+            // No need to check for NaN/Inf in the normalized predictions --- 
+            // the mean is already a valid numeric value.
 
             vector<size_t> hashes;
             for (size_t planeIdx = 0; planeIdx < uniformPlanes.size(); ++planeIdx)
             {
-                // TODO: handle nan predictions?
-
                 const auto& plane = uniformPlanes[planeIdx];
                 Eigen::ArrayXf projection = plane * floatClippedInput.matrix();
                 Eigen::Array<bool, Eigen::Dynamic, 1> comparison = (projection > 0);

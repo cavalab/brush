@@ -19,10 +19,13 @@ ostream& operator<<(ostream& os, const Node& n)
 /// @return name 
 auto Node::get_name(bool include_weight) const noexcept -> std::string 
 {
+    constexpr float atol = 1e-6f;
+    const bool weight_is_one = std::fabs(W - 1.0f) <= atol;
+
     if (Is<NodeType::Terminal>(node_type))
     {
-        if (is_weighted && W != 1.0 && include_weight)
-            return fmt::format("{:.2f}*{}",W,feature);
+        if (is_weighted && !weight_is_one && include_weight)
+            return fmt::format("{:.2f}*{}", W, feature);
         else
             return feature;
     }
@@ -32,22 +35,25 @@ auto Node::get_name(bool include_weight) const noexcept -> std::string
     }
     else if (Is<NodeType::MeanLabel>(node_type))
     {
-        // this will show (MeanLabel) in the terminal name
-        // return fmt::format("{:.2f} ({})", W, feature);
-
+        // this will show (MeanLabel) in the terminal name so we can differentiate 
+        // a meanLabel from a constant.
         return fmt::format("{:.2f}", W);
     }
-    else if (Is<NodeType::OffsetSum>(node_type)){
-        if (is_weighted && W != 1.0)
-            return fmt::format("{:.2f}+Sum", W);
+    else if (Is<NodeType::OffsetSum>(node_type))
+    {
+        if (is_weighted && !weight_is_one)
+            return fmt::format("{:.2f}+Add", W);
 
-        return fmt::format("Sum");
+        return "Sum";
     }
-    else if (is_weighted && include_weight)
-        return fmt::format("{:.2f}*{}",W,name);
+    else if (is_weighted && !weight_is_one && include_weight)
+    {
+        return fmt::format("{:.2f}*{}", W, name);
+    }
 
     return name;
 }
+
 
 string Node::get_model(const vector<string>& children) const noexcept
 {
@@ -91,7 +97,7 @@ string Node::get_model(const vector<string>& children) const noexcept
                 args += ",";
         }
 
-        return fmt::format("Sum({})", args);
+        return fmt::format("Add({})", args);
     }
     else{
         string args = "";
@@ -116,7 +122,8 @@ void to_json(json& j, const Node& p)
     j = json{
         {"name", p.name},
         {"center_op", p.center_op}, 
-        {"fixed", p.fixed}, 
+        {"node_is_fixed", p.node_is_fixed}, 
+        {"weight_is_fixed", p.weight_is_fixed}, 
         {"prob_change", p.prob_change}, 
         {"is_weighted", p.is_weighted}, 
         {"W", p.W}, 
@@ -193,7 +200,39 @@ void init_node_with_default_signature(Node& node)
         >(n))
     {
         node.set_signature<Signature<ArrayXb(ArrayXb)>>();
-    }  
+    }
+    else if (Is<
+        NT::Geq
+        >(n))
+    {
+        node.set_signature<Signature<ArrayXb(ArrayXf,ArrayXf)>>();
+    }
+    else if (Is<
+        NT::Equals
+        >(n))
+    {
+        node.set_signature<Signature<ArrayXb(ArrayXi,ArrayXi)>>();
+    }
+    else if (Is<
+        NT::Before,
+        NT::After,
+        NT::During
+        >(n))
+    {
+        node.set_signature<Signature<TimeSeriesf(TimeSeriesf,TimeSeriesf)>>();
+    }
+    else if (Is<
+        NT::Count
+        >(n))
+    {
+        node.set_signature<Signature<ArrayXf(TimeSeriesf)>>();
+    }
+    else if (Is<
+        NT::ArgMax
+        >(n))
+    {
+        node.set_signature<Signature<ArrayXi(ArrayXXf)>>();
+    }
     else if (Is<
         NT::Min,
         NT::Max,
@@ -203,7 +242,7 @@ void init_node_with_default_signature(Node& node)
         // NT::OffsetSum,
         NT::Prod,
         NT::Softmax,
-        NT::SplitOn,
+        // NT::SplitOn,
         NT::SplitBest
         >(n))
     {
@@ -213,6 +252,12 @@ void init_node_with_default_signature(Node& node)
     }
     else if (Is<NT::SplitOn>(n))
     {
+        // lets make split on always defaults to floats (so it will work
+        // regardless of datatype).
+        // This only matters for weakly defined nodes when doing manual
+        // construction of brush programs as json objects, and this behavior
+        // can be ignored by avoiding the need of generating the signature 
+        // (that is, defining the node with missing hash values and ret types)
         node.set_signature<Signature<ArrayXf(ArrayXb,ArrayXf,ArrayXf)>>();
     }
     else if (Is<NT::Constant>(n))
@@ -236,6 +281,22 @@ void init_node_with_default_signature(Node& node)
     } 
     else if (Is<NT::MeanLabel>(n))
         node.set_signature<Signature<ArrayXb()>>();
+    else if (Is<NT::Terminal>(n))
+    {
+        // For terminals, use feature_type to determine the correct signature
+        switch (node.get_feature_type()) {
+            case DataType::ArrayB:
+                node.set_signature<Signature<ArrayXb()>>();
+                break;
+            case DataType::ArrayI:
+                node.set_signature<Signature<ArrayXi()>>();
+                break;
+            case DataType::ArrayF:
+            default:
+                node.set_signature<Signature<ArrayXf()>>();
+                break;
+        }
+    }
     else
         node.set_signature<Signature<ArrayXf()>>();
 }
@@ -301,10 +362,15 @@ void from_json(const json &j, Node& p)
     // after this point we set attributes that are modified in init
     p.init();
     
-    // these 4 below needs to be set after init(), since it resets these values
-    if (j.contains("fixed"))
+    // these below needs to be set after init(), since `init` sets these values
+    if (j.contains("node_is_fixed"))
     {
-        j.at("fixed").get_to(p.fixed);
+        j.at("node_is_fixed").get_to(p.node_is_fixed);
+    }
+
+    if (j.contains("weight_is_fixed"))
+    {
+        j.at("weight_is_fixed").get_to(p.weight_is_fixed);
     }
 
     if (j.contains("is_weighted"))

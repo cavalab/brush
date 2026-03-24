@@ -87,26 +87,26 @@ enum class NodeType : uint64_t { // Each node type must have a complexity
     // Xor                 = 1UL << 39UL,
 
     // comparison
-    // Equals              = 1UL << 41UL,
-    // Geq                 = 1UL << 42UL,
+    Equals              = 1UL << 41UL,
+    Geq                 = 1UL << 42UL,
     /* GreaterThan         = 1UL << 41UL, */
     /* Leq                 = 1UL << 42UL, */
     /* LessThan            = 1UL << 43UL, */
 
     // leaves (must be the last ones in this enum)
-    MeanLabel           = 1UL << 41UL,
-    Constant            = 1UL << 42UL,
-    Terminal            = 1UL << 43UL,
+    MeanLabel           = 1UL << 43UL,
+    Constant            = 1UL << 44UL,
+    Terminal            = 1UL << 45UL,
 
     // TODO: implement operators below and move them before leaves
-    ArgMax              = 1UL << 44UL, 
+    ArgMax              = 1UL << 46UL, 
     // count the number of elements in an array. Should be the last element in the enum
-    Count               = 1UL << 45UL,
+    Count               = 1UL << 47UL,
 
     // // custom
-    CustomUnaryOp       = 1UL << 46UL,
-    CustomBinaryOp      = 1UL << 47UL,
-    CustomSplit         = 1UL << 48UL
+    CustomUnaryOp       = 1UL << 48UL,
+    CustomBinaryOp      = 1UL << 49UL,
+    CustomSplit         = 1UL << 50UL
 
 };
 
@@ -118,7 +118,7 @@ struct NodeTypes {
     // index of last available node visible to search_space.
     // It must match the highest bit used in the enum.
     //notice that we will create the nodetypes until this count
-    static constexpr size_t Count = 44;
+    static constexpr size_t Count = 46;
 
     // subtracting leaves (leaving just the ops into this)
     static constexpr size_t OpCount = Count-3;
@@ -199,8 +199,8 @@ NLOHMANN_JSON_SERIALIZE_ENUM( NodeType, {
     // {NodeType::Xor,"Xor" },
 
     // decision (same)
-    // {NodeType::Equals,"Equals" },
-    // {NodeType::Geq,"Geq" },
+    {NodeType::Equals,"Equals" },
+    {NodeType::Geq,"Geq" },
     /* {NodeType::LessThan,"LessThan" }, */
     /* {NodeType::Leq,"Leq" }, */
     /* {NodeType::Geq,"Geq" }, */

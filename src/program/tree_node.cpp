@@ -185,9 +185,7 @@ int TreeNode::get_linear_complexity() const
         // ignoring weight if it has the value of neutral element of operation
         if ((Is<NodeType::OffsetSum>(data.node_type) && data.W != 0.0)
         ||  (data.W != 1.0))
-            return operator_complexities.at(NodeType::Mul) +
-                operator_complexities.at(NodeType::Constant) + 
-                tree_complexity;
+            return operator_complexities.at(NodeType::Constant) + tree_complexity;
     }
     
     return tree_complexity;
@@ -212,13 +210,14 @@ int TreeNode::get_complexity() const
     if (data.get_is_weighted()
     &&  Isnt<NodeType::Constant, NodeType::MeanLabel>(data.node_type) )
     {
+        // complexity for offsetsum or weighted nodes.
         // ignoring weight if it has the value of neutral element of operation
         if ((Is<NodeType::OffsetSum>(data.node_type) && data.W != 0.0)
         ||  (data.W != 1.0))
-            return operator_complexities.at(NodeType::Mul)*(
-                       operator_complexities.at(NodeType::Constant) + 
-                       node_complexity*(children_complexity_sum)
-                   );
+            // we are taking into account the weight but ignoring the multiplication
+            // (to avoid int overflow for deep trees)
+            return operator_complexities.at(NodeType::Constant) + 
+                   node_complexity*(children_complexity_sum);
     }
 
     return node_complexity*(children_complexity_sum);

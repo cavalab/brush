@@ -7,6 +7,14 @@ using namespace Brush::Sel;
 
 TEST(Params, ParamsTests)
 {
+	std::cout << "int: min=" << std::numeric_limits<int>::min() << " max=" << std::numeric_limits<int>::max() << "\n";
+	std::cout << "unsigned int: min=" << std::numeric_limits<unsigned int>::min() << " max=" << std::numeric_limits<unsigned int>::max() << "\n";
+	std::cout << "short: min=" << std::numeric_limits<short>::min() << " max=" << std::numeric_limits<short>::max() << "\n";
+	std::cout << "unsigned short: min=" << std::numeric_limits<unsigned short>::min() << " max=" << std::numeric_limits<unsigned short>::max() << "\n";
+	std::cout << "long: min=" << std::numeric_limits<long>::min() << " max=" << std::numeric_limits<long>::max() << "\n";
+	std::cout << "unsigned long: min=" << std::numeric_limits<unsigned long>::min() << " max=" << std::numeric_limits<unsigned long>::max() << "\n";
+	std::cout << "long long: min=" << std::numeric_limits<long long>::min() << " max=" << std::numeric_limits<long long>::max() << "\n";
+	std::cout << "unsigned long long: min=" << std::numeric_limits<unsigned long long>::min() << " max=" << std::numeric_limits<unsigned long long>::max() << "\n";
 
     Parameters params;
 	
