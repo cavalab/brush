@@ -84,11 +84,8 @@ def test_classification_selection():
     idx = np.argmin([p.fitness.linear_complexity for p in model.archive_])
 
 
-# @pytest.mark.parametrize("scorer", ['log', 'accuracy', 'balanced_accuracy', 'average_precision_score'])
-# @pytest.mark.parametrize("class_weights", ['unbalanced', 'support', [1.0, 1.0], [1.0, 1.3]])
-
-@pytest.mark.parametrize("scorer", ['log'])
-@pytest.mark.parametrize("class_weights", ['unbalanced'])
+@pytest.mark.parametrize("scorer", ['log', 'accuracy', 'balanced_accuracy', 'average_precision_score'])
+@pytest.mark.parametrize("class_weights", ['unbalanced', 'support', [1.0, 1.0], [1.0, 1.3]])
 def test_final_model_selection_best_validation_ci_replicated(scorer, class_weights):
     # Small dataset for testing
     X, y = make_classification(n_samples=100, n_features=6, n_informative=4, random_state=42)
@@ -133,7 +130,8 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
     }
     loss_f = loss_f_dict[est.parameters_.scorer]
 
-    def eval(individual, sample=None, log=False):
+    def eval_with_sklearn(individual, sample=None, log=False):
+        
         if sample is None:
             sample = np.arange(len(data.y))
 
@@ -147,7 +145,10 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
         else:
             y_pred = np.array(individual.predict(data)).astype(float)
 
-        if log: # silencing eval() during bootstrap, but enabling detailed info when re-calculating losses and comparing with brush's metrics
+        eps = 0
+        y_pred = np.clip(y_pred, eps, 1-eps)
+
+        if log: # silencing eval_with_sklearn() during bootstrap, but enabling detailed info when re-calculating losses and comparing with brush's metrics
             print('evaluating', individual.program.get_model())
             print('rounded y', np.round(y, 2))
             print('rounded preds', np.round(y_pred, 2))
@@ -201,22 +202,22 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
     print("scorer and class weights;", scorer, class_weights)
     print("original loss", est.best_estimator_.fitness.loss)
     print("original loss_v", est.best_estimator_.fitness.loss_v)
-    print("recalculated loss", eval(est.best_estimator_, log=True))
+    print("recalculated loss", eval_with_sklearn(est.best_estimator_, log=True))
 
     np.random.seed(0)
-    val_samples = [eval(est.best_estimator_, np.random.randint(len(y), size=len(y)))
+    val_samples = [eval_with_sklearn(est.best_estimator_, np.random.randint(len(y), size=len(y)))
                    for _ in range(100)]
 
     lower_ci, upper_ci = np.quantile(val_samples, 0.05), np.quantile(val_samples, 0.95)
     print(f"CI bounds: {lower_ci:.4f}, {upper_ci:.4f}")
 
     # Evaluate all archive members
-    new_losses = [eval(ind, log=True) for ind in est.archive_]
+    new_losses = [eval_with_sklearn(ind, log=True) for ind in est.archive_]
     candidates = [(l, p) for l, p in zip(new_losses, est.archive_) if lower_ci <= l <= upper_ci]
 
     print('first arch ind', est.archive_[0].get_model())
-    print("Original losses from archive (brush's auprc)   ", [ind.fitness.loss for ind in est.archive_])
-    print("Original losses_v from archive (brush's auprc) ", [ind.fitness.loss_v for ind in est.archive_])
+    print("Original losses from archive (brush's metric)   ", [ind.fitness.loss for ind in est.archive_])
+    print("Original losses_v from archive (brush's metric) ", [ind.fitness.loss_v for ind in est.archive_])
     print("Recalculated losses with sklearn (should match)", new_losses)
     print(f"Num candidates in CI: {len(candidates)}")
 
