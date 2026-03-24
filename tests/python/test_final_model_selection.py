@@ -142,11 +142,12 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
 
         if est.parameters_.scorer in ["log", "average_precision_score"]:
             y_pred = np.array(individual.predict_proba(data)).astype(float)
+
+            eps = 0.01
+            y_pred = np.clip(y_pred, eps, 1-eps)
         else:
             y_pred = np.array(individual.predict(data)).astype(float)
 
-        eps = 0
-        y_pred = np.clip(y_pred, eps, 1-eps)
 
         if log: # silencing eval_with_sklearn() during bootstrap, but enabling detailed info when re-calculating losses and comparing with brush's metrics
             print('evaluating', individual.program.get_model())
