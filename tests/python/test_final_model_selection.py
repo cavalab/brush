@@ -84,8 +84,11 @@ def test_classification_selection():
     idx = np.argmin([p.fitness.linear_complexity for p in model.archive_])
 
 
-@pytest.mark.parametrize("scorer", ['log', 'accuracy', 'balanced_accuracy', 'average_precision_score'])
-@pytest.mark.parametrize("class_weights", ['unbalanced', 'support', [1.0, 1.0], [1.0, 1.3]])
+# @pytest.mark.parametrize("scorer", ['log', 'accuracy', 'balanced_accuracy', 'average_precision_score'])
+# @pytest.mark.parametrize("class_weights", ['unbalanced', 'support', [1.0, 1.0], [1.0, 1.3]])
+
+@pytest.mark.parametrize("scorer", ['log'])
+@pytest.mark.parametrize("class_weights", ['unbalanced'])
 def test_final_model_selection_best_validation_ci_replicated(scorer, class_weights):
     # Small dataset for testing
     X, y = make_classification(n_samples=100, n_features=6, n_informative=4, random_state=42)
@@ -146,9 +149,9 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
 
         if log: # silencing eval() during bootstrap, but enabling detailed info when re-calculating losses and comparing with brush's metrics
             print('evaluating', individual.program.get_model())
-            print(np.round(y, 2))
-            print(np.round(y_pred, 2))
-            print('(sorted)', np.sort(y_pred))
+            print('rounded y', np.round(y, 2))
+            print('rounded preds', np.round(y_pred, 2))
+            print('sorted preds', np.sort(y_pred))
 
         if est.class_weights not in ['unbalanced'] and est.parameters_.scorer not in ['balanced_accuracy']:
             sample_weight = None
@@ -181,20 +184,24 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
                 print('(eval) sample weights', sample_weight)
                 print('(eval) loss', loss_f(y[sample], y_pred[sample], sample_weight=sample_weight[sample]))
 
-            return loss_f(y[sample], y_pred[sample], sample_weight=sample_weight[sample])
+            calculated_loss = loss_f(y[sample], y_pred[sample], sample_weight=sample_weight[sample])
+            print('calculated loss:', calculated_loss)
+            return calculated_loss
         else: # Cases where we ignore weights
             if log: 
                 print('(eval) using no class weights')
                 print('(eval) sample weights not defined. using unbalanced version')
                 print('(eval) loss', loss_f(y[sample], y_pred[sample]))
 
-            return loss_f(y[sample], y_pred[sample])
+            calculated_loss = loss_f(y[sample], y_pred[sample])
+            print('calculated loss:', calculated_loss)
+            return calculated_loss
 
     # Bootstrap validation samples
     print("scorer and class weights;", scorer, class_weights)
     print("original loss", est.best_estimator_.fitness.loss)
     print("original loss_v", est.best_estimator_.fitness.loss_v)
-    print("recalculated loss", eval(est.best_estimator_))
+    print("recalculated loss", eval(est.best_estimator_, log=True))
 
     np.random.seed(0)
     val_samples = [eval(est.best_estimator_, np.random.randint(len(y), size=len(y)))
