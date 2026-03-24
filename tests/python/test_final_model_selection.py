@@ -143,8 +143,9 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
         if est.parameters_.scorer in ["log", "average_precision_score"]:
             y_pred = np.array(individual.predict_proba(data)).astype(float)
 
-            eps = 0.001
-            y_pred = np.clip(y_pred, eps, 1-eps)
+            if est.parameters_.scorer == "log":
+                eps = 0.001
+                y_pred = np.clip(y_pred, eps, 1-eps)
         else:
             y_pred = np.array(individual.predict(data)).astype(float)
 
