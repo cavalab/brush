@@ -124,19 +124,19 @@ Collaboration diagram for Node:</div>
 <map name="aNode_coll__map" id="aNode_coll__map">
 <area shape="rect" title="class holding the data for a node in a tree." alt="" coords="163,209,218,237"/>
 <area shape="rect" title=" " alt="" coords="31,99,118,127"/>
-<area shape="poly" title=" " alt="" coords="101,136,151,183,177,206,174,210,147,187,97,140"/>
+<area shape="poly" title=" " alt="" coords="100,136,151,183,178,209,173,208,147,187,98,141"/>
 <area shape="rect" title=" " alt="" coords="5,5,144,50"/>
-<area shape="poly" title=" " alt="" coords="77,65,77,99,72,99,72,65"/>
+<area shape="poly" title=" " alt="" coords="75,63,77,99,72,98,74,68"/>
 <area shape="rect" title=" " alt="" coords="141,99,322,127"/>
-<area shape="poly" title=" " alt="" coords="224,143,198,210,193,208,219,141"/>
+<area shape="poly" title=" " alt="" coords="224,140,197,211,193,207,219,143"/>
 </map>
 <center><span class="legend">[<a target="top" href="../../graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:abd1037d20f96e122bc1305d70aab418a" id="r_abd1037d20f96e122bc1305d70aab418a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd1037d20f96e122bc1305d70aab418a">HashTuple</a></td></tr>
-<tr class="memdesc:abd1037d20f96e122bc1305d70aab418a"><td class="mdescLeft">&#160;</td><td class="mdescRight">tuple type for hashing  <br /></td></tr>
-<tr class="separator:abd1037d20f96e122bc1305d70aab418a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0529394dfe80ebf13da5d1bb84f2a300" id="r_a0529394dfe80ebf13da5d1bb84f2a300"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0529394dfe80ebf13da5d1bb84f2a300">HashTuple</a></td></tr>
+<tr class="memdesc:a0529394dfe80ebf13da5d1bb84f2a300"><td class="mdescLeft">&#160;</td><td class="mdescRight">tuple type for hashing  <br /></td></tr>
+<tr class="separator:a0529394dfe80ebf13da5d1bb84f2a300"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -221,14 +221,17 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:aed6c2af0fae3dd8e5a8aa2fab77479fd" id="r_aed6c2af0fae3dd8e5a8aa2fab77479fd"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed6c2af0fae3dd8e5a8aa2fab77479fd">sig_dual_hash</a></td></tr>
 <tr class="memdesc:aed6c2af0fae3dd8e5a8aa2fab77479fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">a hash of the dual of the signature (for NLS)  <br /></td></tr>
 <tr class="separator:aed6c2af0fae3dd8e5a8aa2fab77479fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32c73293ee4e02b6d828c2c213e06154" id="r_a32c73293ee4e02b6d828c2c213e06154"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32c73293ee4e02b6d828c2c213e06154">fixed</a></td></tr>
-<tr class="memdesc:a32c73293ee4e02b6d828c2c213e06154"><td class="mdescLeft">&#160;</td><td class="mdescRight">whether the node is replaceable. Weights are still optimized.  <br /></td></tr>
-<tr class="separator:a32c73293ee4e02b6d828c2c213e06154"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab733af56b9801fef4586cbe44f3f1243" id="r_ab733af56b9801fef4586cbe44f3f1243"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab733af56b9801fef4586cbe44f3f1243">node_is_fixed</a></td></tr>
+<tr class="memdesc:ab733af56b9801fef4586cbe44f3f1243"><td class="mdescLeft">&#160;</td><td class="mdescRight">whether the node is replaceable. Weights are still optimized.  <br /></td></tr>
+<tr class="separator:ab733af56b9801fef4586cbe44f3f1243"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d66063391a65a329ae0c27534d884d5" id="r_a3d66063391a65a329ae0c27534d884d5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d66063391a65a329ae0c27534d884d5">weight_is_fixed</a></td></tr>
+<tr class="memdesc:a3d66063391a65a329ae0c27534d884d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">whether the weight should be kept during variation. Notice that weight_is_fixed alows us to fix the weight of certain nodes.  <br /></td></tr>
+<tr class="separator:a3d66063391a65a329ae0c27534d884d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab72b791f57011a032c6c89238db85845" id="r_ab72b791f57011a032c6c89238db85845"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab72b791f57011a032c6c89238db85845">is_weighted</a></td></tr>
 <tr class="memdesc:ab72b791f57011a032c6c89238db85845"><td class="mdescLeft">&#160;</td><td class="mdescRight">whether this node is weighted (ignored in nodes that must have weights, such as meanLabel, constants, splits)  <br /></td></tr>
 <tr class="separator:ab72b791f57011a032c6c89238db85845"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f5b2e34d8ba752e0f6bffebec8afdc0" id="r_a9f5b2e34d8ba752e0f6bffebec8afdc0"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f5b2e34d8ba752e0f6bffebec8afdc0">prob_change</a></td></tr>
-<tr class="memdesc:a9f5b2e34d8ba752e0f6bffebec8afdc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">chance of node being selected for variation  <br /></td></tr>
+<tr class="memdesc:a9f5b2e34d8ba752e0f6bffebec8afdc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">chance of node being selected for variation. This will take into account if the node is fixed, but not the weight (a fixed weight just gets propagated). Can be affected by node_is_fixed. should not be accessed directly.  <br /></td></tr>
 <tr class="separator:a9f5b2e34d8ba752e0f6bffebec8afdc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab719e64b13753515be49327d98bf2224" id="r_ab719e64b13753515be49327d98bf2224"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab719e64b13753515be49327d98bf2224">W</a></td></tr>
 <tr class="memdesc:ab719e64b13753515be49327d98bf2224"><td class="mdescLeft">&#160;</td><td class="mdescRight">the weights of the node. also used for splitting thresholds.  <br /></td></tr>
@@ -249,16 +252,16 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>class holding the data for a node in a tree. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00084">84</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00089">89</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="abd1037d20f96e122bc1305d70aab418a" name="abd1037d20f96e122bc1305d70aab418a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd1037d20f96e122bc1305d70aab418a">&#9670;&#160;</a></span>HashTuple</h2>
+<a id="a0529394dfe80ebf13da5d1bb84f2a300" name="a0529394dfe80ebf13da5d1bb84f2a300"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0529394dfe80ebf13da5d1bb84f2a300">&#9670;&#160;</a></span>HashTuple</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="../../d1/d3a/structBrush_1_1Node.html#abd1037d20f96e122bc1305d70aab418a">Brush::Node::HashTuple</a></td>
+          <td class="memname">using <a class="el" href="../../d1/d3a/structBrush_1_1Node.html#a0529394dfe80ebf13da5d1bb84f2a300">Brush::Node::HashTuple</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -268,6 +271,7 @@ Public Attributes</h2></td></tr>
 <div class="line">        bool,                   </div>
 <div class="line">        string,                 </div>
 <div class="line">        bool,                   </div>
+<div class="line">        bool,                   </div>
 <div class="line">        <span class="keywordtype">int</span>                     </div>
 <div class="line">        </div>
 <div class="line">    &gt;</div>
@@ -275,7 +279,7 @@ Public Attributes</h2></td></tr>
 </div><!-- fragment -->
 <p>tuple type for hashing </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00115">115</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00130">130</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -360,7 +364,7 @@ template&lt;typename S&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00134">134</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00150">150</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -388,7 +392,7 @@ template&lt;typename S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00180">180</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00201">201</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -415,7 +419,7 @@ template&lt;typename S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00182">182</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00203">203</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -442,7 +446,7 @@ template&lt;typename S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00181">181</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00202">202</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -469,7 +473,7 @@ template&lt;typename S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00259">259</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00281">281</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -496,7 +500,7 @@ template&lt;typename S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00262">262</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00284">284</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -523,7 +527,7 @@ template&lt;typename S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00269">269</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00291">291</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -550,7 +554,7 @@ template&lt;typename S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00265">265</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00287">287</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -577,7 +581,7 @@ template&lt;typename S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d70/node_8cpp_source.html#l00052">52</a> of file <a class="el" href="../../d7/d70/node_8cpp_source.html">node.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/d70/node_8cpp_source.html#l00058">58</a> of file <a class="el" href="../../d7/d70/node_8cpp_source.html">node.cpp</a>.</p>
 
 </div>
 </div>
@@ -608,7 +612,7 @@ template&lt;typename S&gt; </div>
 <p>get the name of the node.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">include_weight</td><td>whether to include the node's weight in the output. </td></tr>
+    <tr><td class="paramname">include_weight</td><td>whether to include the node's weight in the output. Multiplications by one are omitted. </td></tr>
   </table>
   </dd>
 </dl>
@@ -643,7 +647,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00196">196</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00217">217</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -670,7 +674,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00254">254</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00276">276</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -697,7 +701,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00256">256</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00278">278</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -724,7 +728,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00179">179</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00200">200</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -751,7 +755,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00157">157</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00173">173</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -779,7 +783,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00224">224</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00246">246</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -807,7 +811,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00229">229</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00251">251</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -835,7 +839,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00236">236</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00258">258</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -863,7 +867,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00213">213</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00235">235</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -891,7 +895,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00241">241</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00263">263</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -919,7 +923,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00246">246</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00268">268</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -946,7 +950,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00258">258</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00280">280</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -973,7 +977,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00261">261</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00283">283</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -1000,7 +1004,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00274">274</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00296">296</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -1027,7 +1031,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00264">264</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00286">286</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -1054,7 +1058,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00255">255</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00277">277</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -1083,7 +1087,7 @@ template&lt;typename S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00148">148</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00164">164</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -1102,7 +1106,7 @@ template&lt;typename S&gt; </div>
 
 <p>argument data types </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00094">94</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00099">99</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -1120,7 +1124,7 @@ template&lt;typename S&gt; </div>
 
 <p>whether to center the operator in pretty printing </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00110">110</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00125">125</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -1138,7 +1142,7 @@ template&lt;typename S&gt; </div>
 
 <p>feature name for terminals or splitting nodes </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00281">281</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00303">303</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -1156,25 +1160,7 @@ template&lt;typename S&gt; </div>
 
 <p>feature type for terminals or splitting nodes </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00284">284</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
-
-</div>
-</div>
-<a id="a32c73293ee4e02b6d828c2c213e06154" name="a32c73293ee4e02b6d828c2c213e06154"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32c73293ee4e02b6d828c2c213e06154">&#9670;&#160;</a></span>fixed</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Brush::Node::fixed</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>whether the node is replaceable. Weights are still optimized. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00101">101</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00306">306</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -1192,7 +1178,7 @@ template&lt;typename S&gt; </div>
 
 <p>whether this node is weighted (ignored in nodes that must have weights, such as meanLabel, constants, splits) </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00103">103</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00116">116</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -1210,7 +1196,7 @@ template&lt;typename S&gt; </div>
 
 <p>fix the SplitBest feature when the node is fixed </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00287">287</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00309">309</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -1228,7 +1214,25 @@ template&lt;typename S&gt; </div>
 
 <p>full name of the node, with types </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00087">87</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00092">92</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+
+</div>
+</div>
+<a id="ab733af56b9801fef4586cbe44f3f1243" name="ab733af56b9801fef4586cbe44f3f1243"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab733af56b9801fef4586cbe44f3f1243">&#9670;&#160;</a></span>node_is_fixed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Brush::Node::node_is_fixed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>whether the node is replaceable. Weights are still optimized. </p>
+
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00112">112</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -1246,7 +1250,7 @@ template&lt;typename S&gt; </div>
 
 <p>the node type </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00089">89</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00094">94</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -1262,9 +1266,9 @@ template&lt;typename S&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>chance of node being selected for variation </p>
+<p>chance of node being selected for variation. This will take into account if the node is fixed, but not the weight (a fixed weight just gets propagated). Can be affected by node_is_fixed. should not be accessed directly. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00105">105</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00119">119</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -1282,7 +1286,7 @@ template&lt;typename S&gt; </div>
 
 <p>return data type </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00092">92</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00097">97</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -1300,7 +1304,7 @@ template&lt;typename S&gt; </div>
 
 <p>a hash of the dual of the signature (for NLS) </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00098">98</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00103">103</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -1318,7 +1322,7 @@ template&lt;typename S&gt; </div>
 
 <p>a hash of the signature </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00096">96</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00101">101</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -1336,7 +1340,25 @@ template&lt;typename S&gt; </div>
 
 <p>the weights of the node. also used for splitting thresholds. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00107">107</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00122">122</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+
+</div>
+</div>
+<a id="a3d66063391a65a329ae0c27534d884d5" name="a3d66063391a65a329ae0c27534d884d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d66063391a65a329ae0c27534d884d5">&#9670;&#160;</a></span>weight_is_fixed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Brush::Node::weight_is_fixed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>whether the weight should be kept during variation. Notice that weight_is_fixed alows us to fix the weight of certain nodes. </p>
+
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00114">114</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>

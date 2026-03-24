@@ -42,6 +42,8 @@ var functions_8h =
     [ "Brush::Function< NodeType::And >", "de/d19/structBrush_1_1Function_3_01NodeType_1_1And_01_4.html", "de/d19/structBrush_1_1Function_3_01NodeType_1_1And_01_4" ],
     [ "Brush::Function< NodeType::Or >", "d4/d1b/structBrush_1_1Function_3_01NodeType_1_1Or_01_4.html", "d4/d1b/structBrush_1_1Function_3_01NodeType_1_1Or_01_4" ],
     [ "Brush::Function< NodeType::Not >", "d4/d67/structBrush_1_1Function_3_01NodeType_1_1Not_01_4.html", "d4/d67/structBrush_1_1Function_3_01NodeType_1_1Not_01_4" ],
+    [ "Brush::Function< NodeType::Geq >", "d7/d11/structBrush_1_1Function_3_01NodeType_1_1Geq_01_4.html", "d7/d11/structBrush_1_1Function_3_01NodeType_1_1Geq_01_4" ],
+    [ "Brush::Function< NodeType::Equals >", "d2/d02/structBrush_1_1Function_3_01NodeType_1_1Equals_01_4.html", "d2/d02/structBrush_1_1Function_3_01NodeType_1_1Equals_01_4" ],
     [ "TimeSeries< T >", "d0/d8e/structTimeSeries.html", "d0/d8e/structTimeSeries" ],
     [ "ArrayXb", "d8/d5c/functions_8h.html#a6a33354c51ab1e4986b2a222aac825a7", null ],
     [ "TimeSeriesf", "d8/d5c/functions_8h.html#a66dd2004d1ee46aa2b08a5b2ff462d29", null ],

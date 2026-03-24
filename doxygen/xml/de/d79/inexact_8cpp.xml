@@ -3,6 +3,7 @@
   <compounddef id="de/d79/inexact_8cpp" kind="file" language="C++">
     <compoundname>inexact.cpp</compoundname>
     <includes refid="d1/db6/inexact_8h" local="yes">inexact.h</includes>
+    <includes refid="d2/da9/rnd_8h" local="yes">../util/rnd.h</includes>
     <includedby refid="d8/df7/bind__variation_8h" local="yes">bind_variation.h</includedby>
     <incdepgraph>
       <node id="49">
@@ -228,6 +229,8 @@
         <label>inexact.cpp</label>
         <link refid="de/d79/inexact_8cpp"/>
         <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -469,52 +472,76 @@
     </invincdepgraph>
     <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
     <innernamespace refid="df/d29/namespaceBrush_1_1Simpl">Brush::Simpl</innernamespace>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="de/d79/inexact_8cpp_1af7dd70e54015821d96e3a1afed6344ca" prot="public" static="yes" mutable="no">
+        <type>Rnd &amp;</type>
+        <definition>Rnd&amp; Brush::Util::r</definition>
+        <argsstring></argsstring>
+        <name>r</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/simplification/inexact.cpp" line="4" column="1" bodyfile="/home/runner/work/brush/brush/src/util/rnd.h" bodystart="176" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
 <codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d1/db6/inexact_8h" kindref="compound">inexact.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d2/da9/rnd_8h" kindref="compound">../util/rnd.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>simplification<sp/>maps<sp/>are<sp/>based<sp/>on<sp/>trainingdata</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>should<sp/>ignore<sp/>fixed<sp/>nodes<sp/>---&gt;<sp/>does<sp/>not<sp/>change<sp/>subtrees<sp/>if<sp/>they<sp/>contain<sp/>fixed<sp/>nodes<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>should<sp/>I<sp/>implement<sp/>json<sp/>serialization?</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref><sp/>{<sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="df/d29/namespaceBrush_1_1Simpl" kindref="compound">Simpl</ref>{</highlight></codeline>
-<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Inexact_simplifier*<sp/>Inexact_simplifier::instance<sp/>=<sp/>NULL;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">Brush::Util::r</ref>;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>simplification<sp/>maps<sp/>are<sp/>based<sp/>on<sp/>trainingdata</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>should<sp/>ignore<sp/>fixed<sp/>nodes<sp/>---&gt;<sp/>does<sp/>not<sp/>change<sp/>subtrees<sp/>if<sp/>they<sp/>contain<sp/>fixed<sp/>nodes<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>should<sp/>I<sp/>implement<sp/>json<sp/>serialization?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref><sp/>{<sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="df/d29/namespaceBrush_1_1Simpl" kindref="compound">Simpl</ref>{</highlight></codeline>
 <codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="12" refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a3a6711a4adc8e43324fe675688c8b3cb" refkind="member"><highlight class="normal"><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a3a6711a4adc8e43324fe675688c8b3cb" kindref="member">Inexact_simplifier::Inexact_simplifier</ref>()</highlight></codeline>
-<codeline lineno="13"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="14"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight></codeline>
-<codeline lineno="17" refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1abb9431d42274e6b559249d6b2872d2a2" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1abb9431d42274e6b559249d6b2872d2a2" kindref="member">Inexact_simplifier::init</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>hashSize,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref><sp/>&amp;data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numPlanes)</highlight></codeline>
-<codeline lineno="18"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>greater<sp/>the<sp/>number<sp/>of<sp/>planes,<sp/>the<sp/>more<sp/>accurate<sp/>the<sp/>hash,<sp/>but<sp/>the<sp/>slower<sp/>the<sp/>search</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cut-off<sp/>for<sp/>performance<sp/>at<sp/>100<sp/>samples</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ae737baf7821d6027feda169330192272" kindref="member">inputDim</ref><sp/>=<sp/>std::min(<ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ae737baf7821d6027feda169330192272" kindref="member">inputDim</ref>,<sp/>data.<ref refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" kindref="member">get_training_data</ref>().<ref refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" kindref="member">get_n_samples</ref>());</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a7319339ce256877088504967d3100685" kindref="member">uniformPlanes</ref>.clear();</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;<sp/>i&lt;numPlanes;<sp/>++i)</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MatrixXf<sp/>plane<sp/>=<sp/>MatrixXf::Random(hashSize,<sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ae737baf7821d6027feda169330192272" kindref="member">inputDim</ref>);</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>plane<sp/>/=<sp/>plane.norm();</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a7319339ce256877088504967d3100685" kindref="member">uniformPlanes</ref>.push_back(plane);</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ac63ac4ab691f7bedb423a60ead721ec9" kindref="member">equivalentExpressions</ref>.clear();</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>dtype<sp/>:<sp/>data.<ref refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a96fc30b35f152f425377e1ae34398779" kindref="member">unique_data_types</ref>)</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ac63ac4ab691f7bedb423a60ead721ec9" kindref="member">equivalentExpressions</ref>[dtype]<sp/>=<sp/><ref refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage" kindref="compound">HashStorage</ref>(numPlanes);</highlight></codeline>
-<codeline lineno="35"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="38" refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a8b53abd24e3b1b8018379befdce0059a" refkind="member"><highlight class="normal"><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a8b53abd24e3b1b8018379befdce0059a" kindref="member">Inexact_simplifier::~Inexact_simplifier</ref>()<sp/>{}</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Simply</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Inexact_simplifier*<sp/>Inexact_simplifier::instance<sp/>=<sp/>NULL;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="14" refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a3a6711a4adc8e43324fe675688c8b3cb" refkind="member"><highlight class="normal"><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a3a6711a4adc8e43324fe675688c8b3cb" kindref="member">Inexact_simplifier::Inexact_simplifier</ref>()</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1abb9431d42274e6b559249d6b2872d2a2" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1abb9431d42274e6b559249d6b2872d2a2" kindref="member">Inexact_simplifier::init</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>hashSize,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref><sp/>&amp;data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numPlanes)</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>greater<sp/>the<sp/>number<sp/>of<sp/>planes,<sp/>the<sp/>more<sp/>accurate<sp/>the<sp/>hash,<sp/>but<sp/>the<sp/>slower<sp/>the<sp/>search</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cut-off<sp/>for<sp/>performance<sp/>at<sp/>100<sp/>samples</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ae737baf7821d6027feda169330192272" kindref="member">inputDim</ref><sp/>=<sp/>std::min(<ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ae737baf7821d6027feda169330192272" kindref="member">inputDim</ref>,<sp/>data.<ref refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" kindref="member">get_training_data</ref>().<ref refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" kindref="member">get_n_samples</ref>());</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a7319339ce256877088504967d3100685" kindref="member">uniformPlanes</ref>.clear();</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;<sp/>i&lt;numPlanes;<sp/>++i)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Use<sp/>deterministic<sp/>random<sp/>number<sp/>generator<sp/>instead<sp/>of<sp/>Eigen::Random()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>to<sp/>ensure<sp/>reproducibility<sp/>with<sp/>seed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MatrixXf<sp/>plane(hashSize,<sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ae737baf7821d6027feda169330192272" kindref="member">inputDim</ref>);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>row<sp/>=<sp/>0;<sp/>row<sp/>&lt;<sp/>hashSize;<sp/>++row)<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>col<sp/>=<sp/>0;<sp/>col<sp/>&lt;<sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ae737baf7821d6027feda169330192272" kindref="member">inputDim</ref>;<sp/>++col)<sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>plane(row,<sp/>col)<sp/>=<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">r</ref>.rnd_flt(-1.0f,<sp/>1.0f);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>plane<sp/>/=<sp/>plane.norm();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a7319339ce256877088504967d3100685" kindref="member">uniformPlanes</ref>.push_back(plane);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ac63ac4ab691f7bedb423a60ead721ec9" kindref="member">equivalentExpressions</ref>.clear();</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>dtype<sp/>:<sp/>data.<ref refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a96fc30b35f152f425377e1ae34398779" kindref="member">unique_data_types</ref>)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ac63ac4ab691f7bedb423a60ead721ec9" kindref="member">equivalentExpressions</ref>[dtype]<sp/>=<sp/><ref refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage" kindref="compound">HashStorage</ref>(numPlanes);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a8b53abd24e3b1b8018379befdce0059a" refkind="member"><highlight class="normal"><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a8b53abd24e3b1b8018379befdce0059a" kindref="member">Inexact_simplifier::~Inexact_simplifier</ref>()<sp/>{}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Simply</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/simplification/inexact.cpp"/>
   </compounddef>

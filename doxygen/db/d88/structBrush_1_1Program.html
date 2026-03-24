@@ -161,6 +161,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af1f9858cdb8c05bdcf5db55cab745f7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ed721f103dd63c7adfc2934340097b4" id="r_a8ed721f103dd63c7adfc2934340097b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d88/structBrush_1_1Program.html">Program</a>&lt; PType &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ed721f103dd63c7adfc2934340097b4">fit</a> (const <a class="el" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> &amp;d)</td></tr>
 <tr class="separator:a8ed721f103dd63c7adfc2934340097b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77c68cab4b94b4f3b4e7c74c61446952" id="r_a77c68cab4b94b4f3b4e7c74c61446952"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d88/structBrush_1_1Program.html">Program</a>&lt; PType &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77c68cab4b94b4f3b4e7c74c61446952">replace_program</a> (const <a class="el" href="../../db/d88/structBrush_1_1Program.html">Program</a>&lt; PType &gt; &amp;new_program)</td></tr>
+<tr class="memdesc:a77c68cab4b94b4f3b4e7c74c61446952"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replace the current program with a new program, invalidating fitness.  <br /></td></tr>
+<tr class="separator:a77c68cab4b94b4f3b4e7c74c61446952"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e4050b85e3f7c741d51d9eb243bdc8a" id="r_a0e4050b85e3f7c741d51d9eb243bdc8a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d88/structBrush_1_1Program.html">Program</a>&lt; PType &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e4050b85e3f7c741d51d9eb243bdc8a">replace_program</a> (const json &amp;j)</td></tr>
+<tr class="memdesc:a0e4050b85e3f7c741d51d9eb243bdc8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replace the current program from a JSON representation, invalidating fitness.  <br /></td></tr>
+<tr class="separator:a0e4050b85e3f7c741d51d9eb243bdc8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a1237f15d7b9cc1e825e1a3213df58e" id="r_a6a1237f15d7b9cc1e825e1a3213df58e"><td class="memTemplParams" colspan="2">template&lt;typename R, typename W&gt; </td></tr>
 <tr class="memitem:a6a1237f15d7b9cc1e825e1a3213df58e"><td class="memTemplItemLeft" align="right" valign="top">R&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a6a1237f15d7b9cc1e825e1a3213df58e">predict_with_weights</a> (const <a class="el" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> &amp;d, const W **weights)</td></tr>
 <tr class="separator:a6a1237f15d7b9cc1e825e1a3213df58e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -208,9 +214,9 @@ requires ((P == <a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af2
 <tr class="memitem:a5ba9c69ade043cacb917dfb654a57834" id="r_a5ba9c69ade043cacb917dfb654a57834"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ba9c69ade043cacb917dfb654a57834">set_weights</a> (const ArrayXf &amp;weights)</td></tr>
 <tr class="memdesc:a5ba9c69ade043cacb917dfb654a57834"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the weights in the tree from an array of weights.  <br /></td></tr>
 <tr class="separator:a5ba9c69ade043cacb917dfb654a57834"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17d8eaf6b1623cefc4d4888e8ed81330" id="r_a17d8eaf6b1623cefc4d4888e8ed81330"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17d8eaf6b1623cefc4d4888e8ed81330">lock_nodes</a> (int end_depth=0, bool keep_leaves_unlocked=true)</td></tr>
-<tr class="memdesc:a17d8eaf6b1623cefc4d4888e8ed81330"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates over the program, locking the nodes until it reaches a certain depth. If the node is a SplitBest and leaves are kept, then the split feature is fixed.  <br /></td></tr>
-<tr class="separator:a17d8eaf6b1623cefc4d4888e8ed81330"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16b14765b1fd177c99f7cd116fae0fde" id="r_a16b14765b1fd177c99f7cd116fae0fde"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16b14765b1fd177c99f7cd116fae0fde">lock_nodes</a> (int end_depth=0, bool keep_leaves_unlocked=true, bool keep_current_weights=false)</td></tr>
+<tr class="memdesc:a16b14765b1fd177c99f7cd116fae0fde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates over the program, locking the nodes until it reaches a certain depth. If the node is a SplitBest and leaves are kept, then the split feature is fixed.  <br /></td></tr>
+<tr class="separator:a16b14765b1fd177c99f7cd116fae0fde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac87e13742552236e1dc9fd9b62078331" id="r_ac87e13742552236e1dc9fd9b62078331"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d92/classstring.html">string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac87e13742552236e1dc9fd9b62078331">get_model</a> (<a class="el" href="../../d5/d92/classstring.html">string</a> fmt=&quot;compact&quot;, bool pretty=false) const</td></tr>
 <tr class="memdesc:ac87e13742552236e1dc9fd9b62078331"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the model as a string.  <br /></td></tr>
 <tr class="separator:ac87e13742552236e1dc9fd9b62078331"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -223,7 +229,7 @@ requires ((P == <a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af2
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a66e9a1ae33267ee5132ba3b3757b8a01" id="r_a66e9a1ae33267ee5132ba3b3757b8a01"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66e9a1ae33267ee5132ba3b3757b8a01">is_fitted_</a></td></tr>
+<tr class="memitem:a66e9a1ae33267ee5132ba3b3757b8a01" id="r_a66e9a1ae33267ee5132ba3b3757b8a01"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66e9a1ae33267ee5132ba3b3757b8a01">is_fitted_</a> = false</td></tr>
 <tr class="memdesc:a66e9a1ae33267ee5132ba3b3757b8a01"><td class="mdescLeft">&#160;</td><td class="mdescRight">whether fit has been called  <br /></td></tr>
 <tr class="separator:a66e9a1ae33267ee5132ba3b3757b8a01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7435fb84d7b056a108f142bb19956da5" id="r_a7435fb84d7b056a108f142bb19956da5"><td class="memItemLeft" align="right" valign="top">tree&lt; <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7435fb84d7b056a108f142bb19956da5">Tree</a></td></tr>
@@ -338,7 +344,7 @@ Here is the caller graph for this function:</div>
 <map name="adb/d88/structBrush_1_1Program_ab5df93b7b0bf914455ffeb5cc7574543_icgraph" id="adb/d88/structBrush_1_1Program_ab5df93b7b0bf914455ffeb5cc7574543_icgraph">
 <area shape="rect" title=" " alt="" coords="206,14,390,42"/>
 <area shape="rect" href="../../db/d88/structBrush_1_1Program.html#af50c7ca669b20b48971b5108cd24525c" title=" " alt="" coords="5,5,158,50"/>
-<area shape="poly" title=" " alt="" coords="190,30,158,30,158,25,190,25"/>
+<area shape="poly" title=" " alt="" coords="187,28,158,30,158,25,193,27"/>
 </map>
 </div>
 
@@ -373,7 +379,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00078">78</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00079">79</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -406,7 +412,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 <p>count the (recursive) complexity of the program. </p>
 <dl class="section return"><dt>Returns</dt><dd>int complexity. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00093">93</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00094">94</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -435,7 +441,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00084">84</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00085">85</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -467,7 +473,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 <p>count the tree depth of the program. The depth is not influenced by weighted nodes. </p>
 <dl class="section return"><dt>Returns</dt><dd>int tree depth. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00128">128</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00129">129</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -475,15 +481,15 @@ Here is the caller graph for this function:</div>
 <map name="adb/d88/structBrush_1_1Program_a91dd138edc7ecb5bc6d013ae68bf0e42_icgraph" id="adb/d88/structBrush_1_1Program_a91dd138edc7ecb5bc6d013ae68bf0e42_icgraph">
 <area shape="rect" title="count the tree depth of the program. The depth is not influenced by weighted nodes." alt="" coords="792,48,958,76"/>
 <area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#af8a04b3abeea0f0f9e5b6e358aa65c09" title="Performs mutation operation on an individual." alt="" coords="590,40,744,85"/>
-<area shape="poly" title=" " alt="" coords="776,65,744,65,744,60,776,60"/>
+<area shape="poly" title=" " alt="" coords="773,62,744,65,744,60,779,62"/>
 <area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a344233ce053ca4b267539182fecbbc91" title="Handles variation of a population." alt="" coords="389,5,542,50"/>
-<area shape="poly" title=" " alt="" coords="575,49,542,43,543,38,576,44"/>
+<area shape="poly" title=" " alt="" coords="573,47,542,44,543,38,578,47"/>
 <area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a2efd0b4d27f160c92d528d7623669975" title="Varies a population and updates the selection strategy based on rewards." alt="" coords="389,75,542,119"/>
-<area shape="poly" title=" " alt="" coords="576,81,543,86,542,81,575,75"/>
+<area shape="poly" title=" " alt="" coords="578,78,543,86,542,81,573,78"/>
 <area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#a4248c80ebcd035a70953065045e04705" title="train the model" alt="" coords="202,83,341,111"/>
-<area shape="poly" title=" " alt="" coords="374,100,342,100,342,94,374,94"/>
+<area shape="poly" title=" " alt="" coords="371,97,342,100,342,94,376,97"/>
 <area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#a55f5d4ccc161d1674c1ca63a917abd9f" title=" " alt="" coords="5,75,154,119"/>
-<area shape="poly" title=" " alt="" coords="186,100,154,100,154,94,186,94"/>
+<area shape="poly" title=" " alt="" coords="183,97,154,100,154,94,189,97"/>
 </map>
 </div>
 
@@ -523,7 +529,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int tree depth. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00138">138</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00139">139</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -561,7 +567,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int tree depth. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00146">146</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00147">147</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -569,15 +575,15 @@ Here is the caller graph for this function:</div>
 <map name="adb/d88/structBrush_1_1Program_af1f9858cdb8c05bdcf5db55cab745f7c_icgraph" id="adb/d88/structBrush_1_1Program_af1f9858cdb8c05bdcf5db55cab745f7c_icgraph">
 <area shape="rect" title="count the depth until reaching the given subtree. The depth is not influenced by weighted nodes...." alt="" coords="792,40,958,85"/>
 <area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#acf7d5d1c0d6a102eec277180dce590fe" title="Performs croearch_spaceover operation on two individuals." alt="" coords="590,40,744,85"/>
-<area shape="poly" title=" " alt="" coords="776,65,744,65,744,60,776,60"/>
+<area shape="poly" title=" " alt="" coords="773,62,744,65,744,60,779,62"/>
 <area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a344233ce053ca4b267539182fecbbc91" title="Handles variation of a population." alt="" coords="389,5,542,50"/>
-<area shape="poly" title=" " alt="" coords="575,49,542,43,543,38,576,44"/>
+<area shape="poly" title=" " alt="" coords="573,47,542,44,543,38,578,47"/>
 <area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a2efd0b4d27f160c92d528d7623669975" title="Varies a population and updates the selection strategy based on rewards." alt="" coords="389,75,542,119"/>
-<area shape="poly" title=" " alt="" coords="576,81,543,86,542,81,575,75"/>
+<area shape="poly" title=" " alt="" coords="578,78,543,86,542,81,573,78"/>
 <area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#a4248c80ebcd035a70953065045e04705" title="train the model" alt="" coords="202,83,341,111"/>
-<area shape="poly" title=" " alt="" coords="374,100,342,100,342,94,374,94"/>
+<area shape="poly" title=" " alt="" coords="371,97,342,100,342,94,376,97"/>
 <area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#a55f5d4ccc161d1674c1ca63a917abd9f" title=" " alt="" coords="5,75,154,119"/>
-<area shape="poly" title=" " alt="" coords="186,100,154,100,154,94,186,94"/>
+<area shape="poly" title=" " alt="" coords="183,97,154,100,154,94,189,97"/>
 </map>
 </div>
 
@@ -608,7 +614,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00150">150</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00151">151</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -616,15 +622,15 @@ Here is the caller graph for this function:</div>
 <map name="adb/d88/structBrush_1_1Program_a8ed721f103dd63c7adfc2934340097b4_icgraph" id="adb/d88/structBrush_1_1Program_a8ed721f103dd63c7adfc2934340097b4_icgraph">
 <area shape="rect" title=" " alt="" coords="608,83,751,111"/>
 <area shape="rect" href="../../db/d88/structBrush_1_1Program.html#af62fee4f37c3a748c68505986a979ba3" title=" " alt="" coords="398,5,551,50"/>
-<area shape="poly" title=" " alt="" coords="621,80,542,53,544,48,623,75"/>
+<area shape="poly" title=" " alt="" coords="619,78,543,53,543,48,625,78"/>
 <area shape="rect" href="../../d1/de5/classBrush_1_1Eval_1_1Evaluation.html#a6ca34005b1a4ab87038a4c391e77d786" title="Update the fitness of individuals in a population." alt="" coords="389,75,560,119"/>
-<area shape="poly" title=" " alt="" coords="593,100,561,100,561,94,593,94"/>
+<area shape="poly" title=" " alt="" coords="590,97,561,100,561,94,595,97"/>
 <area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a2efd0b4d27f160c92d528d7623669975" title="Varies a population and updates the selection strategy based on rewards." alt="" coords="398,144,551,189"/>
-<area shape="poly" title=" " alt="" coords="623,119,544,146,542,141,621,114"/>
+<area shape="poly" title=" " alt="" coords="625,116,544,146,542,141,619,117"/>
 <area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#a4248c80ebcd035a70953065045e04705" title="train the model" alt="" coords="202,152,341,180"/>
-<area shape="poly" title=" " alt="" coords="382,169,341,169,341,164,382,164"/>
+<area shape="poly" title=" " alt="" coords="379,166,341,169,341,164,385,166"/>
 <area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#a55f5d4ccc161d1674c1ca63a917abd9f" title=" " alt="" coords="5,144,154,189"/>
-<area shape="poly" title=" " alt="" coords="186,169,154,169,154,164,186,164"/>
+<area shape="poly" title=" " alt="" coords="183,167,154,169,154,164,189,166"/>
 </map>
 </div>
 
@@ -669,7 +675,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>: reference to program </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00231">231</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00263">263</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -707,7 +713,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>string the model in dot language. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00411">411</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00491">491</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -761,7 +767,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>string the model in string form. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00395">395</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00475">475</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -792,7 +798,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 
 <p>returns the number of weights in the program. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00269">269</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00301">301</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -800,7 +806,7 @@ Here is the caller graph for this function:</div>
 <map name="adb/d88/structBrush_1_1Program_a990bd3691f3b3e2b7ff479bcd4231479_icgraph" id="adb/d88/structBrush_1_1Program_a990bd3691f3b3e2b7ff479bcd4231479_icgraph">
 <area shape="rect" title="returns the number of weights in the program." alt="" coords="250,5,400,50"/>
 <area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a8bee1c866051b3e11c017cdf29b46eb7" title=" " alt="" coords="5,5,202,50"/>
-<area shape="poly" title=" " alt="" coords="234,30,202,30,202,25,234,25"/>
+<area shape="poly" title=" " alt="" coords="232,28,202,30,202,25,237,27"/>
 </map>
 </div>
 
@@ -834,7 +840,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 <p>Get the weights of the tree as an array. </p>
 <dl class="section return"><dt>Returns</dt><dd>ArrayXf of weights in the program, encoded in post-fix order. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00291">291</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00331">331</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -866,7 +872,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 <p>count the linear complexity of the program. </p>
 <dl class="section return"><dt>Returns</dt><dd>int complexity. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00101">101</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00102">102</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -898,12 +904,12 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 <p>turns program tree into a linear program. </p>
 <dl class="section return"><dt>Returns</dt><dd>a vector of nodes encoding the program in reverse polish notation </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00551">551</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00659">659</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
-<a id="a17d8eaf6b1623cefc4d4888e8ed81330" name="a17d8eaf6b1623cefc4d4888e8ed81330"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17d8eaf6b1623cefc4d4888e8ed81330">&#9670;&#160;</a></span>lock_nodes()</h2>
+<a id="a16b14765b1fd177c99f7cd116fae0fde" name="a16b14765b1fd177c99f7cd116fae0fde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16b14765b1fd177c99f7cd116fae0fde">&#9670;&#160;</a></span>lock_nodes()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -921,7 +927,12 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>keep_leaves_unlocked</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>keep_leaves_unlocked</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>keep_current_weights</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -935,12 +946,13 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">end_depth</td><td>the depth to stop locking nodes. Default 0. </td></tr>
-    <tr><td class="paramname">keep_leaves_unlocked</td><td>whether to skip leaves and leave them unlocked. Default true. </td></tr>
+    <tr><td class="paramname">keep_leaves_unlocked</td><td>whether to skip leaves and leave them unlocked. </td></tr>
+    <tr><td class="paramname">keep_current_weights</td><td>whether to keep current weights at the spot they appear. Default true. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00342">342</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00394">394</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -987,7 +999,7 @@ requires (is_same_v&lt;R, <a class="el" href="#a6a1a298cfdb17245ce9174e559d6fef1
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00183">183</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00215">215</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -995,11 +1007,11 @@ Here is the caller graph for this function:</div>
 <map name="adb/d88/structBrush_1_1Program_a68b5b3a1aedf1dfd2769dbba3a01a2ec_icgraph" id="adb/d88/structBrush_1_1Program_a68b5b3a1aedf1dfd2769dbba3a01a2ec_icgraph">
 <area shape="rect" title="the standard predict function. Returns the output of the Tree directly." alt="" coords="260,83,434,111"/>
 <area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a59371dd699ddbb0bdb3b27237cb40e76" title=" " alt="" coords="27,5,190,50"/>
-<area shape="poly" title=" " alt="" coords="281,81,187,53,189,48,283,76"/>
+<area shape="poly" title=" " alt="" coords="280,79,188,53,188,48,285,77"/>
 <area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a166fc75406fd631070f4477a367c4bb8" title=" " alt="" coords="5,75,212,119"/>
-<area shape="poly" title=" " alt="" coords="244,100,212,100,212,94,244,94"/>
+<area shape="poly" title=" " alt="" coords="241,98,213,100,212,94,246,96"/>
 <area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a8a70383d31da8c7798595f36f2acb2a9" title=" " alt="" coords="17,144,200,189"/>
-<area shape="poly" title=" " alt="" coords="283,118,189,146,187,141,281,113"/>
+<area shape="poly" title=" " alt="" coords="285,115,189,146,187,141,279,116"/>
 </map>
 </div>
 
@@ -1048,7 +1060,7 @@ requires (is_same_v&lt;R, <a class="el" href="../../dc/d5c/namespaceBrush.html#a
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>out: binary labels </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00196">196</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00228">228</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -1095,7 +1107,7 @@ requires (is_same_v&lt;R, <a class="el" href="../../dc/d5c/namespaceBrush.html#a
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>out: integer labels </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00209">209</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00241">241</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -1133,7 +1145,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>: predictions </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00240">240</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00272">272</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -1165,7 +1177,7 @@ requires ((P == <a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af2
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00222">222</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00254">254</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1173,7 +1185,7 @@ Here is the caller graph for this function:</div>
 <map name="adb/d88/structBrush_1_1Program_a166fc75406fd631070f4477a367c4bb8_icgraph" id="adb/d88/structBrush_1_1Program_a166fc75406fd631070f4477a367c4bb8_icgraph">
 <area shape="rect" title=" " alt="" coords="260,5,434,50"/>
 <area shape="rect" href="../../db/d88/structBrush_1_1Program.html#ad63eebe3f515f9b229617c1df623b30d" title=" " alt="" coords="5,5,212,50"/>
-<area shape="poly" title=" " alt="" coords="244,30,212,30,212,25,244,25"/>
+<area shape="poly" title=" " alt="" coords="241,28,212,30,212,25,247,27"/>
 </map>
 </div>
 
@@ -1216,7 +1228,7 @@ requires ((P == <a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af2
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00255">255</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00287">287</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -1249,7 +1261,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00168">168</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00200">200</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -1284,7 +1296,7 @@ template&lt;typename R, typename W&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00160">160</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00192">192</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1292,7 +1304,93 @@ Here is the caller graph for this function:</div>
 <map name="adb/d88/structBrush_1_1Program_a6a1237f15d7b9cc1e825e1a3213df58e_icgraph" id="adb/d88/structBrush_1_1Program_a6a1237f15d7b9cc1e825e1a3213df58e_icgraph">
 <area shape="rect" title=" " alt="" coords="216,14,390,58"/>
 <area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a93735deb988101774e8e58c5402e1a21" title=" " alt="" coords="5,5,168,67"/>
-<area shape="poly" title=" " alt="" coords="200,39,168,39,168,34,200,34"/>
+<area shape="poly" title=" " alt="" coords="198,36,168,39,168,34,203,36"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0e4050b85e3f7c741d51d9eb243bdc8a" name="a0e4050b85e3f7c741d51d9eb243bdc8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e4050b85e3f7c741d51d9eb243bdc8a">&#9670;&#160;</a></span>replace_program() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88b714d0f92b86276366">PT</a> PType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d88/structBrush_1_1Program.html">Program</a>&lt; PType &gt; &amp; <a class="el" href="../../db/d88/structBrush_1_1Program.html">Brush::Program</a>&lt; PType &gt;::replace_program </td>
+          <td>(</td>
+          <td class="paramtype">const json &amp;</td>          <td class="paramname"><span class="paramname"><em>j</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Replace the current program from a JSON representation, invalidating fitness. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">j</td><td>JSON object containing the serialized program </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>reference to this program </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00185">185</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+
+</div>
+</div>
+<a id="a77c68cab4b94b4f3b4e7c74c61446952" name="a77c68cab4b94b4f3b4e7c74c61446952"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77c68cab4b94b4f3b4e7c74c61446952">&#9670;&#160;</a></span>replace_program() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88b714d0f92b86276366">PT</a> PType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d88/structBrush_1_1Program.html">Program</a>&lt; PType &gt; &amp; <a class="el" href="../../db/d88/structBrush_1_1Program.html">Brush::Program</a>&lt; PType &gt;::replace_program </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../db/d88/structBrush_1_1Program.html">Program</a>&lt; PType &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>new_program</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Replace the current program with a new program, invalidating fitness. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_program</td><td>The new program to replace the current one with </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>reference to this program </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00166">166</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/d88/structBrush_1_1Program_a77c68cab4b94b4f3b4e7c74c61446952_icgraph.png" border="0" usemap="#adb/d88/structBrush_1_1Program_a77c68cab4b94b4f3b4e7c74c61446952_icgraph" alt=""/></div>
+<map name="adb/d88/structBrush_1_1Program_a77c68cab4b94b4f3b4e7c74c61446952_icgraph" id="adb/d88/structBrush_1_1Program_a77c68cab4b94b4f3b4e7c74c61446952_icgraph">
+<area shape="rect" title="Replace the current program with a new program, invalidating fitness." alt="" coords="219,14,396,58"/>
+<area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a0e4050b85e3f7c741d51d9eb243bdc8a" title=" " alt="" coords="5,5,171,67"/>
+<area shape="poly" title=" " alt="" coords="201,36,171,39,171,34,206,36"/>
 </map>
 </div>
 
@@ -1323,7 +1421,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00086">86</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00087">87</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1331,7 +1429,7 @@ Here is the caller graph for this function:</div>
 <map name="adb/d88/structBrush_1_1Program_aa24681261d191fdc486973820394d411_icgraph" id="adb/d88/structBrush_1_1Program_aa24681261d191fdc486973820394d411_icgraph">
 <area shape="rect" title=" " alt="" coords="223,5,372,50"/>
 <area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#ae8b79f5ffa6323af3e7287c0a6005bec" title=" " alt="" coords="5,5,175,50"/>
-<area shape="poly" title=" " alt="" coords="207,30,175,30,175,25,207,25"/>
+<area shape="poly" title=" " alt="" coords="204,28,175,30,175,25,210,27"/>
 </map>
 </div>
 
@@ -1370,7 +1468,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00314">314</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00359">359</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>
@@ -1408,7 +1506,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int number of nodes. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00110">110</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00111">111</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1416,21 +1514,21 @@ Here is the caller graph for this function:</div>
 <map name="adb/d88/structBrush_1_1Program_af64e3100027b89fd4fffd50bfb843993_icgraph" id="adb/d88/structBrush_1_1Program_af64e3100027b89fd4fffd50bfb843993_icgraph">
 <area shape="rect" title="count the tree size of the program, including the weights in weighted nodes." alt="" coords="792,70,947,97"/>
 <area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#acf7d5d1c0d6a102eec277180dce590fe" title="Performs croearch_spaceover operation on two individuals." alt="" coords="590,27,744,71"/>
-<area shape="poly" title=" " alt="" coords="776,70,743,65,744,59,777,65"/>
+<area shape="poly" title=" " alt="" coords="774,68,744,65,744,59,779,68"/>
 <area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a344233ce053ca4b267539182fecbbc91" title="Handles variation of a population." alt="" coords="389,27,542,71"/>
-<area shape="poly" title=" " alt="" coords="836,63,793,37,743,17,690,9,635,10,583,18,537,29,536,23,582,12,635,5,690,4,744,12,795,32,838,58"/>
+<area shape="poly" title=" " alt="" coords="834,60,793,37,743,17,690,9,635,10,583,18,537,29,536,23,582,12,635,5,690,4,744,12,795,32,840,61"/>
 <area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a2efd0b4d27f160c92d528d7623669975" title="Varies a population and updates the selection strategy based on rewards." alt="" coords="389,96,542,141"/>
-<area shape="poly" title=" " alt="" coords="838,109,795,135,744,155,690,163,635,162,582,155,536,144,537,139,583,149,635,157,690,158,743,150,793,130,836,104"/>
+<area shape="poly" title=" " alt="" coords="840,106,795,135,744,155,690,163,635,162,582,155,536,144,536,138,583,149,635,157,690,158,743,150,793,130,834,107"/>
 <area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#af8a04b3abeea0f0f9e5b6e358aa65c09" title="Performs mutation operation on an individual." alt="" coords="590,96,744,141"/>
-<area shape="poly" title=" " alt="" coords="777,102,744,108,743,102,776,97"/>
-<area shape="poly" title=" " alt="" coords="575,52,542,52,542,46,575,46"/>
-<area shape="poly" title=" " alt="" coords="586,79,534,98,532,93,585,74"/>
+<area shape="poly" title=" " alt="" coords="779,99,744,108,743,102,774,100"/>
+<area shape="poly" title=" " alt="" coords="572,49,543,52,542,46,577,49"/>
+<area shape="poly" title=" " alt="" coords="588,76,534,98,532,93,583,77"/>
 <area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#a4248c80ebcd035a70953065045e04705" title="train the model" alt="" coords="202,104,341,132"/>
-<area shape="poly" title=" " alt="" coords="374,121,342,121,342,116,374,116"/>
+<area shape="poly" title=" " alt="" coords="371,118,342,121,341,116,376,118"/>
 <area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#a55f5d4ccc161d1674c1ca63a917abd9f" title=" " alt="" coords="5,96,154,141"/>
-<area shape="poly" title=" " alt="" coords="186,121,154,121,154,116,186,116"/>
-<area shape="poly" title=" " alt="" coords="585,93,532,74,534,69,586,88"/>
-<area shape="poly" title=" " alt="" coords="575,121,542,121,542,116,575,116"/>
+<area shape="poly" title=" " alt="" coords="183,119,154,121,153,116,189,118"/>
+<area shape="poly" title=" " alt="" coords="583,90,533,75,533,69,588,90"/>
+<area shape="poly" title=" " alt="" coords="572,118,543,121,542,116,577,118"/>
 </map>
 </div>
 
@@ -1475,7 +1573,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int number of nodes. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00121">121</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00122">122</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1483,19 +1581,19 @@ Here is the caller graph for this function:</div>
 <map name="adb/d88/structBrush_1_1Program_a826ef90ae1aaf8f2637f551cfff0746a_icgraph" id="adb/d88/structBrush_1_1Program_a826ef90ae1aaf8f2637f551cfff0746a_icgraph">
 <area shape="rect" title="count the size of a given subtree, optionally including the weights in weighted nodes...." alt="" coords="849,48,1024,76"/>
 <area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a9e6645327d19f04e16025a61faaca021" title=" " alt="" coords="619,5,801,50"/>
-<area shape="poly" title=" " alt="" coords="833,49,801,44,802,39,834,44"/>
+<area shape="poly" title=" " alt="" coords="831,47,801,44,801,39,836,47"/>
 <area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#acf7d5d1c0d6a102eec277180dce590fe" title="Performs croearch_spaceover operation on two individuals." alt="" coords="633,75,787,119"/>
-<area shape="poly" title=" " alt="" coords="834,81,787,88,787,83,833,75"/>
+<area shape="poly" title=" " alt="" coords="836,78,787,88,787,83,831,78"/>
 <area shape="rect" href="../../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a8a70383d31da8c7798595f36f2acb2a9" title=" " alt="" coords="389,5,571,50"/>
-<area shape="poly" title=" " alt="" coords="604,30,572,30,572,25,604,25"/>
+<area shape="poly" title=" " alt="" coords="601,28,572,30,571,25,606,27"/>
 <area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a344233ce053ca4b267539182fecbbc91" title="Handles variation of a population." alt="" coords="404,75,557,119"/>
-<area shape="poly" title=" " alt="" coords="618,100,557,100,557,94,618,94"/>
+<area shape="poly" title=" " alt="" coords="615,97,557,100,557,94,621,97"/>
 <area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a2efd0b4d27f160c92d528d7623669975" title="Varies a population and updates the selection strategy based on rewards." alt="" coords="404,144,557,189"/>
-<area shape="poly" title=" " alt="" coords="620,127,558,146,556,141,619,122"/>
+<area shape="poly" title=" " alt="" coords="622,124,557,146,556,141,617,125"/>
 <area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#a4248c80ebcd035a70953065045e04705" title="train the model" alt="" coords="202,152,341,180"/>
-<area shape="poly" title=" " alt="" coords="388,169,341,169,341,164,388,164"/>
+<area shape="poly" title=" " alt="" coords="386,166,341,169,341,164,391,166"/>
 <area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#a55f5d4ccc161d1674c1ca63a917abd9f" title=" " alt="" coords="5,144,154,189"/>
-<area shape="poly" title=" " alt="" coords="186,169,154,169,154,164,186,164"/>
+<area shape="poly" title=" " alt="" coords="183,167,154,169,154,164,189,166"/>
 </map>
 </div>
 
@@ -1526,7 +1624,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00567">567</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00675">675</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1534,7 +1632,7 @@ Here is the caller graph for this function:</div>
 <map name="adb/d88/structBrush_1_1Program_a1cc0fd2af851933b54ef5fb6fb6c941b_icgraph" id="adb/d88/structBrush_1_1Program_a1cc0fd2af851933b54ef5fb6fb6c941b_icgraph">
 <area shape="rect" title="Updates the program&#39;s weights using non&#45;linear least squares." alt="" coords="206,5,380,50"/>
 <area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a8ed721f103dd63c7adfc2934340097b4" title=" " alt="" coords="5,5,158,50"/>
-<area shape="poly" title=" " alt="" coords="190,30,158,30,158,25,190,25"/>
+<area shape="poly" title=" " alt="" coords="188,28,158,30,158,25,193,27"/>
 </map>
 </div>
 
@@ -1550,7 +1648,7 @@ Here is the caller graph for this function:</div>
 template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88b714d0f92b86276366">PT</a> PType&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="../../db/d88/structBrush_1_1Program.html">Brush::Program</a>&lt; PType &gt;::is_fitted_</td>
+          <td class="memname">bool <a class="el" href="../../db/d88/structBrush_1_1Program.html">Brush::Program</a>&lt; PType &gt;::is_fitted_ = false</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1605,7 +1703,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 
 <p>reference to search space </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00075">75</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/dea/program_8h_source.html#l00076">76</a> of file <a class="el" href="../../d1/dea/program_8h_source.html">program.h</a>.</p>
 
 </div>
 </div>

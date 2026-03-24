@@ -66,20 +66,20 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d1/d3a/structBrush_1_1Node.html#a24ab653c36833ab9cd301efe99b39d5f",
-"d2/d36/classBrush_1_1Data_1_1Dataset.html#a52d591cce797480e80f8cf1f1482702e",
-"d4/d42/structfmt_1_1formatter_3_01Brush_1_1NodeType_01_4.html#a66499c22826759622fa847c796886088",
-"d5/d14/classBrush_1_1Var_1_1Variation.html#a3df7d1814f29d5073fccce5a4c59311c",
-"d6/dd0/structBrush_1_1Fitness.html#a4ca966e6cb92024ad7a29c420094a14e",
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aed1941ba67ba92fd9c3bb1fe2d136125",
-"d8/dc0/init_8h.html#a34d9416d559c78e525082e3b25582658",
-"da/d4c/classBrush_1_1Eval_1_1Scorer.html#ae0f2e1477d465c8a5f4db4e0c8554865",
-"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#a8d36cca3c88663adf33e28043d025b56",
-"dc/d31/structBrush_1_1Operator.html#ab4b156eb563db21ac32223aabfb9b92c",
-"dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#ab50d4ebcba078dfe4b43f6fd3dbf5810",
-"de/d30/structBrush_1_1Jetify.html#a41a88664219f863ac8fe341e03f5c21f",
-"de/deb/structBrush_1_1Parameters.html#a139004f9fa652376afabd690dac242e5",
-"df/d54/structBrush_1_1is__tuple_3_01std_1_1tuple_3_01T_8_8_8_01_4_01_4.html"
+"d1/d3a/structBrush_1_1Node.html#a0971012cfb2ae944f4bea0ea0dc9e5a3",
+"d2/d36/classBrush_1_1Data_1_1Dataset.html#a2b7b42b1b16630554b2e49102098a170",
+"d4/d0d/structstd_1_1hash_3_01std_1_1vector_3_01float_01_4_01_4.html#a7dbc278cbdb41e00ab637bba9e2221b9",
+"d4/df1/structBrush_1_1is__std__array_3_01std_1_1array_3_01V_00_01n_01_4_01_4.html",
+"d6/dd0/structBrush_1_1Fitness.html#a1e6a7fbf8c83a164c3c8fca6108a1859",
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa833203e5097827e5e395c9bd21d4be7",
+"d8/d9c/structBrush_1_1Function_3_01NodeType_1_1Sum_01_4.html#a95f5f6afa70ac1f0eb2bad0c86df8099",
+"da/d3b/scorer_8h.html",
+"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#abc17ddcd149126c4b4f18f3c20385ed7",
+"dc/d31/structBrush_1_1Operator.html#a9088496bd47b051080700b53f3cddd80",
+"dc/d90/classtree__node___3_01Node_01_4.html#a66eee7995ee557a45519f6e8e6f830ca",
+"dd/dc8/structfmt_1_1formatter_3_01Brush_1_1Data_1_1TimeSeriesi_01_4.html",
+"de/dd1/namespaceSplit.html#a32d9e8db103f509738ced38619513853",
+"df/d09/structBrush_1_1TinyCostFunction.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

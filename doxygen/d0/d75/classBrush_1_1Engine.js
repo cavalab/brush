@@ -16,7 +16,7 @@ var classBrush_1_1Engine =
     [ "get_population_as_json", "d0/d75/classBrush_1_1Engine.html#ac1fb4a26cd18f8addacf93d4b0bea020", null ],
     [ "get_search_space", "d0/d75/classBrush_1_1Engine.html#a25c352fff846ce0a5ce45bfe65cab739", null ],
     [ "init", "d0/d75/classBrush_1_1Engine.html#abf9f9f0eec7c0c6d4cf9985d993e6018", null ],
-    [ "lock_nodes", "d0/d75/classBrush_1_1Engine.html#a990879e114f30b1470c13f3a78911465", null ],
+    [ "lock_nodes", "d0/d75/classBrush_1_1Engine.html#a99c0766456fae1affc3632e1d051bfea", null ],
     [ "log_stats", "d0/d75/classBrush_1_1Engine.html#ae099086faca2e6ea54f5e85b380a8da8", null ],
     [ "predict", "d0/d75/classBrush_1_1Engine.html#a1b6447ad9d2eb1f0fc1252be14729e0f", null ],
     [ "predict", "d0/d75/classBrush_1_1Engine.html#a5f7b02e40b9cdabf1cf9ad6f3a99cc59", null ],

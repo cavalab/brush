@@ -5,7 +5,6 @@
     <derivedcompoundref refid="d0/d6d/classBrush_1_1Var_1_1DeleteMutation" prot="public" virt="non-virtual">Brush::Var::DeleteMutation</derivedcompoundref>
     <derivedcompoundref refid="dc/de3/classBrush_1_1Var_1_1InsertMutation" prot="public" virt="non-virtual">Brush::Var::InsertMutation</derivedcompoundref>
     <derivedcompoundref refid="d4/d46/classBrush_1_1Var_1_1PointMutation" prot="public" virt="non-virtual">Brush::Var::PointMutation</derivedcompoundref>
-    <derivedcompoundref refid="de/d20/classBrush_1_1Var_1_1SplitMutation" prot="public" virt="non-virtual">Brush::Var::SplitMutation</derivedcompoundref>
     <derivedcompoundref refid="de/d23/classBrush_1_1Var_1_1SubtreeMutation" prot="public" virt="non-virtual">Brush::Var::SubtreeMutation</derivedcompoundref>
     <derivedcompoundref refid="dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation" prot="public" virt="non-virtual">Brush::Var::ToggleWeightOffMutation</derivedcompoundref>
     <derivedcompoundref refid="d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation" prot="public" virt="non-virtual">Brush::Var::ToggleWeightOnMutation</derivedcompoundref>
@@ -23,7 +22,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="615" column="5" bodyfile="/home/runner/work/brush/brush/src/vary/variation.h" bodystart="615" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="644" column="5" bodyfile="/home/runner/work/brush/brush/src/vary/variation.h" bodystart="644" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-static-func">
@@ -58,9 +57,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="618" column="17" bodyfile="/home/runner/work/brush/brush/src/vary/variation.h" bodystart="618" bodyend="629"/>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="647" column="17" bodyfile="/home/runner/work/brush/brush/src/vary/variation.h" bodystart="647" bodyend="658"/>
         <references refid="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" compoundref="d1/dea/program_8h" startline="73">Brush::Program&lt; PType &gt;::Tree</references>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1af8a04b3abeea0f0f9e5b6e358aa65c09" compoundref="d1/d64/variation_8cpp" startline="560" endline="671">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1af8a04b3abeea0f0f9e5b6e358aa65c09" compoundref="d1/d64/variation_8cpp" startline="582" endline="694">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
       </memberdef>
       <memberdef kind="function" id="d0/dec/classBrush_1_1Var_1_1MutationBase_1ac24a471ac6236ee1c527e2073dab3d3c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -97,7 +96,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="632" column="17"/>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="661" column="17"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -128,31 +127,25 @@
         </childnode>
       </node>
       <node id="5">
-        <label>Brush::Var::SplitMutation</label>
-        <link refid="de/d20/classBrush_1_1Var_1_1SplitMutation"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="6">
         <label>Brush::Var::SubtreeMutation</label>
         <link refid="de/d23/classBrush_1_1Var_1_1SubtreeMutation"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="7">
+      <node id="6">
         <label>Brush::Var::ToggleWeightOffMutation</label>
         <link refid="dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="8">
+      <node id="7">
         <label>Brush::Var::ToggleWeightOnMutation</label>
         <link refid="d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
-    <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="613" column="1" bodyfile="/home/runner/work/brush/brush/src/vary/variation.h" bodystart="613" bodyend="634"/>
+    <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="642" column="1" bodyfile="/home/runner/work/brush/brush/src/vary/variation.h" bodystart="642" bodyend="663"/>
     <listofallmembers>
       <member refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1a0f89a4b58f11422d086c684452a4d536" prot="public" virt="non-virtual"><scope>Brush::Var::MutationBase</scope><name>find_spots</name></member>
       <member refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1a4cacb44817dc1e054fca562d703de50c" prot="public" virt="non-virtual"><scope>Brush::Var::MutationBase</scope><name>Iter</name></member>

@@ -22,6 +22,8 @@ var classBrush_1_1Pop_1_1Individual =
     [ "predict", "de/d83/classBrush_1_1Pop_1_1Individual.html#ae73c2e6416a0ee2b7da2446969bdb6a8", null ],
     [ "predict_proba", "de/d83/classBrush_1_1Pop_1_1Individual.html#a4c8b9afd9297b200b8b0527353569297", null ],
     [ "predict_proba", "de/d83/classBrush_1_1Pop_1_1Individual.html#ab9d112fc0bb31969e315346bbb51a4bc", null ],
+    [ "replace_program", "de/d83/classBrush_1_1Pop_1_1Individual.html#aebc1dd241fc84ad8fd0a9fb0bdb562e7", null ],
+    [ "replace_program", "de/d83/classBrush_1_1Pop_1_1Individual.html#a15dc7faff44f161a16c3919d2659bd7f", null ],
     [ "set_fitness", "de/d83/classBrush_1_1Pop_1_1Individual.html#a4c2c3c4064a3ef28edbec34421e968fd", null ],
     [ "set_id", "de/d83/classBrush_1_1Pop_1_1Individual.html#a7561f68c685f2d5613143a2385760787", null ],
     [ "set_is_fitted", "de/d83/classBrush_1_1Pop_1_1Individual.html#a08168c940109051fedcaca4a7c39f108", null ],

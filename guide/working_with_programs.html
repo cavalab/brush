@@ -6,23 +6,23 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Working with Programs &mdash; Brush 0.1.dev1+gb15fa8789 documentation</title>
+  <title>Working with Programs &mdash; Brush 0.1.dev1+gc1fa69d28 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
 
   
     <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=a64c5380"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/documentation_options.js?v=21cc7d73"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../_static/copybutton.js?v=f281be69"></script>
-      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -171,6 +171,27 @@ We use the <a class="reference external" href="https://github.com/kpeeters/tree.
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../examples/datasets/d_enc.csv&#39;</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+
+<span class="n">X</span><span class="o">.</span><span class="n">info</span><span class="p">()</span> <span class="c1"># we have several float and two integer features</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 768 entries, 0 to 767
+Data columns (total 8 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   x0      768 non-null    float64
+ 1   x1      768 non-null    float64
+ 2   x2      768 non-null    float64
+ 3   x3      768 non-null    float64
+ 4   x4      768 non-null    float64
+ 5   x5      768 non-null    int64  
+ 6   x6      768 non-null    float64
+ 7   x7      768 non-null    int64  
+dtypes: float64(6), int64(2)
+memory usage: 48.1 KB
 </pre></div>
 </div>
 </div>
@@ -179,13 +200,17 @@ We use the <a class="reference external" href="https://github.com/kpeeters/tree.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import and make a regressor</span>
 <span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">(</span>
-    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span><span class="s1">&#39;Mul&#39;</span><span class="p">,</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Sin&#39;</span><span class="p">],</span>
-    <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="c1"># Uncomment the line below to constrain the search space to fewer functions</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span> <span class="s1">&#39;SplitOn&#39;</span><span class="p">,</span> <span class="s1">&#39;Geq&#39;</span><span class="p">,</span> <span class="s1">&#39;Eq&#39;</span><span class="p">,</span> <span class="s1">&#39;Mul&#39;</span><span class="p">,</span> <span class="s1">&#39;Add&#39;</span><span class="p">,</span> <span class="s1">&#39;Cos&#39;</span><span class="p">,</span> <span class="s1">&#39;Exp&#39;</span><span class="p">],</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span> <span class="c1"># set verbosity==1 to see a progress bar</span>
 <span class="p">)</span>
 
 <span class="c1"># use like you would a sklearn regressor</span>
 <span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best model:&quot;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;tree&quot;</span><span class="p">))</span>
+
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
 </pre></div>
@@ -193,7 +218,14 @@ We use the <a class="reference external" href="https://github.com/kpeeters/tree.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 100% [====================]
-score: 0.9441623847546605
+Best model: If(x0&gt;=0.76)
+|- If(x0&gt;=0.82)
+|  |- 29.83
+|  |- 48.74*x0
+|- 1.36*Add
+|  |- 0.01*x1
+|  |- 8.16*x6
+score: 0.8950117552104557
 </pre></div>
 </div>
 </div>
@@ -207,7 +239,7 @@ score: 0.9441623847546605
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitness(4.757904 74.000000 )
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitness(10.703141 34.000000 )
 [&#39;scorer&#39;, &#39;linear_complexity&#39;]
 </pre></div>
 </div>
@@ -238,9 +270,9 @@ score: 0.9441623847546605
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>28
-134628
-5
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25
+250
+3
 </pre></div>
 </div>
 </div>
@@ -259,13 +291,13 @@ score: 0.9441623847546605
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fitness {&#39;complexity&#39;: 134628, &#39;crowding_dist&#39;: 0.0984368622303009, &#39;dcounter&#39;: 0, &#39;depth&#39;: 5, &#39;dominated&#39;: [0, 15], &#39;linear_complexity&#39;: 74, &#39;loss&#39;: 5.118783950805664, &#39;loss_v&#39;: 4.757904052734375, &#39;prev_complexity&#39;: 134628, &#39;prev_depth&#39;: 5, &#39;prev_linear_complexity&#39;: 74, &#39;prev_loss&#39;: 5.118783950805664, &#39;prev_loss_v&#39;: 4.757904052734375, &#39;prev_size&#39;: 28, &#39;rank&#39;: 1, &#39;size&#39;: 28, &#39;values&#39;: [4.757904052734375, 74.0], &#39;weights&#39;: [-1.0, -1.0], &#39;wvalues&#39;: [-4.757904052734375, -74.0]}
-id 227
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fitness {&#39;complexity&#39;: 250, &#39;crowding_dist&#39;: 3.4028234663852886e+38, &#39;dcounter&#39;: 0, &#39;depth&#39;: 3, &#39;dominated&#39;: [], &#39;linear_complexity&#39;: 34, &#39;loss&#39;: 9.187416076660156, &#39;loss_v&#39;: 10.703141212463379, &#39;prev_complexity&#39;: 250, &#39;prev_depth&#39;: 3, &#39;prev_linear_complexity&#39;: 34, &#39;prev_loss&#39;: 9.187414169311523, &#39;prev_loss_v&#39;: 10.703254699707031, &#39;prev_size&#39;: 25, &#39;rank&#39;: 1, &#39;size&#39;: 25, &#39;values&#39;: [10.703141212463379, 34.0], &#39;weights&#39;: [-1.0, -1.0], &#39;wvalues&#39;: [-10.703141212463379, -34.0]}
+id 291
 is_fitted_ False
 objectives [&#39;mse&#39;, &#39;linear_complexity&#39;]
-parent_id [245]
-program {&#39;Tree&#39;: [{&#39;W&#39;: 0.5537276268005371, &#39;arg_types&#39;: [&#39;ArrayF&#39;, &#39;ArrayF&#39;], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;&#39;, &#39;feature_type&#39;: &#39;ArrayF&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: False, &#39;name&#39;: &#39;Add&#39;, &#39;node_type&#39;: &#39;Add&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 14679000877885575597, &#39;sig_hash&#39;: 14400282083458657357}, {&#39;W&#39;: 11.378684043884277, &#39;arg_types&#39;: [&#39;ArrayF&#39;], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;&#39;, &#39;feature_type&#39;: &#39;ArrayF&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Exp&#39;, &#39;node_type&#39;: &#39;Exp&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 13056393536346412951, &#39;sig_hash&#39;: 14128685871577087634}, {&#39;W&#39;: 0.9108647704124451, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x6&#39;, &#39;feature_type&#39;: &#39;ArrayF&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: False, &#39;name&#39;: &#39;Terminal&#39;, &#39;node_type&#39;: &#39;Terminal&#39;, &#39;prob_change&#39;: 0.20750471949577332, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 7018942542468397869, &#39;sig_hash&#39;: 14162902253047951597}, {&#39;W&#39;: 0.7599999904632568, &#39;arg_types&#39;: [&#39;ArrayF&#39;, &#39;ArrayF&#39;], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x0&#39;, &#39;feature_type&#39;: &#39;ArrayI&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;SplitBest&#39;, &#39;node_type&#39;: &#39;SplitBest&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 14679000877885575597, &#39;sig_hash&#39;: 14400282083458657357}, {&#39;W&#39;: 0.8199999928474426, &#39;arg_types&#39;: [&#39;ArrayF&#39;, &#39;ArrayF&#39;], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x0&#39;, &#39;feature_type&#39;: &#39;ArrayI&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;SplitBest&#39;, &#39;node_type&#39;: &#39;SplitBest&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 14679000877885575597, &#39;sig_hash&#39;: 14400282083458657357}, {&#39;W&#39;: 15.890183448791504, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;constF&#39;, &#39;feature_type&#39;: &#39;ArrayF&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Constant&#39;, &#39;node_type&#39;: &#39;Constant&#39;, &#39;prob_change&#39;: 0.6167147755622864, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 7018942542468397869, &#39;sig_hash&#39;: 14162902253047951597}, {&#39;W&#39;: 0.17655502259731293, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x3&#39;, &#39;feature_type&#39;: &#39;ArrayF&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Terminal&#39;, &#39;node_type&#39;: &#39;Terminal&#39;, &#39;prob_change&#39;: 0.8625447154045105, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 7018942542468397869, &#39;sig_hash&#39;: 14162902253047951597}, {&#39;W&#39;: 0.14056099951267242, &#39;arg_types&#39;: [&#39;ArrayF&#39;], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;&#39;, &#39;feature_type&#39;: &#39;ArrayF&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: False, &#39;name&#39;: &#39;Exp&#39;, &#39;node_type&#39;: &#39;Exp&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 13056393536346412951, &#39;sig_hash&#39;: 14128685871577087634}, {&#39;W&#39;: 1.7882635593414307, &#39;arg_types&#39;: [&#39;ArrayF&#39;], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;&#39;, &#39;feature_type&#39;: &#39;ArrayF&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Sin&#39;, &#39;node_type&#39;: &#39;Sin&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 13056393536346412951, &#39;sig_hash&#39;: 14128685871577087634}, {&#39;W&#39;: 0.8196039795875549, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x1&#39;, &#39;feature_type&#39;: &#39;ArrayF&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Terminal&#39;, &#39;node_type&#39;: &#39;Terminal&#39;, &#39;prob_change&#39;: 0.6729995608329773, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 7018942542468397869, &#39;sig_hash&#39;: 14162902253047951597}], &#39;is_fitted_&#39;: True}
-variation point
+parent_id [274]
+program {&#39;Tree&#39;: [{&#39;W&#39;: 0.7599999904632568, &#39;arg_types&#39;: [&#39;ArrayF&#39;, &#39;ArrayF&#39;], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x0&#39;, &#39;feature_type&#39;: &#39;ArrayI&#39;, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;SplitBest&#39;, &#39;node_is_fixed&#39;: False, &#39;node_type&#39;: &#39;SplitBest&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 14679000877885575597, &#39;sig_hash&#39;: 14400282083458657357, &#39;weight_is_fixed&#39;: False}, {&#39;W&#39;: 0.8199999928474426, &#39;arg_types&#39;: [&#39;ArrayF&#39;, &#39;ArrayF&#39;], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x0&#39;, &#39;feature_type&#39;: &#39;ArrayI&#39;, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;SplitBest&#39;, &#39;node_is_fixed&#39;: False, &#39;node_type&#39;: &#39;SplitBest&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 14679000877885575597, &#39;sig_hash&#39;: 14400282083458657357, &#39;weight_is_fixed&#39;: False}, {&#39;W&#39;: 29.8331241607666, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;constF&#39;, &#39;feature_type&#39;: &#39;ArrayF&#39;, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Constant&#39;, &#39;node_is_fixed&#39;: False, &#39;node_type&#39;: &#39;Constant&#39;, &#39;prob_change&#39;: 0.6167147755622864, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 7018942542468397869, &#39;sig_hash&#39;: 14162902253047951597, &#39;weight_is_fixed&#39;: False}, {&#39;W&#39;: 48.73774337768555, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x0&#39;, &#39;feature_type&#39;: &#39;ArrayF&#39;, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Terminal&#39;, &#39;node_is_fixed&#39;: False, &#39;node_type&#39;: &#39;Terminal&#39;, &#39;prob_change&#39;: 0.6343384981155396, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 7018942542468397869, &#39;sig_hash&#39;: 14162902253047951597, &#39;weight_is_fixed&#39;: False}, {&#39;W&#39;: 1.3606120347976685, &#39;arg_types&#39;: [&#39;ArrayF&#39;, &#39;ArrayF&#39;], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;&#39;, &#39;feature_type&#39;: &#39;ArrayF&#39;, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Add&#39;, &#39;node_is_fixed&#39;: False, &#39;node_type&#39;: &#39;Add&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 14679000877885575597, &#39;sig_hash&#39;: 14400282083458657357, &#39;weight_is_fixed&#39;: False}, {&#39;W&#39;: 0.013320915400981903, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x1&#39;, &#39;feature_type&#39;: &#39;ArrayF&#39;, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Terminal&#39;, &#39;node_is_fixed&#39;: False, &#39;node_type&#39;: &#39;Terminal&#39;, &#39;prob_change&#39;: 0.6729995608329773, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 7018942542468397869, &#39;sig_hash&#39;: 14162902253047951597, &#39;weight_is_fixed&#39;: False}, {&#39;W&#39;: 8.156413078308105, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x6&#39;, &#39;feature_type&#39;: &#39;ArrayF&#39;, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Terminal&#39;, &#39;node_is_fixed&#39;: False, &#39;node_type&#39;: &#39;Terminal&#39;, &#39;prob_change&#39;: 0.20750471949577332, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 7018942542468397869, &#39;sig_hash&#39;: 14162902253047951597, &#39;weight_is_fixed&#39;: False}], &#39;is_fitted_&#39;: True}
+variation insert
 </pre></div>
 </div>
 </div>
@@ -297,7 +329,7 @@ variation point
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Add(11.38*Exp(x6),If(x0&gt;=0.76,If(x0&gt;=0.82,15.89,0.18*x3),Exp(1.79*Sin(0.82*x1))))
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>If(x0&gt;=0.76,If(x0&gt;=0.82,29.83,48.74*x0),1.36*Add(0.01*x1,8.16*x6))
 </pre></div>
 </div>
 </div>
@@ -313,7 +345,7 @@ We can view it as a string:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Add(11.38*Exp(x6),If(x0&gt;=0.76,If(x0&gt;=0.82,15.89,0.18*x3),Exp(1.79*Sin(0.82*x1))))
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>If(x0&gt;=0.76,If(x0&gt;=0.82,29.83,48.74*x0),1.36*Add(0.01*x1,8.16*x6))
 </pre></div>
 </div>
 </div>
@@ -329,16 +361,13 @@ We can view it as a string:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Add
-|- 11.38*Exp
-|  |- x6
-|- If(x0&gt;=0.76)
-|  |- If(x0&gt;=0.82)
-|  |  |- 15.89
-|  |  |- 0.18*x3
-|  |- Exp
-|  |  |- 1.79*Sin
-|  |  |  |- 0.82*x1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>If(x0&gt;=0.76)
+|- If(x0&gt;=0.82)
+|  |- 29.83
+|  |- 48.74*x0
+|- 1.36*Add
+|  |- 0.01*x1
+|  |- 8.16*x6
 </pre></div>
 </div>
 </div>
@@ -358,7 +387,7 @@ Let’s import graphviz and make a nicer plot.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/75f0acc116dcf3a2f0e38232807ed0b765fe61168d99a50dbb8891589cc6f884.svg" src="../_images/75f0acc116dcf3a2f0e38232807ed0b765fe61168d99a50dbb8891589cc6f884.svg" />
+<img alt="../_images/07acfcad110a11f326e6ca2424de549749e1caf2f78487954caa89dec8296876.svg" src="../_images/07acfcad110a11f326e6ca2424de549749e1caf2f78487954caa89dec8296876.svg" />
 </div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">model</span></code> variable is now a little program in the <a class="reference external" href="https://graphviz.org/docs/layouts/dot/">dot language</a>, which we can inspect directly.</p>
@@ -370,26 +399,24 @@ Let’s import graphviz and make a nicer plot.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>digraph G {
-&quot;141fd3450&quot; [label=&quot;Add&quot;];
-&quot;141fd3450&quot; -&gt; &quot;141fd2090&quot; [label=&quot;11.38&quot;];
-&quot;141fd3450&quot; -&gt; &quot;141fcbe00&quot; [label=&quot;&quot;];
-&quot;141fd2090&quot; [label=&quot;Exp&quot;];
-&quot;141fd2090&quot; -&gt; &quot;x6&quot; [label=&quot;&quot;];
-&quot;x6&quot; [label=&quot;x6&quot;];
-&quot;141fcbe00&quot; [label=&quot;x0&gt;=0.76?&quot;];
-&quot;141fcbe00&quot; -&gt; &quot;141fe2370&quot; [headlabel=&quot;&quot;,taillabel=&quot;Y&quot;];
-&quot;141fcbe00&quot; -&gt; &quot;141ff19f0&quot; [headlabel=&quot;&quot;,taillabel=&quot;N&quot;];
-&quot;141fe2370&quot; [label=&quot;x0&gt;=0.82?&quot;];
-&quot;141fe2370&quot; -&gt; &quot;141fe2420&quot; [headlabel=&quot;&quot;,taillabel=&quot;Y&quot;];
-&quot;141fe2370&quot; -&gt; &quot;x3&quot; [headlabel=&quot;0.18&quot;,taillabel=&quot;N&quot;];
-&quot;141fe2420&quot; [label=&quot;15.89&quot;];
-&quot;x3&quot; [label=&quot;x3&quot;];
-&quot;141ff19f0&quot; [label=&quot;Exp&quot;];
-&quot;141ff19f0&quot; -&gt; &quot;141fd89e0&quot; [label=&quot;1.79&quot;];
-&quot;141fd89e0&quot; [label=&quot;Sin&quot;];
-&quot;141fd89e0&quot; -&gt; &quot;x1&quot; [label=&quot;0.82&quot;];
+y [shape=box];
+y -&gt; &quot;177604080&quot; [label=&quot;0.76&quot;];
+&quot;177604080&quot; [label=&quot;x0 &gt;= 0.76?&quot;];
+&quot;177604080&quot; -&gt; &quot;10fd43150&quot; [headlabel=&quot;&quot;,taillabel=&quot;Y&quot;];
+&quot;177604080&quot; -&gt; &quot;17359a090&quot; [headlabel=&quot;1.36&quot;,taillabel=&quot;N&quot;];
+&quot;10fd43150&quot; [label=&quot;x0 &gt;= 0.82?&quot;];
+&quot;10fd43150&quot; -&gt; &quot;109926ea0&quot; [headlabel=&quot;&quot;,taillabel=&quot;Y&quot;];
+&quot;10fd43150&quot; -&gt; &quot;x0&quot; [headlabel=&quot;48.74&quot;,taillabel=&quot;N&quot;];
+&quot;109926ea0&quot; [label=&quot;29.83&quot;];
+&quot;x0&quot; [label=&quot;x0&quot;];
+&quot;17359a090&quot; [label=&quot;Add&quot;];
+&quot;17359a090&quot; -&gt; &quot;x1&quot; [label=&quot;0.01&quot;];
+&quot;17359a090&quot; -&gt; &quot;x6&quot; [label=&quot;8.16&quot;];
 &quot;x1&quot; [label=&quot;x1&quot;];
-}
+&quot;x6&quot; [label=&quot;x6&quot;];
+label=&quot;^ split feature fixed, * split threshold fixed&quot;;
+labelloc=bottom;
+fontsize=10;}
 </pre></div>
 </div>
 </div>
@@ -408,7 +435,7 @@ You can do this by manually editing <code class="docutils literal notranslate"><
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/982292e2195d3c13af0551fe6f4b721faa7cfd0291716a5fc9f35dcf92fda6c6.svg" src="../_images/982292e2195d3c13af0551fe6f4b721faa7cfd0291716a5fc9f35dcf92fda6c6.svg" />
+<img alt="../_images/3ac4f587e8adf545df085178e75a2e5b720f19c5187cc27b1c8752c67db13f07.svg" src="../_images/3ac4f587e8adf545df085178e75a2e5b720f19c5187cc27b1c8752c67db13f07.svg" />
 </div>
 </div>
 </section>
@@ -424,13 +451,36 @@ You can do this by manually editing <code class="docutils literal notranslate"><
 <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;target&#39;</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
 
-<span class="n">est</span> <span class="o">=</span> <span class="n">BrushClassifier</span><span class="p">(</span>
-    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span> <span class="s1">&#39;And&#39;</span><span class="p">,</span> <span class="s1">&#39;Sin&#39;</span><span class="p">,</span> <span class="s1">&#39;Cos&#39;</span><span class="p">,</span> <span class="s1">&#39;Exp&#39;</span><span class="p">],</span>
-    <span class="n">max_gens</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+<span class="n">X</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 50 entries, 0 to 49
+Data columns (total 4 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   Age     50 non-null     int64  
+ 1   Race    50 non-null     int64  
+ 2   AIDS    50 non-null     float64
+ 3   Total   50 non-null     float64
+dtypes: float64(2), int64(2)
+memory usage: 1.7 KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span> <span class="o">=</span> <span class="n">BrushClassifier</span><span class="p">(</span>
+    <span class="c1"># Uncomment the line below to constrain the search space to fewer functions</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span> <span class="s1">&#39;SplitOn&#39;</span><span class="p">,</span> <span class="s1">&#39;Geq&#39;</span><span class="p">,</span> <span class="s1">&#39;Eq&#39;</span><span class="p">,</span> <span class="s1">&#39;Mul&#39;</span><span class="p">,</span> <span class="s1">&#39;Add&#39;</span><span class="p">,</span> <span class="s1">&#39;Cos&#39;</span><span class="p">,</span> <span class="s1">&#39;Exp&#39;</span><span class="p">],</span>
+    <span class="n">max_gens</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
     <span class="n">max_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">max_depth</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
     <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;scorer&quot;</span><span class="p">,</span> <span class="s2">&quot;linear_complexity&quot;</span><span class="p">],</span>  
-    <span class="n">scorer</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="p">,</span>
+    <span class="n">scorer</span><span class="o">=</span><span class="s2">&quot;average_precision_score&quot;</span><span class="p">,</span>
     <span class="n">pop_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
     <span class="n">bandit</span><span class="o">=</span><span class="s1">&#39;dynamic_thompson&#39;</span><span class="p">,</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span>
@@ -445,15 +495,11 @@ You can do this by manually editing <code class="docutils literal notranslate"><
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 100% [====================]
 Best model: Logistic
-|- -0.23+Sum
-|  |- Sin
-|  |  |- If(AIDS&gt;=16068.00)
-|  |  |  |- 70.58
-|  |  |  |- If(Total&gt;=1601948.00)
-|  |  |  |  |- -1.43
-|  |  |  |  |- If(AIDS&gt;=258.00)
-|  |  |  |  |  |- 70.58
-|  |  |  |  |  |- Total
+|- -0.38+Add
+|  |- 0.00*Add
+|  |  |- Cos
+|  |  |  |- AIDS
+|  |  |- 0.01*AIDS
 </pre></div>
 </div>
 </div>
@@ -476,45 +522,41 @@ Best model: Logistic
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
 terminal_map: {&quot;ArrayB&quot;: [&quot;1.00&quot;], &quot;ArrayI&quot;: [&quot;Age&quot;, &quot;Race&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;AIDS&quot;, &quot;Total&quot;, &quot;1.00&quot;]}
-terminal_weights: {&quot;ArrayB&quot;: [0.27714446], &quot;ArrayI&quot;: [0.5782708, 0.85288507, 0.491237], &quot;ArrayF&quot;: [0.47180814, 0.6575688, 0.07907883]}
-SplitBest node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.58001214
-OffsetSum node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][OffsetSum] = 0.00+Sum, weight = 0
-Logistic node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logistic] = 1.00*Logistic, weight = 0
-Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.9063738
-Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.60503954
-Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.620445
-OffsetSum node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][OffsetSum] = 0.00+Sum, weight = 0
-Logistic node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logistic] = 1.00*Logistic, weight = 0
-Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.7408498
-Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.5123497
-Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.59719974
-OffsetSum node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][OffsetSum] = 0.00+Sum, weight = 0
-Logistic node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logistic] = 1.00*Logistic, weight = 0
-Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.58827883
-Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.04645303
-Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.5686126
-SplitBest node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.35056993
-OffsetSum node_map[ArrayF][[&quot;ArrayF&quot;]][OffsetSum] = 0.00+Sum, weight = 0
-Logistic node_map[ArrayF][[&quot;ArrayF&quot;]][Logistic] = 1.00*Logistic, weight = 0
-Sin node_map[ArrayF][[&quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.90100724
-Cos node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.17278638
-Exp node_map[ArrayF][[&quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.43059298
+terminal_weights: {&quot;ArrayB&quot;: [0.3165285], &quot;ArrayI&quot;: [0.5779346, 0.42670068, 0.10736023], &quot;ArrayF&quot;: [0.539658, 0.18103841, 0.7904958]}
+SplitBest node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = SplitBest, weight = 0.5382333
+Mul node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Mul] = Mul, weight = 0.96832097
+Add node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Add] = Add, weight = 0.7737981
+OffsetSum node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][OffsetSum] = 0.00+Add, weight = 0
+Logistic node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logistic] = Logistic, weight = 0
+Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = Cos, weight = 0.53532857
+Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = Exp, weight = 0.35211778
+OffsetSum node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][OffsetSum] = 0.00+Add, weight = 0
+Logistic node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logistic] = Logistic, weight = 0
+Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = Cos, weight = 0.6508668
+Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = Exp, weight = 0.6810962
+OffsetSum node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][OffsetSum] = 0.00+Add, weight = 0
+Logistic node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logistic] = Logistic, weight = 0
+Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = Cos, weight = 0.117200986
+Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = Exp, weight = 0.14627638
+SplitBest node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = SplitBest, weight = 0.27913103
+Mul node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mul] = Mul, weight = 0.385618
+Add node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = Add, weight = 0.2764419
+OffsetSum node_map[ArrayF][[&quot;ArrayF&quot;]][OffsetSum] = 0.00+Add, weight = 0
+Logistic node_map[ArrayF][[&quot;ArrayF&quot;]][Logistic] = Logistic, weight = 0
+Cos node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = Cos, weight = 0.32952592
+Exp node_map[ArrayF][[&quot;ArrayF&quot;]][Exp] = Exp, weight = 0.7656854
 
-Best model: Logistic(Sum(-0.23,Sin(If(AIDS&gt;=16068.00,70.58,If(Total&gt;=1601948.00,-1.43,If(AIDS&gt;=258.00,70.58,Total))))))
-score: 0.82
+Best model: Logistic(Add(-0.38,0.00*Add(Cos(AIDS),0.01*AIDS)))
+score: 0.68
 Best model: Logistic
-|- -0.23+Sum
-|  |- Sin
-|  |  |- If(AIDS&gt;=16068.00)
-|  |  |  |- 70.58
-|  |  |  |- If(Total&gt;=1601948.00)
-|  |  |  |  |- -1.43
-|  |  |  |  |- If(AIDS&gt;=258.00)
-|  |  |  |  |  |- 70.58
-|  |  |  |  |  |- Total
+|- -0.38+Add
+|  |- 0.00*Add
+|  |  |- Cos
+|  |  |  |- AIDS
+|  |  |- 0.01*AIDS
 </pre></div>
 </div>
-<img alt="../_images/b9e38a296e094fed44f4866ee06f3ce9ffcfd913121400a41795f8f89fc7218c.svg" src="../_images/b9e38a296e094fed44f4866ee06f3ce9ffcfd913121400a41795f8f89fc7218c.svg" />
+<img alt="../_images/c34fac8a76db2bb0d58da9d544d7ea18ca9ddf243632d2915ec404d314550079.svg" src="../_images/c34fac8a76db2bb0d58da9d544d7ea18ca9ddf243632d2915ec404d314550079.svg" />
 </div>
 </div>
 </section>

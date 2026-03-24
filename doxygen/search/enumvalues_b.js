@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['regressor_0',['Regressor',['../dc/d5c/namespaceBrush.html#ae591329af27c88b714d0f92b86276366abe2f9eac301f8c5b7acffd6b3c458faa',1,'Brush']]],
-  ['representer_1',['Representer',['../dc/d5c/namespaceBrush.html#ae591329af27c88b714d0f92b86276366aca702b6b08355f71cf4b1a17a8e16b8b',1,'Brush']]]
+  ['pow_0',['Pow',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a8be6d3e955290ee50c00a4bc92aa7749',1,'Brush']]],
+  ['prod_1',['Prod',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a362a33c23b08e4a32a4ec53fbb82cccd',1,'Brush']]]
 ];

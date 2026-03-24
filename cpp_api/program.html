@@ -6,20 +6,20 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Program &mdash; Brush 0.1.dev1+gb15fa8789 documentation</title>
+  <title>Program &mdash; Brush 0.1.dev1+gc1fa69d28 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
 
   
     <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=a64c5380"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/documentation_options.js?v=21cc7d73"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/js/theme.js"></script>
@@ -82,6 +82,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush7Program8depth_atER4Iter"><code class="docutils literal notranslate"><span class="pre">depth_at()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush7Program14depth_to_reachER4Iter"><code class="docutils literal notranslate"><span class="pre">depth_to_reach()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush7Program3fitERK7Dataset"><code class="docutils literal notranslate"><span class="pre">fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush7Program15replace_programERK7ProgramI5PTypeE"><code class="docutils literal notranslate"><span class="pre">replace_program()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush7Program15replace_programERK4json"><code class="docutils literal notranslate"><span class="pre">replace_program()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4I00EN5Brush7Program20predict_with_weightsE1RRK7DatasetPPK1W"><code class="docutils literal notranslate"><span class="pre">predict_with_weights()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush7Program20predict_with_weightsERK7DatasetRK7ArrayXf"><code class="docutils literal notranslate"><span class="pre">predict_with_weights()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EN5Brush7Program7predictE8TreeTypeRK7Dataset"><code class="docutils literal notranslate"><span class="pre">predict()</span></code></a></li>
@@ -95,7 +97,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush7Program13get_n_weightsEv"><code class="docutils literal notranslate"><span class="pre">get_n_weights()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush7Program11get_weightsEv"><code class="docutils literal notranslate"><span class="pre">get_weights()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush7Program11set_weightsERK7ArrayXf"><code class="docutils literal notranslate"><span class="pre">set_weights()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush7Program10lock_nodesEib"><code class="docutils literal notranslate"><span class="pre">lock_nodes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush7Program10lock_nodesEibb"><code class="docutils literal notranslate"><span class="pre">lock_nodes()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush7Program9get_modelE6stringb"><code class="docutils literal notranslate"><span class="pre">get_model()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush7Program13get_dot_modelE6string"><code class="docutils literal notranslate"><span class="pre">get_dot_model()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush7Program9linearizeEv"><code class="docutils literal notranslate"><span class="pre">linearize()</span></code></a></li>
@@ -291,6 +293,34 @@
 <dd></dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush7Program15replace_programERK7ProgramI5PTypeE">
+<span id="_CPPv3N5Brush7Program15replace_programERK7ProgramI5PTypeE"></span><span id="_CPPv2N5Brush7Program15replace_programERK7ProgramI5PTypeE"></span><span id="Brush::Program::replace_program__Program:PType:CR"></span><span class="target" id="db/d88/structBrush_1_1Program_1a77c68cab4b94b4f3b4e7c74c61446952"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program"><span class="n"><span class="pre">Program</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program::PType"><span class="n"><span class="pre">PType</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">replace_program</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program"><span class="n"><span class="pre">Program</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program::PType"><span class="n"><span class="pre">PType</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">new_program</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush7Program15replace_programERK7ProgramI5PTypeE" title="Link to this definition"></a><br /></dt>
+<dd><p>Replace the current program with a new program, invalidating fitness. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_program</strong> – The new program to replace the current one with </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>reference to this program </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush7Program15replace_programERK4json">
+<span id="_CPPv3N5Brush7Program15replace_programERK4json"></span><span id="_CPPv2N5Brush7Program15replace_programERK4json"></span><span id="Brush::Program::replace_program__jsonCR"></span><span class="target" id="db/d88/structBrush_1_1Program_1a0e4050b85e3f7c741d51d9eb243bdc8a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program"><span class="n"><span class="pre">Program</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program::PType"><span class="n"><span class="pre">PType</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">replace_program</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">json</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">j</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush7Program15replace_programERK4json" title="Link to this definition"></a><br /></dt>
+<dd><p>Replace the current program from a JSON representation, invalidating fitness. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>j</strong> – JSON object containing the serialized program </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>reference to this program </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4I00EN5Brush7Program20predict_with_weightsE1RRK7DatasetPPK1W">
 <span id="_CPPv3I00EN5Brush7Program20predict_with_weightsERK7DatasetPPK1W"></span><span id="_CPPv2I00EN5Brush7Program20predict_with_weightsERK7DatasetPPK1W"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">R</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">W</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="db/d88/structBrush_1_1Program_1a6a1237f15d7b9cc1e825e1a3213df58e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00EN5Brush7Program20predict_with_weightsE1RRK7DatasetPPK1W" title="Brush::Program::predict_with_weights::R"><span class="n"><span class="pre">R</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">predict_with_weights</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">d</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00EN5Brush7Program20predict_with_weightsE1RRK7DatasetPPK1W" title="Brush::Program::predict_with_weights::W"><span class="n"><span class="pre">W</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">weights</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I00EN5Brush7Program20predict_with_weightsE1RRK7DatasetPPK1W" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
@@ -439,14 +469,15 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N5Brush7Program10lock_nodesEib">
-<span id="_CPPv3N5Brush7Program10lock_nodesEib"></span><span id="_CPPv2N5Brush7Program10lock_nodesEib"></span><span id="Brush::Program::lock_nodes__i.b"></span><span class="target" id="db/d88/structBrush_1_1Program_1a17d8eaf6b1623cefc4d4888e8ed81330"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lock_nodes</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">end_depth</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">keep_leaves_unlocked</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush7Program10lock_nodesEib" title="Link to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush7Program10lock_nodesEibb">
+<span id="_CPPv3N5Brush7Program10lock_nodesEibb"></span><span id="_CPPv2N5Brush7Program10lock_nodesEibb"></span><span id="Brush::Program::lock_nodes__i.b.b"></span><span class="target" id="db/d88/structBrush_1_1Program_1a16b14765b1fd177c99f7cd116fae0fde"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lock_nodes</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">end_depth</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">keep_leaves_unlocked</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">keep_current_weights</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush7Program10lock_nodesEibb" title="Link to this definition"></a><br /></dt>
 <dd><p>Iterates over the program, locking the nodes until it reaches a certain depth. If the node is a SplitBest and leaves are kept, then the split feature is fixed. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>end_depth</strong> – the depth to stop locking nodes. Default 0. </p></li>
-<li><p><strong>keep_leaves_unlocked</strong> – whether to skip leaves and leave them unlocked. Default true. </p></li>
+<li><p><strong>keep_leaves_unlocked</strong> – whether to skip leaves and leave them unlocked. </p></li>
+<li><p><strong>keep_current_weights</strong> – whether to keep current weights at the spot they appear. Default true. </p></li>
 </ul>
 </dd>
 </dl>
@@ -505,7 +536,7 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush7Program10is_fitted_E">
-<span id="_CPPv3N5Brush7Program10is_fitted_E"></span><span id="_CPPv2N5Brush7Program10is_fitted_E"></span><span id="Brush::Program::is_fitted___b"></span><span class="target" id="db/d88/structBrush_1_1Program_1a66e9a1ae33267ee5132ba3b3757b8a01"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_fitted_</span></span></span><a class="headerlink" href="#_CPPv4N5Brush7Program10is_fitted_E" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N5Brush7Program10is_fitted_E"></span><span id="_CPPv2N5Brush7Program10is_fitted_E"></span><span id="Brush::Program::is_fitted___b"></span><span class="target" id="db/d88/structBrush_1_1Program_1a66e9a1ae33267ee5132ba3b3757b8a01"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_fitted_</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N5Brush7Program10is_fitted_E" title="Link to this definition"></a><br /></dt>
 <dd><p>whether fit has been called </p>
 </dd></dl>
 

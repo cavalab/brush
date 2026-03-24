@@ -17,8 +17,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="57" column="16" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="57" bodyend="-1"/>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" compoundref="da/dc9/data_8cpp" startline="197" endline="197">get_training_data</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="202" endline="317">init</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" compoundref="da/dc9/data_8cpp" startline="214" endline="214">get_training_data</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="382">init</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1ab8f3010fa3099efe3aac8fcd3140faf6" prot="private" static="no" mutable="no">
         <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;</type>
@@ -33,8 +33,27 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="58" column="16" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="58" bodyend="-1"/>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1ddb847fd1ceff63e60ffd79542409d9" compoundref="da/dc9/data_8cpp" startline="198" endline="198">get_validation_data</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="202" endline="317">init</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1ddb847fd1ceff63e60ffd79542409d9" compoundref="da/dc9/data_8cpp" startline="215" endline="215">get_validation_data</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="382">init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a1c3dbde303375f3ad0586ad855bcd1bf" prot="private" static="no" mutable="no">
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt;</type>
+        <definition>vector&lt;string&gt; Brush::Data::Dataset::feature_name_order_</definition>
+        <argsstring></argsstring>
+        <name>feature_name_order_</name>
+        <qualifiedname>Brush::Data::Dataset::feature_name_order_</qualifiedname>
+        <briefdescription>
+<para>stores the original feature name order before map sorting </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="60" column="16" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="60" bodyend="-1"/>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="462" endline="513">copy_and_make_features</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="382">init</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9e841d2f28f1466b82428dddba49227" compoundref="da/dc9/data_8cpp" startline="391" endline="459">make_features</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="139" endline="182">operator()</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-attrib">
@@ -51,10 +70,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="62" column="21" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="62" bodyend="-1"/>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="202" endline="317">init</referencedby>
-        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a5e4bea5b32dfe137262f014c8107a0f7" compoundref="da/d48/search__space_8cpp" startline="178" endline="268">Brush::SearchSpace::init</referencedby>
-        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1abb9431d42274e6b559249d6b2872d2a2" compoundref="de/d79/inexact_8cpp" startline="17" endline="35">Brush::Simpl::Inexact_simplifier::init</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="64" column="21" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="64" bodyend="-1"/>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="382">init</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a5e4bea5b32dfe137262f014c8107a0f7" compoundref="da/d48/search__space_8cpp" startline="179" endline="280">Brush::SearchSpace::init</referencedby>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1abb9431d42274e6b559249d6b2872d2a2" compoundref="de/d79/inexact_8cpp" startline="19" endline="44">Brush::Simpl::Inexact_simplifier::init</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="139" endline="182">operator()</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a52d591cce797480e80f8cf1f1482702e" prot="public" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref> &gt;</type>
@@ -69,8 +89,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="65" column="21" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="65" bodyend="-1"/>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="202" endline="317">init</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="67" column="21" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="67" bodyend="-1"/>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="382">init</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="139" endline="182">operator()</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a8b9d0d635516aa675f9783d7c6ab1b72" prot="public" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt;</type>
@@ -85,9 +106,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="68" column="21" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="68" bodyend="-1"/>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="391" endline="439">copy_and_make_features</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9e841d2f28f1466b82428dddba49227" compoundref="da/dc9/data_8cpp" startline="326" endline="388">make_features</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="70" column="21" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="70" bodyend="-1"/>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="87">bind_dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a52324d5e7201e2150b60811f8f399844" compoundref="da/dc9/data_8cpp" startline="217" endline="245">get_feature_types</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="382">init</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="139" endline="182">operator()</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a652aba735323fddf7bf79407e7e4fc83" prot="public" static="no" mutable="no">
         <type>std::unordered_map&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref>, <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt; &gt;</type>
@@ -102,9 +125,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="71" column="28" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="71" bodyend="-1"/>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2923e87bfc5d20fc3b45b9f72ca71de2" compoundref="d2/dbd/data_8h" startline="235" endline="256">get_feature_type</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="202" endline="317">init</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="73" column="28" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="73" bodyend="-1"/>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2923e87bfc5d20fc3b45b9f72ca71de2" compoundref="d2/dbd/data_8h" startline="238" endline="258">get_feature_type</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="382">init</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="139" endline="182">operator()</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" prot="public" static="no" mutable="no">
         <type>std::map&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, <ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref> &gt;</type>
@@ -119,15 +143,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="74" column="18" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="74" bodyend="-1"/>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="391" endline="439">copy_and_make_features</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="179" endline="192">Dataset</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="115" endline="130">Dataset</referencedby>
-        <referencedby refid="dc/d5c/namespaceBrush_1a7d1315460dd7c6eb76e3ace99d4aad03" compoundref="da/d48/search__space_8cpp" startline="51" endline="170">Brush::generate_terminals</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="222" endline="227">get_n_samples</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="202" endline="317">init</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="139" endline="165">operator()</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a86f779c55c96ff7182b4e649f87fbf24" compoundref="d2/dbd/data_8h" startline="260" endline="265">operator[]</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="76" column="18" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="76" bodyend="-1"/>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="462" endline="513">copy_and_make_features</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="181" endline="194">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="117" endline="132">Dataset</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a7d1315460dd7c6eb76e3ace99d4aad03" compoundref="da/d48/search__space_8cpp" startline="51" endline="171">Brush::generate_terminals</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a52324d5e7201e2150b60811f8f399844" compoundref="da/dc9/data_8cpp" startline="217" endline="245">get_feature_types</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="225" endline="230">get_n_samples</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="382">init</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="139" endline="182">operator()</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a86f779c55c96ff7182b4e649f87fbf24" compoundref="d2/dbd/data_8h" startline="262" endline="267">operator[]</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1ade105f069d4f745d44374b7b8a3a9b0d" prot="public" static="no" mutable="no">
         <type>ArrayXf</type>
@@ -142,15 +167,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="80" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="80" bodyend="-1"/>
-        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="83">bind_dataset</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="115" endline="130">Dataset</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="82" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="82" bodyend="-1"/>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="87">bind_dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="117" endline="132">Dataset</referencedby>
         <referencedby refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a0a729da1a61e625544c79406c1d38a8f" compoundref="d7/de0/operator_8h" startline="378" endline="406">Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::fit</referencedby>
-        <referencedby refid="dc/d5c/namespaceBrush_1a7d1315460dd7c6eb76e3ace99d4aad03" compoundref="da/d48/search__space_8cpp" startline="51" endline="170">Brush::generate_terminals</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="202" endline="317">init</referencedby>
-        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a5e4bea5b32dfe137262f014c8107a0f7" compoundref="da/d48/search__space_8cpp" startline="178" endline="268">Brush::SearchSpace::init</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="139" endline="165">operator()</referencedby>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a6ca34005b1a4ab87038a4c391e77d786" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="41">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a7d1315460dd7c6eb76e3ace99d4aad03" compoundref="da/d48/search__space_8cpp" startline="51" endline="171">Brush::generate_terminals</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="382">init</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a5e4bea5b32dfe137262f014c8107a0f7" compoundref="da/d48/search__space_8cpp" startline="179" endline="280">Brush::SearchSpace::init</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="139" endline="182">operator()</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a6ca34005b1a4ab87038a4c391e77d786" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="51">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a1a8a1e77afdecb032696bdf38e5c424c" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -165,14 +190,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="83" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="83" bodyend="-1"/>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="179" endline="192">Dataset</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="115" endline="130">Dataset</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="85" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="85" bodyend="-1"/>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="181" endline="194">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="117" endline="132">Dataset</referencedby>
         <referencedby refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a0a729da1a61e625544c79406c1d38a8f" compoundref="d7/de0/operator_8h" startline="378" endline="406">Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::fit</referencedby>
-        <referencedby refid="dc/d5c/namespaceBrush_1a7d1315460dd7c6eb76e3ace99d4aad03" compoundref="da/d48/search__space_8cpp" startline="51" endline="170">Brush::generate_terminals</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="202" endline="317">init</referencedby>
-        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a5e4bea5b32dfe137262f014c8107a0f7" compoundref="da/d48/search__space_8cpp" startline="178" endline="268">Brush::SearchSpace::init</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="139" endline="165">operator()</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a7d1315460dd7c6eb76e3ace99d4aad03" compoundref="da/d48/search__space_8cpp" startline="51" endline="171">Brush::generate_terminals</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="382">init</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a5e4bea5b32dfe137262f014c8107a0f7" compoundref="da/d48/search__space_8cpp" startline="179" endline="280">Brush::SearchSpace::init</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="139" endline="182">operator()</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a8a1a428f46a5c80322000f4bef0a09d4" prot="public" static="no" mutable="no">
         <type>std::optional&lt; std::reference_wrapper&lt; const ArrayXXf &gt; &gt;</type>
@@ -186,9 +211,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="84" column="23" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="84" bodyend="-1"/>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="179" endline="192">Dataset</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a44ebc4ada574ea7a3a843ae74810aac9" compoundref="d2/dbd/data_8h" startline="210" endline="215">get_X</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="86" column="23" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="86" bodyend="-1"/>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="181" endline="194">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a44ebc4ada574ea7a3a843ae74810aac9" compoundref="d2/dbd/data_8h" startline="212" endline="217">get_X</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1aae2b4b532ccc55a95f65b75a5cd9e176" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -203,10 +228,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="87" column="15" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="87" bodyend="-1"/>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="179" endline="192">Dataset</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="115" endline="130">Dataset</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="202" endline="317">init</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="89" column="15" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="89" bodyend="-1"/>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="181" endline="194">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="117" endline="132">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="382">init</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a6cadfbd9f8a4700361e63defb7d6f6e0" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -220,11 +245,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="88" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="88" bodyend="-1"/>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="45" endline="111">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="179" endline="192">Dataset</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="115" endline="130">Dataset</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="202" endline="317">init</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="90" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="90" bodyend="-1"/>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="55" endline="121">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="181" endline="194">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="117" endline="132">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="382">init</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a47efbb19e4ca04538d4ef04f0a87d856" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -238,10 +263,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="89" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="89" bodyend="-1"/>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="179" endline="192">Dataset</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="115" endline="130">Dataset</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="202" endline="317">init</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="91" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="91" bodyend="-1"/>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="181" endline="194">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="117" endline="132">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="382">init</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -256,12 +281,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="92" column="15" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="92" bodyend="-1"/>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="179" endline="192">Dataset</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="115" endline="130">Dataset</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" compoundref="da/dc9/data_8cpp" startline="170" endline="184">get_batch</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade358be2a762f2a6df738a41fe1095b5" compoundref="da/dc9/data_8cpp" startline="319" endline="319">get_batch_size</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa07fa8dff0f8e01293509d6b7cc0dc3" compoundref="da/dc9/data_8cpp" startline="320" endline="323">set_batch_size</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="94" column="15" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="94" bodyend="-1"/>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="181" endline="194">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="117" endline="132">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" compoundref="da/dc9/data_8cpp" startline="187" endline="201">get_batch</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade358be2a762f2a6df738a41fe1095b5" compoundref="da/dc9/data_8cpp" startline="384" endline="384">get_batch_size</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa07fa8dff0f8e01293509d6b7cc0dc3" compoundref="da/dc9/data_8cpp" startline="385" endline="388">set_batch_size</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a8cba7a5f962538d67012264fb6c97ed4" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -275,11 +300,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="93" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="93" bodyend="-1"/>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="179" endline="192">Dataset</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="115" endline="130">Dataset</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" compoundref="da/dc9/data_8cpp" startline="170" endline="184">get_batch</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa07fa8dff0f8e01293509d6b7cc0dc3" compoundref="da/dc9/data_8cpp" startline="320" endline="323">set_batch_size</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="95" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="95" bodyend="-1"/>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="181" endline="194">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="117" endline="132">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" compoundref="da/dc9/data_8cpp" startline="187" endline="201">get_batch</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa07fa8dff0f8e01293509d6b7cc0dc3" compoundref="da/dc9/data_8cpp" startline="385" endline="388">set_batch_size</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -300,12 +325,18 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="95" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="139" bodyend="165"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="97" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="139" bodyend="182"/>
         <references refid="dc/d5c/namespaceBrush_1a6c9a5070ffbcf71c795073cbb2a88964" compoundref="d8/dc0/init_8h" startline="67">Brush::always_false_v</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1a8a1e77afdecb032696bdf38e5c424c" compoundref="d2/dbd/data_8h" startline="83">classification</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="115" endline="130">Dataset</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="74">features</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade105f069d4f745d44374b7b8a3a9b0d" compoundref="d2/dbd/data_8h" startline="80">y</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1a8a1e77afdecb032696bdf38e5c424c" compoundref="d2/dbd/data_8h" startline="85">classification</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="117" endline="132">Dataset</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1c3dbde303375f3ad0586ad855bcd1bf" compoundref="d2/dbd/data_8h" startline="60">feature_name_order_</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8b9d0d635516aa675f9783d7c6ab1b72" compoundref="d2/dbd/data_8h" startline="70">feature_names</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a52d591cce797480e80f8cf1f1482702e" compoundref="d2/dbd/data_8h" startline="67">feature_types</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="76">features</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a652aba735323fddf7bf79407e7e4fc83" compoundref="d2/dbd/data_8h" startline="73">features_of_type</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a96fc30b35f152f425377e1ae34398779" compoundref="d2/dbd/data_8h" startline="64">unique_data_types</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1ac697e701ef641df7a4cff481c667c9f7" compoundref="d5/d60/utils_8h" startline="684" endline="689">Brush::Util::unique_insert</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade105f069d4f745d44374b7b8a3a9b0d" compoundref="d2/dbd/data_8h" startline="82">y</references>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -320,25 +351,27 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="99" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="202" bodyend="317"/>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1a8a1e77afdecb032696bdf38e5c424c" compoundref="d2/dbd/data_8h" startline="83">classification</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a52d591cce797480e80f8cf1f1482702e" compoundref="d2/dbd/data_8h" startline="65">feature_types</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="74">features</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a652aba735323fddf7bf79407e7e4fc83" compoundref="d2/dbd/data_8h" startline="71">features_of_type</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="222" endline="227">get_n_samples</references>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="101" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="250" bodyend="382"/>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1a8a1e77afdecb032696bdf38e5c424c" compoundref="d2/dbd/data_8h" startline="85">classification</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1c3dbde303375f3ad0586ad855bcd1bf" compoundref="d2/dbd/data_8h" startline="60">feature_name_order_</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8b9d0d635516aa675f9783d7c6ab1b72" compoundref="d2/dbd/data_8h" startline="70">feature_names</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a52d591cce797480e80f8cf1f1482702e" compoundref="d2/dbd/data_8h" startline="67">feature_types</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="76">features</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a652aba735323fddf7bf79407e7e4fc83" compoundref="d2/dbd/data_8h" startline="73">features_of_type</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="225" endline="230">get_n_samples</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="176">Brush::Util::r</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a47efbb19e4ca04538d4ef04f0a87d856" compoundref="d2/dbd/data_8h" startline="89">shuffle_split</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a47efbb19e4ca04538d4ef04f0a87d856" compoundref="d2/dbd/data_8h" startline="91">shuffle_split</references>
         <references refid="d9/d1c/namespaceBrush_1_1Data_1a6c00d36ba6aefd852544da96a089754a" compoundref="da/dc9/data_8cpp" startline="67" endline="70">Brush::Data::StateType</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a4112a2cb86ce4138c3c4bea966c96b65" compoundref="d2/dbd/data_8h" startline="57">training_data_idx</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a96fc30b35f152f425377e1ae34398779" compoundref="d2/dbd/data_8h" startline="62">unique_data_types</references>
-        <references refid="d6/d2e/namespaceBrush_1_1Util_1ac697e701ef641df7a4cff481c667c9f7" compoundref="d5/d60/utils_8h" startline="670" endline="675">Brush::Util::unique_insert</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6cadfbd9f8a4700361e63defb7d6f6e0" compoundref="d2/dbd/data_8h" startline="88">use_validation</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a96fc30b35f152f425377e1ae34398779" compoundref="d2/dbd/data_8h" startline="64">unique_data_types</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1ac697e701ef641df7a4cff481c667c9f7" compoundref="d5/d60/utils_8h" startline="684" endline="689">Brush::Util::unique_insert</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6cadfbd9f8a4700361e63defb7d6f6e0" compoundref="d2/dbd/data_8h" startline="90">use_validation</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ab8f3010fa3099efe3aac8fcd3140faf6" compoundref="d2/dbd/data_8h" startline="58">validation_data_idx</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aae2b4b532ccc55a95f65b75a5cd9e176" compoundref="d2/dbd/data_8h" startline="87">validation_size</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade105f069d4f745d44374b7b8a3a9b0d" compoundref="d2/dbd/data_8h" startline="80">y</references>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="179" endline="192">Dataset</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="115" endline="130">Dataset</referencedby>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aae2b4b532ccc55a95f65b75a5cd9e176" compoundref="d2/dbd/data_8h" startline="89">validation_size</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade105f069d4f745d44374b7b8a3a9b0d" compoundref="d2/dbd/data_8h" startline="82">y</references>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="181" endline="194">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="117" endline="132">Dataset</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9e841d2f28f1466b82428dddba49227" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="d9/d28/classmap" kindref="compound">map</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, <ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref> &gt;</type>
@@ -372,9 +405,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="102" column="13" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="326" bodyend="388"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="104" column="13" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="391" bodyend="459"/>
         <references refid="d9/d1c/namespaceBrush_1_1Data_1a82683b7af172813488ef4db81905de67" compoundref="da/dc9/data_8cpp" startline="71" endline="125">Brush::Data::check_type</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8b9d0d635516aa675f9783d7c6ab1b72" compoundref="d2/dbd/data_8h" startline="68">feature_names</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1c3dbde303375f3ad0586ad855bcd1bf" compoundref="d2/dbd/data_8h" startline="60">feature_name_order_</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" compoundref="d5/d60/utils_8h" startline="369" endline="374">Brush::Util::to_string</references>
       </memberdef>
@@ -404,14 +437,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="109" column="13" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="391" bodyend="439"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="111" column="13" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="462" bodyend="513"/>
         <references refid="d9/d1c/namespaceBrush_1_1Data_1a5e5f876d004717e85c08b7661e090e29" compoundref="da/dc9/data_8cpp" startline="128" endline="136">Brush::Data::cast_type</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="115" endline="130">Dataset</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8b9d0d635516aa675f9783d7c6ab1b72" compoundref="d2/dbd/data_8h" startline="68">feature_names</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="74">features</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="117" endline="132">Dataset</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1c3dbde303375f3ad0586ad855bcd1bf" compoundref="d2/dbd/data_8h" startline="60">feature_name_order_</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="76">features</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" compoundref="d5/d60/utils_8h" startline="369" endline="374">Brush::Util::to_string</references>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="179" endline="192">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="181" endline="194">Dataset</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -458,22 +491,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="115" column="9" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="115" bodyend="130"/>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" compoundref="d2/dbd/data_8h" startline="92">batch_size</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1a8a1e77afdecb032696bdf38e5c424c" compoundref="d2/dbd/data_8h" startline="83">classification</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="74">features</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="202" endline="317">init</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a47efbb19e4ca04538d4ef04f0a87d856" compoundref="d2/dbd/data_8h" startline="89">shuffle_split</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8cba7a5f962538d67012264fb6c97ed4" compoundref="d2/dbd/data_8h" startline="93">use_batch</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6cadfbd9f8a4700361e63defb7d6f6e0" compoundref="d2/dbd/data_8h" startline="88">use_validation</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aae2b4b532ccc55a95f65b75a5cd9e176" compoundref="d2/dbd/data_8h" startline="87">validation_size</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade105f069d4f745d44374b7b8a3a9b0d" compoundref="d2/dbd/data_8h" startline="80">y</references>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="391" endline="439">copy_and_make_features</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="179" endline="192">Dataset</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" compoundref="da/dc9/data_8cpp" startline="170" endline="184">get_batch</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" compoundref="da/dc9/data_8cpp" startline="197" endline="197">get_training_data</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1ddb847fd1ceff63e60ffd79542409d9" compoundref="da/dc9/data_8cpp" startline="198" endline="198">get_validation_data</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="139" endline="165">operator()</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="117" column="9" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="117" bodyend="132"/>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" compoundref="d2/dbd/data_8h" startline="94">batch_size</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1a8a1e77afdecb032696bdf38e5c424c" compoundref="d2/dbd/data_8h" startline="85">classification</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="76">features</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="382">init</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a47efbb19e4ca04538d4ef04f0a87d856" compoundref="d2/dbd/data_8h" startline="91">shuffle_split</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8cba7a5f962538d67012264fb6c97ed4" compoundref="d2/dbd/data_8h" startline="95">use_batch</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6cadfbd9f8a4700361e63defb7d6f6e0" compoundref="d2/dbd/data_8h" startline="90">use_validation</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aae2b4b532ccc55a95f65b75a5cd9e176" compoundref="d2/dbd/data_8h" startline="89">validation_size</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade105f069d4f745d44374b7b8a3a9b0d" compoundref="d2/dbd/data_8h" startline="82">y</references>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="462" endline="513">copy_and_make_features</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" compoundref="d2/dbd/data_8h" startline="181" endline="194">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" compoundref="da/dc9/data_8cpp" startline="187" endline="201">get_batch</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" compoundref="da/dc9/data_8cpp" startline="214" endline="214">get_training_data</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1ddb847fd1ceff63e60ffd79542409d9" compoundref="da/dc9/data_8cpp" startline="215" endline="215">get_validation_data</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="139" endline="182">operator()</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1ad017496e1ae05e52999af69f409e19b1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -535,7 +568,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="133" column="9" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="133" bodyend="154"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="135" column="9" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="135" bodyend="156"/>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a00560cec5545ae35e9e9dd838647b883" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -586,7 +619,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="157" column="9" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="157" bodyend="174"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="159" column="9" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="159" bodyend="176"/>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -612,18 +645,18 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="179" column="9" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="179" bodyend="192"/>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" compoundref="d2/dbd/data_8h" startline="92">batch_size</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1a8a1e77afdecb032696bdf38e5c424c" compoundref="d2/dbd/data_8h" startline="83">classification</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="391" endline="439">copy_and_make_features</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="115" endline="130">Dataset</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="74">features</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="202" endline="317">init</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a47efbb19e4ca04538d4ef04f0a87d856" compoundref="d2/dbd/data_8h" startline="89">shuffle_split</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8cba7a5f962538d67012264fb6c97ed4" compoundref="d2/dbd/data_8h" startline="93">use_batch</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6cadfbd9f8a4700361e63defb7d6f6e0" compoundref="d2/dbd/data_8h" startline="88">use_validation</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aae2b4b532ccc55a95f65b75a5cd9e176" compoundref="d2/dbd/data_8h" startline="87">validation_size</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8a1a428f46a5c80322000f4bef0a09d4" compoundref="d2/dbd/data_8h" startline="84">Xref</references>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="181" column="9" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="181" bodyend="194"/>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" compoundref="d2/dbd/data_8h" startline="94">batch_size</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1a8a1e77afdecb032696bdf38e5c424c" compoundref="d2/dbd/data_8h" startline="85">classification</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="462" endline="513">copy_and_make_features</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="117" endline="132">Dataset</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="76">features</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="382">init</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a47efbb19e4ca04538d4ef04f0a87d856" compoundref="d2/dbd/data_8h" startline="91">shuffle_split</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8cba7a5f962538d67012264fb6c97ed4" compoundref="d2/dbd/data_8h" startline="95">use_batch</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6cadfbd9f8a4700361e63defb7d6f6e0" compoundref="d2/dbd/data_8h" startline="90">use_validation</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aae2b4b532ccc55a95f65b75a5cd9e176" compoundref="d2/dbd/data_8h" startline="89">validation_size</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8a1a428f46a5c80322000f4bef0a09d4" compoundref="d2/dbd/data_8h" startline="86">Xref</references>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a59ec8554d617a4a99ba7feec09bdc62c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -637,10 +670,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="194" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="194" bodyend="209"/>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6edc04702aee605a766f4a79c375d0c6" compoundref="d2/dbd/data_8h" startline="228" endline="228">get_n_features</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="222" endline="227">get_n_samples</references>
-        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="83">bind_dataset</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="196" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="196" bodyend="211"/>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6edc04702aee605a766f4a79c375d0c6" compoundref="d2/dbd/data_8h" startline="231" endline="231">get_n_features</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="225" endline="230">get_n_samples</references>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="87">bind_dataset</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a44ebc4ada574ea7a3a843ae74810aac9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -654,10 +687,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="210" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="210" bodyend="215"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="212" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="212" bodyend="217"/>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8a1a428f46a5c80322000f4bef0a09d4" compoundref="d2/dbd/data_8h" startline="84">Xref</references>
-        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="83">bind_dataset</referencedby>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8a1a428f46a5c80322000f4bef0a09d4" compoundref="d2/dbd/data_8h" startline="86">Xref</references>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="87">bind_dataset</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref></type>
@@ -671,13 +704,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="219" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="197" bodyend="197"/>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="115" endline="130">Dataset</references>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="221" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="214" bodyend="214"/>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="117" endline="132">Dataset</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a4112a2cb86ce4138c3c4bea966c96b65" compoundref="d2/dbd/data_8h" startline="57">training_data_idx</references>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="45" endline="111">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
-        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="83">bind_dataset</referencedby>
-        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1abb9431d42274e6b559249d6b2872d2a2" compoundref="de/d79/inexact_8cpp" startline="17" endline="35">Brush::Simpl::Inexact_simplifier::init</referencedby>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a6ca34005b1a4ab87038a4c391e77d786" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="41">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="55" endline="121">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="87">bind_dataset</referencedby>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1abb9431d42274e6b559249d6b2872d2a2" compoundref="de/d79/inexact_8cpp" startline="19" endline="44">Brush::Simpl::Inexact_simplifier::init</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a6ca34005b1a4ab87038a4c391e77d786" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="51">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a1ddb847fd1ceff63e60ffd79542409d9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref></type>
@@ -691,11 +724,33 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="220" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="198" bodyend="198"/>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="115" endline="130">Dataset</references>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="222" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="215" bodyend="215"/>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="117" endline="132">Dataset</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ab8f3010fa3099efe3aac8fcd3140faf6" compoundref="d2/dbd/data_8h" startline="58">validation_data_idx</references>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="45" endline="111">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
-        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="83">bind_dataset</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="55" endline="121">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="87">bind_dataset</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a52324d5e7201e2150b60811f8f399844" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt;</type>
+        <definition>vector&lt; string &gt; Brush::Data::Dataset::get_feature_types</definition>
+        <argsstring>() const</argsstring>
+        <name>get_feature_types</name>
+        <qualifiedname>Brush::Data::Dataset::get_feature_types</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="223" column="16" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="217" bodyend="245"/>
+        <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa3c119844524e715e16e6c9b36e6516f0" compoundref="d9/d49/types_8h" startline="144">Brush::ArrayB</references>
+        <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa2edbf6aa916089ab4f236b106fe413f3" compoundref="d9/d49/types_8h" startline="146">Brush::ArrayF</references>
+        <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa2374ac8b377f9b738831879110e0a42f" compoundref="d9/d49/types_8h" startline="145">Brush::ArrayI</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8b9d0d635516aa675f9783d7c6ab1b72" compoundref="d2/dbd/data_8h" startline="70">feature_names</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="76">features</references>
+        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
+        <references refid="d9/d1c/namespaceBrush_1_1Data_1a6c00d36ba6aefd852544da96a089754a" compoundref="da/dc9/data_8cpp" startline="67" endline="70">Brush::Data::StateType</references>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="87">bind_dataset</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -709,15 +764,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="222" column="20" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="222" bodyend="227"/>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="74">features</references>
-        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="83">bind_dataset</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="225" column="20" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="225" bodyend="230"/>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="76">features</references>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="87">bind_dataset</referencedby>
         <referencedby refid="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4_1a1309f7a7253c0899447c91ebfee84a3a" compoundref="d7/de0/operator_8h" startline="352" endline="366">Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::eval</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" compoundref="da/dc9/data_8cpp" startline="170" endline="184">get_batch</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="202" endline="317">init</referencedby>
-        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1abb9431d42274e6b559249d6b2872d2a2" compoundref="de/d79/inexact_8cpp" startline="17" endline="35">Brush::Simpl::Inexact_simplifier::init</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" compoundref="da/dc9/data_8cpp" startline="187" endline="201">get_batch</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="382">init</referencedby>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1abb9431d42274e6b559249d6b2872d2a2" compoundref="de/d79/inexact_8cpp" startline="19" endline="44">Brush::Simpl::Inexact_simplifier::init</referencedby>
         <referencedby refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a56b67e05e4f1f89f7fd83f755d826d16" compoundref="d7/de0/operator_8h" startline="409" endline="416">Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::predict</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a59ec8554d617a4a99ba7feec09bdc62c" compoundref="d2/dbd/data_8h" startline="194" endline="209">print</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a59ec8554d617a4a99ba7feec09bdc62c" compoundref="d2/dbd/data_8h" startline="196" endline="211">print</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a6edc04702aee605a766f4a79c375d0c6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -731,11 +786,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="228" column="20" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="228" bodyend="228"/>
-        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="83">bind_dataset</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="231" column="20" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="231" bodyend="231"/>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="87">bind_dataset</referencedby>
         <referencedby refid="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4_1a1309f7a7253c0899447c91ebfee84a3a" compoundref="d7/de0/operator_8h" startline="352" endline="366">Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::eval</referencedby>
         <referencedby refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a56b67e05e4f1f89f7fd83f755d826d16" compoundref="d7/de0/operator_8h" startline="409" endline="416">Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::predict</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a59ec8554d617a4a99ba7feec09bdc62c" compoundref="d2/dbd/data_8h" startline="194" endline="209">print</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a59ec8554d617a4a99ba7feec09bdc62c" compoundref="d2/dbd/data_8h" startline="196" endline="211">print</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref></type>
@@ -750,14 +805,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="230" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="170" bodyend="184"/>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" compoundref="d2/dbd/data_8h" startline="92">batch_size</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="115" endline="130">Dataset</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="222" endline="227">get_n_samples</references>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="233" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="187" bodyend="201"/>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" compoundref="d2/dbd/data_8h" startline="94">batch_size</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="117" endline="132">Dataset</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="225" endline="230">get_n_samples</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="176">Brush::Util::r</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8cba7a5f962538d67012264fb6c97ed4" compoundref="d2/dbd/data_8h" startline="93">use_batch</references>
-        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="83">bind_dataset</referencedby>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="352" endline="612">Brush::Engine&lt; T &gt;::run</referencedby>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8cba7a5f962538d67012264fb6c97ed4" compoundref="d2/dbd/data_8h" startline="95">use_batch</references>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="87">bind_dataset</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="422" endline="689">Brush::Engine&lt; T &gt;::run</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1ade358be2a762f2a6df738a41fe1095b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -771,9 +826,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="232" column="15" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="319" bodyend="319"/>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" compoundref="d2/dbd/data_8h" startline="92">batch_size</references>
-        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="83">bind_dataset</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="235" column="15" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="384" bodyend="384"/>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" compoundref="d2/dbd/data_8h" startline="94">batch_size</references>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="87">bind_dataset</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1afa07fa8dff0f8e01293509d6b7cc0dc3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -791,10 +846,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="233" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="320" bodyend="323"/>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" compoundref="d2/dbd/data_8h" startline="92">batch_size</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8cba7a5f962538d67012264fb6c97ed4" compoundref="d2/dbd/data_8h" startline="93">use_batch</references>
-        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="83">bind_dataset</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="236" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="385" bodyend="388"/>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" compoundref="d2/dbd/data_8h" startline="94">batch_size</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8cba7a5f962538d67012264fb6c97ed4" compoundref="d2/dbd/data_8h" startline="95">use_batch</references>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="87">bind_dataset</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a2923e87bfc5d20fc3b45b9f72ca71de2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
@@ -812,10 +867,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="235" column="18" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="235" bodyend="256"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="238" column="18" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="238" bodyend="258"/>
         <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa2edbf6aa916089ab4f236b106fe413f3" compoundref="d9/d49/types_8h" startline="146">Brush::ArrayF</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a652aba735323fddf7bf79407e7e4fc83" compoundref="d2/dbd/data_8h" startline="71">features_of_type</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a652aba735323fddf7bf79407e7e4fc83" compoundref="d2/dbd/data_8h" startline="73">features_of_type</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
+        <referencedby refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a936cf115e4d95aed91817fcf1bb9c084" compoundref="d7/de0/operator_8h" startline="328" endline="340">Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;::get</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1ade5da9269ebc099385d6f79cf4a53f9f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::array&lt; <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>, 2 &gt;</type>
@@ -833,9 +889,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="258" column="20" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="186" bodyend="195"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="260" column="20" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="203" bodyend="212"/>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1afc397ee448b473fec9502461f3e75eae" compoundref="de/d06/utils_8cpp" startline="409" endline="419">Brush::Util::mask_to_index</references>
-        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="83">bind_dataset</referencedby>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="87">bind_dataset</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a86f779c55c96ff7182b4e649f87fbf24" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref></type>
@@ -853,8 +909,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="260" column="15" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="260" bodyend="265"/>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="74">features</references>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="262" column="15" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="262" bodyend="267"/>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="76">features</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
       </memberdef>
     </sectiondef>
@@ -872,11 +928,12 @@
           <edgelabel>validation_data_idx</edgelabel>
         </childnode>
         <childnode refid="3" relation="usage">
+          <edgelabel>feature_name_order_</edgelabel>
+          <edgelabel>feature_names</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
           <edgelabel>feature_types</edgelabel>
           <edgelabel>unique_data_types</edgelabel>
-        </childnode>
-        <childnode refid="4" relation="usage">
-          <edgelabel>feature_names</edgelabel>
         </childnode>
         <childnode refid="7" relation="usage">
           <edgelabel>features_of_type</edgelabel>
@@ -885,40 +942,40 @@
           <edgelabel>features</edgelabel>
         </childnode>
       </node>
-      <node id="6">
+      <node id="5">
         <label>std::basic_string&lt; Char &gt;</label>
       </node>
       <node id="8">
         <label>std::map&lt; string, State &gt;</label>
-        <childnode refid="5" relation="usage">
+        <childnode refid="4" relation="usage">
           <edgelabel>keys</edgelabel>
         </childnode>
       </node>
-      <node id="5">
+      <node id="4">
         <label>std::string</label>
-        <childnode refid="6" relation="public-inheritance">
+        <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
       <node id="7">
         <label>std::unordered_map&lt; DataType, vector&lt; string &gt; &gt;</label>
-        <childnode refid="4" relation="usage">
+        <childnode refid="3" relation="usage">
           <edgelabel>elements</edgelabel>
         </childnode>
       </node>
-      <node id="3">
+      <node id="6">
         <label>std::vector&lt; DataType &gt;</label>
       </node>
       <node id="2">
         <label>std::vector&lt; size_t &gt;</label>
       </node>
-      <node id="4">
+      <node id="3">
         <label>std::vector&lt; string &gt;</label>
-        <childnode refid="5" relation="usage">
+        <childnode refid="4" relation="usage">
           <edgelabel>elements</edgelabel>
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/brush/brush/src/data/data.h" line="50" column="1" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="51" bodyend="268"/>
+    <location file="/home/runner/work/brush/brush/src/data/data.h" line="50" column="1" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="51" bodyend="270"/>
     <listofallmembers>
       <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" prot="public" virt="non-virtual"><scope>Brush::Data::Dataset</scope><name>batch_size</name></member>
       <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1a8a1e77afdecb032696bdf38e5c424c" prot="public" virt="non-virtual"><scope>Brush::Data::Dataset</scope><name>classification</name></member>
@@ -927,6 +984,7 @@
       <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ad017496e1ae05e52999af69f409e19b1" prot="public" virt="non-virtual"><scope>Brush::Data::Dataset</scope><name>Dataset</name></member>
       <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a00560cec5545ae35e9e9dd838647b883" prot="public" virt="non-virtual"><scope>Brush::Data::Dataset</scope><name>Dataset</name></member>
       <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8401b18d80d94ca2e4a47e80bc130ec4" prot="public" virt="non-virtual"><scope>Brush::Data::Dataset</scope><name>Dataset</name></member>
+      <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1c3dbde303375f3ad0586ad855bcd1bf" prot="private" virt="non-virtual"><scope>Brush::Data::Dataset</scope><name>feature_name_order_</name></member>
       <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8b9d0d635516aa675f9783d7c6ab1b72" prot="public" virt="non-virtual"><scope>Brush::Data::Dataset</scope><name>feature_names</name></member>
       <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a52d591cce797480e80f8cf1f1482702e" prot="public" virt="non-virtual"><scope>Brush::Data::Dataset</scope><name>feature_types</name></member>
       <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" prot="public" virt="non-virtual"><scope>Brush::Data::Dataset</scope><name>features</name></member>
@@ -934,6 +992,7 @@
       <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" prot="public" virt="non-virtual"><scope>Brush::Data::Dataset</scope><name>get_batch</name></member>
       <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade358be2a762f2a6df738a41fe1095b5" prot="public" virt="non-virtual"><scope>Brush::Data::Dataset</scope><name>get_batch_size</name></member>
       <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2923e87bfc5d20fc3b45b9f72ca71de2" prot="public" virt="non-virtual"><scope>Brush::Data::Dataset</scope><name>get_feature_type</name></member>
+      <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a52324d5e7201e2150b60811f8f399844" prot="public" virt="non-virtual"><scope>Brush::Data::Dataset</scope><name>get_feature_types</name></member>
       <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6edc04702aee605a766f4a79c375d0c6" prot="public" virt="non-virtual"><scope>Brush::Data::Dataset</scope><name>get_n_features</name></member>
       <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" prot="public" virt="non-virtual"><scope>Brush::Data::Dataset</scope><name>get_n_samples</name></member>
       <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" prot="public" virt="non-virtual"><scope>Brush::Data::Dataset</scope><name>get_training_data</name></member>

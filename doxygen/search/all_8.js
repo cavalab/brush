@@ -11,6 +11,6 @@ var searchData=
   ['hash_3c_20std_3a_3avector_3c_20float_20_3e_20_3e_8',['hash&lt; std::vector&lt; float &gt; &gt;',['../d4/d0d/structstd_1_1hash_3_01std_1_1vector_3_01float_01_4_01_4.html',1,'std']]],
   ['hash_5fargs_9',['hash_args',['../da/dd5/structBrush_1_1SigBase.html#ad1fb7c49bbae03d555731a517a4329b7',1,'Brush::SigBase::hash_args()'],['../da/dd5/structBrush_1_1SigBase.html#ad1fb7c49bbae03d555731a517a4329b7',1,'Brush::SigBase&lt; R &gt;::hash_args()']]],
   ['hashstorage_10',['HashStorage',['../d4/d71/classBrush_1_1Simpl_1_1HashStorage.html',1,'Brush::Simpl::HashStorage'],['../d4/d71/classBrush_1_1Simpl_1_1HashStorage.html#ac60eb12f5119da28941e61efac059e42',1,'Brush::Simpl::HashStorage::HashStorage()']]],
-  ['hashtuple_11',['HashTuple',['../d1/d3a/structBrush_1_1Node.html#abd1037d20f96e122bc1305d70aab418a',1,'Brush::Node::HashTuple'],['../d8/d49/structNode.html#abd1037d20f96e122bc1305d70aab418a',1,'Node::HashTuple']]],
+  ['hashtuple_11',['HashTuple',['../d1/d3a/structBrush_1_1Node.html#a0529394dfe80ebf13da5d1bb84f2a300',1,'Brush::Node::HashTuple'],['../d8/d49/structNode.html#a0529394dfe80ebf13da5d1bb84f2a300',1,'Node::HashTuple']]],
   ['high_5fresolution_5fclock_12',['high_resolution_clock',['../d8/da4/classBrush_1_1Util_1_1Timer.html#ab650cf34f8650b85732e59d8857eb616',1,'Brush::Util::Timer']]]
 ];

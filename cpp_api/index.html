@@ -6,20 +6,20 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>C++ API &mdash; Brush 0.1.dev1+gb15fa8789 documentation</title>
+  <title>C++ API &mdash; Brush 0.1.dev1+gc1fa69d28 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
 
   
     <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=a64c5380"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/documentation_options.js?v=21cc7d73"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/js/theme.js"></script>
@@ -127,6 +127,7 @@
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4NK5Brush4Data7Dataset5get_XEv"><code class="docutils literal notranslate"><span class="pre">get_X()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4NK5Brush4Data7Dataset17get_training_dataEv"><code class="docutils literal notranslate"><span class="pre">get_training_data()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4NK5Brush4Data7Dataset19get_validation_dataEv"><code class="docutils literal notranslate"><span class="pre">get_validation_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4NK5Brush4Data7Dataset17get_feature_typesEv"><code class="docutils literal notranslate"><span class="pre">get_feature_types()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4NK5Brush4Data7Dataset13get_n_samplesEv"><code class="docutils literal notranslate"><span class="pre">get_n_samples()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4NK5Brush4Data7Dataset14get_n_featuresEv"><code class="docutils literal notranslate"><span class="pre">get_n_features()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4NK5Brush4Data7Dataset9get_batchEv"><code class="docutils literal notranslate"><span class="pre">get_batch()</span></code></a></li>
@@ -239,7 +240,7 @@
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace15sample_terminalEb"><code class="docutils literal notranslate"><span class="pre">sample_terminal()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace15sample_terminalE8DataTypeb"><code class="docutils literal notranslate"><span class="pre">sample_terminal()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace9sample_opE8DataType"><code class="docutils literal notranslate"><span class="pre">sample_op()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpace9sample_opE8NodeType8DataTypeb"><code class="docutils literal notranslate"><span class="pre">sample_op()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace9sample_opE8NodeType8DataTypeb"><code class="docutils literal notranslate"><span class="pre">sample_op()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace18sample_op_with_argE8DataType8DataTypebi"><code class="docutils literal notranslate"><span class="pre">sample_op_with_arg()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace13get_node_likeE4Node"><code class="docutils literal notranslate"><span class="pre">get_node_like()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace14sample_subtreeE4Nodeii"><code class="docutils literal notranslate"><span class="pre">sample_subtree()</span></code></a></li>
@@ -272,6 +273,8 @@
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4NK5Brush7Program8depth_atER4Iter"><code class="docutils literal notranslate"><span class="pre">depth_at()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4NK5Brush7Program14depth_to_reachER4Iter"><code class="docutils literal notranslate"><span class="pre">depth_to_reach()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program3fitERK7Dataset"><code class="docutils literal notranslate"><span class="pre">fit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program15replace_programERK7ProgramI5PTypeE"><code class="docutils literal notranslate"><span class="pre">replace_program()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program15replace_programERK4json"><code class="docutils literal notranslate"><span class="pre">replace_program()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4I00EN5Brush7Program20predict_with_weightsE1RRK7DatasetPPK1W"><code class="docutils literal notranslate"><span class="pre">predict_with_weights()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program20predict_with_weightsERK7DatasetRK7ArrayXf"><code class="docutils literal notranslate"><span class="pre">predict_with_weights()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4I0EN5Brush7Program7predictE8TreeTypeRK7Dataset"><code class="docutils literal notranslate"><span class="pre">predict()</span></code></a></li>
@@ -285,7 +288,7 @@
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4NK5Brush7Program13get_n_weightsEv"><code class="docutils literal notranslate"><span class="pre">get_n_weights()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program11get_weightsEv"><code class="docutils literal notranslate"><span class="pre">get_weights()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program11set_weightsERK7ArrayXf"><code class="docutils literal notranslate"><span class="pre">set_weights()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program10lock_nodesEib"><code class="docutils literal notranslate"><span class="pre">lock_nodes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program10lock_nodesEibb"><code class="docutils literal notranslate"><span class="pre">lock_nodes()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4NK5Brush7Program9get_modelE6stringb"><code class="docutils literal notranslate"><span class="pre">get_model()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4NK5Brush7Program13get_dot_modelE6string"><code class="docutils literal notranslate"><span class="pre">get_dot_model()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4NK5Brush7Program9linearizeEv"><code class="docutils literal notranslate"><span class="pre">linearize()</span></code></a></li>
@@ -334,7 +337,8 @@
 <li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node9arg_typesE"><code class="docutils literal notranslate"><span class="pre">arg_types</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node8sig_hashE"><code class="docutils literal notranslate"><span class="pre">sig_hash</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node13sig_dual_hashE"><code class="docutils literal notranslate"><span class="pre">sig_dual_hash</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node5fixedE"><code class="docutils literal notranslate"><span class="pre">fixed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node13node_is_fixedE"><code class="docutils literal notranslate"><span class="pre">node_is_fixed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node15weight_is_fixedE"><code class="docutils literal notranslate"><span class="pre">weight_is_fixed</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node11is_weightedE"><code class="docutils literal notranslate"><span class="pre">is_weighted</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node11prob_changeE"><code class="docutils literal notranslate"><span class="pre">prob_change</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node1WE"><code class="docutils literal notranslate"><span class="pre">W</span></code></a></li>
@@ -389,6 +393,8 @@
 <li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType3AndE"><code class="docutils literal notranslate"><span class="pre">And</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType2OrE"><code class="docutils literal notranslate"><span class="pre">Or</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType3NotE"><code class="docutils literal notranslate"><span class="pre">Not</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType6EqualsE"><code class="docutils literal notranslate"><span class="pre">Equals</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType3GeqE"><code class="docutils literal notranslate"><span class="pre">Geq</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType9MeanLabelE"><code class="docutils literal notranslate"><span class="pre">MeanLabel</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType8ConstantE"><code class="docutils literal notranslate"><span class="pre">Constant</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType8TerminalE"><code class="docutils literal notranslate"><span class="pre">Terminal</span></code></a></li>
@@ -408,6 +414,8 @@
 <li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual4initER11SearchSpaceRK10Parameters"><code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual3fitERK7Dataset"><code class="docutils literal notranslate"><span class="pre">fit()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual3fitERK3RefIK8ArrayXXfERK3RefIK7ArrayXfE"><code class="docutils literal notranslate"><span class="pre">fit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual15replace_programERK7ProgramI1TE"><code class="docutils literal notranslate"><span class="pre">replace_program()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual15replace_programERK4json"><code class="docutils literal notranslate"><span class="pre">replace_program()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual7predictERK7Dataset"><code class="docutils literal notranslate"><span class="pre">predict()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual7predictERK3RefIK8ArrayXXfE"><code class="docutils literal notranslate"><span class="pre">predict()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4I_11ProgramTypeEN5Brush3Pop10Individual13predict_probaEDaRK7Dataset"><code class="docutils literal notranslate"><span class="pre">predict_proba()</span></code></a></li>
@@ -735,6 +743,8 @@
 <li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters18get_sample_weightsEv"><code class="docutils literal notranslate"><span class="pre">get_sample_weights()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters22get_class_weights_typeEv"><code class="docutils literal notranslate"><span class="pre">get_class_weights_type()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters22set_class_weights_typeE6string"><code class="docutils literal notranslate"><span class="pre">set_class_weights_type()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters29get_start_from_decision_treesEv"><code class="docutils literal notranslate"><span class="pre">get_start_from_decision_trees()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters29set_start_from_decision_treesEb"><code class="docutils literal notranslate"><span class="pre">set_start_from_decision_trees()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters19set_validation_sizeEf"><code class="docutils literal notranslate"><span class="pre">set_validation_size()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters19get_validation_sizeEv"><code class="docutils literal notranslate"><span class="pre">get_validation_size()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters17set_feature_namesE6vectorI6stringE"><code class="docutils literal notranslate"><span class="pre">set_feature_names()</span></code></a></li>
@@ -765,6 +775,7 @@
 <li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters11num_islandsE"><code class="docutils literal notranslate"><span class="pre">num_islands</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters24constants_simplificationE"><code class="docutils literal notranslate"><span class="pre">constants_simplification</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters22inexact_simplificationE"><code class="docutils literal notranslate"><span class="pre">inexact_simplification</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters25start_from_decision_treesE"><code class="docutils literal notranslate"><span class="pre">start_from_decision_trees</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters14mutation_probsE"><code class="docutils literal notranslate"><span class="pre">mutation_probs</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters7cx_probE"><code class="docutils literal notranslate"><span class="pre">cx_prob</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters8mig_probE"><code class="docutils literal notranslate"><span class="pre">mig_prob</span></code></a></li>
@@ -815,7 +826,7 @@
 <li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine11get_archiveEv"><code class="docutils literal notranslate"><span class="pre">get_archive()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine14get_populationEv"><code class="docutils literal notranslate"><span class="pre">get_population()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine14set_populationE6vectorI10IndividualI1TEE"><code class="docutils literal notranslate"><span class="pre">set_population()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine10lock_nodesEib"><code class="docutils literal notranslate"><span class="pre">lock_nodes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine10lock_nodesEibb"><code class="docutils literal notranslate"><span class="pre">lock_nodes()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine3runER7Dataset"><code class="docutils literal notranslate"><span class="pre">run()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine6paramsE"><code class="docutils literal notranslate"><span class="pre">params</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine2ssE"><code class="docutils literal notranslate"><span class="pre">ss</span></code></a></li>

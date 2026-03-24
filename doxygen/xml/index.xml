@@ -137,6 +137,7 @@
   <compound refid="d2/d36/classBrush_1_1Data_1_1Dataset" kind="class"><name>Brush::Data::Dataset</name>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a4112a2cb86ce4138c3c4bea966c96b65" kind="variable"><name>training_data_idx</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ab8f3010fa3099efe3aac8fcd3140faf6" kind="variable"><name>validation_data_idx</name></member>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1c3dbde303375f3ad0586ad855bcd1bf" kind="variable"><name>feature_name_order_</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a96fc30b35f152f425377e1ae34398779" kind="variable"><name>unique_data_types</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a52d591cce797480e80f8cf1f1482702e" kind="variable"><name>feature_types</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8b9d0d635516aa675f9783d7c6ab1b72" kind="variable"><name>feature_names</name></member>
@@ -162,6 +163,7 @@
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a44ebc4ada574ea7a3a843ae74810aac9" kind="function"><name>get_X</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" kind="function"><name>get_training_data</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1ddb847fd1ceff63e60ffd79542409d9" kind="function"><name>get_validation_data</name></member>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a52324d5e7201e2150b60811f8f399844" kind="function"><name>get_feature_types</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" kind="function"><name>get_n_samples</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6edc04702aee605a766f4a79c375d0c6" kind="function"><name>get_n_features</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" kind="function"><name>get_batch</name></member>
@@ -174,6 +176,7 @@
   <compound refid="d7/da5/classDataset" kind="class"><name>Dataset</name>
     <member refid="d7/da5/classDataset_1a4112a2cb86ce4138c3c4bea966c96b65" kind="variable"><name>training_data_idx</name></member>
     <member refid="d7/da5/classDataset_1ab8f3010fa3099efe3aac8fcd3140faf6" kind="variable"><name>validation_data_idx</name></member>
+    <member refid="d7/da5/classDataset_1a1c3dbde303375f3ad0586ad855bcd1bf" kind="variable"><name>feature_name_order_</name></member>
     <member refid="d7/da5/classDataset_1a96fc30b35f152f425377e1ae34398779" kind="variable"><name>unique_data_types</name></member>
     <member refid="d7/da5/classDataset_1a52d591cce797480e80f8cf1f1482702e" kind="variable"><name>feature_types</name></member>
     <member refid="d7/da5/classDataset_1a8b9d0d635516aa675f9783d7c6ab1b72" kind="variable"><name>feature_names</name></member>
@@ -199,6 +202,7 @@
     <member refid="d7/da5/classDataset_1a44ebc4ada574ea7a3a843ae74810aac9" kind="function"><name>get_X</name></member>
     <member refid="d7/da5/classDataset_1ae69087b8c020840f254e3679cd324ba5" kind="function"><name>get_training_data</name></member>
     <member refid="d7/da5/classDataset_1a1ddb847fd1ceff63e60ffd79542409d9" kind="function"><name>get_validation_data</name></member>
+    <member refid="d7/da5/classDataset_1a52324d5e7201e2150b60811f8f399844" kind="function"><name>get_feature_types</name></member>
     <member refid="d7/da5/classDataset_1a2b7b42b1b16630554b2e49102098a170" kind="function"><name>get_n_samples</name></member>
     <member refid="d7/da5/classDataset_1a6edc04702aee605a766f4a79c375d0c6" kind="function"><name>get_n_features</name></member>
     <member refid="d7/da5/classDataset_1a5020e43def6267598be0ba3d2b46e616" kind="function"><name>get_batch</name></member>
@@ -265,6 +269,7 @@
     <member refid="da/d56/structBrush_1_1DataTypeEnum_3_01Data_1_1TimeSeriesiJet_01_4_1aecece5ff92aa384d5949a5ea9d7fcc0c" kind="variable"><name>value</name></member>
   </compound>
   <compound refid="d0/d6d/classBrush_1_1Var_1_1DeleteMutation" kind="class"><name>Brush::Var::DeleteMutation</name>
+    <member refid="d0/d6d/classBrush_1_1Var_1_1DeleteMutation_1ad139a8497a21cedd5947d37220aca604" kind="function"><name>find_spots</name></member>
     <member refid="d0/d6d/classBrush_1_1Var_1_1DeleteMutation_1a12cc0fe6c3a857aff9073187f053bb72" kind="function"><name>mutate</name></member>
   </compound>
   <compound refid="d3/da8/structBrush_1_1DispatchTable" kind="struct"><name>Brush::DispatchTable</name>
@@ -333,7 +338,7 @@
     <member refid="d0/d75/classBrush_1_1Engine_1ac582cdce97ca54b2194ba994f92a322d" kind="function"><name>get_archive</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1abd4a0fd0676dd209a201049c6bbf63ef" kind="function"><name>get_population</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1a5f0c0926d9aa939e69833211d182e881" kind="function"><name>set_population</name></member>
-    <member refid="d0/d75/classBrush_1_1Engine_1a990879e114f30b1470c13f3a78911465" kind="function"><name>lock_nodes</name></member>
+    <member refid="d0/d75/classBrush_1_1Engine_1a99c0766456fae1affc3632e1d051bfea" kind="function"><name>lock_nodes</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" kind="function"><name>run</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" kind="function"><name>init</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1a82422a2bb8061934c4be271ee7eef810" kind="function"><name>set_is_fitted</name></member>
@@ -498,12 +503,22 @@
     <member refid="de/da7/structBrush_1_1Function_3_01NodeType_1_1During_01_4_1a5e9c46f253c0244d4b65a551c0d33909" kind="function"><name>operator()</name></member>
     <member refid="d9/d1b/structBrush_1_1Function_1a9ded8f668ece5beef07a87c790409fd7" kind="function"><name>operator()</name></member>
   </compound>
+  <compound refid="d2/d02/structBrush_1_1Function_3_01NodeType_1_1Equals_01_4" kind="struct"><name>Brush::Function&lt; NodeType::Equals &gt;</name>
+    <member refid="d2/d02/structBrush_1_1Function_3_01NodeType_1_1Equals_01_4_1abecee79d9c975b716d1e4ac6ffce87d4" kind="function"><name>operator()</name></member>
+    <member refid="d2/d02/structBrush_1_1Function_3_01NodeType_1_1Equals_01_4_1a9f06db8b947b9e80379d1a34f6f6f2f3" kind="function"><name>operator()</name></member>
+    <member refid="d9/d1b/structBrush_1_1Function_1a9ded8f668ece5beef07a87c790409fd7" kind="function"><name>operator()</name></member>
+  </compound>
   <compound refid="d8/d59/structBrush_1_1Function_3_01NodeType_1_1Exp_01_4" kind="struct"><name>Brush::Function&lt; NodeType::Exp &gt;</name>
     <member refid="d8/d59/structBrush_1_1Function_3_01NodeType_1_1Exp_01_4_1aa3031e17924bded12884c7c664d20f0d" kind="function"><name>operator()</name></member>
     <member refid="d9/d1b/structBrush_1_1Function_1a9ded8f668ece5beef07a87c790409fd7" kind="function"><name>operator()</name></member>
   </compound>
   <compound refid="d9/d4c/structBrush_1_1Function_3_01NodeType_1_1Floor_01_4" kind="struct"><name>Brush::Function&lt; NodeType::Floor &gt;</name>
     <member refid="d9/d4c/structBrush_1_1Function_3_01NodeType_1_1Floor_01_4_1a1cea97468189071b2ab575e8eb7a5b81" kind="function"><name>operator()</name></member>
+    <member refid="d9/d1b/structBrush_1_1Function_1a9ded8f668ece5beef07a87c790409fd7" kind="function"><name>operator()</name></member>
+  </compound>
+  <compound refid="d7/d11/structBrush_1_1Function_3_01NodeType_1_1Geq_01_4" kind="struct"><name>Brush::Function&lt; NodeType::Geq &gt;</name>
+    <member refid="d7/d11/structBrush_1_1Function_3_01NodeType_1_1Geq_01_4_1ac5d1e681f213d3a11ee3b9d1d3ca6ffb" kind="function"><name>operator()</name></member>
+    <member refid="d7/d11/structBrush_1_1Function_3_01NodeType_1_1Geq_01_4_1a56e97c7a90843bc3d1773f578f5e56f8" kind="function"><name>operator()</name></member>
     <member refid="d9/d1b/structBrush_1_1Function_1a9ded8f668ece5beef07a87c790409fd7" kind="function"><name>operator()</name></member>
   </compound>
   <compound refid="d4/db0/structBrush_1_1Function_3_01NodeType_1_1Log_01_4" kind="struct"><name>Brush::Function&lt; NodeType::Log &gt;</name>
@@ -648,6 +663,8 @@
     <member refid="de/d83/classBrush_1_1Pop_1_1Individual_1af679e70e78c8b0622ebd205bb91c5ffd" kind="function"><name>init</name></member>
     <member refid="de/d83/classBrush_1_1Pop_1_1Individual_1a4fbf8d65d5cfe6e28c655d6c2a543902" kind="function"><name>fit</name></member>
     <member refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96d05b4f293705a35f00f5f60db18a11" kind="function"><name>fit</name></member>
+    <member refid="de/d83/classBrush_1_1Pop_1_1Individual_1a15dc7faff44f161a16c3919d2659bd7f" kind="function"><name>replace_program</name></member>
+    <member refid="de/d83/classBrush_1_1Pop_1_1Individual_1aebc1dd241fc84ad8fd0a9fb0bdb562e7" kind="function"><name>replace_program</name></member>
     <member refid="de/d83/classBrush_1_1Pop_1_1Individual_1a4a67784960128ceeb0df3aac10c74cc1" kind="function"><name>predict</name></member>
     <member refid="de/d83/classBrush_1_1Pop_1_1Individual_1ae73c2e6416a0ee2b7da2446969bdb6a8" kind="function"><name>predict</name></member>
     <member refid="de/d83/classBrush_1_1Pop_1_1Individual_1a4c8b9afd9297b200b8b0527353569297" kind="function"><name>predict_proba</name></member>
@@ -778,6 +795,7 @@
     <member refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1ad6978c4386468c44dd252345c11ca126" kind="variable"><name>med_complexity</name></member>
     <member refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1a07aeaad3d63ca1c76bd1c1fc55f944c2" kind="variable"><name>max_size</name></member>
     <member refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1a8d36cca3c88663adf33e28043d025b56" kind="variable"><name>max_complexity</name></member>
+    <member refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1a23765133646ba95a682e5a09fbe00439" kind="function"><name>Log_Stats</name></member>
     <member refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1a16227000cf1d98852df3ef1cd6a6efff" kind="function"><name>update</name></member>
   </compound>
   <compound refid="dd/d56/classBrush_1_1Util_1_1Logger" kind="class"><name>Brush::Util::Logger</name>
@@ -812,14 +830,15 @@
     <member refid="d9/da6/structBrush_1_1NarySignatures_1a2c3db586df4a4d2a14f9b5336c63ab64" kind="function"><name>make_signatures</name></member>
   </compound>
   <compound refid="d1/d3a/structBrush_1_1Node" kind="struct"><name>Brush::Node</name>
-    <member refid="d1/d3a/structBrush_1_1Node_1abd1037d20f96e122bc1305d70aab418a" kind="typedef"><name>HashTuple</name></member>
+    <member refid="d1/d3a/structBrush_1_1Node_1a0529394dfe80ebf13da5d1bb84f2a300" kind="typedef"><name>HashTuple</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1ad6b3fd4a54c813d066370defc8a85af1" kind="variable"><name>name</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1a522791afe93c92442564356ff19ff55a" kind="variable"><name>node_type</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1a65b283648fe779d81ac11f9e4714d920" kind="variable"><name>ret_type</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1a237b9208864ace5209edca01623f6b1e" kind="variable"><name>arg_types</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1a889e0361b55a63a4510a3edabd2fa57c" kind="variable"><name>sig_hash</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1aed6c2af0fae3dd8e5a8aa2fab77479fd" kind="variable"><name>sig_dual_hash</name></member>
-    <member refid="d1/d3a/structBrush_1_1Node_1a32c73293ee4e02b6d828c2c213e06154" kind="variable"><name>fixed</name></member>
+    <member refid="d1/d3a/structBrush_1_1Node_1ab733af56b9801fef4586cbe44f3f1243" kind="variable"><name>node_is_fixed</name></member>
+    <member refid="d1/d3a/structBrush_1_1Node_1a3d66063391a65a329ae0c27534d884d5" kind="variable"><name>weight_is_fixed</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1ab72b791f57011a032c6c89238db85845" kind="variable"><name>is_weighted</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1a9f5b2e34d8ba752e0f6bffebec8afdc0" kind="variable"><name>prob_change</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1ab719e64b13753515be49327d98bf2224" kind="variable"><name>W</name></member>
@@ -857,14 +876,15 @@
     <member refid="d1/d3a/structBrush_1_1Node_1a70fb9b583f72b67f6c24c2bbaae55267" kind="function"><name>set_is_weighted</name></member>
   </compound>
   <compound refid="d8/d49/structNode" kind="struct"><name>Node</name>
-    <member refid="d8/d49/structNode_1abd1037d20f96e122bc1305d70aab418a" kind="typedef"><name>HashTuple</name></member>
+    <member refid="d8/d49/structNode_1a0529394dfe80ebf13da5d1bb84f2a300" kind="typedef"><name>HashTuple</name></member>
     <member refid="d8/d49/structNode_1ad6b3fd4a54c813d066370defc8a85af1" kind="variable"><name>name</name></member>
     <member refid="d8/d49/structNode_1a522791afe93c92442564356ff19ff55a" kind="variable"><name>node_type</name></member>
     <member refid="d8/d49/structNode_1a65b283648fe779d81ac11f9e4714d920" kind="variable"><name>ret_type</name></member>
     <member refid="d8/d49/structNode_1a237b9208864ace5209edca01623f6b1e" kind="variable"><name>arg_types</name></member>
     <member refid="d8/d49/structNode_1a889e0361b55a63a4510a3edabd2fa57c" kind="variable"><name>sig_hash</name></member>
     <member refid="d8/d49/structNode_1aed6c2af0fae3dd8e5a8aa2fab77479fd" kind="variable"><name>sig_dual_hash</name></member>
-    <member refid="d8/d49/structNode_1a32c73293ee4e02b6d828c2c213e06154" kind="variable"><name>fixed</name></member>
+    <member refid="d8/d49/structNode_1ab733af56b9801fef4586cbe44f3f1243" kind="variable"><name>node_is_fixed</name></member>
+    <member refid="d8/d49/structNode_1a3d66063391a65a329ae0c27534d884d5" kind="variable"><name>weight_is_fixed</name></member>
     <member refid="d8/d49/structNode_1ab72b791f57011a032c6c89238db85845" kind="variable"><name>is_weighted</name></member>
     <member refid="d8/d49/structNode_1a9f5b2e34d8ba752e0f6bffebec8afdc0" kind="variable"><name>prob_change</name></member>
     <member refid="d8/d49/structNode_1ab719e64b13753515be49327d98bf2224" kind="variable"><name>W</name></member>
@@ -1081,6 +1101,7 @@
     <member refid="de/deb/structBrush_1_1Parameters_1a93ed229becd162e94722e034f8e5bebc" kind="variable"><name>num_islands</name></member>
     <member refid="de/deb/structBrush_1_1Parameters_1ac16925784c3e0cd3da64858643aec590" kind="variable"><name>constants_simplification</name></member>
     <member refid="de/deb/structBrush_1_1Parameters_1a08ad8f286c31998bd94f897a2894a950" kind="variable"><name>inexact_simplification</name></member>
+    <member refid="de/deb/structBrush_1_1Parameters_1a0617ec0d1b94aa7a163a3cbf54f9b924" kind="variable"><name>start_from_decision_trees</name></member>
     <member refid="de/deb/structBrush_1_1Parameters_1a49392abcea1d48447c024a23137fd788" kind="variable"><name>mutation_probs</name></member>
     <member refid="de/deb/structBrush_1_1Parameters_1a1d0a366fbf2bb9d7d20d45309b97a7a1" kind="variable"><name>cx_prob</name></member>
     <member refid="de/deb/structBrush_1_1Parameters_1aed0024de73a9fec99711efe303484ab8" kind="variable"><name>mig_prob</name></member>
@@ -1163,6 +1184,8 @@
     <member refid="de/deb/structBrush_1_1Parameters_1ab3fe327b0600be29a925541f73d1836b" kind="function"><name>get_sample_weights</name></member>
     <member refid="de/deb/structBrush_1_1Parameters_1a1596e56e75c82a5eaca21ce36601f908" kind="function"><name>get_class_weights_type</name></member>
     <member refid="de/deb/structBrush_1_1Parameters_1ad1946aca133e566afcaee3ff1bfc6874" kind="function"><name>set_class_weights_type</name></member>
+    <member refid="de/deb/structBrush_1_1Parameters_1a7607a875adc689869e612a2ba8a2e35a" kind="function"><name>get_start_from_decision_trees</name></member>
+    <member refid="de/deb/structBrush_1_1Parameters_1a448b92d51af9bfab99c1167dc7e19044" kind="function"><name>set_start_from_decision_trees</name></member>
     <member refid="de/deb/structBrush_1_1Parameters_1adcfeb3fbcd6bb2ace4eb112dd1ac1fc7" kind="function"><name>set_validation_size</name></member>
     <member refid="de/deb/structBrush_1_1Parameters_1aead717c90a933bdc5b1b149a4b40ec78" kind="function"><name>get_validation_size</name></member>
     <member refid="de/deb/structBrush_1_1Parameters_1adce3ebf4b9d0aa35a4da35f33e5d9168" kind="function"><name>set_feature_names</name></member>
@@ -1222,6 +1245,8 @@
     <member refid="db/d88/structBrush_1_1Program_1a9a1dd47fb6491ad830c147cced29752b" kind="function"><name>depth_at</name></member>
     <member refid="db/d88/structBrush_1_1Program_1af1f9858cdb8c05bdcf5db55cab745f7c" kind="function"><name>depth_to_reach</name></member>
     <member refid="db/d88/structBrush_1_1Program_1a8ed721f103dd63c7adfc2934340097b4" kind="function"><name>fit</name></member>
+    <member refid="db/d88/structBrush_1_1Program_1a77c68cab4b94b4f3b4e7c74c61446952" kind="function"><name>replace_program</name></member>
+    <member refid="db/d88/structBrush_1_1Program_1a0e4050b85e3f7c741d51d9eb243bdc8a" kind="function"><name>replace_program</name></member>
     <member refid="db/d88/structBrush_1_1Program_1a6a1237f15d7b9cc1e825e1a3213df58e" kind="function"><name>predict_with_weights</name></member>
     <member refid="db/d88/structBrush_1_1Program_1a93735deb988101774e8e58c5402e1a21" kind="function"><name>predict_with_weights</name></member>
     <member refid="db/d88/structBrush_1_1Program_1a68b5b3a1aedf1dfd2769dbba3a01a2ec" kind="function"><name>predict</name></member>
@@ -1235,7 +1260,7 @@
     <member refid="db/d88/structBrush_1_1Program_1a990bd3691f3b3e2b7ff479bcd4231479" kind="function"><name>get_n_weights</name></member>
     <member refid="db/d88/structBrush_1_1Program_1a8bee1c866051b3e11c017cdf29b46eb7" kind="function"><name>get_weights</name></member>
     <member refid="db/d88/structBrush_1_1Program_1a5ba9c69ade043cacb917dfb654a57834" kind="function"><name>set_weights</name></member>
-    <member refid="db/d88/structBrush_1_1Program_1a17d8eaf6b1623cefc4d4888e8ed81330" kind="function"><name>lock_nodes</name></member>
+    <member refid="db/d88/structBrush_1_1Program_1a16b14765b1fd177c99f7cd116fae0fde" kind="function"><name>lock_nodes</name></member>
     <member refid="db/d88/structBrush_1_1Program_1ac87e13742552236e1dc9fd9b62078331" kind="function"><name>get_model</name></member>
     <member refid="db/d88/structBrush_1_1Program_1ab288bd389c68ab3c0776ef14a9e5e331" kind="function"><name>get_dot_model</name></member>
     <member refid="db/d88/structBrush_1_1Program_1a9db890cb3b1bd9f07764bb3bc7f75d64" kind="function"><name>linearize</name></member>
@@ -1360,14 +1385,14 @@
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1afed4d42914edd71c4b54fc3883d8d156" kind="function"><name>sample_terminal</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a5bd06df519092dac780a09fcd4a36857" kind="function"><name>sample_terminal</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1ab23bc4732e733749b8aa1e8c2c2689a2" kind="function"><name>sample_op</name></member>
-    <member refid="d4/dc3/structBrush_1_1SearchSpace_1a8a511b8a13b6d7b013d10a2a1a424cf1" kind="function"><name>sample_op</name></member>
+    <member refid="d4/dc3/structBrush_1_1SearchSpace_1a6b5598bed4a2ba81749f38927a16f61d" kind="function"><name>sample_op</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1ad4ecbe9a8128d1a2b5aba0d5aeec686f" kind="function"><name>sample_op_with_arg</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1ac51e5e0acb3a880ffd0f3b7fba2fd68f" kind="function"><name>get_node_like</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1aed45d3d8adbee89f02e709472fe88280" kind="function"><name>sample_subtree</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a1cfbfca3a45987de45159bc4699a61bb" kind="function"><name>print</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1ab671dbf7c62fca02f2ccf263a2ad9a6a" kind="function"><name>repr</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a810403a87eef0baded2aed2bb4f1979e" kind="function"><name>make_program</name></member>
-    <member refid="d4/dc3/structBrush_1_1SearchSpace_1ab1e6afddd1375b0f8cbd40f0033b32b1" kind="function"><name>PTC2</name></member>
+    <member refid="d4/dc3/structBrush_1_1SearchSpace_1aa82c9f1cc1b96e7424b0ac250e4c5c91" kind="function"><name>PTC2</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a4a255b2a600b65c33dc7dad6dd6a4614" kind="function"><name>AddNode</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a56e2beeb7aecac93840a237b7b9adf3b" kind="function"><name>AddNodes</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1af8165ac09c39eec3e5aa6e2d925b8104" kind="function"><name>MakeNodes</name></member>
@@ -1404,13 +1429,13 @@
     <member refid="de/d87/structSearchSpace_1afed4d42914edd71c4b54fc3883d8d156" kind="function"><name>sample_terminal</name></member>
     <member refid="de/d87/structSearchSpace_1a5bd06df519092dac780a09fcd4a36857" kind="function"><name>sample_terminal</name></member>
     <member refid="de/d87/structSearchSpace_1ab23bc4732e733749b8aa1e8c2c2689a2" kind="function"><name>sample_op</name></member>
-    <member refid="de/d87/structSearchSpace_1a8a511b8a13b6d7b013d10a2a1a424cf1" kind="function"><name>sample_op</name></member>
+    <member refid="de/d87/structSearchSpace_1a6b5598bed4a2ba81749f38927a16f61d" kind="function"><name>sample_op</name></member>
     <member refid="de/d87/structSearchSpace_1ad4ecbe9a8128d1a2b5aba0d5aeec686f" kind="function"><name>sample_op_with_arg</name></member>
     <member refid="de/d87/structSearchSpace_1ac51e5e0acb3a880ffd0f3b7fba2fd68f" kind="function"><name>get_node_like</name></member>
     <member refid="de/d87/structSearchSpace_1aed45d3d8adbee89f02e709472fe88280" kind="function"><name>sample_subtree</name></member>
     <member refid="de/d87/structSearchSpace_1a1cfbfca3a45987de45159bc4699a61bb" kind="function"><name>print</name></member>
     <member refid="de/d87/structSearchSpace_1ab671dbf7c62fca02f2ccf263a2ad9a6a" kind="function"><name>repr</name></member>
-    <member refid="de/d87/structSearchSpace_1ab1e6afddd1375b0f8cbd40f0033b32b1" kind="function"><name>PTC2</name></member>
+    <member refid="de/d87/structSearchSpace_1aa82c9f1cc1b96e7424b0ac250e4c5c91" kind="function"><name>PTC2</name></member>
     <member refid="de/d87/structSearchSpace_1a4a255b2a600b65c33dc7dad6dd6a4614" kind="function"><name>AddNode</name></member>
     <member refid="de/d87/structSearchSpace_1a56e2beeb7aecac93840a237b7b9adf3b" kind="function"><name>AddNodes</name></member>
     <member refid="de/d87/structSearchSpace_1af8165ac09c39eec3e5aa6e2d925b8104" kind="function"><name>MakeNodes</name></member>
@@ -1535,6 +1560,12 @@
   <compound refid="d9/d74/structBrush_1_1Signatures_3_01NodeType_1_1Count_01_4" kind="struct"><name>Brush::Signatures&lt; NodeType::Count &gt;</name>
     <member refid="d9/d74/structBrush_1_1Signatures_3_01NodeType_1_1Count_01_4_1a6ef81bbb76abcea772802329231bcbd4" kind="typedef"><name>type</name></member>
   </compound>
+  <compound refid="d4/d61/structBrush_1_1Signatures_3_01NodeType_1_1Equals_01_4" kind="struct"><name>Brush::Signatures&lt; NodeType::Equals &gt;</name>
+    <member refid="d4/d61/structBrush_1_1Signatures_3_01NodeType_1_1Equals_01_4_1ab979b6dd2b0ce65954c8628b0b884921" kind="typedef"><name>type</name></member>
+  </compound>
+  <compound refid="d9/d54/structBrush_1_1Signatures_3_01NodeType_1_1Geq_01_4" kind="struct"><name>Brush::Signatures&lt; NodeType::Geq &gt;</name>
+    <member refid="d9/d54/structBrush_1_1Signatures_3_01NodeType_1_1Geq_01_4_1a9287e9bab838c3f257c9c56df96ff7e4" kind="typedef"><name>type</name></member>
+  </compound>
   <compound refid="da/dca/structBrush_1_1Signatures_3_01NodeType_1_1MeanLabel_01_4" kind="struct"><name>Brush::Signatures&lt; NodeType::MeanLabel &gt;</name>
     <member refid="da/dca/structBrush_1_1Signatures_3_01NodeType_1_1MeanLabel_01_4_1a1b309df946888d5f1606254cdb07838f" kind="typedef"><name>type</name></member>
   </compound>
@@ -1563,10 +1594,6 @@
     <member refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1a13be7c4811240485ac486fa956219493" kind="variable"><name>pop</name></member>
     <member refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1aa0ee948f058ae3e9838f9553805fb8f9" kind="function"><name>SortLinearComplexity</name></member>
     <member refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1ad8ba6e91bc110a18013fe94bb5018b76" kind="function"><name>operator()</name></member>
-  </compound>
-  <compound refid="de/d20/classBrush_1_1Var_1_1SplitMutation" kind="class"><name>Brush::Var::SplitMutation</name>
-    <member refid="de/d20/classBrush_1_1Var_1_1SplitMutation_1a49da760d5c4a35ff5305c68a61e34bee" kind="function"><name>find_spots</name></member>
-    <member refid="de/d20/classBrush_1_1Var_1_1SplitMutation_1a9857eed0efa68ccd643a2ccf4550ecf0" kind="function"><name>mutate</name></member>
   </compound>
   <compound refid="d5/d92/classstring" kind="class"><name>string</name>
   </compound>
@@ -1887,6 +1914,8 @@
     <member refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ac33315685a0cba3ce53be378b3c7874b" kind="enumvalue"><name>And</name></member>
     <member refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a3a2d5fe857d8f9541136a124c2edec6c" kind="enumvalue"><name>Or</name></member>
     <member refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aa74c05d080620f087c4e523977230666" kind="enumvalue"><name>Not</name></member>
+    <member refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a0ccb67e7eaae09d9e4078d161eeca100" kind="enumvalue"><name>Equals</name></member>
+    <member refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a5dabfebb89e6e45a8cf8573d92746ed3" kind="enumvalue"><name>Geq</name></member>
     <member refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a2636ffd13bc710aebeeb21c41a89eec9" kind="enumvalue"><name>MeanLabel</name></member>
     <member refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8acb17869fe51048b5a5c4c6106551a255" kind="enumvalue"><name>Constant</name></member>
     <member refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a514d8a494f087c0d549b9536c2ef3bd9" kind="enumvalue"><name>Terminal</name></member>
@@ -1986,7 +2015,7 @@
     <member refid="dc/d5c/namespaceBrush_1a58948e8e175aae197197ef454a3a9e13" kind="function"><name>NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</name></member>
     <member refid="dc/d5c/namespaceBrush_1a8cfe33753dda03e1480fdcbe62e1885d" kind="function"><name>to_json</name></member>
     <member refid="dc/d5c/namespaceBrush_1a20d08fdc417fcb203d6cae91abfa4bff" kind="function"><name>from_json</name></member>
-    <member refid="dc/d5c/namespaceBrush_1a082cf6afec39cdfd95cea4f1d1e850e2" kind="function"><name>NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</name></member>
+    <member refid="dc/d5c/namespaceBrush_1a47214a87c664b933f4f44f7b7e783716" kind="function"><name>NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</name></member>
     <member refid="dc/d5c/namespaceBrush_1a295fffe6ae57b4a3c871c7cfe1450e1d" kind="function"><name>DispatchOp</name></member>
     <member refid="dc/d5c/namespaceBrush_1a835c559533dfd1b02fb7c2ded01c2442" kind="function"><name>DispatchOp</name></member>
     <member refid="dc/d5c/namespaceBrush_1a613f142cf27eb135a3eb1ba07bbfaffc" kind="function"><name>operator&lt;&lt;</name></member>
@@ -2419,6 +2448,7 @@
     <member refid="d2/d6f/constants_8h_1a3f2c9b744330ba4a561ac72f048a1a5f" kind="enum"><name>DataType</name></member>
   </compound>
   <compound refid="de/d79/inexact_8cpp" kind="file"><name>inexact.cpp</name>
+    <member refid="de/d79/inexact_8cpp_1af7dd70e54015821d96e3a1afed6344ca" kind="variable"><name>r</name></member>
   </compound>
   <compound refid="d1/db6/inexact_8h" kind="file"><name>inexact.h</name>
     <member refid="d1/db6/inexact_8h_1a3f2c9b744330ba4a561ac72f048a1a5f" kind="enum"><name>DataType</name></member>

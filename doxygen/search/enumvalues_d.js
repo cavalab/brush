@@ -1,13 +1,13 @@
 var searchData=
 [
-  ['tan_0',['Tan',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a1266b4e6f81e60733ec6c717e0181f60',1,'Brush']]],
-  ['tanh_1',['Tanh',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8acc132a41cab5676334f353a22a0aa5c5',1,'Brush']]],
-  ['terminal_2',['Terminal',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a514d8a494f087c0d549b9536c2ef3bd9',1,'Brush']]],
-  ['timeseriesb_3',['TimeSeriesB',['../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5fad2d25b8ef74c30d96415406364f58a4c',1,'Brush']]],
-  ['timeseriesbjet_4',['TimeSeriesBJet',['../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5fa0018198fc700c7f206291c36ba182f97',1,'Brush']]],
-  ['timeseriesf_5',['TimeSeriesF',['../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5fa8fecb1ed1259bf11d68a66a2a16e26ad',1,'Brush']]],
-  ['timeseriesfjet_6',['TimeSeriesFJet',['../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5fa3433784d0ec7d698c62a62a96b53d5ad',1,'Brush']]],
-  ['timeseriesi_7',['TimeSeriesI',['../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5fa543c0044cb299cbc0e6a2b5c98fab6f8',1,'Brush']]],
-  ['timeseriesijet_8',['TimeSeriesIJet',['../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5fa84c4cfe69dd755bfa4e2ec5e105a7cb7',1,'Brush']]],
-  ['timestamp_9',['timestamp',['../d9/d1c/namespaceBrush_1_1Data.html#a7e8d2615fe3bb7ef5f2a7cc9c625f985ad7e6d55ba379a13d08c25d15faf2a23b',1,'Brush::Data']]]
+  ['sin_0',['Sin',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a0986d137604183312e6d3599578bc6cd',1,'Brush']]],
+  ['sinh_1',['Sinh',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a98ed804abf4edd1f3be3fa894fa8cc3d',1,'Brush']]],
+  ['softmax_2',['Softmax',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a31d953b9d49a6b4378f45097047976d0',1,'Brush']]],
+  ['splitbest_3',['SplitBest',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8af8c481a92abba984160fae1003dfad55',1,'Brush']]],
+  ['spliton_4',['SplitOn',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a15c7aff4312b936aa10eb02272c40c7a',1,'Brush']]],
+  ['sqrt_5',['Sqrt',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8aae77f3ad25595e35b327334d89410054',1,'Brush']]],
+  ['sqrtabs_6',['Sqrtabs',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a8a3e1775ae37f59b4078cb38d1d30154',1,'Brush']]],
+  ['square_7',['Square',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8aceb46ca115d05c51aa5a16a8867c3304',1,'Brush']]],
+  ['sub_8',['Sub',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8ae80155eceb940c89e2de63ad05868db2',1,'Brush']]],
+  ['sum_9',['Sum',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8aa0ec87054b5e5b7847d0d8780a01a3d5',1,'Brush']]]
 ];

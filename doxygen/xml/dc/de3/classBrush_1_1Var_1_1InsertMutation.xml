@@ -35,10 +35,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/vary/variation.cpp" line="49" column="17" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="49" bodyend="78"/>
-        <references refid="de/deb/structBrush_1_1Parameters_1a122b7243856cd15f940b6d6b5ec1074f" compoundref="da/d33/params_8h" startline="142" endline="142">Brush::Parameters::get_max_size</references>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.cpp" line="59" column="17" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="59" bodyend="88"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a122b7243856cd15f940b6d6b5ec1074f" compoundref="da/d33/params_8h" startline="145" endline="145">Brush::Parameters::get_max_size</references>
         <references refid="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" compoundref="d1/dea/program_8h" startline="73">Brush::Program&lt; PType &gt;::Tree</references>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1af8a04b3abeea0f0f9e5b6e358aa65c09" compoundref="d1/d64/variation_8cpp" startline="560" endline="671">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1af8a04b3abeea0f0f9e5b6e358aa65c09" compoundref="d1/d64/variation_8cpp" startline="582" endline="694">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
       </memberdef>
       <memberdef kind="function" id="dc/de3/classBrush_1_1Var_1_1InsertMutation_1a54f75a7d5b2583320d9d00d317f933ed" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -75,12 +75,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/vary/variation.cpp" line="81" column="17" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="81" bodyend="132"/>
-        <references refid="d5/d14/classBrush_1_1Var_1_1Variation_1a79a47baeb7d1583415e514a1c04c2b07" compoundref="d4/d1f/variation_8h" startline="516" endline="556">Brush::Var::Variation&lt; T &gt;::bandit_sample_op_with_arg</references>
-        <references refid="d5/d14/classBrush_1_1Var_1_1Variation_1ad72e239059728afbec698af129abec25" compoundref="d4/d1f/variation_8h" startline="458" endline="480">Brush::Var::Variation&lt; T &gt;::bandit_sample_terminal</references>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.cpp" line="91" column="17" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="91" bodyend="159"/>
+        <references refid="d5/d14/classBrush_1_1Var_1_1Variation_1a79a47baeb7d1583415e514a1c04c2b07" compoundref="d4/d1f/variation_8h" startline="545" endline="585">Brush::Var::Variation&lt; T &gt;::bandit_sample_op_with_arg</references>
+        <references refid="d5/d14/classBrush_1_1Var_1_1Variation_1ad72e239059728afbec698af129abec25" compoundref="d4/d1f/variation_8h" startline="487" endline="509">Brush::Var::Variation&lt; T &gt;::bandit_sample_terminal</references>
+        <references refid="dc/d5c/namespaceBrush_1a1d5a63450bcdb77bd08283c9f74ca53f" compoundref="d1/d77/node_8h" startline="51" endline="58">Brush::IsWeighable</references>
         <references refid="de/deb/structBrush_1_1Parameters_1aeec98494c11bc2760b7feedf56741ff7" compoundref="da/d33/params_8h" startline="38">Brush::Parameters::max_size</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a70fb9b583f72b67f6c24c2bbaae55267" compoundref="d1/d77/node_8h" startline="296" endline="299">Brush::Node::set_is_weighted</references>
         <references refid="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" compoundref="d1/dea/program_8h" startline="73">Brush::Program&lt; PType &gt;::Tree</references>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1af8a04b3abeea0f0f9e5b6e358aa65c09" compoundref="d1/d64/variation_8cpp" startline="560" endline="671">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
+        <references refid="d1/d3a/structBrush_1_1Node_1ab719e64b13753515be49327d98bf2224" compoundref="d1/d77/node_8h" startline="122">Brush::Node::W</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a3d66063391a65a329ae0c27534d884d5" compoundref="d1/d77/node_8h" startline="114">Brush::Node::weight_is_fixed</references>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1af8a04b3abeea0f0f9e5b6e358aa65c09" compoundref="d1/d64/variation_8cpp" startline="582" endline="694">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -148,7 +152,7 @@
         <link refid="d0/dec/classBrush_1_1Var_1_1MutationBase"/>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/brush/brush/src/vary/variation.cpp" line="45" column="1" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="46" bodyend="133"/>
+    <location file="/home/runner/work/brush/brush/src/vary/variation.cpp" line="55" column="1" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="56" bodyend="160"/>
     <listofallmembers>
       <member refid="dc/de3/classBrush_1_1Var_1_1InsertMutation_1a8b98cb676dbaeb976e61dd54c3bc4e5b" prot="public" virt="non-virtual"><scope>Brush::Var::InsertMutation</scope><name>find_spots</name></member>
       <member refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1a4cacb44817dc1e054fca562d703de50c" prot="public" virt="non-virtual"><scope>Brush::Var::InsertMutation</scope><name>Iter</name></member>

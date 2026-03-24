@@ -296,81 +296,80 @@ $(function(){initNavTree('dd/d06/tree__node_8cpp_source.html','../../'); initRes
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        <span class="comment">// ignoring weight if it has the value of neutral element of operation</span></div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        <span class="keywordflow">if</span> ((<a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::OffsetSum&gt;</a>(data.node_type) &amp;&amp; data.W != 0.0)</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        ||  (data.W != 1.0))</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dd/d06/tree__node_8cpp.html#a0c8375d4426d87075c4631d960ec4887">operator_complexities</a>.at(NodeType::Mul) +</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>                <a class="code hl_variable" href="../../dd/d06/tree__node_8cpp.html#a0c8375d4426d87075c4631d960ec4887">operator_complexities</a>.at(NodeType::Constant) + </div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>                tree_complexity;</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    }</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    </div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordflow">return</span> tree_complexity;</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>};</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="keywordtype">int</span> TreeNode::get_complexity()<span class="keyword"> const </span></div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keywordtype">int</span> node_complexity = <a class="code hl_variable" href="../../dd/d06/tree__node_8cpp.html#a0c8375d4426d87075c4631d960ec4887">operator_complexities</a>.at(data.node_type);</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keywordtype">int</span> children_complexity_sum = 0; <span class="comment">// acumulator for children complexities</span></div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keyword">auto</span> child = first_child;</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; data.get_arg_count(); ++i)</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    {</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        children_complexity_sum += child-&gt;get_complexity();</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        child = child-&gt;next_sibling;</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    }</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="comment">// avoid multiplication by zero if the node is a terminal</span></div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    children_complexity_sum = max(children_complexity_sum, 1);</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="comment">// include the `w` and `*` if the node is weighted (and it is not a constant or mean label)</span></div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keywordflow">if</span> (data.get_is_weighted()</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    &amp;&amp;  <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a14447d2f04191fa6607e02077a4137ea">Isnt&lt;NodeType::Constant, NodeType::MeanLabel&gt;</a>(data.node_type) )</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    {</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        <span class="comment">// ignoring weight if it has the value of neutral element of operation</span></div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        <span class="keywordflow">if</span> ((<a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::OffsetSum&gt;</a>(data.node_type) &amp;&amp; data.W != 0.0)</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        ||  (data.W != 1.0))</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dd/d06/tree__node_8cpp.html#a0c8375d4426d87075c4631d960ec4887">operator_complexities</a>.at(NodeType::Mul)*(</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>                       <a class="code hl_variable" href="../../dd/d06/tree__node_8cpp.html#a0c8375d4426d87075c4631d960ec4887">operator_complexities</a>.at(NodeType::Constant) + </div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>                       node_complexity*(children_complexity_sum)</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>                   );</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    }</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="keywordflow">return</span> node_complexity*(children_complexity_sum);</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>};</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="keywordtype">int</span> TreeNode::get_size(<span class="keywordtype">bool</span> include_weight)<span class="keyword"> const </span></div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="keywordtype">int</span> acc = 1; <span class="comment">// the node operator or terminal</span></div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="comment">// SplitBest has an optimizable decision tree consisting of 3 nodes</span></div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="comment">// (terminal, arithmetic comparison, value) that needs to be taken</span></div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="comment">// into account. Split on will have an random decision tree that can </span></div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="comment">// have different sizes, but will also have the arithmetic comparison</span></div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="comment">// and a value.</span></div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::SplitBest&gt;</a>(data.node_type))</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>        acc += 3;</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::SplitOn&gt;</a>(data.node_type))</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        acc += 2;</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="keywordflow">if</span> ( (include_weight &amp;&amp; data.get_is_weighted()==<span class="keyword">true</span>)</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    &amp;&amp;   <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a14447d2f04191fa6607e02077a4137ea">Isnt&lt;NodeType::Constant, NodeType::MeanLabel&gt;</a>(data.node_type) )</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        <span class="comment">// Taking into account the weight and multiplication, if enabled.</span></div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        <span class="comment">// weighted constants still count as 1 (simpler than constant terminals)</span></div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>        acc += 2;</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keyword">auto</span> child = first_child;</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; data.get_arg_count(); ++i)</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    {</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>        acc += child-&gt;get_size(include_weight);</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>        child = child-&gt;next_sibling;</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    }</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    <span class="keywordflow">return</span> acc;</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>};</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dd/d06/tree__node_8cpp.html#a0c8375d4426d87075c4631d960ec4887">operator_complexities</a>.at(NodeType::Constant) + tree_complexity;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    }</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keywordflow">return</span> tree_complexity;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>};</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="keywordtype">int</span> TreeNode::get_complexity()<span class="keyword"> const </span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keywordtype">int</span> node_complexity = <a class="code hl_variable" href="../../dd/d06/tree__node_8cpp.html#a0c8375d4426d87075c4631d960ec4887">operator_complexities</a>.at(data.node_type);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordtype">int</span> children_complexity_sum = 0; <span class="comment">// acumulator for children complexities</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keyword">auto</span> child = first_child;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; data.get_arg_count(); ++i)</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    {</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        children_complexity_sum += child-&gt;get_complexity();</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        child = child-&gt;next_sibling;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    }</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="comment">// avoid multiplication by zero if the node is a terminal</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    children_complexity_sum = max(children_complexity_sum, 1);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="comment">// include the `w` and `*` if the node is weighted (and it is not a constant or mean label)</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordflow">if</span> (data.get_is_weighted()</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    &amp;&amp;  <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a14447d2f04191fa6607e02077a4137ea">Isnt&lt;NodeType::Constant, NodeType::MeanLabel&gt;</a>(data.node_type) )</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    {</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        <span class="comment">// complexity for offsetsum or weighted nodes.</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        <span class="comment">// ignoring weight if it has the value of neutral element of operation</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        <span class="keywordflow">if</span> ((<a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::OffsetSum&gt;</a>(data.node_type) &amp;&amp; data.W != 0.0)</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        ||  (data.W != 1.0))</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>            <span class="comment">// we are taking into account the weight but ignoring the multiplication</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>            <span class="comment">// (to avoid int overflow for deep trees)</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dd/d06/tree__node_8cpp.html#a0c8375d4426d87075c4631d960ec4887">operator_complexities</a>.at(NodeType::Constant) + </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>                   node_complexity*(children_complexity_sum);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    }</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="keywordflow">return</span> node_complexity*(children_complexity_sum);</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>};</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="keywordtype">int</span> TreeNode::get_size(<span class="keywordtype">bool</span> include_weight)<span class="keyword"> const </span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keywordtype">int</span> acc = 1; <span class="comment">// the node operator or terminal</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="comment">// SplitBest has an optimizable decision tree consisting of 3 nodes</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="comment">// (terminal, arithmetic comparison, value) that needs to be taken</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="comment">// into account. Split on will have an random decision tree that can </span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="comment">// have different sizes, but will also have the arithmetic comparison</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="comment">// and a value.</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::SplitBest&gt;</a>(data.node_type))</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>        acc += 3;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Is&lt;NodeType::SplitOn&gt;</a>(data.node_type))</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>        acc += 2;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="keywordflow">if</span> ( (include_weight &amp;&amp; data.get_is_weighted()==<span class="keyword">true</span>)</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    &amp;&amp;   <a class="code hl_function" href="../../dc/d5c/namespaceBrush.html#a14447d2f04191fa6607e02077a4137ea">Isnt&lt;NodeType::Constant, NodeType::MeanLabel&gt;</a>(data.node_type) )</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <span class="comment">// Taking into account the weight and multiplication, if enabled.</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        <span class="comment">// weighted constants still count as 1 (simpler than constant terminals)</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        acc += 2;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="keyword">auto</span> child = first_child;</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; data.get_arg_count(); ++i)</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    {</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>        acc += child-&gt;get_size(include_weight);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>        child = child-&gt;next_sibling;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    }</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="keywordflow">return</span> acc;</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>};</div>
 <div class="ttc" id="anamespaceBrush_1_1Data_html_a7e8d2615fe3bb7ef5f2a7cc9c625f985a7a86c157ee9713c34fbd7a1ee40f0c5a"><div class="ttname"><a href="../../d9/d1c/namespaceBrush_1_1Data.html#a7e8d2615fe3bb7ef5f2a7cc9c625f985a7a86c157ee9713c34fbd7a1ee40f0c5a">Brush::Data::TimeValues::offset</a></div><div class="ttdeci">@ offset</div><div class="ttdef"><b>Definition</b> <a href="../../d0/dea/omop_8h_source.html#l00023">omop.h:23</a></div></div>
 <div class="ttc" id="anamespaceBrush_1_1Util_html_aa1982ec999d497f97eed7572863a58fa"><div class="ttname"><a href="../../d6/d2e/namespaceBrush_1_1Util.html#aa1982ec999d497f97eed7572863a58fa">Brush::Util::ReplaceStringInPlace</a></div><div class="ttdeci">void ReplaceStringInPlace(std::string &amp;subject, const std::string &amp;search, const std::string &amp;replace)</div><div class="ttdoc">string find and replace in place</div><div class="ttdef"><b>Definition</b> <a href="../../de/d06/utils_8cpp_source.html#l00398">utils.cpp:398</a></div></div>
-<div class="ttc" id="anamespaceBrush_html_a14447d2f04191fa6607e02077a4137ea"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#a14447d2f04191fa6607e02077a4137ea">Brush::Isnt</a></div><div class="ttdeci">auto Isnt(DataType dt) -&gt; bool</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d77/node_8h_source.html#l00043">node.h:43</a></div></div>
+<div class="ttc" id="anamespaceBrush_html_a14447d2f04191fa6607e02077a4137ea"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#a14447d2f04191fa6607e02077a4137ea">Brush::Isnt</a></div><div class="ttdeci">auto Isnt(DataType dt) -&gt; bool</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d77/node_8h_source.html#l00048">node.h:48</a></div></div>
 <div class="ttc" id="anamespaceBrush_html_a20d08fdc417fcb203d6cae91abfa4bff"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#a20d08fdc417fcb203d6cae91abfa4bff">Brush::from_json</a></div><div class="ttdeci">void from_json(const json &amp;j, Fitness &amp;f)</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d5c/fitness_8cpp_source.html#l00031">fitness.cpp:31</a></div></div>
-<div class="ttc" id="anamespaceBrush_html_a4f135739df5fe55a0ff81d943bec8be2"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Brush::Is</a></div><div class="ttdeci">auto Is(NodeType nt) -&gt; bool</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d77/node_8h_source.html#l00291">node.h:291</a></div></div>
+<div class="ttc" id="anamespaceBrush_html_a4f135739df5fe55a0ff81d943bec8be2"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2">Brush::Is</a></div><div class="ttdeci">auto Is(NodeType nt) -&gt; bool</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d77/node_8h_source.html#l00313">node.h:313</a></div></div>
 <div class="ttc" id="anamespaceBrush_html_a8cfe33753dda03e1480fdcbe62e1885d"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#a8cfe33753dda03e1480fdcbe62e1885d">Brush::to_json</a></div><div class="ttdeci">void to_json(json &amp;j, const Fitness &amp;f)</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d5c/fitness_8cpp_source.html#l00006">fitness.cpp:6</a></div></div>
-<div class="ttc" id="astructBrush_1_1Node_html"><div class="ttname"><a href="../../d1/d3a/structBrush_1_1Node.html">Brush::Node</a></div><div class="ttdoc">class holding the data for a node in a tree.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d77/node_8h_source.html#l00084">node.h:84</a></div></div>
+<div class="ttc" id="astructBrush_1_1Node_html"><div class="ttname"><a href="../../d1/d3a/structBrush_1_1Node.html">Brush::Node</a></div><div class="ttdoc">class holding the data for a node in a tree.</div><div class="ttdef"><b>Definition</b> <a href="../../d1/d77/node_8h_source.html#l00089">node.h:89</a></div></div>
 <div class="ttc" id="atree__node_8cpp_html_a0c8375d4426d87075c4631d960ec4887"><div class="ttname"><a href="../../dd/d06/tree__node_8cpp.html#a0c8375d4426d87075c4631d960ec4887">operator_complexities</a></div><div class="ttdeci">unordered_map&lt; NodeType, int &gt; operator_complexities</div><div class="ttdef"><b>Definition</b> <a href="#l00101">tree_node.cpp:101</a></div></div>
 <div class="ttc" id="atree__node_8h_html"><div class="ttname"><a href="../../d1/da6/tree__node_8h.html">tree_node.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

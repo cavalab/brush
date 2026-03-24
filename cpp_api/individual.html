@@ -6,20 +6,20 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Individual and Fitness &mdash; Brush 0.1.dev1+gb15fa8789 documentation</title>
+  <title>Individual and Fitness &mdash; Brush 0.1.dev1+gc1fa69d28 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
 
   
     <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=a64c5380"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/documentation_options.js?v=21cc7d73"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/js/theme.js"></script>
@@ -76,6 +76,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Pop10Individual4initER11SearchSpaceRK10Parameters"><code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Pop10Individual3fitERK7Dataset"><code class="docutils literal notranslate"><span class="pre">fit()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Pop10Individual3fitERK3RefIK8ArrayXXfERK3RefIK7ArrayXfE"><code class="docutils literal notranslate"><span class="pre">fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Pop10Individual15replace_programERK7ProgramI1TE"><code class="docutils literal notranslate"><span class="pre">replace_program()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Pop10Individual15replace_programERK4json"><code class="docutils literal notranslate"><span class="pre">replace_program()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Pop10Individual7predictERK7Dataset"><code class="docutils literal notranslate"><span class="pre">predict()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush3Pop10Individual7predictERK3RefIK8ArrayXXfE"><code class="docutils literal notranslate"><span class="pre">predict()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Pop10Individual13predict_probaEDaRK7Dataset"><code class="docutils literal notranslate"><span class="pre">predict_proba()</span></code></a></li>
@@ -247,6 +249,34 @@
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Pop10Individual3fitERK3RefIK8ArrayXXfERK3RefIK7ArrayXfE">
 <span id="_CPPv3N5Brush3Pop10Individual3fitERK3RefIK8ArrayXXfERK3RefIK7ArrayXfE"></span><span id="_CPPv2N5Brush3Pop10Individual3fitERK3RefIK8ArrayXXfERK3RefIK7ArrayXfE"></span><span id="Brush::Pop::Individual::fit__Ref:ArrayXXfC:CR.Ref:ArrayXfC:CR"></span><span class="target" id="de/d83/classBrush_1_1Pop_1_1Individual_1a96d05b4f293705a35f00f5f60db18a11"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Pop10IndividualE" title="Brush::Pop::Individual"><span class="n"><span class="pre">Individual</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Pop10IndividualE" title="Brush::Pop::Individual::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">fit</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Ref</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">ArrayXXf</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">X</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Ref</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">ArrayXf</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Pop10Individual3fitERK3RefIK8ArrayXXfERK3RefIK7ArrayXfE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Pop10Individual15replace_programERK7ProgramI1TE">
+<span id="_CPPv3N5Brush3Pop10Individual15replace_programERK7ProgramI1TE"></span><span id="_CPPv2N5Brush3Pop10Individual15replace_programERK7ProgramI1TE"></span><span id="Brush::Pop::Individual::replace_program__Program:T:CR"></span><span class="target" id="de/d83/classBrush_1_1Pop_1_1Individual_1a15dc7faff44f161a16c3919d2659bd7f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Pop10IndividualE" title="Brush::Pop::Individual"><span class="n"><span class="pre">Individual</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Pop10IndividualE" title="Brush::Pop::Individual::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">replace_program</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="program.html#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program"><span class="n"><span class="pre">Program</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Pop10IndividualE" title="Brush::Pop::Individual::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">new_program</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Pop10Individual15replace_programERK7ProgramI1TE" title="Link to this definition"></a><br /></dt>
+<dd><p>Replace the current program with a new program, invalidating fitness. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_program</strong> – The new program to replace the current one with </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>reference to this individual </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Pop10Individual15replace_programERK4json">
+<span id="_CPPv3N5Brush3Pop10Individual15replace_programERK4json"></span><span id="_CPPv2N5Brush3Pop10Individual15replace_programERK4json"></span><span id="Brush::Pop::Individual::replace_program__jsonCR"></span><span class="target" id="de/d83/classBrush_1_1Pop_1_1Individual_1aebc1dd241fc84ad8fd0a9fb0bdb562e7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Pop10IndividualE" title="Brush::Pop::Individual"><span class="n"><span class="pre">Individual</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Pop10IndividualE" title="Brush::Pop::Individual::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">replace_program</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">json</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">j</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Pop10Individual15replace_programERK4json" title="Link to this definition"></a><br /></dt>
+<dd><p>Replace the current program from a JSON representation, invalidating fitness. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>j</strong> – JSON object containing the serialized program </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>reference to this individual </p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Pop10Individual7predictERK7Dataset">
@@ -766,12 +796,12 @@
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush7Fitness7weightsE">
-<span id="_CPPv3N5Brush7Fitness7weightsE"></span><span id="_CPPv2N5Brush7Fitness7weightsE"></span><span id="Brush::Fitness::weights__vector:float:"></span><span class="target" id="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16"></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">weights</span></span></span><a class="headerlink" href="#_CPPv4N5Brush7Fitness7weightsE" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N5Brush7Fitness7weightsE"></span><span id="_CPPv2N5Brush7Fitness7weightsE"></span><span id="Brush::Fitness::weights__vector:float:"></span><span class="target" id="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16"></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">weights</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N5Brush7Fitness7weightsE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush7Fitness7wvaluesE">
-<span id="_CPPv3N5Brush7Fitness7wvaluesE"></span><span id="_CPPv2N5Brush7Fitness7wvaluesE"></span><span id="Brush::Fitness::wvalues__vector:float:"></span><span class="target" id="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671"></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">wvalues</span></span></span><a class="headerlink" href="#_CPPv4N5Brush7Fitness7wvaluesE" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N5Brush7Fitness7wvaluesE"></span><span id="_CPPv2N5Brush7Fitness7wvaluesE"></span><span id="Brush::Fitness::wvalues__vector:float:"></span><span class="target" id="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671"></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">wvalues</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N5Brush7Fitness7wvaluesE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </div>

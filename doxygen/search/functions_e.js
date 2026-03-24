@@ -13,6 +13,6 @@ var searchData=
   ['print_5fstats_10',['print_stats',['../d0/d75/classBrush_1_1Engine.html#ae246e0130aecd7b1a6680468b0fe9b9b',1,'Brush::Engine']]],
   ['prod_11',['prod',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a232a1f40343f5bf7937ee40580771564',1,'Brush::Data::TimeSeries::prod()'],['../d0/d8e/structTimeSeries.html#a232a1f40343f5bf7937ee40580771564',1,'TimeSeries::prod()']]],
   ['program_12',['Program',['../db/d88/structBrush_1_1Program.html#ab5df93b7b0bf914455ffeb5cc7574543',1,'Brush::Program::Program()=default'],['../db/d88/structBrush_1_1Program.html#a00356ac7bbc5c1d8f70bc8d90f41d4ac',1,'Brush::Program::Program(const std::reference_wrapper&lt; SearchSpace &gt; s, const tree&lt; Node &gt; t)']]],
-  ['ptc2_13',['PTC2',['../d4/dc3/structBrush_1_1SearchSpace.html#ab1e6afddd1375b0f8cbd40f0033b32b1',1,'Brush::SearchSpace::PTC2()'],['../de/d87/structSearchSpace.html#ab1e6afddd1375b0f8cbd40f0033b32b1',1,'SearchSpace::PTC2()']]],
+  ['ptc2_13',['PTC2',['../d4/dc3/structBrush_1_1SearchSpace.html#aa82c9f1cc1b96e7424b0ac250e4c5c91',1,'Brush::SearchSpace::PTC2()'],['../de/d87/structSearchSpace.html#aa82c9f1cc1b96e7424b0ac250e4c5c91',1,'SearchSpace::PTC2()']]],
   ['pybind11_5fmodule_14',['PYBIND11_MODULE',['../dd/d30/module_8cpp.html#ab3432520f506686ba18c7ce7758a6c69',1,'module.cpp']]]
 ];

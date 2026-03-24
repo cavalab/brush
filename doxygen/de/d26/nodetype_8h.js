@@ -52,6 +52,8 @@ var nodetype_8h =
       [ "Brush::NodeType::And", "dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8ac33315685a0cba3ce53be378b3c7874b", null ],
       [ "Brush::NodeType::Or", "dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a3a2d5fe857d8f9541136a124c2edec6c", null ],
       [ "Brush::NodeType::Not", "dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8aa74c05d080620f087c4e523977230666", null ],
+      [ "Brush::NodeType::Equals", "dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a0ccb67e7eaae09d9e4078d161eeca100", null ],
+      [ "Brush::NodeType::Geq", "dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a5dabfebb89e6e45a8cf8573d92746ed3", null ],
       [ "Brush::NodeType::MeanLabel", "dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a2636ffd13bc710aebeeb21c41a89eec9", null ],
       [ "Brush::NodeType::Constant", "dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8acb17869fe51048b5a5c4c6106551a255", null ],
       [ "Brush::NodeType::Terminal", "dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a514d8a494f087c0d549b9536c2ef3bd9", null ],

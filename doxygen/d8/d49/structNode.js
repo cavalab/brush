@@ -1,6 +1,6 @@
 var structNode =
 [
-    [ "HashTuple", "d8/d49/structNode.html#abd1037d20f96e122bc1305d70aab418a", null ],
+    [ "HashTuple", "d8/d49/structNode.html#a0529394dfe80ebf13da5d1bb84f2a300", null ],
     [ "Node", "d8/d49/structNode.html#adcd17b2d50bd124218a1ed472369d461", null ],
     [ "Node", "d8/d49/structNode.html#a62f7ba79b38e86e54488e5dd9a6bdc93", null ],
     [ "args_type", "d8/d49/structNode.html#a9ec6ba08b0baebc0cd105e4ef774b7fb", null ],
@@ -33,14 +33,15 @@ var structNode =
     [ "center_op", "d8/d49/structNode.html#a0971012cfb2ae944f4bea0ea0dc9e5a3", null ],
     [ "feature", "d8/d49/structNode.html#ac5f37d638625468ed68de599a2a7d968", null ],
     [ "feature_type", "d8/d49/structNode.html#a2875e5aa77054658c071f7b0d7103e68", null ],
-    [ "fixed", "d8/d49/structNode.html#a32c73293ee4e02b6d828c2c213e06154", null ],
     [ "is_weighted", "d8/d49/structNode.html#ab72b791f57011a032c6c89238db85845", null ],
     [ "keep_split_feature", "d8/d49/structNode.html#abee9ab1ef7eb2e12dcf45db1bbddf25a", null ],
     [ "name", "d8/d49/structNode.html#ad6b3fd4a54c813d066370defc8a85af1", null ],
+    [ "node_is_fixed", "d8/d49/structNode.html#ab733af56b9801fef4586cbe44f3f1243", null ],
     [ "node_type", "d8/d49/structNode.html#a522791afe93c92442564356ff19ff55a", null ],
     [ "prob_change", "d8/d49/structNode.html#a9f5b2e34d8ba752e0f6bffebec8afdc0", null ],
     [ "ret_type", "d8/d49/structNode.html#a65b283648fe779d81ac11f9e4714d920", null ],
     [ "sig_dual_hash", "d8/d49/structNode.html#aed6c2af0fae3dd8e5a8aa2fab77479fd", null ],
     [ "sig_hash", "d8/d49/structNode.html#a889e0361b55a63a4510a3edabd2fa57c", null ],
-    [ "W", "d8/d49/structNode.html#ab719e64b13753515be49327d98bf2224", null ]
+    [ "W", "d8/d49/structNode.html#ab719e64b13753515be49327d98bf2224", null ],
+    [ "weight_is_fixed", "d8/d49/structNode.html#a3d66063391a65a329ae0c27534d884d5", null ]
 ];

@@ -1,5 +1,6 @@
 var structBrush_1_1Util_1_1Log__Stats =
 [
+    [ "Log_Stats", "db/d7e/structBrush_1_1Util_1_1Log__Stats.html#a23765133646ba95a682e5a09fbe00439", null ],
     [ "update", "db/d7e/structBrush_1_1Util_1_1Log__Stats.html#a16227000cf1d98852df3ef1cd6a6efff", null ],
     [ "best_score", "db/d7e/structBrush_1_1Util_1_1Log__Stats.html#add898f2c47859b9c759a1cab4cda136c", null ],
     [ "best_score_v", "db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ad14397a3403cfe63bfac32beea700c7a", null ],
