@@ -1,5 +1,4 @@
 #include "bandit.h"
-#include <typeinfo> // FOR DEBUGGING PURPOSES. TODO: remove it later
 
 namespace Brush {
 namespace MAB {
