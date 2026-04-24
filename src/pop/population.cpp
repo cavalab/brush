@@ -212,7 +212,7 @@ void Population<T>::update(vector<vector<size_t>> survivors)
 template<ProgramType T>
 string Population<T>::print_models(string sep)
 {
-    // TODO: rename it. This function does not print anything, just returns a string
+    // TODO: rename it. This function returns a string; it does not print.
     string output = "";
 
     for (int j=0; j<num_islands; ++j)
@@ -446,3 +446,8 @@ void Population<T>::migrate()
 
 } // Pop
 } // Brush
+
+template class Brush::Pop::Population<Brush::ProgramType::Regressor>;
+template class Brush::Pop::Population<Brush::ProgramType::BinaryClassifier>;
+template class Brush::Pop::Population<Brush::ProgramType::MulticlassClassifier>;
+template class Brush::Pop::Population<Brush::ProgramType::Representer>;

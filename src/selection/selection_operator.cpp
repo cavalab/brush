@@ -27,3 +27,8 @@ vector<size_t> SelectionOperator<T>::survive(Population<T>& pop, int island,
 
 } // selection
 } // Brush
+
+template class Brush::Sel::SelectionOperator<Brush::ProgramType::Regressor>;
+template class Brush::Sel::SelectionOperator<Brush::ProgramType::BinaryClassifier>;
+template class Brush::Sel::SelectionOperator<Brush::ProgramType::MulticlassClassifier>;
+template class Brush::Sel::SelectionOperator<Brush::ProgramType::Representer>;

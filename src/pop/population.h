@@ -109,6 +109,11 @@ public:
     };
 };
 
+extern template class Population<PT::Regressor>;
+extern template class Population<PT::BinaryClassifier>;
+extern template class Population<PT::MulticlassClassifier>;
+extern template class Population<PT::Representer>;
+
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Population<PT::Regressor>,
     individuals, island_indexes, pop_size, num_islands, mig_prob, linear_complexity);
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Population<PT::BinaryClassifier>,

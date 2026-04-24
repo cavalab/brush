@@ -77,6 +77,11 @@ public:
         size_t tournament(Population<T>& pop, size_t i, size_t j) const;
 };
 
+    extern template class NSGA2<PT::Regressor>;
+    extern template class NSGA2<PT::BinaryClassifier>;
+    extern template class NSGA2<PT::MulticlassClassifier>;
+    extern template class NSGA2<PT::Representer>;
+
 } // selection
 } // Brush
 #endif

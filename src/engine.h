@@ -130,7 +130,6 @@ public:
     /// train the model
     void run(Dataset &d);
     
-    // TODO: should params and ss be private? (that would require better json handling)
     Parameters params;  ///< hyperparameters of brush, which the user can interact
     SearchSpace ss;
     
@@ -160,6 +159,11 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Regressor>, params, best_ind, arch
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::BinaryClassifier>, params, best_ind, archive, pop, ss, is_fitted);
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::MulticlassClassifier>, params, best_ind, archive, pop, ss, is_fitted);
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Representer>, params, best_ind, archive, pop, ss, is_fitted);
+
+extern template class Engine<PT::Regressor>;
+extern template class Engine<PT::BinaryClassifier>;
+extern template class Engine<PT::MulticlassClassifier>;
+extern template class Engine<PT::Representer>;
 
 } // Brush
 #endif

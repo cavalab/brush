@@ -312,7 +312,7 @@ void Dataset::init()
                 back_inserter(validation_data_idx),
                 [&](int element) { return element; });
     }
-    else if (classification && true) // figuring out training and validation data indexes
+    else if (classification) // figuring out training and validation data indexes
     { // Stratified split for classification problems. TODO: parameters to change stratify behavior? (and set false by default)
         std::map<float, vector<int>> class_indices; // TODO: I think I can remove many std:: from the code..
         for (size_t i = 0; i < n_samples; ++i) {
@@ -335,15 +335,11 @@ void Dataset::init()
             std::transform(idx.begin(), idx.begin() + n_train_samples,
                     back_inserter(training_data_idx),
                     [&](int element) { return indices[element]; });
-                    
-            if (n_class_samples - n_train_samples == 0)
-            {
-                // same indices from the training data to the validation data
-                std::transform(idx.begin(), idx.begin() + n_train_samples,
-                        back_inserter(validation_data_idx),
-                        [&](int element) { return indices[element]; });
-            }
-            else 
+            
+            // stratified split so train/validation never overlap when a class is
+            // too small. Now, if a class has no remaining samples for validation,
+            // it contributes only to training (validation gets none for that class).
+            if (n_class_samples - n_train_samples > 0)
             {
                 std::transform(idx.begin() + n_train_samples, idx.end(),
                         back_inserter(validation_data_idx),
@@ -355,7 +351,7 @@ void Dataset::init()
         // logic for non-classification problems
         vector<size_t> idx(n_samples);
 
-        if (shuffle_split) // TODO: make sure this works with multiple threads and fixed random state
+        if (shuffle_split)
             idx = r.shuffled_index(n_samples);
         else
             std::iota(idx.begin(), idx.end(), 0);

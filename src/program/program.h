@@ -7,7 +7,6 @@ license: GNU/GPL v3
 #define PROGRAM_H
 //external includes
 
-//
 
 #include <string>
 #include "assert.h"
@@ -490,7 +489,7 @@ template<PT PType> struct Program
      */
     string get_dot_model(string extras="") const
     {
-        // TODO: make the node names their hash or index, and the node label the nodetype name. 
+        // TODO: make node IDs stable (hash or index) and labels reflect nodetype names. 
         // ref: https://stackoverflow.com/questions/10579041/graphviz-create-new-node-with-this-same-label#10579155
         string out = "digraph G {\n";
         if (! extras.empty())
