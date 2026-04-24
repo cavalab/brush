@@ -54,6 +54,36 @@ TEST(Evaluation, accuracy)
     ASSERT_EQ(((int)(score*10000)), 3999);
 }
 
+TEST(Evaluation, ScorerRegressionMSE)
+{
+    VectorXf y(3), yhat(3), loss_expected(3), loss(3);
+    y << 1.0, 2.0, 3.0;
+    yhat << 1.0, 4.0, 2.0;
+
+    float expected = mse(y, yhat, loss_expected);
+
+    Scorer<PT::Regressor> scorer("mse");
+    float actual = scorer.score(y, yhat, loss, {});
+
+    ASSERT_NEAR(actual, expected, 1e-6);
+    ASSERT_TRUE(loss.isApprox(loss_expected, 1e-6));
+}
+
+TEST(Evaluation, ScorerBinaryAccuracy)
+{
+    VectorXf y(4), yhat(4), loss_expected(4), loss(4);
+    y << 0.0, 1.0, 1.0, 0.0;
+    yhat << 0.1, 0.9, 0.2, 0.8;
+
+    float expected = zero_one_loss(y, yhat, loss_expected);
+
+    Scorer<PT::BinaryClassifier> scorer("accuracy");
+    float actual = scorer.score(y, yhat, loss, {});
+
+    ASSERT_NEAR(actual, expected, 1e-6);
+    ASSERT_TRUE(loss.isApprox(loss_expected, 1e-6));
+}
+
 
 // TEST(EvaluationTest, UpdateFitnessTest) {
 //     // TODO: Add test case for update_fitness function

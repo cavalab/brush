@@ -6,7 +6,6 @@
 // #include "../../src/program/dispatch_table.h"
 #include "../../src/data/io.h"
 #include "../../src/engine.h"
-#include "../../src/engine.cpp"
 #include "../../src/selection/selection.h"
 #include "../../src/selection/selection_operator.h"
 #include "../../src/selection/nsga2.h"
@@ -17,27 +16,11 @@
 #include "../../src/simplification/constants.h"
 #include "../../src/simplification/inexact.h"
 
-// TODO: omg i need to figure out why my code only works if i import basically the whole stuff. It seems to be related to templating
-#include "../../src/selection/selection.cpp"
-#include "../../src/selection/selection_operator.cpp"
-#include "../../src/selection/nsga2.cpp"
-#include "../../src/selection/lexicase.cpp"
-#include "../../src/eval/evaluation.cpp"
-#include "../../src/pop/archive.cpp"
-#include "../../src/pop/population.cpp"
-// #include "../../src/bandit/bandit.cpp"
-// #include "../../src/bandit/bandit_operator.cpp"
-// #include "../../src/bandit/dummy.cpp"
-// #include "../../src/bandit/thompson.cpp"
-#include "../../src/simplification/constants.cpp"
-#include "../../src/simplification/inexact.cpp"
-
 // TODO: test predict from archive
 // TODO: rename it to test_engine 
-
 // TODO: test serialization of archive (get archive and save to json)
-
 // TODO: test logger, verbose, print stats, etc.
+
 TEST(Engine, EngineWorks)
 {
     MatrixXf X(10,2);

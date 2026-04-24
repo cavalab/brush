@@ -22,10 +22,6 @@ using std::stoi;
 using std::to_string;
 using std::stof;
 
-// this is a compiler-specific hack and a bad practice. TODO: delete it
-// #define private public
-
-// TODO: remove these lots of imports and keep only essential stuff
 #include <cstdio>
 #include "../../src/init.h"
 #include "../../src/params.h"
@@ -35,7 +31,6 @@ using std::stof;
 #include "../../src/program/program.h"
 #include "../../src/ind/individual.h"
 #include "../../src/vary/search_space.h"
-#include "../../src/params.h"
 #include "../../src/vary/variation.h"
 #include "../../src/selection/selection.h"
 #include "../../src/selection/selection_operator.h"
@@ -52,8 +47,6 @@ using std::stof;
 #include "../../src/simplification/constants.h"
 #include "../../src/simplification/inexact.h"
 
-// TODO: is this ok? (otherwise I would have to create a test separated file, or move the implementation to the header)
-#include "../../src/vary/variation.cpp"
 
 using namespace Brush;
 using namespace Brush::Data;
