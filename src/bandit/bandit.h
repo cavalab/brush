@@ -117,6 +117,10 @@ public:
      * @param reward The received reward.
      */
     void update(string arm, float reward);
+
+private:
+    bool bandit_set = false;
+    void ensure_bandit_set() const;
 };
 
 //TODO: serialization should save the type of bandit and its parameters
