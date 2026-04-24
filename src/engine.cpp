@@ -611,3 +611,8 @@ void Engine<T>::run(Dataset &data)
     // cudaFlow), you need to execute the graph first to spawn these tasks and dump the entire graph.
 }
 }
+
+template class Brush::Engine<Brush::ProgramType::Regressor>;
+template class Brush::Engine<Brush::ProgramType::BinaryClassifier>;
+template class Brush::Engine<Brush::ProgramType::MulticlassClassifier>;
+template class Brush::Engine<Brush::ProgramType::Representer>;
