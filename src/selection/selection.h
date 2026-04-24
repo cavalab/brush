@@ -47,6 +47,11 @@ public:
             const Parameters& params);
 };
 
+extern template struct Selection<PT::Regressor>;
+extern template struct Selection<PT::BinaryClassifier>;
+extern template struct Selection<PT::MulticlassClassifier>;
+extern template struct Selection<PT::Representer>;
+
 } // Sel
 } // Brush
 #endif

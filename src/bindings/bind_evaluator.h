@@ -1,6 +1,5 @@
 #include "module.h"
 #include "../eval/evaluation.h"
-#include "../eval/evaluation.cpp"
 
 namespace py = pybind11;
 namespace br = Brush;

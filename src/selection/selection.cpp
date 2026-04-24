@@ -64,3 +64,8 @@ vector<size_t> Selection<T>::survive(Population<T>& pop, int island,
 
 } // Sel
 } // Brush
+
+template struct Brush::Sel::Selection<Brush::ProgramType::Regressor>;
+template struct Brush::Sel::Selection<Brush::ProgramType::BinaryClassifier>;
+template struct Brush::Sel::Selection<Brush::ProgramType::MulticlassClassifier>;
+template struct Brush::Sel::Selection<Brush::ProgramType::Representer>;

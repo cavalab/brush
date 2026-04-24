@@ -90,6 +90,11 @@ public:
     // representation program (TODO: implement)
 };
 
+extern template class Evaluation<PT::Regressor>;
+extern template class Evaluation<PT::BinaryClassifier>;
+extern template class Evaluation<PT::MulticlassClassifier>;
+extern template class Evaluation<PT::Representer>;
+
 } //selection
 } //brush
 #endif

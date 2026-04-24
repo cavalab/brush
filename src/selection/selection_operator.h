@@ -59,6 +59,11 @@ public:
     virtual vector<size_t> survive(Population<T>& pop, int island, const Parameters& p);
 };
 
+extern template class SelectionOperator<PT::Regressor>;
+extern template class SelectionOperator<PT::BinaryClassifier>;
+extern template class SelectionOperator<PT::MulticlassClassifier>;
+extern template class SelectionOperator<PT::Representer>;
+
 } // selection
 } // Brush
 #endif

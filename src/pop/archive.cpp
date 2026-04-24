@@ -51,26 +51,14 @@ bool Archive<T>::sortObj1(const Individual<T>& lhs,
 }
 
 template<ProgramType T>
-bool Archive<T>::sameFitComplexity(const Individual<T>& lhs, 
+bool Archive<T>::sameObjectives(const Individual<T>& lhs, 
         const Individual<T>& rhs)
 {
-    // TODO: delete this one
-
     return (lhs.fitness == rhs.fitness);
 
     // fitness' operator== is overloaded to compare wvalues.
     // we also check complexity equality to avoid the case where the user
     // did not specified complexity as one of the objectives
-    // return (lhs.fitness == rhs.fitness
-    //     &&  lhs.fitness.complexity == rhs.fitness.complexity);
-}
-
-// TODO: i could get rid of one of these
-template<ProgramType T>
-bool Archive<T>::sameObjectives(const Individual<T>& lhs, 
-        const Individual<T>& rhs)
-{
-    return (lhs.fitness == rhs.fitness);
 }
 
 template<ProgramType T>
@@ -149,7 +137,6 @@ void Archive<T>::update(Population<T>& pop, const Parameters& params)
         std::sort(individuals.begin(), individuals.end(), &sortObj1); 
     }
     
-    /* auto it = std::unique(individuals.begin(),individuals.end(), &sameFitComplexity); */
     auto it = std::unique(individuals.begin(),individuals.end(), 
             &sameObjectives);
 
@@ -158,3 +145,8 @@ void Archive<T>::update(Population<T>& pop, const Parameters& params)
 
 } // Pop
 } // Brush
+
+template struct Brush::Pop::Archive<Brush::ProgramType::Regressor>;
+template struct Brush::Pop::Archive<Brush::ProgramType::BinaryClassifier>;
+template struct Brush::Pop::Archive<Brush::ProgramType::MulticlassClassifier>;
+template struct Brush::Pop::Archive<Brush::ProgramType::Representer>;

@@ -180,3 +180,8 @@ vector<size_t> Lexicase<T>::survive(Population<T>& pop, int island,
 
 }
 }
+
+template class Brush::Sel::Lexicase<Brush::ProgramType::Regressor>;
+template class Brush::Sel::Lexicase<Brush::ProgramType::BinaryClassifier>;
+template class Brush::Sel::Lexicase<Brush::ProgramType::MulticlassClassifier>;
+template class Brush::Sel::Lexicase<Brush::ProgramType::Representer>;

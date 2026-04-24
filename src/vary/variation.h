@@ -317,7 +317,6 @@ public:
             ind.program.fit(data.get_training_data());
 
             // simplify before calculating fitness (order matters, as they are not refitted and constants simplifier does not replace with the right value.)
-            // TODO: constants_simplifier should set the correct value for the constant (so we dont have to refit).
             // simplify constants first to avoid letting the lsh simplifier to visit redundant branches
             
             if (parameters.constants_simplification && do_simplification)
@@ -604,12 +603,6 @@ private:
     Inexact_simplifier inexact_simplifier;
 };
 
-// // Explicitly instantiate the template for brush program types
-// template class Variation<ProgramType::Regressor>;
-// template class Variation<ProgramType::BinaryClassifier>;
-// template class Variation<ProgramType::MulticlassClassifier>;
-// template class Variation<ProgramType::Representer>;
-
 class MutationBase {    
 public:
     using Iter = tree<Node>::pre_order_iterator;
@@ -632,6 +625,11 @@ public:
     static auto mutate(Program<T>& program, Iter spot, Variation<T>& variator,
                             const Parameters& params);
 };
+
+extern template class Variation<PT::Regressor>;
+extern template class Variation<PT::BinaryClassifier>;
+extern template class Variation<PT::MulticlassClassifier>;
+extern template class Variation<PT::Representer>;
 
 } //namespace Var
 } //namespace Brush

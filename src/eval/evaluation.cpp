@@ -112,3 +112,8 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
 
 } // Pop
 } // Brush
+
+template class Brush::Eval::Evaluation<Brush::ProgramType::Regressor>;
+template class Brush::Eval::Evaluation<Brush::ProgramType::BinaryClassifier>;
+template class Brush::Eval::Evaluation<Brush::ProgramType::MulticlassClassifier>;
+template class Brush::Eval::Evaluation<Brush::ProgramType::Representer>;
