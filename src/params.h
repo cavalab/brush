@@ -38,7 +38,7 @@ public:
     unsigned int max_size  = 50;
 
     vector<string> objectives{"scorer","linear_complexity"}; // scorer should be generic and deducted based on mode
-    string bandit = "thompson"; // TODO: should I rename dummy? 
+    string bandit = "thompson";
     string sel  = "lexicase"; //selection method
     string surv = "nsga2"; //survival method
     std::unordered_map<string, float> functions;
