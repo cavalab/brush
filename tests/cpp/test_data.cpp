@@ -154,8 +154,6 @@ TEST(Data, ShuffleTrueFalse)
          2  , 1  ,  3  ,
          2.1, 3.7, -5.2;
 
-    X.transposeInPlace();
-
     ArrayXf y(20); 
 
     y << 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 
@@ -183,4 +181,24 @@ TEST(Data, ShuffleTrueFalse)
     Dataset dt6(X, y, {}, {}, {}, true, 1.0, 1.0, false);
 
     // TODO: write some assertions here
+    const int total = dt1.get_n_samples();
+
+    ASSERT_TRUE(dt1.use_validation);
+    ASSERT_TRUE(dt2.use_validation);
+    ASSERT_EQ(dt1.get_training_data().get_n_samples() + dt1.get_validation_data().get_n_samples(), total);
+    ASSERT_EQ(dt2.get_training_data().get_n_samples() + dt2.get_validation_data().get_n_samples(), total);
+
+    ASSERT_FALSE(dt3.use_validation);
+    ASSERT_FALSE(dt4.use_validation);
+    ASSERT_EQ(dt3.get_training_data().get_n_samples(), total);
+    ASSERT_EQ(dt3.get_validation_data().get_n_samples(), total);
+    ASSERT_EQ(dt4.get_training_data().get_n_samples(), total);
+    ASSERT_EQ(dt4.get_validation_data().get_n_samples(), total);
+
+    ASSERT_FALSE(dt5.use_validation);
+    ASSERT_FALSE(dt6.use_validation);
+    ASSERT_EQ(dt5.get_training_data().get_n_samples(), total);
+    ASSERT_EQ(dt5.get_validation_data().get_n_samples(), total);
+    ASSERT_EQ(dt6.get_training_data().get_n_samples(), total);
+    ASSERT_EQ(dt6.get_validation_data().get_n_samples(), total);
 }
