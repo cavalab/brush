@@ -1,5 +1,5 @@
 #include "search_space.h"
-#include "../program/program.h" // TODO: dont import this header here
+#include "../program/program.h"
 
 namespace Brush{
 
@@ -285,11 +285,6 @@ std::optional<tree<Node>> SearchSpace::sample_subtree(Node root, int max_d, int 
         return std::nullopt;
 
     // it will always have a terminal (because we create constants).
-    // TODO: I guess I can remove this line below and it will still work
-    // if ( (terminal_map.find(root.ret_type) == terminal_map.end())
-    // ||   (!has_solution_space(terminal_weights.at(root.ret_type).begin(), 
-    //                           terminal_weights.at(root.ret_type).end())) )
-    //     return std::nullopt;
 
     auto Tree = tree<Node>();
     auto spot = Tree.insert(Tree.begin(), root);
