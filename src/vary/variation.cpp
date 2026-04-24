@@ -8,6 +8,60 @@ using namespace Brush;
 using namespace Pop;
 using namespace MAB;
 
+namespace {
+enum class MutationType {
+    Point,
+    Insert,
+    Delete,
+    Subtree,
+    ToggleWeightOn,
+    ToggleWeightOff,
+    Crossover,
+    Unknown
+};
+
+MutationType mutation_type_from_string(const std::string& choice) {
+    if (choice == "point")
+        return MutationType::Point;
+    if (choice == "insert")
+        return MutationType::Insert;
+    if (choice == "delete")
+        return MutationType::Delete;
+    if (choice == "subtree")
+        return MutationType::Subtree;
+    if (choice == "toggle_weight_on")
+        return MutationType::ToggleWeightOn;
+    if (choice == "toggle_weight_off")
+        return MutationType::ToggleWeightOff;
+    if (choice == "cx")
+        return MutationType::Crossover;
+    return MutationType::Unknown;
+}
+
+const char* mutation_type_to_string(MutationType choice) {
+    switch (choice) {
+        case MutationType::Point:
+            return "point";
+        case MutationType::Insert:
+            return "insert";
+        case MutationType::Delete:
+            return "delete";
+        case MutationType::Subtree:
+            return "subtree";
+        case MutationType::ToggleWeightOn:
+            return "toggle_weight_on";
+        case MutationType::ToggleWeightOff:
+            return "toggle_weight_off";
+        case MutationType::Crossover:
+            return "cx";
+        case MutationType::Unknown:
+            return "unknown";
+    }
+
+    return "unknown";
+}
+} // namespace
+
 /// @brief replace node with same typed node
 /// @param prog the program
 /// @param Tree the program tree
@@ -249,7 +303,7 @@ public:
     static auto mutate(Program<T>& program, Iter spot, Variation<T>& variator,
                     const Parameters& params)
     {
-        if (spot.node->data.get_is_weighted()==false) // TODO: This condition should never happen. Make sure it dont, then remove it. (this is also true for toggleweighton, also fix that)
+        if (spot.node->data.get_is_weighted()==false) // TODO: This condition should never happen. Verified by find_spots; keep guard for safety. (this is also true for toggleweighton, also fix that)
             return false; 
 
         spot.node->data.set_is_weighted(false);
@@ -390,7 +444,7 @@ public:
 };
 
 /**
- * @brief Stochastically swaps subtrees between root and other, returning a new program. 
+ * @brief Stochastically swaps subtrees between parents, returning a new individual. 
  * 
  * The spot where the cross will take place in the `root` parent is sampled
  * based on attribute `get_prob_change` of each node in the tree. After selecting
@@ -401,16 +455,16 @@ public:
  * candidate to replace the spot node.  In this case, the method returns
  * `std::nullopt` (and has overloads so it can be used in a boolean context).
  * 
- * If the cross succeeds, the child program can be accessed through the
+ * If the cross succeeds, the child individual can be accessed through the
  * `.value()` attribute of the `std::optional`. 
  * TODO: update this documentation (it doesnt take the program but the individual. also update mutation documentation)
- * This means that, if you use the cross as `auto opt = mutate(parent, SS)`,
+ * This means that, if you use the cross as `auto opt = cross(mom, dad)`,
  * either `opt==false` or `opt.value()` contains the child.
  * 
  * @tparam T the program type
- * @param root the root parent
- * @param other the donating parent
- * @return `std::optional` that may contain the child program of type `T`
+ * @param mom the first parent
+ * @param dad the donating parent
+ * @return `std::optional` that may contain the child individual of type `T`
  */
 template<Brush::ProgramType T>
 std::optional<Individual<T>> Variation<T>::cross(
@@ -450,7 +504,7 @@ std::optional<Individual<T>> Variation<T>::cross(
     { // There is no spot that has a probability to be selected
         return std::nullopt;
     }
-    
+
     // pick a subtree to insert. Selection is based on other_weights
     Program<T> other(dad.program);
 
@@ -507,7 +561,7 @@ std::optional<Individual<T>> Variation<T>::cross(
             child.Tree.move_ontop(child_spot, other_spot);
             
             Individual<T> ind(child);
-            ind.set_variation("cx"); // TODO: use enum here to make it faster
+            ind.set_variation(mutation_type_to_string(MutationType::Crossover));
 
             return ind;
         }
@@ -579,25 +633,39 @@ std::optional<Individual<T>> Variation<T>::mutate(
         // picking a valid mutation option
         choice = r.random_choice(parameters.mutation_probs);
     }
+
+    const auto mutation_choice = mutation_type_from_string(choice);
+    if (mutation_choice == MutationType::Unknown) {
+        std::string msg = fmt::format("{} not a valid mutation choice", choice);
+        HANDLE_ERROR_THROW(msg);
+    }
     
     Program<T> copy(parent.program);
 
     vector<float> weights; // choose location by weighted sampling of program
-    if (choice.compare("point") == 0) // TODO: use enum here to optimize
-        weights = PointMutation::find_spots(copy, (*this), parameters);
-    else if (choice.compare("insert") == 0)
-        weights = InsertMutation::find_spots(copy, (*this), parameters);
-    else if (choice.compare("delete") == 0)
-        weights = DeleteMutation::find_spots(copy, (*this), parameters);
-    else if (choice.compare("subtree") == 0)
-        weights = SubtreeMutation::find_spots(copy, (*this), parameters);
-    else if (choice.compare("toggle_weight_on") == 0)
-        weights = ToggleWeightOnMutation::find_spots(copy, (*this), parameters);
-    else if (choice.compare("toggle_weight_off") == 0)
-        weights = ToggleWeightOffMutation::find_spots(copy, (*this), parameters);
-    else {
-        std::string msg = fmt::format("{} not a valid mutation choice", choice);
-        HANDLE_ERROR_THROW(msg);
+    switch (mutation_choice) {
+        case MutationType::Point:
+            weights = PointMutation::find_spots(copy, (*this), parameters);
+            break;
+        case MutationType::Insert:
+            weights = InsertMutation::find_spots(copy, (*this), parameters);
+            break;
+        case MutationType::Delete:
+            weights = DeleteMutation::find_spots(copy, (*this), parameters);
+            break;
+        case MutationType::Subtree:
+            weights = SubtreeMutation::find_spots(copy, (*this), parameters);
+            break;
+        case MutationType::ToggleWeightOn:
+            weights = ToggleWeightOnMutation::find_spots(copy, (*this), parameters);
+            break;
+        case MutationType::ToggleWeightOff:
+            weights = ToggleWeightOffMutation::find_spots(copy, (*this), parameters);
+            break;
+        case MutationType::Crossover:
+        case MutationType::Unknown:
+            HANDLE_ERROR_THROW("Crossover is not a valid mutation choice\n");
+            break;
     }
 
     if (std::all_of(weights.begin(), weights.end(), [](const auto& w) {
@@ -621,18 +689,30 @@ std::optional<Individual<T>> Variation<T>::mutate(
         // program tree. Here we call the mutation function and return the result
         
         bool success;
-        if (choice.compare("point") == 0)
-            success = PointMutation::mutate(child, spot, (*this), parameters);
-        else if (choice.compare("insert") == 0)
-            success = InsertMutation::mutate(child, spot, (*this), parameters);
-        else if (choice.compare("delete") == 0)
-            success = DeleteMutation::mutate(child, spot, (*this), parameters);
-        else if (choice.compare("subtree") == 0)
-            success = SubtreeMutation::mutate(child, spot, (*this), parameters);
-        else if (choice.compare("toggle_weight_on") == 0)
-            success = ToggleWeightOnMutation::mutate(child, spot, (*this), parameters);
-        else // it must be"toggle_weight_off"
-            success = ToggleWeightOffMutation::mutate(child, spot, (*this), parameters);
+        switch (mutation_choice) {
+            case MutationType::Point:
+                success = PointMutation::mutate(child, spot, (*this), parameters);
+                break;
+            case MutationType::Insert:
+                success = InsertMutation::mutate(child, spot, (*this), parameters);
+                break;
+            case MutationType::Delete:
+                success = DeleteMutation::mutate(child, spot, (*this), parameters);
+                break;
+            case MutationType::Subtree:
+                success = SubtreeMutation::mutate(child, spot, (*this), parameters);
+                break;
+            case MutationType::ToggleWeightOn:
+                success = ToggleWeightOnMutation::mutate(child, spot, (*this), parameters);
+                break;
+            case MutationType::ToggleWeightOff:
+                success = ToggleWeightOffMutation::mutate(child, spot, (*this), parameters);
+                break;
+            case MutationType::Crossover:
+            case MutationType::Unknown:
+                success = false;
+                break;
+        }
 
         if (// strict mutation --- returns only valid solutions.
             ( success
@@ -656,7 +736,6 @@ std::optional<Individual<T>> Variation<T>::mutate(
             if (choice.compare("point")   == 0
             ||  choice.compare("insert")  == 0
             ||  choice.compare("delete")  == 0
-            // ||  choice.compare("subtree") == 0 // TODO: disable this one
             ) {
                 ind.set_sampled_nodes({spot.node->data});
             }
@@ -760,9 +839,6 @@ template <Brush::ProgramType T>
 void Variation<T>::update_ss()
 {
     // propagate bandits learnt information to the search space.
-    // TODO: not all arms are initialized, if the user set something to zero then we must
-    // disable it. So, during update, we need to properly handle these skipped arms. --> remove this for nodes, allow it just for variations. If the user doesnt want to use a feature or op, he should not set it at the first place. We need to do this with variations because the user 
-    // can choose it directly instead of letting brush to figure out.
 
     // variation: getting new probabilities for variation operators
     auto variation_probs = variation_bandit.sample_probs(true);
@@ -787,12 +863,14 @@ void Variation<T>::update_ss()
                 search_space.terminal_map.at(datatype).end(), 
                 [&](auto& node) { return node.get_feature() == terminal_name; });
 
-            // if (it != search_space.terminal_map.at(datatype).end()) {
-                auto index = std::distance(search_space.terminal_map.at(datatype).begin(), it);
+            if (it == search_space.terminal_map.at(datatype).end()) {
+                continue;
+            }
 
-                // Update the terminal weights with the second value
-                search_space.terminal_weights.at(datatype)[index] = terminal_prob;
-            // }
+            auto index = std::distance(search_space.terminal_map.at(datatype).begin(), it);
+
+            // Update the terminal weights with the second value
+            search_space.terminal_weights.at(datatype)[index] = terminal_prob;
         }
     }
 
@@ -802,13 +880,18 @@ void Variation<T>::update_ss()
             auto op_probs = bandit.sample_probs(true);
 
             for (auto& [op_name, op_prob] : op_probs) {
-
+                bool updated = false;
                 for (const auto& [node_type, node_value]: search_space.node_map.at(ret_type).at(args_type))
                 {
                     if (node_value.name == op_name) {
 
                         search_space.node_map_weights.at(ret_type).at(args_type).at(node_type) = op_prob;
+                        updated = true;
+                        break;
                     }
+                }
+                if (!updated) {
+                    continue;
                 }
             }
         }
@@ -817,3 +900,8 @@ void Variation<T>::update_ss()
 
 } //namespace Var
 } //namespace Brush
+
+template class Brush::Var::Variation<Brush::ProgramType::Regressor>;
+template class Brush::Var::Variation<Brush::ProgramType::BinaryClassifier>;
+template class Brush::Var::Variation<Brush::ProgramType::MulticlassClassifier>;
+template class Brush::Var::Variation<Brush::ProgramType::Representer>;
