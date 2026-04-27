@@ -387,9 +387,6 @@ void from_json(const json &j, Node& p)
     {
         j.at("W").get_to(p.W);
     }
-
-    json new_json = p;
 }
-
 
 }

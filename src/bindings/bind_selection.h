@@ -1,16 +1,10 @@
 #include "module.h"
 
-// TODO: figure out why im having symbol errors (if i dont include the cpp here as well)
 #include "../selection/selection.h"
-#include "../selection/selection.cpp"
 #include "../selection/selection_operator.h"
-#include "../selection/selection_operator.cpp"
 #include "../selection/nsga2.h"
-#include "../selection/nsga2.cpp"
 #include "../selection/lexicase.h"
-#include "../selection/lexicase.cpp"
 
-#include "../pop/population.cpp"
 #include "../pop/population.h"
 
 namespace py = pybind11;

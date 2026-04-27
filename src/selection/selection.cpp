@@ -30,9 +30,9 @@ template<ProgramType T>
 void Selection<T>::set_operator()
 {
     if (this->type == "nsga2")
-        pselector = new NSGA2<T>(survival);
+        pselector = std::make_shared<NSGA2<T>>(survival);
     else if (this->type == "lexicase")
-        pselector = new Lexicase<T>(survival);
+        pselector = std::make_shared<Lexicase<T>>(survival);
     else
         HANDLE_ERROR_THROW("Undefined Selection Operator " + this->type + "\n");
         
@@ -64,3 +64,8 @@ vector<size_t> Selection<T>::survive(Population<T>& pop, int island,
 
 } // Sel
 } // Brush
+
+template struct Brush::Sel::Selection<Brush::ProgramType::Regressor>;
+template struct Brush::Sel::Selection<Brush::ProgramType::BinaryClassifier>;
+template struct Brush::Sel::Selection<Brush::ProgramType::MulticlassClassifier>;
+template struct Brush::Sel::Selection<Brush::ProgramType::Representer>;

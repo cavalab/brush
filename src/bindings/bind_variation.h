@@ -1,22 +1,17 @@
 #include "module.h"
 
 #include "../pop/population.h"
-#include "../pop/population.cpp"
 
 #include "../bandit/bandit.h"
 #include "../bandit/bandit_operator.h"
 #include "../bandit/dummy.h"
 #include "../bandit/thompson.h"
 #include "../ind/individual.h"
-#include "../ind/individual.cpp"
 
-#include "../simplification/constants.cpp"
 #include "../simplification/constants.h"
-#include "../simplification/inexact.cpp"
 #include "../simplification/inexact.h"
 
 #include "../vary/variation.h"
-#include "../vary/variation.cpp"
 
 namespace py = pybind11;
 namespace nl = nlohmann;

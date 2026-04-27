@@ -292,3 +292,8 @@ void NSGA2<T>::crowding_distance(Population<T>& pop, vector<vector<int>>& front,
 
 } // selection
 } // Brush
+
+template class Brush::Sel::NSGA2<Brush::ProgramType::Regressor>;
+template class Brush::Sel::NSGA2<Brush::ProgramType::BinaryClassifier>;
+template class Brush::Sel::NSGA2<Brush::ProgramType::MulticlassClassifier>;
+template class Brush::Sel::NSGA2<Brush::ProgramType::Representer>;

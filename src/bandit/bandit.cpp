@@ -1,5 +1,4 @@
 #include "bandit.h"
-#include <typeinfo> // FOR DEBUGGING PURPOSES. TODO: remove it later
 
 namespace Brush {
 namespace MAB {
@@ -35,8 +34,6 @@ Bandit::Bandit(string type, map<string, float> arms_probs) : type(type) {
 }
 
 void Bandit::set_bandit() {
-    // TODO: a flag that is set to true when this function is called. make all
-    // other methods to raise an error if bandit was not set
     if (type == "thompson") {
         pbandit = make_unique<ThompsonSamplingBandit>(probabilities);
     } else if (type == "dynamic_thompson") {
@@ -45,6 +42,14 @@ void Bandit::set_bandit() {
         pbandit = make_unique<DummyBandit>(probabilities);
     } else {
         HANDLE_ERROR_THROW("Undefined Selection Operator " + this->type + "\n");
+    }
+
+    bandit_set = true;
+}
+
+void Bandit::ensure_bandit_set() const {
+    if (!bandit_set || !pbandit) {
+        HANDLE_ERROR_THROW("Bandit operator is not set. Call set_bandit() before use.\n");
     }
 }
 
@@ -73,6 +78,7 @@ void Bandit::set_probs(map<string, float> arms_probs) {
 }
 
 map<string, float> Bandit::sample_probs(bool update) {
+    ensure_bandit_set();
     map<string, float> new_probs = this->pbandit->sample_probs(update);
 
     // making all probabilities strictly positive
@@ -88,10 +94,12 @@ map<string, float> Bandit::sample_probs(bool update) {
 }
 
 string Bandit::choose() {
+    ensure_bandit_set();
     return this->pbandit->choose();
 }
 
 void Bandit::update(string arm, float reward) {
+    ensure_bandit_set();
     this->pbandit->update(arm, reward);
 }
 

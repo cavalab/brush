@@ -1,34 +1,23 @@
 #include "module.h"
 #include "../engine.h"
-#include "../engine.cpp"
 
-// TODO: figure out why do I need to include the whole thing (otherwise it gives me symbol errors)
 #include "../bandit/bandit.h"
 #include "../bandit/bandit_operator.h"
 #include "../bandit/dummy.h"
 #include "../bandit/thompson.h"
 
 #include "../ind/individual.h"
-#include "../ind/individual.cpp"
 #include "../vary/variation.h"
-#include "../vary/variation.cpp"
 
 #include "../eval/evaluation.h"
-#include "../eval/evaluation.cpp"
 
-#include "../pop/population.cpp"
 #include "../pop/population.h"
 
 #include "../selection/selection.h"
-#include "../selection/selection.cpp"
 #include "../selection/selection_operator.h"
-#include "../selection/selection_operator.cpp"
 #include "../selection/nsga2.h"
-#include "../selection/nsga2.cpp"
 #include "../selection/lexicase.h"
-#include "../selection/lexicase.cpp"
 
-#include "../pop/archive.cpp"
 #include "../pop/archive.h"
 
 using Reg = Brush::RegressorEngine;
@@ -94,7 +83,6 @@ void bind_engine(py::module& m, string name)
                 },
                 [](nl::json j) { // __setstate__
                     T p = j;
-                    // TODO: do I need to get the data and ss reference, then call init for this new instance?
                     return p;
                 })
              )

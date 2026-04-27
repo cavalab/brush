@@ -13,7 +13,7 @@ namespace Pop{
 
 template<ProgramType T> 
 class Individual{
-public: // TODO: make these private (and work with nlohman json)
+public:
     Program<T> program; ///< executable data structure
 
     // store just info that we dont have a getter. size, depth, complexity: they can all be obtained with program.<function here>
@@ -64,7 +64,6 @@ public: // TODO: make these private (and work with nlohman json)
         variation = "born";
     };
 
-    // TODO: replace occurences of program.fit with these (also predict and predict_proba)
     Individual<T> &fit(const Dataset& data) {
         program.fit(data);
         this->is_fitted_ = true;
@@ -153,7 +152,6 @@ public: // TODO: make these private (and work with nlohman json)
     };     /// set parent ids using parents  
     void set_parents(const vector<unsigned>& parents){ parent_id = parents; };     /// set parent ids using id values 
 
-    // TODO: USE setters and getters intead of accessing it directly
     // template<ProgramType T>
     // void Individual<T>::set_objectives(const vector<string>& objectives)
 
@@ -182,7 +180,6 @@ public: // TODO: make these private (and work with nlohman json)
         vector<float> weights;
         weights.resize(0);
         for (const auto& obj : objectives) {
-            // TODO: do i need to use find or this can be done directly?
             auto it = weightsMap.find(obj);
             if (it != weightsMap.end()) {
                 weights.push_back(it->second);
@@ -215,7 +212,7 @@ void to_json(json &j, const Individual<T> &p)
 
 template<ProgramType T>
 void from_json(const json &j, Individual<T>& p)
-{// TODO: figure  out if this works  with private attributes and try to actually make them private (and use getters and setters)
+{
     j.at("program").get_to( p.program );
     j.at("fitness").get_to( p.fitness );
     j.at("id").get_to( p.id );

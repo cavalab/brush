@@ -82,17 +82,6 @@ struct Archive
     static bool sortObj1(const Individual<T>& lhs, const Individual<T>& rhs);
 
     /**
-     * @brief Checks if two individuals have the same fitness complexity.
-     * 
-     * This static function is used to check if two individuals have the same fitness complexity.
-     * It is used as a comparison function for finding duplicates in the population.
-     * 
-     * @param lhs The left-hand side individual to compare.
-     * @param rhs The right-hand side individual to compare.
-     */
-    static bool sameFitComplexity(const Individual<T>& lhs, const Individual<T>& rhs);
-
-    /**
      * @brief Checks if two individuals have the same objectives.
      * 
      * This static function is used to check if two individuals have the same objectives.
@@ -103,6 +92,11 @@ struct Archive
      */
     static bool sameObjectives(const Individual<T>& lhs, const Individual<T>& rhs);
 };
+
+extern template struct Archive<PT::Regressor>;
+extern template struct Archive<PT::BinaryClassifier>;
+extern template struct Archive<PT::MulticlassClassifier>;
+extern template struct Archive<PT::Representer>;
 
 //serialization
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Archive<PT::Regressor>, individuals, sort_complexity, linear_complexity);

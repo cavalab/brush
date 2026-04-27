@@ -31,7 +31,17 @@ public:
     /// lexicase survival
     vector<size_t> survive(Population<T>& pop, int island, 
             const Parameters& p);
+
+    void set_lexicase_pool(vector<size_t> s) { this->lexicase_pool = s; }
+
+private:
+        vector<size_t> lexicase_pool;
 };
+
+extern template class Lexicase<PT::Regressor>;
+extern template class Lexicase<PT::BinaryClassifier>;
+extern template class Lexicase<PT::MulticlassClassifier>;
+extern template class Lexicase<PT::Representer>;
 
 } // Sel
 } // Brush

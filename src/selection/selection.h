@@ -24,7 +24,7 @@ template<ProgramType T>
 struct Selection
 {
 public:
-    SelectionOperator<T>* pselector; // TODO: THIS SHOULD BE A SHARED POINTER 
+    std::shared_ptr<SelectionOperator<T>> pselector;
     string type;
     bool survival;
     
@@ -46,6 +46,11 @@ public:
     vector<size_t> survive(Population<T>& pop, int island,  
             const Parameters& params);
 };
+
+extern template struct Selection<PT::Regressor>;
+extern template struct Selection<PT::BinaryClassifier>;
+extern template struct Selection<PT::MulticlassClassifier>;
+extern template struct Selection<PT::Representer>;
 
 } // Sel
 } // Brush

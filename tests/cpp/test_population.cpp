@@ -1,12 +1,5 @@
 #include "testsHeader.h"
 
-#include "../../src/ind/individual.cpp"
-#include "../../src/pop/population.cpp" // TODO: figure out if thats ok to include cpps instead of headers
-#include "../../src/eval/evaluation.cpp"
-#include "../../src/selection/nsga2.cpp"
-#include "../../src/selection/lexicase.cpp"
-#include "../../src/selection/selection_operator.cpp"
-#include "../../src/selection/selection.cpp"
 
 // #include "../../src/bandit/bandit.cpp"
 // #include "../../src/bandit/bandit_operator.cpp"
