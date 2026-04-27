@@ -395,7 +395,6 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
                             feature_names=self.feature_names_,
                             validation_size=0.0)
 
-
         prob = self.best_estimator_.program.predict_proba(data)
 
         if self.parameters_.n_classes == 2:

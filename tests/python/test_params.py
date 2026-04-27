@@ -266,18 +266,27 @@ def test_fitness_weights_match_scorer_sign(scorer, expected_weights):
     both at estimator and individual (population) level.
     """
 
-    # simple toy dataset
-    X = np.array([[1.2, 2.0], [2.0, 3.5], [3.0, 4.0], [4.0, 5.0]])
-    y_reg = np.array([1.0, 2.0, 3.0, 4.0])
-    y_clf = np.array([0, 1, 0, 1])
+    # Use a larger dataset to avoid tiny-sample metric edge cases.
+    # Caveat: if using too few samples and validation split, AUPRC will fail
+    # if there is only one sample in the validation partition, so for small datasets
+    # you need to make sure that either validation_size is zero, or the ratio that you 
+    # set is enough for having at least two samples there. Also notice that we have
+    # a stratified logic for validation split, so it should be taken into account.
+    n_samples = 80
+    x0 = np.linspace(0.0, 8.0, n_samples)
+    x1 = np.linspace(1.0, 9.0, n_samples)
+    X = np.column_stack((x0, x1))
+    y_reg = 1.5 * x0 + 0.5 * x1
+    y_clf = (x0 > np.median(x0)).astype(float)
 
+    
     # Choose estimator type based on scorer
     # (by default objectives are ["scorer", "linear_complexity"])
     if scorer in ("mse", ): # add more metrics for regression when I implement them
-        est = BrushRegressor(scorer=scorer, pop_size=20, max_gens=10, verbosity=0)
+        est = BrushRegressor(scorer=scorer, pop_size=20, max_gens=10, verbosity=1)
         est.fit(X, y_reg)
     else:
-        est = BrushClassifier(scorer=scorer, pop_size=20, max_gens=10, verbosity=0)
+        est = BrushClassifier(scorer=scorer, pop_size=20, max_gens=10, verbosity=1)
         est.fit(X, y_clf)
 
     # Check estimator-level weights
