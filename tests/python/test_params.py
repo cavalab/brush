@@ -273,7 +273,7 @@ def test_fitness_weights_match_scorer_sign(scorer, expected_weights):
 
     # Choose estimator type based on scorer
     # (by default objectives are ["scorer", "linear_complexity"])
-    if scorer in ("mse"):
+    if scorer in ("mse", ): # add more metrics for regression when I implement them
         est = BrushRegressor(scorer=scorer, pop_size=20, max_gens=10, verbosity=0)
         est.fit(X, y_reg)
     else:

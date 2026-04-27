@@ -24,7 +24,7 @@ template<ProgramType T>
 struct Selection
 {
 public:
-    SelectionOperator<T>* pselector; // TODO: THIS SHOULD BE A SHARED POINTER 
+    std::shared_ptr<SelectionOperator<T>> pselector;
     string type;
     bool survival;
     

@@ -141,23 +141,34 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
     int num_instances = y.size();
 
     float eps = 1e-4f; // first we set the loss vector values
+    float tie_tol = 1e-7f;
+
+    // Guard against NaN/Inf and out-of-range probabilities to keep sort
+    // comparators and downstream math well-defined.
+    vector<float> p_clean(num_instances, 0.5f);
     loss.resize(num_instances);
     for (int i = 0; i < num_instances; ++i) {
         float p = predict_proba(i);
+        if (!std::isfinite(p)) {
+            p = 0.5f;
+        }
+        if (p < eps) {
+            p = eps;
+        } else if (p > 1.0f - eps) {
+            p = 1.0f - eps;
+        }
+        p_clean[i] = p;
 
         // The loss vector is used in lexicase selection. we need to set something useful here
         // that does make sense on individual level. Using log loss here.
-        if (p < eps || 1 - p < eps)
-            loss(i) = -(y(i)*log(eps) + (1-y(i))*log(1-eps));
-        else
-            loss(i) = -(y(i)*log(p) + (1-y(i))*log(1-p));
+        loss(i) = -(y(i)*log(p) + (1-y(i))*log(1-p));
     }
 
     // get argsort of predict proba (descending)
     vector<int> order(num_instances);
     iota(order.begin(), order.end(), 0);
     stable_sort(order.begin(), order.end(), [&](int i, int j) {
-        return predict_proba(i) > predict_proba(j); // descending
+        return p_clean[i] > p_clean[j]; // descending
     });
 
     float ysum = 0.0f;
@@ -168,8 +179,18 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
         int idx = order[i];
 
         y_sorted[i] = y(idx);
-        p_sorted[i] = predict_proba(idx);
-        w_sorted[i] = class_weights.empty() ? 1.0f : class_weights.at(y(idx));
+        p_sorted[i] = p_clean[idx];
+
+        if (class_weights.empty()) {
+            w_sorted[i] = 1.0f;
+        } else {
+            int cls = static_cast<int>(std::round(y_sorted[i]));
+            if (cls < 0 || cls >= static_cast<int>(class_weights.size())) {
+                w_sorted[i] = 1.0f;
+            } else {
+                w_sorted[i] = class_weights[cls];
+            }
+        }
 
         ysum += y_sorted[i] * w_sorted[i];
     }
@@ -182,7 +203,7 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
 
     // detect constant prediction case (all p_sorted equal within tolerance).
     // because p_sorted is sorted, the first element is the maximum, and the last is the minimum,
-    if (abs(p_sorted.back() - p_sorted.front()) <= eps) {
+    if (fabs(p_sorted.back() - p_sorted.front()) <= tie_tol) {
         // All predictions are (effectively) constant.
         float total_weight = std::accumulate(w_sorted.begin(), w_sorted.end(), 0.0f);
 
@@ -192,12 +213,13 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
     }
 
     // Find the indexes where prediction changes, so we can treat it as one block
-    vector<int> unique_indices = {}; // this one will be used to calculate the AUC
-    set<int> unique_probas = {}; // keep track of unique elements (this wont be used other than that)
-    
-    for (int i=0; i<p_sorted.size(); ++i)
-        if (unique_probas.insert(p_sorted.at(i)).second)
+    vector<int> unique_indices = {};
+    unique_indices.push_back(0);
+    for (int i = 1; i < num_instances; ++i) {
+        if (fabs(p_sorted[i] - p_sorted[i - 1]) > tie_tol) {
             unique_indices.push_back(i);
+        }
+    }
 
     unique_indices.push_back(num_instances); // last index is the number of elements
 
@@ -223,7 +245,7 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
 
     // integrate PR curve
     float average_precision = 0.0f;
-    for (size_t i = 0; i < num_instances; ++i) {
+    for (size_t i = 0; i < precision.size() - 1; ++i) {
         average_precision += (recall[i+1] - recall[i]) * precision[i+1];
     }
 

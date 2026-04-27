@@ -58,6 +58,7 @@ TEST(Individual, PredictProbaBinaryClassifier)
 	ClassifierProgram prg = ss.make_classifier(0, 0, params);
 	Individual<PT::BinaryClassifier> ind(prg);
 
+	ind.fit(data);
 	auto prob = ind.predict_proba(data);
 	ASSERT_EQ(prob.size(), y.size());
 }
