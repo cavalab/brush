@@ -140,7 +140,7 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
     // Assuming y contains binary labels (0 or 1)
     int num_instances = y.size();
 
-    float eps = 1e-4f; // first we set the loss vector values
+    float eps = 1e-6f; // first we set the loss vector values
     loss.resize(num_instances);
     for (int i = 0; i < num_instances; ++i) {
         float p = predict_proba(i);
