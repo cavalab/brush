@@ -21,6 +21,6 @@ var searchData=
   ['program_18',['program',['../de/d83/classBrush_1_1Pop_1_1Individual.html#af8eafd2aab3c3a683d6b3b80a649dfa6',1,'Brush::Pop::Individual']]],
   ['program_5f_19',['program_',['../d4/d70/structBrush_1_1ResidualEvaluator.html#aae2fef497e53178a519b63f584256ee9',1,'Brush::ResidualEvaluator']]],
   ['program_5ftype_20',['program_type',['../db/d88/structBrush_1_1Program.html#a695b4178894f8703f2b539cf3a51b098',1,'Brush::Program']]],
-  ['pselector_21',['pselector',['../dd/d0f/structBrush_1_1Sel_1_1Selection.html#ae8f1575b42d096524f5c9f2fd2617de4',1,'Brush::Sel::Selection']]],
+  ['pselector_21',['pselector',['../dd/d0f/structBrush_1_1Sel_1_1Selection.html#af3ebee3fb8373edb0a586eb343281b4c',1,'Brush::Sel::Selection']]],
   ['ptr_22',['ptr',['../dd/d67/classunique__ptr.html#adae741234450c126c1260d389e1720b9',1,'unique_ptr::ptr'],['../d4/d67/classshared__ptr.html#ab3e489849f4e322020568ce634f9af77',1,'shared_ptr::ptr']]]
 ];

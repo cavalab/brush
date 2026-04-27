@@ -19,7 +19,6 @@
     <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8e11ee4659b1dc0a4332ffad5690e30f" kind="function"><name>sortComplexity</name></member>
     <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a06108c7b5249901089d2bd0279ab6273" kind="function"><name>sortLinearComplexity</name></member>
     <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8407a45b676b80bbf7197dbdd96d2c30" kind="function"><name>sortObj1</name></member>
-    <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a7510447de2f87201fa3d7977f3a3e8d8" kind="function"><name>sameFitComplexity</name></member>
     <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1ae48c8db22bdf072955564c079e379610" kind="function"><name>sameObjectives</name></member>
   </compound>
   <compound refid="d2/d41/classarray" kind="class"><name>array</name>
@@ -31,6 +30,7 @@
     <member refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1aa686598d41be58ff1189ee62de90cecb" kind="variable"><name>type</name></member>
     <member refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a6100cbe0bd8dffa5dff50918fcaecadb" kind="variable"><name>arms</name></member>
     <member refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a8891c3797dcbd7a400ee9d3ebe3f5c5a" kind="variable"><name>probabilities</name></member>
+    <member refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a3bfa7caa35aeccedf84edc8bab9df1f9" kind="variable"><name>bandit_set</name></member>
     <member refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a0e007a9f8217044eb0b5a9e9fccb30d5" kind="function"><name>Bandit</name></member>
     <member refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1ac0c055ea74418b27bc2656eec7de61c6" kind="function"><name>~Bandit</name></member>
     <member refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1adbaba7251012fbdbdc5470413d38310d" kind="function"><name>Bandit</name></member>
@@ -45,6 +45,7 @@
     <member refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1ac982cfb269eca3c87663bd039a3e4687" kind="function"><name>sample_probs</name></member>
     <member refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1aae555d46747265bdbd23c224600e3eb2" kind="function"><name>choose</name></member>
     <member refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a316044a5416b7ed322fce6409a54fe98" kind="function"><name>update</name></member>
+    <member refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a2c0c9397ea849fa0d267e15f264faa09" kind="function"><name>ensure_bandit_set</name></member>
   </compound>
   <compound refid="df/dde/classBrush_1_1MAB_1_1BanditOperator" kind="class"><name>Brush::MAB::BanditOperator</name>
     <member refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1acc0564b969a11e14016363510b6dbe6d" kind="typedef"><name>Iter</name></member>
@@ -779,10 +780,12 @@
     <member refid="de/d30/structBrush_1_1Jetify_1a41a88664219f863ac8fe341e03f5c21f" kind="typedef"><name>type</name></member>
   </compound>
   <compound refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase" kind="class"><name>Brush::Sel::Lexicase</name>
+    <member refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1afc232349270b95ae1c8a33ec92109435" kind="variable"><name>lexicase_pool</name></member>
     <member refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1a1d24f31743b9b76bf8c614b3ac6e1d97" kind="function"><name>Lexicase</name></member>
     <member refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1a1df9142fbfc3995866d93f3cad5b6fd0" kind="function"><name>~Lexicase</name></member>
     <member refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1ab9f17cd2c4452b05c96a17bb6c105fc2" kind="function"><name>select</name></member>
     <member refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1a87b97fde62b47d067ee9b4ac5b60c6a3" kind="function"><name>survive</name></member>
+    <member refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1abe3a0d23ddf71e680215942aeeff5253" kind="function"><name>set_lexicase_pool</name></member>
   </compound>
   <compound refid="db/d7e/structBrush_1_1Util_1_1Log__Stats" kind="struct"><name>Brush::Util::Log_Stats</name>
     <member refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1aebdb57a7b38f632b9855ede6c86eb948" kind="variable"><name>generation</name></member>
@@ -1443,7 +1446,7 @@
     <member refid="de/d87/structSearchSpace_1a35d500d78521e7fe880349c8006e55c7" kind="function"><name>CreateNode</name></member>
   </compound>
   <compound refid="dd/d0f/structBrush_1_1Sel_1_1Selection" kind="class"><name>Brush::Sel::Selection</name>
-    <member refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ae8f1575b42d096524f5c9f2fd2617de4" kind="variable"><name>pselector</name></member>
+    <member refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1af3ebee3fb8373edb0a586eb343281b4c" kind="variable"><name>pselector</name></member>
     <member refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6dab234ca04ec9d080554e99aa0147d4" kind="variable"><name>type</name></member>
     <member refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a3dc6778d19c18f6081f30ebf870eed3c" kind="variable"><name>survival</name></member>
     <member refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ad2ce5d0acef331dffa25f3e5ab0af306" kind="function"><name>Selection</name></member>
@@ -2181,6 +2184,17 @@
     <member refid="d7/d6b/namespaceBrush_1_1util_1a2ccf781c58dfb5c3363b0a270381c87e" kind="function"><name>get_weight</name></member>
   </compound>
   <compound refid="d9/d9f/namespaceBrush_1_1Var" kind="namespace"><name>Brush::Var</name>
+  </compound>
+  <compound refid="dc/d69/namespaceBrush_1_1Var_1_1_0d017012037276022227247146362251172213331344020132" kind="namespace"><name>Brush::Var::@017012037276022227247146362251172213331344020132</name>
+    <member refid="dc/d69/namespaceBrush_1_1Var_1_1_0d017012037276022227247146362251172213331344020132_1a4c67a387579460798163fa827d847a85" kind="enum"><name>MutationType</name></member>
+    <member refid="dc/d69/namespaceBrush_1_1Var_1_1_0d017012037276022227247146362251172213331344020132_1a4c67a387579460798163fa827d847a85a2a3cd5946cfd317eb99c3d32e35e2d4c" kind="enumvalue"><name>Point</name></member>
+    <member refid="dc/d69/namespaceBrush_1_1Var_1_1_0d017012037276022227247146362251172213331344020132_1a4c67a387579460798163fa827d847a85aa458be0f08b7e4ff3c0f633c100176c0" kind="enumvalue"><name>Insert</name></member>
+    <member refid="dc/d69/namespaceBrush_1_1Var_1_1_0d017012037276022227247146362251172213331344020132_1a4c67a387579460798163fa827d847a85af2a6c498fb90ee345d997f888fce3b18" kind="enumvalue"><name>Delete</name></member>
+    <member refid="dc/d69/namespaceBrush_1_1Var_1_1_0d017012037276022227247146362251172213331344020132_1a4c67a387579460798163fa827d847a85a187c471e7dfcb7890077311c532fffd0" kind="enumvalue"><name>Subtree</name></member>
+    <member refid="dc/d69/namespaceBrush_1_1Var_1_1_0d017012037276022227247146362251172213331344020132_1a4c67a387579460798163fa827d847a85a7d76d845c1fdc06d82ed48c0b4be4b86" kind="enumvalue"><name>ToggleWeightOn</name></member>
+    <member refid="dc/d69/namespaceBrush_1_1Var_1_1_0d017012037276022227247146362251172213331344020132_1a4c67a387579460798163fa827d847a85af27b59c627a9b4c9d37de917ededa463" kind="enumvalue"><name>ToggleWeightOff</name></member>
+    <member refid="dc/d69/namespaceBrush_1_1Var_1_1_0d017012037276022227247146362251172213331344020132_1a4c67a387579460798163fa827d847a85a2e607ef3a19cf3de029e2c5882896d33" kind="enumvalue"><name>Crossover</name></member>
+    <member refid="dc/d69/namespaceBrush_1_1Var_1_1_0d017012037276022227247146362251172213331344020132_1a4c67a387579460798163fa827d847a85a88183b946cc5f0e8c96b2e66e1c74a7e" kind="enumvalue"><name>Unknown</name></member>
   </compound>
   <compound refid="d1/d62/namespaceEigen" kind="namespace"><name>Eigen</name>
   </compound>

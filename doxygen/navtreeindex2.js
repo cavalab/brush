@@ -1,7 +1,5 @@
 var NAVTREEINDEX2 =
 {
-"d2/d36/classBrush_1_1Data_1_1Dataset.html#a2b7b42b1b16630554b2e49102098a170":[0,0,0,0,0,10],
-"d2/d36/classBrush_1_1Data_1_1Dataset.html#a2b7b42b1b16630554b2e49102098a170":[2,0,0,0,0,10],
 "d2/d36/classBrush_1_1Data_1_1Dataset.html#a2b8f61c5fb8f2128ddbe82108e7644d6":[0,0,0,0,0,0],
 "d2/d36/classBrush_1_1Data_1_1Dataset.html#a2b8f61c5fb8f2128ddbe82108e7644d6":[2,0,0,0,0,0],
 "d2/d36/classBrush_1_1Data_1_1Dataset.html#a4112a2cb86ce4138c3c4bea966c96b65":[0,0,0,0,0,29],
@@ -106,10 +104,14 @@ var NAVTREEINDEX2 =
 "d2/dd0/classBrush_1_1Sel_1_1Lexicase.html#a1d24f31743b9b76bf8c614b3ac6e1d97":[2,0,0,4,0,0],
 "d2/dd0/classBrush_1_1Sel_1_1Lexicase.html#a1df9142fbfc3995866d93f3cad5b6fd0":[0,0,0,5,0,1],
 "d2/dd0/classBrush_1_1Sel_1_1Lexicase.html#a1df9142fbfc3995866d93f3cad5b6fd0":[2,0,0,4,0,1],
-"d2/dd0/classBrush_1_1Sel_1_1Lexicase.html#a87b97fde62b47d067ee9b4ac5b60c6a3":[0,0,0,5,0,3],
-"d2/dd0/classBrush_1_1Sel_1_1Lexicase.html#a87b97fde62b47d067ee9b4ac5b60c6a3":[2,0,0,4,0,3],
+"d2/dd0/classBrush_1_1Sel_1_1Lexicase.html#a87b97fde62b47d067ee9b4ac5b60c6a3":[0,0,0,5,0,4],
+"d2/dd0/classBrush_1_1Sel_1_1Lexicase.html#a87b97fde62b47d067ee9b4ac5b60c6a3":[2,0,0,4,0,4],
 "d2/dd0/classBrush_1_1Sel_1_1Lexicase.html#ab9f17cd2c4452b05c96a17bb6c105fc2":[0,0,0,5,0,2],
 "d2/dd0/classBrush_1_1Sel_1_1Lexicase.html#ab9f17cd2c4452b05c96a17bb6c105fc2":[2,0,0,4,0,2],
+"d2/dd0/classBrush_1_1Sel_1_1Lexicase.html#abe3a0d23ddf71e680215942aeeff5253":[0,0,0,5,0,3],
+"d2/dd0/classBrush_1_1Sel_1_1Lexicase.html#abe3a0d23ddf71e680215942aeeff5253":[2,0,0,4,0,3],
+"d2/dd0/classBrush_1_1Sel_1_1Lexicase.html#afc232349270b95ae1c8a33ec92109435":[0,0,0,5,0,5],
+"d2/dd0/classBrush_1_1Sel_1_1Lexicase.html#afc232349270b95ae1c8a33ec92109435":[2,0,0,4,0,5],
 "d2/de4/structBrush_1_1Function_3_01NodeType_1_1Cosh_01_4.html":[0,0,0,62],
 "d2/de4/structBrush_1_1Function_3_01NodeType_1_1Cosh_01_4.html":[2,0,0,59],
 "d2/de4/structBrush_1_1Function_3_01NodeType_1_1Cosh_01_4.html#a637137c8314bde52a4e90e931bb95d88":[0,0,0,62,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX2 =
 "d4/d01/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesb_01_4.html#a7512b59b3ddb27e6728c1a7e24facf31":[2,0,0,104,1],
 "d4/d05/dummy_8cpp.html":[3,0,0,0,4],
 "d4/d05/dummy_8cpp_source.html":[3,0,0,0,4],
-"d4/d0d/structstd_1_1hash_3_01std_1_1vector_3_01float_01_4_01_4.html":[0,0,4,1],
-"d4/d0d/structstd_1_1hash_3_01std_1_1vector_3_01float_01_4_01_4.html":[2,0,3,1],
-"d4/d0d/structstd_1_1hash_3_01std_1_1vector_3_01float_01_4_01_4.html#a7dbc278cbdb41e00ab637bba9e2221b9":[0,0,4,1,0]
+"d4/d0d/structstd_1_1hash_3_01std_1_1vector_3_01float_01_4_01_4.html":[0,0,4,1]
 };

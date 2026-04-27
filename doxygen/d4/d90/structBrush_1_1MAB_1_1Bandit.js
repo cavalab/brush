@@ -6,6 +6,7 @@ var structBrush_1_1MAB_1_1Bandit =
     [ "Bandit", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#adbaba7251012fbdbdc5470413d38310d", null ],
     [ "Bandit", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#afd3d6b05499dc34fb0816b7569b45d1f", null ],
     [ "choose", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#aae555d46747265bdbd23c224600e3eb2", null ],
+    [ "ensure_bandit_set", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#a2c0c9397ea849fa0d267e15f264faa09", null ],
     [ "get_arms", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#a6fe249896107334427a46fdd5feb3772", null ],
     [ "get_probs", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#aebce8fa00012441f66c6375acc03b309", null ],
     [ "get_type", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#a3638d6743fcfb62c21b0f78b8450a910", null ],
@@ -16,6 +17,7 @@ var structBrush_1_1MAB_1_1Bandit =
     [ "set_type", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#a8227b7fc6ffd0a7a5fa5349fca85cfa1", null ],
     [ "update", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#a316044a5416b7ed322fce6409a54fe98", null ],
     [ "arms", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#a6100cbe0bd8dffa5dff50918fcaecadb", null ],
+    [ "bandit_set", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#a3bfa7caa35aeccedf84edc8bab9df1f9", null ],
     [ "pbandit", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#ae7171024c5935b29bf475ab2e660fe2e", null ],
     [ "probabilities", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#a8891c3797dcbd7a400ee9d3ebe3f5c5a", null ],
     [ "type", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#aa686598d41be58ff1189ee62de90cecb", null ]

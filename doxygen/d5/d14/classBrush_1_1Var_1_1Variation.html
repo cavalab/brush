@@ -406,7 +406,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00512">512</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00511">511</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -469,7 +469,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00588">588</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00587">587</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
 
 </div>
 </div>
@@ -507,7 +507,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00545">545</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00544">544</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -566,7 +566,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00487">487</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00486">486</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -620,7 +620,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </div><div class="memdoc">
 
 <p>Performs croearch_spaceover operation on two individuals. </p>
-<p>Stochastically swaps subtrees between root and other, returning a new program.</p>
+<p>Stochastically swaps subtrees between parents, returning a new individual.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mom</td><td>The first parent individual. </td></tr>
@@ -631,7 +631,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 <dl class="section return"><dt>Returns</dt><dd>An optional containing the offspring individual if the crossover is successful, or an empty optional otherwise.</dd></dl>
 <p>The spot where the cross will take place in the <code>root</code> parent is sampled based on attribute <code>get_prob_change</code> of each node in the tree. After selecting the cross spot, the program will iterate through the <code>other</code> parent searching for all compatible sub-trees to replace.</p>
 <p>Due to the stochastic behavior, it may come to a case where there is no candidate to replace the spot node. In this case, the method returns <code>std::nullopt</code> (and has overloads so it can be used in a boolean context).</p>
-<p>If the cross succeeds, the child program can be accessed through the <code>.value()</code> attribute of the <code>std::optional</code>. TODO: update this documentation (it doesnt take the program but the individual. also update mutation documentation) This means that, if you use the cross as <code>auto opt = mutate(parent, SS)</code>, either <code>opt==false</code> or <code>opt.value()</code> contains the child.</p>
+<p>If the cross succeeds, the child individual can be accessed through the <code>.value()</code> attribute of the <code>std::optional</code>. TODO: update this documentation (it doesnt take the program but the individual. also update mutation documentation) This means that, if you use the cross as <code>auto opt = cross(mom, dad)</code>, either <code>opt==false</code> or <code>opt.value()</code> contains the child.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>the program type </td></tr>
@@ -640,14 +640,14 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">root</td><td>the root parent </td></tr>
-    <tr><td class="paramname">other</td><td>the donating parent </td></tr>
+    <tr><td class="paramname">mom</td><td>the first parent </td></tr>
+    <tr><td class="paramname">dad</td><td>the donating parent </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><code>std::optional</code> that may contain the child program of type <code>T</code> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>std::optional</code> that may contain the child individual of type <code>T</code> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d64/variation_8cpp_source.html#l00428">428</a> of file <a class="el" href="../../d1/d64/variation_8cpp_source.html">variation.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d64/variation_8cpp_source.html#l00482">482</a> of file <a class="el" href="../../d1/d64/variation_8cpp_source.html">variation.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -763,7 +763,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00610">610</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00609">609</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
 
 </div>
 </div>
@@ -825,7 +825,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>std::optional</code> that may contain the child program of type <code>T</code> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d64/variation_8cpp_source.html#l00582">582</a> of file <a class="el" href="../../d1/d64/variation_8cpp_source.html">variation.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d64/variation_8cpp_source.html#l00636">636</a> of file <a class="el" href="../../d1/d64/variation_8cpp_source.html">variation.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -961,7 +961,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d64/variation_8cpp_source.html#l00783">783</a> of file <a class="el" href="../../d1/d64/variation_8cpp_source.html">variation.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d64/variation_8cpp_source.html#l00862">862</a> of file <a class="el" href="../../d1/d64/variation_8cpp_source.html">variation.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1014,7 +1014,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d64/variation_8cpp_source.html#l00697">697</a> of file <a class="el" href="../../d1/d64/variation_8cpp_source.html">variation.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d64/variation_8cpp_source.html#l00776">776</a> of file <a class="el" href="../../d1/d64/variation_8cpp_source.html">variation.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1352,7 +1352,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00632">632</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00631">631</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
 
 </div>
 </div>
@@ -1370,7 +1370,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00621">621</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00620">620</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
 
 </div>
 </div>
@@ -1396,7 +1396,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00633">633</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00632">632</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
 
 </div>
 </div>
@@ -1422,7 +1422,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00629">629</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00628">628</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
 
 </div>
 </div>
@@ -1440,7 +1440,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00622">622</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00621">621</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
 
 </div>
 </div>
@@ -1458,7 +1458,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00620">620</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00619">619</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
 
 </div>
 </div>
@@ -1484,7 +1484,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00628">628</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00627">627</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
 
 </div>
 </div>
@@ -1510,7 +1510,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00627">627</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d4/d1f/variation_8h_source.html#l00626">626</a> of file <a class="el" href="../../d4/d1f/variation_8h_source.html">variation.h</a>.</p>
 
 </div>
 </div>

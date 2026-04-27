@@ -537,8 +537,6 @@
       <node id="9">
         <label>engine.cpp</label>
         <link refid="da/d5c/engine_8cpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
       </node>
       <node id="8">
         <label>engine.h</label>
@@ -551,10 +549,6 @@
       <node id="10">
         <label>variation.cpp</label>
         <link refid="d1/d64/variation_8cpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
       </node>
       <node id="7">
         <label>variation.h</label>
@@ -638,13 +632,17 @@
 <codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1aae555d46747265bdbd23c224600e3eb2" kindref="member">choose</ref>();</highlight></codeline>
 <codeline lineno="113"><highlight class="normal"></highlight></codeline>
 <codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a316044a5416b7ed322fce6409a54fe98" kindref="member">update</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>arm,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>reward);</highlight></codeline>
-<codeline lineno="120"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"></highlight></codeline>
-<codeline lineno="122"><highlight class="normal"></highlight><highlight class="comment">//TODO:<sp/>serialization<sp/>should<sp/>save<sp/>the<sp/>type<sp/>of<sp/>bandit<sp/>and<sp/>its<sp/>parameters</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="123"><highlight class="normal"></highlight></codeline>
-<codeline lineno="124"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>MAB</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="125"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="126"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="122" refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a3bfa7caa35aeccedf84edc8bab9df1f9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a3bfa7caa35aeccedf84edc8bab9df1f9" kindref="member">bandit_set</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a2c0c9397ea849fa0d267e15f264faa09" kindref="member">ensure_bandit_set</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="comment">//TODO:<sp/>serialization<sp/>should<sp/>save<sp/>the<sp/>type<sp/>of<sp/>bandit<sp/>and<sp/>its<sp/>parameters</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>MAB</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/bandit/bandit.h"/>
   </compounddef>

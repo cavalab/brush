@@ -48,7 +48,7 @@ var searchData=
   ['program_5f_45',['program_',['../d4/d70/structBrush_1_1ResidualEvaluator.html#aae2fef497e53178a519b63f584256ee9',1,'Brush::ResidualEvaluator']]],
   ['program_5ftype_46',['program_type',['../db/d88/structBrush_1_1Program.html#a695b4178894f8703f2b539cf3a51b098',1,'Brush::Program']]],
   ['programtype_47',['ProgramType',['../dc/d5c/namespaceBrush.html#ae591329af27c88b714d0f92b86276366',1,'Brush']]],
-  ['pselector_48',['pselector',['../dd/d0f/structBrush_1_1Sel_1_1Selection.html#ae8f1575b42d096524f5c9f2fd2617de4',1,'Brush::Sel::Selection']]],
+  ['pselector_48',['pselector',['../dd/d0f/structBrush_1_1Sel_1_1Selection.html#af3ebee3fb8373edb0a586eb343281b4c',1,'Brush::Sel::Selection']]],
   ['pt_49',['PT',['../dc/d5c/namespaceBrush.html#a1d836cd56c93c1a9e89f76768fa59582',1,'Brush']]],
   ['ptc2_50',['PTC2',['../d4/dc3/structBrush_1_1SearchSpace.html#aa82c9f1cc1b96e7424b0ac250e4c5c91',1,'Brush::SearchSpace::PTC2()'],['../de/d87/structSearchSpace.html#aa82c9f1cc1b96e7424b0ac250e4c5c91',1,'SearchSpace::PTC2()']]],
   ['ptr_51',['ptr',['../dd/d67/classunique__ptr.html#adae741234450c126c1260d389e1720b9',1,'unique_ptr::ptr'],['../d4/d67/classshared__ptr.html#ab3e489849f4e322020568ce634f9af77',1,'shared_ptr::ptr']]],

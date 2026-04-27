@@ -1,5 +1,11 @@
 var NAVTREEINDEX8 =
 {
+"da/d1f/structBrush_1_1DataTypeEnum_3_01ArrayXXbJet_01_4.html":[0,0,0,36],
+"da/d1f/structBrush_1_1DataTypeEnum_3_01ArrayXXbJet_01_4.html":[2,0,0,33],
+"da/d1f/structBrush_1_1DataTypeEnum_3_01ArrayXXbJet_01_4.html#a21379dd94c25f6f62c0856fb9377c8e6":[0,0,0,36,0],
+"da/d1f/structBrush_1_1DataTypeEnum_3_01ArrayXXbJet_01_4.html#a21379dd94c25f6f62c0856fb9377c8e6":[2,0,0,33,0],
+"da/d33/params_8h.html":[3,0,0,14],
+"da/d33/params_8h_source.html":[3,0,0,14],
 "da/d3b/scorer_8h.html":[3,0,0,3,4],
 "da/d3b/scorer_8h_source.html":[3,0,0,3,4],
 "da/d41/error_8h.html":[3,0,0,9,1],
@@ -243,11 +249,5 @@ var NAVTREEINDEX8 =
 "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a26de9211c472622d1abd8b7965c94560":[2,0,0,115,25],
 "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a30052ad32c3a73558db6c97cc313d6ac":[0,0,0,118,4],
 "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a30052ad32c3a73558db6c97cc313d6ac":[2,0,0,115,4],
-"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a44a7325acd05e13e1ec3a2b46fc8d407":[0,0,0,118,23],
-"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a44a7325acd05e13e1ec3a2b46fc8d407":[2,0,0,115,23],
-"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a89bc8eb841fd2d39b0878f2486f8af28":[0,0,0,118,6],
-"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a89bc8eb841fd2d39b0878f2486f8af28":[2,0,0,115,6],
-"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#abb1f5cfaa4ad8540ef48a3ce6322487e":[0,0,0,118,8],
-"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#abb1f5cfaa4ad8540ef48a3ce6322487e":[2,0,0,115,8],
-"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#abc17ddcd149126c4b4f18f3c20385ed7":[0,0,0,118,1]
+"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a44a7325acd05e13e1ec3a2b46fc8d407":[0,0,0,118,23]
 };

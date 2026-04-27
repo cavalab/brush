@@ -6,7 +6,6 @@
     <includes local="no">iostream</includes>
     <includes local="no">fstream</includes>
     <includes local="no">cmath</includes>
-    <includedby refid="d4/d93/bind__engines_8h" local="yes">bind_engines.h</includedby>
     <incdepgraph>
       <node id="50">
         <label>../../thirdparty/tree.hh</label>
@@ -676,24 +675,6 @@
         <label>vector</label>
       </node>
     </incdepgraph>
-    <invincdepgraph>
-      <node id="3">
-        <label>bind_engines.cpp</label>
-        <link refid="d1/df0/bind__engines_8cpp"/>
-      </node>
-      <node id="2">
-        <label>bind_engines.h</label>
-        <link refid="d4/d93/bind__engines_8h"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="1">
-        <label>engine.cpp</label>
-        <link refid="da/d5c/engine_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-    </invincdepgraph>
     <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
     <briefdescription>
     </briefdescription>
@@ -848,8 +829,8 @@
 <codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>best_score<sp/><sp/><sp/><sp/><sp/>=<sp/>index<sp/>&gt;<sp/>0<sp/>?<sp/>(scores*error_weight).maxCoeff()*error_weight<sp/>:<sp/>0.0f;</highlight></codeline>
 <codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>best_score_v<sp/><sp/><sp/>=<sp/>this-&gt;best_ind.fitness.get_loss_v();</highlight></codeline>
 <codeline lineno="149"><highlight class="normal"></highlight></codeline>
-<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!std::isfinite(best_score_v))<sp/>{</highlight></codeline>
-<codeline lineno="151" refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" kindref="member">HANDLE_ERROR_THROW</ref>(</highlight><highlight class="stringliteral">&quot;Invalid<sp/>non-finite<sp/>validation<sp/>loss<sp/>in<sp/>best_ind<sp/>while<sp/>calculating<sp/>stats&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="150" refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!std::isfinite(best_score_v))<sp/>{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" kindref="member">HANDLE_ERROR_THROW</ref>(</highlight><highlight class="stringliteral">&quot;Invalid<sp/>non-finite<sp/>validation<sp/>loss<sp/>in<sp/>best_ind<sp/>while<sp/>calculating<sp/>stats&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>med_score<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>index<sp/>&gt;<sp/>0<sp/>?<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1a4d848757d9123e0562a7d87b44f1bdc6" kindref="member">median</ref>(scores)<sp/>:<sp/>0.0f;<sp/></highlight></codeline>
@@ -1389,6 +1370,11 @@
 <codeline lineno="688"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cudaFlow),<sp/>you<sp/>need<sp/>to<sp/>execute<sp/>the<sp/>graph<sp/>first<sp/>to<sp/>spawn<sp/>these<sp/>tasks<sp/>and<sp/>dump<sp/>the<sp/>entire<sp/>graph.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="689"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="690"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="691"><highlight class="normal"></highlight></codeline>
+<codeline lineno="692"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="d0/d75/classBrush_1_1Engine" kindref="compound">Brush::Engine&lt;Brush::ProgramType::Regressor&gt;</ref>;</highlight></codeline>
+<codeline lineno="693"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="d0/d75/classBrush_1_1Engine" kindref="compound">Brush::Engine&lt;Brush::ProgramType::BinaryClassifier&gt;</ref>;</highlight></codeline>
+<codeline lineno="694"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="d0/d75/classBrush_1_1Engine" kindref="compound">Brush::Engine&lt;Brush::ProgramType::MulticlassClassifier&gt;</ref>;</highlight></codeline>
+<codeline lineno="695"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="d0/d75/classBrush_1_1Engine" kindref="compound">Brush::Engine&lt;Brush::ProgramType::Representer&gt;</ref>;</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/engine.cpp"/>
   </compounddef>

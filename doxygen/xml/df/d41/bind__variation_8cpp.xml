@@ -8,7 +8,7 @@
       <node id="57">
         <label>../../thirdparty/tree.hh</label>
       </node>
-      <node id="71">
+      <node id="70">
         <label>../bandit/bandit.h</label>
         <link refid="d7/d00/bandit_8h"/>
         <childnode refid="19" relation="include">
@@ -21,14 +21,14 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
         <childnode refid="72" relation="include">
         </childnode>
         <childnode refid="73" relation="include">
         </childnode>
-        <childnode refid="74" relation="include">
-        </childnode>
       </node>
-      <node id="72">
+      <node id="71">
         <label>bandit_operator.h</label>
         <link refid="da/d8e/bandit__operator_8h"/>
         <childnode refid="19" relation="include">
@@ -42,16 +42,16 @@
         <childnode refid="69" relation="include">
         </childnode>
       </node>
-      <node id="73">
+      <node id="72">
         <label>dummy.h</label>
         <link refid="d2/d94/dummy_8h"/>
-        <childnode refid="72" relation="include">
+        <childnode refid="71" relation="include">
         </childnode>
       </node>
-      <node id="74">
+      <node id="73">
         <label>thompson.h</label>
         <link refid="db/ddd/thompson_8h"/>
-        <childnode refid="72" relation="include">
+        <childnode refid="71" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
@@ -79,23 +79,13 @@
         </childnode>
         <childnode refid="73" relation="include">
         </childnode>
-        <childnode refid="74" relation="include">
-        </childnode>
         <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
         </childnode>
         <childnode refid="75" relation="include">
         </childnode>
         <childnode refid="76" relation="include">
-        </childnode>
-        <childnode refid="77" relation="include">
-        </childnode>
-        <childnode refid="78" relation="include">
-        </childnode>
-        <childnode refid="79" relation="include">
-        </childnode>
-        <childnode refid="80" relation="include">
-        </childnode>
-        <childnode refid="84" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -144,7 +134,7 @@
         <childnode refid="32" relation="include">
         </childnode>
       </node>
-      <node id="81">
+      <node id="77">
         <label>../eval/evaluation.h</label>
         <link refid="d3/df9/evaluation_8h"/>
         <childnode refid="24" relation="include">
@@ -155,12 +145,12 @@
         </childnode>
         <childnode refid="41" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
+        <childnode refid="78" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="83">
+      <node id="79">
         <label>metrics.h</label>
         <link refid="df/d34/metrics_8h"/>
         <childnode refid="41" relation="include">
@@ -168,10 +158,10 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="82">
+      <node id="78">
         <label>scorer.h</label>
         <link refid="da/d3b/scorer_8h"/>
-        <childnode refid="83" relation="include">
+        <childnode refid="79" relation="include">
         </childnode>
         <childnode refid="32" relation="include">
         </childnode>
@@ -186,12 +176,6 @@
         <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
-        </childnode>
-      </node>
-      <node id="75">
-        <label>../ind/individual.cpp</label>
-        <link refid="db/df6/individual_8cpp"/>
-        <childnode refid="36" relation="include">
         </childnode>
       </node>
       <node id="36">
@@ -244,12 +228,6 @@
         <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
-        </childnode>
-      </node>
-      <node id="70">
-        <label>../pop/population.cpp</label>
-        <link refid="d7/d4a/population_8cpp"/>
-        <childnode refid="10" relation="include">
         </childnode>
       </node>
       <node id="10">
@@ -406,14 +384,8 @@
         <childnode refid="58" relation="include">
         </childnode>
       </node>
-      <node id="76">
-        <label>../simplification/constants.cpp</label>
-        <link refid="d6/d80/constants_8cpp"/>
-        <childnode refid="77" relation="include">
-        </childnode>
-      </node>
-      <node id="77">
-        <label>constants.h</label>
+      <node id="74">
+        <label>../simplification/constants.h</label>
         <link refid="d2/d6f/constants_8h"/>
         <childnode refid="19" relation="include">
         </childnode>
@@ -426,16 +398,8 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="78">
-        <label>../simplification/inexact.cpp</label>
-        <link refid="de/d79/inexact_8cpp"/>
-        <childnode refid="79" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-      </node>
-      <node id="79">
-        <label>inexact.h</label>
+      <node id="75">
+        <label>../simplification/inexact.h</label>
         <link refid="d1/db6/inexact_8h"/>
         <childnode refid="19" relation="include">
         </childnode>
@@ -538,30 +502,24 @@
         <childnode refid="22" relation="include">
         </childnode>
       </node>
-      <node id="84">
-        <label>../vary/variation.cpp</label>
-        <link refid="d1/d64/variation_8cpp"/>
-        <childnode refid="80" relation="include">
-        </childnode>
-      </node>
-      <node id="80">
+      <node id="76">
         <label>../vary/variation.h</label>
         <link refid="d4/d1f/variation_8h"/>
         <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
         </childnode>
         <childnode refid="71" relation="include">
         </childnode>
         <childnode refid="72" relation="include">
         </childnode>
-        <childnode refid="73" relation="include">
-        </childnode>
         <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="81" relation="include">
         </childnode>
         <childnode refid="77" relation="include">
         </childnode>
-        <childnode refid="79" relation="include">
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
@@ -715,7 +673,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/bindings/bind_variation.cpp" line="8" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_variation.cpp" bodystart="8" bodyend="14"/>
-        <references refid="d8/df7/bind__variation_8h_1aa00827ef4bd73eeb7c3e30717bf91a74" compoundref="d8/df7/bind__variation_8h" startline="26" endline="82">bind_variation</references>
+        <references refid="d8/df7/bind__variation_8h_1aa00827ef4bd73eeb7c3e30717bf91a74" compoundref="d8/df7/bind__variation_8h" startline="21" endline="77">bind_variation</references>
         <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>
     </sectiondef>

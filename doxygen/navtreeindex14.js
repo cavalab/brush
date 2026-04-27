@@ -1,5 +1,11 @@
 var NAVTREEINDEX14 =
 {
+"de/deb/structBrush_1_1Parameters.html#afed0556e44457c8ef23a69631ae8561e":[2,0,0,117,39],
+"de/deb/structBrush_1_1Parameters.html#affd6fb0d25f59c6467c9268383310c8a":[0,0,0,120,79],
+"de/deb/structBrush_1_1Parameters.html#affd6fb0d25f59c6467c9268383310c8a":[2,0,0,117,79],
+"de/deb/structBrush_1_1Parameters.html#afff93890adec7af136be0dc19ccdd35f":[0,0,0,120,32],
+"de/deb/structBrush_1_1Parameters.html#afff93890adec7af136be0dc19ccdd35f":[2,0,0,117,32],
+"df/d09/structBrush_1_1TinyCostFunction.html":[0,0,0,145],
 "df/d09/structBrush_1_1TinyCostFunction.html":[2,0,0,142],
 "df/d09/structBrush_1_1TinyCostFunction.html#a1e1831616fb4ebc67aade514d0fb224e":[0,0,0,145,14],
 "df/d09/structBrush_1_1TinyCostFunction.html#a1e1831616fb4ebc67aade514d0fb224e":[2,0,0,142,14],

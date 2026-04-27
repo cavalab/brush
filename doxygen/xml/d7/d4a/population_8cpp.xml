@@ -3,9 +3,6 @@
   <compounddef id="d7/d4a/population_8cpp" kind="file" language="C++">
     <compoundname>population.cpp</compoundname>
     <includes refid="d2/d76/population_8h" local="yes">population.h</includes>
-    <includedby refid="d4/d93/bind__engines_8h" local="yes">bind_engines.h</includedby>
-    <includedby refid="da/d67/bind__selection_8h" local="yes">bind_selection.h</includedby>
-    <includedby refid="d8/df7/bind__variation_8h" local="yes">bind_variation.h</includedby>
     <incdepgraph>
       <node id="50">
         <label>../../thirdparty/tree.hh</label>
@@ -467,48 +464,6 @@
         <label>vector</label>
       </node>
     </incdepgraph>
-    <invincdepgraph>
-      <node id="3">
-        <label>bind_engines.cpp</label>
-        <link refid="d1/df0/bind__engines_8cpp"/>
-      </node>
-      <node id="2">
-        <label>bind_engines.h</label>
-        <link refid="d4/d93/bind__engines_8h"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>bind_selection.cpp</label>
-        <link refid="d7/dce/bind__selection_8cpp"/>
-      </node>
-      <node id="4">
-        <label>bind_selection.h</label>
-        <link refid="da/d67/bind__selection_8h"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>bind_variation.cpp</label>
-        <link refid="df/d41/bind__variation_8cpp"/>
-      </node>
-      <node id="6">
-        <label>bind_variation.h</label>
-        <link refid="d8/df7/bind__variation_8h"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="1">
-        <label>population.cpp</label>
-        <link refid="d7/d4a/population_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-    </invincdepgraph>
     <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
     <innernamespace refid="dd/d56/namespaceBrush_1_1Pop">Brush::Pop</innernamespace>
     <briefdescription>
@@ -729,7 +684,7 @@
 <codeline lineno="212"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;ProgramType<sp/>T&gt;</highlight></codeline>
 <codeline lineno="213" refid="da/da3/classBrush_1_1Pop_1_1Population_1a92f851fffa86280c36cd54a8f670466e" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a92f851fffa86280c36cd54a8f670466e" kindref="member">Population&lt;T&gt;::print_models</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>sep)</highlight></codeline>
 <codeline lineno="214"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>rename<sp/>it.<sp/>This<sp/>function<sp/>does<sp/>not<sp/>print<sp/>anything,<sp/>just<sp/>returns<sp/>a<sp/>string</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>rename<sp/>it.<sp/>This<sp/>function<sp/>returns<sp/>a<sp/>string;<sp/>it<sp/>does<sp/>not<sp/>print.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>output<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="217"><highlight class="normal"></highlight></codeline>
 <codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j=0;<sp/>j&lt;<ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a0a1f364040ce0de2ab17ae82e0faac76" kindref="member">num_islands</ref>;<sp/>++j)</highlight></codeline>
@@ -963,6 +918,11 @@
 <codeline lineno="446"><highlight class="normal"></highlight></codeline>
 <codeline lineno="447"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Pop</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="448"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="449"><highlight class="normal"></highlight></codeline>
+<codeline lineno="450"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Brush::Pop::Population&lt;Brush::ProgramType::Regressor&gt;</ref>;</highlight></codeline>
+<codeline lineno="451"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Brush::Pop::Population&lt;Brush::ProgramType::BinaryClassifier&gt;</ref>;</highlight></codeline>
+<codeline lineno="452"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Brush::Pop::Population&lt;Brush::ProgramType::MulticlassClassifier&gt;</ref>;</highlight></codeline>
+<codeline lineno="453"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Brush::Pop::Population&lt;Brush::ProgramType::Representer&gt;</ref>;</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/pop/population.cpp"/>
   </compounddef>

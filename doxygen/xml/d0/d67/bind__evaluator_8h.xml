@@ -4,7 +4,6 @@
     <compoundname>bind_evaluator.h</compoundname>
     <includes refid="d5/d16/module_8h" local="yes">module.h</includes>
     <includes refid="d3/df9/evaluation_8h" local="yes">../eval/evaluation.h</includes>
-    <includes refid="d9/d6a/evaluation_8cpp" local="yes">../eval/evaluation.cpp</includes>
     <includedby refid="da/dff/bind__evaluator_8cpp" local="yes">bind_evaluator.cpp</includedby>
     <incdepgraph>
       <node id="54">
@@ -16,8 +15,6 @@
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="72" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -64,12 +61,6 @@
         <childnode refid="31" relation="include">
         </childnode>
         <childnode refid="34" relation="include">
-        </childnode>
-      </node>
-      <node id="72">
-        <label>../eval/evaluation.cpp</label>
-        <link refid="d9/d6a/evaluation_8cpp"/>
-        <childnode refid="9" relation="include">
         </childnode>
       </node>
       <node id="9">
@@ -566,7 +557,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/bindings/bind_evaluator.h" line="9" column="1" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_evaluator.h" bodystart="9" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/bindings/bind_evaluator.h" line="8" column="1" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_evaluator.h" bodystart="8" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="func">
@@ -596,7 +587,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/bindings/bind_evaluator.h" line="12" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_evaluator.h" bodystart="12" bodyend="21"/>
+        <location file="/home/runner/work/brush/brush/src/bindings/bind_evaluator.h" line="11" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_evaluator.h" bodystart="11" bodyend="20"/>
         <referencedby refid="da/dff/bind__evaluator_8cpp_1a42c2075ccc50fcb91a164963bb092be2" compoundref="da/dff/bind__evaluator_8cpp" startline="10" endline="16">bind_evaluators</referencedby>
       </memberdef>
     </sectiondef>
@@ -607,25 +598,24 @@
     <programlisting>
 <codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d5/d16/module_8h" kindref="compound">module.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d3/df9/evaluation_8h" kindref="compound">../eval/evaluation.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d9/d6a/evaluation_8cpp" kindref="compound">../eval/evaluation.cpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">py<sp/>=<sp/>pybind11;</highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">br</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref>;</highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="d3/d9b/namespacenlohmann" kindref="compound">nl</ref><sp/>=<sp/><ref refid="d3/d9b/namespacenlohmann" kindref="compound">nlohmann</ref>;</highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9" refid="d0/d67/bind__evaluator_8h_1ae2f679a1605bd79ee7983e55e31d6d2e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1ae2f679a1605bd79ee7983e55e31d6d2e" kindref="member">stream_redirect</ref><sp/>=<sp/>py::call_guard&lt;py::scoped_ostream_redirect,<sp/>py::scoped_estream_redirect&gt;;</highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;br::ProgramType<sp/>T&gt;</highlight></codeline>
-<codeline lineno="12" refid="d0/d67/bind__evaluator_8h_1a4a078fc3865f8ccc54a84f4a75c4fceb" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d67/bind__evaluator_8h_1a4a078fc3865f8ccc54a84f4a75c4fceb" kindref="member">bind_evaluator</ref>(py::module&amp;<sp/>m,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>name)</highlight></codeline>
-<codeline lineno="13"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Class<sp/>=<sp/><ref refid="d1/de5/classBrush_1_1Eval_1_1Evaluation" kindref="compound">br::Eval::Evaluation&lt;T&gt;</ref>;</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>will<sp/>this<sp/>part<sp/>of<sp/>c++<sp/>be<sp/>exposed?</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>py::class_&lt;Class&gt;<sp/>eval(m,<sp/>name.data()<sp/>);<sp/></highlight></codeline>
-<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>eval.def(py::init&lt;&gt;())<sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;assign_fit&quot;</highlight><highlight class="normal">,<sp/>&amp;Class::assign_fit)</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;scorer&quot;</highlight><highlight class="normal">,<sp/>&amp;Class::get_scorer,<sp/>&amp;Class::set_scorer)</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;</highlight></codeline>
-<codeline lineno="21"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">py<sp/>=<sp/>pybind11;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">br</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref>;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="d3/d9b/namespacenlohmann" kindref="compound">nl</ref><sp/>=<sp/><ref refid="d3/d9b/namespacenlohmann" kindref="compound">nlohmann</ref>;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="d0/d67/bind__evaluator_8h_1ae2f679a1605bd79ee7983e55e31d6d2e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1ae2f679a1605bd79ee7983e55e31d6d2e" kindref="member">stream_redirect</ref><sp/>=<sp/>py::call_guard&lt;py::scoped_ostream_redirect,<sp/>py::scoped_estream_redirect&gt;;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;br::ProgramType<sp/>T&gt;</highlight></codeline>
+<codeline lineno="11" refid="d0/d67/bind__evaluator_8h_1a4a078fc3865f8ccc54a84f4a75c4fceb" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d67/bind__evaluator_8h_1a4a078fc3865f8ccc54a84f4a75c4fceb" kindref="member">bind_evaluator</ref>(py::module&amp;<sp/>m,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>name)</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Class<sp/>=<sp/><ref refid="d1/de5/classBrush_1_1Eval_1_1Evaluation" kindref="compound">br::Eval::Evaluation&lt;T&gt;</ref>;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>will<sp/>this<sp/>part<sp/>of<sp/>c++<sp/>be<sp/>exposed?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>py::class_&lt;Class&gt;<sp/>eval(m,<sp/>name.data()<sp/>);<sp/></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>eval.def(py::init&lt;&gt;())<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;assign_fit&quot;</highlight><highlight class="normal">,<sp/>&amp;Class::assign_fit)</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;scorer&quot;</highlight><highlight class="normal">,<sp/>&amp;Class::get_scorer,<sp/>&amp;Class::set_scorer)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/bindings/bind_evaluator.h"/>
   </compounddef>

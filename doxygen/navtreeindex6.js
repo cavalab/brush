@@ -1,5 +1,11 @@
 var NAVTREEINDEX6 =
 {
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa0654cb12a16531bdd8773699ea2e60e":[0,0,0,0,2,55],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa0654cb12a16531bdd8773699ea2e60e":[2,0,0,0,2,55],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa298e6d97eb7bbc8a4eadcda159505ba":[0,0,0,0,2,29],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa298e6d97eb7bbc8a4eadcda159505ba":[2,0,0,0,2,29],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa7a7bb5dcd813763c1cc2b52c77dc887":[0,0,0,0,2,2],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa7a7bb5dcd813763c1cc2b52c77dc887":[2,0,0,0,2,2],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa833203e5097827e5e395c9bd21d4be7":[0,0,0,0,2,1],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa833203e5097827e5e395c9bd21d4be7":[2,0,0,0,2,1],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aadc2ceb5da1f1d988c689e40b4b35cc6":[0,0,0,0,2,18],
@@ -243,11 +249,5 @@ var NAVTREEINDEX6 =
 "d8/d5c/functions_8h.html#a6a33354c51ab1e4986b2a222aac825a7":[3,0,0,6,3,45],
 "d8/d5c/functions_8h_source.html":[3,0,0,6,3],
 "d8/d80/bind__fitness_8cpp.html":[3,0,0,1,5],
-"d8/d80/bind__fitness_8cpp.html#aa1d69f4eced5e5a4bfde7cac15a1b4d4":[3,0,0,1,5,1],
-"d8/d80/bind__fitness_8cpp.html#ae2f679a1605bd79ee7983e55e31d6d2e":[3,0,0,1,5,0],
-"d8/d80/bind__fitness_8cpp_source.html":[3,0,0,1,5],
-"d8/d8b/signatures_8h.html":[3,0,0,6,10],
-"d8/d8b/signatures_8h_source.html":[3,0,0,6,10],
-"d8/d9c/structBrush_1_1Function_3_01NodeType_1_1Sum_01_4.html":[0,0,0,91],
-"d8/d9c/structBrush_1_1Function_3_01NodeType_1_1Sum_01_4.html":[2,0,0,88]
+"d8/d80/bind__fitness_8cpp.html#aa1d69f4eced5e5a4bfde7cac15a1b4d4":[3,0,0,1,5,1]
 };

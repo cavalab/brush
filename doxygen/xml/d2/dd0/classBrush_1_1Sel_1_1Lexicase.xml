@@ -11,6 +11,23 @@
         <defname>T</defname>
       </param>
     </templateparamlist>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1afc232349270b95ae1c8a33ec92109435" prot="private" static="no" mutable="no">
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;</type>
+        <definition>vector&lt;size_t&gt; Brush::Sel::Lexicase&lt; T &gt;::lexicase_pool</definition>
+        <argsstring></argsstring>
+        <name>lexicase_pool</name>
+        <qualifiedname>Brush::Sel::Lexicase::lexicase_pool</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/selection/lexicase.h" line="38" column="16" bodyfile="/home/runner/work/brush/brush/src/selection/lexicase.h" bodystart="38" bodyend="-1"/>
+        <referencedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1abe3a0d23ddf71e680215942aeeff5253" compoundref="d3/d12/lexicase_8h" startline="35" endline="35">Brush::Sel::Lexicase&lt; T &gt;::set_lexicase_pool</referencedby>
+      </memberdef>
+    </sectiondef>
     <sectiondef kind="public-func">
       <memberdef kind="function" id="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1a1d24f31743b9b76bf8c614b3ac6e1d97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -114,6 +131,25 @@
         <location file="/home/runner/work/brush/brush/src/selection/lexicase.h" line="32" column="12" bodyfile="/home/runner/work/brush/brush/src/selection/lexicase.cpp" bodystart="184" bodyend="190"/>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
       </memberdef>
+      <memberdef kind="function" id="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1abe3a0d23ddf71e680215942aeeff5253" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Brush::Sel::Lexicase&lt; T &gt;::set_lexicase_pool</definition>
+        <argsstring>(vector&lt; size_t &gt; s)</argsstring>
+        <name>set_lexicase_pool</name>
+        <qualifiedname>Brush::Sel::Lexicase::set_lexicase_pool</qualifiedname>
+        <param>
+          <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/selection/lexicase.h" line="35" column="10" bodyfile="/home/runner/work/brush/brush/src/selection/lexicase.h" bodystart="35" bodyend="35"/>
+        <references refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1afc232349270b95ae1c8a33ec92109435" compoundref="d3/d12/lexicase_8h" startline="38">Brush::Sel::Lexicase&lt; T &gt;::lexicase_pool</references>
+      </memberdef>
     </sectiondef>
     <briefdescription>
 <para><ref refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase" kindref="compound">Lexicase</ref> selection operator. </para>
@@ -138,6 +174,9 @@
         <link refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>lexicase_pool</edgelabel>
+        </childnode>
       </node>
       <node id="2">
         <label>Brush::Sel::SelectionOperator&lt; T &gt;</label>
@@ -154,12 +193,17 @@
         <childnode refid="4" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="5">
+        <label>std::vector&lt; size_t &gt;</label>
+      </node>
     </collaborationgraph>
-    <location file="/home/runner/work/brush/brush/src/selection/lexicase.h" line="21" column="1" bodyfile="/home/runner/work/brush/brush/src/selection/lexicase.h" bodystart="22" bodyend="34"/>
+    <location file="/home/runner/work/brush/brush/src/selection/lexicase.h" line="21" column="1" bodyfile="/home/runner/work/brush/brush/src/selection/lexicase.h" bodystart="22" bodyend="39"/>
     <listofallmembers>
       <member refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1a1d24f31743b9b76bf8c614b3ac6e1d97" prot="public" virt="non-virtual"><scope>Brush::Sel::Lexicase</scope><name>Lexicase</name></member>
+      <member refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1afc232349270b95ae1c8a33ec92109435" prot="private" virt="non-virtual"><scope>Brush::Sel::Lexicase</scope><name>lexicase_pool</name></member>
       <member refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1a66068ecfa22feb22c5c135caa7c2eb8d" prot="public" virt="non-virtual"><scope>Brush::Sel::Lexicase</scope><name>name</name></member>
       <member refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1ab9f17cd2c4452b05c96a17bb6c105fc2" prot="public" virt="virtual"><scope>Brush::Sel::Lexicase</scope><name>select</name></member>
+      <member refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1abe3a0d23ddf71e680215942aeeff5253" prot="public" virt="non-virtual"><scope>Brush::Sel::Lexicase</scope><name>set_lexicase_pool</name></member>
       <member refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1a612a07491346369b748198d11ae43675" prot="public" virt="non-virtual"><scope>Brush::Sel::Lexicase</scope><name>survival</name></member>
       <member refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1a87b97fde62b47d067ee9b4ac5b60c6a3" prot="public" virt="virtual"><scope>Brush::Sel::Lexicase</scope><name>survive</name></member>
       <member refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1a1df9142fbfc3995866d93f3cad5b6fd0" prot="public" virt="non-virtual"><scope>Brush::Sel::Lexicase</scope><name>~Lexicase</name></member>

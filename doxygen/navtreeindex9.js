@@ -1,5 +1,11 @@
 var NAVTREEINDEX9 =
 {
+"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a44a7325acd05e13e1ec3a2b46fc8d407":[2,0,0,115,23],
+"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a89bc8eb841fd2d39b0878f2486f8af28":[0,0,0,118,6],
+"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a89bc8eb841fd2d39b0878f2486f8af28":[2,0,0,115,6],
+"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#abb1f5cfaa4ad8540ef48a3ce6322487e":[0,0,0,118,8],
+"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#abb1f5cfaa4ad8540ef48a3ce6322487e":[2,0,0,115,8],
+"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#abc17ddcd149126c4b4f18f3c20385ed7":[0,0,0,118,1],
 "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#abc17ddcd149126c4b4f18f3c20385ed7":[2,0,0,115,1],
 "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#ac4166892131ec208bf921ae8bd520b2d":[0,0,0,118,2],
 "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#ac4166892131ec208bf921ae8bd520b2d":[2,0,0,115,2],
@@ -243,11 +249,5 @@ var NAVTREEINDEX9 =
 "dc/d31/structBrush_1_1Operator.html#a6918e9c614dbbb417f98fe2b95199fea":[0,0,0,118,0],
 "dc/d31/structBrush_1_1Operator.html#a6918e9c614dbbb417f98fe2b95199fea":[2,0,0,111,0],
 "dc/d31/structBrush_1_1Operator.html#a6918e9c614dbbb417f98fe2b95199fea":[2,0,0,112,0],
-"dc/d31/structBrush_1_1Operator.html#a6918e9c614dbbb417f98fe2b95199fea":[2,0,0,113,0],
-"dc/d31/structBrush_1_1Operator.html#a6918e9c614dbbb417f98fe2b95199fea":[2,0,0,114,0],
-"dc/d31/structBrush_1_1Operator.html#a6918e9c614dbbb417f98fe2b95199fea":[2,0,0,115,0],
-"dc/d31/structBrush_1_1Operator.html#a9088496bd47b051080700b53f3cddd80":[0,0,0,114,9],
-"dc/d31/structBrush_1_1Operator.html#a9088496bd47b051080700b53f3cddd80":[0,0,0,115,12],
-"dc/d31/structBrush_1_1Operator.html#a9088496bd47b051080700b53f3cddd80":[0,0,0,116,13],
-"dc/d31/structBrush_1_1Operator.html#a9088496bd47b051080700b53f3cddd80":[0,0,0,117,14]
+"dc/d31/structBrush_1_1Operator.html#a6918e9c614dbbb417f98fe2b95199fea":[2,0,0,113,0]
 };

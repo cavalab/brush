@@ -315,8 +315,6 @@
       <node id="11">
         <label>engine.cpp</label>
         <link refid="da/d5c/engine_8cpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
       </node>
       <node id="10">
         <label>engine.h</label>
@@ -329,10 +327,6 @@
       <node id="33">
         <label>evaluation.cpp</label>
         <link refid="d9/d6a/evaluation_8cpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
       </node>
       <node id="30">
         <label>evaluation.h</label>
@@ -351,10 +345,6 @@
       <node id="34">
         <label>individual.cpp</label>
         <link refid="db/df6/individual_8cpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
       </node>
       <node id="25">
         <label>individual.h</label>
@@ -393,8 +383,6 @@
       <node id="27">
         <label>archive.cpp</label>
         <link refid="d7/d05/archive_8cpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
       </node>
       <node id="26">
         <label>archive.h</label>
@@ -409,12 +397,6 @@
       <node id="38">
         <label>population.cpp</label>
         <link refid="d7/d4a/population_8cpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="36" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
       </node>
       <node id="35">
         <label>population.h</label>
@@ -457,10 +439,6 @@
       <node id="41">
         <label>lexicase.cpp</label>
         <link refid="d8/dac/lexicase_8cpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="36" relation="include">
-        </childnode>
       </node>
       <node id="40">
         <label>lexicase.h</label>
@@ -477,10 +455,6 @@
       <node id="45">
         <label>nsga2.cpp</label>
         <link refid="de/d0d/nsga2_8cpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="36" relation="include">
-        </childnode>
       </node>
       <node id="44">
         <label>nsga2.h</label>
@@ -499,10 +473,6 @@
       <node id="43">
         <label>selection.cpp</label>
         <link refid="df/dbb/selection_8cpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="36" relation="include">
-        </childnode>
       </node>
       <node id="42">
         <label>selection.h</label>
@@ -519,10 +489,6 @@
       <node id="46">
         <label>selection_operator.cpp</label>
         <link refid="d4/db2/selection__operator_8cpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="36" relation="include">
-        </childnode>
       </node>
       <node id="39">
         <label>selection_operator.h</label>
@@ -543,8 +509,6 @@
       <node id="24">
         <label>constants.cpp</label>
         <link refid="d6/d80/constants_8cpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
       </node>
       <node id="23">
         <label>constants.h</label>
@@ -559,8 +523,6 @@
       <node id="48">
         <label>inexact.cpp</label>
         <link refid="de/d79/inexact_8cpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
       </node>
       <node id="47">
         <label>inexact.h</label>
@@ -597,10 +559,6 @@
       <node id="12">
         <label>variation.cpp</label>
         <link refid="d1/d64/variation_8cpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
       </node>
       <node id="9">
         <label>variation.h</label>
@@ -662,7 +620,7 @@
 <codeline lineno="38" refid="de/deb/structBrush_1_1Parameters_1aeec98494c11bc2760b7feedf56741ff7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aeec98494c11bc2760b7feedf56741ff7" kindref="member">max_size</ref><sp/><sp/>=<sp/>50;</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
 <codeline lineno="40" refid="de/deb/structBrush_1_1Parameters_1a110a7c46dffa83836fb155a566219292" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a110a7c46dffa83836fb155a566219292" kindref="member">objectives</ref>{</highlight><highlight class="stringliteral">&quot;scorer&quot;</highlight><highlight class="normal">,</highlight><highlight class="stringliteral">&quot;linear_complexity&quot;</highlight><highlight class="normal">};<sp/></highlight><highlight class="comment">//<sp/>scorer<sp/>should<sp/>be<sp/>generic<sp/>and<sp/>deducted<sp/>based<sp/>on<sp/>mode</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="41" refid="de/deb/structBrush_1_1Parameters_1a6f3ad01c68279966458cf707b26ef3e7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a6f3ad01c68279966458cf707b26ef3e7" kindref="member">bandit</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;thompson&quot;</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>should<sp/>I<sp/>rename<sp/>dummy?<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="de/deb/structBrush_1_1Parameters_1a6f3ad01c68279966458cf707b26ef3e7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a6f3ad01c68279966458cf707b26ef3e7" kindref="member">bandit</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;thompson&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="42" refid="de/deb/structBrush_1_1Parameters_1a187fd63755c90c13f4b3723becd9bdd8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a187fd63755c90c13f4b3723becd9bdd8" kindref="member">sel</ref><sp/><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;lexicase&quot;</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">//selection<sp/>method</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="43" refid="de/deb/structBrush_1_1Parameters_1a4ff98035fbd50487abb5946504e8e4d6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a4ff98035fbd50487abb5946504e8e4d6" kindref="member">surv</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;nsga2&quot;</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">//survival<sp/>method</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="44" refid="de/deb/structBrush_1_1Parameters_1a6ad3da8ee5919f7f8d562348f99d9e36" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::unordered_map&lt;string,<sp/>float&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a6ad3da8ee5919f7f8d562348f99d9e36" kindref="member">functions</ref>;</highlight></codeline>

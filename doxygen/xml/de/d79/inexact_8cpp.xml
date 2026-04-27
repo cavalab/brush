@@ -4,7 +4,6 @@
     <compoundname>inexact.cpp</compoundname>
     <includes refid="d1/db6/inexact_8h" local="yes">inexact.h</includes>
     <includes refid="d2/da9/rnd_8h" local="yes">../util/rnd.h</includes>
-    <includedby refid="d8/df7/bind__variation_8h" local="yes">bind_variation.h</includedby>
     <incdepgraph>
       <node id="49">
         <label>../../thirdparty/tree.hh</label>
@@ -452,24 +451,6 @@
         <label>vector</label>
       </node>
     </incdepgraph>
-    <invincdepgraph>
-      <node id="3">
-        <label>bind_variation.cpp</label>
-        <link refid="df/d41/bind__variation_8cpp"/>
-      </node>
-      <node id="2">
-        <label>bind_variation.h</label>
-        <link refid="d8/df7/bind__variation_8h"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="1">
-        <label>inexact.cpp</label>
-        <link refid="de/d79/inexact_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-    </invincdepgraph>
     <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
     <innernamespace refid="df/d29/namespaceBrush_1_1Simpl">Brush::Simpl</innernamespace>
     <sectiondef kind="var">

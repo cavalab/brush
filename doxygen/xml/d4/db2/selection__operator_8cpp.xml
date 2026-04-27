@@ -3,8 +3,6 @@
   <compounddef id="d4/db2/selection__operator_8cpp" kind="file" language="C++">
     <compoundname>selection_operator.cpp</compoundname>
     <includes refid="dd/d5d/selection__operator_8h" local="yes">selection_operator.h</includes>
-    <includedby refid="d4/d93/bind__engines_8h" local="yes">bind_engines.h</includedby>
-    <includedby refid="da/d67/bind__selection_8h" local="yes">bind_selection.h</includedby>
     <incdepgraph>
       <node id="51">
         <label>../../thirdparty/tree.hh</label>
@@ -472,36 +470,6 @@
         <label>vector</label>
       </node>
     </incdepgraph>
-    <invincdepgraph>
-      <node id="3">
-        <label>bind_engines.cpp</label>
-        <link refid="d1/df0/bind__engines_8cpp"/>
-      </node>
-      <node id="2">
-        <label>bind_engines.h</label>
-        <link refid="d4/d93/bind__engines_8h"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>bind_selection.cpp</label>
-        <link refid="d7/dce/bind__selection_8cpp"/>
-      </node>
-      <node id="4">
-        <label>bind_selection.h</label>
-        <link refid="da/d67/bind__selection_8h"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="1">
-        <label>selection_operator.cpp</label>
-        <link refid="d4/db2/selection__operator_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-    </invincdepgraph>
     <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
     <innernamespace refid="d9/df6/namespaceBrush_1_1Sel">Brush::Sel</innernamespace>
     <briefdescription>
@@ -538,6 +506,11 @@
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>selection</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator" kindref="compound">Brush::Sel::SelectionOperator&lt;Brush::ProgramType::Regressor&gt;</ref>;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator" kindref="compound">Brush::Sel::SelectionOperator&lt;Brush::ProgramType::BinaryClassifier&gt;</ref>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator" kindref="compound">Brush::Sel::SelectionOperator&lt;Brush::ProgramType::MulticlassClassifier&gt;</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator" kindref="compound">Brush::Sel::SelectionOperator&lt;Brush::ProgramType::Representer&gt;</ref>;</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/selection/selection_operator.cpp"/>
   </compounddef>

@@ -233,8 +233,6 @@
       <node id="17">
         <label>engine.cpp</label>
         <link refid="da/d5c/engine_8cpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
       </node>
       <node id="16">
         <label>engine.h</label>
@@ -247,10 +245,6 @@
       <node id="40">
         <label>evaluation.cpp</label>
         <link refid="d9/d6a/evaluation_8cpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="38" relation="include">
-        </childnode>
       </node>
       <node id="37">
         <label>evaluation.h</label>
@@ -303,10 +297,6 @@
       <node id="41">
         <label>individual.cpp</label>
         <link refid="db/df6/individual_8cpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
       </node>
       <node id="32">
         <label>individual.h</label>
@@ -345,8 +335,6 @@
       <node id="34">
         <label>archive.cpp</label>
         <link refid="d7/d05/archive_8cpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
       </node>
       <node id="33">
         <label>archive.h</label>
@@ -361,12 +349,6 @@
       <node id="45">
         <label>population.cpp</label>
         <link refid="d7/d4a/population_8cpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
       </node>
       <node id="42">
         <label>population.h</label>
@@ -499,10 +481,6 @@
       <node id="48">
         <label>lexicase.cpp</label>
         <link refid="d8/dac/lexicase_8cpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
       </node>
       <node id="47">
         <label>lexicase.h</label>
@@ -519,10 +497,6 @@
       <node id="52">
         <label>nsga2.cpp</label>
         <link refid="de/d0d/nsga2_8cpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
       </node>
       <node id="51">
         <label>nsga2.h</label>
@@ -541,10 +515,6 @@
       <node id="50">
         <label>selection.cpp</label>
         <link refid="df/dbb/selection_8cpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
       </node>
       <node id="49">
         <label>selection.h</label>
@@ -561,10 +531,6 @@
       <node id="53">
         <label>selection_operator.cpp</label>
         <link refid="d4/db2/selection__operator_8cpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
       </node>
       <node id="46">
         <label>selection_operator.h</label>
@@ -585,8 +551,6 @@
       <node id="31">
         <label>constants.cpp</label>
         <link refid="d6/d80/constants_8cpp"/>
-        <childnode refid="13" relation="include">
-        </childnode>
       </node>
       <node id="30">
         <label>constants.h</label>
@@ -601,8 +565,6 @@
       <node id="55">
         <label>inexact.cpp</label>
         <link refid="de/d79/inexact_8cpp"/>
-        <childnode refid="13" relation="include">
-        </childnode>
       </node>
       <node id="54">
         <label>inexact.h</label>
@@ -715,10 +677,6 @@
       <node id="18">
         <label>variation.cpp</label>
         <link refid="d1/d64/variation_8cpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
       </node>
       <node id="15">
         <label>variation.h</label>
@@ -754,27 +712,29 @@
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a626c437dc8fb6bcac68f2dcae64c00cc" compoundref="d9/d99/search__space_8h" startline="228" endline="237">Brush::SearchSpace::check</referencedby>
         <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1a82683b7af172813488ef4db81905de67" compoundref="da/dc9/data_8cpp" startline="71" endline="125">Brush::Data::check_type</referencedby>
         <referencedby refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a9422ddb2a936a30f184747659cfc3ec2" compoundref="dd/d4e/bandit__operator_8cpp" startline="37" endline="46">Brush::MAB::BanditOperator::choose</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="462" endline="513">Brush::Data::Dataset::copy_and_make_features</referencedby>
-        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="304" endline="392">Brush::from_json</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="458" endline="509">Brush::Data::Dataset::copy_and_make_features</referencedby>
+        <referencedby refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a2c0c9397ea849fa0d267e15f264faa09" compoundref="d7/d01/bandit_8cpp" startline="50" endline="54">Brush::MAB::Bandit::ensure_bandit_set</referencedby>
+        <referencedby refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1ae195a1f5837279cdad368eeb135bb9e1" compoundref="d7/de0/operator_8h" startline="308" endline="313">Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::eval</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="304" endline="390">Brush::from_json</referencedby>
         <referencedby refid="dc/d5c/namespaceBrush_1a7d1315460dd7c6eb76e3ace99d4aad03" compoundref="da/d48/search__space_8cpp" startline="51" endline="171">Brush::generate_terminals</referencedby>
         <referencedby refid="d3/da8/structBrush_1_1DispatchTable_1a54e201466bd6f10248dea9ef7f8b60b3" compoundref="df/d61/dispatch__table_8h" startline="160" endline="196">Brush::DispatchTable&lt; Fit &gt;::Get</referencedby>
-        <referencedby refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a936cf115e4d95aed91817fcf1bb9c084" compoundref="d7/de0/operator_8h" startline="328" endline="340">Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;::get</referencedby>
-        <referencedby refid="d7/da9/namespaceBrush_1_1Split_1acd04486b86f474e72160c903df755c7d" compoundref="d7/de0/operator_8h" startline="157" endline="172">Brush::Split::get_best_thresholds</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2923e87bfc5d20fc3b45b9f72ca71de2" compoundref="d2/dbd/data_8h" startline="238" endline="258">Brush::Data::Dataset::get_feature_type</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a52324d5e7201e2150b60811f8f399844" compoundref="da/dc9/data_8cpp" startline="217" endline="245">Brush::Data::Dataset::get_feature_types</referencedby>
-        <referencedby refid="d7/d6b/namespaceBrush_1_1util_1a2ccf781c58dfb5c3363b0a270381c87e" compoundref="d7/de0/operator_8h" startline="84" endline="99">Brush::util::get_weight</referencedby>
+        <referencedby refid="dc/d31/structBrush_1_1Operator_1aa4adc47d9cddb762f26e38747773bba6" compoundref="d7/de0/operator_8h" startline="131" endline="159">Brush::Operator&lt; NT, S, Fit, E &gt;::get_kids</referencedby>
+        <referencedby refid="d7/d6b/namespaceBrush_1_1util_1a2ccf781c58dfb5c3363b0a270381c87e" compoundref="d7/de0/operator_8h" startline="64" endline="79">Brush::util::get_weight</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a44ebc4ada574ea7a3a843ae74810aac9" compoundref="d2/dbd/data_8h" startline="212" endline="217">Brush::Data::Dataset::get_X</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="382">Brush::Data::Dataset::init</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="378">Brush::Data::Dataset::init</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" compoundref="da/d5c/engine_8cpp" startline="17" endline="34">Brush::Engine&lt; PT::Regressor &gt;::init</referencedby>
         <referencedby refid="dc/d5c/namespaceBrush_1a8f1ed90f7962fef5764e7be14845aa34" compoundref="d7/d70/node_8cpp" startline="142" endline="302">Brush::init_node_with_default_signature</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1ad193aced6ffa6d3587f0f390d9ed0415" compoundref="d7/d4a/population_8cpp" startline="117" endline="134">Brush::Pop::Population&lt; T &gt;::load</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9e841d2f28f1466b82428dddba49227" compoundref="da/dc9/data_8cpp" startline="391" endline="459">Brush::Data::Dataset::make_features</referencedby>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1af8a04b3abeea0f0f9e5b6e358aa65c09" compoundref="d1/d64/variation_8cpp" startline="582" endline="694">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9e841d2f28f1466b82428dddba49227" compoundref="da/dc9/data_8cpp" startline="387" endline="455">Brush::Data::Dataset::make_features</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1af8a04b3abeea0f0f9e5b6e358aa65c09" compoundref="d1/d64/variation_8cpp" startline="636" endline="773">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a86f779c55c96ff7182b4e649f87fbf24" compoundref="d2/dbd/data_8h" startline="262" endline="267">Brush::Data::Dataset::operator[]</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a149319e12e39ef62533b6240ad5359c6" compoundref="d2/d76/population_8h" startline="55" endline="61">Brush::Pop::Population&lt; T &gt;::operator[]</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a281c5ef097d5fd90efba598c04826a50" compoundref="d2/d76/population_8h" startline="48" endline="54">Brush::Pop::Population&lt; T &gt;::operator[]</referencedby>
-        <referencedby refid="db/d88/structBrush_1_1Program_1a68b5b3a1aedf1dfd2769dbba3a01a2ec" compoundref="d1/dea/program_8h" startline="215" endline="221">Brush::Program&lt; PT::Regressor &gt;::predict</referencedby>
-        <referencedby refid="db/d88/structBrush_1_1Program_1a6a1237f15d7b9cc1e825e1a3213df58e" compoundref="d1/dea/program_8h" startline="192" endline="198">Brush::Program&lt; PT::Regressor &gt;::predict_with_weights</referencedby>
-        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1aa82c9f1cc1b96e7424b0ac250e4c5c91" compoundref="da/d48/search__space_8cpp" startline="317" endline="470">Brush::SearchSpace::PTC2</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a68b5b3a1aedf1dfd2769dbba3a01a2ec" compoundref="d1/dea/program_8h" startline="214" endline="220">Brush::Program&lt; PT::Regressor &gt;::predict</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a6a1237f15d7b9cc1e825e1a3213df58e" compoundref="d1/dea/program_8h" startline="191" endline="197">Brush::Program&lt; PT::Regressor &gt;::predict_with_weights</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1aa82c9f1cc1b96e7424b0ac250e4c5c91" compoundref="da/d48/search__space_8cpp" startline="312" endline="465">Brush::SearchSpace::PTC2</referencedby>
         <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1ad4320ca3604e146155ccc7c55ea9006c" compoundref="d5/d5a/io_8cpp" startline="14" endline="88">Brush::Data::read_csv</referencedby>
         <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="422" endline="689">Brush::Engine&lt; T &gt;::run</referencedby>
         <referencedby refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1afe6a2789a3e73970c443b7a05b05c6fa" compoundref="dd/d4e/bandit__operator_8cpp" startline="25" endline="35">Brush::MAB::BanditOperator::sample_probs</referencedby>
@@ -782,14 +742,14 @@
         <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a3dcd973153e72d4c3118058a4c753f06" compoundref="da/d3b/scorer_8h" startline="181" endline="200">Brush::Eval::Scorer&lt; P &gt;::score</referencedby>
         <referencedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1ab9f17cd2c4452b05c96a17bb6c105fc2" compoundref="d8/dac/lexicase_8cpp" startline="18" endline="181">Brush::Sel::Lexicase&lt; T &gt;::select</referencedby>
         <referencedby refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1a12d713c7ef31e9df5974ceb6d8708074" compoundref="d4/db2/selection__operator_8cpp" startline="13" endline="18">Brush::Sel::SelectionOperator&lt; T &gt;::select</referencedby>
-        <referencedby refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1acb35b5e93e90f30dd09e3266ae81e8ab" compoundref="d7/d01/bandit_8cpp" startline="37" endline="49">Brush::MAB::Bandit::set_bandit</referencedby>
+        <referencedby refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1acb35b5e93e90f30dd09e3266ae81e8ab" compoundref="d7/d01/bandit_8cpp" startline="36" endline="48">Brush::MAB::Bandit::set_bandit</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1aec1f852fab78eb777b37193cc34022ec" compoundref="da/d33/params_8h" startline="210" endline="218">Brush::Parameters::set_class_weights</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a2601b9ce7184a0bc7b58efe8f477e178" compoundref="da/d33/params_8h" startline="191" endline="209">Brush::Parameters::set_n_classes</referencedby>
         <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ab8833e1b2487a8b1260e10c8b52e7c04" compoundref="df/dbb/selection_8cpp" startline="30" endline="39">Brush::Sel::Selection&lt; T &gt;::set_operator</referencedby>
         <referencedby refid="d0/d75/classBrush_1_1Engine_1a5f0c0926d9aa939e69833211d182e881" compoundref="da/d5c/engine_8cpp" startline="331" endline="346">Brush::Engine&lt; T &gt;::set_population</referencedby>
         <referencedby refid="d0/d75/classBrush_1_1Engine_1ae8b79f5ffa6323af3e7287c0a6005bec" compoundref="da/d5c/engine_8cpp" startline="305" endline="328">Brush::Engine&lt; T &gt;::set_population_from_json</referencedby>
         <referencedby refid="d0/d75/classBrush_1_1Engine_1ae8b79f5ffa6323af3e7287c0a6005bec" compoundref="da/d5c/engine_8cpp" startline="305" endline="328">Brush::Engine&lt; PT::Regressor &gt;::set_population_from_json</referencedby>
-        <referencedby refid="db/d88/structBrush_1_1Program_1a5ba9c69ade043cacb917dfb654a57834" compoundref="d1/dea/program_8h" startline="359" endline="382">Brush::Program&lt; PT::Regressor &gt;::set_weights</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a5ba9c69ade043cacb917dfb654a57834" compoundref="d1/dea/program_8h" startline="358" endline="381">Brush::Program&lt; PT::Regressor &gt;::set_weights</referencedby>
         <referencedby refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1a1967ec4e50c83b4a7890959d9f6e145f" compoundref="d2/d6f/constants_8h" startline="19" endline="79">Brush::Simpl::Constants_simplifier::simplify_tree</referencedby>
         <referencedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1a87b97fde62b47d067ee9b4ac5b60c6a3" compoundref="d8/dac/lexicase_8cpp" startline="184" endline="190">Brush::Sel::Lexicase&lt; T &gt;::survive</referencedby>
         <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a2faddb61c1d9ce38a1bc994e9a9b08eb" compoundref="de/d0d/nsga2_8cpp" startline="82" endline="155">Brush::Sel::NSGA2&lt; T &gt;::survive</referencedby>
@@ -798,7 +758,7 @@
         <referencedby refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a7330ef49ededf6ea721324756580a6aa" compoundref="dd/d4e/bandit__operator_8cpp" startline="49" endline="56">Brush::MAB::BanditOperator::update</referencedby>
         <referencedby refid="d0/d75/classBrush_1_1Engine_1ad1d21bed892c8d2132d58ec34372ec41" compoundref="da/d5c/engine_8cpp" startline="370" endline="418">Brush::Engine&lt; PT::Regressor &gt;::update_best</referencedby>
         <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a6ca34005b1a4ab87038a4c391e77d786" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="51">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="483">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="482">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="define" id="da/d41/error_8h_1a9073619c75b9b8e7c28be65e9afbcf6d" prot="public" static="no">
         <name>HANDLE_WARNING</name>

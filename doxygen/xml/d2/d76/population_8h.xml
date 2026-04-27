@@ -512,8 +512,6 @@
       <node id="9">
         <label>engine.cpp</label>
         <link refid="da/d5c/engine_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
       </node>
       <node id="8">
         <label>engine.h</label>
@@ -526,10 +524,6 @@
       <node id="13">
         <label>evaluation.cpp</label>
         <link refid="d9/d6a/evaluation_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
       </node>
       <node id="10">
         <label>evaluation.h</label>
@@ -548,8 +542,6 @@
       <node id="24">
         <label>archive.cpp</label>
         <link refid="d7/d05/archive_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
       </node>
       <node id="23">
         <label>archive.h</label>
@@ -564,12 +556,6 @@
       <node id="16">
         <label>population.cpp</label>
         <link refid="d7/d4a/population_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
       </node>
       <node id="1">
         <label>population.h</label>
@@ -594,10 +580,6 @@
       <node id="19">
         <label>lexicase.cpp</label>
         <link refid="d8/dac/lexicase_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
       </node>
       <node id="18">
         <label>lexicase.h</label>
@@ -614,10 +596,6 @@
       <node id="25">
         <label>nsga2.cpp</label>
         <link refid="de/d0d/nsga2_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
       </node>
       <node id="22">
         <label>nsga2.h</label>
@@ -636,10 +614,6 @@
       <node id="21">
         <label>selection.cpp</label>
         <link refid="df/dbb/selection_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
       </node>
       <node id="20">
         <label>selection.h</label>
@@ -656,10 +630,6 @@
       <node id="26">
         <label>selection_operator.cpp</label>
         <link refid="d4/db2/selection__operator_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
       </node>
       <node id="17">
         <label>selection_operator.h</label>
@@ -680,10 +650,6 @@
       <node id="15">
         <label>variation.cpp</label>
         <link refid="d1/d64/variation_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
       </node>
       <node id="14">
         <label>variation.h</label>
@@ -811,19 +777,24 @@
 <codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="110"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="111"><highlight class="normal"></highlight></codeline>
-<codeline lineno="112" refid="dd/d56/namespaceBrush_1_1Pop_1a382a48bbf328f68d77d55831fd7562a8" refkind="member"><highlight class="normal"><ref refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::Regressor&gt;</ref>,</highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>individuals,<sp/>island_indexes,<sp/>pop_size,<sp/>num_islands,<sp/>mig_prob,<sp/>linear_complexity);</highlight></codeline>
-<codeline lineno="114" refid="dd/d56/namespaceBrush_1_1Pop_1ad837d8c03eae8c024e75f9d5c902d03c" refkind="member"><highlight class="normal"><ref refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::BinaryClassifier&gt;</ref>,</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>individuals,<sp/>island_indexes,<sp/>pop_size,<sp/>num_islands,<sp/>mig_prob,<sp/>linear_complexity);</highlight></codeline>
-<codeline lineno="116" refid="dd/d56/namespaceBrush_1_1Pop_1ac3e730ac3a4e5804e13e89e8cb40b547" refkind="member"><highlight class="normal"><ref refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::MulticlassClassifier&gt;</ref>,</highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>individuals,<sp/>island_indexes,<sp/>pop_size,<sp/>num_islands,<sp/>mig_prob,<sp/>linear_complexity);</highlight></codeline>
-<codeline lineno="118" refid="dd/d56/namespaceBrush_1_1Pop_1ab9861a98cb4a3b202ae57a5f0d3b69df" refkind="member"><highlight class="normal"><ref refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::Representer&gt;</ref>,</highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>individuals,<sp/>island_indexes,<sp/>pop_size,<sp/>num_islands,<sp/>mig_prob,<sp/>linear_complexity);</highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="121"><highlight class="normal">}</highlight><highlight class="comment">//<sp/>Pop</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="122"><highlight class="normal">}</highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="123"><highlight class="normal"></highlight></codeline>
-<codeline lineno="124"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::Regressor&gt;</ref>;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::BinaryClassifier&gt;</ref>;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::MulticlassClassifier&gt;</ref>;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::Representer&gt;</ref>;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117" refid="dd/d56/namespaceBrush_1_1Pop_1a382a48bbf328f68d77d55831fd7562a8" refkind="member"><highlight class="normal"><ref refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::Regressor&gt;</ref>,</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>individuals,<sp/>island_indexes,<sp/>pop_size,<sp/>num_islands,<sp/>mig_prob,<sp/>linear_complexity);</highlight></codeline>
+<codeline lineno="119" refid="dd/d56/namespaceBrush_1_1Pop_1ad837d8c03eae8c024e75f9d5c902d03c" refkind="member"><highlight class="normal"><ref refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::BinaryClassifier&gt;</ref>,</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>individuals,<sp/>island_indexes,<sp/>pop_size,<sp/>num_islands,<sp/>mig_prob,<sp/>linear_complexity);</highlight></codeline>
+<codeline lineno="121" refid="dd/d56/namespaceBrush_1_1Pop_1ac3e730ac3a4e5804e13e89e8cb40b547" refkind="member"><highlight class="normal"><ref refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::MulticlassClassifier&gt;</ref>,</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>individuals,<sp/>island_indexes,<sp/>pop_size,<sp/>num_islands,<sp/>mig_prob,<sp/>linear_complexity);</highlight></codeline>
+<codeline lineno="123" refid="dd/d56/namespaceBrush_1_1Pop_1ab9861a98cb4a3b202ae57a5f0d3b69df" refkind="member"><highlight class="normal"><ref refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::Representer&gt;</ref>,</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>individuals,<sp/>island_indexes,<sp/>pop_size,<sp/>num_islands,<sp/>mig_prob,<sp/>linear_complexity);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="126"><highlight class="normal">}</highlight><highlight class="comment">//<sp/>Pop</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal">}</highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/pop/population.h"/>
   </compounddef>

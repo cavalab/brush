@@ -3,8 +3,6 @@
   <compounddef id="d9/d6a/evaluation_8cpp" kind="file" language="C++">
     <compoundname>evaluation.cpp</compoundname>
     <includes refid="d3/df9/evaluation_8h" local="yes">evaluation.h</includes>
-    <includedby refid="d4/d93/bind__engines_8h" local="yes">bind_engines.h</includedby>
-    <includedby refid="d0/d67/bind__evaluator_8h" local="yes">bind_evaluator.h</includedby>
     <incdepgraph>
       <node id="48">
         <label>../../thirdparty/tree.hh</label>
@@ -500,36 +498,6 @@
         <label>vector</label>
       </node>
     </incdepgraph>
-    <invincdepgraph>
-      <node id="3">
-        <label>bind_engines.cpp</label>
-        <link refid="d1/df0/bind__engines_8cpp"/>
-      </node>
-      <node id="2">
-        <label>bind_engines.h</label>
-        <link refid="d4/d93/bind__engines_8h"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>bind_evaluator.cpp</label>
-        <link refid="da/dff/bind__evaluator_8cpp"/>
-      </node>
-      <node id="4">
-        <label>bind_evaluator.h</label>
-        <link refid="d0/d67/bind__evaluator_8h"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="1">
-        <label>evaluation.cpp</label>
-        <link refid="d9/d6a/evaluation_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-    </invincdepgraph>
     <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
     <innernamespace refid="d5/db3/namespaceBrush_1_1Eval">Brush::Eval</innernamespace>
     <briefdescription>
@@ -661,6 +629,11 @@
 <codeline lineno="122"><highlight class="normal"></highlight></codeline>
 <codeline lineno="123"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Pop</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="124"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="d1/de5/classBrush_1_1Eval_1_1Evaluation" kindref="compound">Brush::Eval::Evaluation&lt;Brush::ProgramType::Regressor&gt;</ref>;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="d1/de5/classBrush_1_1Eval_1_1Evaluation" kindref="compound">Brush::Eval::Evaluation&lt;Brush::ProgramType::BinaryClassifier&gt;</ref>;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="d1/de5/classBrush_1_1Eval_1_1Evaluation" kindref="compound">Brush::Eval::Evaluation&lt;Brush::ProgramType::MulticlassClassifier&gt;</ref>;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="d1/de5/classBrush_1_1Eval_1_1Evaluation" kindref="compound">Brush::Eval::Evaluation&lt;Brush::ProgramType::Representer&gt;</ref>;</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/eval/evaluation.cpp"/>
   </compounddef>

@@ -518,8 +518,6 @@
       <node id="7">
         <label>engine.cpp</label>
         <link refid="da/d5c/engine_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
       </node>
       <node id="6">
         <label>engine.h</label>
@@ -532,10 +530,6 @@
       <node id="8">
         <label>selection.cpp</label>
         <link refid="df/dbb/selection_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
       </node>
       <node id="1">
         <label>selection.h</label>
@@ -580,7 +574,7 @@
 <codeline lineno="24" refid="dd/d0f/structBrush_1_1Sel_1_1Selection" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ad2ce5d0acef331dffa25f3e5ab0af306" kindref="member">Selection</ref></highlight></codeline>
 <codeline lineno="25"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="27" refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ae8f1575b42d096524f5c9f2fd2617de4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator" kindref="compound">SelectionOperator&lt;T&gt;</ref>*<sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ae8f1575b42d096524f5c9f2fd2617de4" kindref="member">pselector</ref>;<sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>THIS<sp/>SHOULD<sp/>BE<sp/>A<sp/>SHARED<sp/>POINTER<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1af3ebee3fb8373edb0a586eb343281b4c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_ptr&lt;SelectionOperator&lt;T&gt;&gt;<sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1af3ebee3fb8373edb0a586eb343281b4c" kindref="member">pselector</ref>;</highlight></codeline>
 <codeline lineno="28" refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6dab234ca04ec9d080554e99aa0147d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6dab234ca04ec9d080554e99aa0147d4" kindref="member">type</ref>;</highlight></codeline>
 <codeline lineno="29" refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a3dc6778d19c18f6081f30ebf870eed3c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a3dc6778d19c18f6081f30ebf870eed3c" kindref="member">survival</ref>;</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
@@ -600,9 +594,14 @@
 <codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/>params);</highlight></codeline>
 <codeline lineno="48"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Sel</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection" kindref="compound">Selection&lt;PT::Regressor&gt;</ref>;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection" kindref="compound">Selection&lt;PT::BinaryClassifier&gt;</ref>;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection" kindref="compound">Selection&lt;PT::MulticlassClassifier&gt;</ref>;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection" kindref="compound">Selection&lt;PT::Representer&gt;</ref>;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Sel</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/selection/selection.h"/>
   </compounddef>

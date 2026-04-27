@@ -3,8 +3,6 @@
   <compounddef id="df/dbb/selection_8cpp" kind="file" language="C++">
     <compoundname>selection.cpp</compoundname>
     <includes refid="df/d48/selection_8h" local="yes">selection.h</includes>
-    <includedby refid="d4/d93/bind__engines_8h" local="yes">bind_engines.h</includedby>
-    <includedby refid="da/d67/bind__selection_8h" local="yes">bind_selection.h</includedby>
     <incdepgraph>
       <node id="52">
         <label>../../thirdparty/tree.hh</label>
@@ -496,36 +494,6 @@
         <label>vector</label>
       </node>
     </incdepgraph>
-    <invincdepgraph>
-      <node id="3">
-        <label>bind_engines.cpp</label>
-        <link refid="d1/df0/bind__engines_8cpp"/>
-      </node>
-      <node id="2">
-        <label>bind_engines.h</label>
-        <link refid="d4/d93/bind__engines_8h"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>bind_selection.cpp</label>
-        <link refid="d7/dce/bind__selection_8cpp"/>
-      </node>
-      <node id="4">
-        <label>bind_selection.h</label>
-        <link refid="da/d67/bind__selection_8h"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="1">
-        <label>selection.cpp</label>
-        <link refid="df/dbb/selection_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-    </invincdepgraph>
     <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
     <innernamespace refid="d9/df6/namespaceBrush_1_1Sel">Brush::Sel</innernamespace>
     <briefdescription>
@@ -562,16 +530,16 @@
 <codeline lineno="30" refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ab8833e1b2487a8b1260e10c8b52e7c04" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ab8833e1b2487a8b1260e10c8b52e7c04" kindref="member">Selection&lt;T&gt;::set_operator</ref>()</highlight></codeline>
 <codeline lineno="31"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6dab234ca04ec9d080554e99aa0147d4" kindref="member">type</ref><sp/>==<sp/></highlight><highlight class="stringliteral">&quot;nsga2&quot;</highlight><highlight class="normal">)</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ae8f1575b42d096524f5c9f2fd2617de4" kindref="member">pselector</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2" kindref="compound">NSGA2&lt;T&gt;</ref>(<ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a3dc6778d19c18f6081f30ebf870eed3c" kindref="member">survival</ref>);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1af3ebee3fb8373edb0a586eb343281b4c" kindref="member">pselector</ref><sp/>=<sp/>std::make_shared&lt;NSGA2&lt;T&gt;&gt;(<ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a3dc6778d19c18f6081f30ebf870eed3c" kindref="member">survival</ref>);</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6dab234ca04ec9d080554e99aa0147d4" kindref="member">type</ref><sp/>==<sp/></highlight><highlight class="stringliteral">&quot;lexicase&quot;</highlight><highlight class="normal">)</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ae8f1575b42d096524f5c9f2fd2617de4" kindref="member">pselector</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase" kindref="compound">Lexicase&lt;T&gt;</ref>(<ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a3dc6778d19c18f6081f30ebf870eed3c" kindref="member">survival</ref>);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1af3ebee3fb8373edb0a586eb343281b4c" kindref="member">pselector</ref><sp/>=<sp/>std::make_shared&lt;Lexicase&lt;T&gt;&gt;(<ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a3dc6778d19c18f6081f30ebf870eed3c" kindref="member">survival</ref>);</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" kindref="member">HANDLE_ERROR_THROW</ref>(</highlight><highlight class="stringliteral">&quot;Undefined<sp/>Selection<sp/>Operator<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>this-&gt;<ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6dab234ca04ec9d080554e99aa0147d4" kindref="member">type</ref><sp/>+<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="39"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;ProgramType<sp/>T&gt;<sp/></highlight></codeline>
-<codeline lineno="43" refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a41dca81be3743da59e8b6e3e003d1e6d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a41dca81be3743da59e8b6e3e003d1e6d" kindref="member">Selection&lt;T&gt;::get_type</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ae8f1575b42d096524f5c9f2fd2617de4" kindref="member">pselector</ref>-&gt;name;<sp/>}</highlight></codeline>
+<codeline lineno="43" refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a41dca81be3743da59e8b6e3e003d1e6d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a41dca81be3743da59e8b6e3e003d1e6d" kindref="member">Selection&lt;T&gt;::get_type</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1af3ebee3fb8373edb0a586eb343281b4c" kindref="member">pselector</ref>-&gt;name;<sp/>}</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;ProgramType<sp/>T&gt;<sp/></highlight></codeline>
 <codeline lineno="47" refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6c1d8ad202376074ffaf3a64de74a711" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6c1d8ad202376074ffaf3a64de74a711" kindref="member">Selection&lt;T&gt;::set_type</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1ab03528e8d9652013786252f63b6d5840" kindref="member">in</ref>){<sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6dab234ca04ec9d080554e99aa0147d4" kindref="member">type</ref><sp/>=<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1ab03528e8d9652013786252f63b6d5840" kindref="member">in</ref>;<sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ab8833e1b2487a8b1260e10c8b52e7c04" kindref="member">set_operator</ref>();}</highlight></codeline>
@@ -580,18 +548,23 @@
 <codeline lineno="51" refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a0816b0913a3449558a20832cc9b3bb9f" refkind="member"><highlight class="normal">vector&lt;size_t&gt;<sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a0816b0913a3449558a20832cc9b3bb9f" kindref="member">Selection&lt;T&gt;::select</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;T&gt;</ref>&amp;<sp/>pop,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>island,<sp/><sp/></highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/>params)</highlight></codeline>
 <codeline lineno="53"><highlight class="normal">{<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ae8f1575b42d096524f5c9f2fd2617de4" kindref="member">pselector</ref>-&gt;select(pop,<sp/>island,<sp/>params);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1af3ebee3fb8373edb0a586eb343281b4c" kindref="member">pselector</ref>-&gt;select(pop,<sp/>island,<sp/>params);</highlight></codeline>
 <codeline lineno="55"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
 <codeline lineno="58"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;ProgramType<sp/>T&gt;<sp/></highlight></codeline>
 <codeline lineno="59" refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a717879ee6286397a025fe67b947283d2" refkind="member"><highlight class="normal">vector&lt;size_t&gt;<sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a717879ee6286397a025fe67b947283d2" kindref="member">Selection&lt;T&gt;::survive</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;T&gt;</ref>&amp;<sp/>pop,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>island,<sp/></highlight></codeline>
 <codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/>params)</highlight></codeline>
 <codeline lineno="61"><highlight class="normal">{<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ae8f1575b42d096524f5c9f2fd2617de4" kindref="member">pselector</ref>-&gt;survive(pop,<sp/>island,<sp/>params);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1af3ebee3fb8373edb0a586eb343281b4c" kindref="member">pselector</ref>-&gt;survive(pop,<sp/>island,<sp/>params);</highlight></codeline>
 <codeline lineno="63"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"></highlight></codeline>
 <codeline lineno="65"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Sel</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="66"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection" kindref="compound">Brush::Sel::Selection&lt;Brush::ProgramType::Regressor&gt;</ref>;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection" kindref="compound">Brush::Sel::Selection&lt;Brush::ProgramType::BinaryClassifier&gt;</ref>;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection" kindref="compound">Brush::Sel::Selection&lt;Brush::ProgramType::MulticlassClassifier&gt;</ref>;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection" kindref="compound">Brush::Sel::Selection&lt;Brush::ProgramType::Representer&gt;</ref>;</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/selection/selection.cpp"/>
   </compounddef>

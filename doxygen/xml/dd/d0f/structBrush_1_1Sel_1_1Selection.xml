@@ -11,9 +11,9 @@
       </param>
     </templateparamlist>
     <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="dd/d0f/structBrush_1_1Sel_1_1Selection_1ae8f1575b42d096524f5c9f2fd2617de4" prot="public" static="no" mutable="no">
-        <type><ref refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator" kindref="compound">SelectionOperator</ref>&lt; T &gt; *</type>
-        <definition>SelectionOperator&lt;T&gt;* Brush::Sel::Selection&lt; T &gt;::pselector</definition>
+      <memberdef kind="variable" id="dd/d0f/structBrush_1_1Sel_1_1Selection_1af3ebee3fb8373edb0a586eb343281b4c" prot="public" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator" kindref="compound">SelectionOperator</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt;SelectionOperator&lt;T&gt; &gt; Brush::Sel::Selection&lt; T &gt;::pselector</definition>
         <argsstring></argsstring>
         <name>pselector</name>
         <qualifiedname>Brush::Sel::Selection::pselector</qualifiedname>
@@ -23,7 +23,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/selection/selection.h" line="27" column="23" bodyfile="/home/runner/work/brush/brush/src/selection/selection.h" bodystart="27" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/selection/selection.h" line="27" column="21" bodyfile="/home/runner/work/brush/brush/src/selection/selection.h" bodystart="27" bodyend="-1"/>
         <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a41dca81be3743da59e8b6e3e003d1e6d" compoundref="df/dbb/selection_8cpp" startline="43" endline="43">Brush::Sel::Selection&lt; T &gt;::get_type</referencedby>
         <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a0816b0913a3449558a20832cc9b3bb9f" compoundref="df/dbb/selection_8cpp" startline="51" endline="55">Brush::Sel::Selection&lt; T &gt;::select</referencedby>
         <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ab8833e1b2487a8b1260e10c8b52e7c04" compoundref="df/dbb/selection_8cpp" startline="30" endline="39">Brush::Sel::Selection&lt; T &gt;::set_operator</referencedby>
@@ -137,7 +137,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/selection.h" line="35" column="10" bodyfile="/home/runner/work/brush/brush/src/selection/selection.cpp" bodystart="30" bodyend="39"/>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
-        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ae8f1575b42d096524f5c9f2fd2617de4" compoundref="df/d48/selection_8h" startline="27">Brush::Sel::Selection&lt; T &gt;::pselector</references>
+        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1af3ebee3fb8373edb0a586eb343281b4c" compoundref="df/d48/selection_8h" startline="27">Brush::Sel::Selection&lt; T &gt;::pselector</references>
         <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a3dc6778d19c18f6081f30ebf870eed3c" compoundref="df/d48/selection_8h" startline="29">Brush::Sel::Selection&lt; T &gt;::survival</references>
         <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6dab234ca04ec9d080554e99aa0147d4" compoundref="df/d48/selection_8h" startline="28">Brush::Sel::Selection&lt; T &gt;::type</references>
         <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ad2ce5d0acef331dffa25f3e5ab0af306" compoundref="df/dbb/selection_8cpp" startline="10" endline="15">Brush::Sel::Selection&lt; T &gt;::Selection</referencedby>
@@ -158,7 +158,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/selection.h" line="38" column="12" bodyfile="/home/runner/work/brush/brush/src/selection/selection.cpp" bodystart="43" bodyend="43"/>
-        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ae8f1575b42d096524f5c9f2fd2617de4" compoundref="df/d48/selection_8h" startline="27">Brush::Sel::Selection&lt; T &gt;::pselector</references>
+        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1af3ebee3fb8373edb0a586eb343281b4c" compoundref="df/d48/selection_8h" startline="27">Brush::Sel::Selection&lt; T &gt;::pselector</references>
       </memberdef>
       <memberdef kind="function" id="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6c1d8ad202376074ffaf3a64de74a711" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -209,7 +209,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/selection.h" line="42" column="12" bodyfile="/home/runner/work/brush/brush/src/selection/selection.cpp" bodystart="51" bodyend="55"/>
-        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ae8f1575b42d096524f5c9f2fd2617de4" compoundref="df/d48/selection_8h" startline="27">Brush::Sel::Selection&lt; T &gt;::pselector</references>
+        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1af3ebee3fb8373edb0a586eb343281b4c" compoundref="df/d48/selection_8h" startline="27">Brush::Sel::Selection&lt; T &gt;::pselector</references>
       </memberdef>
       <memberdef kind="function" id="dd/d0f/structBrush_1_1Sel_1_1Selection_1a717879ee6286397a025fe67b947283d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;</type>
@@ -238,7 +238,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/selection.h" line="46" column="12" bodyfile="/home/runner/work/brush/brush/src/selection/selection.cpp" bodystart="59" bodyend="63"/>
-        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ae8f1575b42d096524f5c9f2fd2617de4" compoundref="df/d48/selection_8h" startline="27">Brush::Sel::Selection&lt; T &gt;::pselector</references>
+        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1af3ebee3fb8373edb0a586eb343281b4c" compoundref="df/d48/selection_8h" startline="27">Brush::Sel::Selection&lt; T &gt;::pselector</references>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -251,22 +251,34 @@
         <label>Brush::Sel::Selection&lt; T &gt;</label>
         <link refid="dd/d0f/structBrush_1_1Sel_1_1Selection"/>
         <childnode refid="2" relation="usage">
+          <edgelabel>pselector</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
           <edgelabel>type</edgelabel>
         </childnode>
       </node>
       <node id="3">
+        <label>T</label>
+      </node>
+      <node id="5">
         <label>std::basic_string&lt; Char &gt;</label>
       </node>
       <node id="2">
+        <label>std::shared_ptr&lt; Brush::Sel::SelectionOperator&lt; T &gt; &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ptr</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
         <label>std::string</label>
-        <childnode refid="3" relation="public-inheritance">
+        <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
     <location file="/home/runner/work/brush/brush/src/selection/selection.h" line="24" column="1" bodyfile="/home/runner/work/brush/brush/src/selection/selection.h" bodystart="25" bodyend="48"/>
     <listofallmembers>
       <member refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a41dca81be3743da59e8b6e3e003d1e6d" prot="public" virt="non-virtual"><scope>Brush::Sel::Selection</scope><name>get_type</name></member>
-      <member refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ae8f1575b42d096524f5c9f2fd2617de4" prot="public" virt="non-virtual"><scope>Brush::Sel::Selection</scope><name>pselector</name></member>
+      <member refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1af3ebee3fb8373edb0a586eb343281b4c" prot="public" virt="non-virtual"><scope>Brush::Sel::Selection</scope><name>pselector</name></member>
       <member refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a0816b0913a3449558a20832cc9b3bb9f" prot="public" virt="non-virtual"><scope>Brush::Sel::Selection</scope><name>select</name></member>
       <member refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ad2ce5d0acef331dffa25f3e5ab0af306" prot="public" virt="non-virtual"><scope>Brush::Sel::Selection</scope><name>Selection</name></member>
       <member refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1afb5b439f8700c4bc85ef2058333c4122" prot="public" virt="non-virtual"><scope>Brush::Sel::Selection</scope><name>Selection</name></member>

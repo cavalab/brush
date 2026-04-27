@@ -71,8 +71,6 @@
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="88" relation="include">
-        </childnode>
         <childnode refid="75" relation="include">
         </childnode>
         <childnode refid="76" relation="include">
@@ -83,37 +81,19 @@
         </childnode>
         <childnode refid="60" relation="include">
         </childnode>
-        <childnode refid="89" relation="include">
-        </childnode>
         <childnode refid="74" relation="include">
         </childnode>
-        <childnode refid="90" relation="include">
-        </childnode>
         <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="91" relation="include">
-        </childnode>
-        <childnode refid="92" relation="include">
         </childnode>
         <childnode refid="73" relation="include">
         </childnode>
         <childnode refid="84" relation="include">
         </childnode>
-        <childnode refid="93" relation="include">
-        </childnode>
         <childnode refid="83" relation="include">
-        </childnode>
-        <childnode refid="94" relation="include">
         </childnode>
         <childnode refid="82" relation="include">
         </childnode>
-        <childnode refid="95" relation="include">
-        </childnode>
         <childnode refid="85" relation="include">
-        </childnode>
-        <childnode refid="96" relation="include">
-        </childnode>
-        <childnode refid="97" relation="include">
         </childnode>
         <childnode refid="81" relation="include">
         </childnode>
@@ -164,18 +144,6 @@
         <childnode refid="37" relation="include">
         </childnode>
       </node>
-      <node id="88">
-        <label>../engine.cpp</label>
-        <link refid="da/d5c/engine_8cpp"/>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="55" relation="include">
-        </childnode>
-      </node>
       <node id="10">
         <label>../engine.h</label>
         <link refid="d1/d55/engine_8h"/>
@@ -198,12 +166,6 @@
         <childnode refid="86" relation="include">
         </childnode>
         <childnode refid="87" relation="include">
-        </childnode>
-      </node>
-      <node id="91">
-        <label>../eval/evaluation.cpp</label>
-        <link refid="d9/d6a/evaluation_8cpp"/>
-        <childnode refid="41" relation="include">
         </childnode>
       </node>
       <node id="41">
@@ -248,12 +210,6 @@
         <childnode refid="15" relation="include">
         </childnode>
         <childnode refid="34" relation="include">
-        </childnode>
-      </node>
-      <node id="89">
-        <label>../ind/individual.cpp</label>
-        <link refid="db/df6/individual_8cpp"/>
-        <childnode refid="60" relation="include">
         </childnode>
       </node>
       <node id="60">
@@ -308,24 +264,12 @@
         <childnode refid="34" relation="include">
         </childnode>
       </node>
-      <node id="97">
-        <label>../pop/archive.cpp</label>
-        <link refid="d7/d05/archive_8cpp"/>
-        <childnode refid="81" relation="include">
-        </childnode>
-      </node>
       <node id="81">
         <label>pop/archive.h</label>
         <link refid="d9/d28/archive_8h"/>
         <childnode refid="60" relation="include">
         </childnode>
         <childnode refid="82" relation="include">
-        </childnode>
-      </node>
-      <node id="92">
-        <label>../pop/population.cpp</label>
-        <link refid="d7/d4a/population_8cpp"/>
-        <childnode refid="73" relation="include">
         </childnode>
       </node>
       <node id="73">
@@ -482,12 +426,6 @@
         <childnode refid="58" relation="include">
         </childnode>
       </node>
-      <node id="96">
-        <label>../selection/lexicase.cpp</label>
-        <link refid="d8/dac/lexicase_8cpp"/>
-        <childnode refid="85" relation="include">
-        </childnode>
-      </node>
       <node id="85">
         <label>lexicase.h</label>
         <link refid="d3/d12/lexicase_8h"/>
@@ -496,22 +434,10 @@
         <childnode refid="34" relation="include">
         </childnode>
       </node>
-      <node id="95">
-        <label>../selection/nsga2.cpp</label>
-        <link refid="de/d0d/nsga2_8cpp"/>
-        <childnode refid="82" relation="include">
-        </childnode>
-      </node>
       <node id="82">
         <label>../selection/nsga2.h</label>
         <link refid="d3/d06/nsga2_8h"/>
         <childnode refid="83" relation="include">
-        </childnode>
-      </node>
-      <node id="93">
-        <label>../selection/selection.cpp</label>
-        <link refid="df/dbb/selection_8cpp"/>
-        <childnode refid="84" relation="include">
         </childnode>
       </node>
       <node id="84">
@@ -522,12 +448,6 @@
         <childnode refid="82" relation="include">
         </childnode>
         <childnode refid="85" relation="include">
-        </childnode>
-      </node>
-      <node id="94">
-        <label>../selection/selection_operator.cpp</label>
-        <link refid="d4/db2/selection__operator_8cpp"/>
-        <childnode refid="83" relation="include">
         </childnode>
       </node>
       <node id="83">
@@ -652,12 +572,6 @@
         <childnode refid="46" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="90">
-        <label>../vary/variation.cpp</label>
-        <link refid="d1/d64/variation_8cpp"/>
-        <childnode refid="74" relation="include">
         </childnode>
       </node>
       <node id="74">
@@ -837,7 +751,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/bindings/bind_engines.cpp" line="8" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_engines.cpp" bodystart="8" bodyend="16"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="45" endline="114">bind_engine</references>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="34" endline="102">bind_engine</references>
         <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>
     </sectiondef>

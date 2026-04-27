@@ -8,7 +8,7 @@ var structBrush_1_1Sel_1_1Selection =
     [ "set_operator", "dd/d0f/structBrush_1_1Sel_1_1Selection.html#ab8833e1b2487a8b1260e10c8b52e7c04", null ],
     [ "set_type", "dd/d0f/structBrush_1_1Sel_1_1Selection.html#a6c1d8ad202376074ffaf3a64de74a711", null ],
     [ "survive", "dd/d0f/structBrush_1_1Sel_1_1Selection.html#a717879ee6286397a025fe67b947283d2", null ],
-    [ "pselector", "dd/d0f/structBrush_1_1Sel_1_1Selection.html#ae8f1575b42d096524f5c9f2fd2617de4", null ],
+    [ "pselector", "dd/d0f/structBrush_1_1Sel_1_1Selection.html#af3ebee3fb8373edb0a586eb343281b4c", null ],
     [ "survival", "dd/d0f/structBrush_1_1Sel_1_1Selection.html#a3dc6778d19c18f6081f30ebf870eed3c", null ],
     [ "type", "dd/d0f/structBrush_1_1Sel_1_1Selection.html#a6dab234ca04ec9d080554e99aa0147d4", null ]
 ];

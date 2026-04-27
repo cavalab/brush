@@ -108,6 +108,8 @@ $(function(){initNavTree('d4/d90/structBrush_1_1MAB_1_1Bandit.html','../../'); i
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="../../d7/d23/structBrush_1_1MAB_1_1Bandit-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Brush::MAB::Bandit Struct Reference</div></div>
 </div><!--header-->
@@ -200,6 +202,16 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a6100cbe0bd8dffa5dff50918fcaecadb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8891c3797dcbd7a400ee9d3ebe3f5c5a" id="r_a8891c3797dcbd7a400ee9d3ebe3f5c5a"><td class="memItemLeft" align="right" valign="top">std::map&lt; <a class="el" href="../../d5/d92/classstring.html">string</a>, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8891c3797dcbd7a400ee9d3ebe3f5c5a">probabilities</a></td></tr>
 <tr class="separator:a8891c3797dcbd7a400ee9d3ebe3f5c5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a2c0c9397ea849fa0d267e15f264faa09" id="r_a2c0c9397ea849fa0d267e15f264faa09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c0c9397ea849fa0d267e15f264faa09">ensure_bandit_set</a> () const</td></tr>
+<tr class="separator:a2c0c9397ea849fa0d267e15f264faa09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a3bfa7caa35aeccedf84edc8bab9df1f9" id="r_a3bfa7caa35aeccedf84edc8bab9df1f9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3bfa7caa35aeccedf84edc8bab9df1f9">bandit_set</a> = false</td></tr>
+<tr class="separator:a3bfa7caa35aeccedf84edc8bab9df1f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="../../d4/d90/structBrush_1_1MAB_1_1Bandit.html" title="The Bandit struct represents a multi-armed bandit.">Bandit</a> struct represents a multi-armed bandit. </p>
@@ -239,7 +251,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00007">7</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00006">6</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -314,7 +326,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00014">14</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00013">13</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -360,7 +372,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00026">26</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00025">25</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -397,7 +409,59 @@ Here is the call graph for this function:</div>
 <p>Selects an arm. </p>
 <dl class="section return"><dt>Returns</dt><dd>T The selected arm from the tree. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00090">90</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00096">96</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/d90/structBrush_1_1MAB_1_1Bandit_aae555d46747265bdbd23c224600e3eb2_cgraph.png" border="0" usemap="#ad4/d90/structBrush_1_1MAB_1_1Bandit_aae555d46747265bdbd23c224600e3eb2_cgraph" alt=""/></div>
+<map name="ad4/d90/structBrush_1_1MAB_1_1Bandit_aae555d46747265bdbd23c224600e3eb2_cgraph" id="ad4/d90/structBrush_1_1MAB_1_1Bandit_aae555d46747265bdbd23c224600e3eb2_cgraph">
+<area shape="rect" title="Selects an arm." alt="" coords="5,5,152,50"/>
+<area shape="rect" href="../../d4/d90/structBrush_1_1MAB_1_1Bandit.html#a2c0c9397ea849fa0d267e15f264faa09" title=" " alt="" coords="200,5,348,50"/>
+<area shape="poly" title=" " alt="" coords="152,25,187,27,181,28,152,30"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2c0c9397ea849fa0d267e15f264faa09" name="a2c0c9397ea849fa0d267e15f264faa09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c0c9397ea849fa0d267e15f264faa09">&#9670;&#160;</a></span>ensure_bandit_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Brush::MAB::Bandit::ensure_bandit_set </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00050">50</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/d90/structBrush_1_1MAB_1_1Bandit_a2c0c9397ea849fa0d267e15f264faa09_icgraph.png" border="0" usemap="#ad4/d90/structBrush_1_1MAB_1_1Bandit_a2c0c9397ea849fa0d267e15f264faa09_icgraph" alt=""/></div>
+<map name="ad4/d90/structBrush_1_1MAB_1_1Bandit_a2c0c9397ea849fa0d267e15f264faa09_icgraph" id="ad4/d90/structBrush_1_1MAB_1_1Bandit_a2c0c9397ea849fa0d267e15f264faa09_icgraph">
+<area shape="rect" title=" " alt="" coords="394,65,542,110"/>
+<area shape="rect" href="../../d4/d90/structBrush_1_1MAB_1_1Bandit.html#aae555d46747265bdbd23c224600e3eb2" title="Selects an arm." alt="" coords="200,5,346,50"/>
+<area shape="poly" title=" " alt="" coords="376,60,346,53,346,47,382,60"/>
+<area shape="rect" href="../../d4/d90/structBrush_1_1MAB_1_1Bandit.html#ac982cfb269eca3c87663bd039a3e4687" title="Samples the probabilities associated with each arm using the policy." alt="" coords="5,96,152,141"/>
+<area shape="poly" title=" " alt="" coords="378,97,152,115,152,110,379,92"/>
+<area shape="rect" href="../../d4/d90/structBrush_1_1MAB_1_1Bandit.html#a316044a5416b7ed322fce6409a54fe98" title="Updates the bandit&#39;s state based on the chosen arm and the received reward." alt="" coords="200,125,346,170"/>
+<area shape="poly" title=" " alt="" coords="382,114,347,128,345,123,376,116"/>
+<area shape="poly" title=" " alt="" coords="181,135,152,132,152,127,187,134"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -418,7 +482,7 @@ Here is the call graph for this function:</div>
 
 <p>Gets the arms of the bandit. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00059">59</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00064">64</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
 
 </div>
 </div>
@@ -439,7 +503,7 @@ Here is the call graph for this function:</div>
 
 <p>Gets the probabilities associated with each arm. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00067">67</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00072">72</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
 
 </div>
 </div>
@@ -460,7 +524,7 @@ Here is the call graph for this function:</div>
 
 <p>Gets the type of the bandit. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00051">51</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00056">56</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
 
 </div>
 </div>
@@ -488,15 +552,18 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The sampled probabilities associated with each arm. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00075">75</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00080">80</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/d90/structBrush_1_1MAB_1_1Bandit_ac982cfb269eca3c87663bd039a3e4687_cgraph.png" border="0" usemap="#ad4/d90/structBrush_1_1MAB_1_1Bandit_ac982cfb269eca3c87663bd039a3e4687_cgraph" alt=""/></div>
 <map name="ad4/d90/structBrush_1_1MAB_1_1Bandit_ac982cfb269eca3c87663bd039a3e4687_cgraph" id="ad4/d90/structBrush_1_1MAB_1_1Bandit_ac982cfb269eca3c87663bd039a3e4687_cgraph">
 <area shape="rect" title="Samples the probabilities associated with each arm using the policy." alt="" coords="5,5,152,50"/>
-<area shape="rect" href="../../d4/d90/structBrush_1_1MAB_1_1Bandit.html#a316044a5416b7ed322fce6409a54fe98" title="Updates the bandit&#39;s state based on the chosen arm and the received reward." alt="" coords="200,5,346,50"/>
-<area shape="poly" title=" " alt="" coords="152,25,187,27,182,28,152,30"/>
+<area shape="rect" href="../../d4/d90/structBrush_1_1MAB_1_1Bandit.html#a2c0c9397ea849fa0d267e15f264faa09" title=" " alt="" coords="394,5,542,50"/>
+<area shape="poly" title=" " alt="" coords="152,21,200,20,346,20,381,23,376,24,346,25,200,25,152,27"/>
+<area shape="rect" href="../../d4/d90/structBrush_1_1MAB_1_1Bandit.html#a316044a5416b7ed322fce6409a54fe98" title="Updates the bandit&#39;s state based on the chosen arm and the received reward." alt="" coords="200,35,346,79"/>
+<area shape="poly" title=" " alt="" coords="152,36,187,43,182,44,152,41"/>
+<area shape="poly" title=" " alt="" coords="346,43,376,41,381,41,347,49"/>
 </map>
 </div>
 
@@ -519,7 +586,7 @@ Here is the call graph for this function:</div>
 
 <p>Sets the arms of the bandit. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00063">63</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00068">68</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -554,7 +621,7 @@ Here is the caller graph for this function:</div>
 
 <p>Sets the bandit operator (policy). </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00037">37</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00036">36</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -595,7 +662,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00071">71</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00076">76</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -630,7 +697,7 @@ Here is the caller graph for this function:</div>
 
 <p>Sets the type of the bandit. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00055">55</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00060">60</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -672,7 +739,17 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00094">94</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/d01/bandit_8cpp_source.html#l00101">101</a> of file <a class="el" href="../../d7/d01/bandit_8cpp_source.html">bandit.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/d90/structBrush_1_1MAB_1_1Bandit_a316044a5416b7ed322fce6409a54fe98_cgraph.png" border="0" usemap="#ad4/d90/structBrush_1_1MAB_1_1Bandit_a316044a5416b7ed322fce6409a54fe98_cgraph" alt=""/></div>
+<map name="ad4/d90/structBrush_1_1MAB_1_1Bandit_a316044a5416b7ed322fce6409a54fe98_cgraph" id="ad4/d90/structBrush_1_1MAB_1_1Bandit_a316044a5416b7ed322fce6409a54fe98_cgraph">
+<area shape="rect" title="Updates the bandit&#39;s state based on the chosen arm and the received reward." alt="" coords="5,5,152,50"/>
+<area shape="rect" href="../../d4/d90/structBrush_1_1MAB_1_1Bandit.html#a2c0c9397ea849fa0d267e15f264faa09" title=" " alt="" coords="200,5,348,50"/>
+<area shape="poly" title=" " alt="" coords="152,25,187,27,181,28,152,30"/>
+</map>
+</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -701,6 +778,30 @@ Here is the caller graph for this function:</div>
 <p>The arms of the bandit. </p>
 
 <p class="definition">Definition at line <a class="el" href="../../d7/d00/bandit_8h_source.html#l00043">43</a> of file <a class="el" href="../../d7/d00/bandit_8h_source.html">bandit.h</a>.</p>
+
+</div>
+</div>
+<a id="a3bfa7caa35aeccedf84edc8bab9df1f9" name="a3bfa7caa35aeccedf84edc8bab9df1f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bfa7caa35aeccedf84edc8bab9df1f9">&#9670;&#160;</a></span>bandit_set</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Brush::MAB::Bandit::bandit_set = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d7/d00/bandit_8h_source.html#l00122">122</a> of file <a class="el" href="../../d7/d00/bandit_8h_source.html">bandit.h</a>.</p>
 
 </div>
 </div>

@@ -2,7 +2,6 @@ var structBrush_1_1Pop_1_1Archive =
 [
     [ "Archive", "d1/d30/structBrush_1_1Pop_1_1Archive.html#af697a235df24c3c180a2d726eadb8b51", null ],
     [ "init", "d1/d30/structBrush_1_1Pop_1_1Archive.html#a5e6c6513918f87a8a68c2a7a162edb27", null ],
-    [ "sameFitComplexity", "d1/d30/structBrush_1_1Pop_1_1Archive.html#a7510447de2f87201fa3d7977f3a3e8d8", null ],
     [ "sameObjectives", "d1/d30/structBrush_1_1Pop_1_1Archive.html#ae48c8db22bdf072955564c079e379610", null ],
     [ "set_objectives", "d1/d30/structBrush_1_1Pop_1_1Archive.html#a073b0ac31fc55c35e2a8296b919c1876", null ],
     [ "sortComplexity", "d1/d30/structBrush_1_1Pop_1_1Archive.html#a8e11ee4659b1dc0a4332ffad5690e30f", null ],

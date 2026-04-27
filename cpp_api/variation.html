@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Variation (Crossover/Mutation) &mdash; Brush 0.1.dev1+g965853dd5 documentation</title>
+  <title>Variation (Crossover/Mutation) &mdash; Brush 0.1.dev1+g603a8147e documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=2edb06a4"></script>
+      <script src="../_static/documentation_options.js?v=b86b6c89"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -213,18 +213,18 @@
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE">
 <span id="_CPPv3N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE"></span><span id="_CPPv2N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE"></span><span id="Brush::Var::Variation::cross__Individual:T:CR.Individual:T:CR"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1acf7d5d1c0d6a102eec277180dce590fe"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cross</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">mom</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">dad</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE" title="Link to this definition"></a><br /></dt>
 <dd><p>Performs croearch_spaceover operation on two individuals. </p>
-<p>Stochastically swaps subtrees between root and other, returning a new program.</p>
+<p>Stochastically swaps subtrees between parents, returning a new individual.</p>
 <p>
 The spot where the cross will take place in the <code class="docutils literal notranslate"><span class="pre">root</span></code> parent is sampled based on attribute <code class="docutils literal notranslate"><span class="pre">get_prob_change</span></code> of each node in the tree. After selecting the cross spot, the program will iterate through the <code class="docutils literal notranslate"><span class="pre">other</span></code> parent searching for all compatible sub-trees to replace.</p>
 <p>Due to the stochastic behavior, it may come to a case where there is no candidate to replace the spot node. In this case, the method returns <code class="docutils literal notranslate"><span class="pre">std::nullopt</span></code> (and has overloads so it can be used in a boolean context).</p>
-<p>If the cross succeeds, the child program can be accessed through the <code class="docutils literal notranslate"><span class="pre">.value()</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">std::optional</span></code>. TODO: update this documentation (it doesnt take the program but the individual. also update mutation documentation) This means that, if you use the cross as <code class="docutils literal notranslate"><span class="pre">auto</span> <span class="pre">opt</span> <span class="pre">=</span> <span class="pre">mutate(parent,</span> <span class="pre">SS)</span></code>, either <code class="docutils literal notranslate"><span class="pre">opt==false</span></code> or <code class="docutils literal notranslate"><span class="pre">opt.value()</span></code> contains the child.</p>
+<p>If the cross succeeds, the child individual can be accessed through the <code class="docutils literal notranslate"><span class="pre">.value()</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">std::optional</span></code>. TODO: update this documentation (it doesnt take the program but the individual. also update mutation documentation) This means that, if you use the cross as <code class="docutils literal notranslate"><span class="pre">auto</span> <span class="pre">opt</span> <span class="pre">=</span> <span class="pre">cross(mom,</span> <span class="pre">dad)</span></code>, either <code class="docutils literal notranslate"><span class="pre">opt==false</span></code> or <code class="docutils literal notranslate"><span class="pre">opt.value()</span></code> contains the child.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>mom</strong> – The first parent individual. </p></li>
 <li><p><strong>dad</strong> – The second parent individual. </p></li>
-<li><p><strong>root</strong> – the root parent </p></li>
-<li><p><strong>other</strong> – the donating parent </p></li>
+<li><p><strong>mom</strong> – the first parent </p></li>
+<li><p><strong>dad</strong> – the donating parent </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -234,7 +234,7 @@ The spot where the cross will take place in the <code class="docutils literal no
 <dd class="field-odd"><p><strong>T</strong> – the program type </p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">std::optional</span></code> that may contain the child program of type <code class="docutils literal notranslate"><span class="pre">T</span></code></p>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">std::optional</span></code> that may contain the child individual of type <code class="docutils literal notranslate"><span class="pre">T</span></code></p>
 </dd>
 </dl>
 </dd></dl>
