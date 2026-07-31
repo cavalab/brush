@@ -172,7 +172,7 @@ namespace Split{
 
     /// Stitches together outputs from left or right child based on threshold
     template<typename T>
-    T stitch(array<T,2>& child_outputs, const ArrayXb& mask)
+    T stitch(std::array<T,2>& child_outputs, const ArrayXb& mask)
     {
         T result(mask.size());
 
@@ -202,10 +202,10 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
     /* static constexpr auto F = [](const auto& ...args){ Function<NT> f{}; return f(args...); }; */ 
     static constexpr Function<NT> F{};
 
-    array<RetType,2> get_kids(const array<Dataset, 2>& d, TreeNode& tn, const W** weights=nullptr) const
+    std::array<RetType,2> get_kids(const std::array<Dataset, 2>& d, TreeNode& tn, const W** weights=nullptr) const
     {
         using arg_type = NthType<1>;
-        array<arg_type,2> child_outputs;
+        std::array<arg_type,2> child_outputs;
 
         TreeNode* sib = tn.first_child;
         if constexpr (NT==NodeType::SplitOn)
@@ -292,7 +292,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
             mask = Split::threshold_mask(split_feature, threshold);
         }
 
-        array<Dataset, 2> data_splits = d.split(mask);
+        std::array<Dataset, 2> data_splits = d.split(mask);
             
         auto child_outputs = get_kids(data_splits, tn, weights);
 

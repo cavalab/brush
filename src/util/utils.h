@@ -19,9 +19,6 @@ license: GNU/GPL v3
 #include <iterator> // needed for std::ostram_iterator
 // #include <execution> // parallel policies
 
-using namespace Eigen;
-using namespace std;
-
 /**
 * @namespace Brush::Util
 * @brief namespace containing various utility functions 
@@ -163,6 +160,9 @@ namespace std{
 
 namespace Brush{
 namespace Util{
+
+using Eigen::Array;
+using Eigen::Matrix;
 
 extern string PBSTR;
 
@@ -507,7 +507,7 @@ tuple<vector<size_t>,vector<size_t>> mask_to_indices(const ArrayXb& mask);
 
 /// split Eigen matrix or array into two by mask
 template<typename T>
-array<Array<T,-1, 1>, 2> split(const Array<T,-1,1>& v, const ArrayXb& mask)
+std::array<Array<T,-1, 1>, 2> split(const Array<T,-1,1>& v, const ArrayXb& mask)
 // array<DenseBase<T>, 2> split(const DenseBase<T>& v, const ArrayXb& mask)
 {
     int size1 = mask.count();

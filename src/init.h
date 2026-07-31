@@ -32,6 +32,11 @@ license: GNU/GPL v3
 #include <fmt/ranges.h>
 
 using Eigen::MatrixXf;
+using Eigen::Matrix;
+using Eigen::Array;
+using Eigen::Ref;
+using Eigen::BDCSVD;
+using Eigen::StrictlyUpper;
 using Eigen::ArrayXXf;
 using Eigen::ArrayXXi;
 using Eigen::VectorXf;

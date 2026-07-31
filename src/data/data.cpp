@@ -148,7 +148,7 @@ Dataset Dataset::operator()(const vector<size_t>& idx) const
             if constexpr ( T::NumDimensions == 1)
                 new_features[k] = T(arg(idx));
             else if constexpr (T::NumDimensions==2)
-                new_features[k] = T(arg(idx, Eigen::all));
+                new_features[k] = T(arg(idx, Eigen::internal::all_t{}));
             else 
                 static_assert(always_false_v<T>, "non-exhaustive visitor!");
         },
@@ -200,7 +200,7 @@ Dataset Dataset::get_batch() const
     return (*this)(r.shuffled_index(n_samples));
 }
 
-array<Dataset, 2> Dataset::split(const ArrayXb& mask) const
+std::array<Dataset, 2> Dataset::split(const ArrayXb& mask) const
 {
     // TODO: assert that mask is not filled with zeros or ones (would create
     // one empty partition)

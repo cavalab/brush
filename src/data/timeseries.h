@@ -42,7 +42,7 @@ struct TimeSeries
     // array<TimeSeries, 2> TimeSeries::split(const ArrayXb& mask) const ;
     /// return a slice of the data using indices idx
     template<typename U, typename V>
-    TimeSeries operator()(const U& idx, const V& idx2=Eigen::all) const
+    TimeSeries operator()(const U& idx, const V& idx2=Eigen::internal::all_t{}) const
     {
         TimeType t = Util::slice(this->time, idx);
         ValType v = Util::slice(this->value, idx); 

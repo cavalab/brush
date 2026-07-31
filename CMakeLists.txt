@@ -68,7 +68,7 @@ if (OMP)
     endif()
 endif()
 
-if (MACOSX)
+if (MACOSX AND OMP AND OPENMP_FOUND)
     set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fopenmp=libgomp -fexperimental-library")
     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp=libgomp -fexperimental-library")
     if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")

@@ -16,8 +16,6 @@ license: GNU/GPL v3
 #include "../util/error.h"
 #include "data.h"
 
-using namespace Eigen;
-
 namespace Brush::Data
 {
 

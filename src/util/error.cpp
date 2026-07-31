@@ -4,7 +4,7 @@ license: GNU/GPL v3
 */
 
 #include "error.h"
-#include "fmt/core.h"
+#include "fmt/format.h"
 //#include "node/node.h"
 //external includes
 
@@ -27,4 +27,3 @@ namespace Brush{ namespace Util{
             fmt::print(stderr, "WARNING {}:{}: {}\n", file, line, err);
         }
 } }
-
