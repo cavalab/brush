@@ -1,7 +1,7 @@
 var structSearchSpace =
 [
     [ "ArgsHash", "de/d87/structSearchSpace.html#af004a91112f5e3994d7c90c8baa71310", null ],
-    [ "Map", "de/d87/structSearchSpace.html#a5296a6d834c32ab1259e34c3351933be", null ],
+    [ "Map", "de/d87/structSearchSpace.html#a49f1928a1920ecf37257fdd66abe438d", null ],
     [ "SearchSpace", "de/d87/structSearchSpace.html#af87c7270774accc9aa698089d310c4c3", null ],
     [ "SearchSpace", "de/d87/structSearchSpace.html#ab2fd65c0af1125ba51f5c68c4168f1a2", null ],
     [ "AddNode", "de/d87/structSearchSpace.html#a4a255b2a600b65c33dc7dad6dd6a4614", null ],

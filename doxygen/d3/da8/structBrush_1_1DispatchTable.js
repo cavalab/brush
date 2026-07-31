@@ -1,7 +1,7 @@
 var structBrush_1_1DispatchTable =
 [
-    [ "Callable", "d3/da8/structBrush_1_1DispatchTable.html#a75399d50d7f260e74957141962c40247", null ],
-    [ "CallVariant", "d3/da8/structBrush_1_1DispatchTable.html#a2deabd7d1077c44627f77d0960a57e7d", null ],
+    [ "Callable", "d3/da8/structBrush_1_1DispatchTable.html#a8e9fbd47bd468d463c9c1142d64ea6da", null ],
+    [ "CallVariant", "d3/da8/structBrush_1_1DispatchTable.html#af672230a6553f5eac042ab28f70f0bc0", null ],
     [ "DTMap", "d3/da8/structBrush_1_1DispatchTable.html#a7f205306356c4feb6cb2fdc9509db02e", null ],
     [ "SigMap", "d3/da8/structBrush_1_1DispatchTable.html#a3a5bb6d03d597889c147bf0fb4d0f732", null ],
     [ "DispatchTable", "d3/da8/structBrush_1_1DispatchTable.html#a2fb5ff961bb4cf63fe23573642b28742", null ],

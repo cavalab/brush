@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
   <compounddef id="d3/da8/structBrush_1_1DispatchTable" kind="struct" language="C++" prot="public">
     <compoundname>Brush::DispatchTable</compoundname>
     <includes refid="df/d61/dispatch__table_8h" local="no">dispatch_table.h</includes>
@@ -11,17 +11,17 @@
       </param>
     </templateparamlist>
     <sectiondef kind="public-type">
-      <memberdef kind="typedef" id="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" prot="public" static="no">
+      <memberdef kind="typedef" id="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" prot="public" static="no">
         <templateparamlist>
           <param>
             <type>typename T</type>
           </param>
         </templateparamlist>
         <type>typename std::conditional_t&lt; Fit, std::function&lt; T(const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Data::Dataset</ref> &amp;, <ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;)&gt;, std::function&lt; T(const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Data::Dataset</ref> &amp;, <ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;, const typename <ref refid="da/d54/structBrush_1_1WeightType" kindref="compound">WeightType</ref>&lt; T &gt;::type **)&gt; &gt;</type>
-        <definition>using Brush::DispatchTable&lt; Fit &gt;::Callable =  typename std::conditional_t&lt;Fit, 
-        std::function&lt;T(const Data::Dataset&amp;, TreeNode&amp;)&gt;,
-        std::function&lt;T(const Data::Dataset&amp;, TreeNode&amp;, const typename WeightType&lt;T&gt;::type**)&gt;
-    &gt;</definition>
+        <definition>using Brush::DispatchTable&lt; Fit &gt;::Callable = typename std::conditional_t&lt;Fit, 
+       std::function&lt;T(const Data::Dataset&amp;, TreeNode&amp;)&gt;,
+       std::function&lt;T(const Data::Dataset&amp;, TreeNode&amp;, const typename WeightType&lt;T&gt;::type**)&gt;
+   &gt;</definition>
         <argsstring></argsstring>
         <name>Callable</name>
         <qualifiedname>Brush::DispatchTable::Callable</qualifiedname>
@@ -33,29 +33,29 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/dispatch_table.h" line="39" column="5" bodyfile="/home/runner/work/brush/brush/src/program/dispatch_table.h" bodystart="39" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="d3/da8/structBrush_1_1DispatchTable_1a2deabd7d1077c44627f77d0960a57e7d" prot="public" static="no">
-        <type>std::variant&lt; <ref refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" kindref="member">Callable</ref>&lt; ArrayXf &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1aa296f8bffc481f54826511e4c5172ff6" kindref="member">ArrayXXb</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a1ebf835d71baed4d5d616491364856ff" kindref="member">ArrayXXi</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" kindref="member">Callable</ref>&lt; ArrayXXf &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" kindref="member">Callable</ref>&lt; <ref refid="d9/d1c/namespaceBrush_1_1Data_1a31f33981b7b5a0fd9f735aecac86bdf9" kindref="member">TimeSeriesb</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" kindref="member">Callable</ref>&lt; <ref refid="d9/d1c/namespaceBrush_1_1Data_1af3754cc76393d77d2e246a50cf26789b" kindref="member">TimeSeriesi</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" kindref="member">Callable</ref>&lt; <ref refid="d9/d1c/namespaceBrush_1_1Data_1a66dd2004d1ee46aa2b08a5b2ff462d29" kindref="member">TimeSeriesf</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ac5d3cc055d05202b02d1c70993eb61b7" kindref="member">ArrayXbJet</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ad4d3c3e8d9e723792930ef23b3a1da6f" kindref="member">ArrayXiJet</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1aa9f9c545473315b227a08920cf5882e4" kindref="member">ArrayXfJet</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a1fa87bfd9d6d1e7705044eb5c431be7f" kindref="member">ArrayXXbJet</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1af5c48ba01828e9da34a2a539dd2e8a14" kindref="member">ArrayXXiJet</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ac8f76bb8adc0e81c0e17a645a7447b64" kindref="member">ArrayXXfJet</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" kindref="member">Callable</ref>&lt; <ref refid="d9/d1c/namespaceBrush_1_1Data_1a8750de9f6997ddb7e3d08163690692e5" kindref="member">Data::TimeSeriesbJet</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" kindref="member">Callable</ref>&lt; <ref refid="d9/d1c/namespaceBrush_1_1Data_1a23a3cfbe568e9bb38ff52aeae1e536eb" kindref="member">Data::TimeSeriesiJet</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" kindref="member">Callable</ref>&lt; <ref refid="d9/d1c/namespaceBrush_1_1Data_1a1e91de31054d32c664b20c9f9bf978d5" kindref="member">Data::TimeSeriesfJet</ref> &gt; &gt;</type>
-        <definition>using Brush::DispatchTable&lt; Fit &gt;::CallVariant =  std::variant&lt; 
-        Callable&lt;ArrayXb&gt;,
-        Callable&lt;ArrayXi&gt;, 
-        Callable&lt;ArrayXf&gt;, 
-        Callable&lt;ArrayXXb&gt;,
-        Callable&lt;ArrayXXi&gt;, 
-        Callable&lt;ArrayXXf&gt;, 
-        Callable&lt;TimeSeriesb&gt;,
-        Callable&lt;TimeSeriesi&gt;,
-        Callable&lt;TimeSeriesf&gt;,
-        
-        Callable&lt;ArrayXbJet&gt;,
-        Callable&lt;ArrayXiJet&gt;, 
-        Callable&lt;ArrayXfJet&gt;, 
-        Callable&lt;ArrayXXbJet&gt;,
-        Callable&lt;ArrayXXiJet&gt;, 
-        Callable&lt;ArrayXXfJet&gt;, 
-        Callable&lt;Data::TimeSeriesbJet&gt;,
-        Callable&lt;Data::TimeSeriesiJet&gt;,
-        Callable&lt;Data::TimeSeriesfJet&gt;
-        &gt;</definition>
+      <memberdef kind="typedef" id="d3/da8/structBrush_1_1DispatchTable_1af672230a6553f5eac042ab28f70f0bc0" prot="public" static="no">
+        <type>std::variant&lt; <ref refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" kindref="member">Callable</ref>&lt; ArrayXf &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1aa296f8bffc481f54826511e4c5172ff6" kindref="member">ArrayXXb</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a1ebf835d71baed4d5d616491364856ff" kindref="member">ArrayXXi</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" kindref="member">Callable</ref>&lt; ArrayXXf &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" kindref="member">Callable</ref>&lt; <ref refid="d9/d1c/namespaceBrush_1_1Data_1a31f33981b7b5a0fd9f735aecac86bdf9" kindref="member">TimeSeriesb</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" kindref="member">Callable</ref>&lt; <ref refid="d9/d1c/namespaceBrush_1_1Data_1af3754cc76393d77d2e246a50cf26789b" kindref="member">TimeSeriesi</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" kindref="member">Callable</ref>&lt; <ref refid="d9/d1c/namespaceBrush_1_1Data_1a66dd2004d1ee46aa2b08a5b2ff462d29" kindref="member">TimeSeriesf</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ac5d3cc055d05202b02d1c70993eb61b7" kindref="member">ArrayXbJet</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ad4d3c3e8d9e723792930ef23b3a1da6f" kindref="member">ArrayXiJet</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1aa9f9c545473315b227a08920cf5882e4" kindref="member">ArrayXfJet</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a1fa87bfd9d6d1e7705044eb5c431be7f" kindref="member">ArrayXXbJet</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1af5c48ba01828e9da34a2a539dd2e8a14" kindref="member">ArrayXXiJet</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" kindref="member">Callable</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ac8f76bb8adc0e81c0e17a645a7447b64" kindref="member">ArrayXXfJet</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" kindref="member">Callable</ref>&lt; <ref refid="d9/d1c/namespaceBrush_1_1Data_1a8750de9f6997ddb7e3d08163690692e5" kindref="member">Data::TimeSeriesbJet</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" kindref="member">Callable</ref>&lt; <ref refid="d9/d1c/namespaceBrush_1_1Data_1a23a3cfbe568e9bb38ff52aeae1e536eb" kindref="member">Data::TimeSeriesiJet</ref> &gt;, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" kindref="member">Callable</ref>&lt; <ref refid="d9/d1c/namespaceBrush_1_1Data_1a1e91de31054d32c664b20c9f9bf978d5" kindref="member">Data::TimeSeriesfJet</ref> &gt; &gt;</type>
+        <definition>using Brush::DispatchTable&lt; Fit &gt;::CallVariant = std::variant&lt; 
+       Callable&lt;ArrayXb&gt;,
+       Callable&lt;ArrayXi&gt;, 
+       Callable&lt;ArrayXf&gt;, 
+       Callable&lt;ArrayXXb&gt;,
+       Callable&lt;ArrayXXi&gt;, 
+       Callable&lt;ArrayXXf&gt;, 
+       Callable&lt;TimeSeriesb&gt;,
+       Callable&lt;TimeSeriesi&gt;,
+       Callable&lt;TimeSeriesf&gt;,
+       
+       Callable&lt;ArrayXbJet&gt;,
+       Callable&lt;ArrayXiJet&gt;, 
+       Callable&lt;ArrayXfJet&gt;, 
+       Callable&lt;ArrayXXbJet&gt;,
+       Callable&lt;ArrayXXiJet&gt;, 
+       Callable&lt;ArrayXXfJet&gt;, 
+       Callable&lt;Data::TimeSeriesbJet&gt;,
+       Callable&lt;Data::TimeSeriesiJet&gt;,
+       Callable&lt;Data::TimeSeriesfJet&gt;
+       &gt;</definition>
         <argsstring></argsstring>
         <name>CallVariant</name>
         <qualifiedname>Brush::DispatchTable::CallVariant</qualifiedname>
@@ -68,8 +68,8 @@
         <location file="/home/runner/work/brush/brush/src/program/dispatch_table.h" line="44" column="5" bodyfile="/home/runner/work/brush/brush/src/program/dispatch_table.h" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="d3/da8/structBrush_1_1DispatchTable_1a3a5bb6d03d597889c147bf0fb4d0f732" prot="public" static="no">
-        <type>std::unordered_map&lt; std::size_t, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a2deabd7d1077c44627f77d0960a57e7d" kindref="member">CallVariant</ref> &gt;</type>
-        <definition>using Brush::DispatchTable&lt; Fit &gt;::SigMap =  std::unordered_map&lt;std::size_t,CallVariant&gt;</definition>
+        <type>std::unordered_map&lt; std::size_t, <ref refid="d3/da8/structBrush_1_1DispatchTable_1af672230a6553f5eac042ab28f70f0bc0" kindref="member">CallVariant</ref> &gt;</type>
+        <definition>using Brush::DispatchTable&lt; Fit &gt;::SigMap = std::unordered_map&lt;std::size_t,CallVariant&gt;</definition>
         <argsstring></argsstring>
         <name>SigMap</name>
         <qualifiedname>Brush::DispatchTable::SigMap</qualifiedname>
@@ -84,7 +84,7 @@
       </memberdef>
       <memberdef kind="typedef" id="d3/da8/structBrush_1_1DispatchTable_1a7f205306356c4feb6cb2fdc9509db02e" prot="public" static="no">
         <type>std::unordered_map&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref>, <ref refid="d3/da8/structBrush_1_1DispatchTable_1a3a5bb6d03d597889c147bf0fb4d0f732" kindref="member">SigMap</ref> &gt;</type>
-        <definition>using Brush::DispatchTable&lt; Fit &gt;::DTMap =  std::unordered_map&lt;NodeType, SigMap&gt;</definition>
+        <definition>using Brush::DispatchTable&lt; Fit &gt;::DTMap = std::unordered_map&lt;NodeType, SigMap&gt;</definition>
         <argsstring></argsstring>
         <name>DTMap</name>
         <qualifiedname>Brush::DispatchTable::DTMap</qualifiedname>
@@ -286,13 +286,13 @@
         <location file="/home/runner/work/brush/brush/src/program/dispatch_table.h" line="142" column="5"/>
       </memberdef>
       <memberdef kind="function" id="d3/da8/structBrush_1_1DispatchTable_1ad675004cdca66c70035541d57d0af60f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d3/da8/structBrush_1_1DispatchTable" kindref="compound">DispatchTable</ref> &amp;</type>
+        <type><ref refid="d3/da8/structBrush_1_1DispatchTable_1a2fb5ff961bb4cf63fe23573642b28742" kindref="member">DispatchTable</ref> &amp;</type>
         <definition>DispatchTable &amp; Brush::DispatchTable&lt; Fit &gt;::operator=</definition>
         <argsstring>(DispatchTable const &amp;other)</argsstring>
         <name>operator=</name>
         <qualifiedname>Brush::DispatchTable::operator=</qualifiedname>
         <param>
-          <type><ref refid="d3/da8/structBrush_1_1DispatchTable" kindref="compound">DispatchTable</ref> const &amp;</type>
+          <type><ref refid="d3/da8/structBrush_1_1DispatchTable_1a2fb5ff961bb4cf63fe23573642b28742" kindref="member">DispatchTable</ref> const &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -306,13 +306,13 @@
         <references refid="d3/da8/structBrush_1_1DispatchTable_1ae48467d85705b8884940ac89db77d914" compoundref="df/d61/dispatch__table_8h" startline="71">Brush::DispatchTable&lt; Fit &gt;::map_</references>
       </memberdef>
       <memberdef kind="function" id="d3/da8/structBrush_1_1DispatchTable_1a4602a1c673ae0b1becfdda3f0e1ab7ee" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
-        <type><ref refid="d3/da8/structBrush_1_1DispatchTable" kindref="compound">DispatchTable</ref> &amp;</type>
+        <type><ref refid="d3/da8/structBrush_1_1DispatchTable_1a2fb5ff961bb4cf63fe23573642b28742" kindref="member">DispatchTable</ref> &amp;</type>
         <definition>DispatchTable &amp; Brush::DispatchTable&lt; Fit &gt;::operator=</definition>
         <argsstring>(DispatchTable &amp;&amp;other) noexcept</argsstring>
         <name>operator=</name>
         <qualifiedname>Brush::DispatchTable::operator=</qualifiedname>
         <param>
-          <type><ref refid="d3/da8/structBrush_1_1DispatchTable" kindref="compound">DispatchTable</ref> &amp;&amp;</type>
+          <type><ref refid="d3/da8/structBrush_1_1DispatchTable_1a2fb5ff961bb4cf63fe23573642b28742" kindref="member">DispatchTable</ref> &amp;&amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -332,7 +332,7 @@
         <name>DispatchTable</name>
         <qualifiedname>Brush::DispatchTable::DispatchTable</qualifiedname>
         <param>
-          <type><ref refid="d3/da8/structBrush_1_1DispatchTable" kindref="compound">DispatchTable</ref> const &amp;</type>
+          <type>DispatchTable const &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -352,7 +352,7 @@
         <name>DispatchTable</name>
         <qualifiedname>Brush::DispatchTable::DispatchTable</qualifiedname>
         <param>
-          <type><ref refid="d3/da8/structBrush_1_1DispatchTable" kindref="compound">DispatchTable</ref> &amp;&amp;</type>
+          <type>DispatchTable &amp;&amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -370,7 +370,7 @@
             <type>typename T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" kindref="member">Callable</ref>&lt; T &gt; const &amp;</type>
+        <type><ref refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" kindref="member">Callable</ref>&lt; T &gt; const &amp;</type>
         <definition>Callable&lt; T &gt; const &amp; Brush::DispatchTable&lt; Fit &gt;::Get</definition>
         <argsstring>(NodeType n, std::size_t sig_hash) const</argsstring>
         <name>Get</name>
@@ -413,8 +413,8 @@
     <location file="/home/runner/work/brush/brush/src/program/dispatch_table.h" line="36" column="1" bodyfile="/home/runner/work/brush/brush/src/program/dispatch_table.h" bodystart="37" bodyend="198"/>
     <listofallmembers>
       <member refid="d3/da8/structBrush_1_1DispatchTable_1ab68d8c77b6defc24352bbaac2688b06e" prot="private" virt="non-virtual"><scope>Brush::DispatchTable</scope><name>AddOperator</name></member>
-      <member refid="d3/da8/structBrush_1_1DispatchTable_1a75399d50d7f260e74957141962c40247" prot="public" virt="non-virtual"><scope>Brush::DispatchTable</scope><name>Callable</name></member>
-      <member refid="d3/da8/structBrush_1_1DispatchTable_1a2deabd7d1077c44627f77d0960a57e7d" prot="public" virt="non-virtual"><scope>Brush::DispatchTable</scope><name>CallVariant</name></member>
+      <member refid="d3/da8/structBrush_1_1DispatchTable_1a8e9fbd47bd468d463c9c1142d64ea6da" prot="public" virt="non-virtual"><scope>Brush::DispatchTable</scope><name>Callable</name></member>
+      <member refid="d3/da8/structBrush_1_1DispatchTable_1af672230a6553f5eac042ab28f70f0bc0" prot="public" virt="non-virtual"><scope>Brush::DispatchTable</scope><name>CallVariant</name></member>
       <member refid="d3/da8/structBrush_1_1DispatchTable_1a2fb5ff961bb4cf63fe23573642b28742" prot="public" virt="non-virtual"><scope>Brush::DispatchTable</scope><name>DispatchTable</name></member>
       <member refid="d3/da8/structBrush_1_1DispatchTable_1ae8aff43f233f9a548a853c961ac184be" prot="public" virt="non-virtual"><scope>Brush::DispatchTable</scope><name>DispatchTable</name></member>
       <member refid="d3/da8/structBrush_1_1DispatchTable_1aa88ae2404961ecae9bd5d0528b73706f" prot="public" virt="non-virtual"><scope>Brush::DispatchTable</scope><name>DispatchTable</name></member>

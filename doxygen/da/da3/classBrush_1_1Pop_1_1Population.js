@@ -1,8 +1,8 @@
 var classBrush_1_1Pop_1_1Population =
 [
-    [ "SameFitComplexity", "d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity.html", "d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity" ],
     [ "SortComplexity", "d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity.html", "d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity" ],
     [ "SortLinearComplexity", "d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity.html", "d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity" ],
+    [ "SameFitComplexity", "d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity.html", "d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity" ],
     [ "Population", "da/da3/classBrush_1_1Pop_1_1Population.html#accbe0e4c2b8bf582fc686d7b93d784c1", null ],
     [ "~Population", "da/da3/classBrush_1_1Pop_1_1Population.html#a95bb307f431f7ab815f724c0e159b797", null ],
     [ "add_offspring_indexes", "da/da3/classBrush_1_1Pop_1_1Population.html#a74417ef86a9a4195d6422427d97347a5", null ],

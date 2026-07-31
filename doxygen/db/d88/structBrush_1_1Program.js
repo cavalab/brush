@@ -1,7 +1,7 @@
 var structBrush_1_1Program =
 [
-    [ "RetType", "db/d88/structBrush_1_1Program.html#a2a669a8179423af25fb10d26c67c27eb", null ],
-    [ "TreeType", "db/d88/structBrush_1_1Program.html#a6a1a298cfdb17245ce9174e559d6fef1", null ],
+    [ "RetType", "db/d88/structBrush_1_1Program.html#a26c422485b7c15724f7f15d72cfdff54", null ],
+    [ "TreeType", "db/d88/structBrush_1_1Program.html#a097256d2ed5456aa1ad10233e97c8e6c", null ],
     [ "Program", "db/d88/structBrush_1_1Program.html#ab5df93b7b0bf914455ffeb5cc7574543", null ],
     [ "Program", "db/d88/structBrush_1_1Program.html#a00356ac7bbc5c1d8f70bc8d90f41d4ac", null ],
     [ "complexity", "db/d88/structBrush_1_1Program.html#a6fc6aa2a6ecbe639aa3f80accf0c2798", null ],
@@ -18,9 +18,9 @@ var structBrush_1_1Program =
     [ "linear_complexity", "db/d88/structBrush_1_1Program.html#a4ac36b2680c5fa0aae06db61fa2ffae6", null ],
     [ "linearize", "db/d88/structBrush_1_1Program.html#a9db890cb3b1bd9f07764bb3bc7f75d64", null ],
     [ "lock_nodes", "db/d88/structBrush_1_1Program.html#a16b14765b1fd177c99f7cd116fae0fde", null ],
-    [ "predict", "db/d88/structBrush_1_1Program.html#a68b5b3a1aedf1dfd2769dbba3a01a2ec", null ],
-    [ "predict", "db/d88/structBrush_1_1Program.html#aae1a9e6d998ac210bb41566bf74d2cbf", null ],
     [ "predict", "db/d88/structBrush_1_1Program.html#a9e0114cb8da8698b0db76f67ce5d22e3", null ],
+    [ "predict", "db/d88/structBrush_1_1Program.html#aae1a9e6d998ac210bb41566bf74d2cbf", null ],
+    [ "predict", "db/d88/structBrush_1_1Program.html#a68b5b3a1aedf1dfd2769dbba3a01a2ec", null ],
     [ "predict", "db/d88/structBrush_1_1Program.html#a59371dd699ddbb0bdb3b27237cb40e76", null ],
     [ "predict_proba", "db/d88/structBrush_1_1Program.html#a166fc75406fd631070f4477a367c4bb8", null ],
     [ "predict_proba", "db/d88/structBrush_1_1Program.html#ad63eebe3f515f9b229617c1df623b30d", null ],

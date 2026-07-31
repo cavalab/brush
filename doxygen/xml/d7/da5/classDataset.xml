@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
   <compounddef id="d7/da5/classDataset" kind="class" language="C++" prot="public">
     <compoundname>Dataset</compoundname>
     <includes refid="d2/dbd/data_8h" local="no">data.h</includes>
@@ -249,7 +249,7 @@
     </sectiondef>
     <sectiondef kind="public-func">
       <memberdef kind="function" id="d7/da5/classDataset_1afa676d96150281b2384a07e4a3fcc352" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref></type>
+        <type><ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref></type>
         <definition>Dataset Brush::Data::Dataset::operator()</definition>
         <argsstring>(const vector&lt; size_t &gt; &amp;idx) const</argsstring>
         <name>operator()</name>
@@ -327,7 +327,7 @@
           <declname>X</declname>
         </param>
         <param>
-          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>ref_dataset</declname>
         </param>
         <param>
@@ -515,7 +515,7 @@
           <declname>X</declname>
         </param>
         <param>
-          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>ref_dataset</declname>
         </param>
         <param>
@@ -559,7 +559,7 @@
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="212" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="212" bodyend="217"/>
       </memberdef>
       <memberdef kind="function" id="d7/da5/classDataset_1ae69087b8c020840f254e3679cd324ba5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref></type>
+        <type><ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref></type>
         <definition>Dataset Brush::Data::Dataset::get_training_data</definition>
         <argsstring>() const</argsstring>
         <name>get_training_data</name>
@@ -573,7 +573,7 @@
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="221" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="214" bodyend="214"/>
       </memberdef>
       <memberdef kind="function" id="d7/da5/classDataset_1a1ddb847fd1ceff63e60ffd79542409d9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref></type>
+        <type><ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref></type>
         <definition>Dataset Brush::Data::Dataset::get_validation_data</definition>
         <argsstring>() const</argsstring>
         <name>get_validation_data</name>
@@ -630,7 +630,7 @@
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="231" column="20" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="231" bodyend="231"/>
       </memberdef>
       <memberdef kind="function" id="d7/da5/classDataset_1a5020e43def6267598be0ba3d2b46e616" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref></type>
+        <type><ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref></type>
         <definition>Dataset Brush::Data::Dataset::get_batch</definition>
         <argsstring>() const</argsstring>
         <name>get_batch</name>
@@ -695,9 +695,9 @@
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="238" column="18" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="238" bodyend="258"/>
         <referencedby refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1a771c7574933c9720bdb9fb2e51571bbd" compoundref="d4/df2/split_8h" startline="228" endline="274">Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::fit</referencedby>
       </memberdef>
-      <memberdef kind="function" id="d7/da5/classDataset_1ade5da9269ebc099385d6f79cf4a53f9f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>std::array&lt; <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>, 2 &gt;</type>
-        <definition>array&lt; Dataset, 2 &gt; Brush::Data::Dataset::split</definition>
+      <memberdef kind="function" id="d7/da5/classDataset_1a52fc24ef058c0e8a3d330aa25e46338d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::array&lt; <ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref>, 2 &gt;</type>
+        <definition>std::array&lt; Dataset, 2 &gt; Brush::Data::Dataset::split</definition>
         <argsstring>(const ArrayXb &amp;mask) const</argsstring>
         <name>split</name>
         <qualifiedname>Dataset::split</qualifiedname>
@@ -824,7 +824,7 @@
       <member refid="d7/da5/classDataset_1a59ec8554d617a4a99ba7feec09bdc62c" prot="public" virt="non-virtual"><scope>Dataset</scope><name>print</name></member>
       <member refid="d7/da5/classDataset_1afa07fa8dff0f8e01293509d6b7cc0dc3" prot="public" virt="non-virtual"><scope>Dataset</scope><name>set_batch_size</name></member>
       <member refid="d7/da5/classDataset_1a47efbb19e4ca04538d4ef04f0a87d856" prot="public" virt="non-virtual"><scope>Dataset</scope><name>shuffle_split</name></member>
-      <member refid="d7/da5/classDataset_1ade5da9269ebc099385d6f79cf4a53f9f" prot="public" virt="non-virtual"><scope>Dataset</scope><name>split</name></member>
+      <member refid="d7/da5/classDataset_1a52fc24ef058c0e8a3d330aa25e46338d" prot="public" virt="non-virtual"><scope>Dataset</scope><name>split</name></member>
       <member refid="d7/da5/classDataset_1a4112a2cb86ce4138c3c4bea966c96b65" prot="private" virt="non-virtual"><scope>Dataset</scope><name>training_data_idx</name></member>
       <member refid="d7/da5/classDataset_1a96fc30b35f152f425377e1ae34398779" prot="public" virt="non-virtual"><scope>Dataset</scope><name>unique_data_types</name></member>
       <member refid="d7/da5/classDataset_1a8cba7a5f962538d67012264fb6c97ed4" prot="public" virt="non-virtual"><scope>Dataset</scope><name>use_batch</name></member>

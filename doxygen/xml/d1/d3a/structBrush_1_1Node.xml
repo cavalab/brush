@@ -1,21 +1,21 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
   <compounddef id="d1/d3a/structBrush_1_1Node" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Node</compoundname>
     <includes refid="d1/d77/node_8h" local="no">node.h</includes>
     <sectiondef kind="public-type">
-      <memberdef kind="typedef" id="d1/d3a/structBrush_1_1Node_1a0529394dfe80ebf13da5d1bb84f2a300" prot="public" static="no">
+      <memberdef kind="typedef" id="d1/d3a/structBrush_1_1Node_1ae7b7cdb3fb99aa7d3a807ec58e0d9e9d" prot="public" static="no">
         <type>std::tuple&lt; <ref refid="dc/d5c/namespaceBrush_1a03de66d0fd6edab4d8a8ab5281e74dc3" kindref="member">UnderlyingNodeType</ref>, size_t, bool, <ref refid="d5/d92/classstring" kindref="compound">string</ref>, bool, bool, int &gt;</type>
-        <definition>using Brush::Node::HashTuple =  std::tuple&lt; 
-        UnderlyingNodeType,     
-        size_t,                 
-        bool,                   
-        string,                 
-        bool,                   
-        bool,                   
-        int                     
-        
-    &gt;</definition>
+        <definition>using Brush::Node::HashTuple = std::tuple&lt; 
+       UnderlyingNodeType,     
+       size_t,                 
+       bool,                   
+       string,                 
+       bool,                   
+       bool,                   
+       int                     
+       
+   &gt;</definition>
         <argsstring></argsstring>
         <name>HashTuple</name>
         <qualifiedname>Brush::Node::HashTuple</qualifiedname>
@@ -674,7 +674,7 @@
         <name>operator==</name>
         <qualifiedname>Brush::Node::operator==</qualifiedname>
         <param>
-          <type>const <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
+          <type>const <ref refid="d8/d49/structNode" kindref="compound">Node</ref> &amp;</type>
           <declname>rhs</declname>
         </param>
         <briefdescription>
@@ -694,7 +694,7 @@
         <name>operator!=</name>
         <qualifiedname>Brush::Node::operator!=</qualifiedname>
         <param>
-          <type>const <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
+          <type>const <ref refid="d8/d49/structNode" kindref="compound">Node</ref> &amp;</type>
           <declname>rhs</declname>
         </param>
         <briefdescription>
@@ -713,7 +713,7 @@
         <name>operator&lt;</name>
         <qualifiedname>Brush::Node::operator&lt;</qualifiedname>
         <param>
-          <type>const <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
+          <type>const <ref refid="d8/d49/structNode" kindref="compound">Node</ref> &amp;</type>
           <declname>rhs</declname>
         </param>
         <briefdescription>
@@ -733,7 +733,7 @@
         <name>operator&lt;=</name>
         <qualifiedname>Brush::Node::operator&lt;=</qualifiedname>
         <param>
-          <type>const <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
+          <type>const <ref refid="d8/d49/structNode" kindref="compound">Node</ref> &amp;</type>
           <declname>rhs</declname>
         </param>
         <briefdescription>
@@ -752,7 +752,7 @@
         <name>operator&gt;</name>
         <qualifiedname>Brush::Node::operator&gt;</qualifiedname>
         <param>
-          <type>const <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
+          <type>const <ref refid="d8/d49/structNode" kindref="compound">Node</ref> &amp;</type>
           <declname>rhs</declname>
         </param>
         <briefdescription>
@@ -771,7 +771,7 @@
         <name>operator&gt;=</name>
         <qualifiedname>Brush::Node::operator&gt;=</qualifiedname>
         <param>
-          <type>const <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
+          <type>const <ref refid="d8/d49/structNode" kindref="compound">Node</ref> &amp;</type>
           <declname>rhs</declname>
         </param>
         <briefdescription>
@@ -1030,7 +1030,7 @@
       <member refid="d1/d3a/structBrush_1_1Node_1a4fcf7feccb71d538f8614d3c51247eb4" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>get_prob_change</name></member>
       <member refid="d1/d3a/structBrush_1_1Node_1a087a9c51b46b3e801506415376cd0518" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>get_prob_keep</name></member>
       <member refid="d1/d3a/structBrush_1_1Node_1a2d4b7a1f21f80ce980f4748432911964" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>get_ret_type</name></member>
-      <member refid="d1/d3a/structBrush_1_1Node_1a0529394dfe80ebf13da5d1bb84f2a300" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>HashTuple</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1ae7b7cdb3fb99aa7d3a807ec58e0d9e9d" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>HashTuple</name></member>
       <member refid="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>init</name></member>
       <member refid="d1/d3a/structBrush_1_1Node_1ab72b791f57011a032c6c89238db85845" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>is_weighted</name></member>
       <member refid="d1/d3a/structBrush_1_1Node_1abee9ab1ef7eb2e12dcf45db1bbddf25a" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>keep_split_feature</name></member>

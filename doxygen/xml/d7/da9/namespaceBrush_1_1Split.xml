@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
   <compounddef id="d7/da9/namespaceBrush_1_1Split" kind="namespace" language="C++">
     <compoundname>Brush::Split</compoundname>
     <sectiondef kind="func">
@@ -296,7 +296,7 @@
         <name>get_best_variable_and_threshold</name>
         <qualifiedname>Brush::Split::get_best_variable_and_threshold</qualifiedname>
         <param>
-          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
@@ -356,7 +356,7 @@
         <name>get_best_threshold_by_type</name>
         <qualifiedname>Brush::Split::get_best_threshold_by_type</qualifiedname>
         <param>
-          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
@@ -388,7 +388,7 @@
         <name>get_best_thresholds</name>
         <qualifiedname>Brush::Split::get_best_thresholds</qualifiedname>
         <param>
-          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
@@ -403,7 +403,7 @@
         <location file="/home/runner/work/brush/brush/src/program/split.h" line="157" column="10" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="157" bodyend="172"/>
         <referencedby refid="d7/da9/namespaceBrush_1_1Split_1a24c9cbb45621f1a04737674db9e224e2" compoundref="d4/d59/split_8cpp" startline="7" endline="16">get_best_variable_and_threshold</referencedby>
       </memberdef>
-      <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a8a06d80deee491d1f3e9af55efa9f68e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a95a1d89dbcce9a23948e284b31bdea96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename T</type>
@@ -411,11 +411,11 @@
         </templateparamlist>
         <type>T</type>
         <definition>T Brush::Split::stitch</definition>
-        <argsstring>(array&lt; T, 2 &gt; &amp;child_outputs, const ArrayXb &amp;mask)</argsstring>
+        <argsstring>(std::array&lt; T, 2 &gt; &amp;child_outputs, const ArrayXb &amp;mask)</argsstring>
         <name>stitch</name>
         <qualifiedname>Brush::Split::stitch</qualifiedname>
         <param>
-          <type><ref refid="d2/d41/classarray" kindref="compound">array</ref>&lt; T, 2 &gt; &amp;</type>
+          <type>std::array&lt; T, 2 &gt; &amp;</type>
           <declname>child_outputs</declname>
         </param>
         <param>

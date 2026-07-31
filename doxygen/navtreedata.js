@@ -66,21 +66,22 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d1/d3a/structBrush_1_1Node.html#a237b9208864ace5209edca01623f6b1e",
+"d1/d3a/structBrush_1_1Node.html#a24ab653c36833ab9cd301efe99b39d5f",
 "d2/d36/classBrush_1_1Data_1_1Dataset.html#a2b8f61c5fb8f2128ddbe82108e7644d6",
 "d4/d0d/structstd_1_1hash_3_01std_1_1vector_3_01float_01_4_01_4.html",
 "d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity.html#a08e61d9f1f10b6020f24e232f264caed",
 "d6/dd0/structBrush_1_1Fitness.html#a0998d4960cae30c329ae6d2f05a27c84",
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa0654cb12a16531bdd8773699ea2e60e",
 "d8/d80/bind__fitness_8cpp.html#ae2f679a1605bd79ee7983e55e31d6d2e",
-"da/d1f/structBrush_1_1DataTypeEnum_3_01ArrayXXbJet_01_4.html",
-"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a44a7325acd05e13e1ec3a2b46fc8d407",
-"dc/d31/structBrush_1_1Operator.html#a6918e9c614dbbb417f98fe2b95199fea",
-"dc/d90/classtree__node___3_01Node_01_4.html#a0dfec2ce7f43ba74641899bcd3e3ffed",
-"dd/dc6/structBrush_1_1UnJetify.html#a5e56b72a72e02f0ed80313bf740a607a",
-"de/dcc/structBrush_1_1DataTypeEnum_3_01ArrayXXi_01_4.html",
-"de/deb/structBrush_1_1Parameters.html#afed0556e44457c8ef23a69631ae8561e"
+"da/da3/classBrush_1_1Pop_1_1Population.html#a95bb307f431f7ab815f724c0e159b797",
+"db/d88/structBrush_1_1Program.html#ab5df93b7b0bf914455ffeb5cc7574543",
+"dc/d5c/namespaceBrush.html#a8b77eb5253f95aaff5dcf63d29734d10",
+"dd/d56/namespaceBrush_1_1Pop.html",
+"de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#a67d05df40cbc572d3b950523d2daf786",
+"de/deb/structBrush_1_1Parameters.html#adce3ebf4b9d0aa35a4da35f33e5d9168",
+"namespacemembers_m.html"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronization';
-var SYNCOFFMSG = 'click to enable panel synchronization';
+const SYNCONMSG = 'click to disable panel synchronization';
+const SYNCOFFMSG = 'click to enable panel synchronization';
+const LISTOFALLMEMBERS = 'List of all members';

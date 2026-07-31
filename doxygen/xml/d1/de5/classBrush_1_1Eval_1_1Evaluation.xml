@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
   <compounddef id="d1/de5/classBrush_1_1Eval_1_1Evaluation" kind="class" language="C++" prot="public">
     <compoundname>Brush::Eval::Evaluation</compoundname>
     <includes refid="d3/df9/evaluation_8h" local="no">evaluation.h</includes>
@@ -126,7 +126,7 @@
           <declname>island</declname>
         </param>
         <param>
-          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>data</declname>
         </param>
         <param>
@@ -210,7 +210,7 @@
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" compoundref="da/dc9/data_8cpp" startline="214" endline="214">Brush::Data::Dataset::get_training_data</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
         <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" compoundref="d2/d76/population_8h" startline="19">Brush::Pop::Population&lt; T &gt;::individuals</references>
-        <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
+        <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="66">MAX_FLT</references>
         <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1af8eafd2aab3c3a683d6b3b80a649dfa6" compoundref="d5/d1f/individual_8h" startline="17">Brush::Pop::Individual&lt; T &gt;::program</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1af8ccf40c598f102153c058e9f470c9a2" compoundref="dc/d7a/fitness_8h" startline="63" endline="63">Brush::Fitness::set_loss</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1a777abbd7a2453ba1b580e28fb2f6f28a" compoundref="dc/d7a/fitness_8h" startline="67" endline="67">Brush::Fitness::set_loss_v</references>
@@ -227,7 +227,7 @@
           <declname>ind</declname>
         </param>
         <param>
-          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>data</declname>
         </param>
         <param>
@@ -292,7 +292,7 @@
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" compoundref="da/dc9/data_8cpp" startline="214" endline="214">Brush::Data::Dataset::get_training_data</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1ddb847fd1ceff63e60ffd79542409d9" compoundref="da/dc9/data_8cpp" startline="215" endline="215">Brush::Data::Dataset::get_validation_data</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
-        <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
+        <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="66">MAX_FLT</references>
         <references refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a8b0cbe86a7f12660f9ff1df7d4ef6835" compoundref="d3/df9/evaluation_8h" startline="29">Brush::Eval::Evaluation&lt; T &gt;::S</references>
         <references refid="de/deb/structBrush_1_1Parameters_1aa4ccaa768b6371176d89cd3378e80d45" compoundref="da/d33/params_8h" startline="66">Brush::Parameters::scorer</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1a6624d493b11552c90ebd6a32567d4021" compoundref="dc/d7a/fitness_8h" startline="75" endline="76">Brush::Fitness::set_complexity</references>

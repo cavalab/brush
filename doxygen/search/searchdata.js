@@ -11,7 +11,8 @@ var indexSectionsWithContent =
   8: "abcdefglmnoprst",
   9: "o",
   10: "fhmost",
-  11: "i"
+  11: "p",
+  12: "i"
 };
 
 var indexSectionNames =
@@ -27,7 +28,8 @@ var indexSectionNames =
   8: "enumvalues",
   9: "related",
   10: "defines",
-  11: "concepts"
+  11: "pages",
+  12: "concepts"
 };
 
 var indexSectionLabels =
@@ -43,6 +45,7 @@ var indexSectionLabels =
   8: "Enumerator",
   9: "Friends",
   10: "Macros",
-  11: "Concepts"
+  11: "Pages",
+  12: "Concepts"
 };
 

@@ -34,7 +34,7 @@ var structTimeSeries =
     [ "mean", "d0/d8e/structTimeSeries.html#abc0f2b34bc8b341ad4651b268646dc60", null ],
     [ "median", "d0/d8e/structTimeSeries.html#ae3c8babca545b4cb131aa6ec8f039ac3", null ],
     [ "min", "d0/d8e/structTimeSeries.html#aedde07bb76cee5e2710cb6b94ddf4ab0", null ],
-    [ "operator()", "d0/d8e/structTimeSeries.html#af1ff3934c359ca5bd910a61fe083d5ce", null ],
+    [ "operator()", "d0/d8e/structTimeSeries.html#ab4543261f986c6aa402fd100229f1770", null ],
     [ "operator*", "d0/d8e/structTimeSeries.html#a3065c6c314ba16432bfbd8acdeb5fe88", null ],
     [ "pow", "d0/d8e/structTimeSeries.html#af2794548897e6940a8c4636c41960393", null ],
     [ "print", "d0/d8e/structTimeSeries.html#a45820a71d7cb5d552dce96fdce8db1d1", null ],

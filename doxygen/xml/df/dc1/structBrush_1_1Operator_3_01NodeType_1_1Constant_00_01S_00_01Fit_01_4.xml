@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
   <compounddef id="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</compoundname>
     <includes refid="d7/de0/operator_8h" local="no">operator.h</includes>
@@ -16,7 +16,7 @@
     <sectiondef kind="public-type">
       <memberdef kind="typedef" id="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4_1ae31c2ad26f952d7030c85024f68165f6" prot="public" static="no">
         <type>typename S::RetType</type>
-        <definition>using Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::RetType =  typename S::RetType</definition>
+        <definition>using Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::RetType = typename S::RetType</definition>
         <argsstring></argsstring>
         <name>RetType</name>
         <qualifiedname>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::RetType</qualifiedname>
@@ -30,7 +30,7 @@
       </memberdef>
       <memberdef kind="typedef" id="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4_1a9c73f02bcd42c10cd4094ab2f9fb06dd" prot="public" static="no">
         <type>typename S::WeightType</type>
-        <definition>using Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::W =  typename S::WeightType</definition>
+        <definition>using Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::W = typename S::WeightType</definition>
         <argsstring></argsstring>
         <name>W</name>
         <qualifiedname>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::W</qualifiedname>
@@ -42,7 +42,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="329" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="329" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="dc/d31/structBrush_1_1Operator_1a6918e9c614dbbb417f98fe2b95199fea" prot="public" static="no">
+      <memberdef kind="typedef" id="dc/d31/structBrush_1_1Operator_1aac4569e4a053f6bc685262dc81667d73" prot="public" static="no">
         <type>conditional_t&lt;((<ref refid="de/d26/nodetype_8h_1a876e80643fd688721e2b628ba2cd39cd" kindref="member">UnaryOp</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref> &gt;||<ref refid="de/d26/nodetype_8h_1a82f43e5fe13312809d2411e25aff9e3a" kindref="member">NaryOp</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref> &gt;) &amp;&amp;S::ArgCount &gt; 1), Array&lt; typename S::FirstArg::Scalar, -1, S::ArgCount &gt;, typename S::ArgTypes &gt;</type>
         <definition>using Brush::Operator&lt; NT, S, Fit, void &gt;::ArgTypes = </definition>
         <argsstring></argsstring>
@@ -60,21 +60,6 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="101" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="101" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="dc/d31/structBrush_1_1Operator_1a424bb09369598ed3d44f4d2b68eebcef" prot="public" static="no">
-        <type>typename S::RetType</type>
-        <definition>using Brush::Operator&lt; NT, S, Fit, void &gt;::RetType = </definition>
-        <argsstring></argsstring>
-        <name>RetType</name>
-        <qualifiedname>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::RetType</qualifiedname>
-        <briefdescription>
-<para>return type of the operator </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="107" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="107" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="typedef" id="dc/d31/structBrush_1_1Operator_1a5a0ceadaff7a8c69f145e7d404289292" prot="public" static="no">
         <type>typename S::template <ref refid="dc/d31/structBrush_1_1Operator_1a5a0ceadaff7a8c69f145e7d404289292" kindref="member">NthType</ref>&lt; N &gt;</type>
         <definition>using Brush::Operator&lt; NT, S, Fit, void &gt;::NthType = </definition>
@@ -89,21 +74,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="114" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="114" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="typedef" id="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" prot="public" static="no">
-        <type>typename S::WeightType</type>
-        <definition>using Brush::Operator&lt; NT, S, Fit, void &gt;::W = </definition>
-        <argsstring></argsstring>
-        <name>W</name>
-        <qualifiedname>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::W</qualifiedname>
-        <briefdescription>
-<para>set weight type </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="117" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="117" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -130,7 +100,7 @@
         <name>eval</name>
         <qualifiedname>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::eval</qualifiedname>
         <param>
-          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
@@ -174,7 +144,7 @@
         <name>get_kids</name>
         <qualifiedname>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::get_kids</qualifiedname>
         <param>
-          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
@@ -195,71 +165,6 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="131" column="7" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="131" bodyend="159"/>
       </memberdef>
-      <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a91d6de562fe5a54112e3c746b4281f7e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>T</type>
-        <definition>T Brush::Operator&lt; NT, S, Fit, void &gt;::get_kids</definition>
-        <argsstring>(const Dataset &amp;d, TreeNode &amp;tn, const W **weights=nullptr) const</argsstring>
-        <name>get_kids</name>
-        <qualifiedname>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::get_kids</qualifiedname>
-        <param>
-          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
-          <declname>d</declname>
-        </param>
-        <param>
-          <type><ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;</type>
-          <declname>tn</declname>
-        </param>
-        <param>
-          <type>const <ref refid="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4_1a9c73f02bcd42c10cd4094ab2f9fb06dd" kindref="member">W</ref> **</type>
-          <declname>weights</declname>
-          <defval>nullptr</defval>
-        </param>
-        <briefdescription>
-<para>get a std::tuple of kids. Used when child arguments are different types. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="templateparam"><parameteritem>
-<parameternamelist>
-<parametername>T</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>argument types </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>d</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>the dataset </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>tn</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>the tree node </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>weights</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>option pointer to a weight array, used in place of node weight </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>a tuple of the child arguments </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="198" column="7" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="198" bodyend="201"/>
-      </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a9088496bd47b051080700b53f3cddd80" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="dc/d31/structBrush_1_1Operator_1a5a0ceadaff7a8c69f145e7d404289292" kindref="member">NthType</ref>&lt; I &gt;</type>
         <definition>NthType&lt; I &gt; Brush::Operator&lt; NT, S, Fit, void &gt;::get_kid</definition>
@@ -267,7 +172,7 @@
         <name>get_kid</name>
         <qualifiedname>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::get_kid</qualifiedname>
         <param>
-          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
@@ -294,7 +199,7 @@
         <name>get_kids_seq</name>
         <qualifiedname>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::get_kids_seq</qualifiedname>
         <param>
-          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
@@ -395,146 +300,6 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="210" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="210" bodyend="213"/>
       </memberdef>
-      <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1ab4b156eb563db21ac32223aabfb9b92c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4_1ae31c2ad26f952d7030c85024f68165f6" kindref="member">RetType</ref></type>
-        <definition>RetType Brush::Operator&lt; NT, S, Fit, void &gt;::apply</definition>
-        <argsstring>(const T &amp;inputs) const</argsstring>
-        <name>apply</name>
-        <qualifiedname>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::apply</qualifiedname>
-        <param>
-          <type>const T &amp;</type>
-          <declname>inputs</declname>
-        </param>
-        <briefdescription>
-<para>Apply the node function like a function. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="templateparam"><parameteritem>
-<parameternamelist>
-<parametername>T</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>argument types </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>inputs</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>the child node outputs </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>return values applying F to the inputs </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="220" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="220" bodyend="223"/>
-      </memberdef>
-      <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4_1ae31c2ad26f952d7030c85024f68165f6" kindref="member">RetType</ref></type>
-        <definition>RetType Brush::Operator&lt; NT, S, Fit, void &gt;::eval</definition>
-        <argsstring>(const Dataset &amp;d, TreeNode &amp;tn, const W **weights=nullptr) const</argsstring>
-        <name>eval</name>
-        <qualifiedname>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::eval</qualifiedname>
-        <param>
-          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
-          <declname>d</declname>
-        </param>
-        <param>
-          <type><ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;</type>
-          <declname>tn</declname>
-        </param>
-        <param>
-          <type>const <ref refid="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4_1a9c73f02bcd42c10cd4094ab2f9fb06dd" kindref="member">W</ref> **</type>
-          <declname>weights</declname>
-          <defval>nullptr</defval>
-        </param>
-        <briefdescription>
-<para>evaluate the operator on the data. main entry point. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="templateparam"><parameteritem>
-<parameternamelist>
-<parametername>T</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>argument types </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername><ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref></parametername>
-</parameternamelist>
-<parameterdescription>
-<para>the underlying scalar type of the return type </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>d</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>dataset </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>tn</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>tree node </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>weights</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>option pointer to a weight array, used in place of node weight </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>output values from applying operator function </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="233" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="233" bodyend="245"/>
-      </memberdef>
-      <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a2971efb3f05fd1ed22a5f805fe0720c7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4_1ae31c2ad26f952d7030c85024f68165f6" kindref="member">RetType</ref></type>
-        <definition>RetType Brush::Operator&lt; NT, S, Fit, void &gt;::eval</definition>
-        <argsstring>(const Dataset &amp;d, TreeNode &amp;tn, const W **weights=nullptr) const</argsstring>
-        <name>eval</name>
-        <qualifiedname>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::eval</qualifiedname>
-        <param>
-          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
-          <declname>d</declname>
-        </param>
-        <param>
-          <type><ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;</type>
-          <declname>tn</declname>
-        </param>
-        <param>
-          <type>const <ref refid="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4_1a9c73f02bcd42c10cd4094ab2f9fb06dd" kindref="member">W</ref> **</type>
-          <declname>weights</declname>
-          <defval>nullptr</defval>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="250" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="250" bodyend="262"/>
-      </memberdef>
     </sectiondef>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="dc/d31/structBrush_1_1Operator_1a3510e6cd8f26f1f30ab53dcfafe08025" prot="public" static="yes" constexpr="yes" mutable="no">
@@ -575,23 +340,17 @@
     <location file="/home/runner/work/brush/brush/src/program/operator.h" line="326" column="1" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="327" bodyend="348"/>
     <listofallmembers>
       <member refid="dc/d31/structBrush_1_1Operator_1ab1ff8e429a35176b81c19079cd1397c4" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</scope><name>apply</name></member>
-      <member refid="dc/d31/structBrush_1_1Operator_1ab4b156eb563db21ac32223aabfb9b92c" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</scope><name>apply</name></member>
       <member refid="dc/d31/structBrush_1_1Operator_1a3510e6cd8f26f1f30ab53dcfafe08025" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</scope><name>ArgCount</name></member>
-      <member refid="dc/d31/structBrush_1_1Operator_1a6918e9c614dbbb417f98fe2b95199fea" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</scope><name>ArgTypes</name></member>
+      <member refid="dc/d31/structBrush_1_1Operator_1aac4569e4a053f6bc685262dc81667d73" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</scope><name>ArgTypes</name></member>
       <member refid="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4_1a1309f7a7253c0899447c91ebfee84a3a" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</scope><name>eval</name></member>
-      <member refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</scope><name>eval</name></member>
-      <member refid="dc/d31/structBrush_1_1Operator_1a2971efb3f05fd1ed22a5f805fe0720c7" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</scope><name>eval</name></member>
       <member refid="dc/d31/structBrush_1_1Operator_1a5f08ba3c3b0e39c54b830845eba40b68" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</scope><name>F</name></member>
       <member refid="dc/d31/structBrush_1_1Operator_1a9088496bd47b051080700b53f3cddd80" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</scope><name>get_kid</name></member>
       <member refid="dc/d31/structBrush_1_1Operator_1aa4adc47d9cddb762f26e38747773bba6" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</scope><name>get_kids</name></member>
-      <member refid="dc/d31/structBrush_1_1Operator_1a91d6de562fe5a54112e3c746b4281f7e" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</scope><name>get_kids</name></member>
       <member refid="dc/d31/structBrush_1_1Operator_1a3494388e6927873c8ba8d296fbb30908" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</scope><name>get_kids_seq</name></member>
       <member refid="dc/d31/structBrush_1_1Operator_1a5a0ceadaff7a8c69f145e7d404289292" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</scope><name>NthType</name></member>
       <member refid="dc/d31/structBrush_1_1Operator_1a09fa4721bd510aacdb5402dc4ce4b5ac" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</scope><name>Operator</name></member>
       <member refid="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4_1ae31c2ad26f952d7030c85024f68165f6" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</scope><name>RetType</name></member>
-      <member refid="dc/d31/structBrush_1_1Operator_1a424bb09369598ed3d44f4d2b68eebcef" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</scope><name>RetType</name></member>
       <member refid="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4_1a9c73f02bcd42c10cd4094ab2f9fb06dd" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</scope><name>W</name></member>
-      <member refid="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</scope><name>W</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

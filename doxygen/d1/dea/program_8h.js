@@ -1,6 +1,6 @@
 var program_8h =
 [
-    [ "Brush::Program< PType >", "db/d88/structBrush_1_1Program.html", "db/d88/structBrush_1_1Program" ],
+    [ "Brush::Program&lt; PType &gt;", "db/d88/structBrush_1_1Program.html", "db/d88/structBrush_1_1Program" ],
     [ "SearchSpace", "de/d87/structSearchSpace.html", "de/d87/structSearchSpace" ],
     [ "Brush::Iter", "dc/d5c/namespaceBrush.html#a822ae4ce07ba14ae433977a635675764", null ],
     [ "Brush::PostIter", "dc/d5c/namespaceBrush.html#a8b77eb5253f95aaff5dcf63d29734d10", null ],

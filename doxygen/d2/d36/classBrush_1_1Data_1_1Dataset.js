@@ -20,7 +20,7 @@ var classBrush_1_1Data_1_1Dataset =
     [ "operator[]", "d2/d36/classBrush_1_1Data_1_1Dataset.html#a86f779c55c96ff7182b4e649f87fbf24", null ],
     [ "print", "d2/d36/classBrush_1_1Data_1_1Dataset.html#a59ec8554d617a4a99ba7feec09bdc62c", null ],
     [ "set_batch_size", "d2/d36/classBrush_1_1Data_1_1Dataset.html#afa07fa8dff0f8e01293509d6b7cc0dc3", null ],
-    [ "split", "d2/d36/classBrush_1_1Data_1_1Dataset.html#ade5da9269ebc099385d6f79cf4a53f9f", null ],
+    [ "split", "d2/d36/classBrush_1_1Data_1_1Dataset.html#a52fc24ef058c0e8a3d330aa25e46338d", null ],
     [ "batch_size", "d2/d36/classBrush_1_1Data_1_1Dataset.html#a6ac1f4f56991e43a782dd519c414916a", null ],
     [ "classification", "d2/d36/classBrush_1_1Data_1_1Dataset.html#a1a8a1e77afdecb032696bdf38e5c424c", null ],
     [ "feature_name_order_", "d2/d36/classBrush_1_1Data_1_1Dataset.html#a1c3dbde303375f3ad0586ad855bcd1bf", null ],

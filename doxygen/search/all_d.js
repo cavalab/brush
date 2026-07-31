@@ -14,7 +14,7 @@ var searchData=
   ['makecallable_11',['MakeCallable',['../d3/da8/structBrush_1_1DispatchTable.html#a18c6366cbcd3c590466a319f41173a42',1,'Brush::DispatchTable']]],
   ['makenodes_12',['MakeNodes',['../d4/dc3/structBrush_1_1SearchSpace.html#af8165ac09c39eec3e5aa6e2d925b8104',1,'Brush::SearchSpace::MakeNodes()'],['../de/d87/structSearchSpace.html#af8165ac09c39eec3e5aa6e2d925b8104',1,'SearchSpace::MakeNodes()']]],
   ['makeoperators_13',['MakeOperators',['../d3/da8/structBrush_1_1DispatchTable.html#ab09c28900220bdf62874a75ebf163f31',1,'Brush::DispatchTable']]],
-  ['map_14',['Map',['../d4/dc3/structBrush_1_1SearchSpace.html#a5296a6d834c32ab1259e34c3351933be',1,'Brush::SearchSpace::Map'],['../de/d87/structSearchSpace.html#a5296a6d834c32ab1259e34c3351933be',1,'SearchSpace::Map']]],
+  ['map_14',['Map',['../d4/dc3/structBrush_1_1SearchSpace.html#a49f1928a1920ecf37257fdd66abe438d',1,'Brush::SearchSpace::Map'],['../de/d87/structSearchSpace.html#a49f1928a1920ecf37257fdd66abe438d',1,'SearchSpace::Map']]],
   ['map_15',['map',['../d9/d28/classmap.html',1,'']]],
   ['map_5f_16',['map_',['../d3/da8/structBrush_1_1DispatchTable.html#ae48467d85705b8884940ac89db77d914',1,'Brush::DispatchTable']]],
   ['mask_5fto_5findex_17',['mask_to_index',['../d6/d2e/namespaceBrush_1_1Util.html#afc397ee448b473fec9502461f3e75eae',1,'Brush::Util']]],

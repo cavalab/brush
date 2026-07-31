@@ -1,9 +1,9 @@
 var structBrush_1_1SigBase =
 [
-    [ "ArgTypes", "da/dd5/structBrush_1_1SigBase.html#a2401de48dbf92128bdb01ef0174cfa37", null ],
+    [ "ArgTypes", "da/dd5/structBrush_1_1SigBase.html#a946f994b2feb4b07e3130c3500602a36", null ],
     [ "FirstArg", "da/dd5/structBrush_1_1SigBase.html#a6edda5311818d26a34644c677ff71396", null ],
     [ "Function", "da/dd5/structBrush_1_1SigBase.html#a65aae1d226520ac153bb8d7ebc4c7a29", null ],
-    [ "NthType", "da/dd5/structBrush_1_1SigBase.html#aa946fff6ce82e839aa2315b03b5c61a1", null ],
+    [ "NthType", "da/dd5/structBrush_1_1SigBase.html#a97a38b4f3d5cb897fd0fef28e606a69a", null ],
     [ "RetType", "da/dd5/structBrush_1_1SigBase.html#a648c74c8673cb0d89211dd3388d13274", null ],
     [ "WeightType", "da/dd5/structBrush_1_1SigBase.html#af330c93cdb4c2b8855a1224f65070f08", null ],
     [ "contains", "da/dd5/structBrush_1_1SigBase.html#afcea385152d72559a0544447c1467537", null ],

@@ -20,7 +20,7 @@ var classDataset =
     [ "operator[]", "d7/da5/classDataset.html#a86f779c55c96ff7182b4e649f87fbf24", null ],
     [ "print", "d7/da5/classDataset.html#a59ec8554d617a4a99ba7feec09bdc62c", null ],
     [ "set_batch_size", "d7/da5/classDataset.html#afa07fa8dff0f8e01293509d6b7cc0dc3", null ],
-    [ "split", "d7/da5/classDataset.html#ade5da9269ebc099385d6f79cf4a53f9f", null ],
+    [ "split", "d7/da5/classDataset.html#a52fc24ef058c0e8a3d330aa25e46338d", null ],
     [ "batch_size", "d7/da5/classDataset.html#a6ac1f4f56991e43a782dd519c414916a", null ],
     [ "classification", "d7/da5/classDataset.html#a1a8a1e77afdecb032696bdf38e5c424c", null ],
     [ "feature_name_order_", "d7/da5/classDataset.html#a1c3dbde303375f3ad0586ad855bcd1bf", null ],

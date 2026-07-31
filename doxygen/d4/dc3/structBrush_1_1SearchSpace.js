@@ -1,7 +1,7 @@
 var structBrush_1_1SearchSpace =
 [
     [ "ArgsHash", "d4/dc3/structBrush_1_1SearchSpace.html#af004a91112f5e3994d7c90c8baa71310", null ],
-    [ "Map", "d4/dc3/structBrush_1_1SearchSpace.html#a5296a6d834c32ab1259e34c3351933be", null ],
+    [ "Map", "d4/dc3/structBrush_1_1SearchSpace.html#a49f1928a1920ecf37257fdd66abe438d", null ],
     [ "SearchSpace", "d4/dc3/structBrush_1_1SearchSpace.html#af87c7270774accc9aa698089d310c4c3", null ],
     [ "SearchSpace", "d4/dc3/structBrush_1_1SearchSpace.html#ab2fd65c0af1125ba51f5c68c4168f1a2", null ],
     [ "AddNode", "d4/dc3/structBrush_1_1SearchSpace.html#a4a255b2a600b65c33dc7dad6dd6a4614", null ],

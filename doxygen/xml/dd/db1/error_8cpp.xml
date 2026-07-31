@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
   <compounddef id="dd/db1/error_8cpp" kind="file" language="C++">
     <compoundname>error.cpp</compoundname>
     <includes refid="da/d41/error_8h" local="yes">error.h</includes>
-    <includes local="yes">fmt/core.h</includes>
+    <includes local="yes">fmt/format.h</includes>
     <incdepgraph>
       <node id="1">
         <label>error.cpp</label>
@@ -22,7 +22,7 @@
         </childnode>
       </node>
       <node id="5">
-        <label>fmt/core.h</label>
+        <label>fmt/format.h</label>
       </node>
       <node id="4">
         <label>iostream</label>
@@ -44,7 +44,7 @@
 <codeline lineno="4"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="da/d41/error_8h" kindref="compound">error.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fmt/core.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fmt/format.h&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//#include<sp/>&quot;node/node.h&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//external<sp/>includes</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight></codeline>
@@ -65,7 +65,6 @@
 <codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fmt::print(stderr,<sp/></highlight><highlight class="stringliteral">&quot;WARNING<sp/>{}:{}:<sp/>{}\n&quot;</highlight><highlight class="normal">,<sp/>file,<sp/>line,<sp/>err);</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="29"><highlight class="normal">}<sp/>}</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/util/error.cpp"/>
   </compounddef>

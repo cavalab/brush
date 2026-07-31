@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
   <compounddef id="d6/d2e/namespaceBrush_1_1Util" kind="namespace" language="C++">
     <compoundname>Brush::Util</compoundname>
     <innerclass refid="db/d7e/structBrush_1_1Util_1_1Log__Stats" prot="public">Brush::Util::Log_Stats</innerclass>
@@ -15,7 +15,7 @@
           </param>
         </templateparamlist>
         <type>std::map&lt; std::type_index, T &gt;</type>
-        <definition>using Brush::Util::TypeMap =  std::map&lt;std::type_index, T&gt;</definition>
+        <definition>using Brush::Util::TypeMap = std::map&lt;std::type_index, T&gt;</definition>
         <argsstring></argsstring>
         <name>TypeMap</name>
         <qualifiedname>Brush::Util::TypeMap</qualifiedname>
@@ -144,14 +144,14 @@
         <argsstring></argsstring>
         <name>type_names</name>
         <qualifiedname>Brush::Util::type_names</qualifiedname>
-        <initializer>= {
-        { typeid(int) , &quot;int&quot; },
-        { typeid(float) , &quot;float&quot; },
-        { typeid(bool) , &quot;bool&quot; },
-        { typeid(ArrayXf) , &quot;ArrayXf&quot; },
-        { typeid(<ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>) , &quot;ArrayXi&quot; },
-        { typeid(<ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>) , &quot;ArrayXb&quot; }
-    }</initializer>
+        <initializer>               = {
+    { typeid(int) , &quot;int&quot; },
+    { typeid(float) , &quot;float&quot; },
+    { typeid(bool) , &quot;bool&quot; },
+    { typeid(ArrayXf) , &quot;ArrayXf&quot; },
+    { typeid(<ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>) , &quot;ArrayXi&quot; },
+    { typeid(<ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>) , &quot;ArrayXb&quot; }
+}</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -234,8 +234,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="17" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="17" bodyend="22" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="181" declcolumn="6"/>
-        <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
-        <references refid="d8/dc0/init_8h_1a8213bd26dbb943e499d0e227fa9b3159" compoundref="d8/dc0/init_8h" startline="62">MIN_FLT</references>
+        <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="66">MAX_FLT</references>
+        <references refid="d8/dc0/init_8h_1a8213bd26dbb943e499d0e227fa9b3159" compoundref="d8/dc0/init_8h" startline="67">MIN_FLT</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a3837fbd31ac81e3f8db8aaa399fda345" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::string</type>
@@ -346,7 +346,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="172" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="172" bodyend="197" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="386" declcolumn="7"/>
-        <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
+        <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="66">MAX_FLT</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a1d2cb1b20c4767ecd0c4ee602b7cda55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>MatrixXf</type>
@@ -642,7 +642,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="409" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="409" bodyend="419" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="501" declcolumn="8"/>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade5da9269ebc099385d6f79cf4a53f9f" compoundref="da/dc9/data_8cpp" startline="203" endline="212">Brush::Data::Dataset::split</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a52fc24ef058c0e8a3d330aa25e46338d" compoundref="da/dc9/data_8cpp" startline="203" endline="212">Brush::Data::Dataset::split</referencedby>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a43f8d9d4ac086fe1166492d0751eb2db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>tuple&lt; <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;, <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt; &gt;</type>
@@ -730,6 +730,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="202" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="202" bodyend="219"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" compoundref="da/d5c/engine_8cpp" startline="53" endline="172">Brush::Engine&lt; T &gt;::calculate_stats</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a27c00366227bc7afa5d057ca555f9e12" compoundref="de/d06/utils_8cpp" startline="373" endline="384">mad</referencedby>
         <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ae3c8babca545b4cb131aa6ec8f039ac3" compoundref="d9/df7/timeseries_8h" startline="131" endline="131">Brush::Data::TimeSeries&lt; bool &gt;::median</referencedby>
         <referencedby refid="d2/d84/structBrush_1_1Function_3_01NodeType_1_1Median_01_4_1a226a9b29496d0d09fb55055ca23a3c86" compoundref="d8/d5c/functions_8h" startline="142" endline="145">Brush::Function&lt; NodeType::Median &gt;::median</referencedby>
@@ -938,6 +939,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="369" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="369" bodyend="374"/>
         <referencedby refid="d8/df7/bind__variation_8h_1aa00827ef4bd73eeb7c3e30717bf91a74" compoundref="d8/df7/bind__variation_8h" startline="21" endline="77">bind_variation</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" compoundref="da/d5c/engine_8cpp" startline="53" endline="172">Brush::Engine&lt; T &gt;::calculate_stats</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="458" endline="509">Brush::Data::Dataset::copy_and_make_features</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a46922ab810383db1271d700e03005962" compoundref="d7/d4a/population_8cpp" startline="18" endline="59">Brush::Pop::Population&lt; T &gt;::init</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1ad193aced6ffa6d3587f0f390d9ed0415" compoundref="d7/d4a/population_8cpp" startline="117" endline="134">Brush::Pop::Population&lt; T &gt;::load</referencedby>
@@ -946,7 +948,6 @@
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a92f851fffa86280c36cd54a8f670466e" compoundref="d7/d4a/population_8cpp" startline="213" endline="230">Brush::Pop::Population&lt; T &gt;::print_models</referencedby>
         <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a4bec036d5b4fa2acc82b2e934183a45c" compoundref="dc/d7a/fitness_8h" startline="212" endline="221">Brush::Fitness::repr</referencedby>
         <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a6253406e0ac28947766a5f5afbb721e1" compoundref="dc/d7a/fitness_8h" startline="199" endline="209">Brush::Fitness::toString</referencedby>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1ad1d21bed892c8d2132d58ec34372ec41" compoundref="da/d5c/engine_8cpp" startline="370" endline="418">Brush::Engine&lt; PT::Regressor &gt;::update_best</referencedby>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a1c021ad5313b593be72b58625134104f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1018,8 +1019,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="461" column="1" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="461" bodyend="471"/>
-        <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
-        <references refid="d8/dc0/init_8h_1a8213bd26dbb943e499d0e227fa9b3159" compoundref="d8/dc0/init_8h" startline="62">MIN_FLT</references>
+        <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="66">MAX_FLT</references>
+        <references refid="d8/dc0/init_8h_1a8213bd26dbb943e499d0e227fa9b3159" compoundref="d8/dc0/init_8h" startline="67">MIN_FLT</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a061629dafeb96a99b68d4c430838dc72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -1043,8 +1044,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="475" column="1" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="475" bodyend="481"/>
-        <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
-        <references refid="d8/dc0/init_8h_1a8213bd26dbb943e499d0e227fa9b3159" compoundref="d8/dc0/init_8h" startline="62">MIN_FLT</references>
+        <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="66">MAX_FLT</references>
+        <references refid="d8/dc0/init_8h_1a8213bd26dbb943e499d0e227fa9b3159" compoundref="d8/dc0/init_8h" startline="67">MIN_FLT</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a23d6d2f736db6e9d84cc27b58cc3bf27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -1073,14 +1074,14 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="484" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="484" bodyend="497"/>
       </memberdef>
-      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a8a14946733d9059bad0379e7666a3699" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a44c0397356affbe68749594a861c304f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="d2/d41/classarray" kindref="compound">array</ref>&lt; Array&lt; T,-1, 1 &gt;, 2 &gt;</type>
-        <definition>array&lt; Array&lt; T,-1, 1 &gt;, 2 &gt; Brush::Util::split</definition>
+        <type>std::array&lt; Array&lt; T,-1, 1 &gt;, 2 &gt;</type>
+        <definition>std::array&lt; Array&lt; T,-1, 1 &gt;, 2 &gt; Brush::Util::split</definition>
         <argsstring>(const Array&lt; T,-1, 1 &gt; &amp;v, const ArrayXb &amp;mask)</argsstring>
         <name>split</name>
         <qualifiedname>Brush::Util::split</qualifiedname>
@@ -1099,7 +1100,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="510" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="510" bodyend="533"/>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="510" column="12" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="510" bodyend="533"/>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a0fca88a717680a76c4b7b9b082675f89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -1250,7 +1251,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="740" column="13" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="740" bodyend="748"/>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1af1ff3934c359ca5bd910a61fe083d5ce" compoundref="d9/df7/timeseries_8h" startline="45" endline="50">Brush::Data::TimeSeries&lt; bool &gt;::operator()</referencedby>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a104f5440d54d751bac78c892b7022c71" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
