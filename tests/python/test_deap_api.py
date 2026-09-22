@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 from pmlb import fetch_data
 from sklearn.utils import resample
+from sklearn.datasets import make_classification
 
 import traceback
 import logging
@@ -147,6 +148,25 @@ def test_predict_proba(setup, brush_args, request):
     assert len(y_prob.shape) == 2, "predict_proba should be 2-dimensional"
     assert y_prob.shape[1] >= 2, \
         "every class should have its own column (even for binary clf)"
+
+
+def test_deap_multiclass_probabilities_and_labels():
+    X, y = make_classification(
+        n_samples=36, n_features=4, n_informative=3, n_redundant=0,
+        n_classes=3, n_clusters_per_class=1, random_state=12)
+    labels = np.array(["red", "green", "blue"])[y]
+
+    est = pybrush.deap_api.DeapClassifier(
+        max_gens=2, pop_size=8, max_size=30, max_depth=4,
+        num_islands=1, validation_size=0.0, random_state=12)
+    est.fit(X, labels)
+
+    probabilities = est.predict_proba(X)
+    prediction = est.predict(X)
+    assert probabilities.shape == (X.shape[0], 3)
+    assert np.allclose(probabilities.sum(axis=1), 1.0)
+    assert set(prediction).issubset(set(labels))
+    assert np.array_equal(est.classes_, np.array(["blue", "green", "red"]))
 
 
 # @pytest.mark.parametrize('setup,num_islands',

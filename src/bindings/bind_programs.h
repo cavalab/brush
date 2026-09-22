@@ -85,13 +85,14 @@ void bind_program(py::module& m, string name)
             )
         )
         ;
-    if constexpr (std::is_same_v<T,Cls>)
+    if constexpr (std::is_same_v<T,Cls> || std::is_same_v<T,MCls>)
     {
+        using ProbType = typename T::TreeType;
         prog.def("predict_proba",
-                static_cast<ArrayXf (T::*)(const Dataset &d)>(&T::predict_proba),
+                static_cast<ProbType (T::*)(const Dataset &d)>(&T::predict_proba),
                 "predict from Dataset object")
            .def("predict_proba",
-                static_cast<ArrayXf (T::*)(const Ref<const ArrayXXf> &X)>(&T::predict_proba),
+                static_cast<ProbType (T::*)(const Ref<const ArrayXXf> &X)>(&T::predict_proba),
                 "predict from X data")
             ;
     }

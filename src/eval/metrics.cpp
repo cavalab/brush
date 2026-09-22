@@ -1,5 +1,7 @@
 #include "metrics.h"
 
+#include <algorithm>
+
 namespace Brush {
 namespace Eval {
 
@@ -234,51 +236,21 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
 VectorXf multi_log_loss(const VectorXf& y, const ArrayXXf& predict_proba, 
         const vector<float>& class_weights)
 {
-    // TODO: fix softmax and multiclassification, then implement this
-    VectorXf loss = VectorXf::Zero(y.rows());  
-    
-    // TODO: needs to be the index of unique elements
-    // get class labels
-    // vector<float> uc = unique( ArrayXi(y.cast<int>()) );
+    if (predict_proba.rows() != y.rows())
+        HANDLE_ERROR_THROW("Multiclass probabilities and labels have different numbers of rows");
 
-    // float eps = 1e-6f;
-    // float sum_weights = 0; 
-    // for (unsigned i = 0; i < y.rows(); ++i)
-    // {
-    //     for (const auto& c : uc)
-    //     {
-    //         // for specific class
-    //         ArrayXf yhat = predict_proba.col(int(c));
+    constexpr float eps = 1e-6f;
+    VectorXf loss(y.rows());
+    for (int i = 0; i < y.rows(); ++i)
+    {
+        const int label = static_cast<int>(y(i)); // labels are always encoded as integers for clf/multiclf
+        
+        // if (label < 0 || label >= predict_proba.cols())
+        //     HANDLE_ERROR_THROW("Class label is outside the predicted probability columns");
 
-
-    //         /* float yi = y(i) == c ? 1.0 : 0.0 ; */ 
-
-    //         if (y(i) == c)
-    //         {
-    //             if (yhat(i) < eps || 1 - yhat(i) < eps)
-    //             {
-    //                 // clip probabilities since log loss is undefined for yhat=0 or yhat=1
-    //                 loss(i) += -log(eps);
-    //             }
-    //             else
-    //             {
-    //                 loss(i) += -log(yhat(i));
-    //             }
-
-    //         }
-
-    //         }
-    //     if (!class_weights.empty()){
-
-    //         loss(i) = loss(i)*class_weights.at(y(i));
-    //         sum_weights += class_weights.at(y(i));
-    //     }
-    // }
-    // if (sum_weights > 0)
-    //     loss = loss.array() / sum_weights * y.size(); 
-
-
-
+        // per sample log loss
+        loss(i) = -std::log(std::clamp(predict_proba(i, label), eps, 1.0f - eps));
+    }
     return loss;
 }
 
@@ -288,57 +260,84 @@ float mean_multi_log_loss(const VectorXf& y,
 {
     loss = multi_log_loss(y, predict_proba, class_weights);
 
-    return loss.mean();
+    if (class_weights.empty())
+        return loss.mean();
+
+    // apply class weights to the log loss
+    float sum_weights = 0.0f;
+    float weighted_loss = 0.0f;
+    for (int i = 0; i < y.rows(); ++i)
+    {
+        const float weight = class_weights.at(static_cast<int>(y(i)));
+        weighted_loss += loss(i) * weight;
+        sum_weights += weight;
+    }
+    return sum_weights == 0.0f ? 0.0f : weighted_loss / sum_weights;
 }  
 
 float multi_zero_one_loss(const VectorXf& y,
     const ArrayXXf& predict_proba, VectorXf& loss, 
     const vector<float>& class_weights )
 {
-    // TODO: implement this
-    // vector<float> uc = unique(y);
-    // vector<int> c;
-    // for (const auto& i : uc)
-    //     c.push_back(int(i));
-        
-    // // sensitivity (TP) and specificity (TN)
-    // vector<float> TP(c.size(),0.0), TN(c.size(), 0.0), P(c.size(),0.0), N(c.size(),0.0);
-    // ArrayXf class_accuracies(c.size());
-    
-    // // get class counts
-    
-    // for (unsigned i=0; i< c.size(); ++i)
-    // {
-    //     P.at(i) = (y.array().cast<int>() == c.at(i)).count();  // total positives for this class
-    //     N.at(i) = (y.array().cast<int>() != c.at(i)).count();  // total negatives for this class
-    // }
-    
+    if (predict_proba.rows() != y.rows())
+        HANDLE_ERROR_THROW("Multiclass probabilities and labels have different numbers of rows");
 
-    // for (unsigned i = 0; i < y.rows(); ++i)
-    // {
-    //     if (yhat(i) == y(i))                    // true positive
-    //         ++TP.at(y(i) == -1 ? 0 : y(i));     // if-then ? accounts for -1 class encoding
+    ArrayXi yhat(y.rows());
+    for (int i = 0; i < predict_proba.rows(); ++i)
+        predict_proba.row(i).maxCoeff(&yhat(i)); // pick the predicted class
 
-    //     for (unsigned j = 0; j < c.size(); ++j)
-    //         if ( y(i) !=c.at(j) && yhat(i) != c.at(j) )    // true negative
-    //             ++TN.at(j);    
-        
-    // }
+    loss = (yhat.array() != y.cast<int>().array()).cast<float>(); // check if it was a hit or a miss
 
-    // // class-wise accuracy = 1/2 ( true positive rate + true negative rate)
-    // for (unsigned i=0; i< c.size(); ++i){
-    //     class_accuracies(i) = (TP.at(i)/P.at(i) + TN.at(i)/N.at(i))/2; 
+    if (class_weights.empty()) // accuracy
+        return 1.0f - loss.mean();
 
+    float weighted_errors = 0.0f;
+    float sum_weights = 0.0f;
+    for (int i = 0; i < y.rows(); ++i)
+    {
+        const float weight = class_weights.at(static_cast<int>(y(i)));
+        weighted_errors += loss(i) * weight;
+        sum_weights += weight;
+    }
+    return sum_weights == 0.0f ? 0.0f : 1.0f - weighted_errors / sum_weights;
+}
 
+float multi_bal_zero_one_loss(const VectorXf& y,
+    const ArrayXXf& predict_proba, VectorXf& loss,
+    const vector<float>& class_weights)
+{
+    if (predict_proba.rows() != y.rows())
+        HANDLE_ERROR_THROW("Multiclass probabilities and labels have different numbers of rows");
 
-    // }
-    
-    // // set loss vectors if third argument supplied
-    // loss = (yhat.cast<int>().array() != y.cast<int>().array()).cast<float>();
+    ArrayXi yhat(y.rows());
+    for (int i = 0; i < predict_proba.rows(); ++i)
+        predict_proba.row(i).maxCoeff(&yhat(i));
+    loss = (yhat.array() != y.cast<int>().array()).cast<float>();
 
-    // return 1.0 - class_accuracies.mean();
-    
-    return 0.0;
+    VectorXf correct = VectorXf::Zero(predict_proba.cols());
+    VectorXf support = VectorXf::Zero(predict_proba.cols());
+    for (int i = 0; i < y.rows(); ++i)
+    {
+        const int label = static_cast<int>(y(i));
+
+        // if (label < 0 || label >= predict_proba.cols())
+        //     HANDLE_ERROR_THROW("Class label is outside the predicted probability columns");
+
+        // balanced, weighted by support
+        support(label) += 1.0f;
+        if (yhat(i) == label)
+            correct(label) += 1.0f;
+    }
+
+    float recall_sum = 0.0f;
+    int present_classes = 0;
+    for (int label = 0; label < support.size(); ++label)
+        if (support(label) > 0.0f)
+        {
+            recall_sum += correct(label) / support(label);
+            ++present_classes;
+        }
+    return present_classes == 0 ? 0.0f : recall_sum / present_classes;
 }
 
 } // metrics

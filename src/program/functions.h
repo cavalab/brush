@@ -415,8 +415,14 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
        template <typename T>
        inline auto softmax(const ArrayBase<T> &t) const
        {
-          auto tMinusMax = t.rowwise() - t.colwise().maxCoeff();
-          return tMinusMax.rowwise() - tMinusMax.exp().colwise().sum().log();
+          // Rows are samples and columns are classes. Normalize each row,
+          // using the row maximum for numerical stability.
+          using Scalar = typename T::Scalar;
+          Array<Scalar, Dynamic, Dynamic> shifted = t;
+          shifted.colwise() -= shifted.rowwise().maxCoeff();
+          auto exponentiated = shifted.exp();
+          return (exponentiated.colwise() /
+                  exponentiated.rowwise().sum()).eval();
        }
 
        template <typename T>
@@ -425,12 +431,20 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
           return this->softmax(t);
        }
 
-       // template<typename T, typename ...Ts>
-       // inline auto operator()(const Array<T,-1,1>& first, const Ts& ... inputs) 
-       // { 
-       //     auto output = Stack<T>(first, inputs...);
-       //     return this->softmax(output);
-       // }
+       // N-ary Softmax receives one logits vector per class.
+       template<typename T, typename ...Ts>
+       requires(sizeof...(Ts) > 0)
+       inline auto operator()(const ArrayBase<T>& first,
+                              const ArrayBase<Ts>& ...inputs)
+       {
+          using Scalar = typename T::Scalar;
+          Array<Scalar, Dynamic, Dynamic> logits(first.rows(),
+                                                   1 + sizeof...(inputs));
+          logits.col(0) = first;
+          int column = 1;
+          ((logits.col(column++) = inputs), ...);
+          return this->softmax(logits);
+       }
     };
 
     /* logical and -- boolean AND operation */

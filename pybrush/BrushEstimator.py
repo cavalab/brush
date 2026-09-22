@@ -93,6 +93,12 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         # Beyong this point, X is not a dataframe anymore
         X, y = check_X_y(X, y)
+        if self.mode == 'classification':
+            # The C++ core indexes probability columns with class labels.  Keep
+            # that representation internal while preserving sklearn's original
+            # labels at the public API boundary.
+            self.classes_, y = np.unique(y, return_inverse=True)
+            y = y.astype(np.float32)
 
         self.data_ = self._make_data(X, y, 
                                      feature_names=self.feature_names_,
@@ -169,6 +175,14 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
             assert self.feature_names_ == X.columns.to_list(), \
                 "Feature names must be the same as in data from previous fit"
 
+        if self.mode == 'classification':
+            labels = np.asarray(y)
+            indices = np.searchsorted(self.classes_, labels)
+            if np.any(indices >= len(self.classes_)) \
+            or np.any(self.classes_[indices] != labels):
+                raise ValueError("partial_fit received a class not seen in fit")
+            y = indices.astype(np.float32)
+
         new_data = self._make_data(X, y, 
                                      feature_names=self.feature_names_,
                                      feature_types=self.feature_types_,
@@ -228,7 +242,10 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
                             validation_size=0.0,
                             )
         
-        return self.best_estimator_.program.predict(data)
+        prediction = np.asarray(self.best_estimator_.program.predict(data))
+        if self.mode == 'classification':
+            return self.classes_[prediction.astype(int)]
+        return prediction
 
     def get_params(self, deep=True):
         out = dict()
@@ -263,7 +280,8 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         elif self.final_model_selection == "best_validation_ci":
             loss_f_dict = { # using sklearn metric, equivalent to what is used internally in brush
                 "mse": mean_squared_error, 
-                "log": log_loss, 
+                "log": log_loss,
+                "multi_log": log_loss,
                 "accuracy": accuracy_score, 
                 "balanced_accuracy": balanced_accuracy_score,
                 "average_precision_score": average_precision_score
@@ -274,10 +292,14 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
                 if sample is None:
                     sample = np.arange(len(y))
 
-                if self.parameters_.scorer in ["log", "average_precision_score"]:
+                if self.parameters_.scorer in ["log", "multi_log", "average_precision_score"]:
                     y_pred = np.array(ind.predict_proba(data))
                 else: # accuracy, balanced accuracy, or regression metrics
                     y_pred = np.array(ind.predict(data))
+
+                metric_kwargs = {}
+                if self.parameters_.scorer == "multi_log":
+                    metric_kwargs["labels"] = np.arange(self.parameters_.n_classes)
 
                 # y_pred = np.nan_to_num(y_pred) # Protecting the evaluation
 
@@ -300,9 +322,10 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
                         # sample_weight will be indexed in the function call, so we use raw y.
                         sample_weight = [support_weights[int(label)] for label in y]
                     sample_weight = np.array(sample_weight)
-                    return loss_f(y[sample], y_pred[sample], sample_weight=sample_weight[sample])
+                    return loss_f(y[sample], y_pred[sample],
+                                  sample_weight=sample_weight[sample], **metric_kwargs)
                 else: # unbalanced metrics, ignoring weights
-                    return loss_f(y[sample], y_pred[sample])
+                    return loss_f(y[sample], y_pred[sample], **metric_kwargs)
 
             np.random.seed(0)
             val_samples = []

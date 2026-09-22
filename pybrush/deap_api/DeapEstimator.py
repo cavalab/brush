@@ -156,6 +156,10 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
                         "encoding method to convert the data to a supported "
                         "format.")
 
+        if self.mode == 'classification':
+            self.classes_, y = np.unique(y, return_inverse=True)
+            y = y.astype(np.float32)
+
         self.data_ = self._make_data(X, y, 
                                      feature_names=self.feature_names_,
                                      feature_types=self.feature_types_,
@@ -267,7 +271,10 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
         data = Dataset(X=X, ref_dataset=self.data_, 
                               feature_names=self.feature_names_)
         
-        return self.best_estimator_.program.predict(data)
+        prediction = np.asarray(self.best_estimator_.program.predict(data))
+        if self.mode == 'classification':
+            return self.classes_[prediction.astype(int)]
+        return prediction
 
     # def _setup_population(self):
     #     """initialize programs"""

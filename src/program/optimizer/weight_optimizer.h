@@ -30,11 +30,13 @@ struct OptimizerSummary {
 template<typename PT>
 struct ResidualEvaluator {
     typedef float Scalar; 
-    ResidualEvaluator(PT& program, Dataset const& dataset)
+    ResidualEvaluator(PT& program, Dataset const& dataset,
+                      const vector<float>& class_weights = {})
         : program_(program)
         , dataset_(dataset)
         , numParameters_(program.get_weights().size())
         , y_true_(dataset.y)
+        , class_weights_(class_weights)
     {}
 
     template<typename T>
@@ -46,19 +48,34 @@ struct ResidualEvaluator {
     template <typename T>
     auto operator()(T const* parameters, T* residuals) const -> bool
     {
-        using ArrayType = Array<T, Dynamic, 1>; // ColMajor?
         const T ** new_weights = &parameters; 
+        auto residualMap = Eigen::Map<Array<T, Dynamic, 1>>(
+            residuals, GetDataset().get_n_samples());
 
-        ArrayType y_pred = GetProgram().template predict_with_weights<ArrayType>(
-            GetDataset(), 
-            new_weights
-        );
-
-        auto residualMap = ArrayType::Map(residuals, GetDataset().get_n_samples());
-
-        // how we calculate the residuals
-        if (GetDataset().classification) // classification
+        if constexpr (PT::program_type == ProgramType::MulticlassClassifier)
         {
+            using MatrixType = Array<T, Dynamic, Dynamic>;
+            auto probabilities = GetProgram().template predict_with_weights<MatrixType>(
+                GetDataset(), new_weights);
+            for (int i = 0; i < GetDataset().get_n_samples(); ++i)
+            {
+                const int label = static_cast<int>(GetTarget()(i));
+                const T probability = probabilities(i, label);
+                const float weight = class_weights_.empty() ? 1.0f
+                    : class_weights_.at(label);
+                // TinySolver minimizes squared residuals, so sqrt(loss)
+                // makes its objective the weighted multinomial log loss.
+                residualMap(i) = sqrt(T(weight) * -log(probability));
+            }
+        }
+        else
+        {
+            using ArrayType = Array<T, Dynamic, 1>;
+            ArrayType y_pred = GetProgram().template predict_with_weights<ArrayType>(
+                GetDataset(), new_weights);
+
+            if (GetDataset().classification)
+            {
             // tolerance to avoid numeric errors.
 
             // Using an eps with 7 significant digits to avoid weird behavior.
@@ -77,12 +94,21 @@ struct ResidualEvaluator {
             // clamp values and avoid log(0)
             y_pred = y_pred.min(T(1.0) - T(eps)).max(T(eps));
             
-            // log loss
-            // residualMap = -(y*log(y_pred.array()) + (T(1.0)-y)*log(T(1.0)-y_pred.array()));
-            residualMap = -(y*log(y_pred) + (T(1.0)-y)*log(T(1.0)-y_pred));
-        }
-        else { // This is MSE, default behavior
-            residualMap = (y_pred - GetTarget()); 
+                for (int i = 0; i < y_pred.size(); ++i)
+                {
+                    const float weight = class_weights_.empty() ? 1.0f
+                        : class_weights_.at(static_cast<int>(y(i)));
+                    const T log_loss = -(T(y(i)) * log(y_pred(i))
+                        + (T(1.0f) - T(y(i))) * log(T(1.0f) - y_pred(i)));
+                    // See multiclass branch above: this makes the least-squares
+                    // objective equal weighted binary log loss.
+                    residualMap(i) = sqrt(T(weight) * log_loss);
+                }
+            }
+            else
+            {
+                residualMap = y_pred - GetTarget();
+            }
         }
 
         return true;
@@ -98,6 +124,7 @@ private:
     std::reference_wrapper<PT> program_;
     std::reference_wrapper<Dataset const> dataset_;
     std::reference_wrapper<ArrayXf const> y_true_;
+    vector<float> class_weights_;
     size_t numParameters_; // cache the number of parameters in the tree
 };
 
@@ -109,7 +136,8 @@ struct WeightOptimizer
     /// @param program the program 
     /// @param dataset the dataset 
     template<typename PT>
-    void update(PT& program, const Dataset& dataset)
+    void update(PT& program, const Dataset& dataset,
+                const vector<float>& class_weights = {})
     {
         if (program.get_n_weights() == 0)
             return;
@@ -118,7 +146,7 @@ struct WeightOptimizer
         auto init_weights = program.get_weights();
 
         using CFType = Brush::TinyCostFunction<ResidualEvaluator<PT>> ; 
-        ResidualEvaluator<PT> evaluator(program, dataset);
+        ResidualEvaluator<PT> evaluator(program, dataset, class_weights);
         CFType cost_function(evaluator);
         ceres::TinySolver<CFType> solver;
         solver.options.max_num_iterations = 10;

@@ -121,6 +121,11 @@ float multi_zero_one_loss(const VectorXf& y, const ArrayXXf& predict_proba,
                         VectorXf& loss, 
                         const vector<float>& class_weights=vector<float>() );
 
+/// Balanced accuracy for multi-classification.
+float multi_bal_zero_one_loss(const VectorXf& y, const ArrayXXf& predict_proba,
+                        VectorXf& loss,
+                        const vector<float>& class_weights=vector<float>() );
+
 
 } // metrics
 } // Brush

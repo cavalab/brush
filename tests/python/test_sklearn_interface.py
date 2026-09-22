@@ -204,5 +204,24 @@ def test_brush_lock_nodes_and_leaves():
     assert fitness_after.loss_v >= fitness_before.loss_v
 
 
+def test_brush_multiclass_probabilities_and_labels():
+    X, y = make_classification(
+        n_samples=45, n_features=5, n_informative=4, n_redundant=0,
+        n_classes=3, n_clusters_per_class=1, random_state=11)
+    labels = np.array(["class-a", "class-b", "class-c"])[y]
+
+    est = BrushClassifier(
+        max_gens=2, pop_size=8, max_size=30, max_depth=4,
+        num_islands=1, validation_size=0.0, random_state=11)
+    est.fit(X, labels)
+
+    probabilities = est.predict_proba(X)
+    prediction = est.predict(X)
+    assert probabilities.shape == (X.shape[0], 3)
+    assert np.allclose(probabilities.sum(axis=1), 1.0)
+    assert set(prediction).issubset(set(labels))
+    assert np.array_equal(est.classes_, np.array(["class-a", "class-b", "class-c"]))
+
+
 if __name__ == "__main__":
     pytest.main()

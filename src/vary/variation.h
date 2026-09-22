@@ -343,7 +343,7 @@ public:
             assert(ind.program.size() > 0);
             assert(ind.fitness.valid() == false);
 
-            ind.program.fit(data.get_training_data());
+            ind.program.fit(data.get_training_data(), parameters.class_weights);
 
             // simplify before calculating fitness (order matters, as they are not refitted and constants simplifier does not replace with the right value.)
             // simplify constants first to avoid letting the lsh simplifier to visit redundant branches
