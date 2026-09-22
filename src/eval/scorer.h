@@ -91,6 +91,9 @@ public:
         score_hash["average_precision_score"] = &average_precision_score;
         score_hash["accuracy"] = &zero_one_loss;
         score_hash["balanced_accuracy"] = &bal_zero_one_loss;
+        score_hash["precision"] = &precision_score;
+        score_hash["recall"] = &recall_score;
+        score_hash["roc_auc"] = &roc_auc_score;
     
         this->set_scorer(scorer);
     };
@@ -171,6 +174,10 @@ public:
         score_hash["multi_log"] = &mean_multi_log_loss; 
         score_hash["accuracy"] = &multi_zero_one_loss;
         score_hash["balanced_accuracy"] = &multi_bal_zero_one_loss;
+        score_hash["precision"] = &multi_precision_score;
+        score_hash["recall"] = &multi_recall_score;
+        score_hash["roc_auc"] = &multi_roc_auc_score;
+        score_hash["average_precision_score"] = &multi_average_precision_score;
     
         this->set_scorer(scorer);
     };

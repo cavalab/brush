@@ -82,9 +82,53 @@ float zero_one_loss(const VectorXf& y, const VectorXf& predict_proba,
  * @return The final accuracy.
  */
 float bal_zero_one_loss(const VectorXf& y, const VectorXf& predict_proba,
-                        VectorXf& loss, 
+                        VectorXf& loss,
                         const vector<float>& class_weights=vector<float>() );
-                
+
+/**
+ * @brief Precision for binary classification (threshold 0.5, positive label 1).
+ * @details Equivalent to sklearn's `precision_score(zero_division=0)`. Class
+ * weights are used as sample weights. The loss vector holds the per-sample
+ * misclassification indicator (used in lexicase selection).
+ * @param y The true labels.
+ * @param predict_proba The predicted probabilities.
+ * @param loss Reference to store the calculated losses for each sample.
+ * @param class_weights The optional class weights.
+ * @return The precision.
+ */
+float precision_score(const VectorXf& y, const VectorXf& predict_proba,
+                      VectorXf& loss,
+                      const vector<float>& class_weights=vector<float>() );
+
+/**
+ * @brief Recall for binary classification (threshold 0.5, positive label 1).
+ * @details Equivalent to sklearn's `recall_score(zero_division=0)`. The loss
+ * vector holds the per-sample misclassification indicator.
+ * @param y The true labels.
+ * @param predict_proba The predicted probabilities.
+ * @param loss Reference to store the calculated losses for each sample.
+ * @param class_weights The optional class weights.
+ * @return The recall.
+ */
+float recall_score(const VectorXf& y, const VectorXf& predict_proba,
+                   VectorXf& loss,
+                   const vector<float>& class_weights=vector<float>() );
+
+/**
+ * @brief Area under the ROC curve for binary classification.
+ * @details Equivalent to sklearn's `roc_auc_score`. Returns 0.5 when only one
+ * class is present (where the metric is undefined). The loss vector holds the
+ * per-sample log loss (used in lexicase selection).
+ * @param y The true labels.
+ * @param predict_proba The predicted probabilities.
+ * @param loss Reference to store the calculated losses for each sample.
+ * @param class_weights The optional class weights.
+ * @return The AUROC.
+ */
+float roc_auc_score(const VectorXf& y, const VectorXf& predict_proba,
+                    VectorXf& loss,
+                    const vector<float>& class_weights=vector<float>() );
+
 // multiclass classification ---------------------------------------------------
 
 /**
@@ -123,6 +167,45 @@ float multi_zero_one_loss(const VectorXf& y, const ArrayXXf& predict_proba,
 
 /// Balanced accuracy for multi-classification.
 float multi_bal_zero_one_loss(const VectorXf& y, const ArrayXXf& predict_proba,
+                        VectorXf& loss,
+                        const vector<float>& class_weights=vector<float>() );
+
+/**
+ * @brief Macro-averaged precision for multi-classification.
+ * @details Equivalent to sklearn's `precision_score(average='macro',
+ * zero_division=0)`: averages over classes present in either the true or the
+ * predicted labels. The loss vector holds the misclassification indicator.
+ */
+float multi_precision_score(const VectorXf& y, const ArrayXXf& predict_proba,
+                        VectorXf& loss,
+                        const vector<float>& class_weights=vector<float>() );
+
+/**
+ * @brief Macro-averaged recall for multi-classification.
+ * @details Equivalent to sklearn's `recall_score(average='macro',
+ * zero_division=0)`. The loss vector holds the misclassification indicator.
+ */
+float multi_recall_score(const VectorXf& y, const ArrayXXf& predict_proba,
+                        VectorXf& loss,
+                        const vector<float>& class_weights=vector<float>() );
+
+/**
+ * @brief Macro-averaged one-vs-rest AUROC for multi-classification.
+ * @details Mean of the binary AUROC of each class against the rest, skipping
+ * classes that are absent from `y`. The loss vector holds the per-sample
+ * multinomial log loss.
+ */
+float multi_roc_auc_score(const VectorXf& y, const ArrayXXf& predict_proba,
+                        VectorXf& loss,
+                        const vector<float>& class_weights=vector<float>() );
+
+/**
+ * @brief Macro-averaged one-vs-rest average precision for multi-classification.
+ * @details Mean of the binary average precision of each class against the
+ * rest, skipping classes that are absent from `y`. The loss vector holds the
+ * per-sample multinomial log loss.
+ */
+float multi_average_precision_score(const VectorXf& y, const ArrayXXf& predict_proba,
                         VectorXf& loss,
                         const vector<float>& class_weights=vector<float>() );
 
