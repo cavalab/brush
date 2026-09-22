@@ -116,6 +116,212 @@ TEST(Evaluation, MulticlassSoftmaxAndMetrics)
     EXPECT_NEAR(multi_bal_zero_one_loss(y, probabilities, loss), 1.0f, 1e-6f);
 }
 
+// Expected values in the tests below were computed with sklearn.metrics
+// (precision_score, recall_score, roc_auc_score, average_precision_score).
+class BinaryMetrics : public ::testing::Test {
+protected:
+    VectorXf y, proba, misclassified;
+
+    void SetUp() override {
+        y.resize(10); proba.resize(10); misclassified.resize(10);
+
+        y     << 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0,  1.0;
+        proba << 0.1, 0.9, 0.4, 0.6, 0.8, 0.3, 0.7, 0.2, 0.05, 0.55;
+
+        // threshold 0.5 -> TP = 3 (idx 1, 4, 9), FP = 2 (idx 3, 6), FN = 2 (idx 2, 7)
+        misclassified << 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0;
+    }
+};
+
+TEST_F(BinaryMetrics, Precision)
+{
+    VectorXf loss;
+    EXPECT_NEAR(precision_score(y, proba, loss), 0.6f, 1e-6f);  // 3 / (3 + 2)
+    ASSERT_TRUE(loss == misclassified);
+
+    // class weights act as sample weights: 3*2 / (3*2 + 2*1)
+    EXPECT_NEAR(precision_score(y, proba, loss, {1.0f, 2.0f}), 0.75f, 1e-6f);
+    // the loss vector is not weighted (it is used by lexicase)
+    ASSERT_TRUE(loss == misclassified);
+}
+
+TEST_F(BinaryMetrics, Recall)
+{
+    VectorXf loss;
+    EXPECT_NEAR(recall_score(y, proba, loss), 0.6f, 1e-6f);  // 3 / (3 + 2)
+    ASSERT_TRUE(loss == misclassified);
+
+    // recall only looks at positives, so class weights cancel out
+    EXPECT_NEAR(recall_score(y, proba, loss, {1.0f, 2.0f}), 0.6f, 1e-6f);
+}
+
+TEST_F(BinaryMetrics, PrecisionRecallWithoutPredictedPositives)
+{
+    // nothing is predicted as positive: zero_division=0, like sklearn
+    VectorXf loss;
+    VectorXf low = VectorXf::Constant(10, 0.1f);
+    EXPECT_NEAR(precision_score(y, low, loss), 0.0f, 1e-6f);
+    EXPECT_NEAR(recall_score(y, low, loss), 0.0f, 1e-6f);
+    ASSERT_TRUE(loss == y); // every positive is a miss
+}
+
+TEST_F(BinaryMetrics, RocAuc)
+{
+    VectorXf loss;
+    EXPECT_NEAR(roc_auc_score(y, proba, loss), 0.72f, 1e-6f);
+
+    // per-sample loss is the log loss
+    VectorXf expected_loss = log_loss(y, proba);
+    ASSERT_TRUE(loss.isApprox(expected_loss, 1e-6f));
+
+    // AUROC is invariant to scaling all weights of one class
+    EXPECT_NEAR(roc_auc_score(y, proba, loss, {1.0f, 2.0f}), 0.72f, 1e-6f);
+}
+
+TEST_F(BinaryMetrics, RocAucTiedScores)
+{
+    // tied scores are a single threshold (trapezoid, not a staircase)
+    VectorXf loss, tied(10);
+    tied << 0.2, 0.8, 0.8, 0.2, 0.8, 0.2, 0.8, 0.2, 0.2, 0.5;
+    EXPECT_NEAR(roc_auc_score(y, tied, loss), 0.78f, 1e-6f);
+
+    // constant predictions carry no ranking information
+    VectorXf constant = VectorXf::Constant(10, 0.5f);
+    EXPECT_NEAR(roc_auc_score(y, constant, loss), 0.5f, 1e-6f);
+}
+
+TEST_F(BinaryMetrics, RocAucEdgeCases)
+{
+    VectorXf loss, perfect(10), reversed(10);
+    perfect  = y * 0.8f + VectorXf::Constant(10, 0.1f);
+    reversed = VectorXf::Constant(10, 1.0f) - perfect;
+
+    EXPECT_NEAR(roc_auc_score(y, perfect, loss), 1.0f, 1e-6f);
+    EXPECT_NEAR(roc_auc_score(y, reversed, loss), 0.0f, 1e-6f);
+
+    // undefined with a single class: we return 0.5 instead of throwing
+    VectorXf ones = VectorXf::Ones(10);
+    EXPECT_NEAR(roc_auc_score(ones, proba, loss), 0.5f, 1e-6f);
+}
+
+TEST(Evaluation, ScorerBinaryNewMetrics)
+{
+    VectorXf y(4), yhat(4), loss_expected, loss;
+    y << 0.0, 1.0, 1.0, 0.0;
+    yhat << 0.1, 0.9, 0.2, 0.8;
+
+    Scorer<PT::BinaryClassifier> scorer("precision");
+    ASSERT_NEAR(scorer.score(y, yhat, loss, {}), precision_score(y, yhat, loss_expected), 1e-6);
+    ASSERT_TRUE(loss.isApprox(loss_expected, 1e-6));
+
+    scorer.set_scorer("recall");
+    ASSERT_NEAR(scorer.score(y, yhat, loss, {}), recall_score(y, yhat, loss_expected), 1e-6);
+    ASSERT_TRUE(loss.isApprox(loss_expected, 1e-6));
+
+    scorer.set_scorer("roc_auc");
+    ASSERT_NEAR(scorer.score(y, yhat, loss, {}), roc_auc_score(y, yhat, loss_expected), 1e-6);
+    ASSERT_TRUE(loss.isApprox(loss_expected, 1e-6));
+}
+
+class MulticlassMetrics : public ::testing::Test {
+protected:
+    VectorXf y;
+    ArrayXXf proba;
+
+    void SetUp() override {
+        y.resize(6); proba.resize(6, 3);
+
+        y << 0.0, 1.0, 2.0, 0.0, 1.0, 2.0;
+        proba << 0.7, 0.2,  0.1,
+                 0.3, 0.4,  0.3,
+                 0.2, 0.5,  0.3,   // predicts 1, true 2
+                 0.4, 0.35, 0.25,
+                 0.1, 0.3,  0.6,   // predicts 2, true 1
+                 0.1, 0.1,  0.8;
+    }
+};
+
+TEST_F(MulticlassMetrics, PrecisionRecall)
+{
+    VectorXf loss, misclassified(6);
+    misclassified << 0.0, 0.0, 1.0, 0.0, 1.0, 0.0;
+
+    // per class precision = recall = {1, 0.5, 0.5}
+    EXPECT_NEAR(multi_precision_score(y, proba, loss), 2.0f/3.0f, 1e-6f);
+    ASSERT_TRUE(loss == misclassified);
+
+    EXPECT_NEAR(multi_recall_score(y, proba, loss), 2.0f/3.0f, 1e-6f);
+    ASSERT_TRUE(loss == misclassified);
+}
+
+TEST_F(MulticlassMetrics, RocAucAndAveragePrecision)
+{
+    VectorXf loss;
+    VectorXf expected_loss = multi_log_loss(y, proba);
+
+    EXPECT_NEAR(multi_roc_auc_score(y, proba, loss), 0.8125f, 1e-6f);
+    ASSERT_TRUE(loss.isApprox(expected_loss, 1e-6f));
+
+    // weights change the one-vs-rest problems, since "rest" mixes classes
+    EXPECT_NEAR(multi_roc_auc_score(y, proba, loss, {1.0f, 2.0f, 3.0f}),
+                0.7708333f, 1e-5f);
+
+    EXPECT_NEAR(multi_average_precision_score(y, proba, loss), 0.75f, 1e-6f);
+    ASSERT_TRUE(loss.isApprox(expected_loss, 1e-6f));
+}
+
+TEST_F(MulticlassMetrics, AbsentClass)
+{
+    VectorXf loss, y_absent(6);
+    y_absent << 0.0, 1.0, 1.0, 0.0, 1.0, 0.0; // class 2 never occurs
+
+    // ranking metrics skip classes that are absent from y
+    EXPECT_NEAR(multi_roc_auc_score(y_absent, proba, loss), 0.8055556f, 1e-5f);
+    EXPECT_NEAR(multi_average_precision_score(y_absent, proba, loss), 0.875f, 1e-5f);
+
+    // precision/recall average over classes in y or in the predictions (class
+    // 2 is predicted once, so it counts with precision = recall = 0)
+    EXPECT_NEAR(multi_precision_score(y_absent, proba, loss), 2.0f/3.0f, 1e-6f);
+    EXPECT_NEAR(multi_recall_score(y_absent, proba, loss), 4.0f/9.0f, 1e-6f);
+}
+
+TEST_F(MulticlassMetrics, PerfectPredictions)
+{
+    VectorXf loss;
+    ArrayXXf perfect = ArrayXXf::Constant(6, 3, 0.1f);
+    for (int i = 0; i < y.size(); ++i)
+        perfect(i, static_cast<int>(y(i))) = 0.8f;
+
+    EXPECT_NEAR(multi_precision_score(y, perfect, loss), 1.0f, 1e-6f);
+    EXPECT_NEAR(multi_recall_score(y, perfect, loss), 1.0f, 1e-6f);
+    EXPECT_NEAR(multi_roc_auc_score(y, perfect, loss), 1.0f, 1e-6f);
+    EXPECT_NEAR(multi_average_precision_score(y, perfect, loss), 1.0f, 1e-6f);
+}
+
+TEST(Evaluation, ScorerMulticlassNewMetrics)
+{
+    VectorXf y(3), loss_expected, loss;
+    y << 0.0, 1.0, 2.0;
+    ArrayXXf proba(3, 3);
+    proba << 0.6, 0.3, 0.1,
+             0.5, 0.3, 0.2,
+             0.1, 0.2, 0.7;
+
+    Scorer<PT::MulticlassClassifier> scorer("precision");
+    ASSERT_NEAR(scorer.score(y, proba, loss, {}), multi_precision_score(y, proba, loss_expected), 1e-6);
+    ASSERT_TRUE(loss.isApprox(loss_expected, 1e-6));
+
+    scorer.set_scorer("recall");
+    ASSERT_NEAR(scorer.score(y, proba, loss, {}), multi_recall_score(y, proba, loss_expected), 1e-6);
+
+    scorer.set_scorer("roc_auc");
+    ASSERT_NEAR(scorer.score(y, proba, loss, {}), multi_roc_auc_score(y, proba, loss_expected), 1e-6);
+    ASSERT_TRUE(loss.isApprox(loss_expected, 1e-6));
+
+    scorer.set_scorer("average_precision_score");
+    ASSERT_NEAR(scorer.score(y, proba, loss, {}), multi_average_precision_score(y, proba, loss_expected), 1e-6);
+}
+
 TEST(Evaluation, MulticlassSoftmaxHasOneOutputPerClass)
 {
     ArrayXXf X(6, 2);
