@@ -76,8 +76,18 @@ class EstimatorInterface():
         used as secondary objective.
     scorer : str, default None
         The metric to use for the "scorer" objective. If None, it will be set to
-        "mse" for regression and "log" for binary classification.
-        Available options are `["mse", "log", "multi_log", "accuracy", "balanced_accuracy", "average_precision_score"]`
+        "mse" for regression, "log" for binary classification, and "multi_log"
+        for multiclass classification.
+        Available options are `["mse"]` for regression, and
+        `["log", "accuracy", "balanced_accuracy", "average_precision_score",
+        "precision", "recall", "roc_auc"]` for binary classification (with
+        `"multi_log"` replacing `"log"` for multiclass classification). For
+        multiclass problems, `"precision"` and `"recall"` are macro averages, and
+        `"roc_auc"` and `"average_precision_score"` are macro one-vs-rest averages.
+        The scorer drives selection, survival, and the archive, but it is not
+        used to fit parameters: weights are always optimized with the log loss,
+        and split thresholds with the gini impurity. You can change the scorer
+        between calls to `partial_fit`.
     algorithm : {"nsga2island", "nsga2", "gaisland", "ga"}, default "nsga2"
         Which Evolutionary Algorithm framework to use to evolve the population.
         This is used only in DeapEstimators.
@@ -349,10 +359,13 @@ class EstimatorInterface():
                     "Invalid scorer for the regression mode"
             elif params.n_classes == 2:
                 assert self.scorer in ['log', 'balanced_accuracy', 'accuracy',
-                                       'average_precision_score'], \
+                                       'average_precision_score', 'precision',
+                                       'recall', 'roc_auc'], \
                     "Invalid scorer for binary classification"
             else:
-                assert self.scorer in ['multi_log', 'balanced_accuracy', 'accuracy'], \
+                assert self.scorer in ['multi_log', 'balanced_accuracy', 'accuracy',
+                                       'average_precision_score', 'precision',
+                                       'recall', 'roc_auc'], \
                     "Invalid scorer for multiclass classification"
                 
         params.scorer = self.scorer

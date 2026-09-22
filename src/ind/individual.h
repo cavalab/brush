@@ -169,7 +169,10 @@ public:
         {"multi_log",               -1.0},
         {"average_precision_score", +1.0},
         {"balanced_accuracy",       +1.0},
-        {"accuracy",                +1.0}
+        {"accuracy",                +1.0},
+        {"precision",               +1.0},
+        {"recall",                  +1.0},
+        {"roc_auc",                 +1.0}
         // {"scorer",                   -1.0}
     };
 

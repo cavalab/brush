@@ -67,6 +67,10 @@ def test_fixed_seed_produces_identical_brush_runs():
         n_jobs=2,
         random_state=42,
         verbosity=0,
+        constants_simplification=False,
+        inexact_simplification=False,
+        bandit='dummy',
+        shuffle_split=False,
     )
 
     first = BrushClassifier(**config).fit(X, y)

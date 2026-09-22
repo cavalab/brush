@@ -372,3 +372,45 @@ INSTANTIATE_TEST_SUITE_P(OptimizerTestParameters, OptimizerTest,
         )
     )                        
 );
+TEST(Optimizer, NonWeighableNodesDoNotConsumeWeights)
+{
+    // Floor and Ceil can be flagged `is_weighted` (it depends only on the return
+    // type), but get_weights/set_weights skip them. If evaluation consumed a
+    // weight for them, every following weight would shift and the last one
+    // would be read past the end of the optimizer's parameter array, making the
+    // fit depend on uninitialized memory.
+    ArrayXXf X(10, 1);
+    X << 0.0f, 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f;
+
+    ArrayXf y = 2.0f * X.col(0) + 1.0f;
+
+    Dataset data(X, y, {}, {}, {"ArrayF"});
+
+    // y = floor(1.0 * 1.0) + w * x_0, so the fit should find w = 2
+    json PRGjson = {{"Tree", {
+        {{"node_type", "Add"},      {"is_weighted", false}},
+        {{"node_type", "Floor"},    {"is_weighted", true}},
+        {{"node_type", "Constant"}, {"is_weighted", true}, {"W", 1.0}},
+        {{"node_type", "Terminal"}, {"feature", "x_0"}, {"is_weighted", true}, {"W", 1.0}}
+    }}, {"is_fitted_", false}};
+
+    RegressorProgram first = PRGjson;
+    ASSERT_EQ(first.get_n_weights(), 2); // Constant and Terminal, not Floor
+
+    first.fit(data);
+    ArrayXf weights = first.get_weights();
+
+    ASSERT_TRUE(first.predict(data).isApprox(y, 1e-3))
+        << "prediction=" << first.predict(data).transpose()
+        << ", weights=" << weights.transpose();
+    ASSERT_NEAR(weights(1), 2.0f, 1e-3f);
+
+    // fitting the same program again must give the same weights
+    for (int i = 0; i < 20; ++i) {
+        RegressorProgram again = PRGjson;
+        again.fit(data);
+        ASSERT_TRUE((again.get_weights() == weights).all())
+            << "run " << i << ": " << again.get_weights().transpose()
+            << " vs " << weights.transpose();
+    }
+}

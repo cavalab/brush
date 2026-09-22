@@ -260,6 +260,9 @@ def test_population_split_nodes_with_and_without_SplitOn_function():
     ("balanced_accuracy", [+1.0, -1.0]),         # higher is better
     ("log",               [-1.0, -1.0]),                      # lower is better
     ("average_precision_score", [+1.0, -1.0]),         # higher is better
+    ("precision",         [+1.0, -1.0]),                # higher is better
+    ("recall",            [+1.0, -1.0]),                # higher is better
+    ("roc_auc",           [+1.0, -1.0]),                # higher is better
 ])
 def test_fitness_weights_match_scorer_sign(scorer, expected_weights):
     """Ensure fitness.weights has correct sign according to the scorer function,

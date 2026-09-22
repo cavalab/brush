@@ -48,10 +48,17 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
     // define epsilon
     ArrayXf epsilon = ArrayXf::Zero(N);
   
-    // if output is continuous, use epsilon lexicase            
+    // if output is continuous (per sample!!), use epsilon lexicase.
+    // basically, every classification metric that updates the loss as hit/miss should
+    // not be considered here. If the clf metric updates the reference loss vector
+    // by assigning it float predict probas, then it will need the epsilon lexicase
+    // to work. 
+    // The classification scorer names [average_precision_score, roc_auc] are the same
+    // for the binary and multiclassifier
     if (!params.classification || params.scorer.compare("log")==0 
                                || params.scorer.compare("multi_log")==0
-                               || params.scorer.compare("average_precision_score")==0 )
+                               || params.scorer.compare("average_precision_score")==0
+                               || params.scorer.compare("roc_auc")==0 )
     {
         // for each sample, calculate epsilon
         for (int i = 0; i<epsilon.size(); ++i)

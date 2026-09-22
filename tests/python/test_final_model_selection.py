@@ -8,6 +8,7 @@ from pybrush import BrushRegressor, BrushClassifier, Dataset
 from sklearn.model_selection import GridSearchCV
 from sklearn.datasets import make_classification, make_regression
 from sklearn.metrics import mean_squared_error, log_loss, accuracy_score, balanced_accuracy_score, average_precision_score
+from sklearn.metrics import precision_score, recall_score, roc_auc_score
 
 
 def test_smallest_complexity_selection_regression():
@@ -84,7 +85,8 @@ def test_classification_selection():
     idx = np.argmin([p.fitness.linear_complexity for p in model.archive_])
 
 
-@pytest.mark.parametrize("scorer", ['log', 'accuracy', 'balanced_accuracy', 'average_precision_score'])
+@pytest.mark.parametrize("scorer", ['log', 'accuracy', 'balanced_accuracy', 'average_precision_score',
+                                    'precision', 'recall', 'roc_auc'])
 @pytest.mark.parametrize("class_weights", ['unbalanced', 'support', [1.0, 1.0], [1.0, 1.3]])
 def test_final_model_selection_best_validation_ci_replicated(scorer, class_weights):
     # Small dataset for testing
@@ -122,14 +124,19 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
 
     print("Unique values in validation data", np.unique(y, return_counts=True))
 
+    # Defining the sklearn equivalent for each metric -- we will check if they
+    # match later
     loss_f_dict = {
         "mse": mean_squared_error,
         "log": log_loss,
         "accuracy": accuracy_score,
         "balanced_accuracy": balanced_accuracy_score,
         "average_precision_score": average_precision_score,
+        "precision": lambda *a, **kw: precision_score(*a, zero_division=0, **kw),
+        "recall": lambda *a, **kw: recall_score(*a, zero_division=0, **kw),
+        "roc_auc": roc_auc_score,
     }
-    loss_f = loss_f_dict[est.parameters_.scorer]
+    loss_f = loss_f_dict[est.parameters_.scorer] # The reference -- should reproduce sklearn implementation values
 
     def eval_with_sklearn(individual, sample=None, log=False):
         
@@ -141,7 +148,8 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
 
         y_pred = None
 
-        if est.parameters_.scorer in ["log", "average_precision_score"]:
+        # Those scorers are also the ones that we can use in e-lexicase
+        if est.parameters_.scorer in ["log", "average_precision_score", "roc_auc"]:
             y_pred = np.array(individual.predict_proba(data)).astype(float)
 
             if est.parameters_.scorer == "log":

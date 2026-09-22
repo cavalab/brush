@@ -16,6 +16,7 @@ from sklearn.utils import check_X_y
 
 from sklearn.metrics import accuracy_score, balanced_accuracy_score, log_loss
 from sklearn.metrics import average_precision_score, mean_squared_error
+from sklearn.metrics import precision_score, recall_score, roc_auc_score
 
 from pybrush import Parameters, Dataset, SearchSpace, brush_rng, individual
 from pybrush._brush import set_random_state as set_brush_random_state
@@ -23,6 +24,28 @@ from pybrush.EstimatorInterface import EstimatorInterface
 from pybrush import RegressorEngine, ClassifierEngine, MultiClassifierEngine
 
 from pandas.api.types import is_float_dtype, is_bool_dtype, is_integer_dtype
+
+def _ovr_macro(binary_metric):
+    """Macro one-vs-rest average of a binary ranking metric, skipping classes
+    that are absent (or the only class present) in `y_true`. Matches brush's
+    multiclass `roc_auc` and `average_precision_score`."""
+
+    # Auxiliary function to use in final model selection.
+    # The goal is to have in python an equivalent implementation of the metrics
+    # in c++, so we can do any kind of final model selection after running the
+    # evolution.
+
+    def metric(y_true, y_score, sample_weight=None):
+        y_true, y_score = np.asarray(y_true), np.asarray(y_score)
+        scores = []
+        for label in range(y_score.shape[1]):
+            y_bin = (y_true == label).astype(float)
+            if 0 < y_bin.sum() < len(y_bin):
+                scores.append(binary_metric(y_bin, y_score[:, label],
+                                            sample_weight=sample_weight))
+        return np.mean(scores) if scores else 0.5
+    return metric
+
 
 class BrushEstimator(EstimatorInterface, BaseEstimator):
     """
@@ -206,7 +229,8 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         # The logistic root is not affected by locking or unlocking.
         # It is fixed due to prob_change==0.0.
 
-        # This updates the parameters (such as class weights)
+        # This updates the parameters (such as class weights and the scorer)
+        self.parameters_ = new_parameters
         self.engine_.params = new_parameters
         
         # replicating the best individual
@@ -291,15 +315,22 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
                 "multi_log": log_loss,
                 "accuracy": accuracy_score, 
                 "balanced_accuracy": balanced_accuracy_score,
-                "average_precision_score": average_precision_score
+                "average_precision_score": average_precision_score,
+                "precision": precision_score,
+                "recall": recall_score,
+                "roc_auc": roc_auc_score,
             }
             loss_f = loss_f_dict[self.parameters_.scorer]
+
+            multiclass = self.mode == 'classification' and self.parameters_.n_classes > 2
+            if multiclass and self.parameters_.scorer in ["roc_auc", "average_precision_score"]:
+                loss_f = _ovr_macro(loss_f)
 
             def eval(ind, sample=None):
                 if sample is None:
                     sample = np.arange(len(y))
 
-                if self.parameters_.scorer in ["log", "multi_log", "average_precision_score"]:
+                if self.parameters_.scorer in ["log", "multi_log", "average_precision_score", "roc_auc"]:
                     y_pred = np.array(ind.predict_proba(data))
                 else: # accuracy, balanced accuracy, or regression metrics
                     y_pred = np.array(ind.predict(data))
@@ -307,6 +338,9 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
                 metric_kwargs = {}
                 if self.parameters_.scorer == "multi_log":
                     metric_kwargs["labels"] = np.arange(self.parameters_.n_classes)
+                elif self.parameters_.scorer in ["precision", "recall"]:
+                    metric_kwargs["zero_division"] = 0
+                    metric_kwargs["average"] = "macro" if multiclass else "binary"
 
                 # y_pred = np.nan_to_num(y_pred) # Protecting the evaluation
 

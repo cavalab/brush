@@ -131,29 +131,25 @@ float bal_zero_one_loss(const VectorXf& y,
     return (TPR + TNR) / 2.0;
 }
 
-float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
-                          VectorXf& loss,
-                          const vector<float>& class_weights) {
-    
-    // AP is implemented as AUC PR in sklearn.
-    // AP summarizes a precision-recall curve as the weighted mean of precisions
-    // achieved at each threshold, with the increase in recall from the previous threshold used as the weight
+// anonymous namespace. make the headers private to metrics.cpp. only affects linkage
+namespace {
 
-    // Assuming y contains binary labels (0 or 1)
+// per-sample weights from class weights (all ones if no class weights)
+vector<float> sample_weights(const VectorXf& y, const vector<float>& class_weights)
+{
+    vector<float> w(y.size(), 1.0f);
+    if (!class_weights.empty())
+        for (int i = 0; i < y.size(); ++i)
+            w[i] = class_weights.at(static_cast<int>(y(i)));
+    return w;
+}
+
+// Binary average precision. `y` holds 0/1 labels and `w` per-sample weights.
+float binary_average_precision(const VectorXf& y, const VectorXf& predict_proba,
+                               const vector<float>& w)
+{
     int num_instances = y.size();
-
-    float eps = 1e-6f; // first we set the loss vector values
-    loss.resize(num_instances);
-    for (int i = 0; i < num_instances; ++i) {
-        float p = predict_proba(i);
-
-        // The loss vector is used in lexicase selection. we need to set something useful here
-        // that does make sense on individual level. Using log loss here.
-        if (p < eps || 1 - p < eps)
-            loss(i) = -(y(i)*log(eps) + (1-y(i))*log(1-eps));
-        else
-            loss(i) = -(y(i)*log(p) + (1-y(i))*log(1-p));
-    }
+    float eps = 1e-6f;
 
     // get argsort of predict proba (descending)
     vector<int> order(num_instances);
@@ -171,7 +167,7 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
 
         y_sorted[i] = y(idx);
         p_sorted[i] = predict_proba(idx);
-        w_sorted[i] = class_weights.empty() ? 1.0f : class_weights.at(y(idx));
+        w_sorted[i] = w[idx];
 
         ysum += y_sorted[i] * w_sorted[i];
     }
@@ -230,6 +226,170 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
     }
 
     return average_precision;
+}
+
+// Binary AUROC (trapezoidal rule over the ROC curve, treating tied scores as
+// a single threshold, like sklearn). `y` holds 0/1 labels and `w` per-sample
+// weights. Returns 0.5 if only one class is present (AUROC is undefined).
+float binary_roc_auc(const VectorXf& y, const VectorXf& predict_proba,
+                     const vector<float>& w)
+{
+    int num_instances = y.size();
+
+    vector<int> order(num_instances);
+    iota(order.begin(), order.end(), 0);
+    stable_sort(order.begin(), order.end(), [&](int i, int j) {
+        return predict_proba(i) > predict_proba(j); // descending
+    });
+
+    float pos = 0.0f;
+    float neg = 0.0f;
+    for (int i = 0; i < num_instances; ++i) {
+        // remember: this is for the binary case!
+        pos += y(i) * w[i];
+        neg += (1.0f - y(i)) * w[i];
+    }
+
+    // default case, copying sklearn, returns 0.5 if only one class exists in the y
+    if (pos == 0.0f || neg == 0.0f)
+        return 0.5f;
+
+    float tp = 0.0f, fp = 0.0f;
+    float tp_prev = 0.0f, fp_prev = 0.0f;
+    float area = 0.0f;
+    for (int i = 0; i < num_instances; ++i) {
+        int idx = order[i];
+        tp += y(idx) * w[idx];
+        fp += (1.0f - y(idx)) * w[idx];
+
+        // only add a point to the curve at the end of a block of tied scores
+        bool last_of_block = (i == num_instances - 1)
+            || (predict_proba(order[i+1]) != predict_proba(idx));
+
+        if (last_of_block) {
+            area += (fp - fp_prev) * (tp + tp_prev) / 2.0f;
+            tp_prev = tp;
+            fp_prev = fp;
+        }
+    }
+
+    return area / (pos * neg);
+}
+
+// Weighted confusion matrix entries for class `label` (one-vs-rest).
+void confusion(const VectorXf& y, const ArrayXi& yhat, int label,
+               const vector<float>& w, float& TP, float& FP, float& FN)
+{
+    // Used to calculate precision and recall for multiclass settings.
+    // TP, FP, FN, passed as reference
+
+    TP = FP = FN = 0.0f;
+    for (int i = 0; i < y.size(); ++i) {
+        bool is_true = static_cast<int>(y(i)) == label;
+        bool is_pred = yhat(i) == label;
+
+        if      ( is_true &&  is_pred) TP += w[i];
+        else if (!is_true &&  is_pred) FP += w[i];
+        else if ( is_true && !is_pred) FN += w[i];
+    }
+}
+
+ArrayXi argmax_rows(const ArrayXXf& predict_proba)
+{
+    // converting the pred proba matrix to predictions
+
+    ArrayXi yhat(predict_proba.rows());
+    for (int i = 0; i < predict_proba.rows(); ++i)
+        predict_proba.row(i).maxCoeff(&yhat(i));
+
+    return yhat;
+}
+
+// Macro average of precision or recall over the classes present in either
+// the true or predicted labels (sklearn's default label set).
+float multi_macro_precision_recall(const VectorXf& y, const ArrayXXf& predict_proba,
+                                   VectorXf& loss, const vector<float>& class_weights,
+                                   bool precision)
+{
+    if (predict_proba.rows() != y.rows())
+        HANDLE_ERROR_THROW("Multiclass probabilities and labels have different numbers of rows");
+
+    ArrayXi yhat = argmax_rows(predict_proba);
+
+    // again setting the loss here as hit or miss, a.k.a. accuracy
+    loss = (yhat != y.cast<int>().array()).cast<float>();
+
+    vector<float> w = sample_weights(y, class_weights);
+
+    float sum = 0.0f;
+    int n_labels = 0;
+    for (int label = 0; label < predict_proba.cols(); ++label) {
+        bool present = (y.cast<int>().array() == label).any() || (yhat == label).any();
+        if (!present)
+            continue;
+
+        float TP, FP, FN;
+        confusion(y, yhat, label, w, TP, FP, FN);
+
+        float denom = precision ? TP + FP : TP + FN;
+        sum += denom == 0.0f ? 0.0f : TP / denom;
+        ++n_labels;
+    }
+    return n_labels == 0 ? 0.0f : sum / n_labels;
+}
+
+} // anonymous namespace
+
+float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
+                          VectorXf& loss,
+                          const vector<float>& class_weights) {
+    
+    // AP is implemented as AUC PR in sklearn.
+    // AP summarizes a precision-recall curve as the weighted mean of precisions
+    // achieved at each threshold, with the increase in recall from the previous threshold used as the weight
+
+    // The loss vector is used in lexicase selection. we need to set something useful here
+    // that does make sense on individual level. Using log loss here.
+    loss = log_loss(y, predict_proba, class_weights);
+
+    return binary_average_precision(y, predict_proba, sample_weights(y, class_weights));
+}
+
+// implementing precision_score and recall_score for the binary case.
+// it will be used per-class in the multiclass case below.
+float precision_score(const VectorXf& y, const VectorXf& predict_proba,
+                      VectorXf& loss, const vector<float>& class_weights)
+{
+    ArrayXi yhat = (predict_proba.array() > 0.5).cast<int>();
+
+    // Again updating the loss vector. Doing the same way as binary accuracy (zero_one_loss) here
+    loss = (yhat != y.cast<int>().array()).cast<float>();
+
+    float TP, FP, FN;
+    confusion(y, yhat, 1, sample_weights(y, class_weights), TP, FP, FN);
+
+    return (TP + FP) == 0.0f ? 0.0f : TP / (TP + FP);
+}
+
+float recall_score(const VectorXf& y, const VectorXf& predict_proba,
+                   VectorXf& loss, const vector<float>& class_weights)
+{
+    ArrayXi yhat = (predict_proba.array() > 0.5).cast<int>();
+    loss = (yhat != y.cast<int>().array()).cast<float>();
+
+    float TP, FP, FN;
+    confusion(y, yhat, 1, sample_weights(y, class_weights), TP, FP, FN);
+
+    return (TP + FN) == 0.0f ? 0.0f : TP / (TP + FN);
+}
+
+float roc_auc_score(const VectorXf& y, const VectorXf& predict_proba,
+                    VectorXf& loss, const vector<float>& class_weights)
+{
+    // AUROC is not decomposable per sample; log loss is used for lexicase
+    loss = log_loss(y, predict_proba, class_weights);
+
+    return binary_roc_auc(y, predict_proba, sample_weights(y, class_weights));
 }
 
 // multinomial log loss
@@ -338,6 +498,62 @@ float multi_bal_zero_one_loss(const VectorXf& y,
             ++present_classes;
         }
     return present_classes == 0 ? 0.0f : recall_sum / present_classes;
+}
+
+float multi_precision_score(const VectorXf& y, const ArrayXXf& predict_proba,
+    VectorXf& loss, const vector<float>& class_weights)
+{
+    return multi_macro_precision_recall(y, predict_proba, loss, class_weights, true);
+}
+
+float multi_recall_score(const VectorXf& y, const ArrayXXf& predict_proba,
+    VectorXf& loss, const vector<float>& class_weights)
+{
+    return multi_macro_precision_recall(y, predict_proba, loss, class_weights, false);
+}
+
+float multi_roc_auc_score(const VectorXf& y, const ArrayXXf& predict_proba,
+    VectorXf& loss, const vector<float>& class_weights)
+{
+    loss = multi_log_loss(y, predict_proba, class_weights);
+
+    vector<float> w = sample_weights(y, class_weights);
+
+    float sum = 0.0f;
+    int n_labels = 0;
+    for (int label = 0; label < predict_proba.cols(); ++label) {
+        VectorXf y_bin = (y.cast<int>().array() == label).cast<float>();
+
+        // one-vs-rest AUROC is undefined if the class is absent (or is the only one)
+        if (y_bin.sum() == 0.0f || y_bin.sum() == y_bin.size())
+            continue;
+
+        sum += binary_roc_auc(y_bin, predict_proba.col(label).matrix(), w);
+        ++n_labels;
+    }
+    return n_labels == 0 ? 0.5f : sum / n_labels;
+}
+
+float multi_average_precision_score(const VectorXf& y, const ArrayXXf& predict_proba,
+    VectorXf& loss, const vector<float>& class_weights)
+{
+    loss = multi_log_loss(y, predict_proba, class_weights);
+
+    vector<float> w = sample_weights(y, class_weights);
+
+    float sum = 0.0f;
+    int n_labels = 0;
+    for (int label = 0; label < predict_proba.cols(); ++label) {
+        VectorXf y_bin = (y.cast<int>().array() == label).cast<float>();
+
+        // recall is undefined if the class is absent
+        if (y_bin.sum() == 0.0f)
+            continue;
+
+        sum += binary_average_precision(y_bin, predict_proba.col(label).matrix(), w);
+        ++n_labels;
+    }
+    return n_labels == 0 ? 0.0f : sum / n_labels;
 }
 
 } // metrics

@@ -16,6 +16,7 @@ multiclassification
 json
 saving_loading_populations
 locking_mechanism
+switching_metrics
 archive
 deap
 ```
