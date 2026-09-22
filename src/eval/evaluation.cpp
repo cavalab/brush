@@ -42,7 +42,7 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
             // assign weights to individual
             if (fit && ind.get_is_fitted() == false)
             {
-                ind.program.fit(data.get_training_data());
+                ind.program.fit(data.get_training_data(), params.class_weights);
             }
 
             assign_fit(ind, data, params, validation);

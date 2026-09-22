@@ -170,6 +170,7 @@ public:
     Scorer(string scorer="multi_log") {
         score_hash["multi_log"] = &mean_multi_log_loss; 
         score_hash["accuracy"] = &multi_zero_one_loss;
+        score_hash["balanced_accuracy"] = &multi_bal_zero_one_loss;
     
         this->set_scorer(scorer);
     };
