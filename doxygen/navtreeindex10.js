@@ -1,5 +1,9 @@
 var NAVTREEINDEX10 =
 {
+"dc/d5c/namespaceBrush.html#a6225fa35f6e06e54d4a31a8f25cd4a66":[0,0,0,250],
+"dc/d5c/namespaceBrush.html#a6a72a3ce2992ed58a0637f86c798c9df":[0,0,0,224],
+"dc/d5c/namespaceBrush.html#a6c9a5070ffbcf71c795073cbb2a88964":[0,0,0,242],
+"dc/d5c/namespaceBrush.html#a7845c50e5beff50fa7f26e1974d6db16":[0,0,0,178],
 "dc/d5c/namespaceBrush.html#a78f7f19a49bc1a818f29602b1773acc4":[0,0,0,219],
 "dc/d5c/namespaceBrush.html#a7d1315460dd7c6eb76e3ace99d4aad03":[0,0,0,207],
 "dc/d5c/namespaceBrush.html#a7e323244b7b57c08d6816a009e74eec6":[0,0,0,251],
@@ -245,9 +249,5 @@ var NAVTREEINDEX10 =
 "dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation.html#afa6678966f1b55efc8afbe08f009d36a":[2,0,0,7,5,1],
 "dd/d56/classBrush_1_1Util_1_1Logger.html":[0,0,0,8,1],
 "dd/d56/classBrush_1_1Util_1_1Logger.html":[2,0,0,6,1],
-"dd/d56/classBrush_1_1Util_1_1Logger.html#a192baac90d120fa142fbf385a802f73f":[0,0,0,8,1,0],
-"dd/d56/classBrush_1_1Util_1_1Logger.html#a192baac90d120fa142fbf385a802f73f":[2,0,0,6,1,0],
-"dd/d56/classBrush_1_1Util_1_1Logger.html#a628245421b92a8888c393de40b817363":[0,0,0,8,1,1],
-"dd/d56/classBrush_1_1Util_1_1Logger.html#a628245421b92a8888c393de40b817363":[2,0,0,6,1,1],
-"dd/d56/classBrush_1_1Util_1_1Logger.html#a66e978372533d5960afe73a702382cf0":[0,0,0,8,1,5]
+"dd/d56/classBrush_1_1Util_1_1Logger.html#a192baac90d120fa142fbf385a802f73f":[0,0,0,8,1,0]
 };

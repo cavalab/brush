@@ -1,5 +1,9 @@
 var NAVTREEINDEX2 =
 {
+"d2/d36/classBrush_1_1Data_1_1Dataset.html#a2923e87bfc5d20fc3b45b9f72ca71de2":[0,0,0,0,0,7],
+"d2/d36/classBrush_1_1Data_1_1Dataset.html#a2923e87bfc5d20fc3b45b9f72ca71de2":[2,0,0,0,0,7],
+"d2/d36/classBrush_1_1Data_1_1Dataset.html#a2b7b42b1b16630554b2e49102098a170":[0,0,0,0,0,10],
+"d2/d36/classBrush_1_1Data_1_1Dataset.html#a2b7b42b1b16630554b2e49102098a170":[2,0,0,0,0,10],
 "d2/d36/classBrush_1_1Data_1_1Dataset.html#a2b8f61c5fb8f2128ddbe82108e7644d6":[0,0,0,0,0,0],
 "d2/d36/classBrush_1_1Data_1_1Dataset.html#a2b8f61c5fb8f2128ddbe82108e7644d6":[2,0,0,0,0,0],
 "d2/d36/classBrush_1_1Data_1_1Dataset.html#a4112a2cb86ce4138c3c4bea966c96b65":[0,0,0,0,0,29],
@@ -245,9 +249,5 @@ var NAVTREEINDEX2 =
 "d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14.html#af103a8ad8b7580d3c3a82b5c997b26c0":[2,0,10,8],
 "d3/df9/evaluation_8h.html":[3,0,0,3,1],
 "d3/df9/evaluation_8h_source.html":[3,0,0,3,1],
-"d4/d01/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesb_01_4.html":[0,0,0,107],
-"d4/d01/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesb_01_4.html":[2,0,0,104],
-"d4/d01/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesb_01_4.html#a7512b59b3ddb27e6728c1a7e24facf31":[0,0,0,107,0],
-"d4/d01/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesb_01_4.html#a7512b59b3ddb27e6728c1a7e24facf31":[2,0,0,104,0],
-"d4/d05/dummy_8cpp.html":[3,0,0,0,4]
+"d4/d01/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesb_01_4.html":[0,0,0,107]
 };

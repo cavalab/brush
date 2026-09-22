@@ -67,19 +67,19 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "d1/d3a/structBrush_1_1Node.html#a24ab653c36833ab9cd301efe99b39d5f",
-"d2/d36/classBrush_1_1Data_1_1Dataset.html#a2b8f61c5fb8f2128ddbe82108e7644d6",
-"d4/d05/dummy_8cpp_source.html",
-"d4/dd1/structBrush_1_1DataTypeEnum_3_01ArrayXiJet_01_4.html",
-"d6/da6/structBrush_1_1Function_3_01NodeType_1_1ArgMax_01_4.html#a150d4528bddd364ea2fa808bf992a363",
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a94655fb93885f74e588075d592901981",
-"d8/d5c/functions_8h.html",
-"da/da3/classBrush_1_1Pop_1_1Population.html#a78b95a2dc04224a015fdbe356cbf1e87",
-"db/d88/structBrush_1_1Program.html#a9e0114cb8da8698b0db76f67ce5d22e3",
-"dc/d5c/namespaceBrush.html#a78f7f19a49bc1a818f29602b1773acc4",
-"dd/d56/classBrush_1_1Util_1_1Logger.html#a66e978372533d5960afe73a702382cf0",
-"de/da7/structBrush_1_1Function_3_01NodeType_1_1During_01_4.html#a5e9c46f253c0244d4b65a551c0d33909",
-"de/deb/structBrush_1_1Parameters.html#ad2ad3c96073fa555d752b20a182309bf",
-"namespacemembers_enum.html"
+"d2/d36/classBrush_1_1Data_1_1Dataset.html#a2923e87bfc5d20fc3b45b9f72ca71de2",
+"d4/d01/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesb_01_4.html",
+"d4/dcb/structBrush_1_1DataEnumType_3_01DT_1_1ArrayBJet_01_4.html",
+"d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html#af3087e93c7af97478126bafc7b8c921c",
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a8b9d1462cec60687e36eb7d4f96c9051",
+"d8/d59/structBrush_1_1Function_3_01NodeType_1_1Exp_01_4.html",
+"da/da3/classBrush_1_1Pop_1_1Population.html#a74417ef86a9a4195d6422427d97347a5",
+"db/d88/structBrush_1_1Program.html#a9a1dd47fb6491ad830c147cced29752b",
+"dc/d5c/namespaceBrush.html#a6225fa35f6e06e54d4a31a8f25cd4a66",
+"dd/d56/classBrush_1_1Util_1_1Logger.html#a192baac90d120fa142fbf385a802f73f",
+"de/d87/structSearchSpace.html#afed4d42914edd71c4b54fc3883d8d156",
+"de/deb/structBrush_1_1Parameters.html#ad1a131cf61b76ff1ab4b576f5fd1df9b",
+"namespacemembers.html"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

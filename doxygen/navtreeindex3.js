@@ -1,5 +1,9 @@
 var NAVTREEINDEX3 =
 {
+"d4/d01/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesb_01_4.html":[2,0,0,104],
+"d4/d01/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesb_01_4.html#a7512b59b3ddb27e6728c1a7e24facf31":[0,0,0,107,0],
+"d4/d01/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesb_01_4.html#a7512b59b3ddb27e6728c1a7e24facf31":[2,0,0,104,0],
+"d4/d05/dummy_8cpp.html":[3,0,0,0,4],
 "d4/d05/dummy_8cpp_source.html":[3,0,0,0,4],
 "d4/d0d/structstd_1_1hash_3_01std_1_1vector_3_01float_01_4_01_4.html":[0,0,4,1],
 "d4/d0d/structstd_1_1hash_3_01std_1_1vector_3_01float_01_4_01_4.html":[2,0,3,1],
@@ -245,9 +249,5 @@ var NAVTREEINDEX3 =
 "d4/dc3/structBrush_1_1SearchSpace.html#afe2365c907e5a0ca98d42e2e9720cb4a":[2,0,0,120,19],
 "d4/dc3/structBrush_1_1SearchSpace.html#afed4d42914edd71c4b54fc3883d8d156":[0,0,0,123,34],
 "d4/dc3/structBrush_1_1SearchSpace.html#afed4d42914edd71c4b54fc3883d8d156":[2,0,0,120,34],
-"d4/dcb/structBrush_1_1DataEnumType_3_01DT_1_1ArrayBJet_01_4.html":[0,0,0,14],
-"d4/dcb/structBrush_1_1DataEnumType_3_01DT_1_1ArrayBJet_01_4.html":[2,0,0,11],
-"d4/dcb/structBrush_1_1DataEnumType_3_01DT_1_1ArrayBJet_01_4.html#add104431d70a2093bdc0e40b4a55d39b":[0,0,0,14,0],
-"d4/dcb/structBrush_1_1DataEnumType_3_01DT_1_1ArrayBJet_01_4.html#add104431d70a2093bdc0e40b4a55d39b":[2,0,0,11,0],
-"d4/dd1/structBrush_1_1DataTypeEnum_3_01ArrayXiJet_01_4.html":[0,0,0,34]
+"d4/dcb/structBrush_1_1DataEnumType_3_01DT_1_1ArrayBJet_01_4.html":[0,0,0,14]
 };

@@ -19,14 +19,48 @@
         <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="165" column="20" bodyfile="/home/runner/work/brush/brush/src/util/rnd.h" bodystart="165" bodyend="-1"/>
         <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9ea4fb27b340cdd054b1e271e76137e0" compoundref="d2/da9/rnd_8h" startline="130" endline="154">random_choice</referencedby>
         <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9bd56ea15679d17f3577f59e46d6e065" compoundref="de/d67/rnd_8cpp" startline="12" endline="24">Rnd</referencedby>
-        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a20753601c00c28c431ced39c8c5a216d" compoundref="de/d67/rnd_8cpp" startline="80" endline="105">rnd_alpha_beta</referencedby>
-        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aa7cedc8c08588c4740e07da8d6c2cb9f" compoundref="de/d67/rnd_8cpp" startline="106" endline="110">rnd_dbl</referencedby>
-        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a450979f31af93d8dffd7be006ee5d50b" compoundref="de/d67/rnd_8cpp" startline="74" endline="78">rnd_flt</referencedby>
-        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aef0f2836321f651d5887d29739e180f5" compoundref="de/d67/rnd_8cpp" startline="68" endline="72">rnd_int</referencedby>
+        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a20753601c00c28c431ced39c8c5a216d" compoundref="de/d67/rnd_8cpp" startline="83" endline="108">rnd_alpha_beta</referencedby>
+        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aa7cedc8c08588c4740e07da8d6c2cb9f" compoundref="de/d67/rnd_8cpp" startline="109" endline="113">rnd_dbl</referencedby>
+        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a450979f31af93d8dffd7be006ee5d50b" compoundref="de/d67/rnd_8cpp" startline="77" endline="81">rnd_flt</referencedby>
+        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aef0f2836321f651d5887d29739e180f5" compoundref="de/d67/rnd_8cpp" startline="71" endline="75">rnd_int</referencedby>
         <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9f0fe39c1fd498b378c8d4abe7b9d71b" compoundref="d2/da9/rnd_8h" startline="63" endline="68">select_randomly</referencedby>
         <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a6a38fe0711f752c14055257c4e25cbb2" compoundref="d2/da9/rnd_8h" startline="75" endline="95">select_randomly</referencedby>
-        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a8357702cf1f426e4909c45b97a18bb0e" compoundref="de/d67/rnd_8cpp" startline="46" endline="66">set_seed</referencedby>
+        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a8357702cf1f426e4909c45b97a18bb0e" compoundref="de/d67/rnd_8cpp" startline="46" endline="69">set_seed</referencedby>
         <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a377cd0c8d7f0fee5cdbd2489941ce7cd" compoundref="d2/da9/rnd_8h" startline="51" endline="58">shuffle</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d2/d2d/classBrush_1_1Util_1_1Rnd_1acc11a16fa5971f0a6e964fbd000a7f5d" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Brush::Util::Rnd::has_spare_normal</definition>
+        <argsstring></argsstring>
+        <name>has_spare_normal</name>
+        <qualifiedname>Brush::Util::Rnd::has_spare_normal</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="173" column="18" bodyfile="/home/runner/work/brush/brush/src/util/rnd.h" bodystart="173" bodyend="-1"/>
+        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aaefc1dfb704aa94c17973a8798e81603" compoundref="de/d67/rnd_8cpp" startline="122" endline="152">gasdev</referencedby>
+        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a8357702cf1f426e4909c45b97a18bb0e" compoundref="de/d67/rnd_8cpp" startline="46" endline="69">set_seed</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9a981a5e2e7fbb81665a85d246528b05" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Brush::Util::Rnd::spare_normal</definition>
+        <argsstring></argsstring>
+        <name>spare_normal</name>
+        <qualifiedname>Brush::Util::Rnd::spare_normal</qualifiedname>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="174" column="19" bodyfile="/home/runner/work/brush/brush/src/util/rnd.h" bodystart="174" bodyend="-1"/>
+        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aaefc1dfb704aa94c17973a8798e81603" compoundref="de/d67/rnd_8cpp" startline="122" endline="152">gasdev</referencedby>
+        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a8357702cf1f426e4909c45b97a18bb0e" compoundref="de/d67/rnd_8cpp" startline="46" endline="69">set_seed</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-static-attrib">
@@ -43,7 +77,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="169" column="24" bodyfile="/home/runner/work/brush/brush/src/util/rnd.h" bodystart="169" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="178" column="24" bodyfile="/home/runner/work/brush/brush/src/util/rnd.h" bodystart="178" bodyend="-1"/>
         <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a8dac84db3c306a00d3de09aa043b17e7" compoundref="de/d67/rnd_8cpp" startline="38" endline="44">destroy</referencedby>
         <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a4fee4453f2aff1384cda4e14d53234fe" compoundref="de/d67/rnd_8cpp" startline="26" endline="36">initRand</referencedby>
       </memberdef>
@@ -62,9 +96,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="32" column="24" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="26" bodyend="36"/>
-        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aa459d569e44e12e26133da6069135b09" compoundref="d2/da9/rnd_8h" startline="169">instance</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aa459d569e44e12e26133da6069135b09" compoundref="d2/da9/rnd_8h" startline="178">instance</references>
         <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9bd56ea15679d17f3577f59e46d6e065" compoundref="de/d67/rnd_8cpp" startline="12" endline="24">Rnd</references>
-        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a8357702cf1f426e4909c45b97a18bb0e" compoundref="de/d67/rnd_8cpp" startline="46" endline="66">set_seed</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a8357702cf1f426e4909c45b97a18bb0e" compoundref="de/d67/rnd_8cpp" startline="46" endline="69">set_seed</references>
         <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="69">bind_params</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d2d/classBrush_1_1Util_1_1Rnd_1a8dac84db3c306a00d3de09aa043b17e7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -80,7 +114,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="34" column="25" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="38" bodyend="44"/>
-        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aa459d569e44e12e26133da6069135b09" compoundref="d2/da9/rnd_8h" startline="169">instance</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aa459d569e44e12e26133da6069135b09" compoundref="d2/da9/rnd_8h" startline="178">instance</references>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -101,8 +135,10 @@
         <inbodydescription>
 <para>set seeds for each core&apos;s random number generator.</para>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="36" column="18" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="46" bodyend="66"/>
+        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="36" column="18" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="46" bodyend="69"/>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1acc11a16fa5971f0a6e964fbd000a7f5d" compoundref="d2/da9/rnd_8h" startline="173">has_spare_normal</references>
         <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9b7a12dc79e6a2b18b25e8a04d9e8637" compoundref="d2/da9/rnd_8h" startline="165">rg</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9a981a5e2e7fbb81665a85d246528b05" compoundref="d2/da9/rnd_8h" startline="174">spare_normal</references>
         <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="69">bind_params</referencedby>
         <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a4fee4453f2aff1384cda4e14d53234fe" compoundref="de/d67/rnd_8cpp" startline="26" endline="36">initRand</referencedby>
       </memberdef>
@@ -126,7 +162,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="38" column="17" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="68" bodyend="72"/>
+        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="38" column="17" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="71" bodyend="75"/>
         <references refid="d8/dc0/init_8h_1a889ec205c635b219999c761b28cc39ba" compoundref="d8/dc0/init_8h" startline="12">omp_get_thread_num</references>
         <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9b7a12dc79e6a2b18b25e8a04d9e8637" compoundref="d2/da9/rnd_8h" startline="165">rg</references>
       </memberdef>
@@ -152,12 +188,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="40" column="19" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="74" bodyend="78"/>
+        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="40" column="19" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="77" bodyend="81"/>
         <references refid="d8/dc0/init_8h_1a889ec205c635b219999c761b28cc39ba" compoundref="d8/dc0/init_8h" startline="12">omp_get_thread_num</references>
         <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9b7a12dc79e6a2b18b25e8a04d9e8637" compoundref="d2/da9/rnd_8h" startline="165">rg</references>
         <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="69">bind_params</referencedby>
-        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aaefc1dfb704aa94c17973a8798e81603" compoundref="de/d67/rnd_8cpp" startline="119" endline="144">gasdev</referencedby>
-        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aab34b78c05c7aa5edd63c6f4e8265351" compoundref="de/d67/rnd_8cpp" startline="117" endline="117">operator()</referencedby>
+        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aaefc1dfb704aa94c17973a8798e81603" compoundref="de/d67/rnd_8cpp" startline="122" endline="152">gasdev</referencedby>
+        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aab34b78c05c7aa5edd63c6f4e8265351" compoundref="de/d67/rnd_8cpp" startline="120" endline="120">operator()</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d2d/classBrush_1_1Util_1_1Rnd_1a20753601c00c28c431ced39c8c5a216d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -179,7 +215,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="42" column="19" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="80" bodyend="105"/>
+        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="42" column="19" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="83" bodyend="108"/>
         <references refid="d8/dc0/init_8h_1a889ec205c635b219999c761b28cc39ba" compoundref="d8/dc0/init_8h" startline="12">omp_get_thread_num</references>
         <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9b7a12dc79e6a2b18b25e8a04d9e8637" compoundref="d2/da9/rnd_8h" startline="165">rg</references>
       </memberdef>
@@ -205,10 +241,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="44" column="19" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="106" bodyend="110"/>
+        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="44" column="19" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="109" bodyend="113"/>
         <references refid="d8/dc0/init_8h_1a889ec205c635b219999c761b28cc39ba" compoundref="d8/dc0/init_8h" startline="12">omp_get_thread_num</references>
         <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9b7a12dc79e6a2b18b25e8a04d9e8637" compoundref="d2/da9/rnd_8h" startline="165">rg</references>
-        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a840b7318ae8de499ad0b0bf151986382" compoundref="de/d67/rnd_8cpp" startline="112" endline="115">operator()</referencedby>
+        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a840b7318ae8de499ad0b0bf151986382" compoundref="de/d67/rnd_8cpp" startline="115" endline="118">operator()</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d2d/classBrush_1_1Util_1_1Rnd_1a840b7318ae8de499ad0b0bf151986382" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -226,8 +262,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="46" column="19" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="112" bodyend="115"/>
-        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aa7cedc8c08588c4740e07da8d6c2cb9f" compoundref="de/d67/rnd_8cpp" startline="106" endline="110">rnd_dbl</references>
+        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="46" column="19" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="115" bodyend="118"/>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aa7cedc8c08588c4740e07da8d6c2cb9f" compoundref="de/d67/rnd_8cpp" startline="109" endline="113">rnd_dbl</references>
       </memberdef>
       <memberdef kind="function" id="d2/d2d/classBrush_1_1Util_1_1Rnd_1aab34b78c05c7aa5edd63c6f4e8265351" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -241,8 +277,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="48" column="19" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="117" bodyend="117"/>
-        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a450979f31af93d8dffd7be006ee5d50b" compoundref="de/d67/rnd_8cpp" startline="74" endline="78">rnd_flt</references>
+        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="48" column="19" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="120" bodyend="120"/>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a450979f31af93d8dffd7be006ee5d50b" compoundref="de/d67/rnd_8cpp" startline="77" endline="81">rnd_flt</references>
       </memberdef>
       <memberdef kind="function" id="d2/d2d/classBrush_1_1Util_1_1Rnd_1a377cd0c8d7f0fee5cdbd2489941ce7cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -272,7 +308,7 @@
         <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="51" column="18" bodyfile="/home/runner/work/brush/brush/src/util/rnd.h" bodystart="51" bodyend="58"/>
         <references refid="d8/dc0/init_8h_1a889ec205c635b219999c761b28cc39ba" compoundref="d8/dc0/init_8h" startline="12">omp_get_thread_num</references>
         <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9b7a12dc79e6a2b18b25e8a04d9e8637" compoundref="d2/da9/rnd_8h" startline="165">rg</references>
-        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a5ec3a29d75a9154bbfdf3488db64fb69" compoundref="de/d67/rnd_8cpp" startline="147" endline="153">shuffled_index</referencedby>
+        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a5ec3a29d75a9154bbfdf3488db64fb69" compoundref="de/d67/rnd_8cpp" startline="155" endline="161">shuffled_index</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d2d/classBrush_1_1Util_1_1Rnd_1a5ec3a29d75a9154bbfdf3488db64fb69" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;</type>
@@ -291,7 +327,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="60" column="20" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="147" bodyend="153"/>
+        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="60" column="20" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="155" bodyend="161"/>
         <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a377cd0c8d7f0fee5cdbd2489941ce7cd" compoundref="d2/da9/rnd_8h" startline="51" endline="58">shuffle</references>
       </memberdef>
       <memberdef kind="function" id="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9f0fe39c1fd498b378c8d4abe7b9d71b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -468,8 +504,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="156" column="19" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="119" bodyend="144"/>
-        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a450979f31af93d8dffd7be006ee5d50b" compoundref="de/d67/rnd_8cpp" startline="74" endline="78">rnd_flt</references>
+        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="156" column="19" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="122" bodyend="152"/>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1acc11a16fa5971f0a6e964fbd000a7f5d" compoundref="d2/da9/rnd_8h" startline="173">has_spare_normal</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a450979f31af93d8dffd7be006ee5d50b" compoundref="de/d67/rnd_8cpp" startline="77" endline="81">rnd_flt</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9a981a5e2e7fbb81665a85d246528b05" compoundref="d2/da9/rnd_8h" startline="174">spare_normal</references>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -503,7 +541,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="162" column="13" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="154" bodyend="154"/>
+        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="162" column="13" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="162" bodyend="162"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -526,10 +564,11 @@
         <label>std::vector&lt; std::mt19937 &gt;</label>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="28" column="5" bodyfile="/home/runner/work/brush/brush/src/util/rnd.h" bodystart="29" bodyend="170"/>
+    <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="28" column="5" bodyfile="/home/runner/work/brush/brush/src/util/rnd.h" bodystart="29" bodyend="179"/>
     <listofallmembers>
       <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a8dac84db3c306a00d3de09aa043b17e7" prot="public" virt="non-virtual"><scope>Brush::Util::Rnd</scope><name>destroy</name></member>
       <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aaefc1dfb704aa94c17973a8798e81603" prot="public" virt="non-virtual"><scope>Brush::Util::Rnd</scope><name>gasdev</name></member>
+      <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1acc11a16fa5971f0a6e964fbd000a7f5d" prot="private" virt="non-virtual"><scope>Brush::Util::Rnd</scope><name>has_spare_normal</name></member>
       <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a4fee4453f2aff1384cda4e14d53234fe" prot="public" virt="non-virtual"><scope>Brush::Util::Rnd</scope><name>initRand</name></member>
       <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aa459d569e44e12e26133da6069135b09" prot="private" virt="non-virtual"><scope>Brush::Util::Rnd</scope><name>instance</name></member>
       <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a840b7318ae8de499ad0b0bf151986382" prot="public" virt="non-virtual"><scope>Brush::Util::Rnd</scope><name>operator()</name></member>
@@ -548,6 +587,7 @@
       <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a8357702cf1f426e4909c45b97a18bb0e" prot="public" virt="non-virtual"><scope>Brush::Util::Rnd</scope><name>set_seed</name></member>
       <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a377cd0c8d7f0fee5cdbd2489941ce7cd" prot="public" virt="non-virtual"><scope>Brush::Util::Rnd</scope><name>shuffle</name></member>
       <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a5ec3a29d75a9154bbfdf3488db64fb69" prot="public" virt="non-virtual"><scope>Brush::Util::Rnd</scope><name>shuffled_index</name></member>
+      <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9a981a5e2e7fbb81665a85d246528b05" prot="private" virt="non-virtual"><scope>Brush::Util::Rnd</scope><name>spare_normal</name></member>
       <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a69f29eab729d9b0921b8b4a28c985d1c" prot="private" virt="non-virtual"><scope>Brush::Util::Rnd</scope><name>~Rnd</name></member>
     </listofallmembers>
   </compounddef>

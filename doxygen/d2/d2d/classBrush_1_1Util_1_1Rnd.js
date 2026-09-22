@@ -19,6 +19,8 @@ var classBrush_1_1Util_1_1Rnd =
     [ "set_seed", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a8357702cf1f426e4909c45b97a18bb0e", null ],
     [ "shuffle", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a377cd0c8d7f0fee5cdbd2489941ce7cd", null ],
     [ "shuffled_index", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a5ec3a29d75a9154bbfdf3488db64fb69", null ],
+    [ "has_spare_normal", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#acc11a16fa5971f0a6e964fbd000a7f5d", null ],
     [ "instance", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#aa459d569e44e12e26133da6069135b09", null ],
-    [ "rg", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9b7a12dc79e6a2b18b25e8a04d9e8637", null ]
+    [ "rg", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9b7a12dc79e6a2b18b25e8a04d9e8637", null ],
+    [ "spare_normal", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9a981a5e2e7fbb81665a85d246528b05", null ]
 ];

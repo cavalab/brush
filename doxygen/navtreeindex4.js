@@ -1,5 +1,9 @@
 var NAVTREEINDEX4 =
 {
+"d4/dcb/structBrush_1_1DataEnumType_3_01DT_1_1ArrayBJet_01_4.html":[2,0,0,11],
+"d4/dcb/structBrush_1_1DataEnumType_3_01DT_1_1ArrayBJet_01_4.html#add104431d70a2093bdc0e40b4a55d39b":[0,0,0,14,0],
+"d4/dcb/structBrush_1_1DataEnumType_3_01DT_1_1ArrayBJet_01_4.html#add104431d70a2093bdc0e40b4a55d39b":[2,0,0,11,0],
+"d4/dd1/structBrush_1_1DataTypeEnum_3_01ArrayXiJet_01_4.html":[0,0,0,34],
 "d4/dd1/structBrush_1_1DataTypeEnum_3_01ArrayXiJet_01_4.html":[2,0,0,31],
 "d4/dd1/structBrush_1_1DataTypeEnum_3_01ArrayXiJet_01_4.html#ada3d9462cee724e4b4d2acdab918b4b1":[0,0,0,34,0],
 "d4/dd1/structBrush_1_1DataTypeEnum_3_01ArrayXiJet_01_4.html#ada3d9462cee724e4b4d2acdab918b4b1":[2,0,0,31,0],
@@ -245,9 +249,5 @@ var NAVTREEINDEX4 =
 "d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html#a15dbad135fc1dd3246b72122b11d3d78":[2,0,0,134,1],
 "d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html#ae8ad6a3bffeae55fc77aafd5098dc1fb":[0,0,0,137,2],
 "d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html#ae8ad6a3bffeae55fc77aafd5098dc1fb":[2,0,0,134,2],
-"d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html#af3087e93c7af97478126bafc7b8c921c":[0,0,0,137,0],
-"d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html#af3087e93c7af97478126bafc7b8c921c":[2,0,0,134,0],
-"d6/da6/structBrush_1_1Function_3_01NodeType_1_1ArgMax_01_4.html":[0,0,0,56],
-"d6/da6/structBrush_1_1Function_3_01NodeType_1_1ArgMax_01_4.html":[2,0,0,53],
-"d6/da6/structBrush_1_1Function_3_01NodeType_1_1ArgMax_01_4.html#a150d4528bddd364ea2fa808bf992a363":[0,0,0,56,0]
+"d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html#af3087e93c7af97478126bafc7b8c921c":[0,0,0,137,0]
 };

@@ -1,5 +1,9 @@
 var NAVTREEINDEX5 =
 {
+"d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html#af3087e93c7af97478126bafc7b8c921c":[2,0,0,134,0],
+"d6/da6/structBrush_1_1Function_3_01NodeType_1_1ArgMax_01_4.html":[0,0,0,56],
+"d6/da6/structBrush_1_1Function_3_01NodeType_1_1ArgMax_01_4.html":[2,0,0,53],
+"d6/da6/structBrush_1_1Function_3_01NodeType_1_1ArgMax_01_4.html#a150d4528bddd364ea2fa808bf992a363":[0,0,0,56,0],
 "d6/da6/structBrush_1_1Function_3_01NodeType_1_1ArgMax_01_4.html#a150d4528bddd364ea2fa808bf992a363":[2,0,0,53,0],
 "d6/dd0/structBrush_1_1Fitness.html":[0,0,0,49],
 "d6/dd0/structBrush_1_1Fitness.html":[2,0,0,46],
@@ -245,9 +249,5 @@ var NAVTREEINDEX5 =
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a83e6a71bbf83792e8cbd64a1a3925de7":[2,0,0,0,2,51],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a89035e010d3469fc61ac8e4bdc855de2":[0,0,0,0,2,27],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a89035e010d3469fc61ac8e4bdc855de2":[2,0,0,0,2,27],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a8b9d1462cec60687e36eb7d4f96c9051":[0,0,0,0,2,0],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a8b9d1462cec60687e36eb7d4f96c9051":[2,0,0,0,2,0],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a8fb9d6274f215e9bf1caa4317d3f70ad":[0,0,0,0,2,53],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a8fb9d6274f215e9bf1caa4317d3f70ad":[2,0,0,0,2,53],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a94655fb93885f74e588075d592901981":[0,0,0,0,2,9]
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a8b9d1462cec60687e36eb7d4f96c9051":[0,0,0,0,2,0]
 };

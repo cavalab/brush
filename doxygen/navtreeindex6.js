@@ -1,5 +1,9 @@
 var NAVTREEINDEX6 =
 {
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a8b9d1462cec60687e36eb7d4f96c9051":[2,0,0,0,2,0],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a8fb9d6274f215e9bf1caa4317d3f70ad":[0,0,0,0,2,53],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a8fb9d6274f215e9bf1caa4317d3f70ad":[2,0,0,0,2,53],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a94655fb93885f74e588075d592901981":[0,0,0,0,2,9],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a94655fb93885f74e588075d592901981":[2,0,0,0,2,9],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a9617c8407eac0d7b260ff51a7a863635":[0,0,0,0,2,21],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a9617c8407eac0d7b260ff51a7a863635":[2,0,0,0,2,21],
@@ -245,9 +249,5 @@ var NAVTREEINDEX6 =
 "d8/d4a/structBrush_1_1Function_3_01NodeType_1_1Min_01_4.html#a237f0e13d1d82e6c9efa5a0a1e71da29":[2,0,0,74,2],
 "d8/d4a/structBrush_1_1Function_3_01NodeType_1_1Min_01_4.html#aadaa8e034454ff70caf5e31cdf00db3b":[0,0,0,77,1],
 "d8/d4a/structBrush_1_1Function_3_01NodeType_1_1Min_01_4.html#aadaa8e034454ff70caf5e31cdf00db3b":[2,0,0,74,1],
-"d8/d59/structBrush_1_1Function_3_01NodeType_1_1Exp_01_4.html":[0,0,0,67],
-"d8/d59/structBrush_1_1Function_3_01NodeType_1_1Exp_01_4.html":[2,0,0,64],
-"d8/d59/structBrush_1_1Function_3_01NodeType_1_1Exp_01_4.html#aa3031e17924bded12884c7c664d20f0d":[0,0,0,67,0],
-"d8/d59/structBrush_1_1Function_3_01NodeType_1_1Exp_01_4.html#aa3031e17924bded12884c7c664d20f0d":[2,0,0,64,0],
-"d8/d5a/classset_1_1reverse__iterator.html":[2,0,12,2]
+"d8/d59/structBrush_1_1Function_3_01NodeType_1_1Exp_01_4.html":[0,0,0,67]
 };
