@@ -50,9 +50,21 @@ namespace Brush { namespace Simpl{
                         }
                         else if constexpr (P==ProgramType::MulticlassClassifier)
                         {
-                            ArrayXXf out = (*spot.node).template predict<ArrayXXf>(d);
-                            auto argmax = Function<NodeType::ArgMax>{};
-                            branch_pred = ArrayXf(argmax(out).template cast<float>());
+                            // A multiclass tree contains ArrayF logit branches
+                            // below its MatrixF Softmax root.  Evaluate each
+                            // node using its own return type; treating a logit
+                            // branch as MatrixF requests an invalid dispatch
+                            // callable (for example Sum(MatrixF)).
+                            if (n.ret_type == DataType::MatrixF)
+                            {
+                                ArrayXXf out = (*spot.node).template predict<ArrayXXf>(d);
+                                auto argmax = Function<NodeType::ArgMax>{};
+                                branch_pred = ArrayXf(argmax(out).template cast<float>());
+                            }
+                            else
+                            {
+                                branch_pred = (*spot.node).template predict<ArrayXf>(d);
+                            }
                         }
                         else
                         {
