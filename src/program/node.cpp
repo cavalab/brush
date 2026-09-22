@@ -121,7 +121,8 @@ void to_json(json& j, const Node& p)
 {
     j = json{
         {"name", p.name},
-        {"center_op", p.center_op}, 
+        // center_op is always set to false --> not implemented yet
+        {"center_op", false},
         {"node_is_fixed", p.node_is_fixed}, 
         {"weight_is_fixed", p.weight_is_fixed}, 
         {"prob_change", p.prob_change}, 
@@ -319,9 +320,6 @@ void from_json(const json &j, Node& p)
     else        
         p.name = NodeTypeName[p.node_type];
 
-    if (j.contains("center_op"))
-        j.at("center_op").get_to(p.center_op);
-
     // used in split nodes
     if (j.contains("feature"))
     {
@@ -361,6 +359,8 @@ void from_json(const json &j, Node& p)
 
     // after this point we set attributes that are modified in init
     p.init();
+    // center_op is intentionally ignored
+    p.center_op = false;
     
     // these below needs to be set after init(), since `init` sets these values
     if (j.contains("node_is_fixed"))
