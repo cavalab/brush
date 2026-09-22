@@ -82,11 +82,13 @@ float gain(const ArrayXf& lsplit,
         }
         else
         {
-            lscore = variance(lsplit)/float(lsplit.size());
-            rscore = variance(rsplit)/float(rsplit.size());
+            lscore = variance(lsplit);
+            rscore = variance(rsplit);
             /* cout << "lscore: " << lscore << "\n"; */
             /* cout << "rscore: " << rscore << "\n"; */
-            score = lscore + rscore; 
+            score = (lscore * float(lsplit.size())
+                   + rscore * float(rsplit.size()))
+                / float(lsplit.size() + rsplit.size());
         }
 
         return score;

@@ -494,6 +494,37 @@ struct SearchSpace
                                    weights.end()));
     };
 
+    /// @brief Get a specific operator with an exact number of arguments.
+    std::optional<Node> sample_op(NodeType type, DataType R,
+                                  size_t arg_count,
+                                  bool force_return=false) const
+    {
+        check(R);
+        if (node_map.find(R) == node_map.end())
+            return std::nullopt;
+
+        vector<Node> matches;
+        vector<float> weights;
+        for (const auto& [arg_hash, node_type_map] : node_map.at(R))
+        {
+            auto node = node_type_map.find(type);
+            if (node != node_type_map.end()
+                && node->second.arg_types.size() == arg_count)
+            {
+                matches.push_back(node->second);
+                weights.push_back(node_map_weights.at(R).at(arg_hash).at(type));
+            }
+        }
+
+        if (force_return)
+            std::fill(weights.begin(), weights.end(), 1.0f);
+        if (matches.empty() || !has_solution_space(weights.begin(), weights.end()))
+            return std::nullopt;
+
+        return *r.select_randomly(matches.begin(), matches.end(),
+                                  weights.begin(), weights.end());
+    };
+
     /// @brief get operator with at least one argument matching arg 
     /// @param ret return type
     /// @param arg argument type to match
@@ -761,7 +792,15 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
     }
     else if (P::program_type == ProgramType::MulticlassClassifier)
     {
-        Node node_softmax = sample_op(NodeType::Softmax, DataType::MatrixF, true).value();
+        auto softmax = sample_op(NodeType::Softmax, DataType::MatrixF,
+                                 params.n_classes, true);
+
+        if (!softmax) // should never happen. Let's keep this here just so we can catch if it ever happens
+            HANDLE_ERROR_THROW(fmt::format(
+                "Multiclass Softmax supports between 2 and {} classes; got {}.\n",
+                MAX_ARGS, params.n_classes));
+
+                Node node_softmax = softmax.value();
 
         node_softmax.set_prob_change(0.0);
         node_softmax.set_is_weighted(false); // same as logistic roots
