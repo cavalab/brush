@@ -1,5 +1,12 @@
 var NAVTREEINDEX11 =
 {
+"dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation.html#a1a80c7e972edead47f615d4c216d4af2":[0,0,0,10,5,0],
+"dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation.html#a1a80c7e972edead47f615d4c216d4af2":[2,0,0,7,5,0],
+"dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation.html#afa6678966f1b55efc8afbe08f009d36a":[0,0,0,10,5,1],
+"dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation.html#afa6678966f1b55efc8afbe08f009d36a":[2,0,0,7,5,1],
+"dd/d56/classBrush_1_1Util_1_1Logger.html":[0,0,0,8,1],
+"dd/d56/classBrush_1_1Util_1_1Logger.html":[2,0,0,6,1],
+"dd/d56/classBrush_1_1Util_1_1Logger.html#a192baac90d120fa142fbf385a802f73f":[0,0,0,8,1,0],
 "dd/d56/classBrush_1_1Util_1_1Logger.html#a192baac90d120fa142fbf385a802f73f":[2,0,0,6,1,0],
 "dd/d56/classBrush_1_1Util_1_1Logger.html#a628245421b92a8888c393de40b817363":[0,0,0,8,1,1],
 "dd/d56/classBrush_1_1Util_1_1Logger.html#a628245421b92a8888c393de40b817363":[2,0,0,6,1,1],
@@ -242,12 +249,5 @@ var NAVTREEINDEX11 =
 "de/d87/structSearchSpace.html#ad4ecbe9a8128d1a2b5aba0d5aeec686f":[2,0,11,32],
 "de/d87/structSearchSpace.html#ae1e33e2c9ca2d6777a42f6234c3b9a17":[2,0,11,37],
 "de/d87/structSearchSpace.html#ae8832d26aceb0bb18e97d1a3a6b7f9bc":[2,0,11,20],
-"de/d87/structSearchSpace.html#aed45d3d8adbee89f02e709472fe88280":[2,0,11,33],
-"de/d87/structSearchSpace.html#af004a91112f5e3994d7c90c8baa71310":[2,0,11,0],
-"de/d87/structSearchSpace.html#af1f89bb898ffb7cb9622f33bdb2d8557":[2,0,11,22],
-"de/d87/structSearchSpace.html#af67633b1cb0d2ff56bec919e81d84ede":[2,0,11,40],
-"de/d87/structSearchSpace.html#af7aa6187e39acd43c442b36025ccd806":[2,0,11,17],
-"de/d87/structSearchSpace.html#af8165ac09c39eec3e5aa6e2d925b8104":[2,0,11,25],
-"de/d87/structSearchSpace.html#af87c7270774accc9aa698089d310c4c3":[2,0,11,2],
-"de/d87/structSearchSpace.html#afe2365c907e5a0ca98d42e2e9720cb4a":[2,0,11,19]
+"de/d87/structSearchSpace.html#aed45d3d8adbee89f02e709472fe88280":[2,0,11,33]
 };

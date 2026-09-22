@@ -1,5 +1,12 @@
 var NAVTREEINDEX10 =
 {
+"dc/d5c/namespaceBrush.html#a58948e8e175aae197197ef454a3a9e13":[0,0,0,222],
+"dc/d5c/namespaceBrush.html#a594c9178f54ad3bba28781d41baa281b":[0,0,0,179],
+"dc/d5c/namespaceBrush.html#a5b9f71c99a1fe42d359ae45033b58620":[0,0,0,193],
+"dc/d5c/namespaceBrush.html#a5ce2db092b85cde6a08777c7e9446b8b":[0,0,0,243],
+"dc/d5c/namespaceBrush.html#a5e8bb0ab998cde6437d15f7e79ccffc0":[0,0,0,187],
+"dc/d5c/namespaceBrush.html#a5f45985af0c3837f5eea9a9806768bb4":[0,0,0,233],
+"dc/d5c/namespaceBrush.html#a613f142cf27eb135a3eb1ba07bbfaffc":[0,0,0,227],
 "dc/d5c/namespaceBrush.html#a6225fa35f6e06e54d4a31a8f25cd4a66":[0,0,0,250],
 "dc/d5c/namespaceBrush.html#a6a72a3ce2992ed58a0637f86c798c9df":[0,0,0,224],
 "dc/d5c/namespaceBrush.html#a6c9a5070ffbcf71c795073cbb2a88964":[0,0,0,242],
@@ -242,12 +249,5 @@ var NAVTREEINDEX10 =
 "dd/d50/structBrush_1_1Signatures_3_01NodeType_1_1SplitOn_01_4.html#a5b068024a27d16dbae7509712d267848":[2,0,0,141,0],
 "dd/d51/classvector_1_1const__reverse__iterator.html":[2,0,19,3],
 "dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation.html":[0,0,0,10,5],
-"dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation.html":[2,0,0,7,5],
-"dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation.html#a1a80c7e972edead47f615d4c216d4af2":[0,0,0,10,5,0],
-"dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation.html#a1a80c7e972edead47f615d4c216d4af2":[2,0,0,7,5,0],
-"dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation.html#afa6678966f1b55efc8afbe08f009d36a":[0,0,0,10,5,1],
-"dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation.html#afa6678966f1b55efc8afbe08f009d36a":[2,0,0,7,5,1],
-"dd/d56/classBrush_1_1Util_1_1Logger.html":[0,0,0,8,1],
-"dd/d56/classBrush_1_1Util_1_1Logger.html":[2,0,0,6,1],
-"dd/d56/classBrush_1_1Util_1_1Logger.html#a192baac90d120fa142fbf385a802f73f":[0,0,0,8,1,0]
+"dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation.html":[2,0,0,7,5]
 };

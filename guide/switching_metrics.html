@@ -1,0 +1,773 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Switching the classification metric with partial_fit &mdash; Brush 0.1.dev1+g45f17d01e documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+
+  
+    <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=829ed20d"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The archive" href="archive.html" />
+    <link rel="prev" title="Locking the search during generation updates" href="locking_mechanism.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Brush
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Quickstart</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basics.html">Basic Usage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Cookbook</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="data.html">Working with Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_space.html">The Search Space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="working_with_programs.html">Working with Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multiclassification.html">Multiclass classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json.html">JSON Interoperability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="saving_loading_populations.html">Saving and loading populations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="locking_mechanism.html">Locking the search during generation updates</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Switching the classification metric with <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#an-imbalanced-binary-problem">1. An imbalanced binary problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fit-using-auroc-as-the-scorer">2. Fit using AUROC as the scorer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lock-the-internal-nodes-switch-to-average-precision-and-refit">3. Lock the internal nodes, switch to average precision, and refit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compare-every-metric-before-and-after-the-switch">4. Compare every metric before and after the switch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="archive.html">The archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deap.html">Using Deap</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/index.html">C++ API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Brush</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Cookbook</a></li>
+      <li class="breadcrumb-item active">Switching the classification metric with <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/guide/switching_metrics.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="switching-the-classification-metric-with-partial-fit">
+<h1>Switching the classification metric with <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code><a class="headerlink" href="#switching-the-classification-metric-with-partial-fit" title="Link to this heading"></a></h1>
+<p>Brush uses the <code class="docutils literal notranslate"><span class="pre">scorer</span></code> to evaluate programs: it drives selection, survival,
+the archive, and the final model choice. For classification, the available
+scorers are:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>scorer</p></th>
+<th class="head"><p>binary</p></th>
+<th class="head"><p>multiclass</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;log&quot;</span></code> / <code class="docutils literal notranslate"><span class="pre">&quot;multi_log&quot;</span></code></p></td>
+<td><p>log loss</p></td>
+<td><p>multinomial log loss</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;accuracy&quot;</span></code></p></td>
+<td><p>accuracy</p></td>
+<td><p>accuracy</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;balanced_accuracy&quot;</span></code></p></td>
+<td><p>balanced accuracy</p></td>
+<td><p>balanced accuracy</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;precision&quot;</span></code></p></td>
+<td><p>precision (threshold 0.5)</p></td>
+<td><p>macro precision</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;recall&quot;</span></code></p></td>
+<td><p>recall (threshold 0.5)</p></td>
+<td><p>macro recall</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;roc_auc&quot;</span></code></p></td>
+<td><p>AUROC</p></td>
+<td><p>macro one-vs-rest AUROC</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;average_precision_score&quot;</span></code></p></td>
+<td><p>average precision (AUPRC)</p></td>
+<td><p>macro one-vs-rest average precision</p></td>
+</tr>
+</tbody>
+</table>
+<p>The scorer is <strong>not</strong> used to fit parameters. Weights are always optimized with
+the log loss, and split thresholds with the gini impurity. This keeps parameter
+fitting smooth and well-behaved while letting you pick whichever metric you care
+about for model selection.</p>
+<p>Because the scorer is just an estimator attribute, you can change it between
+calls to <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code>. This notebook:</p>
+<ol class="arabic simple">
+<li><p>Fits a model on an imbalanced binary problem using AUROC.</p></li>
+<li><p>Locks every internal node of the best program, leaving only the leaves and
+the weights free to change.</p></li>
+<li><p>Switches the scorer to average precision and calls <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code>.</p></li>
+<li><p>Compares all metrics before and after the switch.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">graphviz</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_classification</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">log_loss</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">balanced_accuracy_score</span><span class="p">,</span>
+                             <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">,</span>
+                             <span class="n">average_precision_score</span><span class="p">)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pybrush</span><span class="w"> </span><span class="kn">import</span> <span class="n">BrushClassifier</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="an-imbalanced-binary-problem">
+<h2>1. An imbalanced binary problem<a class="headerlink" href="#an-imbalanced-binary-problem" title="Link to this heading"></a></h2>
+<p>AUROC and average precision disagree the most when positives are rare: AUROC
+rewards ranking negatives correctly, while average precision focuses on how
+clean the top of the ranking is.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span>
+    <span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">n_informative</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_redundant</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="n">class_sep</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">flip_y</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'train prevalence:'</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'test prevalence: '</span><span class="p">,</span> <span class="n">y_test</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train prevalence: 0.109
+test prevalence:  0.107
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">all_metrics</span><span class="p">(</span><span class="n">est</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">proba</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">pred</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">'log_loss'</span><span class="p">:</span>          <span class="n">log_loss</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">proba</span><span class="p">),</span>
+        <span class="s1">'accuracy'</span><span class="p">:</span>          <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">pred</span><span class="p">),</span>
+        <span class="s1">'balanced_accuracy'</span><span class="p">:</span> <span class="n">balanced_accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">pred</span><span class="p">),</span>
+        <span class="s1">'precision'</span><span class="p">:</span>         <span class="n">precision_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="s1">'recall'</span><span class="p">:</span>            <span class="n">recall_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="s1">'roc_auc'</span><span class="p">:</span>           <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">proba</span><span class="p">),</span>
+        <span class="s1">'average_precision'</span><span class="p">:</span> <span class="n">average_precision_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">proba</span><span class="p">),</span>
+    <span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">report</span><span class="p">(</span><span class="n">est</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="s1">'train'</span><span class="p">):</span> <span class="n">all_metrics</span><span class="p">(</span><span class="n">est</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span>
+        <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="s1">'test'</span><span class="p">):</span>  <span class="n">all_metrics</span><span class="p">(</span><span class="n">est</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">),</span>
+    <span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="fit-using-auroc-as-the-scorer">
+<h2>2. Fit using AUROC as the scorer<a class="headerlink" href="#fit-using-auroc-as-the-scorer" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span> <span class="o">=</span> <span class="n">BrushClassifier</span><span class="p">(</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">'SplitBest'</span><span class="p">,</span> <span class="s1">'Add'</span><span class="p">,</span> <span class="s1">'Sub'</span><span class="p">,</span> <span class="s1">'Mul'</span><span class="p">,</span> <span class="s1">'Div'</span><span class="p">,</span> <span class="s1">'Logabs'</span><span class="p">,</span> <span class="s1">'Exp'</span><span class="p">],</span>
+    <span class="n">scorer</span><span class="o">=</span><span class="s1">'roc_auc'</span><span class="p">,</span>
+    <span class="n">pop_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">max_gens</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">max_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'scorer:'</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">parameters_</span><span class="o">.</span><span class="n">scorer</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'internal scorer value (train):'</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">loss</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'model:'</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+
+<span class="n">before</span> <span class="o">=</span> <span class="n">report</span><span class="p">(</span><span class="n">est</span><span class="p">,</span> <span class="s1">'roc_auc'</span><span class="p">)</span>
+<span class="n">before</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>scorer: roc_auc
+internal scorer value (train): 0.9027
+model: Logistic(Add(0.98,Add(-1.05*Mul(-1.32*x_4,-1.01*x_2),x_0)))
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" halign="left">roc_auc</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>train</th>
+      <th>test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>log_loss</th>
+      <td>0.398210</td>
+      <td>0.387116</td>
+    </tr>
+    <tr>
+      <th>accuracy</th>
+      <td>0.810000</td>
+      <td>0.843333</td>
+    </tr>
+    <tr>
+      <th>balanced_accuracy</th>
+      <td>0.800987</td>
+      <td>0.871035</td>
+    </tr>
+    <tr>
+      <th>precision</th>
+      <td>0.338983</td>
+      <td>0.397260</td>
+    </tr>
+    <tr>
+      <th>recall</th>
+      <td>0.789474</td>
+      <td>0.906250</td>
+    </tr>
+    <tr>
+      <th>roc_auc</th>
+      <td>0.886956</td>
+      <td>0.938666</td>
+    </tr>
+    <tr>
+      <th>average_precision</th>
+      <td>0.678297</td>
+      <td>0.789859</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="lock-the-internal-nodes-switch-to-average-precision-and-refit">
+<h2>3. Lock the internal nodes, switch to average precision, and refit<a class="headerlink" href="#lock-the-internal-nodes-switch-to-average-precision-and-refit" title="Link to this heading"></a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">lock_nodes_depth</span></code> larger than the tree depth locks every operator and split
+in the program. With <code class="docutils literal notranslate"><span class="pre">keep_leaves_unlocked=True</span></code>, the leaves (features and
+constants) stay free, so the search can still swap a leaf or grow it into a
+small subtree. With <code class="docutils literal notranslate"><span class="pre">keep_current_weights=False</span></code>, the weights are re-optimized.</p>
+<p>We then set <code class="docutils literal notranslate"><span class="pre">est.scorer</span> <span class="pre">=</span> <span class="pre">'average_precision_score'</span></code> before calling
+<code class="docutils literal notranslate"><span class="pre">partial_fit</span></code>. The new scorer is picked up by the engine, so every program is
+re-evaluated, selected, and archived by average precision from here on.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">structure_before</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">()</span>
+<span class="n">dot_before</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">'dot'</span><span class="p">)</span>
+
+<span class="n">est</span><span class="o">.</span><span class="n">scorer</span> <span class="o">=</span> <span class="s1">'average_precision_score'</span>
+<span class="n">est</span><span class="o">.</span><span class="n">partial_fit</span><span class="p">(</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
+    <span class="n">lock_nodes_depth</span><span class="o">=</span><span class="n">est</span><span class="o">.</span><span class="n">max_depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># deeper than any tree: lock every internal node</span>
+    <span class="n">keep_leaves_unlocked</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>           <span class="c1"># ...but leave the leaves free to change</span>
+    <span class="n">keep_current_weights</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>          <span class="c1"># weights can still be optimized</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'scorer:'</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">parameters_</span><span class="o">.</span><span class="n">scorer</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'internal scorer value (train):'</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">loss</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'model before:'</span><span class="p">,</span> <span class="n">structure_before</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'model after: '</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+
+<span class="n">after</span> <span class="o">=</span> <span class="n">report</span><span class="p">(</span><span class="n">est</span><span class="p">,</span> <span class="s1">'average_precision_score'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>scorer: average_precision_score
+internal scorer value (train): 0.917
+model before: Logistic(Add(0.98,Add(-1.05*Mul(-1.32*x_4,-1.01*x_2),x_0)))
+model after:  Logistic(Add(-2.77,Add(-1.53*Mul(x_4,x_2),3.87*Exp(0.42*x_0))))
+</pre></div>
+</div>
+</div>
+</div>
+<p>The two programs side by side. The locked internal nodes are the same in
+both, and only the leaves (and the weights) differ.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTML</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">svg</span><span class="p">(</span><span class="n">dot</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">dot</span><span class="p">)</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s1">'svg'</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+
+<span class="n">HTML</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">&lt;div style="display: flex; gap: 2em; align-items: flex-start; flex-wrap: wrap;"&gt;</span>
+<span class="s2">  &lt;div&gt;&lt;h4&gt;Before (AUROC)&lt;/h4&gt;</span><span class="si">{</span><span class="n">svg</span><span class="p">(</span><span class="n">dot_before</span><span class="p">)</span><span class="si">}</span><span class="s2">&lt;/div&gt;</span>
+<span class="s2">  &lt;div&gt;&lt;h4&gt;After (average precision)&lt;/h4&gt;</span><span class="si">{</span><span class="n">svg</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">'dot'</span><span class="p">))</span><span class="si">}</span><span class="s2">&lt;/div&gt;</span>
+<span class="s2">&lt;/div&gt;</span>
+<span class="s2">"""</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<div style="display: flex; gap: 2em; align-items: flex-start; flex-wrap: wrap;">
+  <div><h4>Before (AUROC)</h4><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (0)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="206pt" height="386pt"
+ viewBox="0.00 0.00 206.00 386.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 382.25)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-382.25 202.3,-382.25 202.3,4 -4,4"/>
+<text xml:space="preserve" text-anchor="middle" x="99.15" y="-5.75" font-family="Times,serif" font-size="10.00">^ split feature fixed, * split threshold fixed</text>
+<!-- 1473c7000 -->
+<g id="node1" class="node">
+<title>1473c7000</title>
+<ellipse fill="lightcoral" stroke="black" cx="135" cy="-360.25" rx="41.12" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="135" y="-355.2" font-family="Times,serif" font-size="14.00">Logistic</text>
+</g>
+<!-- 105024bc0 -->
+<g id="node2" class="node">
+<title>105024bc0</title>
+<ellipse fill="lightcoral" stroke="black" cx="135" cy="-287.25" rx="27" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="135" y="-282.2" font-family="Times,serif" font-size="14.00">Add</text>
+</g>
+<!-- 1473c7000&#45;&gt;105024bc0 -->
+<g id="edge1" class="edge">
+<title>1473c7000&#45;&gt;105024bc0</title>
+<path fill="none" stroke="black" d="M135,-342.06C135,-334.48 135,-325.35 135,-316.79"/>
+<polygon fill="black" stroke="black" points="138.5,-316.79 135,-306.79 131.5,-316.79 138.5,-316.79"/>
+</g>
+<!-- 1473c70b0 -->
+<g id="node3" class="node">
+<title>1473c70b0</title>
+<ellipse fill="none" stroke="black" cx="99" cy="-214.25" rx="27" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="99" y="-209.2" font-family="Times,serif" font-size="14.00">Add</text>
+</g>
+<!-- 105024bc0&#45;&gt;1473c70b0 -->
+<g id="edge2" class="edge">
+<title>105024bc0&#45;&gt;1473c70b0</title>
+<path fill="none" stroke="black" d="M126.65,-269.78C122.42,-261.45 117.19,-251.13 112.42,-241.72"/>
+<polygon fill="black" stroke="black" points="115.63,-240.31 107.99,-232.98 109.39,-243.48 115.63,-240.31"/>
+</g>
+<!-- 105024bc0Offset -->
+<g id="node4" class="node">
+<title>105024bc0Offset</title>
+<ellipse fill="lightcoral" stroke="black" cx="171" cy="-214.25" rx="27.3" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="171" y="-209.2" font-family="Times,serif" font-size="14.00">0.98</text>
+</g>
+<!-- 105024bc0&#45;&gt;105024bc0Offset -->
+<g id="edge3" class="edge">
+<title>105024bc0&#45;&gt;105024bc0Offset</title>
+<path fill="none" stroke="black" d="M143.35,-269.78C147.58,-261.45 152.81,-251.13 157.58,-241.72"/>
+<polygon fill="black" stroke="black" points="160.61,-243.48 162.01,-232.98 154.37,-240.31 160.61,-243.48"/>
+</g>
+<!-- 1473884b0 -->
+<g id="node5" class="node">
+<title>1473884b0</title>
+<ellipse fill="none" stroke="black" cx="63" cy="-125.75" rx="27" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="63" y="-120.7" font-family="Times,serif" font-size="14.00">Mul</text>
+</g>
+<!-- 1473c70b0&#45;&gt;1473884b0 -->
+<g id="edge4" class="edge">
+<title>1473c70b0&#45;&gt;1473884b0</title>
+<path fill="none" stroke="black" d="M92.06,-196.57C87.03,-184.49 80.12,-167.88 74.3,-153.89"/>
+<polygon fill="black" stroke="black" points="77.58,-152.66 70.5,-144.77 71.11,-155.35 77.58,-152.66"/>
+<text xml:space="preserve" text-anchor="middle" x="98.47" y="-164.95" font-family="Times,serif" font-size="14.00">&#45;1.05</text>
+</g>
+<!-- x_0 -->
+<g id="node6" class="node">
+<title>x_0</title>
+<ellipse fill="none" stroke="black" cx="135" cy="-125.75" rx="27" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="135" y="-120.7" font-family="Times,serif" font-size="14.00">x_0</text>
+</g>
+<!-- 1473c70b0&#45;&gt;x_0 -->
+<g id="edge5" class="edge">
+<title>1473c70b0&#45;&gt;x_0</title>
+<path fill="none" stroke="black" d="M107.9,-197.09C110.97,-191.24 114.3,-184.53 117,-178.25 120.26,-170.65 123.4,-162.24 126.11,-154.46"/>
+<polygon fill="black" stroke="black" points="129.38,-155.7 129.26,-145.11 122.75,-153.47 129.38,-155.7"/>
+</g>
+<!-- x_4 -->
+<g id="node7" class="node">
+<title>x_4</title>
+<ellipse fill="none" stroke="black" cx="27" cy="-37.25" rx="27" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-32.2" font-family="Times,serif" font-size="14.00">x_4</text>
+</g>
+<!-- 1473884b0&#45;&gt;x_4 -->
+<g id="edge6" class="edge">
+<title>1473884b0&#45;&gt;x_4</title>
+<path fill="none" stroke="black" d="M56.06,-108.07C51.03,-95.99 44.12,-79.38 38.3,-65.39"/>
+<polygon fill="black" stroke="black" points="41.58,-64.16 34.5,-56.27 35.11,-66.85 41.58,-64.16"/>
+<text xml:space="preserve" text-anchor="middle" x="62.47" y="-76.45" font-family="Times,serif" font-size="14.00">&#45;1.32</text>
+</g>
+<!-- x_2 -->
+<g id="node8" class="node">
+<title>x_2</title>
+<ellipse fill="none" stroke="black" cx="99" cy="-37.25" rx="27" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="99" y="-32.2" font-family="Times,serif" font-size="14.00">x_2</text>
+</g>
+<!-- 1473884b0&#45;&gt;x_2 -->
+<g id="edge7" class="edge">
+<title>1473884b0&#45;&gt;x_2</title>
+<path fill="none" stroke="black" d="M69.94,-108.07C74.97,-95.99 81.88,-79.38 87.7,-65.39"/>
+<polygon fill="black" stroke="black" points="90.89,-66.85 91.5,-56.27 84.42,-64.16 90.89,-66.85"/>
+<text xml:space="preserve" text-anchor="middle" x="98.47" y="-76.45" font-family="Times,serif" font-size="14.00">&#45;1.01</text>
+</g>
+</g>
+</svg>
+</div>
+  <div><h4>After (average precision)</h4><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (0)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="248pt" height="386pt"
+ viewBox="0.00 0.00 248.00 386.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 382.25)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-382.25 244.37,-382.25 244.37,4 -4,4"/>
+<text xml:space="preserve" text-anchor="middle" x="120.18" y="-5.75" font-family="Times,serif" font-size="10.00">^ split feature fixed, * split threshold fixed</text>
+<!-- 15f54b570 -->
+<g id="node1" class="node">
+<title>15f54b570</title>
+<ellipse fill="lightcoral" stroke="black" cx="172" cy="-360.25" rx="41.12" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="172" y="-355.2" font-family="Times,serif" font-size="14.00">Logistic</text>
+</g>
+<!-- 15f54ba00 -->
+<g id="node2" class="node">
+<title>15f54ba00</title>
+<ellipse fill="lightcoral" stroke="black" cx="172" cy="-287.25" rx="27" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="172" y="-282.2" font-family="Times,serif" font-size="14.00">Add</text>
+</g>
+<!-- 15f54b570&#45;&gt;15f54ba00 -->
+<g id="edge1" class="edge">
+<title>15f54b570&#45;&gt;15f54ba00</title>
+<path fill="none" stroke="black" d="M172,-342.06C172,-334.48 172,-325.35 172,-316.79"/>
+<polygon fill="black" stroke="black" points="175.5,-316.79 172,-306.79 168.5,-316.79 175.5,-316.79"/>
+</g>
+<!-- 15f5c09c0 -->
+<g id="node3" class="node">
+<title>15f5c09c0</title>
+<ellipse fill="lightcoral" stroke="black" cx="135" cy="-214.25" rx="27" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="135" y="-209.2" font-family="Times,serif" font-size="14.00">Add</text>
+</g>
+<!-- 15f54ba00&#45;&gt;15f5c09c0 -->
+<g id="edge2" class="edge">
+<title>15f54ba00&#45;&gt;15f5c09c0</title>
+<path fill="none" stroke="black" d="M163.42,-269.78C159.08,-261.45 153.7,-251.13 148.79,-241.72"/>
+<polygon fill="black" stroke="black" points="151.96,-240.22 144.23,-232.97 145.75,-243.46 151.96,-240.22"/>
+</g>
+<!-- 15f54ba00Offset -->
+<g id="node4" class="node">
+<title>15f54ba00Offset</title>
+<ellipse fill="lightcoral" stroke="black" cx="210" cy="-214.25" rx="30.37" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="210" y="-209.2" font-family="Times,serif" font-size="14.00">&#45;2.77</text>
+</g>
+<!-- 15f54ba00&#45;&gt;15f54ba00Offset -->
+<g id="edge3" class="edge">
+<title>15f54ba00&#45;&gt;15f54ba00Offset</title>
+<path fill="none" stroke="black" d="M180.81,-269.78C185.27,-261.45 190.8,-251.13 195.84,-241.72"/>
+<polygon fill="black" stroke="black" points="198.89,-243.43 200.52,-232.96 192.72,-240.13 198.89,-243.43"/>
+</g>
+<!-- 15f5c0a70 -->
+<g id="node5" class="node">
+<title>15f5c0a70</title>
+<ellipse fill="lightcoral" stroke="black" cx="99" cy="-125.75" rx="27" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="99" y="-120.7" font-family="Times,serif" font-size="14.00">Mul</text>
+</g>
+<!-- 15f5c09c0&#45;&gt;15f5c0a70 -->
+<g id="edge4" class="edge">
+<title>15f5c09c0&#45;&gt;15f5c0a70</title>
+<path fill="none" stroke="black" d="M125.18,-197.21C121.85,-191.37 118.27,-184.63 115.5,-178.25 112.24,-170.73 109.28,-162.34 106.8,-154.56"/>
+<polygon fill="black" stroke="black" points="110.22,-153.76 103.97,-145.21 103.52,-155.79 110.22,-153.76"/>
+<text xml:space="preserve" text-anchor="middle" x="129.75" y="-164.95" font-family="Times,serif" font-size="14.00">&#45;1.53</text>
+</g>
+<!-- 15f5f0460 -->
+<g id="node6" class="node">
+<title>15f5f0460</title>
+<ellipse fill="none" stroke="black" cx="171" cy="-125.75" rx="27" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="171" y="-120.7" font-family="Times,serif" font-size="14.00">Exp</text>
+</g>
+<!-- 15f5c09c0&#45;&gt;15f5f0460 -->
+<g id="edge5" class="edge">
+<title>15f5c09c0&#45;&gt;15f5f0460</title>
+<path fill="none" stroke="black" d="M141.94,-196.57C146.97,-184.49 153.88,-167.88 159.7,-153.89"/>
+<polygon fill="black" stroke="black" points="162.89,-155.35 163.5,-144.77 156.42,-152.66 162.89,-155.35"/>
+<text xml:space="preserve" text-anchor="middle" x="168.22" y="-164.95" font-family="Times,serif" font-size="14.00">3.87</text>
+</g>
+<!-- x_4 -->
+<g id="node7" class="node">
+<title>x_4</title>
+<ellipse fill="none" stroke="black" cx="27" cy="-37.25" rx="27" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-32.2" font-family="Times,serif" font-size="14.00">x_4</text>
+</g>
+<!-- 15f5c0a70&#45;&gt;x_4 -->
+<g id="edge6" class="edge">
+<title>15f5c0a70&#45;&gt;x_4</title>
+<path fill="none" stroke="black" d="M86.46,-109.68C75.48,-96.49 59.34,-77.11 46.65,-61.86"/>
+<polygon fill="black" stroke="black" points="49.7,-60.04 40.61,-54.6 44.32,-64.52 49.7,-60.04"/>
+</g>
+<!-- x_2 -->
+<g id="node8" class="node">
+<title>x_2</title>
+<ellipse fill="none" stroke="black" cx="99" cy="-37.25" rx="27" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="99" y="-32.2" font-family="Times,serif" font-size="14.00">x_2</text>
+</g>
+<!-- 15f5c0a70&#45;&gt;x_2 -->
+<g id="edge7" class="edge">
+<title>15f5c0a70&#45;&gt;x_2</title>
+<path fill="none" stroke="black" d="M99,-107.66C99,-96.01 99,-80.3 99,-66.77"/>
+<polygon fill="black" stroke="black" points="102.5,-67.11 99,-57.11 95.5,-67.11 102.5,-67.11"/>
+</g>
+<!-- x_0 -->
+<g id="node9" class="node">
+<title>x_0</title>
+<ellipse fill="none" stroke="black" cx="171" cy="-37.25" rx="27" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="171" y="-32.2" font-family="Times,serif" font-size="14.00">x_0</text>
+</g>
+<!-- 15f5f0460&#45;&gt;x_0 -->
+<g id="edge8" class="edge">
+<title>15f5f0460&#45;&gt;x_0</title>
+<path fill="none" stroke="black" d="M171,-107.66C171,-96.01 171,-80.3 171,-66.77"/>
+<polygon fill="black" stroke="black" points="174.5,-67.11 171,-57.11 167.5,-67.11 174.5,-67.11"/>
+<text xml:space="preserve" text-anchor="middle" x="183" y="-76.45" font-family="Times,serif" font-size="14.00">0.42</text>
+</g>
+</g>
+</svg>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="compare-every-metric-before-and-after-the-switch">
+<h2>4. Compare every metric before and after the switch<a class="headerlink" href="#compare-every-metric-before-and-after-the-switch" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comparison</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">before</span><span class="p">,</span> <span class="n">after</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">comparison</span><span class="p">[(</span><span class="s1">'delta'</span><span class="p">,</span> <span class="s1">'train'</span><span class="p">)]</span> <span class="o">=</span> <span class="n">comparison</span><span class="p">[(</span><span class="s1">'average_precision_score'</span><span class="p">,</span> <span class="s1">'train'</span><span class="p">)]</span> <span class="o">-</span> <span class="n">comparison</span><span class="p">[(</span><span class="s1">'roc_auc'</span><span class="p">,</span> <span class="s1">'train'</span><span class="p">)]</span>
+<span class="n">comparison</span><span class="p">[(</span><span class="s1">'delta'</span><span class="p">,</span> <span class="s1">'test'</span><span class="p">)]</span>  <span class="o">=</span> <span class="n">comparison</span><span class="p">[(</span><span class="s1">'average_precision_score'</span><span class="p">,</span> <span class="s1">'test'</span><span class="p">)]</span>  <span class="o">-</span> <span class="n">comparison</span><span class="p">[(</span><span class="s1">'roc_auc'</span><span class="p">,</span> <span class="s1">'test'</span><span class="p">)]</span>
+<span class="n">comparison</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" halign="left">roc_auc</th>
+      <th colspan="2" halign="left">average_precision_score</th>
+      <th colspan="2" halign="left">delta</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>train</th>
+      <th>test</th>
+      <th>train</th>
+      <th>test</th>
+      <th>train</th>
+      <th>test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>log_loss</th>
+      <td>0.3982</td>
+      <td>0.3871</td>
+      <td>0.3819</td>
+      <td>0.3787</td>
+      <td>-0.0163</td>
+      <td>-0.0084</td>
+    </tr>
+    <tr>
+      <th>accuracy</th>
+      <td>0.8100</td>
+      <td>0.8433</td>
+      <td>0.8400</td>
+      <td>0.8633</td>
+      <td>0.0300</td>
+      <td>0.0200</td>
+    </tr>
+    <tr>
+      <th>balanced_accuracy</th>
+      <td>0.8010</td>
+      <td>0.8710</td>
+      <td>0.8178</td>
+      <td>0.8822</td>
+      <td>0.0168</td>
+      <td>0.0112</td>
+    </tr>
+    <tr>
+      <th>precision</th>
+      <td>0.3390</td>
+      <td>0.3973</td>
+      <td>0.3846</td>
+      <td>0.4328</td>
+      <td>0.0456</td>
+      <td>0.0356</td>
+    </tr>
+    <tr>
+      <th>recall</th>
+      <td>0.7895</td>
+      <td>0.9062</td>
+      <td>0.7895</td>
+      <td>0.9062</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>roc_auc</th>
+      <td>0.8870</td>
+      <td>0.9387</td>
+      <td>0.8892</td>
+      <td>0.9397</td>
+      <td>0.0022</td>
+      <td>0.0010</td>
+    </tr>
+    <tr>
+      <th>average_precision</th>
+      <td>0.6783</td>
+      <td>0.7899</td>
+      <td>0.7041</td>
+      <td>0.7983</td>
+      <td>0.0258</td>
+      <td>0.0085</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="locking_mechanism.html" class="btn btn-neutral float-left" title="Locking the search during generation updates" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="archive.html" class="btn btn-neutral float-right" title="The archive" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, William La Cava and Joseph D. Romano.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

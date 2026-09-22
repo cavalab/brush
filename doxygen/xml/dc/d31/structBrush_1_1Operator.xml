@@ -189,7 +189,7 @@
         <references refid="dc/d90/classtree__node___3_01Node_01_4_1ae7284cff9353b8dd4d599a21130ac432" compoundref="d1/da6/tree__node_8h" startline="37">tree_node_&lt; Node &gt;::first_child</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="225" endline="230">Brush::Data::Dataset::get_n_samples</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
-        <referencedby refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" compoundref="d7/de0/operator_8h" startline="233" endline="245">Brush::Operator&lt; NT, S, Fit, E &gt;::eval</referencedby>
+        <referencedby refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" compoundref="d7/de0/operator_8h" startline="233" endline="249">Brush::Operator&lt; NT, S, Fit, E &gt;::eval</referencedby>
       </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a9088496bd47b051080700b53f3cddd80" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -427,7 +427,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="210" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="210" bodyend="213"/>
         <references refid="dc/d31/structBrush_1_1Operator_1a5f08ba3c3b0e39c54b830845eba40b68" compoundref="d7/de0/operator_8h" startline="120" endline="123">Brush::Operator&lt; NT, S, Fit, E &gt;::F</references>
-        <referencedby refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" compoundref="d7/de0/operator_8h" startline="233" endline="245">Brush::Operator&lt; NT, S, Fit, E &gt;::eval</referencedby>
+        <referencedby refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" compoundref="d7/de0/operator_8h" startline="233" endline="249">Brush::Operator&lt; NT, S, Fit, E &gt;::eval</referencedby>
       </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1ab4b156eb563db21ac32223aabfb9b92c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -558,12 +558,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="233" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="233" bodyend="245"/>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="233" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="233" bodyend="249"/>
         <references refid="dc/d31/structBrush_1_1Operator_1ab1ff8e429a35176b81c19079cd1397c4" compoundref="d7/de0/operator_8h" startline="210" endline="213">Brush::Operator&lt; NT, S, Fit, E &gt;::apply</references>
         <references refid="dc/d31/structBrush_1_1Operator_1aa4adc47d9cddb762f26e38747773bba6" compoundref="d7/de0/operator_8h" startline="131" endline="159">Brush::Operator&lt; NT, S, Fit, E &gt;::get_kids</references>
         <references refid="d7/d6b/namespaceBrush_1_1util_1ac055af6270e6bbb0cef4f33d70f0cb04" compoundref="d7/de0/operator_8h" startline="20" endline="61">Brush::util::get_weight</references>
-        <referencedby refid="dc/d5c/namespaceBrush_1a835c559533dfd1b02fb7c2ded01c2442" compoundref="d7/de0/operator_8h" startline="420" endline="424">Brush::DispatchOp</referencedby>
-        <referencedby refid="dc/d5c/namespaceBrush_1a295fffe6ae57b4a3c871c7cfe1450e1d" compoundref="d7/de0/operator_8h" startline="413" endline="417">Brush::DispatchOp</referencedby>
+        <references refid="dc/d5c/namespaceBrush_1a1d5a63450bcdb77bd08283c9f74ca53f" compoundref="d1/d77/node_8h" startline="51" endline="58">Brush::IsWeighable</references>
+        <referencedby refid="dc/d5c/namespaceBrush_1a835c559533dfd1b02fb7c2ded01c2442" compoundref="d7/de0/operator_8h" startline="424" endline="428">Brush::DispatchOp</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a295fffe6ae57b4a3c871c7cfe1450e1d" compoundref="d7/de0/operator_8h" startline="417" endline="421">Brush::DispatchOp</referencedby>
       </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a2971efb3f05fd1ed22a5f805fe0720c7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -601,7 +602,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="250" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="250" bodyend="262"/>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="254" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="254" bodyend="266"/>
         <references refid="dc/d31/structBrush_1_1Operator_1ab1ff8e429a35176b81c19079cd1397c4" compoundref="d7/de0/operator_8h" startline="210" endline="213">Brush::Operator&lt; NT, S, Fit, E &gt;::apply</references>
         <references refid="dc/d31/structBrush_1_1Operator_1aa4adc47d9cddb762f26e38747773bba6" compoundref="d7/de0/operator_8h" startline="131" endline="159">Brush::Operator&lt; NT, S, Fit, E &gt;::get_kids</references>
         <references refid="d7/d6b/namespaceBrush_1_1util_1ac055af6270e6bbb0cef4f33d70f0cb04" compoundref="d7/de0/operator_8h" startline="20" endline="61">Brush::util::get_weight</references>
@@ -646,7 +647,7 @@
 </parameterlist>
 </para>
     </detaileddescription>
-    <location file="/home/runner/work/brush/brush/src/program/operator.h" line="90" column="1" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="91" bodyend="263"/>
+    <location file="/home/runner/work/brush/brush/src/program/operator.h" line="90" column="1" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="91" bodyend="267"/>
     <listofallmembers>
       <member refid="dc/d31/structBrush_1_1Operator_1ab1ff8e429a35176b81c19079cd1397c4" prot="public" virt="non-virtual"><scope>Brush::Operator</scope><name>apply</name></member>
       <member refid="dc/d31/structBrush_1_1Operator_1ab4b156eb563db21ac32223aabfb9b92c" prot="public" virt="non-virtual"><scope>Brush::Operator</scope><name>apply</name></member>

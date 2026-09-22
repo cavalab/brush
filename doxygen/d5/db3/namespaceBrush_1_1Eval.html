@@ -142,6 +142,12 @@ Functions</h2></td></tr>
 <tr class="memdesc:ac69db7d03dbb7901643bb137dbf868bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Balanced accuracy for binary classification.  <br /></td></tr>
 <tr class="memitem:a473e918fd1efdc6d5f91c65cd8ce3db4" id="r_a473e918fd1efdc6d5f91c65cd8ce3db4"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a473e918fd1efdc6d5f91c65cd8ce3db4">average_precision_score</a> (const VectorXf &amp;y, const VectorXf &amp;predict_proba, VectorXf &amp;loss, const <a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt; &amp;class_weights=<a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt;())</td></tr>
 <tr class="memdesc:a473e918fd1efdc6d5f91c65cd8ce3db4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the average precision score between the predicted probabilities and the true labels.  <br /></td></tr>
+<tr class="memitem:a17d186ab2f4843e6a85bb9bb6c6e1423" id="r_a17d186ab2f4843e6a85bb9bb6c6e1423"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a17d186ab2f4843e6a85bb9bb6c6e1423">precision_score</a> (const VectorXf &amp;y, const VectorXf &amp;predict_proba, VectorXf &amp;loss, const <a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt; &amp;class_weights=<a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt;())</td></tr>
+<tr class="memdesc:a17d186ab2f4843e6a85bb9bb6c6e1423"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precision for binary classification (threshold 0.5, positive label 1).  <br /></td></tr>
+<tr class="memitem:aa55385bc4eb58d9b0e2a029daead4480" id="r_aa55385bc4eb58d9b0e2a029daead4480"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#aa55385bc4eb58d9b0e2a029daead4480">recall_score</a> (const VectorXf &amp;y, const VectorXf &amp;predict_proba, VectorXf &amp;loss, const <a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt; &amp;class_weights=<a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt;())</td></tr>
+<tr class="memdesc:aa55385bc4eb58d9b0e2a029daead4480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recall for binary classification (threshold 0.5, positive label 1).  <br /></td></tr>
+<tr class="memitem:af55ff6a9f4b4beda1fe4e8c32fc1291c" id="r_af55ff6a9f4b4beda1fe4e8c32fc1291c"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#af55ff6a9f4b4beda1fe4e8c32fc1291c">roc_auc_score</a> (const VectorXf &amp;y, const VectorXf &amp;predict_proba, VectorXf &amp;loss, const <a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt; &amp;class_weights=<a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt;())</td></tr>
+<tr class="memdesc:af55ff6a9f4b4beda1fe4e8c32fc1291c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Area under the ROC curve for binary classification.  <br /></td></tr>
 <tr class="memitem:a547663e116b3500703ca69aaa68831b7" id="r_a547663e116b3500703ca69aaa68831b7"><td class="memItemLeft">VectorXf&#160;</td><td class="memItemRight"><a class="el" href="#a547663e116b3500703ca69aaa68831b7">multi_log_loss</a> (const VectorXf &amp;y, const ArrayXXf &amp;predict_proba, const <a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt; &amp;class_weights=<a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt;())</td></tr>
 <tr class="memdesc:a547663e116b3500703ca69aaa68831b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the multinomial log loss between the predicted probabilities and the true labels.  <br /></td></tr>
 <tr class="memitem:a44be437c0b947ccb876abd9fd8f38467" id="r_a44be437c0b947ccb876abd9fd8f38467"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a44be437c0b947ccb876abd9fd8f38467">mean_multi_log_loss</a> (const VectorXf &amp;y, const ArrayXXf &amp;predict_proba, VectorXf &amp;loss, const <a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt; &amp;class_weights=<a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt;())</td></tr>
@@ -150,6 +156,14 @@ Functions</h2></td></tr>
 <tr class="memdesc:a0ea2c4db96a2f7d4081831bbf50a02de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accuracy for multi-classification.  <br /></td></tr>
 <tr class="memitem:a6b498359195d68c9fd1db9e856c0fdb9" id="r_a6b498359195d68c9fd1db9e856c0fdb9"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a6b498359195d68c9fd1db9e856c0fdb9">multi_bal_zero_one_loss</a> (const VectorXf &amp;y, const ArrayXXf &amp;predict_proba, VectorXf &amp;loss, const <a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt; &amp;class_weights=<a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt;())</td></tr>
 <tr class="memdesc:a6b498359195d68c9fd1db9e856c0fdb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Balanced accuracy for multi-classification.  <br /></td></tr>
+<tr class="memitem:ab851fa5f2137a8c71bc359c4e3e054b4" id="r_ab851fa5f2137a8c71bc359c4e3e054b4"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ab851fa5f2137a8c71bc359c4e3e054b4">multi_precision_score</a> (const VectorXf &amp;y, const ArrayXXf &amp;predict_proba, VectorXf &amp;loss, const <a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt; &amp;class_weights=<a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt;())</td></tr>
+<tr class="memdesc:ab851fa5f2137a8c71bc359c4e3e054b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro-averaged precision for multi-classification.  <br /></td></tr>
+<tr class="memitem:a370e4584cf7a501544b50bad1ead0918" id="r_a370e4584cf7a501544b50bad1ead0918"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a370e4584cf7a501544b50bad1ead0918">multi_recall_score</a> (const VectorXf &amp;y, const ArrayXXf &amp;predict_proba, VectorXf &amp;loss, const <a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt; &amp;class_weights=<a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt;())</td></tr>
+<tr class="memdesc:a370e4584cf7a501544b50bad1ead0918"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro-averaged recall for multi-classification.  <br /></td></tr>
+<tr class="memitem:aafebfe954ef864d4a05f714ade77893c" id="r_aafebfe954ef864d4a05f714ade77893c"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#aafebfe954ef864d4a05f714ade77893c">multi_roc_auc_score</a> (const VectorXf &amp;y, const ArrayXXf &amp;predict_proba, VectorXf &amp;loss, const <a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt; &amp;class_weights=<a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt;())</td></tr>
+<tr class="memdesc:aafebfe954ef864d4a05f714ade77893c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro-averaged one-vs-rest AUROC for multi-classification.  <br /></td></tr>
+<tr class="memitem:abc297f1dc2f6f2033b2fe33cf987e21f" id="r_abc297f1dc2f6f2033b2fe33cf987e21f"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#abc297f1dc2f6f2033b2fe33cf987e21f">multi_average_precision_score</a> (const VectorXf &amp;y, const ArrayXXf &amp;predict_proba, VectorXf &amp;loss, const <a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt; &amp;class_weights=<a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt;())</td></tr>
+<tr class="memdesc:abc297f1dc2f6f2033b2fe33cf987e21f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro-averaged one-vs-rest average precision for multi-classification.  <br /></td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="a473e918fd1efdc6d5f91c65cd8ce3db4" name="a473e918fd1efdc6d5f91c65cd8ce3db4"></a>
@@ -193,14 +207,20 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The average precision score. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/da2/metrics_8cpp_source.html#l00134">134</a> of file <a class="el" href="../../dd/da2/metrics_8cpp_source.html">metrics.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/da2/metrics_8cpp_source.html#l00343">343</a> of file <a class="el" href="../../dd/da2/metrics_8cpp_source.html">metrics.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d5/db3/namespaceBrush_1_1Eval_a473e918fd1efdc6d5f91c65cd8ce3db4_cgraph.png" border="0" usemap="#ad5/db3/namespaceBrush_1_1Eval_a473e918fd1efdc6d5f91c65cd8ce3db4_cgraph" loading="lazy" alt=""/></div>
 <map name="ad5/db3/namespaceBrush_1_1Eval_a473e918fd1efdc6d5f91c65cd8ce3db4_cgraph" id="ad5/db3/namespaceBrush_1_1Eval_a473e918fd1efdc6d5f91c65cd8ce3db4_cgraph">
 <area shape="rect" title="Calculates the average precision score between the predicted probabilities and the true labels." alt="" coords="5,29,161,74"/>
-<area shape="poly" title=" " alt="" coords="53,28,52,19,57,11,67,5,83,3,100,5,111,14,106,14,98,10,83,8,69,10,60,14,57,20,58,30"/>
+<area shape="poly" title=" " alt="" coords="44,28,43,19,49,10,63,5,83,3,105,5,119,13,114,14,103,10,83,8,64,10,53,15,48,21,49,29"/>
+<area shape="rect" href="../../d5/db3/namespaceBrush_1_1Eval.html#ab4118142943e05c08bdd5e5ad62d9127" title="Calculates the log loss between the predicted probabilities and the true labels." alt="" coords="209,38,364,66"/>
+<area shape="poly" title=" " alt="" coords="161,49,196,51,190,52,161,54"/>
+<area shape="poly" title=" " alt="" coords="251,36,246,29,250,19,264,13,286,11,310,14,325,23,319,22,309,19,286,16,265,18,254,23,251,29,256,38"/>
+<area shape="rect" href="../../d6/d2e/namespaceBrush_1_1Util.html#a9cd8004de7aab46b7a06f27d440064ed" title="template function to convert objects to string for logging" alt="" coords="412,38,566,66"/>
+<area shape="poly" title=" " alt="" coords="364,49,399,52,394,52,365,54"/>
+<area shape="poly" title=" " alt="" coords="454,36,449,29,453,19,467,13,489,11,513,14,527,23,522,22,512,19,489,16,468,18,457,23,454,29,459,38"/>
 </map>
 </div>
 <div class="dynheader">
@@ -335,15 +355,23 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d5/db3/namespaceBrush_1_1Eval_ab4118142943e05c08bdd5e5ad62d9127_icgraph.png" border="0" usemap="#ad5/db3/namespaceBrush_1_1Eval_ab4118142943e05c08bdd5e5ad62d9127_icgraph" loading="lazy" alt=""/></div>
 <map name="ad5/db3/namespaceBrush_1_1Eval_ab4118142943e05c08bdd5e5ad62d9127_icgraph" id="ad5/db3/namespaceBrush_1_1Eval_ab4118142943e05c08bdd5e5ad62d9127_icgraph">
-<area shape="rect" title="Calculates the log loss between the predicted probabilities and the true labels." alt="" coords="444,60,599,88"/>
-<area shape="poly" title=" " alt="" coords="559,44,547,41,522,39,498,41,485,45,482,51,488,60,483,58,477,51,482,41,497,35,522,33,548,36,564,45"/>
-<area shape="rect" href="../../d5/db3/namespaceBrush_1_1Eval.html#a25e5d4e34f1e2789da6c67cb96146fad" title="log loss" alt="" coords="197,29,396,57"/>
-<area shape="poly" title=" " alt="" coords="426,61,396,59,396,54,431,61"/>
-<area shape="rect" href="../../d4/d70/structBrush_1_1ResidualEvaluator.html#abbb4f20316b249acc974d8d93e40d290" title=" " alt="" coords="204,81,388,126"/>
-<area shape="poly" title=" " alt="" coords="431,86,389,94,389,88,426,86"/>
-<area shape="poly" title=" " alt="" coords="332,14,321,10,296,8,274,10,261,15,258,20,264,30,258,28,253,20,257,11,272,5,296,3,322,5,338,14"/>
-<area shape="rect" href="../../d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html#a77c0fd125d62a7141e413ca7fe9f3c09" title=" " alt="" coords="5,21,149,66"/>
-<area shape="poly" title=" " alt="" coords="178,44,150,46,149,41,183,42"/>
+<area shape="rect" title="Calculates the log loss between the predicted probabilities and the true labels." alt="" coords="444,152,599,180"/>
+<area shape="poly" title=" " alt="" coords="559,137,547,134,522,131,498,133,485,138,482,143,488,153,483,151,477,144,482,134,497,128,522,126,548,128,564,137"/>
+<area shape="rect" href="../../d5/db3/namespaceBrush_1_1Eval.html#a473e918fd1efdc6d5f91c65cd8ce3db4" title="Calculates the average precision score between the predicted probabilities and the true labels." alt="" coords="219,29,374,74"/>
+<area shape="poly" title=" " alt="" coords="486,143,444,117,395,89,369,77,369,72,397,84,447,112,492,143"/>
+<area shape="rect" href="../../d5/db3/namespaceBrush_1_1Eval.html#a25e5d4e34f1e2789da6c67cb96146fad" title="log loss" alt="" coords="197,122,396,150"/>
+<area shape="poly" title=" " alt="" coords="426,154,397,152,396,147,431,153"/>
+<area shape="rect" href="../../d4/d70/structBrush_1_1ResidualEvaluator.html#abbb4f20316b249acc974d8d93e40d290" title=" " alt="" coords="204,173,388,218"/>
+<area shape="poly" title=" " alt="" coords="426,179,390,186,388,181,431,178"/>
+<area shape="rect" href="../../d5/db3/namespaceBrush_1_1Eval.html#af55ff6a9f4b4beda1fe4e8c32fc1291c" title="Area under the ROC curve for binary classification." alt="" coords="220,267,372,311"/>
+<area shape="poly" title=" " alt="" coords="484,187,340,268,338,264,479,188"/>
+<area shape="poly" title=" " alt="" coords="331,15,319,10,296,8,276,10,263,15,258,21,259,29,254,28,253,19,260,10,275,5,296,3,320,5,336,14"/>
+<area shape="rect" href="../../d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html#a77c0fd125d62a7141e413ca7fe9f3c09" title=" " alt="" coords="5,113,149,158"/>
+<area shape="poly" title=" " alt="" coords="212,81,198,89,133,115,130,110,196,84,216,78"/>
+<area shape="poly" title=" " alt="" coords="179,137,150,138,148,133,183,134"/>
+<area shape="poly" title=" " alt="" coords="332,107,321,103,296,100,274,102,261,107,258,113,264,122,258,121,253,113,257,103,272,97,296,95,322,98,338,106"/>
+<area shape="poly" title=" " alt="" coords="238,259,195,233,104,161,106,156,198,228,244,258"/>
+<area shape="poly" title=" " alt="" coords="331,251,319,248,296,245,276,247,263,252,258,258,259,268,255,265,253,257,260,248,275,242,296,240,320,243,336,252"/>
 </map>
 </div>
 
@@ -462,7 +490,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The mean multinomial log loss. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/da2/metrics_8cpp_source.html#l00257">257</a> of file <a class="el" href="../../dd/da2/metrics_8cpp_source.html">metrics.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/da2/metrics_8cpp_source.html#l00417">417</a> of file <a class="el" href="../../dd/da2/metrics_8cpp_source.html">metrics.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -555,6 +583,65 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="abc297f1dc2f6f2033b2fe33cf987e21f" name="abc297f1dc2f6f2033b2fe33cf987e21f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc297f1dc2f6f2033b2fe33cf987e21f">&#9670;&#160;</a></span>multi_average_precision_score()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Brush::Eval::multi_average_precision_score </td>
+          <td>(</td>
+          <td class="paramtype">const VectorXf &amp;</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ArrayXXf &amp;</td>          <td class="paramname"><span class="paramname"><em>predict_proba</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VectorXf &amp;</td>          <td class="paramname"><span class="paramname"><em>loss</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>class_weights</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt;&#160;float&#160;&gt;()</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Macro-averaged one-vs-rest average precision for multi-classification. </p>
+<p>Mean of the binary average precision of each class against the rest, skipping classes that are absent from <span class="tt">y</span>. The loss vector holds the per-sample multinomial log loss. </p>
+
+<p class="definition">Definition at line <a class="el" href="../../dd/da2/metrics_8cpp_source.html#l00537">537</a> of file <a class="el" href="../../dd/da2/metrics_8cpp_source.html">metrics.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/db3/namespaceBrush_1_1Eval_abc297f1dc2f6f2033b2fe33cf987e21f_cgraph.png" border="0" usemap="#ad5/db3/namespaceBrush_1_1Eval_abc297f1dc2f6f2033b2fe33cf987e21f_cgraph" loading="lazy" alt=""/></div>
+<map name="ad5/db3/namespaceBrush_1_1Eval_abc297f1dc2f6f2033b2fe33cf987e21f_cgraph" id="ad5/db3/namespaceBrush_1_1Eval_abc297f1dc2f6f2033b2fe33cf987e21f_cgraph">
+<area shape="rect" title="Macro&#45;averaged one&#45;vs&#45;rest average precision for multi&#45;classification." alt="" coords="5,29,195,74"/>
+<area shape="poly" title=" " alt="" coords="60,28,58,19,65,10,79,5,100,3,123,5,138,14,133,14,121,10,100,8,80,10,68,15,63,21,65,30"/>
+<area shape="rect" href="../../d5/db3/namespaceBrush_1_1Eval.html#a547663e116b3500703ca69aaa68831b7" title="Calculates the multinomial log loss between the predicted probabilities and the true labels." alt="" coords="243,29,379,74"/>
+<area shape="poly" title=" " alt="" coords="195,49,230,51,225,52,195,54"/>
+<area shape="poly" title=" " alt="" coords="271,27,269,19,276,10,290,5,311,3,334,5,349,14,344,14,332,10,311,8,291,10,279,15,274,21,275,30"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/db3/namespaceBrush_1_1Eval_abc297f1dc2f6f2033b2fe33cf987e21f_icgraph.png" border="0" usemap="#ad5/db3/namespaceBrush_1_1Eval_abc297f1dc2f6f2033b2fe33cf987e21f_icgraph" loading="lazy" alt=""/></div>
+<map name="ad5/db3/namespaceBrush_1_1Eval_abc297f1dc2f6f2033b2fe33cf987e21f_icgraph" id="ad5/db3/namespaceBrush_1_1Eval_abc297f1dc2f6f2033b2fe33cf987e21f_icgraph">
+<area shape="rect" title="Macro&#45;averaged one&#45;vs&#45;rest average precision for multi&#45;classification." alt="" coords="197,29,386,74"/>
+<area shape="poly" title=" " alt="" coords="325,14,313,10,291,8,271,10,259,15,254,21,255,30,251,27,249,19,256,10,270,5,291,3,315,5,330,14"/>
+<area shape="rect" href="../../d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html#a6157f327b01f05ceb05460ad058e18b6" title=" " alt="" coords="5,29,149,74"/>
+<area shape="poly" title=" " alt="" coords="179,52,149,54,149,49,184,51"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a6b498359195d68c9fd1db9e856c0fdb9" name="a6b498359195d68c9fd1db9e856c0fdb9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6b498359195d68c9fd1db9e856c0fdb9">&#9670;&#160;</a></span>multi_bal_zero_one_loss()</h2>
 
@@ -586,7 +673,7 @@ Here is the caller graph for this function:</div>
 
 <p>Balanced accuracy for multi-classification. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/da2/metrics_8cpp_source.html#l00305">305</a> of file <a class="el" href="../../dd/da2/metrics_8cpp_source.html">metrics.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/da2/metrics_8cpp_source.html#l00465">465</a> of file <a class="el" href="../../dd/da2/metrics_8cpp_source.html">metrics.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -645,7 +732,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The multinomial log loss. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/da2/metrics_8cpp_source.html#l00236">236</a> of file <a class="el" href="../../dd/da2/metrics_8cpp_source.html">metrics.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/da2/metrics_8cpp_source.html#l00396">396</a> of file <a class="el" href="../../dd/da2/metrics_8cpp_source.html">metrics.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -660,13 +747,194 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d5/db3/namespaceBrush_1_1Eval_a547663e116b3500703ca69aaa68831b7_icgraph.png" border="0" usemap="#ad5/db3/namespaceBrush_1_1Eval_a547663e116b3500703ca69aaa68831b7_icgraph" loading="lazy" alt=""/></div>
 <map name="ad5/db3/namespaceBrush_1_1Eval_a547663e116b3500703ca69aaa68831b7_icgraph" id="ad5/db3/namespaceBrush_1_1Eval_a547663e116b3500703ca69aaa68831b7_icgraph">
-<area shape="rect" title="Calculates the multinomial log loss between the predicted probabilities and the true labels." alt="" coords="425,29,561,74"/>
-<area shape="poly" title=" " alt="" coords="525,13,514,10,493,8,474,10,462,15,457,21,458,30,454,27,452,19,459,10,473,5,493,3,515,5,530,14"/>
-<area shape="rect" href="../../d5/db3/namespaceBrush_1_1Eval.html#a44be437c0b947ccb876abd9fd8f38467" title="Calculates the mean multinomial log loss between the predicted probabilities and the true labels." alt="" coords="197,29,377,74"/>
-<area shape="poly" title=" " alt="" coords="407,52,378,54,377,49,412,52"/>
-<area shape="poly" title=" " alt="" coords="318,13,307,10,287,8,268,10,256,15,251,21,252,30,248,27,246,19,253,10,266,5,287,3,309,5,324,14"/>
+<area shape="rect" title="Calculates the multinomial log loss between the predicted probabilities and the true labels." alt="" coords="434,123,570,167"/>
+<area shape="poly" title=" " alt="" coords="535,107,524,104,502,101,483,103,471,108,466,114,467,124,462,121,460,113,467,104,481,98,502,96,525,99,540,108"/>
+<area shape="rect" href="../../d5/db3/namespaceBrush_1_1Eval.html#a44be437c0b947ccb876abd9fd8f38467" title="Calculates the mean multinomial log loss between the predicted probabilities and the true labels." alt="" coords="201,29,382,74"/>
+<area shape="poly" title=" " alt="" coords="443,115,385,89,357,77,357,72,387,84,448,115"/>
+<area shape="rect" href="../../d5/db3/namespaceBrush_1_1Eval.html#abc297f1dc2f6f2033b2fe33cf987e21f" title="Macro&#45;averaged one&#45;vs&#45;rest average precision for multi&#45;classification." alt="" coords="197,123,386,167"/>
+<area shape="poly" title=" " alt="" coords="416,145,387,148,386,142,421,145"/>
+<area shape="rect" href="../../d5/db3/namespaceBrush_1_1Eval.html#aafebfe954ef864d4a05f714ade77893c" title="Macro&#45;averaged one&#45;vs&#45;rest AUROC for multi&#45;classification." alt="" coords="223,216,360,261"/>
+<area shape="poly" title=" " alt="" coords="439,173,345,218,343,213,434,175"/>
+<area shape="poly" title=" " alt="" coords="324,15,313,10,291,8,272,10,260,15,255,21,256,30,251,28,250,19,256,10,271,5,291,3,314,5,329,14"/>
+<area shape="rect" href="../../d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html#a6157f327b01f05ceb05460ad058e18b6" title=" " alt="" coords="5,123,149,167"/>
+<area shape="poly" title=" " alt="" coords="209,82,198,89,123,124,120,120,196,84,214,79"/>
+<area shape="poly" title=" " alt="" coords="179,146,150,148,148,142,184,144"/>
+<area shape="poly" title=" " alt="" coords="324,108,313,104,291,101,272,103,260,108,255,114,256,123,251,121,250,113,256,104,271,98,291,96,314,99,329,107"/>
+<area shape="poly" title=" " alt="" coords="222,211,130,171,131,165,227,208"/>
+<area shape="poly" title=" " alt="" coords="324,201,313,197,291,195,272,197,260,201,255,207,256,217,251,214,250,206,256,197,271,191,291,189,314,192,329,201"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab851fa5f2137a8c71bc359c4e3e054b4" name="ab851fa5f2137a8c71bc359c4e3e054b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab851fa5f2137a8c71bc359c4e3e054b4">&#9670;&#160;</a></span>multi_precision_score()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Brush::Eval::multi_precision_score </td>
+          <td>(</td>
+          <td class="paramtype">const VectorXf &amp;</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ArrayXXf &amp;</td>          <td class="paramname"><span class="paramname"><em>predict_proba</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VectorXf &amp;</td>          <td class="paramname"><span class="paramname"><em>loss</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>class_weights</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt;&#160;float&#160;&gt;()</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Macro-averaged precision for multi-classification. </p>
+<p>Equivalent to sklearn's <span class="tt"><a class="el" href="#a17d186ab2f4843e6a85bb9bb6c6e1423" title="Precision for binary classification (threshold 0.5, positive label 1).">precision_score</a>(average='macro',
+zero_division=0)</span>: averages over classes present in either the true or the predicted labels. The loss vector holds the misclassification indicator. </p>
+
+<p class="definition">Definition at line <a class="el" href="../../dd/da2/metrics_8cpp_source.html#l00503">503</a> of file <a class="el" href="../../dd/da2/metrics_8cpp_source.html">metrics.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/db3/namespaceBrush_1_1Eval_ab851fa5f2137a8c71bc359c4e3e054b4_cgraph.png" border="0" usemap="#ad5/db3/namespaceBrush_1_1Eval_ab851fa5f2137a8c71bc359c4e3e054b4_cgraph" loading="lazy" alt=""/></div>
+<map name="ad5/db3/namespaceBrush_1_1Eval_ab851fa5f2137a8c71bc359c4e3e054b4_cgraph" id="ad5/db3/namespaceBrush_1_1Eval_ab851fa5f2137a8c71bc359c4e3e054b4_cgraph">
+<area shape="rect" title="Macro&#45;averaged precision for multi&#45;classification." alt="" coords="5,29,142,74"/>
+<area shape="poly" title=" " alt="" coords="46,28,46,19,50,11,60,5,74,3,89,5,99,14,93,14,87,10,73,8,61,10,54,14,51,20,52,29"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/db3/namespaceBrush_1_1Eval_ab851fa5f2137a8c71bc359c4e3e054b4_icgraph.png" border="0" usemap="#ad5/db3/namespaceBrush_1_1Eval_ab851fa5f2137a8c71bc359c4e3e054b4_icgraph" loading="lazy" alt=""/></div>
+<map name="ad5/db3/namespaceBrush_1_1Eval_ab851fa5f2137a8c71bc359c4e3e054b4_icgraph" id="ad5/db3/namespaceBrush_1_1Eval_ab851fa5f2137a8c71bc359c4e3e054b4_icgraph">
+<area shape="rect" title="Macro&#45;averaged precision for multi&#45;classification." alt="" coords="197,29,333,74"/>
+<area shape="poly" title=" " alt="" coords="293,13,283,10,265,8,248,10,237,15,233,21,233,30,229,27,227,19,234,10,246,5,265,3,285,5,299,14"/>
 <area shape="rect" href="../../d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html#a6157f327b01f05ceb05460ad058e18b6" title=" " alt="" coords="5,29,149,74"/>
-<area shape="poly" title=" " alt="" coords="179,52,149,54,149,49,184,51"/>
+<area shape="poly" title=" " alt="" coords="178,52,149,54,149,49,183,51"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a370e4584cf7a501544b50bad1ead0918" name="a370e4584cf7a501544b50bad1ead0918"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a370e4584cf7a501544b50bad1ead0918">&#9670;&#160;</a></span>multi_recall_score()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Brush::Eval::multi_recall_score </td>
+          <td>(</td>
+          <td class="paramtype">const VectorXf &amp;</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ArrayXXf &amp;</td>          <td class="paramname"><span class="paramname"><em>predict_proba</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VectorXf &amp;</td>          <td class="paramname"><span class="paramname"><em>loss</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>class_weights</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt;&#160;float&#160;&gt;()</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Macro-averaged recall for multi-classification. </p>
+<p>Equivalent to sklearn's <span class="tt"><a class="el" href="#aa55385bc4eb58d9b0e2a029daead4480" title="Recall for binary classification (threshold 0.5, positive label 1).">recall_score</a>(average='macro',
+zero_division=0)</span>. The loss vector holds the misclassification indicator. </p>
+
+<p class="definition">Definition at line <a class="el" href="../../dd/da2/metrics_8cpp_source.html#l00509">509</a> of file <a class="el" href="../../dd/da2/metrics_8cpp_source.html">metrics.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/db3/namespaceBrush_1_1Eval_a370e4584cf7a501544b50bad1ead0918_cgraph.png" border="0" usemap="#ad5/db3/namespaceBrush_1_1Eval_a370e4584cf7a501544b50bad1ead0918_cgraph" loading="lazy" alt=""/></div>
+<map name="ad5/db3/namespaceBrush_1_1Eval_a370e4584cf7a501544b50bad1ead0918_cgraph" id="ad5/db3/namespaceBrush_1_1Eval_a370e4584cf7a501544b50bad1ead0918_cgraph">
+<area shape="rect" title="Macro&#45;averaged recall for multi&#45;classification." alt="" coords="5,29,142,74"/>
+<area shape="poly" title=" " alt="" coords="46,28,46,19,50,11,60,5,74,3,89,5,99,14,93,14,87,10,73,8,61,10,54,14,51,20,52,29"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/db3/namespaceBrush_1_1Eval_a370e4584cf7a501544b50bad1ead0918_icgraph.png" border="0" usemap="#ad5/db3/namespaceBrush_1_1Eval_a370e4584cf7a501544b50bad1ead0918_icgraph" loading="lazy" alt=""/></div>
+<map name="ad5/db3/namespaceBrush_1_1Eval_a370e4584cf7a501544b50bad1ead0918_icgraph" id="ad5/db3/namespaceBrush_1_1Eval_a370e4584cf7a501544b50bad1ead0918_icgraph">
+<area shape="rect" title="Macro&#45;averaged recall for multi&#45;classification." alt="" coords="197,29,333,74"/>
+<area shape="poly" title=" " alt="" coords="293,13,283,10,265,8,248,10,237,15,233,21,233,30,229,27,227,19,234,10,246,5,265,3,285,5,299,14"/>
+<area shape="rect" href="../../d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html#a6157f327b01f05ceb05460ad058e18b6" title=" " alt="" coords="5,29,149,74"/>
+<area shape="poly" title=" " alt="" coords="178,52,149,54,149,49,183,51"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aafebfe954ef864d4a05f714ade77893c" name="aafebfe954ef864d4a05f714ade77893c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafebfe954ef864d4a05f714ade77893c">&#9670;&#160;</a></span>multi_roc_auc_score()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Brush::Eval::multi_roc_auc_score </td>
+          <td>(</td>
+          <td class="paramtype">const VectorXf &amp;</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ArrayXXf &amp;</td>          <td class="paramname"><span class="paramname"><em>predict_proba</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VectorXf &amp;</td>          <td class="paramname"><span class="paramname"><em>loss</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>class_weights</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt;&#160;float&#160;&gt;()</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Macro-averaged one-vs-rest AUROC for multi-classification. </p>
+<p>Mean of the binary AUROC of each class against the rest, skipping classes that are absent from <span class="tt">y</span>. The loss vector holds the per-sample multinomial log loss. </p>
+
+<p class="definition">Definition at line <a class="el" href="../../dd/da2/metrics_8cpp_source.html#l00515">515</a> of file <a class="el" href="../../dd/da2/metrics_8cpp_source.html">metrics.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/db3/namespaceBrush_1_1Eval_aafebfe954ef864d4a05f714ade77893c_cgraph.png" border="0" usemap="#ad5/db3/namespaceBrush_1_1Eval_aafebfe954ef864d4a05f714ade77893c_cgraph" loading="lazy" alt=""/></div>
+<map name="ad5/db3/namespaceBrush_1_1Eval_aafebfe954ef864d4a05f714ade77893c_cgraph" id="ad5/db3/namespaceBrush_1_1Eval_aafebfe954ef864d4a05f714ade77893c_cgraph">
+<area shape="rect" title="Macro&#45;averaged one&#45;vs&#45;rest AUROC for multi&#45;classification." alt="" coords="5,29,142,74"/>
+<area shape="poly" title=" " alt="" coords="38,28,37,19,43,10,55,5,74,3,93,5,107,13,101,14,92,10,73,8,57,10,46,15,42,21,43,29"/>
+<area shape="rect" href="../../d5/db3/namespaceBrush_1_1Eval.html#a547663e116b3500703ca69aaa68831b7" title="Calculates the multinomial log loss between the predicted probabilities and the true labels." alt="" coords="190,29,326,74"/>
+<area shape="poly" title=" " alt="" coords="142,49,177,51,171,52,142,54"/>
+<area shape="poly" title=" " alt="" coords="222,27,221,19,227,10,239,5,258,3,278,5,291,14,286,13,276,10,258,8,241,10,230,15,226,21,227,30"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/db3/namespaceBrush_1_1Eval_aafebfe954ef864d4a05f714ade77893c_icgraph.png" border="0" usemap="#ad5/db3/namespaceBrush_1_1Eval_aafebfe954ef864d4a05f714ade77893c_icgraph" loading="lazy" alt=""/></div>
+<map name="ad5/db3/namespaceBrush_1_1Eval_aafebfe954ef864d4a05f714ade77893c_icgraph" id="ad5/db3/namespaceBrush_1_1Eval_aafebfe954ef864d4a05f714ade77893c_icgraph">
+<area shape="rect" title="Macro&#45;averaged one&#45;vs&#45;rest AUROC for multi&#45;classification." alt="" coords="197,29,333,74"/>
+<area shape="poly" title=" " alt="" coords="293,13,283,10,265,8,248,10,237,15,233,21,233,30,229,27,227,19,234,10,246,5,265,3,285,5,299,14"/>
+<area shape="rect" href="../../d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html#a6157f327b01f05ceb05460ad058e18b6" title=" " alt="" coords="5,29,149,74"/>
+<area shape="poly" title=" " alt="" coords="178,52,149,54,149,49,183,51"/>
 </map>
 </div>
 
@@ -713,7 +981,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The average accuracy in a one-vs-all schema. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/da2/metrics_8cpp_source.html#l00278">278</a> of file <a class="el" href="../../dd/da2/metrics_8cpp_source.html">metrics.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/da2/metrics_8cpp_source.html#l00438">438</a> of file <a class="el" href="../../dd/da2/metrics_8cpp_source.html">metrics.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -732,6 +1000,207 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="293,13,283,10,265,8,248,10,237,15,233,21,233,30,229,27,227,19,234,10,246,5,265,3,285,5,299,14"/>
 <area shape="rect" href="../../d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html#a6157f327b01f05ceb05460ad058e18b6" title=" " alt="" coords="5,29,149,74"/>
 <area shape="poly" title=" " alt="" coords="178,52,149,54,149,49,183,51"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a17d186ab2f4843e6a85bb9bb6c6e1423" name="a17d186ab2f4843e6a85bb9bb6c6e1423"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17d186ab2f4843e6a85bb9bb6c6e1423">&#9670;&#160;</a></span>precision_score()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Brush::Eval::precision_score </td>
+          <td>(</td>
+          <td class="paramtype">const VectorXf &amp;</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const VectorXf &amp;</td>          <td class="paramname"><span class="paramname"><em>predict_proba</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VectorXf &amp;</td>          <td class="paramname"><span class="paramname"><em>loss</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>class_weights</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt;&#160;float&#160;&gt;()</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Precision for binary classification (threshold 0.5, positive label 1). </p>
+<p>Equivalent to sklearn's <span class="tt"><a class="el" href="#a17d186ab2f4843e6a85bb9bb6c6e1423" title="Precision for binary classification (threshold 0.5, positive label 1).">precision_score</a>(zero_division=0)</span>. Class weights are used as sample weights. The loss vector holds the per-sample misclassification indicator (used in lexicase selection). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">y</td><td>The true labels. </td></tr>
+    <tr><td class="paramname">predict_proba</td><td>The predicted probabilities. </td></tr>
+    <tr><td class="paramname">loss</td><td>Reference to store the calculated losses for each sample. </td></tr>
+    <tr><td class="paramname">class_weights</td><td>The optional class weights. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The precision. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="../../dd/da2/metrics_8cpp_source.html#l00360">360</a> of file <a class="el" href="../../dd/da2/metrics_8cpp_source.html">metrics.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/db3/namespaceBrush_1_1Eval_a17d186ab2f4843e6a85bb9bb6c6e1423_cgraph.png" border="0" usemap="#ad5/db3/namespaceBrush_1_1Eval_a17d186ab2f4843e6a85bb9bb6c6e1423_cgraph" loading="lazy" alt=""/></div>
+<map name="ad5/db3/namespaceBrush_1_1Eval_a17d186ab2f4843e6a85bb9bb6c6e1423_cgraph" id="ad5/db3/namespaceBrush_1_1Eval_a17d186ab2f4843e6a85bb9bb6c6e1423_cgraph">
+<area shape="rect" title="Precision for binary classification (threshold 0.5, positive label 1)." alt="" coords="5,29,167,74"/>
+<area shape="poly" title=" " alt="" coords="54,28,53,19,59,11,70,5,86,3,104,5,115,14,110,14,102,10,86,8,71,10,62,14,59,21,60,30"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/db3/namespaceBrush_1_1Eval_a17d186ab2f4843e6a85bb9bb6c6e1423_icgraph.png" border="0" usemap="#ad5/db3/namespaceBrush_1_1Eval_a17d186ab2f4843e6a85bb9bb6c6e1423_icgraph" loading="lazy" alt=""/></div>
+<map name="ad5/db3/namespaceBrush_1_1Eval_a17d186ab2f4843e6a85bb9bb6c6e1423_icgraph" id="ad5/db3/namespaceBrush_1_1Eval_a17d186ab2f4843e6a85bb9bb6c6e1423_icgraph">
+<area shape="rect" title="Precision for binary classification (threshold 0.5, positive label 1)." alt="" coords="197,29,358,74"/>
+<area shape="poly" title=" " alt="" coords="308,13,297,10,277,8,259,10,247,15,243,21,244,30,239,27,238,19,244,10,257,5,277,3,299,5,313,14"/>
+<area shape="rect" href="../../d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html#a77c0fd125d62a7141e413ca7fe9f3c09" title=" " alt="" coords="5,29,149,74"/>
+<area shape="poly" title=" " alt="" coords="178,52,149,54,149,49,184,51"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa55385bc4eb58d9b0e2a029daead4480" name="aa55385bc4eb58d9b0e2a029daead4480"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa55385bc4eb58d9b0e2a029daead4480">&#9670;&#160;</a></span>recall_score()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Brush::Eval::recall_score </td>
+          <td>(</td>
+          <td class="paramtype">const VectorXf &amp;</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const VectorXf &amp;</td>          <td class="paramname"><span class="paramname"><em>predict_proba</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VectorXf &amp;</td>          <td class="paramname"><span class="paramname"><em>loss</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>class_weights</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt;&#160;float&#160;&gt;()</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Recall for binary classification (threshold 0.5, positive label 1). </p>
+<p>Equivalent to sklearn's <span class="tt"><a class="el" href="#aa55385bc4eb58d9b0e2a029daead4480" title="Recall for binary classification (threshold 0.5, positive label 1).">recall_score</a>(zero_division=0)</span>. The loss vector holds the per-sample misclassification indicator. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">y</td><td>The true labels. </td></tr>
+    <tr><td class="paramname">predict_proba</td><td>The predicted probabilities. </td></tr>
+    <tr><td class="paramname">loss</td><td>Reference to store the calculated losses for each sample. </td></tr>
+    <tr><td class="paramname">class_weights</td><td>The optional class weights. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The recall. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="../../dd/da2/metrics_8cpp_source.html#l00374">374</a> of file <a class="el" href="../../dd/da2/metrics_8cpp_source.html">metrics.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/db3/namespaceBrush_1_1Eval_aa55385bc4eb58d9b0e2a029daead4480_cgraph.png" border="0" usemap="#ad5/db3/namespaceBrush_1_1Eval_aa55385bc4eb58d9b0e2a029daead4480_cgraph" loading="lazy" alt=""/></div>
+<map name="ad5/db3/namespaceBrush_1_1Eval_aa55385bc4eb58d9b0e2a029daead4480_cgraph" id="ad5/db3/namespaceBrush_1_1Eval_aa55385bc4eb58d9b0e2a029daead4480_cgraph">
+<area shape="rect" title="Recall for binary classification (threshold 0.5, positive label 1)." alt="" coords="5,29,144,74"/>
+<area shape="poly" title=" " alt="" coords="47,28,46,19,51,11,60,5,75,3,90,5,100,14,95,14,88,10,74,8,62,10,55,14,51,20,52,29"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/db3/namespaceBrush_1_1Eval_aa55385bc4eb58d9b0e2a029daead4480_icgraph.png" border="0" usemap="#ad5/db3/namespaceBrush_1_1Eval_aa55385bc4eb58d9b0e2a029daead4480_icgraph" loading="lazy" alt=""/></div>
+<map name="ad5/db3/namespaceBrush_1_1Eval_aa55385bc4eb58d9b0e2a029daead4480_icgraph" id="ad5/db3/namespaceBrush_1_1Eval_aa55385bc4eb58d9b0e2a029daead4480_icgraph">
+<area shape="rect" title="Recall for binary classification (threshold 0.5, positive label 1)." alt="" coords="197,29,335,74"/>
+<area shape="poly" title=" " alt="" coords="294,13,285,10,266,8,248,10,238,15,233,21,234,30,230,27,228,19,234,10,247,5,266,3,286,5,300,14"/>
+<area shape="rect" href="../../d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html#a77c0fd125d62a7141e413ca7fe9f3c09" title=" " alt="" coords="5,29,149,74"/>
+<area shape="poly" title=" " alt="" coords="179,52,149,54,149,49,184,51"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af55ff6a9f4b4beda1fe4e8c32fc1291c" name="af55ff6a9f4b4beda1fe4e8c32fc1291c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af55ff6a9f4b4beda1fe4e8c32fc1291c">&#9670;&#160;</a></span>roc_auc_score()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Brush::Eval::roc_auc_score </td>
+          <td>(</td>
+          <td class="paramtype">const VectorXf &amp;</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const VectorXf &amp;</td>          <td class="paramname"><span class="paramname"><em>predict_proba</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VectorXf &amp;</td>          <td class="paramname"><span class="paramname"><em>loss</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt; float &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>class_weights</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="../../d7/dfc/classvector.html">vector</a>&lt;&#160;float&#160;&gt;()</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Area under the ROC curve for binary classification. </p>
+<p>Equivalent to sklearn's <span class="tt"><a class="el" href="#af55ff6a9f4b4beda1fe4e8c32fc1291c" title="Area under the ROC curve for binary classification.">roc_auc_score</a></span>. Returns 0.5 when only one class is present (where the metric is undefined). The loss vector holds the per-sample log loss (used in lexicase selection). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">y</td><td>The true labels. </td></tr>
+    <tr><td class="paramname">predict_proba</td><td>The predicted probabilities. </td></tr>
+    <tr><td class="paramname">loss</td><td>Reference to store the calculated losses for each sample. </td></tr>
+    <tr><td class="paramname">class_weights</td><td>The optional class weights. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The AUROC. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="../../dd/da2/metrics_8cpp_source.html#l00386">386</a> of file <a class="el" href="../../dd/da2/metrics_8cpp_source.html">metrics.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/db3/namespaceBrush_1_1Eval_af55ff6a9f4b4beda1fe4e8c32fc1291c_cgraph.png" border="0" usemap="#ad5/db3/namespaceBrush_1_1Eval_af55ff6a9f4b4beda1fe4e8c32fc1291c_cgraph" loading="lazy" alt=""/></div>
+<map name="ad5/db3/namespaceBrush_1_1Eval_af55ff6a9f4b4beda1fe4e8c32fc1291c_cgraph" id="ad5/db3/namespaceBrush_1_1Eval_af55ff6a9f4b4beda1fe4e8c32fc1291c_cgraph">
+<area shape="rect" title="Area under the ROC curve for binary classification." alt="" coords="5,29,158,74"/>
+<area shape="poly" title=" " alt="" coords="43,28,41,19,48,10,62,5,82,3,103,5,118,13,112,14,102,10,81,8,63,10,51,15,47,21,48,29"/>
+<area shape="rect" href="../../d5/db3/namespaceBrush_1_1Eval.html#ab4118142943e05c08bdd5e5ad62d9127" title="Calculates the log loss between the predicted probabilities and the true labels." alt="" coords="206,38,361,66"/>
+<area shape="poly" title=" " alt="" coords="158,49,193,51,188,52,158,54"/>
+<area shape="poly" title=" " alt="" coords="248,36,243,29,247,19,261,13,283,11,307,14,321,23,316,22,306,19,283,16,262,18,251,23,248,29,253,38"/>
+<area shape="rect" href="../../d6/d2e/namespaceBrush_1_1Util.html#a9cd8004de7aab46b7a06f27d440064ed" title="template function to convert objects to string for logging" alt="" coords="409,38,563,66"/>
+<area shape="poly" title=" " alt="" coords="361,49,396,52,391,52,362,54"/>
+<area shape="poly" title=" " alt="" coords="451,36,446,29,450,19,464,13,486,11,510,14,524,23,519,22,509,19,486,16,465,18,454,23,451,29,456,38"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/db3/namespaceBrush_1_1Eval_af55ff6a9f4b4beda1fe4e8c32fc1291c_icgraph.png" border="0" usemap="#ad5/db3/namespaceBrush_1_1Eval_af55ff6a9f4b4beda1fe4e8c32fc1291c_icgraph" loading="lazy" alt=""/></div>
+<map name="ad5/db3/namespaceBrush_1_1Eval_af55ff6a9f4b4beda1fe4e8c32fc1291c_icgraph" id="ad5/db3/namespaceBrush_1_1Eval_af55ff6a9f4b4beda1fe4e8c32fc1291c_icgraph">
+<area shape="rect" title="Area under the ROC curve for binary classification." alt="" coords="197,29,349,74"/>
+<area shape="poly" title=" " alt="" coords="303,13,292,10,273,8,255,10,244,15,239,21,240,30,235,27,234,19,240,10,253,5,273,3,294,5,308,14"/>
+<area shape="rect" href="../../d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html#a77c0fd125d62a7141e413ca7fe9f3c09" title=" " alt="" coords="5,29,149,74"/>
+<area shape="poly" title=" " alt="" coords="179,52,149,54,149,49,184,51"/>
 </map>
 </div>
 

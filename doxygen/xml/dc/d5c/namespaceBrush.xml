@@ -1372,8 +1372,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.cpp" line="14" column="6" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="14" bodyend="33" declfile="/home/runner/work/brush/brush/src/data/data.h" declline="23" declcolumn="13"/>
-        <referencedby refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1ae195a1f5837279cdad368eeb135bb9e1" compoundref="d7/de0/operator_8h" startline="308" endline="313">Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::eval</referencedby>
         <referencedby refid="de/d6b/structfmt_1_1formatter_3_01Brush_1_1DataType_01_4_1a6452cbf0c4b7b6e338b6cc06528fbb82" compoundref="d2/dbd/data_8h" startline="298" endline="300">fmt::formatter&lt; Brush::DataType &gt;::format</referencedby>
+        <referencedby refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a936cf115e4d95aed91817fcf1bb9c084" compoundref="d7/de0/operator_8h" startline="312" endline="324">Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;::get</referencedby>
         <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1ad1be6b37dda8f94db59996bc060e5e2e" compoundref="da/dc9/data_8cpp" startline="511" endline="515">Brush::Data::operator&lt;&lt;</referencedby>
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1aa82c9f1cc1b96e7424b0ac250e4c5c91" compoundref="da/d48/search__space_8cpp" startline="312" endline="465">Brush::SearchSpace::PTC2</referencedby>
       </memberdef>
@@ -2247,11 +2247,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="413" column="10" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="413" bodyend="417" declfile="/home/runner/work/brush/brush/src/program/dispatch_table.h" declline="29" declcolumn="3"/>
-        <references refid="dc/d5c/namespaceBrush_1a295fffe6ae57b4a3c871c7cfe1450e1d" compoundref="d7/de0/operator_8h" startline="413" endline="417">DispatchOp</references>
-        <references refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" compoundref="d7/de0/operator_8h" startline="233" endline="245">Brush::Operator&lt; NT, S, Fit, E &gt;::eval</references>
-        <referencedby refid="dc/d5c/namespaceBrush_1a835c559533dfd1b02fb7c2ded01c2442" compoundref="d7/de0/operator_8h" startline="420" endline="424">DispatchOp</referencedby>
-        <referencedby refid="dc/d5c/namespaceBrush_1a295fffe6ae57b4a3c871c7cfe1450e1d" compoundref="d7/de0/operator_8h" startline="413" endline="417">DispatchOp</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="417" column="10" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="417" bodyend="421" declfile="/home/runner/work/brush/brush/src/program/dispatch_table.h" declline="29" declcolumn="3"/>
+        <references refid="dc/d5c/namespaceBrush_1a295fffe6ae57b4a3c871c7cfe1450e1d" compoundref="d7/de0/operator_8h" startline="417" endline="421">DispatchOp</references>
+        <references refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" compoundref="d7/de0/operator_8h" startline="233" endline="249">Brush::Operator&lt; NT, S, Fit, E &gt;::eval</references>
+        <referencedby refid="dc/d5c/namespaceBrush_1a835c559533dfd1b02fb7c2ded01c2442" compoundref="d7/de0/operator_8h" startline="424" endline="428">DispatchOp</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a295fffe6ae57b4a3c871c7cfe1450e1d" compoundref="d7/de0/operator_8h" startline="417" endline="421">DispatchOp</referencedby>
         <referencedby refid="d3/da8/structBrush_1_1DispatchTable_1a18c6366cbcd3c590466a319f41173a42" compoundref="df/d61/dispatch__table_8h" startline="111" endline="119">Brush::DispatchTable&lt; Fit &gt;::MakeCallable</referencedby>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1a835c559533dfd1b02fb7c2ded01c2442" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -2292,9 +2292,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="420" column="10" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="420" bodyend="424" declfile="/home/runner/work/brush/brush/src/program/dispatch_table.h" declline="31" declcolumn="3"/>
-        <references refid="dc/d5c/namespaceBrush_1a295fffe6ae57b4a3c871c7cfe1450e1d" compoundref="d7/de0/operator_8h" startline="413" endline="417">DispatchOp</references>
-        <references refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" compoundref="d7/de0/operator_8h" startline="233" endline="245">Brush::Operator&lt; NT, S, Fit, E &gt;::eval</references>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="424" column="10" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="424" bodyend="428" declfile="/home/runner/work/brush/brush/src/program/dispatch_table.h" declline="31" declcolumn="3"/>
+        <references refid="dc/d5c/namespaceBrush_1a295fffe6ae57b4a3c871c7cfe1450e1d" compoundref="d7/de0/operator_8h" startline="417" endline="421">DispatchOp</references>
+        <references refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" compoundref="d7/de0/operator_8h" startline="233" endline="249">Brush::Operator&lt; NT, S, Fit, E &gt;::eval</references>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1a613f142cf27eb135a3eb1ba07bbfaffc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>ostream &amp;</type>
@@ -2562,6 +2562,7 @@
         <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fafea6e13957d754d28035f576e0670bdc" compoundref="d9/d49/types_8h" startline="156">MatrixBJet</references>
         <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fad2d25b8ef74c30d96415406364f58a4c" compoundref="d9/d49/types_8h" startline="150">TimeSeriesB</references>
         <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1acf7d5d1c0d6a102eec277180dce590fe" compoundref="d1/d64/variation_8cpp" startline="482" endline="593">Brush::Var::Variation&lt; T &gt;::cross</referencedby>
+        <referencedby refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" compoundref="d7/de0/operator_8h" startline="233" endline="249">Brush::Operator&lt; NT, S, Fit, E &gt;::eval</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a8d884d5ad5f6825aa8f50039fb6baf9f" compoundref="d1/d77/node_8h" startline="295" endline="299">Brush::Node::get_is_weighted</referencedby>
         <referencedby refid="db/d88/structBrush_1_1Program_1a990bd3691f3b3e2b7ff479bcd4231479" compoundref="d1/dea/program_8h" startline="308" endline="332">Brush::Program&lt; PT::Regressor &gt;::get_n_weights</referencedby>
         <referencedby refid="db/d88/structBrush_1_1Program_1a8bee1c866051b3e11c017cdf29b46eb7" compoundref="d1/dea/program_8h" startline="339" endline="360">Brush::Program&lt; PT::Regressor &gt;::get_weights</referencedby>

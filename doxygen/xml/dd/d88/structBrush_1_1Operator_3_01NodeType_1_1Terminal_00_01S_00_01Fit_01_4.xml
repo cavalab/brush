@@ -26,7 +26,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="270" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="270" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="274" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="274" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a5176127947597b2158c8cd5984cb276f" prot="public" static="no">
         <type>typename S::WeightType</type>
@@ -40,7 +40,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="271" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="271" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="275" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="275" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="dc/d31/structBrush_1_1Operator_1aac4569e4a053f6bc685262dc81667d73" prot="public" static="no">
         <type>conditional_t&lt;((UnaryOp&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref> &gt;||NaryOp&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref> &gt;) &amp;&amp;S::ArgCount &gt; 1), Array&lt; typename S::FirstArg::Scalar, -1, S::ArgCount &gt;, typename S::ArgTypes &gt;</type>
@@ -113,7 +113,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="276" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="276" bodyend="287"/>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="280" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="280" bodyend="291"/>
+        <references refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a936cf115e4d95aed91817fcf1bb9c084" compoundref="d7/de0/operator_8h" startline="312" endline="324">get</references>
+        <references refid="d7/d6b/namespaceBrush_1_1util_1ac055af6270e6bbb0cef4f33d70f0cb04" compoundref="d7/de0/operator_8h" startline="20" endline="61">Brush::util::get_weight</references>
       </memberdef>
       <memberdef kind="function" id="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a84a585608a7ff8031adcd94c92b1541a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -151,8 +153,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="292" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="292" bodyend="304"/>
-        <references refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a936cf115e4d95aed91817fcf1bb9c084" compoundref="d7/de0/operator_8h" startline="308" endline="320">get</references>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="296" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="296" bodyend="308"/>
+        <references refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a936cf115e4d95aed91817fcf1bb9c084" compoundref="d7/de0/operator_8h" startline="312" endline="324">get</references>
         <references refid="d7/d6b/namespaceBrush_1_1util_1ac055af6270e6bbb0cef4f33d70f0cb04" compoundref="d7/de0/operator_8h" startline="20" endline="61">Brush::util::get_weight</references>
       </memberdef>
       <memberdef kind="function" id="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a936cf115e4d95aed91817fcf1bb9c084" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
@@ -180,8 +182,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="308" column="10" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="308" bodyend="320"/>
-        <referencedby refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a84a585608a7ff8031adcd94c92b1541a" compoundref="d7/de0/operator_8h" startline="292" endline="304">eval</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="312" column="10" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="312" bodyend="324"/>
+        <references refid="dc/d5c/namespaceBrush_1ab8d6c8427ade77c95f36ac1781279efb" compoundref="da/dc9/data_8cpp" startline="14" endline="33">Brush::DataTypeName</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2923e87bfc5d20fc3b45b9f72ca71de2" compoundref="d2/dbd/data_8h" startline="238" endline="258">Brush::Data::Dataset::get_feature_type</references>
+        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
+        <referencedby refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1ac4f981989fbe362656ac8294fa0d4ef3" compoundref="d7/de0/operator_8h" startline="280" endline="291">eval</referencedby>
       </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a09fa4721bd510aacdb5402dc4ce4b5ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -398,7 +403,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/brush/brush/src/program/operator.h" line="268" column="1" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="269" bodyend="321"/>
+    <location file="/home/runner/work/brush/brush/src/program/operator.h" line="272" column="1" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="273" bodyend="325"/>
     <listofallmembers>
       <member refid="dc/d31/structBrush_1_1Operator_1ab1ff8e429a35176b81c19079cd1397c4" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;</scope><name>apply</name></member>
       <member refid="dc/d31/structBrush_1_1Operator_1a3510e6cd8f26f1f30ab53dcfafe08025" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;</scope><name>ArgCount</name></member>

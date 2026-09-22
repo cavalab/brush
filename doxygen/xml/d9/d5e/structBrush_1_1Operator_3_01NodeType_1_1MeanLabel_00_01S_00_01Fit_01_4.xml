@@ -26,7 +26,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="355" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="355" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="359" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="359" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a6d0ef851de4d7697f92b8180647ff3ca" prot="public" static="no">
         <type>typename S::WeightType</type>
@@ -40,7 +40,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="356" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="356" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="360" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="360" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="dc/d31/structBrush_1_1Operator_1aac4569e4a053f6bc685262dc81667d73" prot="public" static="no">
         <type>conditional_t&lt;((UnaryOp&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref> &gt;||NaryOp&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref> &gt;) &amp;&amp;S::ArgCount &gt; 1), Array&lt; typename S::FirstArg::Scalar, -1, S::ArgCount &gt;, typename S::ArgTypes &gt;</type>
@@ -97,11 +97,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="358" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="358" bodyend="386"/>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="362" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="362" bodyend="390"/>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1a8a1e77afdecb032696bdf38e5c424c" compoundref="d2/dbd/data_8h" startline="85">Brush::Data::Dataset::classification</references>
-        <references refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a56b67e05e4f1f89f7fd83f755d826d16" compoundref="d7/de0/operator_8h" startline="389" endline="396">predict</references>
+        <references refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a56b67e05e4f1f89f7fd83f755d826d16" compoundref="d7/de0/operator_8h" startline="393" endline="400">predict</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade105f069d4f745d44374b7b8a3a9b0d" compoundref="d2/dbd/data_8h" startline="82">Brush::Data::Dataset::y</references>
-        <referencedby refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1aff062ebffea0b39f39b6252fbb07cc86" compoundref="d7/de0/operator_8h" startline="398" endline="403">eval</referencedby>
+        <referencedby refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1aff062ebffea0b39f39b6252fbb07cc86" compoundref="d7/de0/operator_8h" startline="402" endline="407">eval</referencedby>
       </memberdef>
       <memberdef kind="function" id="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a56b67e05e4f1f89f7fd83f755d826d16" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -144,12 +144,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="389" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="389" bodyend="396"/>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="393" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="393" bodyend="400"/>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6edc04702aee605a766f4a79c375d0c6" compoundref="d2/dbd/data_8h" startline="231" endline="231">Brush::Data::Dataset::get_n_features</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="225" endline="230">Brush::Data::Dataset::get_n_samples</references>
         <references refid="d7/d6b/namespaceBrush_1_1util_1ac055af6270e6bbb0cef4f33d70f0cb04" compoundref="d7/de0/operator_8h" startline="20" endline="61">Brush::util::get_weight</references>
-        <referencedby refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1aff062ebffea0b39f39b6252fbb07cc86" compoundref="d7/de0/operator_8h" startline="398" endline="403">eval</referencedby>
-        <referencedby refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a0a729da1a61e625544c79406c1d38a8f" compoundref="d7/de0/operator_8h" startline="358" endline="386">fit</referencedby>
+        <referencedby refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1aff062ebffea0b39f39b6252fbb07cc86" compoundref="d7/de0/operator_8h" startline="402" endline="407">eval</referencedby>
+        <referencedby refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a0a729da1a61e625544c79406c1d38a8f" compoundref="d7/de0/operator_8h" startline="362" endline="390">fit</referencedby>
       </memberdef>
       <memberdef kind="function" id="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1aff062ebffea0b39f39b6252fbb07cc86" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a7c8549ef9aed9cb5fd5cb47126f3731c" kindref="member">RetType</ref></type>
@@ -176,9 +176,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="398" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="398" bodyend="403"/>
-        <references refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a0a729da1a61e625544c79406c1d38a8f" compoundref="d7/de0/operator_8h" startline="358" endline="386">fit</references>
-        <references refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a56b67e05e4f1f89f7fd83f755d826d16" compoundref="d7/de0/operator_8h" startline="389" endline="396">predict</references>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="402" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="402" bodyend="407"/>
+        <references refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a0a729da1a61e625544c79406c1d38a8f" compoundref="d7/de0/operator_8h" startline="362" endline="390">fit</references>
+        <references refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a56b67e05e4f1f89f7fd83f755d826d16" compoundref="d7/de0/operator_8h" startline="393" endline="400">predict</references>
       </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a09fa4721bd510aacdb5402dc4ce4b5ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -394,7 +394,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/brush/brush/src/program/operator.h" line="353" column="1" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="354" bodyend="404"/>
+    <location file="/home/runner/work/brush/brush/src/program/operator.h" line="357" column="1" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="358" bodyend="408"/>
     <listofallmembers>
       <member refid="dc/d31/structBrush_1_1Operator_1ab1ff8e429a35176b81c19079cd1397c4" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>apply</name></member>
       <member refid="dc/d31/structBrush_1_1Operator_1a3510e6cd8f26f1f30ab53dcfafe08025" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>ArgCount</name></member>

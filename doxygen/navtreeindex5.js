@@ -1,5 +1,12 @@
 var NAVTREEINDEX5 =
 {
+"d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html":[0,0,0,137],
+"d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html":[2,0,0,134],
+"d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html#a15dbad135fc1dd3246b72122b11d3d78":[0,0,0,137,1],
+"d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html#a15dbad135fc1dd3246b72122b11d3d78":[2,0,0,134,1],
+"d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html#ae8ad6a3bffeae55fc77aafd5098dc1fb":[0,0,0,137,2],
+"d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html#ae8ad6a3bffeae55fc77aafd5098dc1fb":[2,0,0,134,2],
+"d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html#af3087e93c7af97478126bafc7b8c921c":[0,0,0,137,0],
 "d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html#af3087e93c7af97478126bafc7b8c921c":[2,0,0,134,0],
 "d6/da6/structBrush_1_1Function_3_01NodeType_1_1ArgMax_01_4.html":[0,0,0,56],
 "d6/da6/structBrush_1_1Function_3_01NodeType_1_1ArgMax_01_4.html":[2,0,0,53],
@@ -242,12 +249,5 @@ var NAVTREEINDEX5 =
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a7bc529b50a25a8d76ad9c986292a99fe":[0,0,0,0,2,47],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a7bc529b50a25a8d76ad9c986292a99fe":[2,0,0,0,2,47],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a7ca5032a5eed35d0a1c97dffddd11321":[0,0,0,0,2,39],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a7ca5032a5eed35d0a1c97dffddd11321":[2,0,0,0,2,39],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a7def716cd7f6c5c071ac8eeb6f3a3dd3":[0,0,0,0,2,5],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a7def716cd7f6c5c071ac8eeb6f3a3dd3":[2,0,0,0,2,5],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a83e6a71bbf83792e8cbd64a1a3925de7":[0,0,0,0,2,51],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a83e6a71bbf83792e8cbd64a1a3925de7":[2,0,0,0,2,51],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a89035e010d3469fc61ac8e4bdc855de2":[0,0,0,0,2,27],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a89035e010d3469fc61ac8e4bdc855de2":[2,0,0,0,2,27],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a8b9d1462cec60687e36eb7d4f96c9051":[0,0,0,0,2,0]
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a7ca5032a5eed35d0a1c97dffddd11321":[2,0,0,0,2,39]
 };

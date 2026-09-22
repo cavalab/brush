@@ -135,9 +135,11 @@
         <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="19" column="10" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="19" bodyend="44" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="38" declcolumn="10"/>
         <references refid="d5/db3/namespaceBrush_1_1Eval_1ab4118142943e05c08bdd5e5ad62d9127" compoundref="dd/da2/metrics_8cpp" startline="19" endline="44">log_loss</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" compoundref="d5/d60/utils_8h" startline="369" endline="374">Brush::Util::to_string</references>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a473e918fd1efdc6d5f91c65cd8ce3db4" compoundref="dd/da2/metrics_8cpp" startline="343" endline="356">average_precision_score</referencedby>
         <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1ab4118142943e05c08bdd5e5ad62d9127" compoundref="dd/da2/metrics_8cpp" startline="19" endline="44">log_loss</referencedby>
         <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a25e5d4e34f1e2789da6c67cb96146fad" compoundref="dd/da2/metrics_8cpp" startline="47" endline="72">mean_log_loss</referencedby>
         <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1abbb4f20316b249acc974d8d93e40d290" compoundref="d7/de3/weight__optimizer_8h" startline="49" endline="115">Brush::ResidualEvaluator&lt; PT &gt;::operator()</referencedby>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1af55ff6a9f4b4beda1fe4e8c32fc1291c" compoundref="dd/da2/metrics_8cpp" startline="386" endline="393">roc_auc_score</referencedby>
       </memberdef>
       <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1a25e5d4e34f1e2789da6c67cb96146fad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -210,7 +212,7 @@
         <references refid="d5/db3/namespaceBrush_1_1Eval_1ab4118142943e05c08bdd5e5ad62d9127" compoundref="dd/da2/metrics_8cpp" startline="19" endline="44">log_loss</references>
         <references refid="d5/db3/namespaceBrush_1_1Eval_1a25e5d4e34f1e2789da6c67cb96146fad" compoundref="dd/da2/metrics_8cpp" startline="47" endline="72">mean_log_loss</references>
         <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a25e5d4e34f1e2789da6c67cb96146fad" compoundref="dd/da2/metrics_8cpp" startline="47" endline="72">mean_log_loss</referencedby>
-        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a77c0fd125d62a7141e413ca7fe9f3c09" compoundref="da/d3b/scorer_8h" startline="89" endline="96">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
+        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a77c0fd125d62a7141e413ca7fe9f3c09" compoundref="da/d3b/scorer_8h" startline="89" endline="99">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
       </memberdef>
       <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1a1c8af1d41e4eba5c5472fbc3efa85d05" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -280,7 +282,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="75" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="75" bodyend="99" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="72" declcolumn="7"/>
         <references refid="d5/db3/namespaceBrush_1_1Eval_1a1c8af1d41e4eba5c5472fbc3efa85d05" compoundref="dd/da2/metrics_8cpp" startline="75" endline="99">zero_one_loss</references>
-        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a77c0fd125d62a7141e413ca7fe9f3c09" compoundref="da/d3b/scorer_8h" startline="89" endline="96">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
+        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a77c0fd125d62a7141e413ca7fe9f3c09" compoundref="da/d3b/scorer_8h" startline="89" endline="99">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
         <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a1c8af1d41e4eba5c5472fbc3efa85d05" compoundref="dd/da2/metrics_8cpp" startline="75" endline="99">zero_one_loss</referencedby>
       </memberdef>
       <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1ac69db7d03dbb7901643bb137dbf868bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -352,7 +354,7 @@
         <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="102" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="102" bodyend="132" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="84" declcolumn="7"/>
         <references refid="d5/db3/namespaceBrush_1_1Eval_1ac69db7d03dbb7901643bb137dbf868bc" compoundref="dd/da2/metrics_8cpp" startline="102" endline="132">bal_zero_one_loss</references>
         <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1ac69db7d03dbb7901643bb137dbf868bc" compoundref="dd/da2/metrics_8cpp" startline="102" endline="132">bal_zero_one_loss</referencedby>
-        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a77c0fd125d62a7141e413ca7fe9f3c09" compoundref="da/d3b/scorer_8h" startline="89" endline="96">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
+        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a77c0fd125d62a7141e413ca7fe9f3c09" compoundref="da/d3b/scorer_8h" startline="89" endline="99">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
       </memberdef>
       <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1a473e918fd1efdc6d5f91c65cd8ce3db4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -420,10 +422,225 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="134" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="134" bodyend="233" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="60" declcolumn="7"/>
-        <references refid="d5/db3/namespaceBrush_1_1Eval_1a473e918fd1efdc6d5f91c65cd8ce3db4" compoundref="dd/da2/metrics_8cpp" startline="134" endline="233">average_precision_score</references>
-        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a473e918fd1efdc6d5f91c65cd8ce3db4" compoundref="dd/da2/metrics_8cpp" startline="134" endline="233">average_precision_score</referencedby>
-        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a77c0fd125d62a7141e413ca7fe9f3c09" compoundref="da/d3b/scorer_8h" startline="89" endline="96">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
+        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="343" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="343" bodyend="356" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="60" declcolumn="7"/>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1a473e918fd1efdc6d5f91c65cd8ce3db4" compoundref="dd/da2/metrics_8cpp" startline="343" endline="356">average_precision_score</references>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1ab4118142943e05c08bdd5e5ad62d9127" compoundref="dd/da2/metrics_8cpp" startline="19" endline="44">log_loss</references>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a473e918fd1efdc6d5f91c65cd8ce3db4" compoundref="dd/da2/metrics_8cpp" startline="343" endline="356">average_precision_score</referencedby>
+        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a77c0fd125d62a7141e413ca7fe9f3c09" compoundref="da/d3b/scorer_8h" startline="89" endline="99">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1a17d186ab2f4843e6a85bb9bb6c6e1423" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Eval::precision_score</definition>
+        <argsstring>(const VectorXf &amp;y, const VectorXf &amp;predict_proba, VectorXf &amp;loss, const vector&lt; float &gt; &amp;class_weights=vector&lt; float &gt;())</argsstring>
+        <name>precision_score</name>
+        <qualifiedname>Brush::Eval::precision_score</qualifiedname>
+        <param>
+          <type>const VectorXf &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const VectorXf &amp;</type>
+          <declname>predict_proba</declname>
+        </param>
+        <param>
+          <type>VectorXf &amp;</type>
+          <declname>loss</declname>
+        </param>
+        <param>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt; &amp;</type>
+          <declname>class_weights</declname>
+          <defval><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;()</defval>
+        </param>
+        <briefdescription>
+<para>Precision for binary classification (threshold 0.5, positive label 1). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Equivalent to sklearn&apos;s <computeroutput><ref refid="d5/db3/namespaceBrush_1_1Eval_1a17d186ab2f4843e6a85bb9bb6c6e1423" kindref="member">precision_score</ref>(zero_division=0)</computeroutput>. Class weights are used as sample weights. The loss vector holds the per-sample misclassification indicator (used in lexicase selection). <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The true labels. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>predict_proba</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The predicted probabilities. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>loss</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to store the calculated losses for each sample. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>class_weights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The optional class weights. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The precision. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="360" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="360" bodyend="372" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="99" declcolumn="7"/>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1a17d186ab2f4843e6a85bb9bb6c6e1423" compoundref="dd/da2/metrics_8cpp" startline="360" endline="372">precision_score</references>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a17d186ab2f4843e6a85bb9bb6c6e1423" compoundref="dd/da2/metrics_8cpp" startline="360" endline="372">precision_score</referencedby>
+        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a77c0fd125d62a7141e413ca7fe9f3c09" compoundref="da/d3b/scorer_8h" startline="89" endline="99">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1aa55385bc4eb58d9b0e2a029daead4480" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Eval::recall_score</definition>
+        <argsstring>(const VectorXf &amp;y, const VectorXf &amp;predict_proba, VectorXf &amp;loss, const vector&lt; float &gt; &amp;class_weights=vector&lt; float &gt;())</argsstring>
+        <name>recall_score</name>
+        <qualifiedname>Brush::Eval::recall_score</qualifiedname>
+        <param>
+          <type>const VectorXf &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const VectorXf &amp;</type>
+          <declname>predict_proba</declname>
+        </param>
+        <param>
+          <type>VectorXf &amp;</type>
+          <declname>loss</declname>
+        </param>
+        <param>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt; &amp;</type>
+          <declname>class_weights</declname>
+          <defval><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;()</defval>
+        </param>
+        <briefdescription>
+<para>Recall for binary classification (threshold 0.5, positive label 1). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Equivalent to sklearn&apos;s <computeroutput><ref refid="d5/db3/namespaceBrush_1_1Eval_1aa55385bc4eb58d9b0e2a029daead4480" kindref="member">recall_score</ref>(zero_division=0)</computeroutput>. The loss vector holds the per-sample misclassification indicator. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The true labels. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>predict_proba</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The predicted probabilities. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>loss</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to store the calculated losses for each sample. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>class_weights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The optional class weights. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The recall. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="374" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="374" bodyend="384" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="113" declcolumn="7"/>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1aa55385bc4eb58d9b0e2a029daead4480" compoundref="dd/da2/metrics_8cpp" startline="374" endline="384">recall_score</references>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1aa55385bc4eb58d9b0e2a029daead4480" compoundref="dd/da2/metrics_8cpp" startline="374" endline="384">recall_score</referencedby>
+        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a77c0fd125d62a7141e413ca7fe9f3c09" compoundref="da/d3b/scorer_8h" startline="89" endline="99">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1af55ff6a9f4b4beda1fe4e8c32fc1291c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Eval::roc_auc_score</definition>
+        <argsstring>(const VectorXf &amp;y, const VectorXf &amp;predict_proba, VectorXf &amp;loss, const vector&lt; float &gt; &amp;class_weights=vector&lt; float &gt;())</argsstring>
+        <name>roc_auc_score</name>
+        <qualifiedname>Brush::Eval::roc_auc_score</qualifiedname>
+        <param>
+          <type>const VectorXf &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const VectorXf &amp;</type>
+          <declname>predict_proba</declname>
+        </param>
+        <param>
+          <type>VectorXf &amp;</type>
+          <declname>loss</declname>
+        </param>
+        <param>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt; &amp;</type>
+          <declname>class_weights</declname>
+          <defval><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;()</defval>
+        </param>
+        <briefdescription>
+<para>Area under the ROC curve for binary classification. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Equivalent to sklearn&apos;s <computeroutput><ref refid="d5/db3/namespaceBrush_1_1Eval_1af55ff6a9f4b4beda1fe4e8c32fc1291c" kindref="member">roc_auc_score</ref></computeroutput>. Returns 0.5 when only one class is present (where the metric is undefined). The loss vector holds the per-sample log loss (used in lexicase selection). <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The true labels. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>predict_proba</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The predicted probabilities. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>loss</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to store the calculated losses for each sample. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>class_weights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The optional class weights. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The AUROC. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="386" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="386" bodyend="393" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="128" declcolumn="7"/>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1ab4118142943e05c08bdd5e5ad62d9127" compoundref="dd/da2/metrics_8cpp" startline="19" endline="44">log_loss</references>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1af55ff6a9f4b4beda1fe4e8c32fc1291c" compoundref="dd/da2/metrics_8cpp" startline="386" endline="393">roc_auc_score</references>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1af55ff6a9f4b4beda1fe4e8c32fc1291c" compoundref="dd/da2/metrics_8cpp" startline="386" endline="393">roc_auc_score</referencedby>
+        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a77c0fd125d62a7141e413ca7fe9f3c09" compoundref="da/d3b/scorer_8h" startline="89" endline="99">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
       </memberdef>
       <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1a547663e116b3500703ca69aaa68831b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>VectorXf</type>
@@ -479,11 +696,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="236" column="10" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="236" bodyend="255" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="97" declcolumn="10"/>
+        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="396" column="10" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="396" bodyend="415" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="141" declcolumn="10"/>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
-        <references refid="d5/db3/namespaceBrush_1_1Eval_1a547663e116b3500703ca69aaa68831b7" compoundref="dd/da2/metrics_8cpp" startline="236" endline="255">multi_log_loss</references>
-        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a44be437c0b947ccb876abd9fd8f38467" compoundref="dd/da2/metrics_8cpp" startline="257" endline="276">mean_multi_log_loss</referencedby>
-        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a547663e116b3500703ca69aaa68831b7" compoundref="dd/da2/metrics_8cpp" startline="236" endline="255">multi_log_loss</referencedby>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1a547663e116b3500703ca69aaa68831b7" compoundref="dd/da2/metrics_8cpp" startline="396" endline="415">multi_log_loss</references>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a44be437c0b947ccb876abd9fd8f38467" compoundref="dd/da2/metrics_8cpp" startline="417" endline="436">mean_multi_log_loss</referencedby>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1abc297f1dc2f6f2033b2fe33cf987e21f" compoundref="dd/da2/metrics_8cpp" startline="537" endline="557">multi_average_precision_score</referencedby>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a547663e116b3500703ca69aaa68831b7" compoundref="dd/da2/metrics_8cpp" startline="396" endline="415">multi_log_loss</referencedby>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1aafebfe954ef864d4a05f714ade77893c" compoundref="dd/da2/metrics_8cpp" startline="515" endline="535">multi_roc_auc_score</referencedby>
       </memberdef>
       <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1a44be437c0b947ccb876abd9fd8f38467" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -551,11 +770,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="257" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="257" bodyend="276" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="108" declcolumn="7"/>
-        <references refid="d5/db3/namespaceBrush_1_1Eval_1a44be437c0b947ccb876abd9fd8f38467" compoundref="dd/da2/metrics_8cpp" startline="257" endline="276">mean_multi_log_loss</references>
-        <references refid="d5/db3/namespaceBrush_1_1Eval_1a547663e116b3500703ca69aaa68831b7" compoundref="dd/da2/metrics_8cpp" startline="236" endline="255">multi_log_loss</references>
-        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a44be437c0b947ccb876abd9fd8f38467" compoundref="dd/da2/metrics_8cpp" startline="257" endline="276">mean_multi_log_loss</referencedby>
-        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a6157f327b01f05ceb05460ad058e18b6" compoundref="da/d3b/scorer_8h" startline="170" endline="176">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
+        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="417" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="417" bodyend="436" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="152" declcolumn="7"/>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1a44be437c0b947ccb876abd9fd8f38467" compoundref="dd/da2/metrics_8cpp" startline="417" endline="436">mean_multi_log_loss</references>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1a547663e116b3500703ca69aaa68831b7" compoundref="dd/da2/metrics_8cpp" startline="396" endline="415">multi_log_loss</references>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a44be437c0b947ccb876abd9fd8f38467" compoundref="dd/da2/metrics_8cpp" startline="417" endline="436">mean_multi_log_loss</referencedby>
+        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a6157f327b01f05ceb05460ad058e18b6" compoundref="da/d3b/scorer_8h" startline="173" endline="183">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
       </memberdef>
       <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1a0ea2c4db96a2f7d4081831bbf50a02de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -623,11 +842,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="278" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="278" bodyend="303" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="120" declcolumn="7"/>
+        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="438" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="438" bodyend="463" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="164" declcolumn="7"/>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
-        <references refid="d5/db3/namespaceBrush_1_1Eval_1a0ea2c4db96a2f7d4081831bbf50a02de" compoundref="dd/da2/metrics_8cpp" startline="278" endline="303">multi_zero_one_loss</references>
-        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a0ea2c4db96a2f7d4081831bbf50a02de" compoundref="dd/da2/metrics_8cpp" startline="278" endline="303">multi_zero_one_loss</referencedby>
-        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a6157f327b01f05ceb05460ad058e18b6" compoundref="da/d3b/scorer_8h" startline="170" endline="176">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1a0ea2c4db96a2f7d4081831bbf50a02de" compoundref="dd/da2/metrics_8cpp" startline="438" endline="463">multi_zero_one_loss</references>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a0ea2c4db96a2f7d4081831bbf50a02de" compoundref="dd/da2/metrics_8cpp" startline="438" endline="463">multi_zero_one_loss</referencedby>
+        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a6157f327b01f05ceb05460ad058e18b6" compoundref="da/d3b/scorer_8h" startline="173" endline="183">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
       </memberdef>
       <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1a6b498359195d68c9fd1db9e856c0fdb9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -658,11 +877,157 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="305" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="305" bodyend="341" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="125" declcolumn="7"/>
+        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="465" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="465" bodyend="501" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="169" declcolumn="7"/>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
-        <references refid="d5/db3/namespaceBrush_1_1Eval_1a6b498359195d68c9fd1db9e856c0fdb9" compoundref="dd/da2/metrics_8cpp" startline="305" endline="341">multi_bal_zero_one_loss</references>
-        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a6b498359195d68c9fd1db9e856c0fdb9" compoundref="dd/da2/metrics_8cpp" startline="305" endline="341">multi_bal_zero_one_loss</referencedby>
-        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a6157f327b01f05ceb05460ad058e18b6" compoundref="da/d3b/scorer_8h" startline="170" endline="176">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1a6b498359195d68c9fd1db9e856c0fdb9" compoundref="dd/da2/metrics_8cpp" startline="465" endline="501">multi_bal_zero_one_loss</references>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a6b498359195d68c9fd1db9e856c0fdb9" compoundref="dd/da2/metrics_8cpp" startline="465" endline="501">multi_bal_zero_one_loss</referencedby>
+        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a6157f327b01f05ceb05460ad058e18b6" compoundref="da/d3b/scorer_8h" startline="173" endline="183">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1ab851fa5f2137a8c71bc359c4e3e054b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Eval::multi_precision_score</definition>
+        <argsstring>(const VectorXf &amp;y, const ArrayXXf &amp;predict_proba, VectorXf &amp;loss, const vector&lt; float &gt; &amp;class_weights=vector&lt; float &gt;())</argsstring>
+        <name>multi_precision_score</name>
+        <qualifiedname>Brush::Eval::multi_precision_score</qualifiedname>
+        <param>
+          <type>const VectorXf &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const ArrayXXf &amp;</type>
+          <declname>predict_proba</declname>
+        </param>
+        <param>
+          <type>VectorXf &amp;</type>
+          <declname>loss</declname>
+        </param>
+        <param>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt; &amp;</type>
+          <declname>class_weights</declname>
+          <defval><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;()</defval>
+        </param>
+        <briefdescription>
+<para>Macro-averaged precision for multi-classification. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Equivalent to sklearn&apos;s <computeroutput><ref refid="d5/db3/namespaceBrush_1_1Eval_1a17d186ab2f4843e6a85bb9bb6c6e1423" kindref="member">precision_score</ref>(average=&apos;macro&apos;, zero_division=0)</computeroutput>: averages over classes present in either the true or the predicted labels. The loss vector holds the misclassification indicator. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="503" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="503" bodyend="507" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="179" declcolumn="7"/>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1ab851fa5f2137a8c71bc359c4e3e054b4" compoundref="dd/da2/metrics_8cpp" startline="503" endline="507">multi_precision_score</references>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1ab851fa5f2137a8c71bc359c4e3e054b4" compoundref="dd/da2/metrics_8cpp" startline="503" endline="507">multi_precision_score</referencedby>
+        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a6157f327b01f05ceb05460ad058e18b6" compoundref="da/d3b/scorer_8h" startline="173" endline="183">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1a370e4584cf7a501544b50bad1ead0918" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Eval::multi_recall_score</definition>
+        <argsstring>(const VectorXf &amp;y, const ArrayXXf &amp;predict_proba, VectorXf &amp;loss, const vector&lt; float &gt; &amp;class_weights=vector&lt; float &gt;())</argsstring>
+        <name>multi_recall_score</name>
+        <qualifiedname>Brush::Eval::multi_recall_score</qualifiedname>
+        <param>
+          <type>const VectorXf &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const ArrayXXf &amp;</type>
+          <declname>predict_proba</declname>
+        </param>
+        <param>
+          <type>VectorXf &amp;</type>
+          <declname>loss</declname>
+        </param>
+        <param>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt; &amp;</type>
+          <declname>class_weights</declname>
+          <defval><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;()</defval>
+        </param>
+        <briefdescription>
+<para>Macro-averaged recall for multi-classification. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Equivalent to sklearn&apos;s <computeroutput><ref refid="d5/db3/namespaceBrush_1_1Eval_1aa55385bc4eb58d9b0e2a029daead4480" kindref="member">recall_score</ref>(average=&apos;macro&apos;, zero_division=0)</computeroutput>. The loss vector holds the misclassification indicator. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="509" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="509" bodyend="513" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="188" declcolumn="7"/>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1a370e4584cf7a501544b50bad1ead0918" compoundref="dd/da2/metrics_8cpp" startline="509" endline="513">multi_recall_score</references>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a370e4584cf7a501544b50bad1ead0918" compoundref="dd/da2/metrics_8cpp" startline="509" endline="513">multi_recall_score</referencedby>
+        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a6157f327b01f05ceb05460ad058e18b6" compoundref="da/d3b/scorer_8h" startline="173" endline="183">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1aafebfe954ef864d4a05f714ade77893c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Eval::multi_roc_auc_score</definition>
+        <argsstring>(const VectorXf &amp;y, const ArrayXXf &amp;predict_proba, VectorXf &amp;loss, const vector&lt; float &gt; &amp;class_weights=vector&lt; float &gt;())</argsstring>
+        <name>multi_roc_auc_score</name>
+        <qualifiedname>Brush::Eval::multi_roc_auc_score</qualifiedname>
+        <param>
+          <type>const VectorXf &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const ArrayXXf &amp;</type>
+          <declname>predict_proba</declname>
+        </param>
+        <param>
+          <type>VectorXf &amp;</type>
+          <declname>loss</declname>
+        </param>
+        <param>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt; &amp;</type>
+          <declname>class_weights</declname>
+          <defval><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;()</defval>
+        </param>
+        <briefdescription>
+<para>Macro-averaged one-vs-rest AUROC for multi-classification. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Mean of the binary AUROC of each class against the rest, skipping classes that are absent from <computeroutput>y</computeroutput>. The loss vector holds the per-sample multinomial log loss. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="515" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="515" bodyend="535" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="198" declcolumn="7"/>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1a547663e116b3500703ca69aaa68831b7" compoundref="dd/da2/metrics_8cpp" startline="396" endline="415">multi_log_loss</references>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1aafebfe954ef864d4a05f714ade77893c" compoundref="dd/da2/metrics_8cpp" startline="515" endline="535">multi_roc_auc_score</references>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1aafebfe954ef864d4a05f714ade77893c" compoundref="dd/da2/metrics_8cpp" startline="515" endline="535">multi_roc_auc_score</referencedby>
+        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a6157f327b01f05ceb05460ad058e18b6" compoundref="da/d3b/scorer_8h" startline="173" endline="183">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1abc297f1dc2f6f2033b2fe33cf987e21f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Eval::multi_average_precision_score</definition>
+        <argsstring>(const VectorXf &amp;y, const ArrayXXf &amp;predict_proba, VectorXf &amp;loss, const vector&lt; float &gt; &amp;class_weights=vector&lt; float &gt;())</argsstring>
+        <name>multi_average_precision_score</name>
+        <qualifiedname>Brush::Eval::multi_average_precision_score</qualifiedname>
+        <param>
+          <type>const VectorXf &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const ArrayXXf &amp;</type>
+          <declname>predict_proba</declname>
+        </param>
+        <param>
+          <type>VectorXf &amp;</type>
+          <declname>loss</declname>
+        </param>
+        <param>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt; &amp;</type>
+          <declname>class_weights</declname>
+          <defval><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;()</defval>
+        </param>
+        <briefdescription>
+<para>Macro-averaged one-vs-rest average precision for multi-classification. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Mean of the binary average precision of each class against the rest, skipping classes that are absent from <computeroutput>y</computeroutput>. The loss vector holds the per-sample multinomial log loss. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="537" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="537" bodyend="557" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="208" declcolumn="7"/>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1abc297f1dc2f6f2033b2fe33cf987e21f" compoundref="dd/da2/metrics_8cpp" startline="537" endline="557">multi_average_precision_score</references>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1a547663e116b3500703ca69aaa68831b7" compoundref="dd/da2/metrics_8cpp" startline="396" endline="415">multi_log_loss</references>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1abc297f1dc2f6f2033b2fe33cf987e21f" compoundref="dd/da2/metrics_8cpp" startline="537" endline="557">multi_average_precision_score</referencedby>
+        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a6157f327b01f05ceb05460ad058e18b6" compoundref="da/d3b/scorer_8h" startline="173" endline="183">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>

@@ -1,5 +1,12 @@
 var NAVTREEINDEX6 =
 {
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a7def716cd7f6c5c071ac8eeb6f3a3dd3":[0,0,0,0,2,5],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a7def716cd7f6c5c071ac8eeb6f3a3dd3":[2,0,0,0,2,5],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a83e6a71bbf83792e8cbd64a1a3925de7":[0,0,0,0,2,51],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a83e6a71bbf83792e8cbd64a1a3925de7":[2,0,0,0,2,51],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a89035e010d3469fc61ac8e4bdc855de2":[0,0,0,0,2,27],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a89035e010d3469fc61ac8e4bdc855de2":[2,0,0,0,2,27],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a8b9d1462cec60687e36eb7d4f96c9051":[0,0,0,0,2,0],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a8b9d1462cec60687e36eb7d4f96c9051":[2,0,0,0,2,0],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a8fb9d6274f215e9bf1caa4317d3f70ad":[0,0,0,0,2,53],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a8fb9d6274f215e9bf1caa4317d3f70ad":[2,0,0,0,2,53],
@@ -242,12 +249,5 @@ var NAVTREEINDEX6 =
 "d8/d49/structNode.html#aed6c2af0fae3dd8e5a8aa2fab77479fd":[2,0,9,40],
 "d8/d49/structNode.html#af621eb9463a3ed3434841565a849c03b":[2,0,9,10],
 "d8/d4a/structBrush_1_1Function_3_01NodeType_1_1Min_01_4.html":[0,0,0,77],
-"d8/d4a/structBrush_1_1Function_3_01NodeType_1_1Min_01_4.html":[2,0,0,74],
-"d8/d4a/structBrush_1_1Function_3_01NodeType_1_1Min_01_4.html#a13cd3b4f7131cc1f694337e5c6d027b1":[0,0,0,77,0],
-"d8/d4a/structBrush_1_1Function_3_01NodeType_1_1Min_01_4.html#a13cd3b4f7131cc1f694337e5c6d027b1":[2,0,0,74,0],
-"d8/d4a/structBrush_1_1Function_3_01NodeType_1_1Min_01_4.html#a237f0e13d1d82e6c9efa5a0a1e71da29":[0,0,0,77,2],
-"d8/d4a/structBrush_1_1Function_3_01NodeType_1_1Min_01_4.html#a237f0e13d1d82e6c9efa5a0a1e71da29":[2,0,0,74,2],
-"d8/d4a/structBrush_1_1Function_3_01NodeType_1_1Min_01_4.html#aadaa8e034454ff70caf5e31cdf00db3b":[0,0,0,77,1],
-"d8/d4a/structBrush_1_1Function_3_01NodeType_1_1Min_01_4.html#aadaa8e034454ff70caf5e31cdf00db3b":[2,0,0,74,1],
-"d8/d59/structBrush_1_1Function_3_01NodeType_1_1Exp_01_4.html":[0,0,0,67]
+"d8/d4a/structBrush_1_1Function_3_01NodeType_1_1Min_01_4.html":[2,0,0,74]
 };

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cookbook &mdash; Brush 0.1.dev1+g4bb64fe25 documentation</title>
+  <title>Cookbook &mdash; Brush 0.1.dev1+g45f17d01e documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=9cb567d7"></script>
+      <script src="../_static/documentation_options.js?v=829ed20d"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -63,6 +63,7 @@
 <li class="toctree-l2"><a class="reference internal" href="json.html">JSON Interoperability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="saving_loading_populations.html">Saving and loading populations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="locking_mechanism.html">Locking the search during generation updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switching_metrics.html">Switching the classification metric with <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="archive.html">The archive</a></li>
 <li class="toctree-l2"><a class="reference internal" href="deap.html">Using Deap</a></li>
 </ul>
@@ -156,6 +157,13 @@
 <li class="toctree-l2"><a class="reference internal" href="locking_mechanism.html#lock-the-upper-part-of-the-tree">3. Lock the upper part of the tree</a></li>
 <li class="toctree-l2"><a class="reference internal" href="locking_mechanism.html#continue-evolution-with-the-lock-in-place">4. Continue evolution with the lock in place</a></li>
 <li class="toctree-l2"><a class="reference internal" href="locking_mechanism.html#stop-locking-and-resume-unrestricted-search">5. Stop locking and resume unrestricted search</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="switching_metrics.html">Switching the classification metric with <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="switching_metrics.html#an-imbalanced-binary-problem">1. An imbalanced binary problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switching_metrics.html#fit-using-auroc-as-the-scorer">2. Fit using AUROC as the scorer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switching_metrics.html#lock-the-internal-nodes-switch-to-average-precision-and-refit">3. Lock the internal nodes, switch to average precision, and refit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switching_metrics.html#compare-every-metric-before-and-after-the-switch">4. Compare every metric before and after the switch</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="archive.html">The archive</a><ul>
