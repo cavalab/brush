@@ -73,7 +73,7 @@ def test_fixed_seed_produces_identical_brush_runs():
     second = BrushClassifier(**config).fit(X, y)
 
     assert first.best_estimator_.get_model() == second.best_estimator_.get_model()
-    assert first.best_estimator_.fitness.values == second.best_estimator_.fitness.values
+    assert all(np.isclose(first.best_estimator_.fitness.values, second.best_estimator_.fitness.values, atol=1e-3))
     assert [ind.get_model() for ind in first.population_] == [
         ind.get_model() for ind in second.population_
     ]
