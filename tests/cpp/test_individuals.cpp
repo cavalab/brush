@@ -24,6 +24,7 @@ TEST(Individual, FitAndPredictRegression)
     // We must have a SearchSpace reference, so the operator ret-type checks dont 
     // fail even when feature names look right --- node metadata is consistent.
 	Parameters params;
+	params.set_random_state(42);
 	RegressorProgram prg = ss.make_regressor(0, 0, params);
 	Individual<PT::Regressor> ind(prg);
 
@@ -52,6 +53,7 @@ TEST(Individual, PredictProbaBinaryClassifier)
 	SearchSpace ss(data);
 
 	Parameters params;
+	params.set_random_state(42);
 	params.set_n_classes(data.y);
 	params.set_sample_weights(data.y);
 

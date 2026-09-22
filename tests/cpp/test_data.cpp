@@ -26,6 +26,7 @@ TEST(Data, ErrorHandling)
 TEST(Data, MixedVariableTypes)
 {
     Parameters params;
+    params.set_random_state(42);
 
     MatrixXf X(5,3);
     X << 0  , 1,    0  , // binary with integer values

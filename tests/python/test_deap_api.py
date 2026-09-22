@@ -153,12 +153,12 @@ def test_predict_proba(setup, brush_args, request):
 def test_deap_multiclass_probabilities_and_labels():
     X, y = make_classification(
         n_samples=36, n_features=4, n_informative=3, n_redundant=0,
-        n_classes=3, n_clusters_per_class=1, random_state=12)
+        n_classes=3, n_clusters_per_class=1, random_state=42)
     labels = np.array(["red", "green", "blue"])[y]
 
     est = pybrush.deap_api.DeapClassifier(
         max_gens=2, pop_size=8, max_size=30, max_depth=4,
-        num_islands=1, validation_size=0.0, random_state=12)
+        num_islands=1, validation_size=0.0, random_state=42)
     est.fit(X, labels)
 
     probabilities = est.predict_proba(X)
@@ -255,16 +255,3 @@ def test_fixed_nodes(setup, fixed_node, brush_args, request):
             assert p.program.get_model() == p_original_model, \
                 "Variation operator changed the original model."
         
-
-
-# TODO: make this work (i need to make each island (thread) use its own random generator)
-# def test_random_state():
-#     test_y = np.array( [1. , 0. , 1.4, 1. , 0. , 1. , 1. , 0. , 0. , 0.  ])
-#     test_X = np.array([[1.1, 2.0, 3.0, 4.0, 5.0, 6.5, 7.0, 8.0, 9.0, 10.0],
-#                        [2.0, 1.2, 6.0, 4.0, 5.0, 8.0, 7.0, 5.0, 9.0, 10.0]]).T
-    
-#     est1 = pybrush.BrushRegressor(random_state=42).fit(test_X, test_y)
-#     est2 = pybrush.BrushRegressor(random_state=42).fit(test_X, test_y)
-
-#     assert est1.best_estimator_.program.get_model() == est2.best_estimator_.program.get_model(), \
-#            "random state failed to generate same results"

@@ -17,6 +17,7 @@ TEST(Params, ParamsTests)
 	std::cout << "unsigned long long: min=" << std::numeric_limits<unsigned long long>::min() << " max=" << std::numeric_limits<unsigned long long>::max() << "\n";
 
     Parameters params;
+    params.set_random_state(42);
 	
     params.set_max_size(12);
     ASSERT_EQ(params.max_size, 12);

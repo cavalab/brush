@@ -32,6 +32,7 @@ TEST(Population, PopulationTests)
     SS.init(data);
 
     Parameters params;
+    params.set_random_state(42);
     params.pop_size = 20; // small pop just for tests
     Population pop = Population<ProgramType::Regressor>(); 
 

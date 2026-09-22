@@ -4,6 +4,7 @@
 TEST(Variation, FixedRootDoesntChange)
 {
     Parameters params;
+    params.set_random_state(42);
 
     MatrixXf X(10,2);
     ArrayXf y(10);
@@ -111,6 +112,7 @@ TEST(Variation, InsertMutationWorks)
     // To understand design implementation of this test, check Mutation test
 
     Parameters params;
+    params.set_random_state(42);
     params.mutation_probs = {
         {"point", 0.0},
         {"insert", 1.0},
@@ -226,6 +228,7 @@ TEST(Variation, InsertMutationWorks)
 TEST(Variation, Mutation)
 {
     Parameters params;
+    params.set_random_state(42);
     
     MatrixXf X(10,2);
     ArrayXf y(10);
@@ -319,6 +322,7 @@ TEST(Variation, Mutation)
 TEST(Variation, MutationSizeAndDepthLimit)
 {
     Parameters params;
+    params.set_random_state(42);
         
     MatrixXf X(10,2);
     ArrayXf y(10);
@@ -424,6 +428,7 @@ TEST(Variation, MutationSizeAndDepthLimit)
 TEST(Variation, Crossover)
 {
     Parameters params;
+    params.set_random_state(42);
 
     MatrixXf X(10,2);
     ArrayXf y(10);
@@ -517,6 +522,7 @@ TEST(Variation, Crossover)
 TEST(Variation, CrossoverSizeAndDepthLimit)
 {
     Parameters params;
+    params.set_random_state(42);
 
     MatrixXf X(10,2);
     ArrayXf y(10);

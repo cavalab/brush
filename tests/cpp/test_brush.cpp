@@ -38,6 +38,7 @@ TEST(Engine, EngineWorks)
     SearchSpace ss(data);
 
     Parameters params;
+    params.set_random_state(42);
     params.set_pop_size(100);
     params.set_max_gens(10);
     params.set_mig_prob(0.0);
@@ -124,6 +125,38 @@ TEST(Engine, EngineWorks)
     // TODO: validation loss
 }
 
+TEST(Engine, FixedSeedProducesIdenticalRuns)
+{
+    MatrixXf X(12, 2);
+    ArrayXf y(12);
+    X << 0.0f, 1.0f, 1.0f, 0.0f, 2.0f, 1.0f, 3.0f, 0.0f,
+         4.0f, 1.0f, 5.0f, 0.0f, 6.0f, 1.0f, 7.0f, 0.0f,
+         8.0f, 1.0f, 9.0f, 0.0f, 10.0f, 1.0f, 11.0f, 0.0f;
+    y << 1.0f, 2.0f, 2.5f, 3.5f, 4.0f, 5.0f, 5.5f, 6.5f,
+         7.0f, 8.0f, 8.5f, 9.5f;
+
+    Dataset data(X, y);
+    SearchSpace first_space(data);
+    SearchSpace second_space(data);
+    Parameters params;
+    params.set_random_state(42);
+    params.set_pop_size(12);
+    params.set_max_gens(4);
+    params.set_num_islands(2);
+    params.set_n_jobs(2);
+    params.set_mig_prob(0.0f);
+    params.set_verbosity(0);
+
+    Brush::RegressorEngine first(params, first_space);
+    first.run(data);
+    Brush::RegressorEngine second(params, second_space);
+    second.run(data);
+
+    ASSERT_EQ(first.best_ind.program.get_model(), second.best_ind.program.get_model());
+    ASSERT_EQ(first.best_ind.fitness.get_wvalues(), second.best_ind.fitness.get_wvalues());
+    ASSERT_EQ(first.get_population_as_json(), second.get_population_as_json());
+}
+
 #include <vector>
 #include <string>
 
@@ -139,6 +172,7 @@ TEST_P(EngineTest, ClassificationEngineWorks)
     ASSERT_TRUE(data.classification);
 
     Parameters params;
+    params.set_random_state(42);
     params.set_pop_size(10);
 
     // TODO: this set_class_weights is not working properly. check that
@@ -212,6 +246,7 @@ TEST(Engine, SavingLoadingFixedNodes)
     SearchSpace ss(data);
 
     Parameters params;
+    params.set_random_state(42);
     params.set_verbosity(2);
     params.set_scorer("log");
     params.set_cx_prob(0.0);
@@ -239,6 +274,7 @@ TEST(Engine, SavingLoadingFixedNodes)
     // TODO: why if I set cx_prob to 0.0 it does not work? (maybe because Im using the same params object for the two engines? do i need to remove save_pop file first?)
     
     Parameters params2;
+    params2.set_random_state(42);
     params2.set_verbosity(2);
     params2.set_scorer("log");
     params2.set_load_population("./tests/cpp/__pop_clf.json");
@@ -281,6 +317,7 @@ TEST(Engine, MaxStall)
     SearchSpace ss(data);
 
     Parameters params;
+    params.set_random_state(42);
     params.set_pop_size(100);
     params.set_max_gens(10000000);
     params.set_mig_prob(0.0);
@@ -316,6 +353,7 @@ TEST(Engine, engine_save_load_pop_works)
     };
 
     Parameters params_save;
+    params_save.set_random_state(42);
     params_save.set_functions(f);
     params_save.set_pop_size(200);
     params_save.set_max_gens(10);
@@ -324,6 +362,7 @@ TEST(Engine, engine_save_load_pop_works)
     params_save.set_save_population("./tests/cpp/__pop_analcatdata_aids.json");
 
     Parameters params_load;
+    params_load.set_random_state(42);
     params_load.set_functions(f);
     params_load.set_pop_size(200);
     params_load.set_max_gens(10);
@@ -355,6 +394,7 @@ TEST(Engine, DEnc)
         std::cout << "Running bandit: " << bandit << std::endl;
         for (int run = 0; run < 2; ++run) {
             Parameters params;
+            params.set_random_state(42);
             params.set_pop_size(100);
             params.set_max_gens(50);
             params.set_max_stall(100); // avoid early stopping

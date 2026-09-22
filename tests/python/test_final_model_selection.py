@@ -11,7 +11,7 @@ from sklearn.metrics import mean_squared_error, log_loss, accuracy_score, balanc
 
 
 def test_smallest_complexity_selection_regression():
-    X, y = make_regression(n_samples=80, n_features=6, noise=0.1, random_state=1)
+    X, y = make_regression(n_samples=80, n_features=6, noise=0.1, random_state=42)
     model = BrushRegressor(max_gens=5, pop_size=12, final_model_selection="smallest_complexity")
     model.fit(X, y)
 
@@ -25,7 +25,7 @@ def test_smallest_complexity_selection_regression():
 
     
 def test_best_validation_ci_selection_classification():
-    X, y = make_classification(n_samples=100, n_features=8, n_informative=5, random_state=2)
+    X, y = make_classification(n_samples=100, n_features=8, n_informative=5, random_state=42)
 
     model = BrushClassifier(max_gens=5, pop_size=15, final_model_selection="best_validation_ci")
     model.fit(X, y)
@@ -40,7 +40,7 @@ def test_callable_selection():
     def pick_first(pop, archive):
         return archive[0]
 
-    X, y = make_classification(n_samples=60, n_features=5, random_state=3)
+    X, y = make_classification(n_samples=60, n_features=5, random_state=42)
     model = BrushClassifier(max_gens=5, pop_size=10, final_model_selection=pick_first)
     model.fit(X, y)
 
@@ -48,7 +48,7 @@ def test_callable_selection():
 
 
 def test_invalid_selection_raises():
-    X, y = make_regression(n_samples=50, n_features=5, random_state=4)
+    X, y = make_regression(n_samples=50, n_features=5, random_state=42)
     model = BrushRegressor(max_gens=5, pop_size=10, final_model_selection="not_a_method")
     with pytest.raises(ValueError):
         model.fit(X, y)
@@ -58,7 +58,7 @@ def test_callable_failure_raises():
     def bad_selector(pop, archive):
         raise Exception("boom")
 
-    X, y = make_classification(n_samples=60, n_features=5, random_state=5)
+    X, y = make_classification(n_samples=60, n_features=5, random_state=42)
     model = BrushClassifier(max_gens=5, pop_size=10, final_model_selection=bad_selector)
 
     with pytest.raises(RuntimeError):
@@ -206,7 +206,7 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
     print("original loss_v", est.best_estimator_.fitness.loss_v)
     print("recalculated loss", eval_with_sklearn(est.best_estimator_, log=True))
 
-    np.random.seed(0)
+    np.random.seed(42)
     val_samples = [eval_with_sklearn(est.best_estimator_, np.random.randint(len(y), size=len(y)))
                    for _ in range(100)]
 
@@ -251,7 +251,7 @@ def test_pickle_unpickle_with_different_final_model_selection(final_model_select
     # previous test is using a classification problem. this one focuses on regression
     
     X, y = make_regression(
-        n_samples=80, n_features=6, noise=0.1, random_state=1
+        n_samples=80, n_features=6, noise=0.1, random_state=42
     )
 
     model = BrushRegressor(
@@ -282,7 +282,7 @@ def pick_last(pop, archive):
 def test_pickle_unpickle_with_callable_final_model_selection():
     
     X, y = make_classification(
-        n_samples=60, n_features=5, random_state=7
+        n_samples=60, n_features=5, random_state=42
     )
 
     model = BrushClassifier(
@@ -318,7 +318,7 @@ def test_pickle_unpickle_with_different_final_model_selection(final_model_select
     # previous test is using a classification problem. this one focuses on regression
     
     X, y = make_regression(
-        n_samples=80, n_features=6, noise=0.1, random_state=1
+        n_samples=80, n_features=6, noise=0.1, random_state=42
     )
 
     model = BrushRegressor(

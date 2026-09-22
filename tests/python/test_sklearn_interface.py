@@ -55,6 +55,30 @@ def test_brush_classifier():
     assert acc > 0.5
 
 
+def test_fixed_seed_produces_identical_brush_runs():
+    X, y = make_classification(
+        n_samples=60, n_features=6, n_informative=4, n_redundant=0,
+        random_state=42,
+    )
+    config = dict(
+        max_gens=4,
+        pop_size=12,
+        num_islands=2,
+        n_jobs=2,
+        random_state=42,
+        verbosity=0,
+    )
+
+    first = BrushClassifier(**config).fit(X, y)
+    second = BrushClassifier(**config).fit(X, y)
+
+    assert first.best_estimator_.get_model() == second.best_estimator_.get_model()
+    assert first.best_estimator_.fitness.values == second.best_estimator_.fitness.values
+    assert [ind.get_model() for ind in first.population_] == [
+        ind.get_model() for ind in second.population_
+    ]
+
+
 @pytest.mark.parametrize("verbosity", [0, 1, 2])
 def test_brush_classifier_verbosity_levels(verbosity):
     X, y = make_classification(n_samples=60, n_features=8, n_classes=2, random_state=42)
@@ -138,7 +162,7 @@ def test_brush_classifier_population_reuse(tmp_path):
 
 def test_brush_classifier_checkpoint_training(tmp_path):
     # Small synthetic dataset
-    X, y = make_classification(n_samples=80, n_features=8, n_classes=2, random_state=123)
+    X, y = make_classification(n_samples=80, n_features=8, n_classes=2, random_state=42)
 
     checkpoint = tmp_path / "brush_checkpoint.json"
 
@@ -173,7 +197,7 @@ def test_brush_classifier_checkpoint_training(tmp_path):
 
 def test_brush_lock_nodes_and_leaves():
     # Small synthetic dataset
-    X, y = make_classification(n_samples=60, n_features=6, n_classes=2, random_state=99)
+    X, y = make_classification(n_samples=60, n_features=6, n_classes=2, random_state=42)
 
     est = BrushClassifier(
         functions=['Add','Mul','Sin','Cos'],
@@ -207,12 +231,12 @@ def test_brush_lock_nodes_and_leaves():
 def test_brush_multiclass_probabilities_and_labels():
     X, y = make_classification(
         n_samples=45, n_features=5, n_informative=4, n_redundant=0,
-        n_classes=3, n_clusters_per_class=1, random_state=11)
+        n_classes=3, n_clusters_per_class=1, random_state=42)
     labels = np.array(["class-a", "class-b", "class-c"])[y]
 
     est = BrushClassifier(
         max_gens=2, pop_size=8, max_size=30, max_depth=4,
-        num_islands=1, validation_size=0.0, random_state=11)
+        num_islands=1, validation_size=0.0, random_state=42)
     est.fit(X, labels)
 
     probabilities = est.predict_proba(X)

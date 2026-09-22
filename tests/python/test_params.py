@@ -13,9 +13,9 @@ def test_param_random_state():
     test_X = np.array([[1.1, 2.0, 3.0, 4.0, 5.0, 6.5, 7.0, 8.0, 9.0, 10.0],
                        [2.0, 1.2, 6.0, 4.0, 5.0, 8.0, 7.0, 5.0, 9.0, 10.0]]).T
     
-    # First run with random_state=123
+    # First run with random_state=42
     reg1 = BrushRegressor(
-        random_state=123,
+        random_state=42,
         max_gens=50,
         pop_size=10,
         num_islands=4,
@@ -28,9 +28,9 @@ def test_param_random_state():
     
     assert len(first_run_models) > 0, "First run produced no individuals"
     
-    # Second run with same random_state=123
+    # Second run with same random_state=42
     reg2 = BrushRegressor(
-        random_state=123,
+        random_state=42,
         max_gens=50,
         pop_size=10,
         num_islands=4,

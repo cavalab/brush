@@ -8,6 +8,7 @@ using namespace Brush::Simpl;
 TEST(Simplification, ConstantsSimplification)
 {
     Parameters params;
+    params.set_random_state(42);
 
     MatrixXf X(10,2);
     ArrayXf y(10);
@@ -57,6 +58,7 @@ TEST(Simplification, ConstantsSimplification)
 TEST(Simplification, InexactSimplification)
 {
     Parameters params;
+    params.set_random_state(42);
 
     MatrixXf X(10,2);
     ArrayXf y(10);
