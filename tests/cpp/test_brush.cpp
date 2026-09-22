@@ -216,6 +216,15 @@ TEST_P(EngineTest, ClassificationEngineWorks)
     Brush::ClassifierEngine est4(params, ss);
     est4.run(data);
 
+    // Test the scorers that are only used for selection (never for fitting weights)
+    for (const auto& scorer : {"precision", "recall", "roc_auc"}) {
+        params.set_scorer(scorer);
+        std::cout << "Bandit type: " << bandit_type << std::endl;
+        std::cout << "Metric: " << scorer << std::endl;
+        Brush::ClassifierEngine est5(params, ss);
+        est5.run(data);
+    }
+
     std::cout << "Parameters probs:" << std::endl;
     std::cout << "cx: " << est.params.get_cx_prob() << std::endl;
     for (const auto& [name, prob] : est.params.get_mutation_probs())

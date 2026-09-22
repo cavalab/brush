@@ -235,7 +235,11 @@ struct Operator
         auto inputs = get_kids(d, tn, weights);
         if constexpr (is_one_of_v<Scalar,float,fJet>)
         {
-            if (tn.data.get_is_weighted())
+            // Nodes like Floor and Ceil can have is_weighted set (it only
+            // checks the return type), but get_weights/set_weights skip them.
+            // Consuming a weight here would shift every following weight and
+            // read past the end of the optimizer's parameter array.
+            if (tn.data.get_is_weighted() && IsWeighable(NT))
             {
                 auto w = util::get_weight<RetType,Scalar,W>(tn, weights);
                 return this->apply(inputs)*w;
