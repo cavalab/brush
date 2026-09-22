@@ -77,7 +77,7 @@ class EstimatorInterface():
     scorer : str, default None
         The metric to use for the "scorer" objective. If None, it will be set to
         "mse" for regression and "log" for binary classification.
-        Available options are `["mse", "log", "accuracy", "balanced_accuracy", "average_precision_score"]`
+        Available options are `["mse", "log", "multi_log", "accuracy", "balanced_accuracy", "average_precision_score"]`
     algorithm : {"nsga2island", "nsga2", "gaisland", "ga"}, default "nsga2"
         Which Evolutionary Algorithm framework to use to evolve the population.
         This is used only in DeapEstimators.
@@ -350,10 +350,13 @@ class EstimatorInterface():
             if self.mode == "regression":
                 assert self.scorer in ['mse'], \
                     "Invalid scorer for the regression mode"
+            elif params.n_classes == 2:
+                assert self.scorer in ['log', 'balanced_accuracy', 'accuracy',
+                                       'average_precision_score'], \
+                    "Invalid scorer for binary classification"
             else:
-                assert self.scorer in ['log', 'multi_log', 'balanced_accuracy',
-                                       'accuracy', 'average_precision_score'], \
-                    "Invalid scorer for the classification mode"
+                assert self.scorer in ['multi_log', 'balanced_accuracy', 'accuracy'], \
+                    "Invalid scorer for multiclass classification"
                 
         params.scorer = self.scorer
        
