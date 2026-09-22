@@ -89,13 +89,14 @@ void bind_engine(py::module& m, string name)
              ;
 
     // specialization for subclasses
-    if constexpr (std::is_same_v<T,Cls>)
+    if constexpr (std::is_same_v<T,Cls> || std::is_same_v<T,MCls>)
     {
+        using ProbType = std::conditional_t<std::is_same_v<T,MCls>, ArrayXXf, ArrayXf>;
         engine.def("predict_proba",
-                static_cast<ArrayXf (T::*)(const Dataset &d)>(&T::predict_proba),
+                static_cast<ProbType (T::*)(const Dataset &d)>(&T::predict_proba),
                 "predict from Dataset object")
            .def("predict_proba",
-                static_cast<ArrayXf (T::*)(const Ref<const ArrayXXf> &X)>(&T::predict_proba),
+                static_cast<ProbType (T::*)(const Ref<const ArrayXXf> &X)>(&T::predict_proba),
                 "predict from X data")
             ;
     }
