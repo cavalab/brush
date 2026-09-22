@@ -149,9 +149,16 @@ template<PT PType> struct Program
 
     Program<PType>& fit(const Dataset& d)
     {
+        return fit(d, {});
+    }
+
+    /// Fit the program with optional per-class weights for classification.
+    Program<PType>& fit(const Dataset& d,
+                        const vector<float>& class_weights)
+    {
         TreeType out =  Tree.begin().node->fit<TreeType>(d);
         this->is_fitted_ = true;
-        update_weights(d);
+        update_weights(d, class_weights);
         // this->valid = true;
         return *this;
     };
@@ -294,7 +301,8 @@ template<PT PType> struct Program
      * 
      * @param d the dataset
      */
-    void update_weights(const Dataset& d);
+    void update_weights(const Dataset& d,
+                        const vector<float>& class_weights);
 
     /// @brief returns the number of weights in the program.
     int get_n_weights() const
@@ -316,7 +324,8 @@ template<PT PType> struct Program
             // It is important that this condition also matches the condition in 
             // the methods get_weights and set_weights.
             if (Is<NodeType::OffsetSum>(node.node_type)
-            || (node.get_is_weighted() && IsWeighable(node.ret_type)) )
+            || (node.get_is_weighted() && IsWeighable(node.ret_type)
+                && IsWeighable(node.node_type)) )
                 ++count;
         }
         return count;
@@ -340,7 +349,8 @@ template<PT PType> struct Program
                 continue;
 
             if ( Is<NodeType::OffsetSum>(node.node_type)
-            ||   (node.get_is_weighted() && IsWeighable(node.ret_type)) )
+            ||   (node.get_is_weighted() && IsWeighable(node.ret_type)
+                && IsWeighable(node.node_type)) )
             {
                 weights(i) = node.W;
                 ++i;
@@ -372,7 +382,8 @@ template<PT PType> struct Program
                 continue;
 
             if ( Is<NodeType::OffsetSum>(node.node_type)
-            ||   (node.get_is_weighted() && IsWeighable(node.node_type)) )
+            ||   (node.get_is_weighted() && IsWeighable(node.ret_type)
+                && IsWeighable(node.node_type)) )
             {
                 node.W = weights(j);
                 ++j;
@@ -601,6 +612,10 @@ template<PT PType> struct Program
 
                     head_label = edge_label;
                 }
+                else if (Is<NodeType::Softmax>(parent->data.node_type)){
+                    // Each child supplies logits for one output class.
+                    edge_label = fmt::format("class {}", j);
+                }
 
                 // drawing the edges
                 string font_color = "";
@@ -671,13 +686,14 @@ template<PT PType> struct Program
 namespace Brush{
 
 template<ProgramType PType> 
-void Program<PType>::update_weights(const Dataset& d)
+void Program<PType>::update_weights(const Dataset& d,
+                                    const vector<float>& class_weights)
 {
     // Updates the weights within a tree. 
     // make an optimizer
     auto WO = WeightOptimizer(); 
     // get new weights from optimization.
-    WO.update((*this), d);
+    WO.update((*this), d, class_weights);
 };
 
 
