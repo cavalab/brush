@@ -18,6 +18,7 @@ from sklearn.metrics import accuracy_score, balanced_accuracy_score, log_loss
 from sklearn.metrics import average_precision_score, mean_squared_error
 
 from pybrush import Parameters, Dataset, SearchSpace, brush_rng, individual
+from pybrush._brush import set_random_state as set_brush_random_state
 from pybrush.EstimatorInterface import EstimatorInterface
 from pybrush import RegressorEngine, ClassifierEngine, MultiClassifierEngine
 
@@ -63,6 +64,12 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
             1-d array of (boolean) target values.
         """
         
+        # Dataset construction can optionally shuffle a split, so seed the
+        # native generator before constructing any Brush object, not only when
+        # Engine::init runs later in this method.
+        if isinstance(self.random_state, int):
+            set_brush_random_state(self.random_state)
+
         self.feature_names_ = []
         self.feature_types_ = []
         if isinstance(X, pd.DataFrame):

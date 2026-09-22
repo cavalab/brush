@@ -122,7 +122,9 @@ struct Node {
     float W; 
     
     /// whether to center the operator in pretty printing
-    bool center_op; // TODO: use center_op in printing
+    // Retained for backwards-compatible program JSON. This has not being implemented yet
+    // While doing some random_state tests, i realized that this feature was being set to true sometimes, undesirable. So we make sure to initialize it as false always
+    bool center_op = false;
     
     // /// @brief a node hash / unique ID for the node, except weights
     // size_t node_hash; 
@@ -171,6 +173,8 @@ struct Node {
     }
 
     void init(){
+        center_op = false;
+
         // starting weights with neutral element of the operation. offsetsum
         // is the only node that does not multiply the weight --- instead, it adds it,
         // so we need to handle it differently

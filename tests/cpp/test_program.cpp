@@ -14,6 +14,7 @@ TEST(Program, MakeRegressor)
     SearchSpace SS;
     SS.init(data);
     Parameters params;
+    params.set_random_state(42);
 
     // Program<ArrayXf> DXtree;
     for (int d = 1; d < 10; ++d)
@@ -64,6 +65,7 @@ TEST(Program, MakeRegressor)
 TEST(Program, FitRegressor)
 {
     Parameters params;
+    params.set_random_state(42);
 
     Dataset data = Data::read_csv("docs/examples/datasets/d_enc.csv","label");
 
@@ -110,6 +112,7 @@ TEST(Program, FitRegressor)
 TEST(Program, PredictWithWeights)
 {
     Parameters params;
+    params.set_random_state(42);
         
     Dataset data = Data::read_csv("docs/examples/datasets/d_enc.csv","label");
 
@@ -164,6 +167,7 @@ TEST(Program, PredictWithWeights)
 TEST(Program, FitClassifier)
 {
     Parameters params;
+    params.set_random_state(42);
         
     Dataset data = Data::read_csv("docs/examples/datasets/d_analcatdata_aids.csv", "target");
     
@@ -219,6 +223,7 @@ TEST(Program, FitClassifier)
 TEST(Program, Serialization)
 {
     Parameters params;
+    params.set_random_state(42);
 
     // test mutation
     // TODO: set random seed
@@ -290,6 +295,7 @@ TEST(Operators, ProgramSizeAndDepthPARAMS)
     Dataset data(X,y);
 
     Parameters params;
+    params.set_random_state(42);
 
     SearchSpace SS;
     SS.init(data);
@@ -339,6 +345,7 @@ TEST(Operators, ProgramSizeAndDepthPARAMS)
 TEST(Program, ComparisonAndBooleanOperators)
 {
     Parameters params;
+    params.set_random_state(42);
     
     // dataset with float and integer features
     MatrixXf X(10,6);

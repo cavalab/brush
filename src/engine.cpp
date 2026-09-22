@@ -516,11 +516,15 @@ void Engine<T>::run(Dataset &data)
     // heavily inspired in https://github.com/heal-research/operon/blob/main/source/algorithms/nsga2.cpp
     auto [init, cond, body, back, done] = taskflow.emplace(
         [&](tf::Subflow& subflow) { 
-            auto fit_init_pop = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
-                // Evaluate the individuals at least once
-                // Set validation loss before calling update best
-
-                evaluator.update_fitness(this->pop, island, data, params, true, true);
+            // Fitting an island mutates program weights.  Keep that phase in
+            // a stable order as well, so the first selection sees identical
+            // fitness values for repeated seeded runs.
+            auto fit_init_pop = subflow.emplace([&]() {
+                for (int island = 0; island < this->params.num_islands; ++island) {
+                    // Evaluate the individuals at least once. Set validation
+                    // loss before calling update_best.
+                    evaluator.update_fitness(this->pop, island, data, params, true, true);
+                }
             });
             auto find_init_best = subflow.emplace([&]() { 
                 // Make sure we initialize it. We do this update here because we need to 
@@ -541,7 +545,13 @@ void Engine<T>::run(Dataset &data)
                 batch = data.get_batch(); // will return the original dataset if it is set to dont use batch 
             }).name("prepare generation");// set generation in params, get batch
 
-            auto run_generation = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
+            // Selection consumes the process-wide random stream.  Keep island
+            // selection ordered: Taskflow workers are not OpenMP workers, so
+            // using their scheduling order would otherwise make a fixed seed
+            // nondeterministic.  Initial fitness evaluation is ordered too,
+            // so the complete seeded evolutionary path is scheduler-neutral.
+            auto run_generation = subflow.emplace([&]() {
+                for (int island = 0; island < this->params.num_islands; ++island) {
 
                 evaluator.update_fitness(this->pop, island, data, params, false, false); // fit the weights with all training data
                 
@@ -556,8 +566,8 @@ void Engine<T>::run(Dataset &data)
                 }
                 
                 this->pop.add_offspring_indexes(island); 
-
-            }).name("runs one generation at each island in parallel");
+                }
+            }).name("runs one generation at each island in deterministic order");
 
             auto update_pop = subflow.emplace([&]() { // sync point
                 // Variation is not thread safe.

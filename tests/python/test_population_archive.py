@@ -13,7 +13,7 @@ from sklearn.metrics import accuracy_score
 
 
 def test_archive_not_empty():
-    X, y = make_classification(n_samples=40, n_features=5, n_classes=2, random_state=7)
+    X, y = make_classification(n_samples=40, n_features=5, n_classes=2, random_state=42)
     est = BrushClassifier(max_gens=5, pop_size=10, verbosity=0)
     est.fit(X, y)
 
@@ -22,7 +22,7 @@ def test_archive_not_empty():
 
 
 def test_archive_individual_get_model_and_predict():
-    X, y = make_classification(n_samples=40, n_features=5, n_classes=2, random_state=7)
+    X, y = make_classification(n_samples=40, n_features=5, n_classes=2, random_state=42)
     est = BrushClassifier(max_gens=5, pop_size=10, verbosity=0)
     est.fit(X, y)
 
@@ -40,7 +40,7 @@ def test_archive_individual_get_model_and_predict():
 
 
 def test_population_individual_predict():
-    X, y = make_classification(n_samples=50, n_features=6, n_classes=2, random_state=13)
+    X, y = make_classification(n_samples=50, n_features=6, n_classes=2, random_state=42)
     est = BrushClassifier(max_gens=5, pop_size=12, verbosity=0)
     est.fit(X, y)
 

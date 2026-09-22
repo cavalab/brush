@@ -163,6 +163,15 @@ namespace Brush { namespace Util{
             
             // Vector of pseudo-random number generators, one for each thread
             vector<std::mt19937> rg;
+
+            // Cached half of the Box-Muller transform used by gasdev().  This
+            // state is part of the generator and must be reset with its seed.
+            
+            // Gaussian random numbers are generated with box-muller --> that
+            // process generates two independent distributed random normal numbers. 
+            // The idea here is to cache the second one and use it, instead of discarding.
+            bool has_spare_normal = false;
+            float spare_normal = 0.0f;
             
             // private static attribute used by every instance of the class.
             // All threads share common static members of the class

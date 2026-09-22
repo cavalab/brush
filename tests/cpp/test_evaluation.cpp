@@ -131,6 +131,7 @@ TEST(Evaluation, MulticlassSoftmaxHasOneOutputPerClass)
     Dataset data(X, y, {}, {}, {}, true);
     SearchSpace search_space(data);
     Parameters params;
+    params.set_random_state(42);
     params.classification = true;
     params.set_n_classes(y);
     params.max_depth = 3;
