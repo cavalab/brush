@@ -10,7 +10,7 @@ var searchData=
   ['replacestringinplace_7',['ReplaceStringInPlace',['../d6/d2e/namespaceBrush_1_1Util.html#aa1982ec999d497f97eed7572863a58fa',1,'Brush::Util']]],
   ['repr_8',['repr',['../d6/dd0/structBrush_1_1Fitness.html#a4bec036d5b4fa2acc82b2e934183a45c',1,'Brush::Fitness::repr()'],['../d4/dc3/structBrush_1_1SearchSpace.html#ab671dbf7c62fca02f2ccf263a2ad9a6a',1,'Brush::SearchSpace::repr()'],['../de/d87/structSearchSpace.html#ab671dbf7c62fca02f2ccf263a2ad9a6a',1,'SearchSpace::repr()']]],
   ['reset_9',['Reset',['../d8/da4/classBrush_1_1Util_1_1Timer.html#a2b0d0e5b94f317dcc50d7cffc45321e3',1,'Brush::Util::Timer']]],
-  ['residualevaluator_10',['ResidualEvaluator',['../d4/d70/structBrush_1_1ResidualEvaluator.html#a68b50f100691a61d8a643dd903aafc74',1,'Brush::ResidualEvaluator']]],
+  ['residualevaluator_10',['ResidualEvaluator',['../d4/d70/structBrush_1_1ResidualEvaluator.html#ad03056c1ed2973eed9277ba0295e1c6a',1,'Brush::ResidualEvaluator']]],
   ['reverse_5fmap_11',['reverse_map',['../d6/d2e/namespaceBrush_1_1Util.html#a104f5440d54d751bac78c892b7022c71',1,'Brush::Util']]],
   ['rnd_12',['Rnd',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9bd56ea15679d17f3577f59e46d6e065',1,'Brush::Util::Rnd']]],
   ['rnd_5falpha_5fbeta_13',['rnd_alpha_beta',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a20753601c00c28c431ced39c8c5a216d',1,'Brush::Util::Rnd']]],

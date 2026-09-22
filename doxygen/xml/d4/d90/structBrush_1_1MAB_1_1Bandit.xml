@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="d4/d90/structBrush_1_1MAB_1_1Bandit" kind="struct" language="C++" prot="public">
     <compoundname>Brush::MAB::Bandit</compoundname>
     <includes refid="d7/d00/bandit_8h" local="no">bandit.h</includes>
@@ -134,6 +134,7 @@
         <references refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1acb35b5e93e90f30dd09e3266ae81e8ab" compoundref="d7/d01/bandit_8cpp" startline="36" endline="48">set_bandit</references>
         <references refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1aa9355d7069ff5b8484f55270d1ff6cd5" compoundref="d7/d01/bandit_8cpp" startline="76" endline="78">set_probs</references>
         <references refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a8227b7fc6ffd0a7a5fa5349fca85cfa1" compoundref="d7/d01/bandit_8cpp" startline="60" endline="62">set_type</references>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a34e022870eeefe3cf27f1b5575738ce9" compoundref="d4/d1f/variation_8h" startline="76" endline="172">Brush::Var::Variation&lt; T &gt;::init</referencedby>
       </memberdef>
       <memberdef kind="function" id="d4/d90/structBrush_1_1MAB_1_1Bandit_1ac0c055ea74418b27bc2656eec7de61c6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -442,6 +443,7 @@
         <location file="/home/runner/work/brush/brush/src/bandit/bandit.h" line="112" column="12" bodyfile="/home/runner/work/brush/brush/src/bandit/bandit.cpp" bodystart="96" bodyend="99"/>
         <references refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a2c0c9397ea849fa0d267e15f264faa09" compoundref="d7/d01/bandit_8cpp" startline="50" endline="54">ensure_bandit_set</references>
         <references refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1ae7171024c5935b29bf475ab2e660fe2e" compoundref="d7/d00/bandit_8h" startline="39">pbandit</references>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="482">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="function" id="d4/d90/structBrush_1_1MAB_1_1Bandit_1a316044a5416b7ed322fce6409a54fe98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -486,6 +488,7 @@
         <references refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a2c0c9397ea849fa0d267e15f264faa09" compoundref="d7/d01/bandit_8cpp" startline="50" endline="54">ensure_bandit_set</references>
         <references refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1ae7171024c5935b29bf475ab2e660fe2e" compoundref="d7/d00/bandit_8h" startline="39">pbandit</references>
         <referencedby refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1ac982cfb269eca3c87663bd039a3e4687" compoundref="d7/d01/bandit_8cpp" startline="80" endline="94">sample_probs</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="482">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">

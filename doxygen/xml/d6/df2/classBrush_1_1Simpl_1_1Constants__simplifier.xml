@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier" kind="class" language="C++" prot="public">
     <compoundname>Brush::Simpl::Constants_simplifier</compoundname>
     <includes refid="d2/d6f/constants_8h" local="no">constants.h</includes>
@@ -35,12 +35,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/simplification/constants.h" line="19" column="21" bodyfile="/home/runner/work/brush/brush/src/simplification/constants.h" bodystart="19" bodyend="79"/>
+        <location file="/home/runner/work/brush/brush/src/simplification/constants.h" line="19" column="21" bodyfile="/home/runner/work/brush/brush/src/simplification/constants.h" bodystart="19" bodyend="91"/>
         <references refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366a3cdc33a35d0e4f3b9bae953babd8f9b4" compoundref="d9/d49/types_8h" startline="72">Brush::BinaryClassifier</references>
         <references refid="d1/d3a/structBrush_1_1Node_1a4fcf7feccb71d538f8614d3c51247eb4" compoundref="d1/d77/node_8h" startline="276" endline="276">Brush::Node::get_prob_change</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
         <references refid="dc/d5c/namespaceBrush_1a14447d2f04191fa6607e02077a4137ea" compoundref="d1/d77/node_8h" startline="48" endline="48">Brush::Isnt</references>
         <references refid="dc/d5c/namespaceBrush_1a1d5a63450bcdb77bd08283c9f74ca53f" compoundref="d1/d77/node_8h" startline="51" endline="58">Brush::IsWeighable</references>
+        <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa15a48b9e681bad477840a498c9b9ffea" compoundref="d9/d49/types_8h" startline="149">Brush::MatrixF</references>
         <references refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366ac62539fc5a23115fca906befbd511c0a" compoundref="d9/d49/types_8h" startline="73">Brush::MulticlassClassifier</references>
         <references refid="d1/d3a/structBrush_1_1Node_1a522791afe93c92442564356ff19ff55a" compoundref="d1/d77/node_8h" startline="94">Brush::Node::node_type</references>
         <references refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366abe2f9eac301f8c5b7acffd6b3c458faa" compoundref="d9/d49/types_8h" startline="71">Brush::Regressor</references>
@@ -50,6 +51,7 @@
         <references refid="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" compoundref="d1/dea/program_8h" startline="72">Brush::Program&lt; PType &gt;::Tree</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1ad88c0170839ba79e41dc5715e77abfc8" compoundref="de/d06/utils_8cpp" startline="317" endline="320">Brush::Util::variance</references>
         <references refid="d1/d3a/structBrush_1_1Node_1ab719e64b13753515be49327d98bf2224" compoundref="d1/d77/node_8h" startline="122">Brush::Node::W</references>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="482">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="function" id="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1a1d3b09ecfca74270f8b89f751ec839a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -63,7 +65,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/simplification/constants.h" line="81" column="13" bodyfile="/home/runner/work/brush/brush/src/simplification/constants.cpp" bodystart="8" bodyend="10"/>
+        <location file="/home/runner/work/brush/brush/src/simplification/constants.h" line="93" column="13" bodyfile="/home/runner/work/brush/brush/src/simplification/constants.cpp" bodystart="8" bodyend="10"/>
       </memberdef>
       <memberdef kind="function" id="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1ad652683352c6e58a84f093a8b34503b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -77,14 +79,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/simplification/constants.h" line="82" column="13" bodyfile="/home/runner/work/brush/brush/src/simplification/constants.cpp" bodystart="84" bodyend="84"/>
+        <location file="/home/runner/work/brush/brush/src/simplification/constants.h" line="94" column="13" bodyfile="/home/runner/work/brush/brush/src/simplification/constants.cpp" bodystart="84" bodyend="84"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/brush/brush/src/simplification/constants.h" line="15" column="5" bodyfile="/home/runner/work/brush/brush/src/simplification/constants.h" bodystart="16" bodyend="85"/>
+    <location file="/home/runner/work/brush/brush/src/simplification/constants.h" line="15" column="5" bodyfile="/home/runner/work/brush/brush/src/simplification/constants.h" bodystart="16" bodyend="97"/>
     <listofallmembers>
       <member refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1a1d3b09ecfca74270f8b89f751ec839a0" prot="public" virt="non-virtual"><scope>Brush::Simpl::Constants_simplifier</scope><name>Constants_simplifier</name></member>
       <member refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1a1967ec4e50c83b4a7890959d9f6e145f" prot="public" virt="non-virtual"><scope>Brush::Simpl::Constants_simplifier</scope><name>simplify_tree</name></member>

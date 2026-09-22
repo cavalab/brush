@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Locking the search during generation updates &mdash; Brush 0.1.dev1+g33a7db448 documentation</title>
+  <title>Locking the search during generation updates &mdash; Brush 0.1.dev1+g1823dfbdb documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=3994a0a4"></script>
+      <script src="../_static/documentation_options.js?v=6bcea315"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -59,6 +59,7 @@
 <li class="toctree-l2"><a class="reference internal" href="data.html">Working with Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="search_space.html">The Search Space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="working_with_programs.html">Working with Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multiclassification.html">Multiclass classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="json.html">JSON Interoperability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="saving_loading_populations.html">Saving and loading populations</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Locking the search during generation updates</a><ul>
@@ -160,14 +161,18 @@
     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">X_shifted</span>
 <span class="p">])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;base shape:&#39;</span><span class="p">,</span> <span class="n">X_base</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_base</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;shifted shape:&#39;</span><span class="p">,</span> <span class="n">X_shifted</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_shifted</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'base shape:'</span><span class="p">,</span> <span class="n">X_base</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_base</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'shifted shape:'</span><span class="p">,</span> <span class="n">X_shifted</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_shifted</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'y base mean:   '</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_base</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'y shifted mean:'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_shifted</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>base shape: (500, 3) (500,)
 shifted shape: (500, 3) (500,)
+y base mean:    -0.07736613840644213
+y shifted mean: 3.7191083728546763
 </pre></div>
 </div>
 </div>
@@ -179,33 +184,33 @@ shifted shape: (500, 3) (500,)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">(</span>
-    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitOn&#39;</span><span class="p">,</span> <span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span> <span class="s1">&#39;Mul&#39;</span><span class="p">,</span> <span class="s1">&#39;Add&#39;</span><span class="p">,</span> <span class="s1">&#39;Sub&#39;</span><span class="p">],</span>
-    <span class="n">pop_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-    <span class="n">max_gens</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
-    <span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="n">max_size</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">'SplitOn'</span><span class="p">,</span> <span class="s1">'SplitBest'</span><span class="p">,</span> <span class="s1">'Mul'</span><span class="p">,</span> <span class="s1">'Add'</span><span class="p">,</span> <span class="s1">'Sub'</span><span class="p">],</span>
+    <span class="n">pop_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+    <span class="n">max_gens</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">max_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">start_from_decision_trees</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">constants_simplification</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">inexact_simplification</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">inexact_simplification</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">random_state</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_base</span><span class="p">,</span> <span class="n">y_base</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;stage 1 base mse:&#39;</span><span class="p">,</span> <span class="n">mse</span><span class="p">(</span><span class="n">y_base</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_base</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;stage 1 shifted mse:&#39;</span><span class="p">,</span> <span class="n">mse</span><span class="p">(</span><span class="n">y_shifted</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_shifted</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;stage 1 model:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'stage 1 base mse:'</span><span class="p">,</span> <span class="n">mse</span><span class="p">(</span><span class="n">y_base</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_base</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'stage 1 shifted mse:'</span><span class="p">,</span> <span class="n">mse</span><span class="p">(</span><span class="n">y_shifted</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_shifted</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'stage 1 model:'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 100% [====================]
-stage 1 base mse: 2.024100915882261
-stage 1 shifted mse: 6.257131345427466
+stage 1 base mse: 0.9389598521387683
+stage 1 shifted mse: 12.693906935930773
 stage 1 model:
-Sub(Mul(Add(x_1,If(x_1&gt;=-2.61,x_0,-4.43)),Sub(1.47*x_2,1.31)),-3.38*x_0)
+If(x_0&gt;=0.24,If(x_2&gt;=-0.04,3.90,-3.03*x_1),If(x_2&gt;=0.04,4.09*x_0,-2.98*x_1))
 </pre></div>
 </div>
 </div>
@@ -217,39 +222,35 @@ Sub(Mul(Add(x_1,If(x_1&gt;=-2.61,x_0,-4.43)),Sub(1.47*x_2,1.31)),-3.38*x_0)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">program</span><span class="o">.</span><span class="n">lock_nodes</span><span class="p">(</span>
-    <span class="mi">3</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">,</span>
     <span class="n">keep_leaves_unlocked</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">keep_current_weights</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;locked the top two levels of the current best estimator&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;locked model:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'locked the top two levels of the current best estimator'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'locked model:'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;locked tree:&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">&#39;tree&#39;</span><span class="p">))</span>
-<span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">&#39;dot&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'locked tree:'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">'tree'</span><span class="p">))</span>
+<span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">'dot'</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>locked the top two levels of the current best estimator
 locked model:
-Sub(Mul(Add(x_1,If(x_1&gt;=-2.61,x_0,-4.43)),Sub(1.47*x_2,1.31)),-3.38*x_0)
+If(x_0&gt;=0.24,If(x_2&gt;=-0.04,3.90,-3.03*x_1),If(x_2&gt;=0.04,4.09*x_0,-2.98*x_1))
 locked tree:
-Sub
-|- Mul
-|  |- Add
-|  |  |- x_1
-|  |  |- If(x_1&gt;=-2.61)
-|  |  |  |- x_0
-|  |  |  |- -4.43
-|  |- Sub
-|  |  |- 1.47*x_2
-|  |  |- 1.31
-|- -3.38*x_0
+If(x_0&gt;=0.24)
+|- If(x_2&gt;=-0.04)
+|  |- 3.90
+|  |- -3.03*x_1
+|- If(x_2&gt;=0.04)
+|  |- 4.09*x_0
+|  |- -2.98*x_1
 </pre></div>
 </div>
-<img alt="../_images/572331e08f729e81422793029c6757b31e240d2432f1efd19cdbeb5ec1115616.svg" src="../_images/572331e08f729e81422793029c6757b31e240d2432f1efd19cdbeb5ec1115616.svg" />
+<img alt="../_images/cbc832558a84b45bf740d1e12787f437d215212ec2396b1ebe4734bc36d915bd.svg" src="../_images/cbc832558a84b45bf740d1e12787f437d215212ec2396b1ebe4734bc36d915bd.svg" />
 </div>
 </div>
 </section>
@@ -261,44 +262,38 @@ Sub
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span><span class="o">.</span><span class="n">partial_fit</span><span class="p">(</span>
     <span class="n">X_shifted</span><span class="p">,</span>
     <span class="n">y_shifted</span><span class="p">,</span>
-    <span class="n">lock_nodes_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">lock_nodes_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">keep_leaves_unlocked</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">keep_current_weights</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;stage 2 base mse:&#39;</span><span class="p">,</span> <span class="n">mse</span><span class="p">(</span><span class="n">y_base</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_base</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;stage 2 shifted mse:&#39;</span><span class="p">,</span> <span class="n">mse</span><span class="p">(</span><span class="n">y_shifted</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_shifted</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;stage 2 model:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'stage 2 base mse:'</span><span class="p">,</span> <span class="n">mse</span><span class="p">(</span><span class="n">y_base</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_base</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'stage 2 shifted mse:'</span><span class="p">,</span> <span class="n">mse</span><span class="p">(</span><span class="n">y_shifted</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_shifted</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'stage 2 model:'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;stage 2 tree:&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">&#39;tree&#39;</span><span class="p">))</span>
-<span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">&#39;dot&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'stage 2 tree:'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">'tree'</span><span class="p">))</span>
+<span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">'dot'</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 100% [====================]
-stage 2 base mse: 3.6734543201338834
-stage 2 shifted mse: 3.8054243085275217
+stage 2 base mse: 2.4325052852682343
+stage 2 shifted mse: 0.9083711174803811
 stage 2 model:
-Sub(Mul(Add(0.85*Sub(1.81*x_0,-2.40*x_1),0.01),Sub(x_2,-1.40)),0.88*Sub(-0.22,-6.02*x_1))
+If(x_0&gt;=0.24,If(x_2&gt;=-0.04,4.06*x_0,-5.26*x_1),If(x_2&gt;=0.04,3.96*x_0,-4.84*x_1))
 stage 2 tree:
-Sub
-|- Mul
-|  |- Add
-|  |  |- 0.85*Sub
-|  |  |  |- 1.81*x_0
-|  |  |  |- -2.40*x_1
-|  |  |- 0.01
-|  |- Sub
-|  |  |- x_2
-|  |  |- -1.40
-|- 0.88*Sub
-|  |- -0.22
-|  |- -6.02*x_1
+If(x_0&gt;=0.24)
+|- If(x_2&gt;=-0.04)
+|  |- 4.06*x_0
+|  |- -5.26*x_1
+|- If(x_2&gt;=0.04)
+|  |- 3.96*x_0
+|  |- -4.84*x_1
 </pre></div>
 </div>
-<img alt="../_images/4e2f56e6c46cb021716038d96f73bca64e2d04e0025d71c92de079e80b69b1f9.svg" src="../_images/4e2f56e6c46cb021716038d96f73bca64e2d04e0025d71c92de079e80b69b1f9.svg" />
+<img alt="../_images/e71b9d7c7613f43615379ea67a27dbfc79dd7132969df9a16bc8de6ff50eeff8.svg" src="../_images/e71b9d7c7613f43615379ea67a27dbfc79dd7132969df9a16bc8de6ff50eeff8.svg" />
 </div>
 </div>
 </section>
@@ -318,39 +313,39 @@ Sub
     <span class="n">keep_current_weights</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;stage 3 base mse:&#39;</span><span class="p">,</span> <span class="n">mse</span><span class="p">(</span><span class="n">y_base</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_base</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;stage 3 shifted mse:&#39;</span><span class="p">,</span> <span class="n">mse</span><span class="p">(</span><span class="n">y_shifted</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_shifted</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;stage 3 unlocked model:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'stage 3 base mse:'</span><span class="p">,</span> <span class="n">mse</span><span class="p">(</span><span class="n">y_base</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_base</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'stage 3 shifted mse:'</span><span class="p">,</span> <span class="n">mse</span><span class="p">(</span><span class="n">y_shifted</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_shifted</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'stage 3 unlocked model:'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;stage 3 unlocked tree:&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">&#39;tree&#39;</span><span class="p">))</span>
-<span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">&#39;dot&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'stage 3 unlocked tree:'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">'tree'</span><span class="p">))</span>
+<span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">'dot'</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 100% [====================]
-stage 3 base mse: 3.648386877972349
-stage 3 shifted mse: 3.7962339333011497
+stage 3 base mse: 5.744836281693709
+stage 3 shifted mse: 3.5116005509724473
 stage 3 unlocked model:
-Sub(Mul(Add(Sub(1.57*x_0,-2.03*x_1),-0.05*x_2),Sub(x_2,-1.38)),0.93*Sub(-0.29,-5.58*x_1))
+If(x_0&gt;=2.05,If(x_2&gt;=-0.12,3.98*x_0,0.40*Sub(x_0,12.50*x_1)),If(x_1&gt;=-0.59,2.06*Sub(x_0,x_1),If(x_2&gt;=0.00,4.17*x_0,-5.12*x_1)))
 stage 3 unlocked tree:
-Sub
-|- Mul
-|  |- Add
-|  |  |- Sub
-|  |  |  |- 1.57*x_0
-|  |  |  |- -2.03*x_1
-|  |  |- -0.05*x_2
-|  |- Sub
-|  |  |- x_2
-|  |  |- -1.38
-|- 0.93*Sub
-|  |- -0.29
-|  |- -5.58*x_1
+If(x_0&gt;=2.05)
+|- If(x_2&gt;=-0.12)
+|  |- 3.98*x_0
+|  |- 0.40*Sub
+|  |  |- x_0
+|  |  |- 12.50*x_1
+|- If(x_1&gt;=-0.59)
+|  |- 2.06*Sub
+|  |  |- x_0
+|  |  |- x_1
+|  |- If(x_2&gt;=0.00)
+|  |  |- 4.17*x_0
+|  |  |- -5.12*x_1
 </pre></div>
 </div>
-<img alt="../_images/28159725e79d07ce10e6dc9b9ec9b204521a07271603af5ac296306a4a635050.svg" src="../_images/28159725e79d07ce10e6dc9b9ec9b204521a07271603af5ac296306a4a635050.svg" />
+<img alt="../_images/6c2b3fab3c5c70fe1dc3c37d2c8b0c7b1d46de291282978b49b99819bac27531.svg" src="../_images/6c2b3fab3c5c70fe1dc3c37d2c8b0c7b1d46de291282978b49b99819bac27531.svg" />
 </div>
 </div>
 </section>

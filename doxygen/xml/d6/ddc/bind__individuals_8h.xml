@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="d6/ddc/bind__individuals_8h" kind="file" language="C++">
     <compoundname>bind_individuals.h</compoundname>
     <includes refid="d5/d16/module_8h" local="yes">module.h</includes>
@@ -595,7 +595,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/bindings/bind_individuals.h" line="16" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_individuals.h" bodystart="16" bodyend="93"/>
+        <location file="/home/runner/work/brush/brush/src/bindings/bind_individuals.h" line="16" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_individuals.h" bodystart="16" bodyend="94"/>
+        <references refid="d6/ddc/bind__individuals_8h_1a366723239dbf6fafb7bc0a9a5c5aa6f0" compoundref="d6/ddc/bind__individuals_8h" startline="16" endline="94">bind_individual</references>
+        <referencedby refid="d6/ddc/bind__individuals_8h_1a366723239dbf6fafb7bc0a9a5c5aa6f0" compoundref="d6/ddc/bind__individuals_8h" startline="16" endline="94">bind_individual</referencedby>
         <referencedby refid="d9/d27/bind__individuals_8cpp_1afadbe90ca583d38140c96ea768165a98" compoundref="d9/d27/bind__individuals_8cpp" startline="9" endline="15">bind_individuals</referencedby>
       </memberdef>
     </sectiondef>
@@ -685,18 +687,19 @@
 <codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
 <codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;</highlight></codeline>
 <codeline lineno="81"><highlight class="normal"></highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>(std::is_same_v&lt;Class,Cls&gt;)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>(std::is_same_v&lt;Class,Cls&gt;<sp/>||<sp/>std::is_same_v&lt;Class,MCls&gt;)</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ind.def(</highlight><highlight class="stringliteral">&quot;predict_proba&quot;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">ArrayXf<sp/>(Class::*)(</highlight><highlight class="keyword">const<sp/></highlight><highlight class="normal"><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref><sp/>&amp;d)</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(&amp;Class::predict_proba),</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;predict<sp/>from<sp/>Dataset<sp/>object&quot;</highlight><highlight class="normal">)</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;predict_proba&quot;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">ArrayXf<sp/>(Class::*)(</highlight><highlight class="keyword">const<sp/></highlight><highlight class="normal">Ref&lt;const<sp/>ArrayXXf&gt;<sp/>&amp;X)</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(&amp;Class::predict_proba),</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;predict<sp/>from<sp/>X<sp/>data&quot;</highlight><highlight class="normal">)</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">ProbType<sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="db/d88/structBrush_1_1Program_1a097256d2ed5456aa1ad10233e97c8e6c" kindref="member">br::Program&lt;PT&gt;::TreeType</ref>;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ind.def(</highlight><highlight class="stringliteral">&quot;predict_proba&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">ProbType<sp/>(Class::*)(</highlight><highlight class="keyword">const<sp/></highlight><highlight class="normal"><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref><sp/>&amp;d)</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(&amp;Class::predict_proba),</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;predict<sp/>from<sp/>Dataset<sp/>object&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;predict_proba&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">ProbType<sp/>(Class::*)(</highlight><highlight class="keyword">const<sp/></highlight><highlight class="normal">Ref&lt;const<sp/>ArrayXXf&gt;<sp/>&amp;X)</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(&amp;Class::predict_proba),</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;predict<sp/>from<sp/>X<sp/>data&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/bindings/bind_individuals.h"/>
   </compounddef>

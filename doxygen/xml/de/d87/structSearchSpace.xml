@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="de/d87/structSearchSpace" kind="struct" language="C++" prot="public">
     <compoundname>SearchSpace</compoundname>
     <includes refid="d9/d99/search__space_8h" local="no">search_space.h</includes>
@@ -171,7 +171,7 @@
 <para>Sean Luke. &quot;Two fast tree-creation algorithms for genetic programming&quot; (<ulink url="https://doi.org/10.1109/4235.873237">https://doi.org/10.1109/4235.873237</ulink>)</para>
 <para><parameterlist kind="templateparam"><parameteritem>
 <parameternamelist>
-<parametername>PT</parametername>
+<parametername><ref refid="dc/d5c/namespaceBrush_1a1d836cd56c93c1a9e89f76768fa59582" kindref="member">PT</ref></parametername>
 </parameternamelist>
 <parameterdescription>
 <para>program type </para>
@@ -232,7 +232,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="720" column="3" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="720" bodyend="810"/>
+        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="751" column="3" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="751" bodyend="849"/>
       </memberdef>
       <memberdef kind="function" id="de/d87/structSearchSpace_1a60d418b0c8931f1b8db363a6ab56410f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="dc/d5c/namespaceBrush_1acf6a63881021ff8db344de980b599720" kindref="member">RegressorProgram</ref></type>
@@ -1091,6 +1091,38 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="461" column="19" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="461" bodyend="495"/>
       </memberdef>
+      <memberdef kind="function" id="de/d87/structSearchSpace_1a686908b0cb198388fc1394f348561738" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::optional&lt; <ref refid="d8/d49/structNode" kindref="compound">Node</ref> &gt;</type>
+        <definition>std::optional&lt; Node &gt; Brush::SearchSpace::sample_op</definition>
+        <argsstring>(NodeType type, DataType R, size_t arg_count, bool force_return=false) const</argsstring>
+        <name>sample_op</name>
+        <qualifiedname>SearchSpace::sample_op</qualifiedname>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
+          <declname>R</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>arg_count</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>force_return</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Get a specific operator with an exact number of arguments. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="498" column="19" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="498" bodyend="526"/>
+      </memberdef>
       <memberdef kind="function" id="de/d87/structSearchSpace_1ad4ecbe9a8128d1a2b5aba0d5aeec686f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::optional&lt; <ref refid="d8/d49/structNode" kindref="compound">Node</ref> &gt;</type>
         <definition>std::optional&lt; Node &gt; Brush::SearchSpace::sample_op_with_arg</definition>
@@ -1158,7 +1190,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="503" column="19" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="503" bodyend="560"/>
+        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="534" column="19" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="534" bodyend="591"/>
       </memberdef>
       <memberdef kind="function" id="de/d87/structSearchSpace_1ac51e5e0acb3a880ffd0f3b7fba2fd68f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::optional&lt; <ref refid="d8/d49/structNode" kindref="compound">Node</ref> &gt;</type>
@@ -1189,7 +1221,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="565" column="19" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="565" bodyend="584"/>
+        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="596" column="19" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="596" bodyend="615"/>
       </memberdef>
       <memberdef kind="function" id="de/d87/structSearchSpace_1aed45d3d8adbee89f02e709472fe88280" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::optional&lt; tree&lt; <ref refid="d8/d49/structNode" kindref="compound">Node</ref> &gt; &gt;</type>
@@ -1244,7 +1276,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="591" column="19" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.cpp" bodystart="282" bodyend="310"/>
+        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="622" column="19" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.cpp" bodystart="282" bodyend="310"/>
       </memberdef>
       <memberdef kind="function" id="de/d87/structSearchSpace_1a1cfbfca3a45987de45159bc4699a61bb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1259,7 +1291,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="594" column="10" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.cpp" bodystart="175" bodyend="177"/>
+        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="625" column="10" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.cpp" bodystart="175" bodyend="177"/>
       </memberdef>
       <memberdef kind="function" id="de/d87/structSearchSpace_1ab671dbf7c62fca02f2ccf263a2ad9a6a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::string</type>
@@ -1274,7 +1306,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="597" column="17" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="597" bodyend="617"/>
+        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="628" column="17" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="628" bodyend="648"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -1310,7 +1342,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="620" column="14" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.cpp" bodystart="312" bodyend="465"/>
+        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="651" column="14" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.cpp" bodystart="312" bodyend="465"/>
       </memberdef>
       <memberdef kind="function" id="de/d87/structSearchSpace_1a4a255b2a600b65c33dc7dad6dd6a4614" prot="private" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -1342,7 +1374,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="642" column="24" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="642" bodyend="663"/>
+        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="673" column="24" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="673" bodyend="694"/>
       </memberdef>
       <memberdef kind="function" id="de/d87/structSearchSpace_1a56e2beeb7aecac93840a237b7b9adf3b" prot="private" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -1382,7 +1414,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="666" column="24" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="666" bodyend="671"/>
+        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="697" column="24" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="697" bodyend="702"/>
       </memberdef>
       <memberdef kind="function" id="de/d87/structSearchSpace_1af8165ac09c39eec3e5aa6e2d925b8104" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -1411,7 +1443,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="674" column="14" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="674" bodyend="695"/>
+        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="705" column="14" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="705" bodyend="726"/>
       </memberdef>
       <memberdef kind="function" id="de/d87/structSearchSpace_1aaa7e4460ad218ff67bc4159aff77bdf3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -1443,7 +1475,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="698" column="14" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="698" bodyend="705"/>
+        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="729" column="14" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="729" bodyend="736"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-static-func">
@@ -1475,14 +1507,14 @@
           <type>bool</type>
           <declname>weighted</declname>
         </param>
-    <requiresclause>(!<ref refid="de/d26/nodetype_8h_1a71f687f53e36ccdc3277214f2d535fe5" kindref="member">is_in_v</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref>, <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a514d8a494f087c0d549b9536c2ef3bd9" kindref="member">NodeType::Terminal</ref>, <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8acb17869fe51048b5a5c4c6106551a255" kindref="member">NodeType::Constant</ref>, <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a2636ffd13bc710aebeeb21c41a89eec9" kindref="member">NodeType::MeanLabel</ref>&gt;)    </requiresclause>
+    <requiresclause>(!is_in_v&lt;<ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref>, <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a514d8a494f087c0d549b9536c2ef3bd9" kindref="member">NodeType::Terminal</ref>, <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8acb17869fe51048b5a5c4c6106551a255" kindref="member">NodeType::Constant</ref>, <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a2636ffd13bc710aebeeb21c41a89eec9" kindref="member">NodeType::MeanLabel</ref>&gt;)    </requiresclause>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="624" column="40" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="624" bodyend="639"/>
+        <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="655" column="40" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="655" bodyend="670"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -1528,7 +1560,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="83" column="1" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="84" bodyend="706"/>
+    <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="83" column="1" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="84" bodyend="737"/>
     <listofallmembers>
       <member refid="de/d87/structSearchSpace_1a4a255b2a600b65c33dc7dad6dd6a4614" prot="private" virt="non-virtual"><scope>SearchSpace</scope><name>AddNode</name></member>
       <member refid="de/d87/structSearchSpace_1a56e2beeb7aecac93840a237b7b9adf3b" prot="private" virt="non-virtual"><scope>SearchSpace</scope><name>AddNodes</name></member>
@@ -1562,6 +1594,7 @@
       <member refid="de/d87/structSearchSpace_1ab671dbf7c62fca02f2ccf263a2ad9a6a" prot="public" virt="non-virtual"><scope>SearchSpace</scope><name>repr</name></member>
       <member refid="de/d87/structSearchSpace_1ab23bc4732e733749b8aa1e8c2c2689a2" prot="public" virt="non-virtual"><scope>SearchSpace</scope><name>sample_op</name></member>
       <member refid="de/d87/structSearchSpace_1a6b5598bed4a2ba81749f38927a16f61d" prot="public" virt="non-virtual"><scope>SearchSpace</scope><name>sample_op</name></member>
+      <member refid="de/d87/structSearchSpace_1a686908b0cb198388fc1394f348561738" prot="public" virt="non-virtual"><scope>SearchSpace</scope><name>sample_op</name></member>
       <member refid="de/d87/structSearchSpace_1ad4ecbe9a8128d1a2b5aba0d5aeec686f" prot="public" virt="non-virtual"><scope>SearchSpace</scope><name>sample_op_with_arg</name></member>
       <member refid="de/d87/structSearchSpace_1aed45d3d8adbee89f02e709472fe88280" prot="public" virt="non-virtual"><scope>SearchSpace</scope><name>sample_subtree</name></member>
       <member refid="de/d87/structSearchSpace_1afed4d42914edd71c4b54fc3883d8d156" prot="public" virt="non-virtual"><scope>SearchSpace</scope><name>sample_terminal</name></member>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="d5/d5a/io_8cpp" kind="file" language="C++">
     <compoundname>io.cpp</compoundname>
     <includes refid="dc/dac/io_8h" local="yes">io.h</includes>
@@ -335,7 +335,7 @@
 <codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>binary_endpoint<sp/>=<sp/>(y.array()<sp/>==<sp/>0<sp/>||<sp/>y.array()<sp/>==<sp/>1).all();</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"></highlight></codeline>
 <codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>using<sp/>constructor<sp/>1.<sp/>(initializing<sp/>data<sp/>from<sp/>a<sp/>map)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>result<sp/>=<sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>(features,<sp/>y,<sp/>binary_endpoint);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>result<sp/>=<sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" kindref="member">Dataset</ref>(features,<sp/>y,<sp/>binary_endpoint);</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"></highlight></codeline>
 <codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;<sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="88"><highlight class="normal">}</highlight></codeline>

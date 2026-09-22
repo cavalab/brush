@@ -1,6 +1,6 @@
 var classBrush_1_1Eval_1_1Scorer =
 [
-    [ "funcPointer", "da/d4c/classBrush_1_1Eval_1_1Scorer.html#af3946b7d7b31126563379e68591374ce", null ],
+    [ "funcPointer", "da/d4c/classBrush_1_1Eval_1_1Scorer.html#a2a49f288d77605b5f1d961f4bcf16314", null ],
     [ "RetType", "da/d4c/classBrush_1_1Eval_1_1Scorer.html#a559ded60a629200a78286da1f1843c97", null ],
     [ "Scorer", "da/d4c/classBrush_1_1Eval_1_1Scorer.html#ad88baa386d47e6464c130f0da3858325", null ],
     [ "get_scorer", "da/d4c/classBrush_1_1Eval_1_1Scorer.html#a074ffe387edb4090061c5aa0402ebb1d", null ],

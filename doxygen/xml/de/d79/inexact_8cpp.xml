@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="de/d79/inexact_8cpp" kind="file" language="C++">
     <compoundname>inexact.cpp</compoundname>
     <includes refid="d1/db6/inexact_8h" local="yes">inexact.h</includes>
@@ -453,21 +453,6 @@
     </incdepgraph>
     <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
     <innernamespace refid="df/d29/namespaceBrush_1_1Simpl">Brush::Simpl</innernamespace>
-    <sectiondef kind="var">
-      <memberdef kind="variable" id="de/d79/inexact_8cpp_1af7dd70e54015821d96e3a1afed6344ca" prot="public" static="yes" mutable="no">
-        <type><ref refid="d2/d2d/classBrush_1_1Util_1_1Rnd" kindref="compound">Rnd</ref> &amp;</type>
-        <definition>Rnd&amp; Brush::Util::r</definition>
-        <argsstring></argsstring>
-        <name>r</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/simplification/inexact.cpp" line="4" column="1" bodyfile="/home/runner/work/brush/brush/src/util/rnd.h" bodystart="176" bodyend="-1"/>
-      </memberdef>
-    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -506,7 +491,7 @@
 <codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MatrixXf<sp/>plane(hashSize,<sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ae737baf7821d6027feda169330192272" kindref="member">inputDim</ref>);</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>row<sp/>=<sp/>0;<sp/>row<sp/>&lt;<sp/>hashSize;<sp/>++row)<sp/>{</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>col<sp/>=<sp/>0;<sp/>col<sp/>&lt;<sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ae737baf7821d6027feda169330192272" kindref="member">inputDim</ref>;<sp/>++col)<sp/>{</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>plane(row,<sp/>col)<sp/>=<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">r</ref>.rnd_flt(-1.0f,<sp/>1.0f);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>plane(row,<sp/>col)<sp/>=<sp/>r.rnd_flt(-1.0f,<sp/>1.0f);</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>plane<sp/>/=<sp/>plane.norm();</highlight><highlight class="normal"></highlight></codeline>
@@ -515,7 +500,7 @@
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ac63ac4ab691f7bedb423a60ead721ec9" kindref="member">equivalentExpressions</ref>.clear();</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>dtype<sp/>:<sp/>data.<ref refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a96fc30b35f152f425377e1ae34398779" kindref="member">unique_data_types</ref>)</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ac63ac4ab691f7bedb423a60ead721ec9" kindref="member">equivalentExpressions</ref>[dtype]<sp/>=<sp/><ref refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage" kindref="compound">HashStorage</ref>(numPlanes);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ac63ac4ab691f7bedb423a60ead721ec9" kindref="member">equivalentExpressions</ref>[dtype]<sp/>=<sp/><ref refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1ac60eb12f5119da28941e61efac059e42" kindref="member">HashStorage</ref>(numPlanes);</highlight></codeline>
 <codeline lineno="44"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="d2/d2d/classBrush_1_1Util_1_1Rnd" kind="class" language="C++" prot="public">
     <compoundname>Brush::Util::Rnd</compoundname>
     <includes refid="d2/da9/rnd_8h" local="no">rnd.h</includes>
@@ -64,6 +64,7 @@
         <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="32" column="24" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="26" bodyend="36"/>
         <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aa459d569e44e12e26133da6069135b09" compoundref="d2/da9/rnd_8h" startline="169">instance</references>
         <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9bd56ea15679d17f3577f59e46d6e065" compoundref="de/d67/rnd_8cpp" startline="12" endline="24">Rnd</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a8357702cf1f426e4909c45b97a18bb0e" compoundref="de/d67/rnd_8cpp" startline="46" endline="66">set_seed</references>
         <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="69">bind_params</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d2d/classBrush_1_1Util_1_1Rnd_1a8dac84db3c306a00d3de09aa043b17e7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -102,6 +103,8 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="36" column="18" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="46" bodyend="66"/>
         <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9b7a12dc79e6a2b18b25e8a04d9e8637" compoundref="d2/da9/rnd_8h" startline="165">rg</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="69">bind_params</referencedby>
+        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a4fee4453f2aff1384cda4e14d53234fe" compoundref="de/d67/rnd_8cpp" startline="26" endline="36">initRand</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d2d/classBrush_1_1Util_1_1Rnd_1aef0f2836321f651d5887d29739e180f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -152,6 +155,7 @@
         <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="40" column="19" bodyfile="/home/runner/work/brush/brush/src/util/rnd.cpp" bodystart="74" bodyend="78"/>
         <references refid="d8/dc0/init_8h_1a889ec205c635b219999c761b28cc39ba" compoundref="d8/dc0/init_8h" startline="12">omp_get_thread_num</references>
         <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9b7a12dc79e6a2b18b25e8a04d9e8637" compoundref="d2/da9/rnd_8h" startline="165">rg</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="69">bind_params</referencedby>
         <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aaefc1dfb704aa94c17973a8798e81603" compoundref="de/d67/rnd_8cpp" startline="119" endline="144">gasdev</referencedby>
         <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aab34b78c05c7aa5edd63c6f4e8265351" compoundref="de/d67/rnd_8cpp" startline="117" endline="117">operator()</referencedby>
       </memberdef>

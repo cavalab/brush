@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Saving and loading populations &mdash; Brush 0.1.dev1+g33a7db448 documentation</title>
+  <title>Saving and loading populations &mdash; Brush 0.1.dev1+g1823dfbdb documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=3994a0a4"></script>
+      <script src="../_static/documentation_options.js?v=6bcea315"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -59,6 +59,7 @@
 <li class="toctree-l2"><a class="reference internal" href="data.html">Working with Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="search_space.html">The Search Space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="working_with_programs.html">Working with Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multiclassification.html">Multiclass classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="json.html">JSON Interoperability</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Saving and loading populations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#saving-just-the-archive">Saving just the archive</a></li>
@@ -118,9 +119,9 @@ We use JSON notation to store the population into a file that is human readable.
 <span class="kn">from</span><span class="w"> </span><span class="nn">pybrush</span><span class="w"> </span><span class="kn">import</span> <span class="n">BrushRegressor</span>
 
 <span class="c1"># load data</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../examples/datasets/d_enc.csv&#39;</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../examples/datasets/d_enc.csv'</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">'label'</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'label'</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -132,21 +133,21 @@ We use JSON notation to store the population into a file that is human readable.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">tempfile</span>
 
-<span class="n">pop_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(),</span> <span class="s1">&#39;population.json&#39;</span><span class="p">)</span>
+<span class="n">pop_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(),</span> <span class="s1">'population.json'</span><span class="p">)</span>
 
 <span class="c1"># set verbosity==2 to see the full report</span>
 <span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">(</span>
-    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span><span class="s1">&#39;Mul&#39;</span><span class="p">,</span><span class="s1">&#39;Sin&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Logabs&#39;</span><span class="p">],</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">'SplitBest'</span><span class="p">,</span><span class="s1">'Add'</span><span class="p">,</span><span class="s1">'Mul'</span><span class="p">,</span><span class="s1">'Sin'</span><span class="p">,</span><span class="s1">'Cos'</span><span class="p">,</span><span class="s1">'Exp'</span><span class="p">,</span><span class="s1">'Logabs'</span><span class="p">],</span>
     <span class="n">max_gens</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;scorer&quot;</span><span class="p">,</span> <span class="s2">&quot;complexity&quot;</span><span class="p">],</span>
-    <span class="n">scorer</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">,</span>
+    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">"scorer"</span><span class="p">,</span> <span class="s2">"complexity"</span><span class="p">],</span>
+    <span class="n">scorer</span><span class="o">=</span><span class="s1">'mse'</span><span class="p">,</span>
     <span class="n">save_population</span><span class="o">=</span><span class="n">pop_file</span><span class="p">,</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">2</span>
 <span class="p">)</span>
 
 <span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'score:'</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -242,7 +243,7 @@ score: 0.9624956115764942
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">(</span>
-    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span><span class="s1">&#39;Mul&#39;</span><span class="p">,</span><span class="s1">&#39;Sin&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Logabs&#39;</span><span class="p">],</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">'SplitBest'</span><span class="p">,</span><span class="s1">'Add'</span><span class="p">,</span><span class="s1">'Mul'</span><span class="p">,</span><span class="s1">'Sin'</span><span class="p">,</span><span class="s1">'Cos'</span><span class="p">,</span><span class="s1">'Exp'</span><span class="p">,</span><span class="s1">'Logabs'</span><span class="p">],</span>
     <span class="n">load_population</span><span class="o">=</span><span class="n">pop_file</span><span class="p">,</span>
     <span class="n">max_gens</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span>
@@ -250,7 +251,7 @@ score: 0.9624956115764942
 
 <span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'score:'</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -266,8 +267,8 @@ score: 0.9649080920204649
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># it will contain all individuals, differently than the archive</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;population size:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">population_</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;archive size   :&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">archive_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"population size:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">population_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"archive size   :"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">archive_</span><span class="p">))</span>
 
 <span class="nb">print</span><span class="p">(</span> <span class="n">est</span><span class="o">.</span><span class="n">population_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_model</span><span class="p">()</span> <span class="p">)</span>
 </pre></div>
@@ -286,7 +287,7 @@ archive size   : 21
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ind2</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">population_</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">ind2</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;tree&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ind2</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">"tree"</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -311,7 +312,7 @@ archive size   : 21
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">(</span>
-    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span><span class="s1">&#39;Mul&#39;</span><span class="p">,</span><span class="s1">&#39;Sin&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Logabs&#39;</span><span class="p">],</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">'SplitBest'</span><span class="p">,</span><span class="s1">'Add'</span><span class="p">,</span><span class="s1">'Mul'</span><span class="p">,</span><span class="s1">'Sin'</span><span class="p">,</span><span class="s1">'Cos'</span><span class="p">,</span><span class="s1">'Exp'</span><span class="p">,</span><span class="s1">'Logabs'</span><span class="p">],</span>
     <span class="n">load_population</span><span class="o">=</span><span class="n">pop_file</span><span class="p">,</span>
     <span class="n">max_gens</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span>
@@ -345,18 +346,18 @@ Fitness(97.702599 2.000000 )
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pybrush</span><span class="w"> </span><span class="kn">import</span> <span class="n">BrushClassifier</span>
 
 <span class="c1"># load data</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../examples/datasets/d_analcatdata_aids.csv&#39;</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;target&#39;</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../examples/datasets/d_analcatdata_aids.csv'</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">'target'</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'target'</span><span class="p">]</span>
 
-<span class="n">pop_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(),</span> <span class="s1">&#39;population.json&#39;</span><span class="p">)</span>
+<span class="n">pop_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(),</span> <span class="s1">'population.json'</span><span class="p">)</span>
 
 <span class="n">est</span> <span class="o">=</span> <span class="n">BrushClassifier</span><span class="p">(</span>
-    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span><span class="s1">&#39;Mul&#39;</span><span class="p">,</span><span class="s1">&#39;Sin&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Logabs&#39;</span><span class="p">],</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">'SplitBest'</span><span class="p">,</span><span class="s1">'Add'</span><span class="p">,</span><span class="s1">'Mul'</span><span class="p">,</span><span class="s1">'Sin'</span><span class="p">,</span><span class="s1">'Cos'</span><span class="p">,</span><span class="s1">'Exp'</span><span class="p">,</span><span class="s1">'Logabs'</span><span class="p">],</span>
     <span class="n">max_gens</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">max_size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
-    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;scorer&quot;</span><span class="p">,</span> <span class="s2">&quot;complexity&quot;</span><span class="p">],</span>
-    <span class="n">scorer</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="p">,</span>
+    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">"scorer"</span><span class="p">,</span> <span class="s2">"complexity"</span><span class="p">],</span>
+    <span class="n">scorer</span><span class="o">=</span><span class="s2">"log"</span><span class="p">,</span>
     <span class="n">save_population</span><span class="o">=</span><span class="n">pop_file</span><span class="p">,</span>
     <span class="n">pop_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">2</span>
@@ -364,8 +365,8 @@ Fitness(97.702599 2.000000 )
 
 <span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best model:&quot;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Best model:"</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'score:'</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -474,10 +475,10 @@ score: 0.72
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span> <span class="o">=</span> <span class="n">BrushClassifier</span><span class="p">(</span>
-    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span><span class="s1">&#39;Mul&#39;</span><span class="p">,</span><span class="s1">&#39;Sin&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Logabs&#39;</span><span class="p">],</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">'SplitBest'</span><span class="p">,</span><span class="s1">'Add'</span><span class="p">,</span><span class="s1">'Mul'</span><span class="p">,</span><span class="s1">'Sin'</span><span class="p">,</span><span class="s1">'Cos'</span><span class="p">,</span><span class="s1">'Exp'</span><span class="p">,</span><span class="s1">'Logabs'</span><span class="p">],</span>
     <span class="n">load_population</span><span class="o">=</span><span class="n">pop_file</span><span class="p">,</span>
-    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;scorer&quot;</span><span class="p">,</span> <span class="s2">&quot;linear_complexity&quot;</span><span class="p">],</span>
-    <span class="n">scorer</span><span class="o">=</span><span class="s2">&quot;average_precision_score&quot;</span><span class="p">,</span>
+    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">"scorer"</span><span class="p">,</span> <span class="s2">"linear_complexity"</span><span class="p">],</span>
+    <span class="n">scorer</span><span class="o">=</span><span class="s2">"average_precision_score"</span><span class="p">,</span>
     <span class="n">max_gens</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">pop_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="c1"># make sure this is the same as loaded pop</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">2</span>
@@ -485,8 +486,8 @@ score: 0.72
 
 <span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best model:&quot;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Best model:"</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'score:'</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -600,9 +601,9 @@ score: 0.68
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">average_precision_score</span>
 
 <span class="c1"># takes y_true as first argument, and y_pred as second argument.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AUPRC:&quot;</span><span class="p">,</span> <span class="n">average_precision_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;weighted&#39;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model size:&quot;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model:&quot;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">program</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"AUPRC:"</span><span class="p">,</span> <span class="n">average_precision_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">average</span><span class="o">=</span><span class="s1">'weighted'</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Model size:"</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Model:"</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">program</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1509,9 +1510,9 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
 
-<span class="n">est_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(),</span> <span class="s1">&#39;est.pkl&#39;</span><span class="p">)</span>
+<span class="n">est_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(),</span> <span class="s1">'est.pkl'</span><span class="p">)</span>
 
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">est_file</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">est_file</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">est</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1519,7 +1520,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loaded_est</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">est_file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loaded_est</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">est_file</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1576,13 +1577,13 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">train</span><span class="p">(</span><span class="n">est</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(),</span> <span class="s1">&#39;brush_pop_checkpoint.json&#39;</span><span class="p">)</span>
+    <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(),</span> <span class="s1">'brush_pop_checkpoint.json'</span><span class="p">)</span>
     
     <span class="n">step</span> <span class="o">=</span> <span class="mi">5</span>
     <span class="n">max_gens</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">max_gens</span>
     <span class="n">est</span><span class="o">.</span><span class="n">max_gens</span> <span class="o">=</span> <span class="n">step</span>
     <span class="n">est</span><span class="o">.</span><span class="n">save_population</span> <span class="o">=</span> <span class="n">checkpoint</span>
-    <span class="n">est</span><span class="o">.</span><span class="n">load_population</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">est</span><span class="o">.</span><span class="n">load_population</span> <span class="o">=</span> <span class="s2">""</span>
     
     <span class="c1"># You can set validation_size to a value greater than zero</span>
     <span class="c1"># and shuffle_split to true to have random bathes of data</span>
@@ -1590,15 +1591,15 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
     <span class="n">est</span><span class="o">.</span><span class="n">validation_size</span> <span class="o">=</span> <span class="mf">0.2</span>
     
     <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_gens</span> <span class="o">//</span> <span class="n">step</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Progress </span><span class="si">{</span><span class="n">g</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">max_gens</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">step</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Progress </span><span class="si">{</span><span class="n">g</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">max_gens</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">step</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         
         <span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="c1"># Notice that this will reset the MAB everytime!</span>
 
         <span class="c1"># Enable loading the checkpoint after a first run</span>
         <span class="n">est</span><span class="o">.</span><span class="n">load_population</span> <span class="o">=</span> <span class="n">checkpoint</span>
         
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best model:&quot;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score     :&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Best model:"</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'score     :'</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
 
     <span class="c1"># Restoring initial state</span>
     <span class="n">est</span><span class="o">.</span><span class="n">max_gens</span> <span class="o">=</span> <span class="n">max_gens</span>
@@ -1609,8 +1610,8 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span> <span class="o">=</span> <span class="n">BrushClassifier</span><span class="p">(</span>
-    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;scorer&quot;</span><span class="p">,</span> <span class="s2">&quot;linear_complexity&quot;</span><span class="p">],</span>
-    <span class="n">scorer</span><span class="o">=</span><span class="s2">&quot;balanced_accuracy&quot;</span><span class="p">,</span>
+    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">"scorer"</span><span class="p">,</span> <span class="s2">"linear_complexity"</span><span class="p">],</span>
+    <span class="n">scorer</span><span class="o">=</span><span class="s2">"balanced_accuracy"</span><span class="p">,</span>
     <span class="n">max_gens</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
     <span class="n">validation_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
     <span class="n">pop_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>

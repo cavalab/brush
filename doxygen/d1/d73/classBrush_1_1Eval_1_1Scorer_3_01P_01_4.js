@@ -1,7 +1,7 @@
 var classBrush_1_1Eval_1_1Scorer_3_01P_01_4 =
 [
-    [ "funcPointer", "d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html#a7dc5fe56c27b00f88b4e0a632b4cb17d", null ],
-    [ "funcPointer", "d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html#af3946b7d7b31126563379e68591374ce", null ],
+    [ "funcPointer", "d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html#a180e3ccd29cfb3da6208348e313f9167", null ],
+    [ "funcPointer", "d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html#a2a49f288d77605b5f1d961f4bcf16314", null ],
     [ "RetType", "d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html#ae766ebb32e5e261420ab9edfdac973ca", null ],
     [ "RetType", "d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html#a51d3e70f09773c39b06d8106c190775e", null ],
     [ "Scorer", "d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html#a77c0fd125d62a7141e413ca7fe9f3c09", null ],

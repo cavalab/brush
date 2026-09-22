@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="d4/d70/structBrush_1_1ResidualEvaluator" kind="struct" language="C++" prot="public">
     <compoundname>Brush::ResidualEvaluator</compoundname>
     <includes refid="d7/de3/weight__optimizer_8h" local="no">weight_optimizer.h</includes>
@@ -37,9 +37,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="98" column="28" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="98" bodyend="-1"/>
-        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1ae7d77c6a5f27bb638c156ccfee0f0d97" compoundref="d7/de3/weight__optimizer_8h" startline="93" endline="93">Brush::ResidualEvaluator&lt; PT &gt;::GetProgram</referencedby>
-        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1a68b50f100691a61d8a643dd903aafc74" compoundref="d7/de3/weight__optimizer_8h" startline="33" endline="38">Brush::ResidualEvaluator&lt; PT &gt;::ResidualEvaluator</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="124" column="28" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="124" bodyend="-1"/>
+        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1ae7d77c6a5f27bb638c156ccfee0f0d97" compoundref="d7/de3/weight__optimizer_8h" startline="119" endline="119">Brush::ResidualEvaluator&lt; PT &gt;::GetProgram</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d4/d70/structBrush_1_1ResidualEvaluator_1a55a8412152ed8ed7e5047d26672b563a" prot="private" static="no" mutable="no">
         <type>std::reference_wrapper&lt; <ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref> const  &gt;</type>
@@ -53,9 +52,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="99" column="28" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="99" bodyend="-1"/>
-        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1a7944b5155a9e8fe6ba66bb5ba0af0011" compoundref="d7/de3/weight__optimizer_8h" startline="94" endline="94">Brush::ResidualEvaluator&lt; PT &gt;::GetDataset</referencedby>
-        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1a68b50f100691a61d8a643dd903aafc74" compoundref="d7/de3/weight__optimizer_8h" startline="33" endline="38">Brush::ResidualEvaluator&lt; PT &gt;::ResidualEvaluator</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="125" column="28" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="125" bodyend="-1"/>
+        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1a7944b5155a9e8fe6ba66bb5ba0af0011" compoundref="d7/de3/weight__optimizer_8h" startline="120" endline="120">Brush::ResidualEvaluator&lt; PT &gt;::GetDataset</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d4/d70/structBrush_1_1ResidualEvaluator_1af3ebb3293b9922efe7e3173c7978c61f" prot="private" static="no" mutable="no">
         <type>std::reference_wrapper&lt; ArrayXf const  &gt;</type>
@@ -69,10 +67,24 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="100" column="28" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="100" bodyend="-1"/>
-        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1a23e464d5154ea6803160a9a37b4181b8" compoundref="d7/de3/weight__optimizer_8h" startline="95" endline="95">Brush::ResidualEvaluator&lt; PT &gt;::GetTarget</referencedby>
-        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1a136ca20e2ed36d766fce49a9871f2ae8" compoundref="d7/de3/weight__optimizer_8h" startline="92" endline="92">Brush::ResidualEvaluator&lt; PT &gt;::NumResiduals</referencedby>
-        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1a68b50f100691a61d8a643dd903aafc74" compoundref="d7/de3/weight__optimizer_8h" startline="33" endline="38">Brush::ResidualEvaluator&lt; PT &gt;::ResidualEvaluator</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="126" column="28" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="126" bodyend="-1"/>
+        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1a23e464d5154ea6803160a9a37b4181b8" compoundref="d7/de3/weight__optimizer_8h" startline="121" endline="121">Brush::ResidualEvaluator&lt; PT &gt;::GetTarget</referencedby>
+        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1a136ca20e2ed36d766fce49a9871f2ae8" compoundref="d7/de3/weight__optimizer_8h" startline="118" endline="118">Brush::ResidualEvaluator&lt; PT &gt;::NumResiduals</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d4/d70/structBrush_1_1ResidualEvaluator_1aeebc9aa4ecf7d87f3cd1dfefe3f79e7b" prot="private" static="no" mutable="no">
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;</type>
+        <definition>vector&lt;float&gt; Brush::ResidualEvaluator&lt; PT &gt;::class_weights_</definition>
+        <argsstring></argsstring>
+        <name>class_weights_</name>
+        <qualifiedname>Brush::ResidualEvaluator::class_weights_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="127" column="12" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="127" bodyend="-1"/>
+        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1abbb4f20316b249acc974d8d93e40d290" compoundref="d7/de3/weight__optimizer_8h" startline="49" endline="115">Brush::ResidualEvaluator&lt; PT &gt;::operator()</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d4/d70/structBrush_1_1ResidualEvaluator_1a9110c79615254a750c627945865b95bb" prot="private" static="no" mutable="no">
         <type>size_t</type>
@@ -86,16 +98,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="101" column="12" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="101" bodyend="-1"/>
-        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1aacc8ae1bb24e82c79735d70e81f9549f" compoundref="d7/de3/weight__optimizer_8h" startline="91" endline="91">Brush::ResidualEvaluator&lt; PT &gt;::NumParameters</referencedby>
-        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1a68b50f100691a61d8a643dd903aafc74" compoundref="d7/de3/weight__optimizer_8h" startline="33" endline="38">Brush::ResidualEvaluator&lt; PT &gt;::ResidualEvaluator</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="128" column="12" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="128" bodyend="-1"/>
+        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1aacc8ae1bb24e82c79735d70e81f9549f" compoundref="d7/de3/weight__optimizer_8h" startline="117" endline="117">Brush::ResidualEvaluator&lt; PT &gt;::NumParameters</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
-      <memberdef kind="function" id="d4/d70/structBrush_1_1ResidualEvaluator_1a68b50f100691a61d8a643dd903aafc74" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="d4/d70/structBrush_1_1ResidualEvaluator_1ad03056c1ed2973eed9277ba0295e1c6a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>Brush::ResidualEvaluator&lt; PT &gt;::ResidualEvaluator</definition>
-        <argsstring>(PT &amp;program, Dataset const &amp;dataset)</argsstring>
+        <argsstring>(PT &amp;program, Dataset const &amp;dataset, const vector&lt; float &gt; &amp;class_weights={})</argsstring>
         <name>ResidualEvaluator</name>
         <qualifiedname>Brush::ResidualEvaluator::ResidualEvaluator</qualifiedname>
         <param>
@@ -106,17 +117,18 @@
           <type><ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref> const &amp;</type>
           <declname>dataset</declname>
         </param>
+        <param>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt; &amp;</type>
+          <declname>class_weights</declname>
+          <defval>{}</defval>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="33" column="5" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="33" bodyend="38"/>
-        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1a55a8412152ed8ed7e5047d26672b563a" compoundref="d7/de3/weight__optimizer_8h" startline="99">Brush::ResidualEvaluator&lt; PT &gt;::dataset_</references>
-        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1a9110c79615254a750c627945865b95bb" compoundref="d7/de3/weight__optimizer_8h" startline="101">Brush::ResidualEvaluator&lt; PT &gt;::numParameters_</references>
-        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1aae2fef497e53178a519b63f584256ee9" compoundref="d7/de3/weight__optimizer_8h" startline="98">Brush::ResidualEvaluator&lt; PT &gt;::program_</references>
-        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1af3ebb3293b9922efe7e3173c7978c61f" compoundref="d7/de3/weight__optimizer_8h" startline="100">Brush::ResidualEvaluator&lt; PT &gt;::y_true_</references>
+        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="33" column="5" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="33" bodyend="40"/>
       </memberdef>
       <memberdef kind="function" id="d4/d70/structBrush_1_1ResidualEvaluator_1a871644fc348c4daa7c64cdacf1100e06" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
@@ -143,7 +155,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="41" column="10" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="41" bodyend="44"/>
+        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="43" column="10" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="43" bodyend="46"/>
       </memberdef>
       <memberdef kind="function" id="d4/d70/structBrush_1_1ResidualEvaluator_1abbb4f20316b249acc974d8d93e40d290" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -170,10 +182,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="47" column="10" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="47" bodyend="89"/>
-        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1a7944b5155a9e8fe6ba66bb5ba0af0011" compoundref="d7/de3/weight__optimizer_8h" startline="94" endline="94">Brush::ResidualEvaluator&lt; PT &gt;::GetDataset</references>
-        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1ae7d77c6a5f27bb638c156ccfee0f0d97" compoundref="d7/de3/weight__optimizer_8h" startline="93" endline="93">Brush::ResidualEvaluator&lt; PT &gt;::GetProgram</references>
-        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1a23e464d5154ea6803160a9a37b4181b8" compoundref="d7/de3/weight__optimizer_8h" startline="95" endline="95">Brush::ResidualEvaluator&lt; PT &gt;::GetTarget</references>
+        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="49" column="10" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="49" bodyend="115"/>
+        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1aeebc9aa4ecf7d87f3cd1dfefe3f79e7b" compoundref="d7/de3/weight__optimizer_8h" startline="127">Brush::ResidualEvaluator&lt; PT &gt;::class_weights_</references>
+        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1a7944b5155a9e8fe6ba66bb5ba0af0011" compoundref="d7/de3/weight__optimizer_8h" startline="120" endline="120">Brush::ResidualEvaluator&lt; PT &gt;::GetDataset</references>
+        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1ae7d77c6a5f27bb638c156ccfee0f0d97" compoundref="d7/de3/weight__optimizer_8h" startline="119" endline="119">Brush::ResidualEvaluator&lt; PT &gt;::GetProgram</references>
+        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1a23e464d5154ea6803160a9a37b4181b8" compoundref="d7/de3/weight__optimizer_8h" startline="121" endline="121">Brush::ResidualEvaluator&lt; PT &gt;::GetTarget</references>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1ab4118142943e05c08bdd5e5ad62d9127" compoundref="dd/da2/metrics_8cpp" startline="19" endline="44">Brush::Eval::log_loss</references>
+        <references refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366ac62539fc5a23115fca906befbd511c0a" compoundref="d9/d49/types_8h" startline="73">Brush::MulticlassClassifier</references>
       </memberdef>
       <memberdef kind="function" id="d4/d70/structBrush_1_1ResidualEvaluator_1aacc8ae1bb24e82c79735d70e81f9549f" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -187,8 +202,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="91" column="11" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="91" bodyend="91"/>
-        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1a9110c79615254a750c627945865b95bb" compoundref="d7/de3/weight__optimizer_8h" startline="101">Brush::ResidualEvaluator&lt; PT &gt;::numParameters_</references>
+        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="117" column="11" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="117" bodyend="117"/>
+        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1a9110c79615254a750c627945865b95bb" compoundref="d7/de3/weight__optimizer_8h" startline="128">Brush::ResidualEvaluator&lt; PT &gt;::numParameters_</references>
       </memberdef>
       <memberdef kind="function" id="d4/d70/structBrush_1_1ResidualEvaluator_1a136ca20e2ed36d766fce49a9871f2ae8" prot="public" static="no" nodiscard="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -202,8 +217,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="92" column="11" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="92" bodyend="92"/>
-        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1af3ebb3293b9922efe7e3173c7978c61f" compoundref="d7/de3/weight__optimizer_8h" startline="100">Brush::ResidualEvaluator&lt; PT &gt;::y_true_</references>
+        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="118" column="11" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="118" bodyend="118"/>
+        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1af3ebb3293b9922efe7e3173c7978c61f" compoundref="d7/de3/weight__optimizer_8h" startline="126">Brush::ResidualEvaluator&lt; PT &gt;::y_true_</references>
       </memberdef>
       <memberdef kind="function" id="d4/d70/structBrush_1_1ResidualEvaluator_1ae7d77c6a5f27bb638c156ccfee0f0d97" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -217,9 +232,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="93" column="17" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="93" bodyend="93"/>
-        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1aae2fef497e53178a519b63f584256ee9" compoundref="d7/de3/weight__optimizer_8h" startline="98">Brush::ResidualEvaluator&lt; PT &gt;::program_</references>
-        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1abbb4f20316b249acc974d8d93e40d290" compoundref="d7/de3/weight__optimizer_8h" startline="47" endline="89">Brush::ResidualEvaluator&lt; PT &gt;::operator()</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="119" column="17" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="119" bodyend="119"/>
+        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1aae2fef497e53178a519b63f584256ee9" compoundref="d7/de3/weight__optimizer_8h" startline="124">Brush::ResidualEvaluator&lt; PT &gt;::program_</references>
+        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1abbb4f20316b249acc974d8d93e40d290" compoundref="d7/de3/weight__optimizer_8h" startline="49" endline="115">Brush::ResidualEvaluator&lt; PT &gt;::operator()</referencedby>
       </memberdef>
       <memberdef kind="function" id="d4/d70/structBrush_1_1ResidualEvaluator_1a7944b5155a9e8fe6ba66bb5ba0af0011" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -233,9 +248,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="94" column="17" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="94" bodyend="94"/>
-        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1a55a8412152ed8ed7e5047d26672b563a" compoundref="d7/de3/weight__optimizer_8h" startline="99">Brush::ResidualEvaluator&lt; PT &gt;::dataset_</references>
-        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1abbb4f20316b249acc974d8d93e40d290" compoundref="d7/de3/weight__optimizer_8h" startline="47" endline="89">Brush::ResidualEvaluator&lt; PT &gt;::operator()</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="120" column="17" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="120" bodyend="120"/>
+        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1a55a8412152ed8ed7e5047d26672b563a" compoundref="d7/de3/weight__optimizer_8h" startline="125">Brush::ResidualEvaluator&lt; PT &gt;::dataset_</references>
+        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1abbb4f20316b249acc974d8d93e40d290" compoundref="d7/de3/weight__optimizer_8h" startline="49" endline="115">Brush::ResidualEvaluator&lt; PT &gt;::operator()</referencedby>
       </memberdef>
       <memberdef kind="function" id="d4/d70/structBrush_1_1ResidualEvaluator_1a23e464d5154ea6803160a9a37b4181b8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -249,17 +264,18 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="95" column="17" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="95" bodyend="95"/>
-        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1af3ebb3293b9922efe7e3173c7978c61f" compoundref="d7/de3/weight__optimizer_8h" startline="100">Brush::ResidualEvaluator&lt; PT &gt;::y_true_</references>
-        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1abbb4f20316b249acc974d8d93e40d290" compoundref="d7/de3/weight__optimizer_8h" startline="47" endline="89">Brush::ResidualEvaluator&lt; PT &gt;::operator()</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="121" column="17" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="121" bodyend="121"/>
+        <references refid="d4/d70/structBrush_1_1ResidualEvaluator_1af3ebb3293b9922efe7e3173c7978c61f" compoundref="d7/de3/weight__optimizer_8h" startline="126">Brush::ResidualEvaluator&lt; PT &gt;::y_true_</references>
+        <referencedby refid="d4/d70/structBrush_1_1ResidualEvaluator_1abbb4f20316b249acc974d8d93e40d290" compoundref="d7/de3/weight__optimizer_8h" startline="49" endline="115">Brush::ResidualEvaluator&lt; PT &gt;::operator()</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="31" column="1" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="31" bodyend="102"/>
+    <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="31" column="1" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="31" bodyend="129"/>
     <listofallmembers>
+      <member refid="d4/d70/structBrush_1_1ResidualEvaluator_1aeebc9aa4ecf7d87f3cd1dfefe3f79e7b" prot="private" virt="non-virtual"><scope>Brush::ResidualEvaluator</scope><name>class_weights_</name></member>
       <member refid="d4/d70/structBrush_1_1ResidualEvaluator_1a55a8412152ed8ed7e5047d26672b563a" prot="private" virt="non-virtual"><scope>Brush::ResidualEvaluator</scope><name>dataset_</name></member>
       <member refid="d4/d70/structBrush_1_1ResidualEvaluator_1a7944b5155a9e8fe6ba66bb5ba0af0011" prot="public" virt="non-virtual"><scope>Brush::ResidualEvaluator</scope><name>GetDataset</name></member>
       <member refid="d4/d70/structBrush_1_1ResidualEvaluator_1ae7d77c6a5f27bb638c156ccfee0f0d97" prot="public" virt="non-virtual"><scope>Brush::ResidualEvaluator</scope><name>GetProgram</name></member>
@@ -270,7 +286,7 @@
       <member refid="d4/d70/structBrush_1_1ResidualEvaluator_1a871644fc348c4daa7c64cdacf1100e06" prot="public" virt="non-virtual"><scope>Brush::ResidualEvaluator</scope><name>operator()</name></member>
       <member refid="d4/d70/structBrush_1_1ResidualEvaluator_1abbb4f20316b249acc974d8d93e40d290" prot="public" virt="non-virtual"><scope>Brush::ResidualEvaluator</scope><name>operator()</name></member>
       <member refid="d4/d70/structBrush_1_1ResidualEvaluator_1aae2fef497e53178a519b63f584256ee9" prot="private" virt="non-virtual"><scope>Brush::ResidualEvaluator</scope><name>program_</name></member>
-      <member refid="d4/d70/structBrush_1_1ResidualEvaluator_1a68b50f100691a61d8a643dd903aafc74" prot="public" virt="non-virtual"><scope>Brush::ResidualEvaluator</scope><name>ResidualEvaluator</name></member>
+      <member refid="d4/d70/structBrush_1_1ResidualEvaluator_1ad03056c1ed2973eed9277ba0295e1c6a" prot="public" virt="non-virtual"><scope>Brush::ResidualEvaluator</scope><name>ResidualEvaluator</name></member>
       <member refid="d4/d70/structBrush_1_1ResidualEvaluator_1aa5c8420cf3ed7735a715a962003015b1" prot="public" virt="non-virtual"><scope>Brush::ResidualEvaluator</scope><name>Scalar</name></member>
       <member refid="d4/d70/structBrush_1_1ResidualEvaluator_1af3ebb3293b9922efe7e3173c7978c61f" prot="private" virt="non-virtual"><scope>Brush::ResidualEvaluator</scope><name>y_true_</name></member>
     </listofallmembers>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="dd/d30/module_8cpp" kind="file" language="C++">
     <compoundname>module.cpp</compoundname>
     <includes refid="d5/d16/module_8h" local="yes">module.h</includes>
@@ -89,6 +89,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/bindings/module.cpp" line="20" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_params.cpp" bodystart="7" bodyend="69" declfile="/home/runner/work/brush/brush/src/bindings/module.cpp" declline="20" declcolumn="6"/>
+        <references refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="69">bind_params</references>
         <references refid="de/deb/structBrush_1_1Parameters_1a59c69b664a2053e98eaaa42a93bbfc60" compoundref="da/d33/params_8h" startline="111" endline="111">Brush::Parameters::get_bandit</references>
         <references refid="de/deb/structBrush_1_1Parameters_1a55829db9efdf15f588da5aed54fa42a8" compoundref="da/d33/params_8h" startline="263" endline="263">Brush::Parameters::get_batch_size</references>
         <references refid="de/deb/structBrush_1_1Parameters_1a50778f2c6d11b993f8388b80616a5459" compoundref="da/d33/params_8h" startline="244" endline="244">Brush::Parameters::get_class_weights</references>
@@ -126,7 +127,7 @@
         <references refid="de/deb/structBrush_1_1Parameters_1a0b9ab7c9b3c3e3fcb4445b4acca9a7c9" compoundref="da/d33/params_8h" startline="99" endline="99">Brush::Parameters::get_verbosity</references>
         <references refid="de/deb/structBrush_1_1Parameters_1a31e0f74e08fd99e1fe1f1033b43b394e" compoundref="da/d33/params_8h" startline="189" endline="189">Brush::Parameters::get_weights_init</references>
         <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a4fee4453f2aff1384cda4e14d53234fe" compoundref="de/d67/rnd_8cpp" startline="26" endline="36">Brush::Util::Rnd::initRand</references>
-        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="176">Brush::Util::r</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a450979f31af93d8dffd7be006ee5d50b" compoundref="de/d67/rnd_8cpp" startline="74" endline="78">Brush::Util::Rnd::rnd_flt</references>
         <references refid="de/deb/structBrush_1_1Parameters_1afed0556e44457c8ef23a69631ae8561e" compoundref="da/d33/params_8h" startline="110" endline="110">Brush::Parameters::set_bandit</references>
         <references refid="de/deb/structBrush_1_1Parameters_1a3764d1c46477f804a75d58248cc64ea8" compoundref="da/d33/params_8h" startline="262" endline="262">Brush::Parameters::set_batch_size</references>
         <references refid="de/deb/structBrush_1_1Parameters_1aec1f852fab78eb777b37193cc34022ec" compoundref="da/d33/params_8h" startline="210" endline="218">Brush::Parameters::set_class_weights</references>
@@ -156,6 +157,7 @@
         <references refid="de/deb/structBrush_1_1Parameters_1abcb29d9409d58681fe925d955c010573" compoundref="da/d33/params_8h" startline="220" endline="241">Brush::Parameters::set_sample_weights</references>
         <references refid="de/deb/structBrush_1_1Parameters_1a03a5ec7ccfcba501d57264aeb3a41263" compoundref="da/d33/params_8h" startline="125" endline="125">Brush::Parameters::set_save_population</references>
         <references refid="de/deb/structBrush_1_1Parameters_1a9a9fea16aff19dd2b74f98c379a2e3cf" compoundref="da/d33/params_8h" startline="119" endline="119">Brush::Parameters::set_scorer</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a8357702cf1f426e4909c45b97a18bb0e" compoundref="de/d67/rnd_8cpp" startline="46" endline="66">Brush::Util::Rnd::set_seed</references>
         <references refid="de/deb/structBrush_1_1Parameters_1a9a8f5f8dbfd009fd4aed4b322c19b429" compoundref="da/d33/params_8h" startline="164" endline="164">Brush::Parameters::set_sel</references>
         <references refid="de/deb/structBrush_1_1Parameters_1a165c8b63ae6066b392ab945c2d04a7b5" compoundref="da/d33/params_8h" startline="179" endline="179">Brush::Parameters::set_shuffle_split</references>
         <references refid="de/deb/structBrush_1_1Parameters_1a448b92d51af9bfab99c1167dc7e19044" compoundref="da/d33/params_8h" startline="251" endline="251">Brush::Parameters::set_start_from_decision_trees</references>
@@ -163,6 +165,7 @@
         <references refid="de/deb/structBrush_1_1Parameters_1adcfeb3fbcd6bb2ace4eb112dd1ac1fc7" compoundref="da/d33/params_8h" startline="253" endline="253">Brush::Parameters::set_validation_size</references>
         <references refid="de/deb/structBrush_1_1Parameters_1af232e2b8ac05a182b54437cbf03fc18c" compoundref="da/d33/params_8h" startline="97" endline="98">Brush::Parameters::set_verbosity</references>
         <references refid="de/deb/structBrush_1_1Parameters_1a5f6ede2fb7d56bcb51c687eea1721efe" compoundref="da/d33/params_8h" startline="188" endline="188">Brush::Parameters::set_weights_init</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="69">bind_params</referencedby>
         <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>
       <memberdef kind="function" id="dd/d30/module_8cpp_1a995ca1cce898b8c2bab6ab3abd3e2997" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -181,6 +184,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/bindings/module.cpp" line="21" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_dataset.cpp" bodystart="9" bodyend="87" declfile="/home/runner/work/brush/brush/src/bindings/module.cpp" declline="21" declcolumn="6"/>
+        <references refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="87">bind_dataset</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8b9d0d635516aa675f9783d7c6ab1b72" compoundref="d2/dbd/data_8h" startline="70">Brush::Data::Dataset::feature_names</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" compoundref="da/dc9/data_8cpp" startline="187" endline="201">Brush::Data::Dataset::get_batch</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade358be2a762f2a6df738a41fe1095b5" compoundref="da/dc9/data_8cpp" startline="380" endline="380">Brush::Data::Dataset::get_batch_size</references>
@@ -195,6 +199,7 @@
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa07fa8dff0f8e01293509d6b7cc0dc3" compoundref="da/dc9/data_8cpp" startline="381" endline="384">Brush::Data::Dataset::set_batch_size</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a52fc24ef058c0e8a3d330aa25e46338d" compoundref="da/dc9/data_8cpp" startline="203" endline="212">Brush::Data::Dataset::split</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade105f069d4f745d44374b7b8a3a9b0d" compoundref="d2/dbd/data_8h" startline="82">Brush::Data::Dataset::y</references>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="87">bind_dataset</referencedby>
         <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>
       <memberdef kind="function" id="dd/d30/module_8cpp_1aa36e59ad9e46e25d7fb56b00748e4739" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -213,13 +218,16 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/bindings/module.cpp" line="22" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_search_space.cpp" bodystart="10" bodyend="51" declfile="/home/runner/work/brush/brush/src/bindings/module.cpp" declline="22" declcolumn="6"/>
+        <references refid="d0/d94/bind__search__space_8cpp_1a5dd9aae5c3af6fab760233deca1956cd" compoundref="d0/d94/bind__search__space_8cpp" startline="10" endline="51">bind_search_space</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a5e4bea5b32dfe137262f014c8107a0f7" compoundref="da/d48/search__space_8cpp" startline="179" endline="280">Brush::SearchSpace::init</references>
         <references refid="d4/dc3/structBrush_1_1SearchSpace_1afe2365c907e5a0ca98d42e2e9720cb4a" compoundref="da/d48/search__space_8cpp" startline="473" endline="476">Brush::SearchSpace::make_classifier</references>
         <references refid="d4/dc3/structBrush_1_1SearchSpace_1ae8832d26aceb0bb18e97d1a3a6b7f9bc" compoundref="da/d48/search__space_8cpp" startline="478" endline="482">Brush::SearchSpace::make_multiclass_classifier</references>
         <references refid="d4/dc3/structBrush_1_1SearchSpace_1a60d418b0c8931f1b8db363a6ab56410f" compoundref="da/d48/search__space_8cpp" startline="468" endline="471">Brush::SearchSpace::make_regressor</references>
         <references refid="d4/dc3/structBrush_1_1SearchSpace_1ad08d52e3d3b0e8ce2af8b504ba33fc2b" compoundref="da/d48/search__space_8cpp" startline="484" endline="487">Brush::SearchSpace::make_representer</references>
         <references refid="d4/dc3/structBrush_1_1SearchSpace_1a1cfbfca3a45987de45159bc4699a61bb" compoundref="da/d48/search__space_8cpp" startline="175" endline="177">Brush::SearchSpace::print</references>
-        <references refid="d4/dc3/structBrush_1_1SearchSpace_1ab671dbf7c62fca02f2ccf263a2ad9a6a" compoundref="d9/d99/search__space_8h" startline="597" endline="617">Brush::SearchSpace::repr</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1ab671dbf7c62fca02f2ccf263a2ad9a6a" compoundref="d9/d99/search__space_8h" startline="628" endline="648">Brush::SearchSpace::repr</references>
         <references refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d">Brush::SS</references>
+        <referencedby refid="d0/d94/bind__search__space_8cpp_1a5dd9aae5c3af6fab760233deca1956cd" compoundref="d0/d94/bind__search__space_8cpp" startline="10" endline="51">bind_search_space</referencedby>
         <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>
       <memberdef kind="function" id="dd/d30/module_8cpp_1a47f15a78c8781fd9abcdfb84a50969e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -238,6 +246,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/bindings/module.cpp" line="23" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_fitness.cpp" bodystart="10" bodyend="62" declfile="/home/runner/work/brush/brush/src/bindings/module.cpp" declline="23" declcolumn="6"/>
+        <references refid="d8/d80/bind__fitness_8cpp_1aa1d69f4eced5e5a4bfde7cac15a1b4d4" compoundref="d8/d80/bind__fitness_8cpp" startline="10" endline="62">bind_fitness</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1a101d3e509a063d7d3ee16a43cd1f98f4" compoundref="dc/d7a/fitness_8h" startline="151" endline="153">Brush::Fitness::clearValues</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1aeb7b43cd4977e3c1e9c7feb3084de17a" compoundref="dc/d5c/fitness_8cpp" startline="55" endline="85">Brush::Fitness::dominates</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1a8ab836a166ef8eba47a93b00d7bbb40c" compoundref="dc/d7a/fitness_8h" startline="77" endline="77">Brush::Fitness::get_complexity</references>
@@ -264,6 +273,7 @@
         <references refid="d6/dd0/structBrush_1_1Fitness_1aaec7fc8a8c22af4fb6265beac92002a4" compoundref="dc/d7a/fitness_8h" startline="129" endline="148">Brush::Fitness::set_values</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1a6253406e0ac28947766a5f5afbb721e1" compoundref="dc/d7a/fitness_8h" startline="199" endline="209">Brush::Fitness::toString</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1a55b3762be6e11b3667eaf464657784c6" compoundref="dc/d7a/fitness_8h" startline="155" endline="157">Brush::Fitness::valid</references>
+        <referencedby refid="d8/d80/bind__fitness_8cpp_1aa1d69f4eced5e5a4bfde7cac15a1b4d4" compoundref="d8/d80/bind__fitness_8cpp" startline="10" endline="62">bind_fitness</referencedby>
         <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>
       <memberdef kind="function" id="dd/d30/module_8cpp_1a8d170e69b881d776fed22a71473062b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -282,7 +292,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/bindings/module.cpp" line="26" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_programs.cpp" bodystart="12" bodyend="18" declfile="/home/runner/work/brush/brush/src/bindings/module.cpp" declline="26" declcolumn="6"/>
-        <references refid="d6/d3f/bind__programs_8h_1a8284c80bb3c1dfb32250420f76a183fd" compoundref="d6/d3f/bind__programs_8h" startline="15" endline="99">bind_program</references>
+        <references refid="d6/d3f/bind__programs_8h_1a8284c80bb3c1dfb32250420f76a183fd" compoundref="d6/d3f/bind__programs_8h" startline="15" endline="100">bind_program</references>
+        <references refid="d9/d26/bind__programs_8cpp_1a8435253e0dd2b6802297b820914051e5" compoundref="d9/d26/bind__programs_8cpp" startline="12" endline="18">bind_programs</references>
+        <referencedby refid="d9/d26/bind__programs_8cpp_1a8435253e0dd2b6802297b820914051e5" compoundref="d9/d26/bind__programs_8cpp" startline="12" endline="18">bind_programs</referencedby>
         <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>
       <memberdef kind="function" id="dd/d30/module_8cpp_1afb03700c4de63c23a21d3aff6e90df65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -302,6 +314,8 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/bindings/module.cpp" line="27" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_evaluator.cpp" bodystart="10" bodyend="16" declfile="/home/runner/work/brush/brush/src/bindings/module.cpp" declline="27" declcolumn="6"/>
         <references refid="d0/d67/bind__evaluator_8h_1a4a078fc3865f8ccc54a84f4a75c4fceb" compoundref="d0/d67/bind__evaluator_8h" startline="11" endline="20">bind_evaluator</references>
+        <references refid="da/dff/bind__evaluator_8cpp_1a42c2075ccc50fcb91a164963bb092be2" compoundref="da/dff/bind__evaluator_8cpp" startline="10" endline="16">bind_evaluators</references>
+        <referencedby refid="da/dff/bind__evaluator_8cpp_1a42c2075ccc50fcb91a164963bb092be2" compoundref="da/dff/bind__evaluator_8cpp" startline="10" endline="16">bind_evaluators</referencedby>
         <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>
       <memberdef kind="function" id="dd/d30/module_8cpp_1ad162486ba5310eaba40750a964f0e997" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -320,7 +334,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/bindings/module.cpp" line="28" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_individuals.cpp" bodystart="9" bodyend="15" declfile="/home/runner/work/brush/brush/src/bindings/module.cpp" declline="28" declcolumn="6"/>
-        <references refid="d6/ddc/bind__individuals_8h_1a366723239dbf6fafb7bc0a9a5c5aa6f0" compoundref="d6/ddc/bind__individuals_8h" startline="16" endline="93">bind_individual</references>
+        <references refid="d6/ddc/bind__individuals_8h_1a366723239dbf6fafb7bc0a9a5c5aa6f0" compoundref="d6/ddc/bind__individuals_8h" startline="16" endline="94">bind_individual</references>
+        <references refid="d9/d27/bind__individuals_8cpp_1afadbe90ca583d38140c96ea768165a98" compoundref="d9/d27/bind__individuals_8cpp" startline="9" endline="15">bind_individuals</references>
+        <referencedby refid="d9/d27/bind__individuals_8cpp_1afadbe90ca583d38140c96ea768165a98" compoundref="d9/d27/bind__individuals_8cpp" startline="9" endline="15">bind_individuals</referencedby>
         <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>
       <memberdef kind="function" id="dd/d30/module_8cpp_1a6b3cd545b8ebd3c68e9fbcf9eaab946b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -340,6 +356,8 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/bindings/module.cpp" line="29" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_variation.cpp" bodystart="8" bodyend="14" declfile="/home/runner/work/brush/brush/src/bindings/module.cpp" declline="29" declcolumn="6"/>
         <references refid="d8/df7/bind__variation_8h_1aa00827ef4bd73eeb7c3e30717bf91a74" compoundref="d8/df7/bind__variation_8h" startline="21" endline="77">bind_variation</references>
+        <references refid="df/d41/bind__variation_8cpp_1afff95e1302716a3722587126501104e5" compoundref="df/d41/bind__variation_8cpp" startline="8" endline="14">bind_variations</references>
+        <referencedby refid="df/d41/bind__variation_8cpp_1afff95e1302716a3722587126501104e5" compoundref="df/d41/bind__variation_8cpp" startline="8" endline="14">bind_variations</referencedby>
         <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>
       <memberdef kind="function" id="dd/d30/module_8cpp_1aab4377988d1103881a9f2d800436e9f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -359,6 +377,8 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/bindings/module.cpp" line="30" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_selection.cpp" bodystart="8" bodyend="15" declfile="/home/runner/work/brush/brush/src/bindings/module.cpp" declline="30" declcolumn="6"/>
         <references refid="da/d67/bind__selection_8h_1ab9984f712961be9a040dd775a1ab5bd0" compoundref="da/d67/bind__selection_8h" startline="15" endline="95">bind_selection</references>
+        <references refid="d7/dce/bind__selection_8cpp_1a744de67ae4957200b6127b9d084fe082" compoundref="d7/dce/bind__selection_8cpp" startline="8" endline="15">bind_selections</references>
+        <referencedby refid="d7/dce/bind__selection_8cpp_1a744de67ae4957200b6127b9d084fe082" compoundref="d7/dce/bind__selection_8cpp" startline="8" endline="15">bind_selections</referencedby>
         <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>
       <memberdef kind="function" id="dd/d30/module_8cpp_1ac217bc6161b212344e576f7333ad9942" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -377,7 +397,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/bindings/module.cpp" line="31" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_engines.cpp" bodystart="8" bodyend="16" declfile="/home/runner/work/brush/brush/src/bindings/module.cpp" declline="31" declcolumn="6"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="34" endline="102">bind_engine</references>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="34" endline="103">bind_engine</references>
+        <references refid="d1/df0/bind__engines_8cpp_1a5e9ee65a2fe83e25a41b3776034ca404" compoundref="d1/df0/bind__engines_8cpp" startline="8" endline="16">bind_engines</references>
+        <referencedby refid="d1/df0/bind__engines_8cpp_1a5e9ee65a2fe83e25a41b3776034ca404" compoundref="d1/df0/bind__engines_8cpp" startline="8" endline="16">bind_engines</referencedby>
         <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>
       <memberdef kind="function" id="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -398,17 +420,19 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/bindings/module.cpp" line="33" column="1" bodyfile="/home/runner/work/brush/brush/src/bindings/module.cpp" bodystart="33" bodyend="60"/>
-        <references refid="dd/d30/module_8cpp_1a995ca1cce898b8c2bab6ab3abd3e2997" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="87">bind_dataset</references>
-        <references refid="dd/d30/module_8cpp_1ac217bc6161b212344e576f7333ad9942" compoundref="d1/df0/bind__engines_8cpp" startline="8" endline="16">bind_engines</references>
-        <references refid="dd/d30/module_8cpp_1afb03700c4de63c23a21d3aff6e90df65" compoundref="da/dff/bind__evaluator_8cpp" startline="10" endline="16">bind_evaluators</references>
-        <references refid="dd/d30/module_8cpp_1a47f15a78c8781fd9abcdfb84a50969e7" compoundref="d8/d80/bind__fitness_8cpp" startline="10" endline="62">bind_fitness</references>
-        <references refid="dd/d30/module_8cpp_1ad162486ba5310eaba40750a964f0e997" compoundref="d9/d27/bind__individuals_8cpp" startline="9" endline="15">bind_individuals</references>
-        <references refid="dd/d30/module_8cpp_1ade630122da6c4a317e256ba1bcaa7683" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="69">bind_params</references>
-        <references refid="dd/d30/module_8cpp_1a8d170e69b881d776fed22a71473062b9" compoundref="d9/d26/bind__programs_8cpp" startline="12" endline="18">bind_programs</references>
-        <references refid="dd/d30/module_8cpp_1aa36e59ad9e46e25d7fb56b00748e4739" compoundref="d0/d94/bind__search__space_8cpp" startline="10" endline="51">bind_search_space</references>
-        <references refid="dd/d30/module_8cpp_1aab4377988d1103881a9f2d800436e9f2" compoundref="d7/dce/bind__selection_8cpp" startline="8" endline="15">bind_selections</references>
-        <references refid="dd/d30/module_8cpp_1a6b3cd545b8ebd3c68e9fbcf9eaab946b" compoundref="df/d41/bind__variation_8cpp" startline="8" endline="14">bind_variations</references>
+        <references refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="87">bind_dataset</references>
+        <references refid="d1/df0/bind__engines_8cpp_1a5e9ee65a2fe83e25a41b3776034ca404" compoundref="d1/df0/bind__engines_8cpp" startline="8" endline="16">bind_engines</references>
+        <references refid="da/dff/bind__evaluator_8cpp_1a42c2075ccc50fcb91a164963bb092be2" compoundref="da/dff/bind__evaluator_8cpp" startline="10" endline="16">bind_evaluators</references>
+        <references refid="d8/d80/bind__fitness_8cpp_1aa1d69f4eced5e5a4bfde7cac15a1b4d4" compoundref="d8/d80/bind__fitness_8cpp" startline="10" endline="62">bind_fitness</references>
+        <references refid="d9/d27/bind__individuals_8cpp_1afadbe90ca583d38140c96ea768165a98" compoundref="d9/d27/bind__individuals_8cpp" startline="9" endline="15">bind_individuals</references>
+        <references refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="69">bind_params</references>
+        <references refid="d9/d26/bind__programs_8cpp_1a8435253e0dd2b6802297b820914051e5" compoundref="d9/d26/bind__programs_8cpp" startline="12" endline="18">bind_programs</references>
+        <references refid="d0/d94/bind__search__space_8cpp_1a5dd9aae5c3af6fab760233deca1956cd" compoundref="d0/d94/bind__search__space_8cpp" startline="10" endline="51">bind_search_space</references>
+        <references refid="d7/dce/bind__selection_8cpp_1a744de67ae4957200b6127b9d084fe082" compoundref="d7/dce/bind__selection_8cpp" startline="8" endline="15">bind_selections</references>
+        <references refid="df/d41/bind__variation_8cpp_1afff95e1302716a3722587126501104e5" compoundref="df/d41/bind__variation_8cpp" startline="8" endline="14">bind_variations</references>
         <references refid="dd/d30/module_8cpp_1a04bd637263ccb57f7e038856e2a51531" compoundref="dd/d30/module_8cpp" startline="11">MACRO_STRINGIFY</references>
+        <references refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</references>
+        <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -435,18 +459,18 @@
 <codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>forward<sp/>declarations<sp/>------------------</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>non-templated<sp/>bindings</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d30/module_8cpp_1ade630122da6c4a317e256ba1bcaa7683" kindref="member">bind_params</ref>(py::module<sp/>&amp;);</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d30/module_8cpp_1a995ca1cce898b8c2bab6ab3abd3e2997" kindref="member">bind_dataset</ref>(py::module<sp/>&amp;);</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d30/module_8cpp_1aa36e59ad9e46e25d7fb56b00748e4739" kindref="member">bind_search_space</ref>(py::module<sp/>&amp;);</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d30/module_8cpp_1a47f15a78c8781fd9abcdfb84a50969e7" kindref="member">bind_fitness</ref>(py::module<sp/>&amp;);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" kindref="member">bind_params</ref>(py::module<sp/>&amp;);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" kindref="member">bind_dataset</ref>(py::module<sp/>&amp;);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d94/bind__search__space_8cpp_1a5dd9aae5c3af6fab760233deca1956cd" kindref="member">bind_search_space</ref>(py::module<sp/>&amp;);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d8/d80/bind__fitness_8cpp_1aa1d69f4eced5e5a4bfde7cac15a1b4d4" kindref="member">bind_fitness</ref>(py::module<sp/>&amp;);</highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>templated<sp/>bindings</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d30/module_8cpp_1a8d170e69b881d776fed22a71473062b9" kindref="member">bind_programs</ref>(py::module<sp/>&amp;);</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d30/module_8cpp_1afb03700c4de63c23a21d3aff6e90df65" kindref="member">bind_evaluators</ref>(py::module<sp/>&amp;);</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d30/module_8cpp_1ad162486ba5310eaba40750a964f0e997" kindref="member">bind_individuals</ref>(py::module<sp/>&amp;);</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d30/module_8cpp_1a6b3cd545b8ebd3c68e9fbcf9eaab946b" kindref="member">bind_variations</ref>(py::module<sp/>&amp;);</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d30/module_8cpp_1aab4377988d1103881a9f2d800436e9f2" kindref="member">bind_selections</ref>(py::module<sp/>&amp;);</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d30/module_8cpp_1ac217bc6161b212344e576f7333ad9942" kindref="member">bind_engines</ref>(py::module<sp/>&amp;);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d9/d26/bind__programs_8cpp_1a8435253e0dd2b6802297b820914051e5" kindref="member">bind_programs</ref>(py::module<sp/>&amp;);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="da/dff/bind__evaluator_8cpp_1a42c2075ccc50fcb91a164963bb092be2" kindref="member">bind_evaluators</ref>(py::module<sp/>&amp;);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d9/d27/bind__individuals_8cpp_1afadbe90ca583d38140c96ea768165a98" kindref="member">bind_individuals</ref>(py::module<sp/>&amp;);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="df/d41/bind__variation_8cpp_1afff95e1302716a3722587126501104e5" kindref="member">bind_variations</ref>(py::module<sp/>&amp;);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d7/dce/bind__selection_8cpp_1a744de67ae4957200b6127b9d084fe082" kindref="member">bind_selections</ref>(py::module<sp/>&amp;);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d1/df0/bind__engines_8cpp_1a5e9ee65a2fe83e25a41b3776034ca404" kindref="member">bind_engines</ref>(py::module<sp/>&amp;);</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33" refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" refkind="member"><highlight class="normal"><ref refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" kindref="member">PYBIND11_MODULE</ref>(_brush,<sp/>m)<sp/>{</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
@@ -456,25 +480,25 @@
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>m.attr(</highlight><highlight class="stringliteral">&quot;__version__&quot;</highlight><highlight class="normal">)<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;dev&quot;</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>use<sp/>version<sp/>file</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>data<sp/>structures</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="dd/d30/module_8cpp_1ade630122da6c4a317e256ba1bcaa7683" kindref="member">bind_params</ref>(m);</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="dd/d30/module_8cpp_1a995ca1cce898b8c2bab6ab3abd3e2997" kindref="member">bind_dataset</ref>(m);</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="dd/d30/module_8cpp_1aa36e59ad9e46e25d7fb56b00748e4739" kindref="member">bind_search_space</ref>(m);</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="dd/d30/module_8cpp_1a47f15a78c8781fd9abcdfb84a50969e7" kindref="member">bind_fitness</ref>(m);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" kindref="member">bind_params</ref>(m);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" kindref="member">bind_dataset</ref>(m);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="d0/d94/bind__search__space_8cpp_1a5dd9aae5c3af6fab760233deca1956cd" kindref="member">bind_search_space</ref>(m);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="d8/d80/bind__fitness_8cpp_1aa1d69f4eced5e5a4bfde7cac15a1b4d4" kindref="member">bind_fitness</ref>(m);</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight></codeline>
 <codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>create<sp/>a<sp/>submodule<sp/>for<sp/>them</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="dd/d30/module_8cpp_1afb03700c4de63c23a21d3aff6e90df65" kindref="member">bind_evaluators</ref>(m);</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="dd/d30/module_8cpp_1aab4377988d1103881a9f2d800436e9f2" kindref="member">bind_selections</ref>(m);</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="dd/d30/module_8cpp_1a6b3cd545b8ebd3c68e9fbcf9eaab946b" kindref="member">bind_variations</ref>(m);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="da/dff/bind__evaluator_8cpp_1a42c2075ccc50fcb91a164963bb092be2" kindref="member">bind_evaluators</ref>(m);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="d7/dce/bind__selection_8cpp_1a744de67ae4957200b6127b9d084fe082" kindref="member">bind_selections</ref>(m);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="df/d41/bind__variation_8cpp_1afff95e1302716a3722587126501104e5" kindref="member">bind_variations</ref>(m);</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"></highlight></codeline>
 <codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>solutions</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>py::module_<sp/>m2<sp/>=<sp/>m.def_submodule(</highlight><highlight class="stringliteral">&quot;program&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Contains<sp/>Program<sp/>classes.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="dd/d30/module_8cpp_1a8d170e69b881d776fed22a71473062b9" kindref="member">bind_programs</ref>(m2);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="d9/d26/bind__programs_8cpp_1a8435253e0dd2b6802297b820914051e5" kindref="member">bind_programs</ref>(m2);</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"></highlight></codeline>
 <codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>py::module_<sp/>m3<sp/>=<sp/>m.def_submodule(</highlight><highlight class="stringliteral">&quot;individual&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Contains<sp/>Individual<sp/>classes.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="dd/d30/module_8cpp_1ad162486ba5310eaba40750a964f0e997" kindref="member">bind_individuals</ref>(m3);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="d9/d27/bind__individuals_8cpp_1afadbe90ca583d38140c96ea768165a98" kindref="member">bind_individuals</ref>(m3);</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"></highlight></codeline>
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>py::module_<sp/>m4<sp/>=<sp/>m.def_submodule(</highlight><highlight class="stringliteral">&quot;engine&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Learning<sp/>engines.&quot;</highlight><highlight class="normal">);<sp/></highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="dd/d30/module_8cpp_1ac217bc6161b212344e576f7333ad9942" kindref="member">bind_engines</ref>(m4);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="d1/df0/bind__engines_8cpp_1a5e9ee65a2fe83e25a41b3776034ca404" kindref="member">bind_engines</ref>(m4);</highlight></codeline>
 <codeline lineno="60"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/bindings/module.cpp"/>

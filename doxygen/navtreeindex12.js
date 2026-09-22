@@ -1,5 +1,14 @@
 var NAVTREEINDEX12 =
 {
+"de/da7/structBrush_1_1Function_3_01NodeType_1_1During_01_4.html#a5e9c46f253c0244d4b65a551c0d33909":[2,0,0,62,0],
+"de/db9/classBrush_1_1Sel_1_1SelectionOperator.html":[0,0,0,5,3],
+"de/db9/classBrush_1_1Sel_1_1SelectionOperator.html":[2,0,0,4,3],
+"de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#a12d713c7ef31e9df5974ceb6d8708074":[0,0,0,5,3,1],
+"de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#a12d713c7ef31e9df5974ceb6d8708074":[2,0,0,4,3,1],
+"de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#a612a07491346369b748198d11ae43675":[0,0,0,5,3,4],
+"de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#a612a07491346369b748198d11ae43675":[2,0,0,4,3,4],
+"de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#a66068ecfa22feb22c5c135caa7c2eb8d":[0,0,0,5,3,3],
+"de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#a66068ecfa22feb22c5c135caa7c2eb8d":[2,0,0,4,3,3],
 "de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#a67d05df40cbc572d3b950523d2daf786":[0,0,0,5,3,0],
 "de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#a67d05df40cbc572d3b950523d2daf786":[2,0,0,4,3,0],
 "de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#aae4a8e2e3b4e14ca055312da466c8547":[0,0,0,5,3,2],
@@ -240,14 +249,5 @@ var NAVTREEINDEX12 =
 "de/deb/structBrush_1_1Parameters.html#ad1a131cf61b76ff1ab4b576f5fd1df9b":[2,0,0,117,89],
 "de/deb/structBrush_1_1Parameters.html#ad295afd17da08fdccb207f28caf07cc8":[0,0,0,120,9],
 "de/deb/structBrush_1_1Parameters.html#ad295afd17da08fdccb207f28caf07cc8":[2,0,0,117,9],
-"de/deb/structBrush_1_1Parameters.html#ad2ad3c96073fa555d752b20a182309bf":[0,0,0,120,106],
-"de/deb/structBrush_1_1Parameters.html#ad2ad3c96073fa555d752b20a182309bf":[2,0,0,117,106],
-"de/deb/structBrush_1_1Parameters.html#ad36ed3c368c1cc152b179a824e9b3144":[0,0,0,120,55],
-"de/deb/structBrush_1_1Parameters.html#ad36ed3c368c1cc152b179a824e9b3144":[2,0,0,117,55],
-"de/deb/structBrush_1_1Parameters.html#ad5cf6dfc60d005e70ef569ac1e58bdeb":[0,0,0,120,61],
-"de/deb/structBrush_1_1Parameters.html#ad5cf6dfc60d005e70ef569ac1e58bdeb":[2,0,0,117,61],
-"de/deb/structBrush_1_1Parameters.html#ad60ceac73cd4773e3d808531463a87eb":[0,0,0,120,114],
-"de/deb/structBrush_1_1Parameters.html#ad60ceac73cd4773e3d808531463a87eb":[2,0,0,117,114],
-"de/deb/structBrush_1_1Parameters.html#ad8ff63e4d1845c0b7fd85532e5edb48c":[0,0,0,120,97],
-"de/deb/structBrush_1_1Parameters.html#ad8ff63e4d1845c0b7fd85532e5edb48c":[2,0,0,117,97]
+"de/deb/structBrush_1_1Parameters.html#ad2ad3c96073fa555d752b20a182309bf":[0,0,0,120,106]
 };

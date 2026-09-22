@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="df/dfe/nodetype_8cpp" kind="file" language="C++">
     <compoundname>nodetype.cpp</compoundname>
     <includes refid="de/d26/nodetype_8h" local="yes">nodetype.h</includes>
@@ -333,7 +333,7 @@
 <codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>{&quot;CustomSplit&quot;,<sp/>NodeType::CustomSplit}</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="79"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="80"><highlight class="normal"></highlight></codeline>
-<codeline lineno="81" refid="dc/d5c/namespaceBrush_1abfd0b15e0aacec494262585ad04fd79b" refkind="member"><highlight class="normal">std::map&lt;NodeType,std::string&gt;<sp/><ref refid="dc/d5c/namespaceBrush_1abfd0b15e0aacec494262585ad04fd79b" kindref="member">NodeTypeName</ref><sp/>=<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1a104f5440d54d751bac78c892b7022c71" kindref="member">Util::reverse_map</ref>(<ref refid="dc/d5c/namespaceBrush_1a53cdba1e843851199f3be9be32f5acdf" kindref="member">NodeNameType</ref>);</highlight></codeline>
+<codeline lineno="81" refid="dc/d5c/namespaceBrush_1abfd0b15e0aacec494262585ad04fd79b" refkind="member"><highlight class="normal">std::map&lt;NodeType,std::string&gt;<sp/><ref refid="dc/d5c/namespaceBrush_1abfd0b15e0aacec494262585ad04fd79b" kindref="member">NodeTypeName</ref><sp/>=<sp/>Util::reverse_map(<ref refid="dc/d5c/namespaceBrush_1a53cdba1e843851199f3be9be32f5acdf" kindref="member">NodeNameType</ref>);</highlight></codeline>
 <codeline lineno="82"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/program/nodetype.cpp"/>

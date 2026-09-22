@@ -31,6 +31,7 @@ var structSearchSpace =
     [ "repr", "de/d87/structSearchSpace.html#ab671dbf7c62fca02f2ccf263a2ad9a6a", null ],
     [ "sample_op", "de/d87/structSearchSpace.html#ab23bc4732e733749b8aa1e8c2c2689a2", null ],
     [ "sample_op", "de/d87/structSearchSpace.html#a6b5598bed4a2ba81749f38927a16f61d", null ],
+    [ "sample_op", "de/d87/structSearchSpace.html#a686908b0cb198388fc1394f348561738", null ],
     [ "sample_op_with_arg", "de/d87/structSearchSpace.html#ad4ecbe9a8128d1a2b5aba0d5aeec686f", null ],
     [ "sample_subtree", "de/d87/structSearchSpace.html#aed45d3d8adbee89f02e709472fe88280", null ],
     [ "sample_terminal", "de/d87/structSearchSpace.html#afed4d42914edd71c4b54fc3883d8d156", null ],

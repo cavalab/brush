@@ -1,5 +1,12 @@
 var NAVTREEINDEX5 =
 {
+"d6/da6/structBrush_1_1Function_3_01NodeType_1_1ArgMax_01_4.html#a150d4528bddd364ea2fa808bf992a363":[2,0,0,53,0],
+"d6/dd0/structBrush_1_1Fitness.html":[0,0,0,49],
+"d6/dd0/structBrush_1_1Fitness.html":[2,0,0,46],
+"d6/dd0/structBrush_1_1Fitness.html#a026384af1bce901c71eef83e93b4d0a5":[0,0,0,49,27],
+"d6/dd0/structBrush_1_1Fitness.html#a026384af1bce901c71eef83e93b4d0a5":[2,0,0,46,27],
+"d6/dd0/structBrush_1_1Fitness.html#a032568acc7f2b2272658fda567768098":[0,0,0,49,55],
+"d6/dd0/structBrush_1_1Fitness.html#a032568acc7f2b2272658fda567768098":[2,0,0,46,55],
 "d6/dd0/structBrush_1_1Fitness.html#a0998d4960cae30c329ae6d2f05a27c84":[0,0,0,49,45],
 "d6/dd0/structBrush_1_1Fitness.html#a0998d4960cae30c329ae6d2f05a27c84":[2,0,0,46,45],
 "d6/dd0/structBrush_1_1Fitness.html#a101d3e509a063d7d3ee16a43cd1f98f4":[0,0,0,49,1],
@@ -242,12 +249,5 @@ var NAVTREEINDEX5 =
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a8b9d1462cec60687e36eb7d4f96c9051":[2,0,0,0,2,0],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a8fb9d6274f215e9bf1caa4317d3f70ad":[0,0,0,0,2,53],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a8fb9d6274f215e9bf1caa4317d3f70ad":[2,0,0,0,2,53],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a94655fb93885f74e588075d592901981":[0,0,0,0,2,9],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a94655fb93885f74e588075d592901981":[2,0,0,0,2,9],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a9617c8407eac0d7b260ff51a7a863635":[0,0,0,0,2,21],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a9617c8407eac0d7b260ff51a7a863635":[2,0,0,0,2,21],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a9ad87fab8dcae913c54c73cf8663cca9":[0,0,0,0,2,16],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a9ad87fab8dcae913c54c73cf8663cca9":[2,0,0,0,2,16],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a9df3733dc661535cfb6e22a9f34d0bb1":[0,0,0,0,2,4],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a9df3733dc661535cfb6e22a9f34d0bb1":[2,0,0,0,2,4]
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a94655fb93885f74e588075d592901981":[0,0,0,0,2,9]
 };

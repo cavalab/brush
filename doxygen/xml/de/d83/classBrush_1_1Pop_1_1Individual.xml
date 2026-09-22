@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="de/d83/classBrush_1_1Pop_1_1Individual" kind="class" language="C++" prot="public">
     <compoundname>Brush::Pop::Individual</compoundname>
     <includes refid="d5/d1f/individual_8h" local="no">individual.h</includes>
@@ -230,6 +230,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="42" column="5" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="42" bodyend="46"/>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="482">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1acca3bba8a620c4498bf51dc1ddc9aea3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -290,7 +291,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="67" column="16" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="67" bodyend="71"/>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96d05b4f293705a35f00f5f60db18a11" compoundref="d5/d1f/individual_8h" startline="72" endline="76">Brush::Pop::Individual&lt; PT::Regressor &gt;::fit</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1a96d05b4f293705a35f00f5f60db18a11" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="de/d83/classBrush_1_1Pop_1_1Individual_1a7224f798511c371e30acf92a8aa37a31" kindref="member">Individual</ref>&lt; T &gt; &amp;</type>
@@ -344,7 +344,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="84" column="16" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="84" bodyend="90"/>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1aebc1dd241fc84ad8fd0a9fb0bdb562e7" compoundref="d5/d1f/individual_8h" startline="98" endline="102">Brush::Pop::Individual&lt; PT::Regressor &gt;::replace_program</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1aebc1dd241fc84ad8fd0a9fb0bdb562e7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="de/d83/classBrush_1_1Pop_1_1Individual_1a7224f798511c371e30acf92a8aa37a31" kindref="member">Individual</ref>&lt; T &gt; &amp;</type>
@@ -394,7 +393,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="104" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="104" bodyend="104"/>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1ae73c2e6416a0ee2b7da2446969bdb6a8" compoundref="d5/d1f/individual_8h" startline="105" endline="109">Brush::Pop::Individual&lt; PT::Regressor &gt;::predict</referencedby>
         <referencedby refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a3797d5ee458a9b91b165b53a8e53cbf6" compoundref="da/d3b/scorer_8h" startline="63" endline="68">Brush::Eval::Scorer&lt; P &gt;::score</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1ae73c2e6416a0ee2b7da2446969bdb6a8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -441,7 +439,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="113" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="113" bodyend="113"/>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1ab9d112fc0bb31969e315346bbb51a4bc" compoundref="d5/d1f/individual_8h" startline="116" endline="120">Brush::Pop::Individual&lt; PT::Regressor &gt;::predict_proba</referencedby>
         <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a3797d5ee458a9b91b165b53a8e53cbf6" compoundref="da/d3b/scorer_8h" startline="119" endline="150">Brush::Eval::Scorer&lt; P &gt;::score</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1ab9d112fc0bb31969e315346bbb51a4bc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">

@@ -68,18 +68,18 @@ var NAVTREEINDEX =
 "annotated.html",
 "d1/d3a/structBrush_1_1Node.html#a24ab653c36833ab9cd301efe99b39d5f",
 "d2/d36/classBrush_1_1Data_1_1Dataset.html#a2b8f61c5fb8f2128ddbe82108e7644d6",
-"d4/d0d/structstd_1_1hash_3_01std_1_1vector_3_01float_01_4_01_4.html",
-"d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity.html#a08e61d9f1f10b6020f24e232f264caed",
-"d6/dd0/structBrush_1_1Fitness.html#a0998d4960cae30c329ae6d2f05a27c84",
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa0654cb12a16531bdd8773699ea2e60e",
-"d8/d80/bind__fitness_8cpp.html#ae2f679a1605bd79ee7983e55e31d6d2e",
-"da/da3/classBrush_1_1Pop_1_1Population.html#a95bb307f431f7ab815f724c0e159b797",
-"db/d88/structBrush_1_1Program.html#ab5df93b7b0bf914455ffeb5cc7574543",
-"dc/d5c/namespaceBrush.html#a8b77eb5253f95aaff5dcf63d29734d10",
-"dd/d56/namespaceBrush_1_1Pop.html",
-"de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#a67d05df40cbc572d3b950523d2daf786",
-"de/deb/structBrush_1_1Parameters.html#adce3ebf4b9d0aa35a4da35f33e5d9168",
-"namespacemembers_m.html"
+"d4/d05/dummy_8cpp_source.html",
+"d4/dd1/structBrush_1_1DataTypeEnum_3_01ArrayXiJet_01_4.html",
+"d6/da6/structBrush_1_1Function_3_01NodeType_1_1ArgMax_01_4.html#a150d4528bddd364ea2fa808bf992a363",
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a94655fb93885f74e588075d592901981",
+"d8/d5c/functions_8h.html",
+"da/da3/classBrush_1_1Pop_1_1Population.html#a78b95a2dc04224a015fdbe356cbf1e87",
+"db/d88/structBrush_1_1Program.html#a9e0114cb8da8698b0db76f67ce5d22e3",
+"dc/d5c/namespaceBrush.html#a78f7f19a49bc1a818f29602b1773acc4",
+"dd/d56/classBrush_1_1Util_1_1Logger.html#a66e978372533d5960afe73a702382cf0",
+"de/da7/structBrush_1_1Function_3_01NodeType_1_1During_01_4.html#a5e9c46f253c0244d4b65a551c0d33909",
+"de/deb/structBrush_1_1Parameters.html#ad2ad3c96073fa555d752b20a182309bf",
+"namespacemembers_enum.html"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

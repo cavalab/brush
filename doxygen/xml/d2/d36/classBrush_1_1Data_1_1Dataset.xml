@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="d2/d36/classBrush_1_1Data_1_1Dataset" kind="class" language="C++" prot="public">
     <compoundname>Brush::Data::Dataset</compoundname>
     <includes refid="d2/dbd/data_8h" local="no">data.h</includes>
@@ -360,7 +360,6 @@
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a652aba735323fddf7bf79407e7e4fc83" compoundref="d2/dbd/data_8h" startline="73">features_of_type</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="225" endline="230">get_n_samples</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
-        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="176">Brush::Util::r</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a47efbb19e4ca04538d4ef04f0a87d856" compoundref="d2/dbd/data_8h" startline="91">shuffle_split</references>
         <references refid="d9/d1c/namespaceBrush_1_1Data_1a6c00d36ba6aefd852544da96a089754a" compoundref="da/dc9/data_8cpp" startline="67" endline="70">Brush::Data::StateType</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a4112a2cb86ce4138c3c4bea966c96b65" compoundref="d2/dbd/data_8h" startline="57">training_data_idx</references>
@@ -507,6 +506,7 @@
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" compoundref="da/dc9/data_8cpp" startline="214" endline="214">get_training_data</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1ddb847fd1ceff63e60ffd79542409d9" compoundref="da/dc9/data_8cpp" startline="215" endline="215">get_validation_data</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="139" endline="182">operator()</referencedby>
+        <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1ad4320ca3604e146155ccc7c55ea9006c" compoundref="d5/d5a/io_8cpp" startline="14" endline="88">Brush::Data::read_csv</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1ad017496e1ae05e52999af69f409e19b1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -710,7 +710,9 @@
         <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="55" endline="121">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
         <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="87">bind_dataset</referencedby>
         <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1abb9431d42274e6b559249d6b2872d2a2" compoundref="de/d79/inexact_8cpp" startline="19" endline="44">Brush::Simpl::Inexact_simplifier::init</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a34e022870eeefe3cf27f1b5575738ce9" compoundref="d4/d1f/variation_8h" startline="76" endline="172">Brush::Var::Variation&lt; T &gt;::init</referencedby>
         <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a6ca34005b1a4ab87038a4c391e77d786" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="51">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="482">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a1ddb847fd1ceff63e60ffd79542409d9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref></type>
@@ -774,6 +776,7 @@
         <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1abb9431d42274e6b559249d6b2872d2a2" compoundref="de/d79/inexact_8cpp" startline="19" endline="44">Brush::Simpl::Inexact_simplifier::init</referencedby>
         <referencedby refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a56b67e05e4f1f89f7fd83f755d826d16" compoundref="d7/de0/operator_8h" startline="389" endline="396">Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::predict</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a59ec8554d617a4a99ba7feec09bdc62c" compoundref="d2/dbd/data_8h" startline="196" endline="211">print</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="482">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a6edc04702aee605a766f4a79c375d0c6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -810,7 +813,6 @@
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" compoundref="d2/dbd/data_8h" startline="94">batch_size</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="117" endline="132">Dataset</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="225" endline="230">get_n_samples</references>
-        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="176">Brush::Util::r</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8cba7a5f962538d67012264fb6c97ed4" compoundref="d2/dbd/data_8h" startline="95">use_batch</references>
         <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="87">bind_dataset</referencedby>
         <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="422" endline="689">Brush::Engine&lt; T &gt;::run</referencedby>

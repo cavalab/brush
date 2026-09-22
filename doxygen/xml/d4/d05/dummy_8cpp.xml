@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="d4/d05/dummy_8cpp" kind="file" language="C++">
     <compoundname>dummy.cpp</compoundname>
     <includes refid="d2/d94/dummy_8h" local="yes">dummy.h</includes>
@@ -395,7 +395,7 @@
 <codeline lineno="10" refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a3c2fd48cd2461c39a932a7e44ea6f7ea" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a3c2fd48cd2461c39a932a7e44ea6f7ea" kindref="member">DummyBandit::choose</ref>()<sp/>{</highlight></codeline>
 <codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>std::map&lt;T,<sp/>float&gt;<sp/>probs<sp/>=<sp/>this-&gt;sample_probs(false);</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">r</ref>.random_choice(this-&gt;<ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a4a58caa7e258d9f833de5c1dc0878f6a" kindref="member">probabilities</ref>);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>r.random_choice(this-&gt;<ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a4a58caa7e258d9f833de5c1dc0878f6a" kindref="member">probabilities</ref>);</highlight></codeline>
 <codeline lineno="14"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
 <codeline lineno="16" refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a31859ae251644691b13016d8fc2eb782" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a31859ae251644691b13016d8fc2eb782" kindref="member">DummyBandit::update</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>arm,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>reward)<sp/>{</highlight></codeline>

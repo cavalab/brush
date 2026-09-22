@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="da/d4c/classBrush_1_1Eval_1_1Scorer" kind="class" language="C++" prot="public">
     <compoundname>Brush::Eval::Scorer</compoundname>
     <includes refid="da/d3b/scorer_8h" local="no">scorer.h</includes>
@@ -28,10 +28,10 @@ typename std::conditional_t&lt;P == PT::Regressor, ArrayXf,
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/eval/scorer.h" line="20" column="1" bodyfile="/home/runner/work/brush/brush/src/eval/scorer.h" bodystart="20" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1af3946b7d7b31126563379e68591374ce" prot="private" static="no">
-        <type>float(*</type>
-        <definition>typedef float(* Brush::Eval::Scorer&lt; P &gt;::funcPointer) (const VectorXf &amp;, const VectorXf &amp;, VectorXf &amp;, const vector&lt; float &gt; &amp;)</definition>
-        <argsstring>)(const VectorXf &amp;, const VectorXf &amp;, VectorXf &amp;, const vector&lt; float &gt; &amp;)</argsstring>
+      <memberdef kind="typedef" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1a2a49f288d77605b5f1d961f4bcf16314" prot="private" static="no">
+        <type>float(*)</type>
+        <definition>typedef float(*) Brush::Eval::Scorer&lt; P &gt;::funcPointer(const VectorXf &amp;, const VectorXf &amp;, VectorXf &amp;, const vector&lt; float &gt; &amp;)</definition>
+        <argsstring>(const VectorXf &amp;, const VectorXf &amp;, VectorXf &amp;, const vector&lt; float &gt; &amp;)</argsstring>
         <name>funcPointer</name>
         <qualifiedname>Brush::Eval::Scorer::funcPointer</qualifiedname>
         <briefdescription>
@@ -45,7 +45,7 @@ typename std::conditional_t&lt;P == PT::Regressor, ArrayXf,
     </sectiondef>
     <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1ae0f2e1477d465c8a5f4db4e0c8554865" prot="public" static="no" mutable="no">
-        <type>std::map&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, <ref refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1af3946b7d7b31126563379e68591374ce" kindref="member">funcPointer</ref> &gt;</type>
+        <type>std::map&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, <ref refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a2a49f288d77605b5f1d961f4bcf16314" kindref="member">funcPointer</ref> &gt;</type>
         <definition>std::map&lt;string, funcPointer&gt; Brush::Eval::Scorer&lt; P &gt;::score_hash</definition>
         <argsstring></argsstring>
         <name>score_hash</name>
@@ -96,7 +96,7 @@ typename std::conditional_t&lt;P == PT::Regressor, ArrayXf,
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/eval/scorer.h" line="35" column="5" bodyfile="/home/runner/work/brush/brush/src/eval/scorer.h" bodystart="35" bodyend="39"/>
-        <references refid="d5/db3/namespaceBrush_1_1Eval_1a4966de42610a227a10447790a79b0e60" compoundref="dd/da2/metrics_8cpp" startline="9" endline="14">Brush::Eval::mse</references>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1a4966de42610a227a10447790a79b0e60" compoundref="dd/da2/metrics_8cpp" startline="11" endline="16">Brush::Eval::mse</references>
         <references refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1ae0f2e1477d465c8a5f4db4e0c8554865" compoundref="da/d3b/scorer_8h" startline="31">Brush::Eval::Scorer&lt; P &gt;::score_hash</references>
         <references refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a9c85e27fd1be5f7bab4431332c30bae6" compoundref="da/d3b/scorer_8h" startline="32">Brush::Eval::Scorer&lt; P &gt;::scorer</references>
         <references refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a29a78f6ded6e276708939f562e3b1153" compoundref="da/d3b/scorer_8h" startline="41" endline="41">Brush::Eval::Scorer&lt; P &gt;::set_scorer</references>
@@ -238,7 +238,7 @@ typename std::conditional_t&lt;P == PT::Regressor, ArrayXf,
     </collaborationgraph>
     <location file="/home/runner/work/brush/brush/src/eval/scorer.h" line="17" column="1" bodyfile="/home/runner/work/brush/brush/src/eval/scorer.h" bodystart="18" bodyend="69"/>
     <listofallmembers>
-      <member refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1af3946b7d7b31126563379e68591374ce" prot="private" virt="non-virtual"><scope>Brush::Eval::Scorer</scope><name>funcPointer</name></member>
+      <member refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a2a49f288d77605b5f1d961f4bcf16314" prot="private" virt="non-virtual"><scope>Brush::Eval::Scorer</scope><name>funcPointer</name></member>
       <member refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a074ffe387edb4090061c5aa0402ebb1d" prot="public" virt="non-virtual"><scope>Brush::Eval::Scorer</scope><name>get_scorer</name></member>
       <member refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a559ded60a629200a78286da1f1843c97" prot="private" virt="non-virtual"><scope>Brush::Eval::Scorer</scope><name>RetType</name></member>
       <member refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1ae953bbf0a5e4f2d1d7feccfae1593193" prot="public" virt="non-virtual"><scope>Brush::Eval::Scorer</scope><name>score</name></member>

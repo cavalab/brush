@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Operator&lt; NodeType::Constant, S, Fit &gt;</compoundname>
     <includes refid="d7/de0/operator_8h" local="no">operator.h</includes>
@@ -43,7 +43,7 @@
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="329" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="329" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="dc/d31/structBrush_1_1Operator_1aac4569e4a053f6bc685262dc81667d73" prot="public" static="no">
-        <type>conditional_t&lt;((<ref refid="de/d26/nodetype_8h_1a876e80643fd688721e2b628ba2cd39cd" kindref="member">UnaryOp</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref> &gt;||<ref refid="de/d26/nodetype_8h_1a82f43e5fe13312809d2411e25aff9e3a" kindref="member">NaryOp</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref> &gt;) &amp;&amp;S::ArgCount &gt; 1), Array&lt; typename S::FirstArg::Scalar, -1, S::ArgCount &gt;, typename S::ArgTypes &gt;</type>
+        <type>conditional_t&lt;((UnaryOp&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref> &gt;||NaryOp&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref> &gt;) &amp;&amp;S::ArgCount &gt; 1), Array&lt; typename S::FirstArg::Scalar, -1, S::ArgCount &gt;, typename S::ArgTypes &gt;</type>
         <definition>using Brush::Operator&lt; NT, S, Fit, void &gt;::ArgTypes = </definition>
         <argsstring></argsstring>
         <name>ArgTypes</name>

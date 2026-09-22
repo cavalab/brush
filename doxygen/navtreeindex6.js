@@ -1,5 +1,12 @@
 var NAVTREEINDEX6 =
 {
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a94655fb93885f74e588075d592901981":[2,0,0,0,2,9],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a9617c8407eac0d7b260ff51a7a863635":[0,0,0,0,2,21],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a9617c8407eac0d7b260ff51a7a863635":[2,0,0,0,2,21],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a9ad87fab8dcae913c54c73cf8663cca9":[0,0,0,0,2,16],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a9ad87fab8dcae913c54c73cf8663cca9":[2,0,0,0,2,16],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a9df3733dc661535cfb6e22a9f34d0bb1":[0,0,0,0,2,4],
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a9df3733dc661535cfb6e22a9f34d0bb1":[2,0,0,0,2,4],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa0654cb12a16531bdd8773699ea2e60e":[0,0,0,0,2,55],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa0654cb12a16531bdd8773699ea2e60e":[2,0,0,0,2,55],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa298e6d97eb7bbc8a4eadcda159505ba":[0,0,0,0,2,29],
@@ -71,8 +78,8 @@ var NAVTREEINDEX6 =
 "d7/d76/structBrush_1_1Function_3_01NodeType_1_1Sin_01_4.html#a3a72db7374d4acc9480daaeaaec4024f":[2,0,0,81,0],
 "d7/d79/structBrush_1_1WeightOptimizer.html":[0,0,0,157],
 "d7/d79/structBrush_1_1WeightOptimizer.html":[2,0,0,154],
-"d7/d79/structBrush_1_1WeightOptimizer.html#a16d264faa5c311908f1761119acc64f0":[0,0,0,157,0],
-"d7/d79/structBrush_1_1WeightOptimizer.html#a16d264faa5c311908f1761119acc64f0":[2,0,0,154,0],
+"d7/d79/structBrush_1_1WeightOptimizer.html#adf10a81e030a892b726e69c73284843c":[0,0,0,157,0],
+"d7/d79/structBrush_1_1WeightOptimizer.html#adf10a81e030a892b726e69c73284843c":[2,0,0,154,0],
 "d7/d7e/structBrush_1_1Function_3_01NodeType_1_1Prod_01_4.html":[0,0,0,83],
 "d7/d7e/structBrush_1_1Function_3_01NodeType_1_1Prod_01_4.html":[2,0,0,80],
 "d7/d7e/structBrush_1_1Function_3_01NodeType_1_1Prod_01_4.html#a2bc0d24a48f18149c038482a73cda9b1":[0,0,0,83,1],
@@ -242,12 +249,5 @@ var NAVTREEINDEX6 =
 "d8/d59/structBrush_1_1Function_3_01NodeType_1_1Exp_01_4.html":[2,0,0,64],
 "d8/d59/structBrush_1_1Function_3_01NodeType_1_1Exp_01_4.html#aa3031e17924bded12884c7c664d20f0d":[0,0,0,67,0],
 "d8/d59/structBrush_1_1Function_3_01NodeType_1_1Exp_01_4.html#aa3031e17924bded12884c7c664d20f0d":[2,0,0,64,0],
-"d8/d5a/classset_1_1reverse__iterator.html":[2,0,12,2],
-"d8/d5c/functions_8h.html":[3,0,0,6,3],
-"d8/d5c/functions_8h.html#a051322bb9fd1db4638b6eccd399a29c8":[3,0,0,6,3,47],
-"d8/d5c/functions_8h.html#a66dd2004d1ee46aa2b08a5b2ff462d29":[3,0,0,6,3,46],
-"d8/d5c/functions_8h.html#a6a33354c51ab1e4986b2a222aac825a7":[3,0,0,6,3,45],
-"d8/d5c/functions_8h_source.html":[3,0,0,6,3],
-"d8/d80/bind__fitness_8cpp.html":[3,0,0,1,5],
-"d8/d80/bind__fitness_8cpp.html#aa1d69f4eced5e5a4bfde7cac15a1b4d4":[3,0,0,1,5,1]
+"d8/d5a/classset_1_1reverse__iterator.html":[2,0,12,2]
 };

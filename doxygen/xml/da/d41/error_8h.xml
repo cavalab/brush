@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="da/d41/error_8h" kind="file" language="C++">
     <compoundname>error.h</compoundname>
     <includes local="no">string</includes>
@@ -727,18 +727,22 @@
         <referencedby refid="dc/d5c/namespaceBrush_1a8f1ed90f7962fef5764e7be14845aa34" compoundref="d7/d70/node_8cpp" startline="142" endline="302">Brush::init_node_with_default_signature</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1ad193aced6ffa6d3587f0f390d9ed0415" compoundref="d7/d4a/population_8cpp" startline="117" endline="134">Brush::Pop::Population&lt; T &gt;::load</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9e841d2f28f1466b82428dddba49227" compoundref="da/dc9/data_8cpp" startline="387" endline="455">Brush::Data::Dataset::make_features</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a810403a87eef0baded2aed2bb4f1979e" compoundref="d9/d99/search__space_8h" startline="751" endline="849">Brush::SearchSpace::make_program</referencedby>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a6b498359195d68c9fd1db9e856c0fdb9" compoundref="dd/da2/metrics_8cpp" startline="305" endline="341">Brush::Eval::multi_bal_zero_one_loss</referencedby>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a547663e116b3500703ca69aaa68831b7" compoundref="dd/da2/metrics_8cpp" startline="236" endline="255">Brush::Eval::multi_log_loss</referencedby>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a0ea2c4db96a2f7d4081831bbf50a02de" compoundref="dd/da2/metrics_8cpp" startline="278" endline="303">Brush::Eval::multi_zero_one_loss</referencedby>
         <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1af8a04b3abeea0f0f9e5b6e358aa65c09" compoundref="d1/d64/variation_8cpp" startline="636" endline="773">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a86f779c55c96ff7182b4e649f87fbf24" compoundref="d2/dbd/data_8h" startline="262" endline="267">Brush::Data::Dataset::operator[]</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a149319e12e39ef62533b6240ad5359c6" compoundref="d2/d76/population_8h" startline="55" endline="61">Brush::Pop::Population&lt; T &gt;::operator[]</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a281c5ef097d5fd90efba598c04826a50" compoundref="d2/d76/population_8h" startline="48" endline="54">Brush::Pop::Population&lt; T &gt;::operator[]</referencedby>
-        <referencedby refid="db/d88/structBrush_1_1Program_1a68b5b3a1aedf1dfd2769dbba3a01a2ec" compoundref="d1/dea/program_8h" startline="214" endline="220">Brush::Program&lt; PT::Regressor &gt;::predict</referencedby>
-        <referencedby refid="db/d88/structBrush_1_1Program_1a6a1237f15d7b9cc1e825e1a3213df58e" compoundref="d1/dea/program_8h" startline="191" endline="197">Brush::Program&lt; PT::Regressor &gt;::predict_with_weights</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a68b5b3a1aedf1dfd2769dbba3a01a2ec" compoundref="d1/dea/program_8h" startline="221" endline="227">Brush::Program&lt; PT::Regressor &gt;::predict</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a6a1237f15d7b9cc1e825e1a3213df58e" compoundref="d1/dea/program_8h" startline="198" endline="204">Brush::Program&lt; PT::Regressor &gt;::predict_with_weights</referencedby>
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1aa82c9f1cc1b96e7424b0ac250e4c5c91" compoundref="da/d48/search__space_8cpp" startline="312" endline="465">Brush::SearchSpace::PTC2</referencedby>
         <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1ad4320ca3604e146155ccc7c55ea9006c" compoundref="d5/d5a/io_8cpp" startline="14" endline="88">Brush::Data::read_csv</referencedby>
         <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="422" endline="689">Brush::Engine&lt; T &gt;::run</referencedby>
         <referencedby refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1afe6a2789a3e73970c443b7a05b05c6fa" compoundref="dd/d4e/bandit__operator_8cpp" startline="25" endline="35">Brush::MAB::BanditOperator::sample_probs</referencedby>
         <referencedby refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1ae953bbf0a5e4f2d1d7feccfae1593193" compoundref="da/d3b/scorer_8h" startline="45" endline="61">Brush::Eval::Scorer&lt; P &gt;::score</referencedby>
-        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a3dcd973153e72d4c3118058a4c753f06" compoundref="da/d3b/scorer_8h" startline="181" endline="200">Brush::Eval::Scorer&lt; P &gt;::score</referencedby>
+        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a3dcd973153e72d4c3118058a4c753f06" compoundref="da/d3b/scorer_8h" startline="182" endline="201">Brush::Eval::Scorer&lt; P &gt;::score</referencedby>
         <referencedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1ab9f17cd2c4452b05c96a17bb6c105fc2" compoundref="d8/dac/lexicase_8cpp" startline="18" endline="181">Brush::Sel::Lexicase&lt; T &gt;::select</referencedby>
         <referencedby refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1a12d713c7ef31e9df5974ceb6d8708074" compoundref="d4/db2/selection__operator_8cpp" startline="13" endline="18">Brush::Sel::SelectionOperator&lt; T &gt;::select</referencedby>
         <referencedby refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1acb35b5e93e90f30dd09e3266ae81e8ab" compoundref="d7/d01/bandit_8cpp" startline="36" endline="48">Brush::MAB::Bandit::set_bandit</referencedby>
@@ -747,8 +751,8 @@
         <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ab8833e1b2487a8b1260e10c8b52e7c04" compoundref="df/dbb/selection_8cpp" startline="30" endline="39">Brush::Sel::Selection&lt; T &gt;::set_operator</referencedby>
         <referencedby refid="d0/d75/classBrush_1_1Engine_1a5f0c0926d9aa939e69833211d182e881" compoundref="da/d5c/engine_8cpp" startline="331" endline="346">Brush::Engine&lt; T &gt;::set_population</referencedby>
         <referencedby refid="d0/d75/classBrush_1_1Engine_1ae8b79f5ffa6323af3e7287c0a6005bec" compoundref="da/d5c/engine_8cpp" startline="305" endline="328">Brush::Engine&lt; T &gt;::set_population_from_json</referencedby>
-        <referencedby refid="db/d88/structBrush_1_1Program_1a5ba9c69ade043cacb917dfb654a57834" compoundref="d1/dea/program_8h" startline="358" endline="381">Brush::Program&lt; PT::Regressor &gt;::set_weights</referencedby>
-        <referencedby refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1a1967ec4e50c83b4a7890959d9f6e145f" compoundref="d2/d6f/constants_8h" startline="19" endline="79">Brush::Simpl::Constants_simplifier::simplify_tree</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a5ba9c69ade043cacb917dfb654a57834" compoundref="d1/dea/program_8h" startline="368" endline="392">Brush::Program&lt; PT::Regressor &gt;::set_weights</referencedby>
+        <referencedby refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1a1967ec4e50c83b4a7890959d9f6e145f" compoundref="d2/d6f/constants_8h" startline="19" endline="91">Brush::Simpl::Constants_simplifier::simplify_tree</referencedby>
         <referencedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1a87b97fde62b47d067ee9b4ac5b60c6a3" compoundref="d8/dac/lexicase_8cpp" startline="184" endline="190">Brush::Sel::Lexicase&lt; T &gt;::survive</referencedby>
         <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a2faddb61c1d9ce38a1bc994e9a9b08eb" compoundref="de/d0d/nsga2_8cpp" startline="82" endline="155">Brush::Sel::NSGA2&lt; T &gt;::survive</referencedby>
         <referencedby refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1aae4a8e2e3b4e14ca055312da466c8547" compoundref="d4/db2/selection__operator_8cpp" startline="21" endline="26">Brush::Sel::SelectionOperator&lt; T &gt;::survive</referencedby>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Search Space &mdash; Brush 0.1.dev1+g33a7db448 documentation</title>
+  <title>The Search Space &mdash; Brush 0.1.dev1+g1823dfbdb documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=3994a0a4"></script>
+      <script src="../_static/documentation_options.js?v=6bcea315"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -67,6 +67,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="working_with_programs.html">Working with Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multiclassification.html">Multiclass classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="json.html">JSON Interoperability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="saving_loading_populations.html">Saving and loading populations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="locking_mechanism.html">Locking the search during generation updates</a></li>
@@ -126,9 +127,9 @@ Users can optionally provide these weights.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pybrush</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">SearchSpace</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../examples/datasets/d_example_patients.csv&#39;</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;target&#39;</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../examples/datasets/d_example_patients.csv'</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">'target'</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'target'</span><span class="p">]</span>
 
 <span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
@@ -235,12 +236,12 @@ That can be quite large.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">user_ops</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;Add&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
-    <span class="s1">&#39;Sub&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
-    <span class="s1">&#39;Mul&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
-    <span class="s1">&#39;Div&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
-    <span class="s1">&#39;SplitBest&#39;</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span>
-    <span class="s1">&#39;SplitOn&#39;</span><span class="p">:</span><span class="mf">0.1</span>
+    <span class="s1">'Add'</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="s1">'Sub'</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="s1">'Mul'</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s1">'Div'</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="s1">'SplitBest'</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="s1">'SplitOn'</span><span class="p">:</span><span class="mf">0.1</span>
 <span class="p">}</span>
 
 <span class="n">search_space</span> <span class="o">=</span> <span class="n">SearchSpace</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">user_ops</span><span class="p">)</span>
@@ -260,22 +261,22 @@ That can be quite large.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
-terminal_map: {&quot;ArrayI&quot;: [&quot;x_2&quot;, &quot;1.00&quot;], &quot;ArrayB&quot;: [&quot;x_1&quot;], &quot;ArrayF&quot;: [&quot;x_0&quot;, &quot;1.00&quot;]}
-terminal_weights: {&quot;ArrayI&quot;: [0.01214596, 0.01214596], &quot;ArrayB&quot;: [0.026419641], &quot;ArrayF&quot;: [0.056145623, 0.056145623]}
-SplitOn node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
-SplitBest node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitBest] = SplitBest, weight = 0.1
-SplitOn node_map[ArrayI][[&quot;ArrayB&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
-Div node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Div] = 1.00*Div, weight = 0.1
-Mul node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Mul] = 1.00*Mul, weight = 1
-SplitBest node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.1
-Sub node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Sub] = 1.00*Sub, weight = 0.5
-Add node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Add] = 1.00*Add, weight = 0.5
-SplitOn node_map[ArrayF][[&quot;ArrayB&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
-Div node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Div] = 1.00*Div, weight = 0.1
-Mul node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mul] = 1.00*Mul, weight = 1
-SplitBest node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.1
-Sub node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sub] = 1.00*Sub, weight = 0.5
-Add node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = 1.00*Add, weight = 0.5
+terminal_map: {"ArrayI": ["x_2", "1.00"], "ArrayB": ["x_1"], "ArrayF": ["x_0", "1.00"]}
+terminal_weights: {"ArrayI": [0.01214596, 0.01214596], "ArrayB": [0.026419641], "ArrayF": [0.056145623, 0.056145623]}
+SplitOn node_map[ArrayB][["ArrayB", "ArrayB", "ArrayB"]][SplitOn] = SplitOn, weight = 0.1
+SplitBest node_map[ArrayB][["ArrayB", "ArrayB"]][SplitBest] = SplitBest, weight = 0.1
+SplitOn node_map[ArrayI][["ArrayB", "ArrayI", "ArrayI"]][SplitOn] = 1.00*SplitOn, weight = 0.1
+Div node_map[ArrayI][["ArrayI", "ArrayI"]][Div] = 1.00*Div, weight = 0.1
+Mul node_map[ArrayI][["ArrayI", "ArrayI"]][Mul] = 1.00*Mul, weight = 1
+SplitBest node_map[ArrayI][["ArrayI", "ArrayI"]][SplitBest] = 1.00*SplitBest, weight = 0.1
+Sub node_map[ArrayI][["ArrayI", "ArrayI"]][Sub] = 1.00*Sub, weight = 0.5
+Add node_map[ArrayI][["ArrayI", "ArrayI"]][Add] = 1.00*Add, weight = 0.5
+SplitOn node_map[ArrayF][["ArrayB", "ArrayF", "ArrayF"]][SplitOn] = 1.00*SplitOn, weight = 0.1
+Div node_map[ArrayF][["ArrayF", "ArrayF"]][Div] = 1.00*Div, weight = 0.1
+Mul node_map[ArrayF][["ArrayF", "ArrayF"]][Mul] = 1.00*Mul, weight = 1
+SplitBest node_map[ArrayF][["ArrayF", "ArrayF"]][SplitBest] = 1.00*SplitBest, weight = 0.1
+Sub node_map[ArrayF][["ArrayF", "ArrayF"]][Sub] = 1.00*Sub, weight = 0.5
+Add node_map[ArrayF][["ArrayF", "ArrayF"]][Add] = 1.00*Add, weight = 0.5
 </pre></div>
 </div>
 </div>
@@ -297,22 +298,22 @@ Add node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = 1.00*Add, 
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
-terminal_map: {&quot;ArrayI&quot;: [&quot;x_2&quot;, &quot;1.00&quot;], &quot;ArrayB&quot;: [&quot;x_1&quot;], &quot;ArrayF&quot;: [&quot;x_0&quot;, &quot;1.00&quot;]}
-terminal_weights: {&quot;ArrayI&quot;: [1, 1], &quot;ArrayB&quot;: [1], &quot;ArrayF&quot;: [1, 1]}
-SplitOn node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
-SplitBest node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitBest] = SplitBest, weight = 0.1
-SplitOn node_map[ArrayI][[&quot;ArrayB&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
-Div node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Div] = 1.00*Div, weight = 0.1
-Mul node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Mul] = 1.00*Mul, weight = 1
-SplitBest node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.1
-Sub node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Sub] = 1.00*Sub, weight = 0.5
-Add node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Add] = 1.00*Add, weight = 0.5
-SplitOn node_map[ArrayF][[&quot;ArrayB&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
-Div node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Div] = 1.00*Div, weight = 0.1
-Mul node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mul] = 1.00*Mul, weight = 1
-SplitBest node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.1
-Sub node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sub] = 1.00*Sub, weight = 0.5
-Add node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = 1.00*Add, weight = 0.5
+terminal_map: {"ArrayI": ["x_2", "1.00"], "ArrayB": ["x_1"], "ArrayF": ["x_0", "1.00"]}
+terminal_weights: {"ArrayI": [1, 1], "ArrayB": [1], "ArrayF": [1, 1]}
+SplitOn node_map[ArrayB][["ArrayB", "ArrayB", "ArrayB"]][SplitOn] = SplitOn, weight = 0.1
+SplitBest node_map[ArrayB][["ArrayB", "ArrayB"]][SplitBest] = SplitBest, weight = 0.1
+SplitOn node_map[ArrayI][["ArrayB", "ArrayI", "ArrayI"]][SplitOn] = 1.00*SplitOn, weight = 0.1
+Div node_map[ArrayI][["ArrayI", "ArrayI"]][Div] = 1.00*Div, weight = 0.1
+Mul node_map[ArrayI][["ArrayI", "ArrayI"]][Mul] = 1.00*Mul, weight = 1
+SplitBest node_map[ArrayI][["ArrayI", "ArrayI"]][SplitBest] = 1.00*SplitBest, weight = 0.1
+Sub node_map[ArrayI][["ArrayI", "ArrayI"]][Sub] = 1.00*Sub, weight = 0.5
+Add node_map[ArrayI][["ArrayI", "ArrayI"]][Add] = 1.00*Add, weight = 0.5
+SplitOn node_map[ArrayF][["ArrayB", "ArrayF", "ArrayF"]][SplitOn] = 1.00*SplitOn, weight = 0.1
+Div node_map[ArrayF][["ArrayF", "ArrayF"]][Div] = 1.00*Div, weight = 0.1
+Mul node_map[ArrayF][["ArrayF", "ArrayF"]][Mul] = 1.00*Mul, weight = 1
+SplitBest node_map[ArrayF][["ArrayF", "ArrayF"]][SplitBest] = 1.00*SplitBest, weight = 0.1
+Sub node_map[ArrayF][["ArrayF", "ArrayF"]][Sub] = 1.00*Sub, weight = 0.5
+Add node_map[ArrayF][["ArrayF", "ArrayF"]][Add] = 1.00*Add, weight = 0.5
 </pre></div>
 </div>
 </div>
@@ -336,22 +337,22 @@ If instead of passing the data directly you rather pass a pandas dataframe, then
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
-terminal_map: {&quot;ArrayI&quot;: [&quot;x_2&quot;, &quot;1.00&quot;], &quot;ArrayB&quot;: [&quot;x_1&quot;], &quot;ArrayF&quot;: [&quot;x_0&quot;, &quot;1.00&quot;]}
-terminal_weights: {&quot;ArrayI&quot;: [0.01214596, 0.01214596], &quot;ArrayB&quot;: [0.026419641], &quot;ArrayF&quot;: [0.056145623, 0.056145623]}
-SplitOn node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
-SplitBest node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitBest] = SplitBest, weight = 0.1
-SplitOn node_map[ArrayI][[&quot;ArrayB&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
-Div node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Div] = 1.00*Div, weight = 0.1
-Mul node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Mul] = 1.00*Mul, weight = 1
-SplitBest node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.1
-Sub node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Sub] = 1.00*Sub, weight = 0.5
-Add node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Add] = 1.00*Add, weight = 0.5
-SplitOn node_map[ArrayF][[&quot;ArrayB&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
-Div node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Div] = 1.00*Div, weight = 0.1
-Mul node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mul] = 1.00*Mul, weight = 1
-SplitBest node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.1
-Sub node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sub] = 1.00*Sub, weight = 0.5
-Add node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = 1.00*Add, weight = 0.5
+terminal_map: {"ArrayI": ["x_2", "1.00"], "ArrayB": ["x_1"], "ArrayF": ["x_0", "1.00"]}
+terminal_weights: {"ArrayI": [0.01214596, 0.01214596], "ArrayB": [0.026419641], "ArrayF": [0.056145623, 0.056145623]}
+SplitOn node_map[ArrayB][["ArrayB", "ArrayB", "ArrayB"]][SplitOn] = SplitOn, weight = 0.1
+SplitBest node_map[ArrayB][["ArrayB", "ArrayB"]][SplitBest] = SplitBest, weight = 0.1
+SplitOn node_map[ArrayI][["ArrayB", "ArrayI", "ArrayI"]][SplitOn] = 1.00*SplitOn, weight = 0.1
+Div node_map[ArrayI][["ArrayI", "ArrayI"]][Div] = 1.00*Div, weight = 0.1
+Mul node_map[ArrayI][["ArrayI", "ArrayI"]][Mul] = 1.00*Mul, weight = 1
+SplitBest node_map[ArrayI][["ArrayI", "ArrayI"]][SplitBest] = 1.00*SplitBest, weight = 0.1
+Sub node_map[ArrayI][["ArrayI", "ArrayI"]][Sub] = 1.00*Sub, weight = 0.5
+Add node_map[ArrayI][["ArrayI", "ArrayI"]][Add] = 1.00*Add, weight = 0.5
+SplitOn node_map[ArrayF][["ArrayB", "ArrayF", "ArrayF"]][SplitOn] = 1.00*SplitOn, weight = 0.1
+Div node_map[ArrayF][["ArrayF", "ArrayF"]][Div] = 1.00*Div, weight = 0.1
+Mul node_map[ArrayF][["ArrayF", "ArrayF"]][Mul] = 1.00*Mul, weight = 1
+SplitBest node_map[ArrayF][["ArrayF", "ArrayF"]][SplitBest] = 1.00*SplitBest, weight = 0.1
+Sub node_map[ArrayF][["ArrayF", "ArrayF"]][Sub] = 1.00*Sub, weight = 0.5
+Add node_map[ArrayF][["ArrayF", "ArrayF"]][Add] = 1.00*Add, weight = 0.5
 </pre></div>
 </div>
 </div>
@@ -370,16 +371,16 @@ Add node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = 1.00*Add, 
 <span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">(</span>
     <span class="n">functions</span><span class="o">=</span><span class="n">user_ops</span><span class="p">,</span>
     <span class="n">max_gens</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
-    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;scorer&quot;</span><span class="p">,</span> <span class="s2">&quot;linear_complexity&quot;</span><span class="p">],</span>
+    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">"scorer"</span><span class="p">,</span> <span class="s2">"linear_complexity"</span><span class="p">],</span>
     <span class="n">weights_init</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">bandit</span><span class="o">=</span><span class="s2">&quot;dynamic_thompson&quot;</span><span class="p">,</span>
+    <span class="n">bandit</span><span class="o">=</span><span class="s2">"dynamic_thompson"</span><span class="p">,</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span>
 <span class="p">)</span>
 
 <span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best model:&quot;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Best model:"</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'score:'</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -399,29 +400,29 @@ score: 0.003572196870614497
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
-terminal_map: {&quot;ArrayI&quot;: [&quot;x_2&quot;, &quot;1.00&quot;], &quot;ArrayB&quot;: [&quot;x_1&quot;], &quot;ArrayF&quot;: [&quot;x_0&quot;, &quot;1.00&quot;]}
-terminal_weights: {&quot;ArrayI&quot;: [0.27175248, 0.07708182], &quot;ArrayB&quot;: [0.5928491], &quot;ArrayF&quot;: [0.30130994, 0.60325474]}
-SplitOn node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.59618497
-SplitBest node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitBest] = SplitBest, weight = 0.2912048
-SplitOn node_map[ArrayI][[&quot;ArrayB&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.32809982
-Div node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Div] = 1.00*Div, weight = 0.1448153
-Mul node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Mul] = 1.00*Mul, weight = 0.5934199
-Add node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Add] = 1.00*Add, weight = 0.59812796
-Sub node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Sub] = 1.00*Sub, weight = 0.78607696
-SplitBest node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.7199181
-SplitOn node_map[ArrayF][[&quot;ArrayB&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.55268025
-Div node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Div] = 1.00*Div, weight = 0.82452416
-Mul node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mul] = 1.00*Mul, weight = 0.60206795
-Add node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = 1.00*Add, weight = 0.4405351
-Sub node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sub] = 1.00*Sub, weight = 0.6042208
-SplitBest node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.34729484
+terminal_map: {"ArrayI": ["x_2", "1.00"], "ArrayB": ["x_1"], "ArrayF": ["x_0", "1.00"]}
+terminal_weights: {"ArrayI": [0.27175248, 0.07708182], "ArrayB": [0.5928491], "ArrayF": [0.30130994, 0.60325474]}
+SplitOn node_map[ArrayB][["ArrayB", "ArrayB", "ArrayB"]][SplitOn] = SplitOn, weight = 0.59618497
+SplitBest node_map[ArrayB][["ArrayB", "ArrayB"]][SplitBest] = SplitBest, weight = 0.2912048
+SplitOn node_map[ArrayI][["ArrayB", "ArrayI", "ArrayI"]][SplitOn] = 1.00*SplitOn, weight = 0.32809982
+Div node_map[ArrayI][["ArrayI", "ArrayI"]][Div] = 1.00*Div, weight = 0.1448153
+Mul node_map[ArrayI][["ArrayI", "ArrayI"]][Mul] = 1.00*Mul, weight = 0.5934199
+Add node_map[ArrayI][["ArrayI", "ArrayI"]][Add] = 1.00*Add, weight = 0.59812796
+Sub node_map[ArrayI][["ArrayI", "ArrayI"]][Sub] = 1.00*Sub, weight = 0.78607696
+SplitBest node_map[ArrayI][["ArrayI", "ArrayI"]][SplitBest] = 1.00*SplitBest, weight = 0.7199181
+SplitOn node_map[ArrayF][["ArrayB", "ArrayF", "ArrayF"]][SplitOn] = 1.00*SplitOn, weight = 0.55268025
+Div node_map[ArrayF][["ArrayF", "ArrayF"]][Div] = 1.00*Div, weight = 0.82452416
+Mul node_map[ArrayF][["ArrayF", "ArrayF"]][Mul] = 1.00*Mul, weight = 0.60206795
+Add node_map[ArrayF][["ArrayF", "ArrayF"]][Add] = 1.00*Add, weight = 0.4405351
+Sub node_map[ArrayF][["ArrayF", "ArrayF"]][Sub] = 1.00*Sub, weight = 0.6042208
+SplitBest node_map[ArrayF][["ArrayF", "ArrayF"]][SplitBest] = 1.00*SplitBest, weight = 0.34729484
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;tree&quot;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">"tree"</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>

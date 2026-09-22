@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SearchSpace &mdash; Brush 0.1.dev1+g33a7db448 documentation</title>
+  <title>SearchSpace &mdash; Brush 0.1.dev1+g1823dfbdb documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=3994a0a4"></script>
+      <script src="../_static/documentation_options.js?v=6bcea315"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -90,6 +90,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush11SearchSpace15sample_terminalE8DataTypeb"><code class="docutils literal notranslate"><span class="pre">sample_terminal()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush11SearchSpace9sample_opE8DataType"><code class="docutils literal notranslate"><span class="pre">sample_op()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush11SearchSpace9sample_opE8NodeType8DataTypeb"><code class="docutils literal notranslate"><span class="pre">sample_op()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush11SearchSpace9sample_opE8NodeType8DataType6size_tb"><code class="docutils literal notranslate"><span class="pre">sample_op()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush11SearchSpace18sample_op_with_argE8DataType8DataTypebi"><code class="docutils literal notranslate"><span class="pre">sample_op_with_arg()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush11SearchSpace13get_node_likeE4Node"><code class="docutils literal notranslate"><span class="pre">get_node_like()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5Brush11SearchSpace14sample_subtreeE4Nodeii"><code class="docutils literal notranslate"><span class="pre">sample_subtree()</span></code></a></li>
@@ -157,7 +158,7 @@
 <li><p>assertion check to make sure there is at least one operator that returns the output type of the model.</p></li>
 </ul>
 </p>
-<p>When sampling in the search space (using any of the sampling functions <code class="docutils literal notranslate"><a class="reference internal" href="#d4/dc3/structBrush_1_1SearchSpace_1ab23bc4732e733749b8aa1e8c2c2689a2"><span class="std std-ref"><span class="pre">sample_op</span></span></a></code> or <code class="docutils literal notranslate"><a class="reference internal" href="#d4/dc3/structBrush_1_1SearchSpace_1afed4d42914edd71c4b54fc3883d8d156"><span class="std std-ref"><span class="pre">sample_terminal</span></span></a></code>), some methods can fail to return a value &amp;#8212; given a specific set of parameters to a function, the candidate solutions set may be empty &amp;#8212; and, for these methods, the return type is either a valid value, or a <code class="docutils literal notranslate"><span class="pre">std::nullopt</span></code>. This is controlled wrapping the return type with <code class="docutils literal notranslate"><span class="pre">std::optional</span></code>.</p>
+<p>When sampling in the search space (using any of the sampling functions <code class="docutils literal notranslate"><a class="reference internal" href="#d4/dc3/structBrush_1_1SearchSpace_1ab23bc4732e733749b8aa1e8c2c2689a2"><span class="std std-ref"><span class="pre">sample_op</span></span></a></code> or <code class="docutils literal notranslate"><a class="reference internal" href="#d4/dc3/structBrush_1_1SearchSpace_1afed4d42914edd71c4b54fc3883d8d156"><span class="std std-ref"><span class="pre">sample_terminal</span></span></a></code>), some methods can fail to return a value — given a specific set of parameters to a function, the candidate solutions set may be empty — and, for these methods, the return type is either a valid value, or a <code class="docutils literal notranslate"><span class="pre">std::nullopt</span></code>. This is controlled wrapping the return type with <code class="docutils literal notranslate"><span class="pre">std::optional</span></code>.</p>
 <section id="de/d87/structSearchSpace_1autotoc_md0_1s1">
 <h2><a class="headerlink" href="#de/d87/structSearchSpace_1autotoc_md0_1s1" title="Link to this heading"></a></h2>
 <section id="de/d87/structSearchSpace_1autotoc_md0">
@@ -359,7 +360,9 @@
 <dd><p>Takes iterators to weight vectors and checks if they have a non-empty solution space. An empty solution space is defined as having no non-zero, positive values. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>T</strong> – type of iterator. </p>
+<dd class="field-odd"><p><strong>T</strong> – type of iterator. 
+
+ </p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
@@ -397,7 +400,9 @@
 <dd><p>get a typed node. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>S</strong> – the signature of the node, inferred. </p>
+<dd class="field-odd"><p><strong>S</strong> – the signature of the node, inferred. 
+
+ </p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
@@ -505,6 +510,12 @@
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">std::optional</span></code> that may contain a <a class="reference internal" href="node.html#d1/d3a/structBrush_1_1Node"><span class="std std-ref">Node</span></a> of type <code class="docutils literal notranslate"><span class="pre">type</span></code> with return type <code class="docutils literal notranslate"><span class="pre">R</span></code>. </p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5Brush11SearchSpace9sample_opE8NodeType8DataType6size_tb">
+<span id="_CPPv3NK5Brush11SearchSpace9sample_opE8NodeType8DataType6size_tb"></span><span id="_CPPv2NK5Brush11SearchSpace9sample_opE8NodeType8DataType6size_tb"></span><span id="Brush::SearchSpace::sample_op__NodeType.DataType.s.bC"></span><span class="target" id="d4/dc3/structBrush_1_1SearchSpace_1a686908b0cb198388fc1394f348561738"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="node.html#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sample_op</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeTypeE" title="Brush::NodeType"><span class="n"><span class="pre">NodeType</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span>, <span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">R</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">arg_count</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">force_return</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush11SearchSpace9sample_opE8NodeType8DataType6size_tb" title="Link to this definition"></a><br /></dt>
+<dd><p>Get a specific operator with an exact number of arguments. </p>
 </dd></dl>
 
 <dl class="cpp function">

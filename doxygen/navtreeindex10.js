@@ -1,5 +1,14 @@
 var NAVTREEINDEX10 =
 {
+"dc/d5c/namespaceBrush.html#a78f7f19a49bc1a818f29602b1773acc4":[0,0,0,219],
+"dc/d5c/namespaceBrush.html#a7d1315460dd7c6eb76e3ace99d4aad03":[0,0,0,207],
+"dc/d5c/namespaceBrush.html#a7e323244b7b57c08d6816a009e74eec6":[0,0,0,251],
+"dc/d5c/namespaceBrush.html#a805656a0582c2089b72626de22177962":[0,0,0,196],
+"dc/d5c/namespaceBrush.html#a819e6d35661a163c3f40d927766a3213":[0,0,0,237],
+"dc/d5c/namespaceBrush.html#a822ae4ce07ba14ae433977a635675764":[0,0,0,177],
+"dc/d5c/namespaceBrush.html#a835c559533dfd1b02fb7c2ded01c2442":[0,0,0,202],
+"dc/d5c/namespaceBrush.html#a85201aa8f093fe8fdd3b9060a2526dfe":[0,0,0,194],
+"dc/d5c/namespaceBrush.html#a8b19fac06df5a0722bdb46eb9b9e50d3":[0,0,0,217],
 "dc/d5c/namespaceBrush.html#a8b77eb5253f95aaff5dcf63d29734d10":[0,0,0,185],
 "dc/d5c/namespaceBrush.html#a8cfe33753dda03e1480fdcbe62e1885d":[0,0,0,238],
 "dc/d5c/namespaceBrush.html#a8dc5b7550111d2207dd36c94e4cb17cb":[0,0,0,218],
@@ -240,14 +249,5 @@ var NAVTREEINDEX10 =
 "dd/d56/classBrush_1_1Util_1_1Logger.html#a192baac90d120fa142fbf385a802f73f":[2,0,0,6,1,0],
 "dd/d56/classBrush_1_1Util_1_1Logger.html#a628245421b92a8888c393de40b817363":[0,0,0,8,1,1],
 "dd/d56/classBrush_1_1Util_1_1Logger.html#a628245421b92a8888c393de40b817363":[2,0,0,6,1,1],
-"dd/d56/classBrush_1_1Util_1_1Logger.html#a66e978372533d5960afe73a702382cf0":[0,0,0,8,1,5],
-"dd/d56/classBrush_1_1Util_1_1Logger.html#a66e978372533d5960afe73a702382cf0":[2,0,0,6,1,5],
-"dd/d56/classBrush_1_1Util_1_1Logger.html#a9e88baaf25e97566fe654a0563253fd8":[0,0,0,8,1,4],
-"dd/d56/classBrush_1_1Util_1_1Logger.html#a9e88baaf25e97566fe654a0563253fd8":[2,0,0,6,1,4],
-"dd/d56/classBrush_1_1Util_1_1Logger.html#ab4dd486a1ab7322f72b4ccca66d61096":[0,0,0,8,1,2],
-"dd/d56/classBrush_1_1Util_1_1Logger.html#ab4dd486a1ab7322f72b4ccca66d61096":[2,0,0,6,1,2],
-"dd/d56/classBrush_1_1Util_1_1Logger.html#acfdc6d8167ea179d97c91512122e4873":[0,0,0,8,1,6],
-"dd/d56/classBrush_1_1Util_1_1Logger.html#acfdc6d8167ea179d97c91512122e4873":[2,0,0,6,1,6],
-"dd/d56/classBrush_1_1Util_1_1Logger.html#ad91c0afb3eba406a0dff9316d3b2b80d":[0,0,0,8,1,3],
-"dd/d56/classBrush_1_1Util_1_1Logger.html#ad91c0afb3eba406a0dff9316d3b2b80d":[2,0,0,6,1,3]
+"dd/d56/classBrush_1_1Util_1_1Logger.html#a66e978372533d5960afe73a702382cf0":[0,0,0,8,1,5]
 };

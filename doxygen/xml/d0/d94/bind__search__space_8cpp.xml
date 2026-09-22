@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="d0/d94/bind__search__space_8cpp" kind="file" language="C++">
     <compoundname>bind_search_space.cpp</compoundname>
     <includes refid="d5/d16/module_8h" local="yes">module.h</includes>
@@ -503,13 +503,16 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/bindings/bind_search_space.cpp" line="10" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_search_space.cpp" bodystart="10" bodyend="51"/>
+        <references refid="d0/d94/bind__search__space_8cpp_1a5dd9aae5c3af6fab760233deca1956cd" compoundref="d0/d94/bind__search__space_8cpp" startline="10" endline="51">bind_search_space</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a5e4bea5b32dfe137262f014c8107a0f7" compoundref="da/d48/search__space_8cpp" startline="179" endline="280">Brush::SearchSpace::init</references>
         <references refid="d4/dc3/structBrush_1_1SearchSpace_1afe2365c907e5a0ca98d42e2e9720cb4a" compoundref="da/d48/search__space_8cpp" startline="473" endline="476">Brush::SearchSpace::make_classifier</references>
         <references refid="d4/dc3/structBrush_1_1SearchSpace_1ae8832d26aceb0bb18e97d1a3a6b7f9bc" compoundref="da/d48/search__space_8cpp" startline="478" endline="482">Brush::SearchSpace::make_multiclass_classifier</references>
         <references refid="d4/dc3/structBrush_1_1SearchSpace_1a60d418b0c8931f1b8db363a6ab56410f" compoundref="da/d48/search__space_8cpp" startline="468" endline="471">Brush::SearchSpace::make_regressor</references>
         <references refid="d4/dc3/structBrush_1_1SearchSpace_1ad08d52e3d3b0e8ce2af8b504ba33fc2b" compoundref="da/d48/search__space_8cpp" startline="484" endline="487">Brush::SearchSpace::make_representer</references>
         <references refid="d4/dc3/structBrush_1_1SearchSpace_1a1cfbfca3a45987de45159bc4699a61bb" compoundref="da/d48/search__space_8cpp" startline="175" endline="177">Brush::SearchSpace::print</references>
-        <references refid="d4/dc3/structBrush_1_1SearchSpace_1ab671dbf7c62fca02f2ccf263a2ad9a6a" compoundref="d9/d99/search__space_8h" startline="597" endline="617">Brush::SearchSpace::repr</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1ab671dbf7c62fca02f2ccf263a2ad9a6a" compoundref="d9/d99/search__space_8h" startline="628" endline="648">Brush::SearchSpace::repr</references>
         <references refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d">Brush::SS</references>
+        <referencedby refid="d0/d94/bind__search__space_8cpp_1a5dd9aae5c3af6fab760233deca1956cd" compoundref="d0/d94/bind__search__space_8cpp" startline="10" endline="51">bind_search_space</referencedby>
         <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>
     </sectiondef>
@@ -535,7 +538,7 @@
 <codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>py::class_&lt;br::SearchSpace&gt;(m,<sp/></highlight><highlight class="stringliteral">&quot;SearchSpace&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(py::init([](<ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">br::Data::Dataset</ref><sp/>data,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>weights_init=</highlight><highlight class="keyword">true</highlight><highlight class="normal">){</highlight></codeline>
 <codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref><sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>;</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>.init(data,<sp/>{},<sp/>weights_init);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>.<ref refid="d4/dc3/structBrush_1_1SearchSpace_1a5e4bea5b32dfe137262f014c8107a0f7" kindref="member">init</ref>(data,<sp/>{},<sp/>weights_init);</highlight></codeline>
 <codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>;</highlight></codeline>
 <codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}),</highlight></codeline>
 <codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;data&quot;</highlight><highlight class="normal">),</highlight></codeline>
@@ -565,7 +568,7 @@
 <codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;params&quot;</highlight><highlight class="normal">)<sp/>=<sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Brush::Parameters</ref>()<sp/>)</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;print&quot;</highlight><highlight class="normal">,<sp/></highlight></codeline>
 <codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;<ref refid="d4/dc3/structBrush_1_1SearchSpace_1a1cfbfca3a45987de45159bc4699a61bb" kindref="member">br::SearchSpace::print</ref>,<sp/></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d0/d94/bind__search__space_8cpp_1ae2f679a1605bd79ee7983e55e31d6d2e" kindref="member">stream_redirect</ref>()</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1ae2f679a1605bd79ee7983e55e31d6d2e" kindref="member">stream_redirect</ref>()</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>;</highlight></codeline>
 <codeline lineno="51"><highlight class="normal">}</highlight></codeline>

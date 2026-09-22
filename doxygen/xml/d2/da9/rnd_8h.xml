@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="d2/da9/rnd_8h" kind="file" language="C++">
     <compoundname>rnd.h</compoundname>
     <includes local="no">random</includes>
@@ -745,9 +745,9 @@
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aa7cedc8c08588c4740e07da8d6c2cb9f" kindref="member">rnd_dbl</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>min=0.0,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>max=1.0);</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aab34b78c05c7aa5edd63c6f4e8265351" kindref="member">operator()</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>i);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a840b7318ae8de499ad0b0bf151986382" kindref="member">operator()</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>i);</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aab34b78c05c7aa5edd63c6f4e8265351" kindref="member">operator()</ref>();</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a840b7318ae8de499ad0b0bf151986382" kindref="member">operator()</ref>();</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
 <codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>RandomAccessIterator&gt;</highlight></codeline>
 <codeline lineno="51" refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a377cd0c8d7f0fee5cdbd2489941ce7cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a377cd0c8d7f0fee5cdbd2489941ce7cd" kindref="member">shuffle</ref><sp/>(RandomAccessIterator<sp/>first,<sp/>RandomAccessIterator<sp/>last)</highlight></codeline>
@@ -850,7 +850,7 @@
 <codeline lineno="159"><highlight class="normal"></highlight></codeline>
 <codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9bd56ea15679d17f3577f59e46d6e065" kindref="member">Rnd</ref>();</highlight></codeline>
 <codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a69f29eab729d9b0921b8b4a28c985d1c" kindref="member">~Rnd</ref>();</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d2/d2d/classBrush_1_1Util_1_1Rnd" kindref="compound">~Rnd</ref>();</highlight></codeline>
 <codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Vector<sp/>of<sp/>pseudo-random<sp/>number<sp/>generators,<sp/>one<sp/>for<sp/>each<sp/>thread</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="165" refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9b7a12dc79e6a2b18b25e8a04d9e8637" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;std::mt19937&gt;<sp/><ref refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9b7a12dc79e6a2b18b25e8a04d9e8637" kindref="member">rg</ref>;</highlight></codeline>

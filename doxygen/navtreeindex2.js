@@ -225,10 +225,12 @@ var NAVTREEINDEX2 =
 "d3/da8/structBrush_1_1DispatchTable.html#af672230a6553f5eac042ab28f70f0bc0":[2,0,0,44,1],
 "d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4.html":[0,0,0,86],
 "d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4.html":[2,0,0,83],
-"d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4.html#a973c465137ea44720d1ba0f16463f265":[0,0,0,86,0],
-"d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4.html#a973c465137ea44720d1ba0f16463f265":[2,0,0,83,0],
-"d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4.html#affcedbb6c6228d2998c06513e311b06c":[0,0,0,86,1],
-"d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4.html#affcedbb6c6228d2998c06513e311b06c":[2,0,0,83,1],
+"d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4.html#a8d4ec53f753ee578b091cdbc51f4bb54":[0,0,0,86,0],
+"d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4.html#a8d4ec53f753ee578b091cdbc51f4bb54":[2,0,0,83,0],
+"d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4.html#a973c465137ea44720d1ba0f16463f265":[0,0,0,86,1],
+"d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4.html#a973c465137ea44720d1ba0f16463f265":[2,0,0,83,1],
+"d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4.html#affcedbb6c6228d2998c06513e311b06c":[0,0,0,86,2],
+"d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4.html#affcedbb6c6228d2998c06513e311b06c":[2,0,0,83,2],
 "d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14.html":[2,0,10],
 "d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14.html#a0749d2fcccf558e9dbb4c11e668ae3aa":[2,0,10,3],
 "d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14.html#a1c4775faca5a4828862d16bdd27d7589":[2,0,10,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX2 =
 "d4/d01/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesb_01_4.html":[2,0,0,104],
 "d4/d01/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesb_01_4.html#a7512b59b3ddb27e6728c1a7e24facf31":[0,0,0,107,0],
 "d4/d01/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesb_01_4.html#a7512b59b3ddb27e6728c1a7e24facf31":[2,0,0,104,0],
-"d4/d05/dummy_8cpp.html":[3,0,0,0,4],
-"d4/d05/dummy_8cpp_source.html":[3,0,0,0,4],
-"d4/d0d/structstd_1_1hash_3_01std_1_1vector_3_01float_01_4_01_4.html":[0,0,4,1]
+"d4/d05/dummy_8cpp.html":[3,0,0,0,4]
 };

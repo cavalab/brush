@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="dd/d56/namespaceBrush_1_1Pop" kind="namespace" language="C++">
     <compoundname>Brush::Pop</compoundname>
     <innerclass refid="d1/d30/structBrush_1_1Pop_1_1Archive" prot="public">Brush::Pop::Archive</innerclass>
@@ -40,8 +40,10 @@
         <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a27993e06c9f048907ffaa42545a5a32e" compoundref="d5/d1f/individual_8h" startline="39">Brush::Pop::Individual&lt; T &gt;::objectives</references>
         <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1ad53a3b6ea8c53b2f615158081ea98584" compoundref="d5/d1f/individual_8h" startline="29">Brush::Pop::Individual&lt; T &gt;::parent_id</references>
         <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1af8eafd2aab3c3a683d6b3b80a649dfa6" compoundref="d5/d1f/individual_8h" startline="17">Brush::Pop::Individual&lt; T &gt;::program</references>
+        <references refid="dd/d56/namespaceBrush_1_1Pop_1af4f50fb2e3fbad69b68d16d4d03d7c32" compoundref="d5/d1f/individual_8h" startline="199" endline="211">to_json</references>
         <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a59b3ac84e46ecb0a280937975cd41478" compoundref="d5/d1f/individual_8h" startline="32">Brush::Pop::Individual&lt; T &gt;::variation</references>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a760c5b3804c92d23da170e37ecae158a" compoundref="d7/d4a/population_8cpp" startline="101" endline="114">Brush::Pop::Population&lt; T &gt;::save</referencedby>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1af4f50fb2e3fbad69b68d16d4d03d7c32" compoundref="d5/d1f/individual_8h" startline="199" endline="211">to_json</referencedby>
       </memberdef>
       <memberdef kind="function" id="dd/d56/namespaceBrush_1_1Pop_1af7f97a6c5ba977ab4ef312a0ac71c828" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -72,12 +74,14 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="214" column="6" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="214" bodyend="223"/>
         <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="37">Brush::Pop::Individual&lt; T &gt;::fitness</references>
+        <references refid="dd/d56/namespaceBrush_1_1Pop_1af7f97a6c5ba977ab4ef312a0ac71c828" compoundref="d5/d1f/individual_8h" startline="214" endline="223">from_json</references>
         <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a65ad1b63a3f74fc95d03584f9807efe8" compoundref="d5/d1f/individual_8h" startline="28">Brush::Pop::Individual&lt; T &gt;::id</references>
         <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a4be0cd31ca91af4d113bee11793a4015" compoundref="d5/d1f/individual_8h" startline="24">Brush::Pop::Individual&lt; T &gt;::is_fitted_</references>
         <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a27993e06c9f048907ffaa42545a5a32e" compoundref="d5/d1f/individual_8h" startline="39">Brush::Pop::Individual&lt; T &gt;::objectives</references>
         <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1ad53a3b6ea8c53b2f615158081ea98584" compoundref="d5/d1f/individual_8h" startline="29">Brush::Pop::Individual&lt; T &gt;::parent_id</references>
         <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1af8eafd2aab3c3a683d6b3b80a649dfa6" compoundref="d5/d1f/individual_8h" startline="17">Brush::Pop::Individual&lt; T &gt;::program</references>
         <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a59b3ac84e46ecb0a280937975cd41478" compoundref="d5/d1f/individual_8h" startline="32">Brush::Pop::Individual&lt; T &gt;::variation</references>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1af7f97a6c5ba977ab4ef312a0ac71c828" compoundref="d5/d1f/individual_8h" startline="214" endline="223">from_json</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1ad193aced6ffa6d3587f0f390d9ed0415" compoundref="d7/d4a/population_8cpp" startline="117" endline="134">Brush::Pop::Population&lt; T &gt;::load</referencedby>
       </memberdef>
       <memberdef kind="function" id="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -105,6 +109,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="102" column="1" declfile="/home/runner/work/brush/brush/src/pop/archive.h" declline="102" declcolumn="1"/>
+        <references refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</references>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1a4a59262d18598a8a199ab0757698951c">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</referencedby>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1abb8d26d8f4a229688883161ac5cbb864">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</referencedby>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</referencedby>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1a9574e6354e9bc8eb17893f172a2ad3d7">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</referencedby>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1ad837d8c03eae8c024e75f9d5c902d03c">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</referencedby>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1ac3e730ac3a4e5804e13e89e8cb40b547">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</referencedby>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1a382a48bbf328f68d77d55831fd7562a8">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</referencedby>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1ab9861a98cb4a3b202ae57a5f0d3b69df">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</referencedby>
       </memberdef>
       <memberdef kind="function" id="dd/d56/namespaceBrush_1_1Pop_1a4a59262d18598a8a199ab0757698951c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -131,6 +144,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="103" column="1" declfile="/home/runner/work/brush/brush/src/pop/archive.h" declline="103" declcolumn="1"/>
+        <references refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</references>
       </memberdef>
       <memberdef kind="function" id="dd/d56/namespaceBrush_1_1Pop_1abb8d26d8f4a229688883161ac5cbb864" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -157,6 +171,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="104" column="1" declfile="/home/runner/work/brush/brush/src/pop/archive.h" declline="104" declcolumn="1"/>
+        <references refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</references>
       </memberdef>
       <memberdef kind="function" id="dd/d56/namespaceBrush_1_1Pop_1a9574e6354e9bc8eb17893f172a2ad3d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -183,6 +198,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="105" column="1" declfile="/home/runner/work/brush/brush/src/pop/archive.h" declline="105" declcolumn="1"/>
+        <references refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</references>
       </memberdef>
       <memberdef kind="function" id="dd/d56/namespaceBrush_1_1Pop_1a382a48bbf328f68d77d55831fd7562a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -218,6 +234,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/pop/population.h" line="117" column="1" declfile="/home/runner/work/brush/brush/src/pop/population.h" declline="117" declcolumn="1"/>
+        <references refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</references>
       </memberdef>
       <memberdef kind="function" id="dd/d56/namespaceBrush_1_1Pop_1ad837d8c03eae8c024e75f9d5c902d03c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -253,6 +270,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/pop/population.h" line="119" column="1" declfile="/home/runner/work/brush/brush/src/pop/population.h" declline="119" declcolumn="1"/>
+        <references refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</references>
       </memberdef>
       <memberdef kind="function" id="dd/d56/namespaceBrush_1_1Pop_1ac3e730ac3a4e5804e13e89e8cb40b547" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -288,6 +306,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/pop/population.h" line="121" column="1" declfile="/home/runner/work/brush/brush/src/pop/population.h" declline="121" declcolumn="1"/>
+        <references refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</references>
       </memberdef>
       <memberdef kind="function" id="dd/d56/namespaceBrush_1_1Pop_1ab9861a98cb4a3b202ae57a5f0d3b69df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -323,6 +342,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/pop/population.h" line="123" column="1" declfile="/home/runner/work/brush/brush/src/pop/population.h" declline="123" declcolumn="1"/>
+        <references refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</references>
       </memberdef>
     </sectiondef>
     <briefdescription>

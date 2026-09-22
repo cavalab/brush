@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Function&lt; NodeType::Softmax &gt;</compoundname>
     <includes refid="d8/d5c/functions_8h" local="no">functions.h</includes>
@@ -27,7 +27,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/functions.h" line="416" column="20" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="416" bodyend="420"/>
+        <location file="/home/runner/work/brush/brush/src/program/functions.h" line="416" column="20" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="416" bodyend="426"/>
+        <referencedby refid="d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4_1a8d4ec53f753ee578b091cdbc51f4bb54" compoundref="d8/d5c/functions_8h" startline="437" endline="447">operator()</referencedby>
+        <referencedby refid="d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4_1a973c465137ea44720d1ba0f16463f265" compoundref="d8/d5c/functions_8h" startline="429" endline="432">operator()</referencedby>
       </memberdef>
       <memberdef kind="function" id="d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4_1a973c465137ea44720d1ba0f16463f265" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -50,17 +52,52 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/functions.h" line="423" column="20" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="423" bodyend="426"/>
-        <references refid="d6/d2e/namespaceBrush_1_1Util_1a49fa99aae6db3940dee2bca4e6358309" compoundref="d5/d60/utils_8h" startline="296" endline="309">Brush::Util::softmax</references>
+        <location file="/home/runner/work/brush/brush/src/program/functions.h" line="429" column="20" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="429" bodyend="432"/>
+        <references refid="d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4_1affcedbb6c6228d2998c06513e311b06c" compoundref="d8/d5c/functions_8h" startline="416" endline="426">softmax</references>
+      </memberdef>
+      <memberdef kind="function" id="d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4_1a8d4ec53f753ee578b091cdbc51f4bb54" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename ...</type>
+            <declname>Ts</declname>
+            <defname>Ts</defname>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto Brush::Function&lt; NodeType::Softmax &gt;::operator()</definition>
+        <argsstring>(const ArrayBase&lt; T &gt; &amp;first, const ArrayBase&lt; Ts &gt; &amp;...inputs)</argsstring>
+        <name>operator()</name>
+        <qualifiedname>Brush::Function&lt; NodeType::Softmax &gt;::operator()</qualifiedname>
+        <param>
+          <type>const ArrayBase&lt; T &gt; &amp;</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>const ArrayBase&lt; Ts &gt; &amp;...</type>
+          <declname>inputs</declname>
+        </param>
+    <requiresclause>(sizeof...(Ts) &gt; 0)    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/functions.h" line="437" column="20" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="437" bodyend="447"/>
+        <references refid="d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4_1affcedbb6c6228d2998c06513e311b06c" compoundref="d8/d5c/functions_8h" startline="416" endline="426">softmax</references>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/brush/brush/src/program/functions.h" line="413" column="5" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="414" bodyend="434"/>
+    <location file="/home/runner/work/brush/brush/src/program/functions.h" line="413" column="5" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="414" bodyend="448"/>
     <listofallmembers>
       <member refid="d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4_1a973c465137ea44720d1ba0f16463f265" prot="public" virt="non-virtual"><scope>Brush::Function&lt; NodeType::Softmax &gt;</scope><name>operator()</name></member>
+      <member refid="d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4_1a8d4ec53f753ee578b091cdbc51f4bb54" prot="public" virt="non-virtual"><scope>Brush::Function&lt; NodeType::Softmax &gt;</scope><name>operator()</name></member>
       <member refid="d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4_1affcedbb6c6228d2998c06513e311b06c" prot="public" virt="non-virtual"><scope>Brush::Function&lt; NodeType::Softmax &gt;</scope><name>softmax</name></member>
     </listofallmembers>
   </compounddef>

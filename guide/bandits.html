@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Using bandits to learn probabilities for the search space &mdash; Brush 0.1.dev1+g33a7db448 documentation</title>
+  <title>Using bandits to learn probabilities for the search space &mdash; Brush 0.1.dev1+g1823dfbdb documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=3994a0a4"></script>
+      <script src="../_static/documentation_options.js?v=6bcea315"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -99,9 +99,9 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">pybrush</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">SearchSpace</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pybrush</span><span class="w"> </span><span class="kn">import</span> <span class="n">BrushRegressor</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../examples/datasets/d_enc.csv&#39;</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../examples/datasets/d_enc.csv'</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">'label'</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'label'</span><span class="p">]</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 
@@ -119,125 +119,125 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
-terminal_map: {&quot;ArrayI&quot;: [&quot;x_5&quot;, &quot;x_7&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;x_0&quot;, &quot;x_1&quot;, &quot;x_2&quot;, &quot;x_3&quot;, &quot;x_4&quot;, &quot;x_6&quot;, &quot;1.00&quot;]}
-terminal_weights: {&quot;ArrayI&quot;: [0.011619061, 0.03579926, 0.023709161], &quot;ArrayF&quot;: [0.6343385, 0.67299956, 0.42711574, 0.8625447, 0.8957853, 0.20750472, 0.6167148]}
-SplitBest node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 1
-Div node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Div] = 1.00*Div, weight = 1
-Mul node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Mul] = 1.00*Mul, weight = 1
-Sub node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Sub] = 1.00*Sub, weight = 1
-Pow node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Pow] = 1.00*Pow, weight = 1
-Add node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Add] = 1.00*Add, weight = 1
-Tanh node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Tanh] = 1.00*Tanh, weight = 1
-Softmax node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Softmax] = 1.00*Softmax, weight = 1
-Logistic node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logistic] = 1.00*Logistic, weight = 1
-Tan node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Tan] = 1.00*Tan, weight = 1
-OffsetSum node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][OffsetSum] = 0.00+Sum, weight = 1
-Square node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Square] = 1.00*Square, weight = 1
-Sinh node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sinh] = 1.00*Sinh, weight = 1
-Sqrtabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sqrtabs] = 1.00*Sqrtabs, weight = 1
-Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
-Sqrt node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sqrt] = 1.00*Sqrt, weight = 1
-Cosh node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cosh] = 1.00*Cosh, weight = 1
-Logabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
-Atan node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Atan] = 1.00*Atan, weight = 1
-Log node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Log] = 1.00*Log, weight = 1
-Asin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Asin] = 1.00*Asin, weight = 1
-Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
-Acos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Acos] = 1.00*Acos, weight = 1
-Log1p node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Log1p] = 1.00*Log1p, weight = 1
-Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
-Ceil node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Ceil] = 1.00*Ceil, weight = 1
-Floor node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Floor] = 1.00*Floor, weight = 1
-Abs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Abs] = 1.00*Abs, weight = 1
-Tanh node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Tanh] = 1.00*Tanh, weight = 1
-Softmax node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Softmax] = 1.00*Softmax, weight = 1
-Logistic node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logistic] = 1.00*Logistic, weight = 1
-Tan node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Tan] = 1.00*Tan, weight = 1
-OffsetSum node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][OffsetSum] = 0.00+Sum, weight = 1
-Square node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Square] = 1.00*Square, weight = 1
-Sinh node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sinh] = 1.00*Sinh, weight = 1
-Sqrtabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sqrtabs] = 1.00*Sqrtabs, weight = 1
-Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
-Sqrt node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sqrt] = 1.00*Sqrt, weight = 1
-Cosh node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cosh] = 1.00*Cosh, weight = 1
-Logabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
-Atan node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Atan] = 1.00*Atan, weight = 1
-Log node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Log] = 1.00*Log, weight = 1
-Asin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Asin] = 1.00*Asin, weight = 1
-Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
-Acos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Acos] = 1.00*Acos, weight = 1
-Log1p node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Log1p] = 1.00*Log1p, weight = 1
-Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
-Ceil node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Ceil] = 1.00*Ceil, weight = 1
-Floor node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Floor] = 1.00*Floor, weight = 1
-Abs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Abs] = 1.00*Abs, weight = 1
-Tanh node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Tanh] = 1.00*Tanh, weight = 1
-Softmax node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Softmax] = 1.00*Softmax, weight = 1
-Logistic node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logistic] = 1.00*Logistic, weight = 1
-Tan node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Tan] = 1.00*Tan, weight = 1
-OffsetSum node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][OffsetSum] = 0.00+Sum, weight = 1
-Square node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Square] = 1.00*Square, weight = 1
-Sinh node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sinh] = 1.00*Sinh, weight = 1
-Sqrtabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sqrtabs] = 1.00*Sqrtabs, weight = 1
-Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
-Sqrt node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sqrt] = 1.00*Sqrt, weight = 1
-Cosh node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cosh] = 1.00*Cosh, weight = 1
-Logabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
-Atan node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Atan] = 1.00*Atan, weight = 1
-Log node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Log] = 1.00*Log, weight = 1
-Asin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Asin] = 1.00*Asin, weight = 1
-Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
-Acos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Acos] = 1.00*Acos, weight = 1
-Log1p node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Log1p] = 1.00*Log1p, weight = 1
-Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
-Ceil node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Ceil] = 1.00*Ceil, weight = 1
-Floor node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Floor] = 1.00*Floor, weight = 1
-Abs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Abs] = 1.00*Abs, weight = 1
-Sum node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sum] = 1.00*Sum, weight = 1
-Median node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Median] = 1.00*Median, weight = 1
-Mean node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mean] = 1.00*Mean, weight = 1
-Max node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Max] = 1.00*Max, weight = 1
-Prod node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Prod] = 1.00*Prod, weight = 1
-Min node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Min] = 1.00*Min, weight = 1
-Sum node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sum] = 1.00*Sum, weight = 1
-Median node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Median] = 1.00*Median, weight = 1
-Mean node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mean] = 1.00*Mean, weight = 1
-Max node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Max] = 1.00*Max, weight = 1
-Prod node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Prod] = 1.00*Prod, weight = 1
-Min node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Min] = 1.00*Min, weight = 1
-Sub node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sub] = 1.00*Sub, weight = 1
-Add node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = 1.00*Add, weight = 1
-Sum node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sum] = 1.00*Sum, weight = 1
-Median node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Median] = 1.00*Median, weight = 1
-Max node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Max] = 1.00*Max, weight = 1
-Pow node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Pow] = 1.00*Pow, weight = 1
-SplitBest node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 1
-Mean node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mean] = 1.00*Mean, weight = 1
-Min node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Min] = 1.00*Min, weight = 1
-Div node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Div] = 1.00*Div, weight = 1
-Prod node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Prod] = 1.00*Prod, weight = 1
-Mul node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mul] = 1.00*Mul, weight = 1
-Tanh node_map[ArrayF][[&quot;ArrayF&quot;]][Tanh] = 1.00*Tanh, weight = 1
-Logistic node_map[ArrayF][[&quot;ArrayF&quot;]][Logistic] = 1.00*Logistic, weight = 1
-Tan node_map[ArrayF][[&quot;ArrayF&quot;]][Tan] = 1.00*Tan, weight = 1
-OffsetSum node_map[ArrayF][[&quot;ArrayF&quot;]][OffsetSum] = 0.00+Sum, weight = 1
-Square node_map[ArrayF][[&quot;ArrayF&quot;]][Square] = 1.00*Square, weight = 1
-Sinh node_map[ArrayF][[&quot;ArrayF&quot;]][Sinh] = 1.00*Sinh, weight = 1
-Sqrtabs node_map[ArrayF][[&quot;ArrayF&quot;]][Sqrtabs] = 1.00*Sqrtabs, weight = 1
-Sin node_map[ArrayF][[&quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
-Sqrt node_map[ArrayF][[&quot;ArrayF&quot;]][Sqrt] = 1.00*Sqrt, weight = 1
-Cosh node_map[ArrayF][[&quot;ArrayF&quot;]][Cosh] = 1.00*Cosh, weight = 1
-Logabs node_map[ArrayF][[&quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
-Atan node_map[ArrayF][[&quot;ArrayF&quot;]][Atan] = 1.00*Atan, weight = 1
-Log node_map[ArrayF][[&quot;ArrayF&quot;]][Log] = 1.00*Log, weight = 1
-Asin node_map[ArrayF][[&quot;ArrayF&quot;]][Asin] = 1.00*Asin, weight = 1
-Exp node_map[ArrayF][[&quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
-Acos node_map[ArrayF][[&quot;ArrayF&quot;]][Acos] = 1.00*Acos, weight = 1
-Log1p node_map[ArrayF][[&quot;ArrayF&quot;]][Log1p] = 1.00*Log1p, weight = 1
-Cos node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
-Ceil node_map[ArrayF][[&quot;ArrayF&quot;]][Ceil] = 1.00*Ceil, weight = 1
-Floor node_map[ArrayF][[&quot;ArrayF&quot;]][Floor] = 1.00*Floor, weight = 1
-Abs node_map[ArrayF][[&quot;ArrayF&quot;]][Abs] = 1.00*Abs, weight = 1
+terminal_map: {"ArrayI": ["x_5", "x_7", "1.00"], "ArrayF": ["x_0", "x_1", "x_2", "x_3", "x_4", "x_6", "1.00"]}
+terminal_weights: {"ArrayI": [0.011619061, 0.03579926, 0.023709161], "ArrayF": [0.6343385, 0.67299956, 0.42711574, 0.8625447, 0.8957853, 0.20750472, 0.6167148]}
+SplitBest node_map[ArrayI][["ArrayI", "ArrayI"]][SplitBest] = 1.00*SplitBest, weight = 1
+Div node_map[ArrayI][["ArrayI", "ArrayI"]][Div] = 1.00*Div, weight = 1
+Mul node_map[ArrayI][["ArrayI", "ArrayI"]][Mul] = 1.00*Mul, weight = 1
+Sub node_map[ArrayI][["ArrayI", "ArrayI"]][Sub] = 1.00*Sub, weight = 1
+Pow node_map[ArrayI][["ArrayI", "ArrayI"]][Pow] = 1.00*Pow, weight = 1
+Add node_map[ArrayI][["ArrayI", "ArrayI"]][Add] = 1.00*Add, weight = 1
+Tanh node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Tanh] = 1.00*Tanh, weight = 1
+Softmax node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Softmax] = 1.00*Softmax, weight = 1
+Logistic node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Logistic] = 1.00*Logistic, weight = 1
+Tan node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Tan] = 1.00*Tan, weight = 1
+OffsetSum node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][OffsetSum] = 0.00+Sum, weight = 1
+Square node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Square] = 1.00*Square, weight = 1
+Sinh node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Sinh] = 1.00*Sinh, weight = 1
+Sqrtabs node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Sqrtabs] = 1.00*Sqrtabs, weight = 1
+Sin node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Sin] = 1.00*Sin, weight = 1
+Sqrt node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Sqrt] = 1.00*Sqrt, weight = 1
+Cosh node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Cosh] = 1.00*Cosh, weight = 1
+Logabs node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Logabs] = 1.00*Logabs, weight = 1
+Atan node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Atan] = 1.00*Atan, weight = 1
+Log node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Log] = 1.00*Log, weight = 1
+Asin node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Asin] = 1.00*Asin, weight = 1
+Exp node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Exp] = 1.00*Exp, weight = 1
+Acos node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Acos] = 1.00*Acos, weight = 1
+Log1p node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Log1p] = 1.00*Log1p, weight = 1
+Cos node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Cos] = 1.00*Cos, weight = 1
+Ceil node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Ceil] = 1.00*Ceil, weight = 1
+Floor node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Floor] = 1.00*Floor, weight = 1
+Abs node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Abs] = 1.00*Abs, weight = 1
+Tanh node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Tanh] = 1.00*Tanh, weight = 1
+Softmax node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Softmax] = 1.00*Softmax, weight = 1
+Logistic node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Logistic] = 1.00*Logistic, weight = 1
+Tan node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Tan] = 1.00*Tan, weight = 1
+OffsetSum node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][OffsetSum] = 0.00+Sum, weight = 1
+Square node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Square] = 1.00*Square, weight = 1
+Sinh node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Sinh] = 1.00*Sinh, weight = 1
+Sqrtabs node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Sqrtabs] = 1.00*Sqrtabs, weight = 1
+Sin node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Sin] = 1.00*Sin, weight = 1
+Sqrt node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Sqrt] = 1.00*Sqrt, weight = 1
+Cosh node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Cosh] = 1.00*Cosh, weight = 1
+Logabs node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Logabs] = 1.00*Logabs, weight = 1
+Atan node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Atan] = 1.00*Atan, weight = 1
+Log node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Log] = 1.00*Log, weight = 1
+Asin node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Asin] = 1.00*Asin, weight = 1
+Exp node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Exp] = 1.00*Exp, weight = 1
+Acos node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Acos] = 1.00*Acos, weight = 1
+Log1p node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Log1p] = 1.00*Log1p, weight = 1
+Cos node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Cos] = 1.00*Cos, weight = 1
+Ceil node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Ceil] = 1.00*Ceil, weight = 1
+Floor node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Floor] = 1.00*Floor, weight = 1
+Abs node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Abs] = 1.00*Abs, weight = 1
+Tanh node_map[MatrixF][["ArrayF", "ArrayF"]][Tanh] = 1.00*Tanh, weight = 1
+Softmax node_map[MatrixF][["ArrayF", "ArrayF"]][Softmax] = 1.00*Softmax, weight = 1
+Logistic node_map[MatrixF][["ArrayF", "ArrayF"]][Logistic] = 1.00*Logistic, weight = 1
+Tan node_map[MatrixF][["ArrayF", "ArrayF"]][Tan] = 1.00*Tan, weight = 1
+OffsetSum node_map[MatrixF][["ArrayF", "ArrayF"]][OffsetSum] = 0.00+Sum, weight = 1
+Square node_map[MatrixF][["ArrayF", "ArrayF"]][Square] = 1.00*Square, weight = 1
+Sinh node_map[MatrixF][["ArrayF", "ArrayF"]][Sinh] = 1.00*Sinh, weight = 1
+Sqrtabs node_map[MatrixF][["ArrayF", "ArrayF"]][Sqrtabs] = 1.00*Sqrtabs, weight = 1
+Sin node_map[MatrixF][["ArrayF", "ArrayF"]][Sin] = 1.00*Sin, weight = 1
+Sqrt node_map[MatrixF][["ArrayF", "ArrayF"]][Sqrt] = 1.00*Sqrt, weight = 1
+Cosh node_map[MatrixF][["ArrayF", "ArrayF"]][Cosh] = 1.00*Cosh, weight = 1
+Logabs node_map[MatrixF][["ArrayF", "ArrayF"]][Logabs] = 1.00*Logabs, weight = 1
+Atan node_map[MatrixF][["ArrayF", "ArrayF"]][Atan] = 1.00*Atan, weight = 1
+Log node_map[MatrixF][["ArrayF", "ArrayF"]][Log] = 1.00*Log, weight = 1
+Asin node_map[MatrixF][["ArrayF", "ArrayF"]][Asin] = 1.00*Asin, weight = 1
+Exp node_map[MatrixF][["ArrayF", "ArrayF"]][Exp] = 1.00*Exp, weight = 1
+Acos node_map[MatrixF][["ArrayF", "ArrayF"]][Acos] = 1.00*Acos, weight = 1
+Log1p node_map[MatrixF][["ArrayF", "ArrayF"]][Log1p] = 1.00*Log1p, weight = 1
+Cos node_map[MatrixF][["ArrayF", "ArrayF"]][Cos] = 1.00*Cos, weight = 1
+Ceil node_map[MatrixF][["ArrayF", "ArrayF"]][Ceil] = 1.00*Ceil, weight = 1
+Floor node_map[MatrixF][["ArrayF", "ArrayF"]][Floor] = 1.00*Floor, weight = 1
+Abs node_map[MatrixF][["ArrayF", "ArrayF"]][Abs] = 1.00*Abs, weight = 1
+Sum node_map[ArrayF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Sum] = 1.00*Sum, weight = 1
+Median node_map[ArrayF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Median] = 1.00*Median, weight = 1
+Mean node_map[ArrayF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Mean] = 1.00*Mean, weight = 1
+Max node_map[ArrayF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Max] = 1.00*Max, weight = 1
+Prod node_map[ArrayF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Prod] = 1.00*Prod, weight = 1
+Min node_map[ArrayF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Min] = 1.00*Min, weight = 1
+Sum node_map[ArrayF][["ArrayF", "ArrayF", "ArrayF"]][Sum] = 1.00*Sum, weight = 1
+Median node_map[ArrayF][["ArrayF", "ArrayF", "ArrayF"]][Median] = 1.00*Median, weight = 1
+Mean node_map[ArrayF][["ArrayF", "ArrayF", "ArrayF"]][Mean] = 1.00*Mean, weight = 1
+Max node_map[ArrayF][["ArrayF", "ArrayF", "ArrayF"]][Max] = 1.00*Max, weight = 1
+Prod node_map[ArrayF][["ArrayF", "ArrayF", "ArrayF"]][Prod] = 1.00*Prod, weight = 1
+Min node_map[ArrayF][["ArrayF", "ArrayF", "ArrayF"]][Min] = 1.00*Min, weight = 1
+Sub node_map[ArrayF][["ArrayF", "ArrayF"]][Sub] = 1.00*Sub, weight = 1
+Add node_map[ArrayF][["ArrayF", "ArrayF"]][Add] = 1.00*Add, weight = 1
+Sum node_map[ArrayF][["ArrayF", "ArrayF"]][Sum] = 1.00*Sum, weight = 1
+Median node_map[ArrayF][["ArrayF", "ArrayF"]][Median] = 1.00*Median, weight = 1
+Max node_map[ArrayF][["ArrayF", "ArrayF"]][Max] = 1.00*Max, weight = 1
+Pow node_map[ArrayF][["ArrayF", "ArrayF"]][Pow] = 1.00*Pow, weight = 1
+SplitBest node_map[ArrayF][["ArrayF", "ArrayF"]][SplitBest] = 1.00*SplitBest, weight = 1
+Mean node_map[ArrayF][["ArrayF", "ArrayF"]][Mean] = 1.00*Mean, weight = 1
+Min node_map[ArrayF][["ArrayF", "ArrayF"]][Min] = 1.00*Min, weight = 1
+Div node_map[ArrayF][["ArrayF", "ArrayF"]][Div] = 1.00*Div, weight = 1
+Prod node_map[ArrayF][["ArrayF", "ArrayF"]][Prod] = 1.00*Prod, weight = 1
+Mul node_map[ArrayF][["ArrayF", "ArrayF"]][Mul] = 1.00*Mul, weight = 1
+Tanh node_map[ArrayF][["ArrayF"]][Tanh] = 1.00*Tanh, weight = 1
+Logistic node_map[ArrayF][["ArrayF"]][Logistic] = 1.00*Logistic, weight = 1
+Tan node_map[ArrayF][["ArrayF"]][Tan] = 1.00*Tan, weight = 1
+OffsetSum node_map[ArrayF][["ArrayF"]][OffsetSum] = 0.00+Sum, weight = 1
+Square node_map[ArrayF][["ArrayF"]][Square] = 1.00*Square, weight = 1
+Sinh node_map[ArrayF][["ArrayF"]][Sinh] = 1.00*Sinh, weight = 1
+Sqrtabs node_map[ArrayF][["ArrayF"]][Sqrtabs] = 1.00*Sqrtabs, weight = 1
+Sin node_map[ArrayF][["ArrayF"]][Sin] = 1.00*Sin, weight = 1
+Sqrt node_map[ArrayF][["ArrayF"]][Sqrt] = 1.00*Sqrt, weight = 1
+Cosh node_map[ArrayF][["ArrayF"]][Cosh] = 1.00*Cosh, weight = 1
+Logabs node_map[ArrayF][["ArrayF"]][Logabs] = 1.00*Logabs, weight = 1
+Atan node_map[ArrayF][["ArrayF"]][Atan] = 1.00*Atan, weight = 1
+Log node_map[ArrayF][["ArrayF"]][Log] = 1.00*Log, weight = 1
+Asin node_map[ArrayF][["ArrayF"]][Asin] = 1.00*Asin, weight = 1
+Exp node_map[ArrayF][["ArrayF"]][Exp] = 1.00*Exp, weight = 1
+Acos node_map[ArrayF][["ArrayF"]][Acos] = 1.00*Acos, weight = 1
+Log1p node_map[ArrayF][["ArrayF"]][Log1p] = 1.00*Log1p, weight = 1
+Cos node_map[ArrayF][["ArrayF"]][Cos] = 1.00*Cos, weight = 1
+Ceil node_map[ArrayF][["ArrayF"]][Ceil] = 1.00*Ceil, weight = 1
+Floor node_map[ArrayF][["ArrayF"]][Floor] = 1.00*Floor, weight = 1
+Abs node_map[ArrayF][["ArrayF"]][Abs] = 1.00*Abs, weight = 1
 
 None
 </pre></div>
@@ -252,15 +252,15 @@ None
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">(</span>
-    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitOn&#39;</span><span class="p">,</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Sub&#39;</span><span class="p">,</span> <span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;Mul&#39;</span><span class="p">,</span><span class="s1">&#39;Sin&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Logabs&#39;</span><span class="p">],</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">'SplitOn'</span><span class="p">,</span><span class="s1">'Add'</span><span class="p">,</span><span class="s1">'Exp'</span><span class="p">,</span><span class="s1">'Sub'</span><span class="p">,</span> <span class="s1">'SplitBest'</span><span class="p">,</span>
+               <span class="s1">'Mul'</span><span class="p">,</span><span class="s1">'Sin'</span><span class="p">,</span><span class="s1">'Cos'</span><span class="p">,</span><span class="s1">'Exp'</span><span class="p">,</span><span class="s1">'Logabs'</span><span class="p">],</span>
     <span class="n">max_gens</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
     <span class="n">pop_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
     <span class="n">max_stall</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
-    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;scorer&quot;</span><span class="p">,</span> <span class="s2">&quot;linear_complexity&quot;</span><span class="p">],</span>
+    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">"scorer"</span><span class="p">,</span> <span class="s2">"linear_complexity"</span><span class="p">],</span>
     
     <span class="c1"># Changing search space sampling probabilities</span>
-    <span class="n">bandit</span><span class="o">=</span><span class="s1">&#39;thompson&#39;</span><span class="p">,</span>
+    <span class="n">bandit</span><span class="o">=</span><span class="s1">'thompson'</span><span class="p">,</span>
     <span class="n">weights_init</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span>
@@ -1161,8 +1161,8 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">root_mean_squared_error</span>
 
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R2 score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMSE    :&#39;</span><span class="p">,</span> <span class="n">root_mean_squared_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'R2 score:'</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'RMSE    :'</span><span class="p">,</span> <span class="n">root_mean_squared_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1177,9 +1177,9 @@ RMSE    : 1.8660992848153004
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">graphviz</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;model:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'model:'</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;dot&quot;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">"dot"</span><span class="p">)</span>
 <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1200,32 +1200,32 @@ RMSE    : 1.8660992848153004
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
-terminal_map: {&quot;ArrayI&quot;: [&quot;x5&quot;, &quot;x7&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;x0&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;x3&quot;, &quot;x4&quot;, &quot;x6&quot;, &quot;1.00&quot;]}
-terminal_weights: {&quot;ArrayI&quot;: [0.011619061, 0.03579926, 0.023709161], &quot;ArrayF&quot;: [0.6343385, 0.67299956, 0.42711574, 0.8625447, 0.8957853, 0.20750472, 0.6167148]}
-Mul node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Mul] = 1.00*Mul, weight = 1
-SplitBest node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 1
-Sub node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Sub] = 1.00*Sub, weight = 1
-Add node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Add] = 1.00*Add, weight = 1
-Logabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
-Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
-Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
-Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
-Logabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
-Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
-Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
-Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
-Logabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
-Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
-Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
-Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
-Mul node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mul] = 1.00*Mul, weight = 1
-SplitBest node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 1
-Sub node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sub] = 1.00*Sub, weight = 1
-Add node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = 1.00*Add, weight = 1
-Logabs node_map[ArrayF][[&quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 1
-Sin node_map[ArrayF][[&quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 1
-Exp node_map[ArrayF][[&quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 1
-Cos node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
+terminal_map: {"ArrayI": ["x5", "x7", "1.00"], "ArrayF": ["x0", "x1", "x2", "x3", "x4", "x6", "1.00"]}
+terminal_weights: {"ArrayI": [0.011619061, 0.03579926, 0.023709161], "ArrayF": [0.6343385, 0.67299956, 0.42711574, 0.8625447, 0.8957853, 0.20750472, 0.6167148]}
+Mul node_map[ArrayI][["ArrayI", "ArrayI"]][Mul] = 1.00*Mul, weight = 1
+SplitBest node_map[ArrayI][["ArrayI", "ArrayI"]][SplitBest] = 1.00*SplitBest, weight = 1
+Sub node_map[ArrayI][["ArrayI", "ArrayI"]][Sub] = 1.00*Sub, weight = 1
+Add node_map[ArrayI][["ArrayI", "ArrayI"]][Add] = 1.00*Add, weight = 1
+Logabs node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Logabs] = 1.00*Logabs, weight = 1
+Sin node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Sin] = 1.00*Sin, weight = 1
+Exp node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Exp] = 1.00*Exp, weight = 1
+Cos node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Cos] = 1.00*Cos, weight = 1
+Logabs node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Logabs] = 1.00*Logabs, weight = 1
+Sin node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Sin] = 1.00*Sin, weight = 1
+Exp node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Exp] = 1.00*Exp, weight = 1
+Cos node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Cos] = 1.00*Cos, weight = 1
+Logabs node_map[MatrixF][["ArrayF", "ArrayF"]][Logabs] = 1.00*Logabs, weight = 1
+Sin node_map[MatrixF][["ArrayF", "ArrayF"]][Sin] = 1.00*Sin, weight = 1
+Exp node_map[MatrixF][["ArrayF", "ArrayF"]][Exp] = 1.00*Exp, weight = 1
+Cos node_map[MatrixF][["ArrayF", "ArrayF"]][Cos] = 1.00*Cos, weight = 1
+Mul node_map[ArrayF][["ArrayF", "ArrayF"]][Mul] = 1.00*Mul, weight = 1
+SplitBest node_map[ArrayF][["ArrayF", "ArrayF"]][SplitBest] = 1.00*SplitBest, weight = 1
+Sub node_map[ArrayF][["ArrayF", "ArrayF"]][Sub] = 1.00*Sub, weight = 1
+Add node_map[ArrayF][["ArrayF", "ArrayF"]][Add] = 1.00*Add, weight = 1
+Logabs node_map[ArrayF][["ArrayF"]][Logabs] = 1.00*Logabs, weight = 1
+Sin node_map[ArrayF][["ArrayF"]][Sin] = 1.00*Sin, weight = 1
+Exp node_map[ArrayF][["ArrayF"]][Exp] = 1.00*Exp, weight = 1
+Cos node_map[ArrayF][["ArrayF"]][Cos] = 1.00*Cos, weight = 1
 </pre></div>
 </div>
 </div>
@@ -1239,32 +1239,32 @@ Cos node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
-terminal_map: {&quot;ArrayI&quot;: [&quot;x5&quot;, &quot;x7&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;x0&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;x3&quot;, &quot;x4&quot;, &quot;x6&quot;, &quot;1.00&quot;]}
-terminal_weights: {&quot;ArrayI&quot;: [0.5745307, 0.3762818, 0.6570763], &quot;ArrayF&quot;: [0.56798345, 0.39192685, 0.21743383, 0.3388331, 0.45449397, 0.9229001, 0.6466379]}
-Mul node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Mul] = 1.00*Mul, weight = 0.25473055
-Sub node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Sub] = 1.00*Sub, weight = 0.5238385
-SplitBest node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.22267354
-Add node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Add] = 1.00*Add, weight = 0.7520275
-Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.17283083
-Logabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.39821008
-Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.3113194
-Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.6387676
-Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.1678889
-Logabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.95612997
-Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.8862753
-Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.11717595
-Sin node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.54468775
-Logabs node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.8213394
-Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.6942738
-Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.66134083
-Mul node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mul] = 1.00*Mul, weight = 0.52579325
-SplitBest node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.5293526
-Sub node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sub] = 1.00*Sub, weight = 0.6919736
-Add node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = 1.00*Add, weight = 0.41315702
-Sin node_map[ArrayF][[&quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.6600165
-Logabs node_map[ArrayF][[&quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.65961236
-Cos node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.5428014
-Exp node_map[ArrayF][[&quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.24429339
+terminal_map: {"ArrayI": ["x5", "x7", "1.00"], "ArrayF": ["x0", "x1", "x2", "x3", "x4", "x6", "1.00"]}
+terminal_weights: {"ArrayI": [0.5745307, 0.3762818, 0.6570763], "ArrayF": [0.56798345, 0.39192685, 0.21743383, 0.3388331, 0.45449397, 0.9229001, 0.6466379]}
+Mul node_map[ArrayI][["ArrayI", "ArrayI"]][Mul] = 1.00*Mul, weight = 0.25473055
+Sub node_map[ArrayI][["ArrayI", "ArrayI"]][Sub] = 1.00*Sub, weight = 0.5238385
+SplitBest node_map[ArrayI][["ArrayI", "ArrayI"]][SplitBest] = 1.00*SplitBest, weight = 0.22267354
+Add node_map[ArrayI][["ArrayI", "ArrayI"]][Add] = 1.00*Add, weight = 0.7520275
+Sin node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Sin] = 1.00*Sin, weight = 0.17283083
+Logabs node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Logabs] = 1.00*Logabs, weight = 0.39821008
+Cos node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Cos] = 1.00*Cos, weight = 0.3113194
+Exp node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Exp] = 1.00*Exp, weight = 0.6387676
+Sin node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Sin] = 1.00*Sin, weight = 0.1678889
+Logabs node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Logabs] = 1.00*Logabs, weight = 0.95612997
+Cos node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Cos] = 1.00*Cos, weight = 0.8862753
+Exp node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Exp] = 1.00*Exp, weight = 0.11717595
+Sin node_map[MatrixF][["ArrayF", "ArrayF"]][Sin] = 1.00*Sin, weight = 0.54468775
+Logabs node_map[MatrixF][["ArrayF", "ArrayF"]][Logabs] = 1.00*Logabs, weight = 0.8213394
+Cos node_map[MatrixF][["ArrayF", "ArrayF"]][Cos] = 1.00*Cos, weight = 0.6942738
+Exp node_map[MatrixF][["ArrayF", "ArrayF"]][Exp] = 1.00*Exp, weight = 0.66134083
+Mul node_map[ArrayF][["ArrayF", "ArrayF"]][Mul] = 1.00*Mul, weight = 0.52579325
+SplitBest node_map[ArrayF][["ArrayF", "ArrayF"]][SplitBest] = 1.00*SplitBest, weight = 0.5293526
+Sub node_map[ArrayF][["ArrayF", "ArrayF"]][Sub] = 1.00*Sub, weight = 0.6919736
+Add node_map[ArrayF][["ArrayF", "ArrayF"]][Add] = 1.00*Add, weight = 0.41315702
+Sin node_map[ArrayF][["ArrayF"]][Sin] = 1.00*Sin, weight = 0.6600165
+Logabs node_map[ArrayF][["ArrayF"]][Logabs] = 1.00*Logabs, weight = 0.65961236
+Cos node_map[ArrayF][["ArrayF"]][Cos] = 1.00*Cos, weight = 0.5428014
+Exp node_map[ArrayF][["ArrayF"]][Exp] = 1.00*Exp, weight = 0.24429339
 </pre></div>
 </div>
 </div>
@@ -1279,7 +1279,7 @@ Exp node_map[ArrayF][[&quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.24429339
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1428571492433548
-{&#39;delete&#39;: 0.1666666716337204, &#39;insert&#39;: 0.1666666716337204, &#39;point&#39;: 0.1666666716337204, &#39;subtree&#39;: 0.1666666716337204, &#39;toggle_weight_off&#39;: 0.1666666716337204, &#39;toggle_weight_on&#39;: 0.1666666716337204}
+{'delete': 0.1666666716337204, 'insert': 0.1666666716337204, 'point': 0.1666666716337204, 'subtree': 0.1666666716337204, 'toggle_weight_off': 0.1666666716337204, 'toggle_weight_on': 0.1666666716337204}
 </pre></div>
 </div>
 </div>
@@ -1293,7 +1293,7 @@ Exp node_map[ArrayF][[&quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.24429339
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.004904525354504585
-{&#39;delete&#39;: 0.00485138688236475, &#39;insert&#39;: 0.0012616771273314953, &#39;point&#39;: 0.00492620887234807, &#39;subtree&#39;: 0.005468408111482859, &#39;toggle_weight_off&#39;: 0.0010000000474974513, &#39;toggle_weight_on&#39;: 0.003289791289716959}
+{'delete': 0.00485138688236475, 'insert': 0.0012616771273314953, 'point': 0.00492620887234807, 'subtree': 0.005468408111482859, 'toggle_weight_off': 0.0010000000474974513, 'toggle_weight_on': 0.003289791289716959}
 </pre></div>
 </div>
 </div>
@@ -1306,48 +1306,48 @@ Exp node_map[ArrayF][[&quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.24429339
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
 
 <span class="c1"># Running 5x each algorithm and saving its convergence data</span>
-<span class="n">bandits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dummy&#39;</span><span class="p">,</span> <span class="s1">&#39;thompson&#39;</span><span class="p">,</span> <span class="s1">&#39;dynamic_thompson&#39;</span><span class="p">]</span>
+<span class="n">bandits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'dummy'</span><span class="p">,</span> <span class="s1">'thompson'</span><span class="p">,</span> <span class="s1">'dynamic_thompson'</span><span class="p">]</span>
 <span class="n">results</span> <span class="o">=</span> <span class="p">{</span><span class="n">b</span><span class="p">:[]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bandits</span><span class="p">}</span>
 
 <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">tmpdirname</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">bandit</span> <span class="ow">in</span> <span class="n">bandits</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running bandit: </span><span class="si">{</span><span class="n">bandit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Running bandit: </span><span class="si">{</span><span class="n">bandit</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-            <span class="n">logfile</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tmpdirname</span><span class="si">}</span><span class="s2">/log_bandit=</span><span class="si">{</span><span class="n">bandit</span><span class="si">}</span><span class="s2">_run=</span><span class="si">{</span><span class="n">run</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+            <span class="n">logfile</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">tmpdirname</span><span class="si">}</span><span class="s2">/log_bandit=</span><span class="si">{</span><span class="n">bandit</span><span class="si">}</span><span class="s2">_run=</span><span class="si">{</span><span class="n">run</span><span class="si">}</span><span class="s2">.csv"</span>
             
             <span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">(</span>
                 <span class="n">functions</span><span class="o">=</span><span class="p">[</span>
-                    <span class="s1">&#39;Exp&#39;</span><span class="p">,</span> <span class="s1">&#39;Sub&#39;</span><span class="p">,</span> <span class="s1">&#39;Add&#39;</span><span class="p">,</span> <span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span> <span class="c1"># &#39;SplitOn&#39;, # &#39;And&#39;, &#39;Or&#39;, #</span>
-                    <span class="c1"># &#39;Mul&#39;, &#39;Sin&#39;, &#39;Cos&#39;, &#39;Exp&#39;, &#39;Logabs&#39;</span>
+                    <span class="s1">'Exp'</span><span class="p">,</span> <span class="s1">'Sub'</span><span class="p">,</span> <span class="s1">'Add'</span><span class="p">,</span> <span class="s1">'SplitBest'</span><span class="p">,</span> <span class="c1"># 'SplitOn', # 'And', 'Or', #</span>
+                    <span class="c1"># 'Mul', 'Sin', 'Cos', 'Exp', 'Logabs'</span>
                 <span class="p">],</span>
                 <span class="n">max_gens</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
                 <span class="n">pop_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
                 <span class="n">max_stall</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="c1"># avoiding early stopping --- we want to see the full convergence</span>
                 <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-                <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;scorer&quot;</span><span class="p">,</span> <span class="s2">&quot;linear_complexity&quot;</span><span class="p">],</span>
+                <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">"scorer"</span><span class="p">,</span> <span class="s2">"linear_complexity"</span><span class="p">],</span>
                 <span class="n">bandit</span><span class="o">=</span><span class="n">bandit</span><span class="p">,</span>
                 <span class="n">weights_init</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                 <span class="n">cx_prob</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
                 <span class="n">mutation_probs</span> <span class="o">=</span> <span class="p">{</span>
-                    <span class="s2">&quot;point&quot;</span>             <span class="p">:</span> <span class="mi">2</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
-                    <span class="s2">&quot;insert&quot;</span>            <span class="p">:</span> <span class="mi">2</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
-                    <span class="s2">&quot;delete&quot;</span>            <span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
-                    <span class="s2">&quot;subtree&quot;</span>           <span class="p">:</span> <span class="mi">2</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
-                    <span class="s2">&quot;toggle_weight_on&quot;</span>  <span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
-                    <span class="s2">&quot;toggle_weight_off&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span> <span class="p">},</span>
+                    <span class="s2">"point"</span>             <span class="p">:</span> <span class="mi">2</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
+                    <span class="s2">"insert"</span>            <span class="p">:</span> <span class="mi">2</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
+                    <span class="s2">"delete"</span>            <span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
+                    <span class="s2">"subtree"</span>           <span class="p">:</span> <span class="mi">2</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
+                    <span class="s2">"toggle_weight_on"</span>  <span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
+                    <span class="s2">"toggle_weight_off"</span> <span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span> <span class="p">},</span>
                 <span class="n">logfile</span><span class="o">=</span><span class="n">logfile</span><span class="p">,</span>
                 <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span>
             <span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span><span class="n">y</span><span class="p">)</span>
 
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;model:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">'model:'</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
             
-            <span class="n">results</span><span class="p">[</span><span class="n">bandit</span><span class="p">]</span> <span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;run&#39;</span>       <span class="p">:</span> <span class="n">run</span><span class="p">,</span>
-                                    <span class="s1">&#39;model&#39;</span>      <span class="p">:</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(),</span>
-                                    <span class="s1">&#39;size&#39;</span>       <span class="p">:</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>
-                                    <span class="s1">&#39;loss_v&#39;</span>     <span class="p">:</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">loss_v</span><span class="p">,</span>
-                                    <span class="s1">&#39;complexity&#39;</span> <span class="p">:</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">complexity</span><span class="p">,</span>
-                                    <span class="c1"># &#39;linear_complexity&#39; : est.best_estimator_.fitness.linear_complexity,</span>
-                                    <span class="s1">&#39;log&#39;</span>        <span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">logfile</span><span class="p">)</span> <span class="c1"># loading logfile and keeping it</span>
+            <span class="n">results</span><span class="p">[</span><span class="n">bandit</span><span class="p">]</span> <span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">'run'</span>       <span class="p">:</span> <span class="n">run</span><span class="p">,</span>
+                                    <span class="s1">'model'</span>      <span class="p">:</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(),</span>
+                                    <span class="s1">'size'</span>       <span class="p">:</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>
+                                    <span class="s1">'loss_v'</span>     <span class="p">:</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">loss_v</span><span class="p">,</span>
+                                    <span class="s1">'complexity'</span> <span class="p">:</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">complexity</span><span class="p">,</span>
+                                    <span class="c1"># 'linear_complexity' : est.best_estimator_.fitness.linear_complexity,</span>
+                                    <span class="s1">'log'</span>        <span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">logfile</span><span class="p">)</span> <span class="c1"># loading logfile and keeping it</span>
                                     <span class="p">})</span> 
 </pre></div>
 </div>
@@ -1429,19 +1429,19 @@ model: Add(0.70*Sub(0.16*Sub(-17.95*Sub(0.05*x1,x4),-123.56*x6),0.88*Add(If(x0&g
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
-<span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;:&quot;</span><span class="p">,</span><span class="s2">&quot;--&quot;</span><span class="p">,</span><span class="s2">&quot;-.&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">]</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">":"</span><span class="p">,</span><span class="s2">"--"</span><span class="p">,</span><span class="s2">"-."</span><span class="p">,</span> <span class="s2">"-"</span><span class="p">]</span>
 <span class="n">linecycler</span> <span class="o">=</span> <span class="n">cycle</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;best_score&#39;</span><span class="p">,</span> <span class="s1">&#39;best_score_val&#39;</span><span class="p">]):</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">'best_score'</span><span class="p">,</span> <span class="s1">'best_score_val'</span><span class="p">]):</span>
     <span class="k">for</span> <span class="n">bandit</span> <span class="ow">in</span> <span class="n">bandits</span><span class="p">:</span>
-        <span class="n">bandit_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">experiment</span><span class="p">[</span><span class="s1">&#39;log&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">experiment</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="n">bandit</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">bandit_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;generation&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="n">linecycler</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">bandit</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">estimator</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nanmedian</span><span class="p">,</span> <span class="n">errorbar</span><span class="o">=</span><span class="s1">&#39;ci&#39;</span><span class="p">)</span>
+        <span class="n">bandit_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">experiment</span><span class="p">[</span><span class="s1">'log'</span><span class="p">]</span> <span class="k">for</span> <span class="n">experiment</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="n">bandit</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">bandit_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">'generation'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="n">linecycler</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">bandit</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">estimator</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nanmedian</span><span class="p">,</span> <span class="n">errorbar</span><span class="o">=</span><span class="s1">'ci'</span><span class="p">)</span>
     <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
     <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">'log'</span><span class="p">)</span>
 
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Best Score per Generation&#39;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Best Val Score per Generation&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Best Score per Generation'</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Best Val Score per Generation'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
@@ -1457,20 +1457,20 @@ model: Add(0.70*Sub(0.16*Sub(-17.95*Sub(0.05*x1,x4),-123.56*x6),0.88*Add(If(x0&g
 <span class="k">for</span> <span class="n">bandit</span> <span class="ow">in</span> <span class="n">bandits</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">experiment</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="n">bandit</span><span class="p">]:</span>
         <span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-            <span class="s1">&#39;bandit&#39;</span>        <span class="p">:</span> <span class="n">bandit</span><span class="p">,</span>
-            <span class="s1">&#39;run&#39;</span>           <span class="p">:</span> <span class="n">experiment</span><span class="p">[</span><span class="s1">&#39;run&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;model&#39;</span>         <span class="p">:</span> <span class="n">experiment</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;size&#39;</span>          <span class="p">:</span> <span class="n">experiment</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;loss_v&#39;</span>        <span class="p">:</span> <span class="n">experiment</span><span class="p">[</span><span class="s1">&#39;loss_v&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;complexity&#39;</span>    <span class="p">:</span> <span class="n">experiment</span><span class="p">[</span><span class="s1">&#39;complexity&#39;</span><span class="p">]</span>
+            <span class="s1">'bandit'</span>        <span class="p">:</span> <span class="n">bandit</span><span class="p">,</span>
+            <span class="s1">'run'</span>           <span class="p">:</span> <span class="n">experiment</span><span class="p">[</span><span class="s1">'run'</span><span class="p">],</span>
+            <span class="s1">'model'</span>         <span class="p">:</span> <span class="n">experiment</span><span class="p">[</span><span class="s1">'model'</span><span class="p">],</span>
+            <span class="s1">'size'</span>          <span class="p">:</span> <span class="n">experiment</span><span class="p">[</span><span class="s1">'size'</span><span class="p">],</span>
+            <span class="s1">'loss_v'</span>        <span class="p">:</span> <span class="n">experiment</span><span class="p">[</span><span class="s1">'loss_v'</span><span class="p">],</span>
+            <span class="s1">'complexity'</span>    <span class="p">:</span> <span class="n">experiment</span><span class="p">[</span><span class="s1">'complexity'</span><span class="p">]</span>
         <span class="p">})</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="s1">&#39;complexity&#39;</span><span class="p">,</span> <span class="s1">&#39;loss_v&#39;</span><span class="p">]):</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;bandit&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">'size'</span><span class="p">,</span> <span class="s1">'complexity'</span><span class="p">,</span> <span class="s1">'loss_v'</span><span class="p">]):</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'bandit'</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
     <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
     
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="de/deb/structBrush_1_1Parameters" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Parameters</compoundname>
     <includes refid="da/d33/params_8h" local="no">params.h</includes>
@@ -71,6 +71,7 @@
         <referencedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1ab9f17cd2c4452b05c96a17bb6c105fc2" compoundref="d8/dac/lexicase_8cpp" startline="18" endline="181">Brush::Sel::Lexicase&lt; T &gt;::select</referencedby>
         <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a53788b6bda8ce09f644e2cc44c9aa478" compoundref="de/d0d/nsga2_8cpp" startline="39" endline="79">Brush::Sel::NSGA2&lt; T &gt;::select</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a83d1e4fc6ee0bab95df90583080a1bd7" compoundref="da/d33/params_8h" startline="131" endline="131">set_current_gen</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="482">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a139004f9fa652376afabd690dac242e5" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -92,6 +93,7 @@
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a46922ab810383db1271d700e03005962" compoundref="d7/d4a/population_8cpp" startline="18" endline="59">Brush::Pop::Population&lt; T &gt;::init</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a4e5aa0dc57b760b0329483e64c3ccea3" compoundref="da/d33/params_8h" startline="104" endline="104">set_pop_size</referencedby>
         <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a2faddb61c1d9ce38a1bc994e9a9b08eb" compoundref="de/d0d/nsga2_8cpp" startline="82" endline="155">Brush::Sel::NSGA2&lt; T &gt;::survive</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="482">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1ae8174a3006e30812afa63f1d74aeb6e9" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -159,7 +161,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/params.h" line="37" column="18" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="37" bodyend="-1"/>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a77aa7201a837482c7bf92579fe156811" compoundref="da/d33/params_8h" startline="139" endline="139">get_max_depth</referencedby>
-        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a810403a87eef0baded2aed2bb4f1979e" compoundref="d9/d99/search__space_8h" startline="720" endline="810">Brush::SearchSpace::make_program</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a810403a87eef0baded2aed2bb4f1979e" compoundref="d9/d99/search__space_8h" startline="751" endline="849">Brush::SearchSpace::make_program</referencedby>
         <referencedby refid="de/d23/classBrush_1_1Var_1_1SubtreeMutation_1af9c010fdbdd1049e2df276f7e08340dc" compoundref="d1/d64/variation_8cpp" startline="404" endline="455">Brush::Var::SubtreeMutation::mutate</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a09b2945802ab49e8510e16181a7d916e" compoundref="da/d33/params_8h" startline="138" endline="138">set_max_depth</referencedby>
       </memberdef>
@@ -179,7 +181,7 @@
         <location file="/home/runner/work/brush/brush/src/params.h" line="38" column="18" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="38" bodyend="-1"/>
         <referencedby refid="d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation_1ad228fa1b8f1c2203c3f1c6fc38df9956" compoundref="d1/d64/variation_8cpp" startline="278" endline="307">Brush::Var::ToggleWeightOnMutation::find_spots</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a122b7243856cd15f940b6d6b5ec1074f" compoundref="da/d33/params_8h" startline="145" endline="145">get_max_size</referencedby>
-        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a810403a87eef0baded2aed2bb4f1979e" compoundref="d9/d99/search__space_8h" startline="720" endline="810">Brush::SearchSpace::make_program</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a810403a87eef0baded2aed2bb4f1979e" compoundref="d9/d99/search__space_8h" startline="751" endline="849">Brush::SearchSpace::make_program</referencedby>
         <referencedby refid="dc/de3/classBrush_1_1Var_1_1InsertMutation_1a54f75a7d5b2583320d9d00d317f933ed" compoundref="d1/d64/variation_8cpp" startline="145" endline="213">Brush::Var::InsertMutation::mutate</referencedby>
         <referencedby refid="de/d23/classBrush_1_1Var_1_1SubtreeMutation_1af9c010fdbdd1049e2df276f7e08340dc" compoundref="d1/d64/variation_8cpp" startline="404" endline="455">Brush::Var::SubtreeMutation::mutate</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1ad36ed3c368c1cc152b179a824e9b3144" compoundref="da/d33/params_8h" startline="144" endline="144">set_max_size</referencedby>
@@ -218,6 +220,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/params.h" line="41" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="41" bodyend="-1"/>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a59c69b664a2053e98eaaa42a93bbfc60" compoundref="da/d33/params_8h" startline="111" endline="111">get_bandit</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a34e022870eeefe3cf27f1b5575738ce9" compoundref="d4/d1f/variation_8h" startline="76" endline="172">Brush::Var::Variation&lt; T &gt;::init</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1afed0556e44457c8ef23a69631ae8561e" compoundref="da/d33/params_8h" startline="110" endline="110">set_bandit</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a187fd63755c90c13f4b3723becd9bdd8" prot="public" static="no" mutable="no">
@@ -308,6 +311,7 @@
         <location file="/home/runner/work/brush/brush/src/params.h" line="48" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="48" bodyend="-1"/>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a5945d0484d68867abd931647627507b8" compoundref="da/d33/params_8h" startline="183" endline="183">get_constants_simplification</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a461cce1b7b252913ede2e7b8d6cb5c91" compoundref="da/d33/params_8h" startline="182" endline="182">set_constants_simplification</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="482">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a08ad8f286c31998bd94f897a2894a950" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -324,7 +328,9 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/params.h" line="49" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="49" bodyend="-1"/>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a1a65ccec3f7dc32f50b115f5423aaaaa" compoundref="da/d33/params_8h" startline="186" endline="186">get_inexact_simplification</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a34e022870eeefe3cf27f1b5575738ce9" compoundref="d4/d1f/variation_8h" startline="76" endline="172">Brush::Var::Variation&lt; T &gt;::init</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a2b56dd258dc9aac0a2dc1420743ce39f" compoundref="da/d33/params_8h" startline="185" endline="185">set_inexact_simplification</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="482">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a0617ec0d1b94aa7a163a3cbf54f9b924" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -341,7 +347,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/params.h" line="52" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="52" bodyend="-1"/>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a7607a875adc689869e612a2ba8a2e35a" compoundref="da/d33/params_8h" startline="250" endline="250">get_start_from_decision_trees</referencedby>
-        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a810403a87eef0baded2aed2bb4f1979e" compoundref="d9/d99/search__space_8h" startline="720" endline="810">Brush::SearchSpace::make_program</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a810403a87eef0baded2aed2bb4f1979e" compoundref="d9/d99/search__space_8h" startline="751" endline="849">Brush::SearchSpace::make_program</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a448b92d51af9bfab99c1167dc7e19044" compoundref="da/d33/params_8h" startline="251" endline="251">set_start_from_decision_trees</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a49392abcea1d48447c024a23137fd788" prot="public" static="no" mutable="no">
@@ -384,6 +390,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/params.h" line="63" column="11" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="63" bodyend="-1"/>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1ad295afd17da08fdccb207f28caf07cc8" compoundref="da/d33/params_8h" startline="171" endline="171">get_cx_prob</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a34e022870eeefe3cf27f1b5575738ce9" compoundref="d4/d1f/variation_8h" startline="76" endline="172">Brush::Var::Variation&lt; T &gt;::init</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1ae117be02b10c413ff07be95c2edf2417" compoundref="da/d33/params_8h" startline="170" endline="170">set_cx_prob</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1aed0024de73a9fec99711efe303484ab8" prot="public" static="no" mutable="no">
@@ -425,6 +432,7 @@
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a6b59a48d2390a37f4cba81f33b348f75" compoundref="da/d33/params_8h" startline="120" endline="120">get_scorer</referencedby>
         <referencedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1ab9f17cd2c4452b05c96a17bb6c105fc2" compoundref="d8/dac/lexicase_8cpp" startline="18" endline="181">Brush::Sel::Lexicase&lt; T &gt;::select</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a9a9fea16aff19dd2b74f98c379a2e3cf" compoundref="da/d33/params_8h" startline="119" endline="119">set_scorer</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="482">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a7e6f0518ea271df0c3f35a2313071202" prot="public" static="no" mutable="no">
         <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; int &gt;</type>
@@ -462,6 +470,8 @@
         <referencedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1ab9f17cd2c4452b05c96a17bb6c105fc2" compoundref="d8/dac/lexicase_8cpp" startline="18" endline="181">Brush::Sel::Lexicase&lt; T &gt;::select</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1aec1f852fab78eb777b37193cc34022ec" compoundref="da/d33/params_8h" startline="210" endline="218">set_class_weights</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1abcb29d9409d58681fe925d955c010573" compoundref="da/d33/params_8h" startline="220" endline="241">set_sample_weights</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a6ca34005b1a4ab87038a4c391e77d786" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="51">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="482">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a0c58f9fade0aa2b61ce38213f1675cc5" prot="public" static="no" mutable="no">
         <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;</type>
@@ -515,6 +525,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/params.h" line="75" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="75" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1aad11ac5c3f0adc14cabf465eeb7d3e91" compoundref="d1/d55/engine_8h" startline="85" endline="92">Brush::Engine&lt; PT::Regressor &gt;::fit</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a0941104c9a1c006e2d616b04fe8772f8" compoundref="da/d33/params_8h" startline="177" endline="177">get_classification</referencedby>
         <referencedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1ab9f17cd2c4452b05c96a17bb6c105fc2" compoundref="d8/dac/lexicase_8cpp" startline="18" endline="181">Brush::Sel::Lexicase&lt; T &gt;::select</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1aadbf81786a17f23863c85f1896b7155d" compoundref="da/d33/params_8h" startline="176" endline="176">set_classification</referencedby>
@@ -535,6 +546,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/params.h" line="76" column="18" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="76" bodyend="-1"/>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a572e97fe2ee54989dc8c72ad322076f7" compoundref="da/d33/params_8h" startline="243" endline="243">get_n_classes</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a810403a87eef0baded2aed2bb4f1979e" compoundref="d9/d99/search__space_8h" startline="751" endline="849">Brush::SearchSpace::make_program</referencedby>
         <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a3797d5ee458a9b91b165b53a8e53cbf6" compoundref="da/d3b/scorer_8h" startline="119" endline="150">Brush::Eval::Scorer&lt; P &gt;::score</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1aec1f852fab78eb777b37193cc34022ec" compoundref="da/d33/params_8h" startline="210" endline="218">set_class_weights</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a2601b9ce7184a0bc7b58efe8f477e178" compoundref="da/d33/params_8h" startline="191" endline="209">set_n_classes</referencedby>
@@ -554,6 +566,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/params.h" line="79" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="79" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1aad11ac5c3f0adc14cabf465eeb7d3e91" compoundref="d1/d55/engine_8h" startline="85" endline="92">Brush::Engine&lt; PT::Regressor &gt;::fit</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1acaae679131485c3a26d673de03dec296" compoundref="da/d33/params_8h" startline="180" endline="180">get_shuffle_split</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a165c8b63ae6066b392ab945c2d04a7b5" compoundref="da/d33/params_8h" startline="179" endline="179">set_shuffle_split</referencedby>
       </memberdef>
@@ -571,6 +584,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/params.h" line="80" column="11" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="80" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1aad11ac5c3f0adc14cabf465eeb7d3e91" compoundref="d1/d55/engine_8h" startline="85" endline="92">Brush::Engine&lt; PT::Regressor &gt;::fit</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1aead717c90a933bdc5b1b149a4b40ec78" compoundref="da/d33/params_8h" startline="254" endline="254">get_validation_size</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1adcfeb3fbcd6bb2ace4eb112dd1ac1fc7" compoundref="da/d33/params_8h" startline="253" endline="253">set_validation_size</referencedby>
       </memberdef>
@@ -588,6 +602,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/params.h" line="81" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="81" bodyend="81"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1aad11ac5c3f0adc14cabf465eeb7d3e91" compoundref="d1/d55/engine_8h" startline="85" endline="92">Brush::Engine&lt; PT::Regressor &gt;::fit</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a503e5e39ff8078bfd0132399bc376651" compoundref="da/d33/params_8h" startline="257" endline="257">get_feature_names</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1adce3ebf4b9d0aa35a4da35f33e5d9168" compoundref="da/d33/params_8h" startline="256" endline="256">set_feature_names</referencedby>
       </memberdef>
@@ -605,6 +620,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/params.h" line="82" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="82" bodyend="82"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1aad11ac5c3f0adc14cabf465eeb7d3e91" compoundref="d1/d55/engine_8h" startline="85" endline="92">Brush::Engine&lt; PT::Regressor &gt;::fit</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1ae699514fc828219e2abb3a7d62087e4b" compoundref="da/d33/params_8h" startline="260" endline="260">get_feature_types</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a1cb1c1f543a2d7c19ae843252e4c4f9e" compoundref="da/d33/params_8h" startline="259" endline="259">set_feature_types</referencedby>
       </memberdef>
@@ -622,6 +638,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/params.h" line="83" column="11" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="83" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1aad11ac5c3f0adc14cabf465eeb7d3e91" compoundref="d1/d55/engine_8h" startline="85" endline="92">Brush::Engine&lt; PT::Regressor &gt;::fit</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a55829db9efdf15f588da5aed54fa42a8" compoundref="da/d33/params_8h" startline="263" endline="263">get_batch_size</referencedby>
         <referencedby refid="de/deb/structBrush_1_1Parameters_1a3764d1c46477f804a75d58248cc64ea8" compoundref="da/d33/params_8h" startline="262" endline="262">set_batch_size</referencedby>
       </memberdef>
@@ -726,6 +743,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/params.h" line="93" column="5" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="93" bodyend="93"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1ab1eff1b88ccdae24b480972bd5b0131d" compoundref="d1/d55/engine_8h" startline="45" endline="49">Brush::Engine&lt; PT::Regressor &gt;::Engine</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a123bc3a7c8b17c0add03f6fbb128b6e4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -759,6 +777,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/params.h" line="97" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="97" bodyend="98"/>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1aa6d49e22e6193fabd31fde261f607560" compoundref="d1/d8c/logger_8h" startline="60">Brush::Util::logger</references>
+        <references refid="dd/d56/classBrush_1_1Util_1_1Logger_1a9e88baaf25e97566fe654a0563253fd8" compoundref="d3/d30/logger_8cpp" startline="31" endline="42">Brush::Util::Logger::set_log_level</references>
         <references refid="de/deb/structBrush_1_1Parameters_1aa3266a1e88b1d869a94ab3b21152beda" compoundref="da/d33/params_8h" startline="24">verbosity</references>
         <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="69">bind_params</referencedby>
       </memberdef>
@@ -2047,6 +2066,7 @@
         <location file="/home/runner/work/brush/brush/src/params.h" line="266" column="14" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="266" bodyend="266"/>
         <references refid="de/deb/structBrush_1_1Parameters_1a49392abcea1d48447c024a23137fd788" compoundref="da/d33/params_8h" startline="55" endline="62">mutation_probs</references>
         <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="69">bind_params</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a34e022870eeefe3cf27f1b5575738ce9" compoundref="d4/d1f/variation_8h" startline="76" endline="172">Brush::Var::Variation&lt; T &gt;::init</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a2054b866fb2d2a08114ae9c468ad3863" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Working with Programs &mdash; Brush 0.1.dev1+g33a7db448 documentation</title>
+  <title>Working with Programs &mdash; Brush 0.1.dev1+g1823dfbdb documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=3994a0a4"></script>
+      <script src="../_static/documentation_options.js?v=6bcea315"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -26,7 +26,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="JSON Interoperability" href="json.html" />
+    <link rel="next" title="Multiclass classification" href="multiclassification.html" />
     <link rel="prev" title="The Search Space" href="search_space.html" /> 
 </head>
 
@@ -75,6 +75,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="multiclassification.html">Multiclass classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="json.html">JSON Interoperability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="saving_loading_populations.html">Saving and loading populations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="locking_mechanism.html">Locking the search during generation updates</a></li>
@@ -169,16 +170,16 @@ We use the <a class="reference external" href="https://github.com/kpeeters/tree.
 <span class="kn">from</span><span class="w"> </span><span class="nn">pybrush</span><span class="w"> </span><span class="kn">import</span> <span class="n">BrushRegressor</span>
 
 <span class="c1"># load data</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../examples/datasets/d_enc.csv&#39;</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../examples/datasets/d_enc.csv'</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">'label'</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'label'</span><span class="p">]</span>
 
 <span class="n">X</span><span class="o">.</span><span class="n">info</span><span class="p">()</span> <span class="c1"># we have several float and two integer features</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 768 entries, 0 to 767
 Data columns (total 8 columns):
  #   Column  Non-Null Count  Dtype  
@@ -202,7 +203,7 @@ memory usage: 48.1 KB
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import and make a regressor</span>
 <span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">(</span>
     <span class="c1"># Uncomment the line below to constrain the search space to fewer functions</span>
-    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span> <span class="s1">&#39;SplitOn&#39;</span><span class="p">,</span> <span class="s1">&#39;Geq&#39;</span><span class="p">,</span> <span class="s1">&#39;Eq&#39;</span><span class="p">,</span> <span class="s1">&#39;Mul&#39;</span><span class="p">,</span> <span class="s1">&#39;Add&#39;</span><span class="p">,</span> <span class="s1">&#39;Cos&#39;</span><span class="p">,</span> <span class="s1">&#39;Exp&#39;</span><span class="p">],</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">'SplitBest'</span><span class="p">,</span> <span class="s1">'SplitOn'</span><span class="p">,</span> <span class="s1">'Geq'</span><span class="p">,</span> <span class="s1">'Eq'</span><span class="p">,</span> <span class="s1">'Mul'</span><span class="p">,</span> <span class="s1">'Add'</span><span class="p">,</span> <span class="s1">'Cos'</span><span class="p">,</span> <span class="s1">'Exp'</span><span class="p">],</span>
     <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span> <span class="c1"># set verbosity==1 to see a progress bar</span>
 <span class="p">)</span>
@@ -210,10 +211,10 @@ memory usage: 48.1 KB
 <span class="c1"># use like you would a sklearn regressor</span>
 <span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best model:&quot;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;tree&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Best model:"</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">"tree"</span><span class="p">))</span>
 
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'score:'</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -241,7 +242,7 @@ score: 0.8950117552104557
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitness(10.703141 34.000000 )
-[&#39;scorer&#39;, &#39;linear_complexity&#39;]
+['scorer', 'linear_complexity']
 </pre></div>
 </div>
 </div>
@@ -292,12 +293,12 @@ score: 0.8950117552104557
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fitness {&#39;complexity&#39;: 250, &#39;crowding_dist&#39;: 3.4028234663852886e+38, &#39;dcounter&#39;: 0, &#39;depth&#39;: 3, &#39;dominated&#39;: [], &#39;linear_complexity&#39;: 34, &#39;loss&#39;: 9.187416076660156, &#39;loss_v&#39;: 10.703141212463379, &#39;prev_complexity&#39;: 250, &#39;prev_depth&#39;: 3, &#39;prev_linear_complexity&#39;: 34, &#39;prev_loss&#39;: 9.187414169311523, &#39;prev_loss_v&#39;: 10.703254699707031, &#39;prev_size&#39;: 25, &#39;rank&#39;: 1, &#39;size&#39;: 25, &#39;values&#39;: [10.703141212463379, 34.0], &#39;weights&#39;: [-1.0, -1.0], &#39;wvalues&#39;: [-10.703141212463379, -34.0]}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fitness {'complexity': 250, 'crowding_dist': 3.4028234663852886e+38, 'dcounter': 0, 'depth': 3, 'dominated': [], 'linear_complexity': 34, 'loss': 9.187416076660156, 'loss_v': 10.703141212463379, 'prev_complexity': 250, 'prev_depth': 3, 'prev_linear_complexity': 34, 'prev_loss': 9.187414169311523, 'prev_loss_v': 10.703254699707031, 'prev_size': 25, 'rank': 1, 'size': 25, 'values': [10.703141212463379, 34.0], 'weights': [-1.0, -1.0], 'wvalues': [-10.703141212463379, -34.0]}
 id 291
 is_fitted_ False
-objectives [&#39;mse&#39;, &#39;linear_complexity&#39;]
+objectives ['mse', 'linear_complexity']
 parent_id [274]
-program {&#39;Tree&#39;: [{&#39;W&#39;: 0.7599999904632568, &#39;arg_types&#39;: [&#39;ArrayF&#39;, &#39;ArrayF&#39;], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x0&#39;, &#39;feature_type&#39;: &#39;ArrayI&#39;, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;SplitBest&#39;, &#39;node_is_fixed&#39;: False, &#39;node_type&#39;: &#39;SplitBest&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 14679000877885575597, &#39;sig_hash&#39;: 14400282083458657357, &#39;weight_is_fixed&#39;: False}, {&#39;W&#39;: 0.8199999928474426, &#39;arg_types&#39;: [&#39;ArrayF&#39;, &#39;ArrayF&#39;], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x0&#39;, &#39;feature_type&#39;: &#39;ArrayI&#39;, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;SplitBest&#39;, &#39;node_is_fixed&#39;: False, &#39;node_type&#39;: &#39;SplitBest&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 14679000877885575597, &#39;sig_hash&#39;: 14400282083458657357, &#39;weight_is_fixed&#39;: False}, {&#39;W&#39;: 29.8331241607666, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;constF&#39;, &#39;feature_type&#39;: &#39;ArrayF&#39;, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Constant&#39;, &#39;node_is_fixed&#39;: False, &#39;node_type&#39;: &#39;Constant&#39;, &#39;prob_change&#39;: 0.6167147755622864, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 7018942542468397869, &#39;sig_hash&#39;: 14162902253047951597, &#39;weight_is_fixed&#39;: False}, {&#39;W&#39;: 48.73774337768555, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x0&#39;, &#39;feature_type&#39;: &#39;ArrayF&#39;, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Terminal&#39;, &#39;node_is_fixed&#39;: False, &#39;node_type&#39;: &#39;Terminal&#39;, &#39;prob_change&#39;: 0.6343384981155396, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 7018942542468397869, &#39;sig_hash&#39;: 14162902253047951597, &#39;weight_is_fixed&#39;: False}, {&#39;W&#39;: 1.3606120347976685, &#39;arg_types&#39;: [&#39;ArrayF&#39;, &#39;ArrayF&#39;], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;&#39;, &#39;feature_type&#39;: &#39;ArrayF&#39;, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Add&#39;, &#39;node_is_fixed&#39;: False, &#39;node_type&#39;: &#39;Add&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 14679000877885575597, &#39;sig_hash&#39;: 14400282083458657357, &#39;weight_is_fixed&#39;: False}, {&#39;W&#39;: 0.013320915400981903, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x1&#39;, &#39;feature_type&#39;: &#39;ArrayF&#39;, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Terminal&#39;, &#39;node_is_fixed&#39;: False, &#39;node_type&#39;: &#39;Terminal&#39;, &#39;prob_change&#39;: 0.6729995608329773, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 7018942542468397869, &#39;sig_hash&#39;: 14162902253047951597, &#39;weight_is_fixed&#39;: False}, {&#39;W&#39;: 8.156413078308105, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x6&#39;, &#39;feature_type&#39;: &#39;ArrayF&#39;, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Terminal&#39;, &#39;node_is_fixed&#39;: False, &#39;node_type&#39;: &#39;Terminal&#39;, &#39;prob_change&#39;: 0.20750471949577332, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 7018942542468397869, &#39;sig_hash&#39;: 14162902253047951597, &#39;weight_is_fixed&#39;: False}], &#39;is_fitted_&#39;: True}
+program {'Tree': [{'W': 0.7599999904632568, 'arg_types': ['ArrayF', 'ArrayF'], 'center_op': True, 'feature': 'x0', 'feature_type': 'ArrayI', 'is_weighted': True, 'name': 'SplitBest', 'node_is_fixed': False, 'node_type': 'SplitBest', 'prob_change': 1.0, 'ret_type': 'ArrayF', 'sig_dual_hash': 14679000877885575597, 'sig_hash': 14400282083458657357, 'weight_is_fixed': False}, {'W': 0.8199999928474426, 'arg_types': ['ArrayF', 'ArrayF'], 'center_op': True, 'feature': 'x0', 'feature_type': 'ArrayI', 'is_weighted': True, 'name': 'SplitBest', 'node_is_fixed': False, 'node_type': 'SplitBest', 'prob_change': 1.0, 'ret_type': 'ArrayF', 'sig_dual_hash': 14679000877885575597, 'sig_hash': 14400282083458657357, 'weight_is_fixed': False}, {'W': 29.8331241607666, 'arg_types': [], 'center_op': True, 'feature': 'constF', 'feature_type': 'ArrayF', 'is_weighted': True, 'name': 'Constant', 'node_is_fixed': False, 'node_type': 'Constant', 'prob_change': 0.6167147755622864, 'ret_type': 'ArrayF', 'sig_dual_hash': 7018942542468397869, 'sig_hash': 14162902253047951597, 'weight_is_fixed': False}, {'W': 48.73774337768555, 'arg_types': [], 'center_op': True, 'feature': 'x0', 'feature_type': 'ArrayF', 'is_weighted': True, 'name': 'Terminal', 'node_is_fixed': False, 'node_type': 'Terminal', 'prob_change': 0.6343384981155396, 'ret_type': 'ArrayF', 'sig_dual_hash': 7018942542468397869, 'sig_hash': 14162902253047951597, 'weight_is_fixed': False}, {'W': 1.3606120347976685, 'arg_types': ['ArrayF', 'ArrayF'], 'center_op': True, 'feature': '', 'feature_type': 'ArrayF', 'is_weighted': True, 'name': 'Add', 'node_is_fixed': False, 'node_type': 'Add', 'prob_change': 1.0, 'ret_type': 'ArrayF', 'sig_dual_hash': 14679000877885575597, 'sig_hash': 14400282083458657357, 'weight_is_fixed': False}, {'W': 0.013320915400981903, 'arg_types': [], 'center_op': True, 'feature': 'x1', 'feature_type': 'ArrayF', 'is_weighted': True, 'name': 'Terminal', 'node_is_fixed': False, 'node_type': 'Terminal', 'prob_change': 0.6729995608329773, 'ret_type': 'ArrayF', 'sig_dual_hash': 7018942542468397869, 'sig_hash': 14162902253047951597, 'weight_is_fixed': False}, {'W': 8.156413078308105, 'arg_types': [], 'center_op': True, 'feature': 'x6', 'feature_type': 'ArrayF', 'is_weighted': True, 'name': 'Terminal', 'node_is_fixed': False, 'node_type': 'Terminal', 'prob_change': 0.20750471949577332, 'ret_type': 'ArrayF', 'sig_dual_hash': 7018942542468397869, 'sig_hash': 14162902253047951597, 'weight_is_fixed': False}], 'is_fitted_': True}
 variation insert
 </pre></div>
 </div>
@@ -309,12 +310,12 @@ variation insert
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">tempfile</span>
 
-<span class="n">individual_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(),</span> <span class="s1">&#39;individual.json&#39;</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">individual_file</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="n">individual_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(),</span> <span class="s1">'individual.json'</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">individual_file</span><span class="p">,</span> <span class="s2">"wb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 
-<span class="n">program_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(),</span> <span class="s1">&#39;program.json&#39;</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">program_file</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="n">program_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(),</span> <span class="s1">'program.json'</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">program_file</span><span class="p">,</span> <span class="s2">"wb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">program</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -323,7 +324,7 @@ variation insert
 <p>Then we can load it later with:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">individual_file</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">individual_file</span><span class="p">,</span> <span class="s2">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">loaded_estimator</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">loaded_estimator</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
 </pre></div>
@@ -357,7 +358,7 @@ We can view it as a string:</p>
 <p>Or, we can view it as a compact tree:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;tree&quot;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">"tree"</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -382,7 +383,7 @@ Let’s import graphviz and make a nicer plot.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">graphviz</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;dot&quot;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">"dot"</span><span class="p">)</span>
 <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -401,21 +402,21 @@ Let’s import graphviz and make a nicer plot.</p>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>digraph G {
 y [shape=box];
-y -&gt; &quot;177604080&quot; [label=&quot;0.76&quot;];
-&quot;177604080&quot; [label=&quot;x0 &gt;= 0.76?&quot;];
-&quot;177604080&quot; -&gt; &quot;10fd43150&quot; [headlabel=&quot;&quot;,taillabel=&quot;Y&quot;];
-&quot;177604080&quot; -&gt; &quot;17359a090&quot; [headlabel=&quot;1.36&quot;,taillabel=&quot;N&quot;];
-&quot;10fd43150&quot; [label=&quot;x0 &gt;= 0.82?&quot;];
-&quot;10fd43150&quot; -&gt; &quot;109926ea0&quot; [headlabel=&quot;&quot;,taillabel=&quot;Y&quot;];
-&quot;10fd43150&quot; -&gt; &quot;x0&quot; [headlabel=&quot;48.74&quot;,taillabel=&quot;N&quot;];
-&quot;109926ea0&quot; [label=&quot;29.83&quot;];
-&quot;x0&quot; [label=&quot;x0&quot;];
-&quot;17359a090&quot; [label=&quot;Add&quot;];
-&quot;17359a090&quot; -&gt; &quot;x1&quot; [label=&quot;0.01&quot;];
-&quot;17359a090&quot; -&gt; &quot;x6&quot; [label=&quot;8.16&quot;];
-&quot;x1&quot; [label=&quot;x1&quot;];
-&quot;x6&quot; [label=&quot;x6&quot;];
-label=&quot;^ split feature fixed, * split threshold fixed&quot;;
+y -&gt; "177604080" [label="0.76"];
+"177604080" [label="x0 &gt;= 0.76?"];
+"177604080" -&gt; "10fd43150" [headlabel="",taillabel="Y"];
+"177604080" -&gt; "17359a090" [headlabel="1.36",taillabel="N"];
+"10fd43150" [label="x0 &gt;= 0.82?"];
+"10fd43150" -&gt; "109926ea0" [headlabel="",taillabel="Y"];
+"10fd43150" -&gt; "x0" [headlabel="48.74",taillabel="N"];
+"109926ea0" [label="29.83"];
+"x0" [label="x0"];
+"17359a090" [label="Add"];
+"17359a090" -&gt; "x1" [label="0.01"];
+"17359a090" -&gt; "x6" [label="8.16"];
+"x1" [label="x1"];
+"x6" [label="x6"];
+label="^ split feature fixed, * split threshold fixed";
 labelloc=bottom;
 fontsize=10;}
 </pre></div>
@@ -430,7 +431,7 @@ You can do this by manually editing <code class="docutils literal notranslate"><
 <p>For example, let’s view the graph from Left-to-Right:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_dot_model</span><span class="p">(</span><span class="s2">&quot;rankdir=LR;&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_dot_model</span><span class="p">(</span><span class="s2">"rankdir=LR;"</span><span class="p">)</span>
 <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -448,16 +449,16 @@ You can do this by manually editing <code class="docutils literal notranslate"><
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
 
 <span class="c1"># load data</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../examples/datasets/d_analcatdata_aids.csv&#39;</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;target&#39;</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../examples/datasets/d_analcatdata_aids.csv'</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">'target'</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'target'</span><span class="p">]</span>
 
 <span class="n">X</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 50 entries, 0 to 49
 Data columns (total 4 columns):
  #   Column  Non-Null Count  Dtype  
@@ -476,20 +477,20 @@ memory usage: 1.7 KB
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span> <span class="o">=</span> <span class="n">BrushClassifier</span><span class="p">(</span>
     <span class="c1"># Uncomment the line below to constrain the search space to fewer functions</span>
-    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span> <span class="s1">&#39;SplitOn&#39;</span><span class="p">,</span> <span class="s1">&#39;Geq&#39;</span><span class="p">,</span> <span class="s1">&#39;Eq&#39;</span><span class="p">,</span> <span class="s1">&#39;Mul&#39;</span><span class="p">,</span> <span class="s1">&#39;Add&#39;</span><span class="p">,</span> <span class="s1">&#39;Cos&#39;</span><span class="p">,</span> <span class="s1">&#39;Exp&#39;</span><span class="p">],</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">'SplitBest'</span><span class="p">,</span> <span class="s1">'SplitOn'</span><span class="p">,</span> <span class="s1">'Geq'</span><span class="p">,</span> <span class="s1">'Eq'</span><span class="p">,</span> <span class="s1">'Mul'</span><span class="p">,</span> <span class="s1">'Add'</span><span class="p">,</span> <span class="s1">'Cos'</span><span class="p">,</span> <span class="s1">'Exp'</span><span class="p">],</span>
     <span class="n">max_gens</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
     <span class="n">max_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
     <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;scorer&quot;</span><span class="p">,</span> <span class="s2">&quot;linear_complexity&quot;</span><span class="p">],</span>  
-    <span class="n">scorer</span><span class="o">=</span><span class="s2">&quot;average_precision_score&quot;</span><span class="p">,</span>
+    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">"scorer"</span><span class="p">,</span> <span class="s2">"linear_complexity"</span><span class="p">],</span>  
+    <span class="n">scorer</span><span class="o">=</span><span class="s2">"average_precision_score"</span><span class="p">,</span>
     <span class="n">pop_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-    <span class="n">bandit</span><span class="o">=</span><span class="s1">&#39;dynamic_thompson&#39;</span><span class="p">,</span>
+    <span class="n">bandit</span><span class="o">=</span><span class="s1">'dynamic_thompson'</span><span class="p">,</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span>
 <span class="p">)</span>
 
 <span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best model:&quot;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;tree&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Best model:"</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">"tree"</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -510,10 +511,10 @@ Best model: Logistic
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span><span class="o">.</span><span class="n">engine_</span><span class="o">.</span><span class="n">search_space</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best model:&quot;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Best model:"</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'score:'</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best model:&quot;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;tree&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Best model:"</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">"tree"</span><span class="p">))</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_dot_model</span><span class="p">()</span>
 <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
@@ -522,30 +523,30 @@ Best model: Logistic
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
-terminal_map: {&quot;ArrayB&quot;: [&quot;1.00&quot;], &quot;ArrayI&quot;: [&quot;Age&quot;, &quot;Race&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;AIDS&quot;, &quot;Total&quot;, &quot;1.00&quot;]}
-terminal_weights: {&quot;ArrayB&quot;: [0.3165285], &quot;ArrayI&quot;: [0.5779346, 0.42670068, 0.10736023], &quot;ArrayF&quot;: [0.539658, 0.18103841, 0.7904958]}
-SplitBest node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = SplitBest, weight = 0.5382333
-Mul node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Mul] = Mul, weight = 0.96832097
-Add node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Add] = Add, weight = 0.7737981
-OffsetSum node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][OffsetSum] = 0.00+Add, weight = 0
-Logistic node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logistic] = Logistic, weight = 0
-Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = Cos, weight = 0.53532857
-Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = Exp, weight = 0.35211778
-OffsetSum node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][OffsetSum] = 0.00+Add, weight = 0
-Logistic node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logistic] = Logistic, weight = 0
-Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = Cos, weight = 0.6508668
-Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = Exp, weight = 0.6810962
-OffsetSum node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][OffsetSum] = 0.00+Add, weight = 0
-Logistic node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logistic] = Logistic, weight = 0
-Cos node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = Cos, weight = 0.117200986
-Exp node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = Exp, weight = 0.14627638
-SplitBest node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = SplitBest, weight = 0.27913103
-Mul node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mul] = Mul, weight = 0.385618
-Add node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = Add, weight = 0.2764419
-OffsetSum node_map[ArrayF][[&quot;ArrayF&quot;]][OffsetSum] = 0.00+Add, weight = 0
-Logistic node_map[ArrayF][[&quot;ArrayF&quot;]][Logistic] = Logistic, weight = 0
-Cos node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = Cos, weight = 0.32952592
-Exp node_map[ArrayF][[&quot;ArrayF&quot;]][Exp] = Exp, weight = 0.7656854
+terminal_map: {"ArrayB": ["1.00"], "ArrayI": ["Age", "Race", "1.00"], "ArrayF": ["AIDS", "Total", "1.00"]}
+terminal_weights: {"ArrayB": [0.3165285], "ArrayI": [0.5779346, 0.42670068, 0.10736023], "ArrayF": [0.539658, 0.18103841, 0.7904958]}
+SplitBest node_map[ArrayI][["ArrayI", "ArrayI"]][SplitBest] = SplitBest, weight = 0.5382333
+Mul node_map[ArrayI][["ArrayI", "ArrayI"]][Mul] = Mul, weight = 0.96832097
+Add node_map[ArrayI][["ArrayI", "ArrayI"]][Add] = Add, weight = 0.7737981
+OffsetSum node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][OffsetSum] = 0.00+Add, weight = 0
+Logistic node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Logistic] = Logistic, weight = 0
+Cos node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Cos] = Cos, weight = 0.53532857
+Exp node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF", "ArrayF"]][Exp] = Exp, weight = 0.35211778
+OffsetSum node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][OffsetSum] = 0.00+Add, weight = 0
+Logistic node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Logistic] = Logistic, weight = 0
+Cos node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Cos] = Cos, weight = 0.6508668
+Exp node_map[MatrixF][["ArrayF", "ArrayF", "ArrayF"]][Exp] = Exp, weight = 0.6810962
+OffsetSum node_map[MatrixF][["ArrayF", "ArrayF"]][OffsetSum] = 0.00+Add, weight = 0
+Logistic node_map[MatrixF][["ArrayF", "ArrayF"]][Logistic] = Logistic, weight = 0
+Cos node_map[MatrixF][["ArrayF", "ArrayF"]][Cos] = Cos, weight = 0.117200986
+Exp node_map[MatrixF][["ArrayF", "ArrayF"]][Exp] = Exp, weight = 0.14627638
+SplitBest node_map[ArrayF][["ArrayF", "ArrayF"]][SplitBest] = SplitBest, weight = 0.27913103
+Mul node_map[ArrayF][["ArrayF", "ArrayF"]][Mul] = Mul, weight = 0.385618
+Add node_map[ArrayF][["ArrayF", "ArrayF"]][Add] = Add, weight = 0.2764419
+OffsetSum node_map[ArrayF][["ArrayF"]][OffsetSum] = 0.00+Add, weight = 0
+Logistic node_map[ArrayF][["ArrayF"]][Logistic] = Logistic, weight = 0
+Cos node_map[ArrayF][["ArrayF"]][Cos] = Cos, weight = 0.32952592
+Exp node_map[ArrayF][["ArrayF"]][Exp] = Exp, weight = 0.7656854
 
 Best model: Logistic(Add(-0.38,0.00*Add(Cos(AIDS),0.01*AIDS)))
 score: 0.68
@@ -569,7 +570,7 @@ Best model: Logistic
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="search_space.html" class="btn btn-neutral float-left" title="The Search Space" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="json.html" class="btn btn-neutral float-right" title="JSON Interoperability" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="multiclassification.html" class="btn btn-neutral float-right" title="Multiclass classification" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

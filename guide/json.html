@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JSON Interoperability &mdash; Brush 0.1.dev1+g33a7db448 documentation</title>
+  <title>JSON Interoperability &mdash; Brush 0.1.dev1+g1823dfbdb documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=3994a0a4"></script>
+      <script src="../_static/documentation_options.js?v=6bcea315"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -27,7 +27,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Saving and loading populations" href="saving_loading_populations.html" />
-    <link rel="prev" title="Working with Programs" href="working_with_programs.html" /> 
+    <link rel="prev" title="Multiclass classification" href="multiclassification.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -60,6 +60,7 @@
 <li class="toctree-l2"><a class="reference internal" href="data.html">Working with Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="search_space.html">The Search Space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="working_with_programs.html">Working with Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multiclassification.html">Multiclass classification</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">JSON Interoperability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="saving_loading_populations.html">Saving and loading populations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="locking_mechanism.html">Locking the search during generation updates</a></li>
@@ -108,12 +109,12 @@ This is achieved using the <a class="reference external" href="https://github.co
 It means you can, for example, write programs as Python dictionaries like so:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">json_program</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;Tree&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span> <span class="s2">&quot;node_type&quot;</span><span class="p">:</span><span class="s2">&quot;Add&quot;</span><span class="p">,</span> <span class="s2">&quot;is_weighted&quot;</span><span class="p">:</span> <span class="kc">True</span> <span class="p">},</span>
-        <span class="p">{</span> <span class="s2">&quot;node_type&quot;</span><span class="p">:</span><span class="s2">&quot;Terminal&quot;</span><span class="p">,</span> <span class="s2">&quot;feature&quot;</span><span class="p">:</span><span class="s2">&quot;x1&quot;</span><span class="p">},</span>
-        <span class="p">{</span> <span class="s2">&quot;node_type&quot;</span><span class="p">:</span><span class="s2">&quot;Terminal&quot;</span><span class="p">,</span> <span class="s2">&quot;feature&quot;</span><span class="p">:</span><span class="s2">&quot;x2&quot;</span><span class="p">}</span>
+    <span class="s2">"Tree"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="s2">"node_type"</span><span class="p">:</span><span class="s2">"Add"</span><span class="p">,</span> <span class="s2">"is_weighted"</span><span class="p">:</span> <span class="kc">True</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="s2">"node_type"</span><span class="p">:</span><span class="s2">"Terminal"</span><span class="p">,</span> <span class="s2">"feature"</span><span class="p">:</span><span class="s2">"x1"</span><span class="p">},</span>
+        <span class="p">{</span> <span class="s2">"node_type"</span><span class="p">:</span><span class="s2">"Terminal"</span><span class="p">,</span> <span class="s2">"feature"</span><span class="p">:</span><span class="s2">"x2"</span><span class="p">}</span>
     <span class="p">],</span>
-    <span class="s2">&quot;is_fitted_&quot;</span><span class="p">:</span><span class="kc">False</span>
+    <span class="s2">"is_fitted_"</span><span class="p">:</span><span class="kc">False</span>
 <span class="p">}</span>
 
 </pre></div>
@@ -125,7 +126,7 @@ Note the dictionary must contain keys for all members of the Program class, <cod
 We can turn this directly into a regressor:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">PRG</span> <span class="o">=</span> <span class="n">Regressor</span><span class="p">(</span><span class="n">json_program</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;program:&quot;</span><span class="p">,</span> <span class="n">PRG</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">"program:"</span><span class="p">,</span> <span class="n">PRG</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
 
 </pre></div>
 </div>
@@ -135,7 +136,7 @@ We can turn this directly into a regressor:</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="working_with_programs.html" class="btn btn-neutral float-left" title="Working with Programs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="multiclassification.html" class="btn btn-neutral float-left" title="Multiclass classification" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="saving_loading_populations.html" class="btn btn-neutral float-right" title="Saving and loading populations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

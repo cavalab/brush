@@ -12,6 +12,7 @@ Brush mostly consists of these components:
 data
 search_space
 working_with_programs
+multiclassification
 json
 saving_loading_populations
 locking_mechanism

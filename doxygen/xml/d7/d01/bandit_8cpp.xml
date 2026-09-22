@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="d7/d01/bandit_8cpp" kind="file" language="C++">
     <compoundname>bandit.cpp</compoundname>
     <includes refid="d7/d00/bandit_8h" local="yes">bandit.h</includes>
@@ -512,7 +512,7 @@
 <codeline lineno="11"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight></codeline>
 <codeline lineno="13" refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1adbaba7251012fbdbdc5470413d38310d" refkind="member"><highlight class="normal"><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a0e007a9f8217044eb0b5a9e9fccb30d5" kindref="member">Bandit::Bandit</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1aa686598d41be58ff1189ee62de90cecb" kindref="member">type</ref>,<sp/>vector&lt;string&gt;<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a6100cbe0bd8dffa5dff50918fcaecadb" kindref="member">arms</ref>)<sp/>:<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1aa686598d41be58ff1189ee62de90cecb" kindref="member">type</ref>(<ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1aa686598d41be58ff1189ee62de90cecb" kindref="member">type</ref>)<sp/>{</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a830e2402a6d2b784721c38c612b290d0" kindref="member">set_arms</ref>(arms);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a830e2402a6d2b784721c38c612b290d0" kindref="member">set_arms</ref>(<ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a6100cbe0bd8dffa5dff50918fcaecadb" kindref="member">arms</ref>);</highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>map&lt;string,<sp/>float&gt;<sp/>arms_probs;</highlight></codeline>
 <codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>prob<sp/>=<sp/>1.0<sp/>/<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a6100cbe0bd8dffa5dff50918fcaecadb" kindref="member">arms</ref>.size();</highlight></codeline>

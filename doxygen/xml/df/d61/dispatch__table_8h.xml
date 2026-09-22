@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="df/d61/dispatch__table_8h" kind="file" language="C++">
     <compoundname>dispatch_table.h</compoundname>
     <includes refid="d8/dc0/init_8h" local="yes">../init.h</includes>
@@ -824,7 +824,7 @@
 <codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(sm.insert({std::tuple_element_t&lt;Is,<sp/>Sigs&gt;::hash(),<sp/></highlight></codeline>
 <codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d3/da8/structBrush_1_1DispatchTable_1a18c6366cbcd3c590466a319f41173a42" kindref="member">MakeCallable&lt;NT, std::tuple_element_t&lt;Is, Sigs&gt;</ref>&gt;()}),<sp/>...);</highlight></codeline>
 <codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Add<sp/>dual<sp/>signatures<sp/>that<sp/>take<sp/>Jet<sp/>types</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>(<ref refid="de/d26/nodetype_8h_1a71f687f53e36ccdc3277214f2d535fe5" kindref="member">is_in_v&lt;NT, NodeType::ArgMax, NodeType::Count&gt;</ref>){</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>(is_in_v&lt;NT,<sp/>NodeType::ArgMax,<sp/>NodeType::Count&gt;){</highlight></codeline>
 <codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(sm.insert({std::tuple_element_t&lt;Is,<sp/>Sigs&gt;::DualArgs::hash(),<sp/></highlight></codeline>
 <codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d3/da8/structBrush_1_1DispatchTable_1a18c6366cbcd3c590466a319f41173a42" kindref="member">MakeCallable&lt;NT, typename std::tuple_element_t&lt;Is, Sigs&gt;::DualArgs</ref>&gt;()}),<sp/>...);</highlight></codeline>
 <codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>

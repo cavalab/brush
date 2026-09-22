@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="de/d06/utils_8cpp" kind="file" language="C++">
     <compoundname>utils.cpp</compoundname>
     <includes refid="d5/d60/utils_8h" local="yes">utils.h</includes>
@@ -208,8 +208,8 @@
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
 <codeline lineno="17" refid="d6/d2e/namespaceBrush_1_1Util_1a61817392e38bfbd623504cd8def55b3f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1a61817392e38bfbd623504cd8def55b3f" kindref="member">clean</ref>(ArrayXf&amp;<sp/>x)</highlight></codeline>
 <codeline lineno="18"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>x<sp/>=<sp/>(x<sp/>&lt;<sp/><ref refid="d8/dc0/init_8h_1a8213bd26dbb943e499d0e227fa9b3159" kindref="member">MIN_FLT</ref>).select(<ref refid="d8/dc0/init_8h_1a8213bd26dbb943e499d0e227fa9b3159" kindref="member">MIN_FLT</ref>,x);</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>x<sp/>=<sp/>(isinf(x)).select(<ref refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" kindref="member">MAX_FLT</ref>,x);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>x<sp/>=<sp/>(x<sp/>&lt;<sp/>MIN_FLT).select(MIN_FLT,x);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>x<sp/>=<sp/>(isinf(x)).select(MAX_FLT,x);</highlight></codeline>
 <codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>x<sp/>=<sp/>(isnan(x)).select(0,x);</highlight></codeline>
 <codeline lineno="22"><highlight class="normal">};<sp/><sp/></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
@@ -318,7 +318,7 @@
 <codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1a4073d38c4967258cec964c8f455a1d92" kindref="member">scale_all</ref><sp/>||<sp/><ref refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1a574c6632238c45c3b505b2c0eab9744e" kindref="member">dtypes</ref>.at(i)==</highlight><highlight class="charliteral">&apos;f&apos;</highlight><highlight class="normal">)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X.col(i)<sp/>=<sp/>X.col(i).array()<sp/>-<sp/><ref refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1a34e824201c3394b7d7bb5bb5fe49a5e8" kindref="member">offset</ref>.at(i);</highlight></codeline>
-<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1acf13e625f058c227e745e4bd588a423a" kindref="member">scale</ref>.at(i)<sp/>&gt;<sp/><ref refid="d8/dc0/init_8h_1a83abef40236b8b0305214b547c6db665" kindref="member">NEAR_ZERO</ref>)</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1acf13e625f058c227e745e4bd588a423a" kindref="member">scale</ref>.at(i)<sp/>&gt;<sp/>NEAR_ZERO)</highlight></codeline>
 <codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X.col(i)<sp/>=<sp/>X.col(i).array()/<ref refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1acf13e625f058c227e745e4bd588a423a" kindref="member">scale</ref>.at(i);</highlight></codeline>
 <codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -365,7 +365,7 @@
 <codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>JacobiSVD&lt;MatrixXf&gt;<sp/>svd(Y);<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>BDCSVD&lt;MatrixXf&gt;<sp/>svd(X);</highlight></codeline>
 <codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>cout<sp/>&lt;&lt;<sp/>&quot;JacobiSVD<sp/>declared\n&quot;;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>cond=<ref refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" kindref="member">MAX_FLT</ref>;<sp/></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>cond=MAX_FLT;<sp/></highlight></codeline>
 <codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>cout<sp/>&lt;&lt;<sp/>&quot;running<sp/>svals\n&quot;;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>ArrayXf<sp/>svals<sp/>=<sp/>svd.singularValues();</highlight></codeline>
 <codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>cout<sp/>&lt;&lt;<sp/>&quot;svals:<sp/>&quot;<sp/>&lt;&lt;<sp/>svals.transpose()<sp/>&lt;&lt;<sp/>&quot;\n&quot;;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -379,7 +379,7 @@
 <codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>}<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>catch<sp/>(...)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>{<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" kindref="member">MAX_FLT</ref>;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>MAX_FLT;</highlight></codeline>
 <codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>}<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="197"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="198"><highlight class="normal"></highlight></codeline>
