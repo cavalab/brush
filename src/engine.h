@@ -14,6 +14,7 @@ license: GNU/GPL v3
 #include "pop/population.h"
 #include "pop/archive.h"
 #include "selection/selection.h"
+#include "util/csv.h"
 
 #include "taskflow/taskflow.hpp"
 #include <taskflow/algorithm/for_each.hpp>
@@ -61,8 +62,7 @@ public:
     // outputs a progress bar, filled according to @param percentage.
     void print_progress(float percentage);
     void calculate_stats();
-    void print_stats(std::ofstream& log, float fraction);      
-    void log_stats(std::ofstream& log);
+    void print_stats(float fraction);
 
     // all hyperparameters are controlled by the parameter class. please refer to that to change something
     inline Parameters& get_params(){return params;}
@@ -146,6 +146,30 @@ private:
     Log_Stats stats; ///< runtime stats
 
     Timer timer; ///< start time of training
+
+    /// summary statistics of a subset of the population (e.g. an island)
+    struct PopSummary {
+        unsigned n_individuals  = 0;
+        float    best_score     = 0.0f; ///< best train loss
+        float    best_score_v   = 0.0f; ///< best validation loss (may be another individual)
+        float    med_score      = 0.0f;
+        float    med_score_v    = 0.0f;
+        unsigned med_size       = 0;
+        unsigned med_complexity = 0;
+        unsigned max_size       = 0;
+        unsigned max_complexity = 0;
+    };
+    PopSummary summarize(const vector<size_t>& indices) const;
+
+    // run logs, written when params.logfile is set
+    string run_id;                          ///< identifies the rows of one call to fit
+    Util::CsvWriter log_generations;        ///< <logfile>
+    Util::CsvWriter log_islands;            ///< <logfile>_islands.csv
+    Util::CsvWriter log_simplifications;    ///< <logfile>_simplifications.csv
+
+    void open_logs();
+    void log_stats(unsigned stall_count, const SimplificationRecords& simplifications);
+    void close_logs();
 
     void init();
 
