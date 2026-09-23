@@ -87,6 +87,10 @@ public:
     void assign_fit(Individual<T>& ind, const Dataset& data,
                     const Parameters& params, bool val=false);
 
+    /// number of calls to assign_fit (each one scores an individual on the
+    /// training partition and, if there is one, on the validation partition).
+    size_t n_evaluations = 0;
+
     // representation program (TODO: implement)
 };
 
