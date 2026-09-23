@@ -161,6 +161,25 @@ def test_brush_logfile_output(tmp_path):
     assert runs["params"].iloc[0]["logfile"] == str(logfile)
 
 
+def test_brush_logfile_same_seed_same_best_models(tmp_path):
+    X, y = make_regression(n_samples=80, n_features=3, noise=0.1, random_state=42)
+
+    def best_models(logfile):
+        BrushRegressor(
+            max_gens=10,
+            pop_size=20,
+            num_islands=2,
+            logfile=str(logfile),
+            random_state=123,
+        ).fit(X, y)
+        return pd.read_csv(logfile)["best_model"]
+
+    first = best_models(tmp_path / "run_a.csv")
+    second = best_models(tmp_path / "run_b.csv")
+
+    assert len(first) == 10
+    pd.testing.assert_series_equal(first, second)
+
 
 def test_brush_classifier_population_reuse(tmp_path):
     # Synthetic dataset for speed
