@@ -181,7 +181,14 @@ class EstimatorInterface():
         expected.
         If `scorer` is `"balanced_accuracy"`, this setting is ignored
     logfile: str, optional (default: "")
-        If specified, spits statistics into a logfile. "" means don't log.
+        If specified, writes CSV logs of the run. "" means don't log.
+        Files are appended to (every call to `fit` has its own `run_id`):
+        `<logfile>` (one row per generation, including the best expression),
+        `<logfile>_islands.csv` (per-island statistics),
+        `<logfile>_simplifications.csv` (every replacement made by the
+        simplifiers), `<logfile>_runs.jsonl` (seed and parameters of each run)
+        and, with `inexact_simplification`, `<logfile>_simplification_table`.
+        See the "Logging the evolution" guide.
     random_state: int or None, default None
         If int, then the value is used to seed the c++ random generator; if None,
         then a seed will be generated using a non-deterministic generator. A
