@@ -107,19 +107,59 @@ def test_brush_logfile_output(tmp_path):
 
     logfile = tmp_path / "brush_run.log"
 
-    BrushRegressor(
-        inexact_simplification=True,
-        max_gens=5,
-        pop_size=10,
-        logfile=str(logfile),
-        verbosity=0,
-    ).fit(X, y)
+    def fit():
+        BrushRegressor(
+            functions=["Add", "Sub", "Mul", "Div", "Pow", "Sin", "Cos"],
+            inexact_simplification=True,
+            max_gens=5,
+            pop_size=10,
+            num_islands=2,
+            logfile=str(logfile),
+            verbosity=0,
+        ).fit(X, y)
 
-    assert logfile.exists()
-    assert logfile.stat().st_size > 0
+    # We will train two different instances with same logfile. This is 
+    # designed to make partial_fits to also write on the same file (but with a 
+    # different run)
+    fit()
+    fit()  # appending a second run must keep every file parseable
 
-    simplification_log = tmp_path / "brush_run.log_simplification_table"
-    assert simplification_log.exists()
+    gens = pd.read_csv(logfile)
+    assert list(gens.columns) == [
+        "run_id", "random_state", "generation", "time",
+        "best_score", "best_score_val", "med_score", "med_score_val",
+        "med_size", "med_complexity", "max_size", "max_complexity",
+        "best_size", "best_complexity",
+        "stall_count", "archive_size", "n_evaluations",
+        "best_model",
+    ]
+    assert gens["run_id"].nunique() == 2
+    assert (gens.groupby("run_id").size() == 5).all()
+    assert gens["best_model"].notna().all()
+    for _, run in gens.groupby("run_id"):
+        assert run["n_evaluations"].is_monotonic_increasing
+        assert list(run["generation"]) == list(range(5))
+
+    islands = pd.read_csv(str(logfile) + "_islands.csv")
+    assert len(islands) == 2 * 5 * 2  # runs * generations * islands
+    assert set(islands["island"]) == {0, 1}
+
+    simplifications = pd.read_csv(str(logfile) + "_simplifications.csv")
+    assert list(simplifications.columns) == [
+        "run_id", "generation", "individual_id", "simplifier", "ret_type",
+        "original", "replacement", "distance",
+    ]
+    assert set(simplifications["simplifier"]) <= {"constants", "inexact"}
+
+    table = pd.read_csv(str(logfile) + "_simplification_table")
+    assert list(table.columns) == ["run_id", "DataType", "Plane", "Key", "Tree"]
+    assert table["run_id"].nunique() == 2
+
+    runs = pd.read_json(str(logfile) + "_runs.jsonl", lines=True)
+    assert len(runs) == 2
+    assert set(runs["run_id"]) == set(gens["run_id"])
+    assert runs["params"].iloc[0]["logfile"] == str(logfile)
+
 
 
 def test_brush_classifier_population_reuse(tmp_path):
