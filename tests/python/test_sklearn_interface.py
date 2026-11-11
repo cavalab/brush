@@ -8,7 +8,123 @@ import pandas as pd
 from sklearn.datasets import make_classification, make_regression
 from sklearn.model_selection import GridSearchCV
 from pybrush import BrushClassifier, BrushRegressor
+from pybrush import Dataset
+from pybrush._brush import set_random_state as set_brush_random_state
 from sklearn.metrics import accuracy_score
+
+
+def test_classification_batches_preserve_prevalence_and_cycle_training_rows():
+    """Public Dataset batches retain each class while covering an epoch."""
+
+    # equivalent to cpp test -- just in python now
+    set_brush_random_state(42)
+
+    identifiers = np.arange(16, dtype=np.float32)
+
+    X = np.column_stack((identifiers, identifiers % 2, identifiers % 4)).astype(np.float32)
+    y = np.where(identifiers < 12, 0.0, 1.0).astype(np.float32)
+
+    data = Dataset(
+        X=X,
+        y=y,
+        feature_names=["id", "flag", "category"],
+        feature_types=["ArrayF", "ArrayB", "ArrayI"],
+        c=True,
+        validation_size=0.25,
+        shuffle_split=True,
+    )
+
+    training = data.get_training_data()
+    training.set_batch_size(0.25)
+
+    # each batch will be a new instance of a brush dataset
+    batches = [training.get_batch() for _ in range(5)]
+
+    assert all(batch.get_feature_names() == ["id", "flag", "category"] for batch in batches)
+    assert all(batch.get_feature_types() == ["ArrayF", "ArrayB", "ArrayI"] for batch in batches)
+
+    # Every batch reserves one minority-class example. The final two may be
+    # repeats because the training partition contains only three such rows.
+    # (obs: see explanation for those numbers in test_data.cpp)
+    assert [np.count_nonzero(batch.y == 0.0) for batch in batches] == [2, 2, 2, 2, 1]
+    assert [batch.get_n_samples() for batch in batches] == [3, 3, 3, 3, 2]
+
+    assert all(np.any(batch.y == 1.0) for batch in batches)
+
+    # The binding exposes labels on sliced datasets. One full epoch must yield
+    # All nine majority rows are visited in the five batches. The minority
+    # count is larger because its examples are deliberately repeated.
+
+    epoch_labels = np.concatenate([batch.y for batch in batches]).astype(int)
+    training_labels = training.y.astype(int)
+
+    assert np.bincount(epoch_labels)[0] == np.bincount(training_labels)[0]
+
+
+def test_classification_batch_apportions_all_remaining_slots():
+    """Large batches distribute floor and remainder slots without overflow."""
+    set_brush_random_state(42)
+    y = np.array([0.0] * 20 + [1.0] * 20, dtype=np.float32)
+    data = Dataset(X=y.reshape(-1, 1), y=y, c=True, batch_size=0.25)
+
+    batch = data.get_batch()
+
+    assert batch.get_n_samples() == 10
+
+    # we have 40 samples and 0.25 batch size --> 10 samples each batch.
+    # the batch will have 50/50 (because we set the data as a balanced problem)
+    assert np.bincount(batch.y.astype(int), minlength=2).tolist() == [5, 5]
+
+
+def test_classification_batch_expands_when_smaller_than_class_count():
+    set_brush_random_state(42)
+
+    # For classification, if the requested batch has fewer rows than there are
+    # classes, Brush enlarges it to include one row per class. 
+    # For example, a requested 2-row batch with 4 classes becomes 4 rows.
+
+    y = np.repeat(np.arange(4, dtype=np.float32), 2) # 4 classes
+    data = Dataset(X=y.reshape(-1, 1), y=y, c=True, batch_size=0.05)
+
+    batch = data.get_batch()
+
+    assert batch.get_n_samples() == 4
+    assert np.bincount(batch.y.astype(int), minlength=4).tolist() == [1, 1, 1, 1]
+
+
+def test_batched_classifier_completes_multiple_generations():
+    """Batch-sized lexicase weights remain aligned with batch case indices."""
+    X = np.arange(80, dtype=np.float32).reshape(40, 2)
+    y = np.array([0] * 20 + [1] * 20)
+    estimator = BrushClassifier(
+        pop_size=10,
+        max_gens=100,
+        max_stall=0,
+        max_time=-1,
+        max_depth=3,
+        batch_size=0.25,
+        validation_size=0.2,
+        random_state=7,
+        n_jobs=1,
+    )
+
+    estimator.fit(X, y)
+
+    assert estimator.engine_.is_fitted
+
+
+def test_regression_batches_stratify_target_quartiles():
+    set_brush_random_state(42)
+    y = np.arange(16, dtype=np.float32)
+    X = y.reshape(-1, 1)
+    data = Dataset(X=X, y=y, feature_names=["id"], batch_size=0.25)
+
+    batches = [data.get_batch() for _ in range(4)]
+    for batch in batches:
+        assert batch.get_n_samples() == 4
+        assert np.bincount((batch.y // 4).astype(int), minlength=4).tolist() == [1, 1, 1, 1]
+
+    assert np.array_equal(np.sort(np.concatenate([batch.y for batch in batches])), y)
 
 
 def test_brush_regressor_grid_search():

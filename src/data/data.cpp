@@ -182,22 +182,191 @@ Dataset Dataset::operator()(const vector<size_t>& idx) const
 }
 
 
-// TODO: i need to improve how get batch works. Maybe a function to update batch indexes, and always using the same dataset?
-// TODO: also, i need to make sure the get batch will sample only from training data and not test
 Dataset Dataset::get_batch() const
 {
-    // will always return a new dataset, even when use_batch is false (this case, returns itself)
-
     if (!use_batch) 
         return (*this);
 
-    auto n_samples = int(this->get_n_samples());
-    // garantee that at least one sample is going to be returned, since
-    // use_batch is true only if batch_size is (0, 1), and ceil will round
-    // up
-    n_samples = int(ceil(n_samples*batch_size));
+    const auto total_samples = static_cast<size_t>(this->get_n_samples());
+    const auto target_batch_size = static_cast<size_t>(ceil(total_samples * batch_size));
 
-    return (*this)(r.shuffled_index(n_samples));
+    // Start a new epoch only after every row from the preceding epoch has
+    // been returned. This prevents replacement before a complete pass through
+    // the training partition.
+    if (batch_cycle_idx.empty() || batch_cycle_batch_cursor >= batch_cycle_sizes.size())
+    {
+        // resets everything
+        batch_cycle_idx.clear();
+        batch_cycle_sizes.clear();
+        batch_cycle_cursor = 0;
+        batch_cycle_batch_cursor = 0;
+
+        // repopulate the indexes
+        if (classification)
+        {
+            // Shuffle each class queue. Every batch preserves the original
+            // class prevalence and reserves one slot per class. Once a class
+            // queue is exhausted, that class is sampled with replacement so
+            // later batches still train against it while larger class queues
+            // complete their no-replacement pass.
+            std::map<float, vector<size_t>> class_indices;
+            for (size_t i = 0; i < total_samples; ++i)
+                class_indices[y(i)].push_back(i);
+
+            for (auto& [label, indices] : class_indices)
+                r.shuffle(indices.begin(), indices.end());
+
+            // creating the batches
+            vector<size_t> positions(class_indices.size(), 0); // this gets incremented everytime a row is added to a batch
+            const auto class_count = class_indices.size();
+            const auto current_batch_size = std::max(target_batch_size, class_count);
+            while (true) // this while(true) iterates once for each batch creation
+            {
+                // searches for classes with unseen samples
+                bool has_unseen_rows = false;
+                size_t class_position = 0;
+                for (const auto& [label, indices] : class_indices) {
+                    has_unseen_rows |= positions[class_position] < indices.size();
+                    ++class_position;
+                }
+                if (!has_unseen_rows) // all rows were added to a batch -- this is the escape condition to the while (true) loop
+                    break;
+
+                vector<size_t> counts(class_indices.size(), 0); // will count how many samples per class for the current batch
+                vector<std::pair<float, size_t>> remainders; // will store how many samples are left per class after the current batch 
+                
+                // free space in the batch. Notice that one sample per class is already being considered here
+                const auto allocatable_slots = current_batch_size - class_count;
+
+                class_position = 0;
+                for (const auto& [label, indices] : class_indices)
+                {
+                    counts[class_position] = 1; // this ensures one sample per class
+
+                    // find rounded number of slots that will be used for the class
+                    // to ensure they keep approximate prevalence w.r.t. original data
+                    const float exact = static_cast<float>(indices.size() * allocatable_slots)
+                                      / static_cast<float>(total_samples);
+                    const auto floor_allocation = static_cast<size_t>(std::floor(exact));
+
+                    counts[class_position] += floor_allocation;
+                    remainders.emplace_back(exact - std::floor(exact), class_position);
+                    ++class_position;
+                }
+
+                std::stable_sort(remainders.begin(), remainders.end(),
+                    [](const auto& left, const auto& right) {
+                        return left.first > right.first;
+                    });
+
+                size_t assigned = class_count;
+                for (const auto count : counts)
+                    assigned += count - 1;
+                for (size_t i = 0; assigned < current_batch_size; ++i, ++assigned)
+                    ++counts[remainders.at(i).second];
+
+                // filling the batch
+                vector<size_t> batch_indices;
+                batch_indices.reserve(current_batch_size);
+                class_position = 0;
+                for (const auto& [label, indices] : class_indices)
+                {
+                    const auto available = indices.size() - positions[class_position];
+                    const auto unique_count = std::min(counts[class_position], available);
+                    for (size_t i = 0; i < unique_count; ++i)
+                        batch_indices.push_back(indices[positions[class_position]++]);
+
+                    // Repeat only a class that was already exhausted before
+                    // this batch began. If its final unseen row was consumed
+                    // above, return a smaller final batch instead of repeating
+                    // that row immediately.
+                    if (available == 0) {
+                        for (size_t i = 0; i < counts[class_position]; ++i)
+                            batch_indices.push_back(indices.at(r.rnd_int(0, indices.size() - 1)));
+                    }
+                    ++class_position;
+                }
+                r.shuffle(batch_indices.begin(), batch_indices.end());
+                batch_cycle_idx.insert(batch_cycle_idx.end(), batch_indices.begin(), batch_indices.end());
+                batch_cycle_sizes.push_back(batch_indices.size());
+            }
+        }
+        else
+        {
+            // Regression batches are stratified by target rank. The four
+            // equal-frequency y quartiles are shuffled independently, then
+            // apportioned evenly into each batch without replacement.
+            vector<size_t> sorted_indices(total_samples);
+            std::iota(sorted_indices.begin(), sorted_indices.end(), 0);
+            std::stable_sort(sorted_indices.begin(), sorted_indices.end(),
+                [this](size_t left, size_t right) { return y(left) < y(right); });
+
+            vector<vector<size_t>> quartiles(4);
+            for (size_t rank = 0; rank < total_samples; ++rank)
+                quartiles.at((rank * quartiles.size()) / total_samples).push_back(sorted_indices.at(rank));
+
+            size_t nonempty_quartiles = 0;
+            for (auto& quartile : quartiles) {
+                if (!quartile.empty()) {
+                    r.shuffle(quartile.begin(), quartile.end());
+                    ++nonempty_quartiles;
+                }
+            }
+
+            vector<size_t> positions(quartiles.size(), 0);
+            const auto current_batch_size = std::max(target_batch_size, nonempty_quartiles);
+            while (true)
+            {
+                bool has_unseen_rows = false;
+                for (size_t quartile = 0; quartile < quartiles.size(); ++quartile)
+                    has_unseen_rows |= positions[quartile] < quartiles[quartile].size();
+                if (!has_unseen_rows)
+                    break;
+
+                vector<size_t> counts(quartiles.size(), 0);
+                vector<std::pair<float, size_t>> remainders;
+                const auto allocatable_slots = current_batch_size - nonempty_quartiles;
+                for (size_t quartile = 0; quartile < quartiles.size(); ++quartile) {
+                    if (quartiles[quartile].empty())
+                        continue;
+                    counts[quartile] = 1;
+                    const float exact = static_cast<float>(quartiles[quartile].size() * allocatable_slots)
+                                      / static_cast<float>(total_samples);
+                    counts[quartile] += static_cast<size_t>(std::floor(exact));
+                    remainders.emplace_back(exact - std::floor(exact), quartile);
+                }
+
+                std::stable_sort(remainders.begin(), remainders.end(),
+                    [](const auto& left, const auto& right) {
+                        return left.first > right.first;
+                    });
+                size_t assigned = 0;
+                for (const auto count : counts)
+                    assigned += count;
+                for (size_t i = 0; assigned < current_batch_size; ++i, ++assigned)
+                    ++counts[remainders.at(i).second];
+
+                vector<size_t> batch_indices;
+                batch_indices.reserve(current_batch_size);
+                for (size_t quartile = 0; quartile < quartiles.size(); ++quartile) {
+                    const auto available = quartiles[quartile].size() - positions[quartile];
+                    const auto unique_count = std::min(counts[quartile], available);
+                    for (size_t i = 0; i < unique_count; ++i)
+                        batch_indices.push_back(quartiles[quartile][positions[quartile]++]);
+                }
+                r.shuffle(batch_indices.begin(), batch_indices.end());
+                batch_cycle_idx.insert(batch_cycle_idx.end(), batch_indices.begin(), batch_indices.end());
+                batch_cycle_sizes.push_back(batch_indices.size());
+            }
+        }
+    }
+
+    // get the indices and move the two cursors
+    const auto count = batch_cycle_sizes.at(batch_cycle_batch_cursor++);
+    vector<size_t> indices(batch_cycle_idx.begin() + batch_cycle_cursor,
+                           batch_cycle_idx.begin() + batch_cycle_cursor + count);
+    batch_cycle_cursor += count;
+    return (*this)(indices);
 }
 
 std::array<Dataset, 2> Dataset::split(const ArrayXb& mask) const
@@ -381,6 +550,10 @@ float Dataset::get_batch_size() { return batch_size; }
 void Dataset::set_batch_size(float new_size) {
     batch_size = new_size;
     use_batch = batch_size > 0.0 && batch_size < 1.0;
+    batch_cycle_idx.clear();
+    batch_cycle_sizes.clear();
+    batch_cycle_cursor = 0;
+    batch_cycle_batch_cursor = 0;
 }
 
 /// turns input data into a feature map

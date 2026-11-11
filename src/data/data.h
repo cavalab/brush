@@ -56,6 +56,14 @@ class Dataset
     private:
         vector<size_t> training_data_idx;
         vector<size_t> validation_data_idx;
+        // A batch epoch records row indices and batch boundaries. Classification
+        // epochs may repeat an exhausted minority class to keep it represented.
+        // These are mutable because get_batch advances the sampler while the
+        // dataset values themselves remain immutable.
+        mutable vector<size_t> batch_cycle_idx;
+        mutable vector<size_t> batch_cycle_sizes;
+        mutable size_t batch_cycle_cursor = 0;
+        mutable size_t batch_cycle_batch_cursor = 0;
         /// @brief stores the original feature name order before map sorting
         vector<string> feature_name_order_;
 
@@ -229,7 +237,8 @@ class Dataset
             );
         };
         inline int get_n_features() const { return this->features.size(); };
-        /// select random subset of data for training weights.
+        /// Select the next batch without replacement. Classification batches
+        /// preserve the prevalence of the remaining class-specific queues.
         Dataset get_batch() const;
 
         float get_batch_size();

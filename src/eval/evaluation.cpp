@@ -11,7 +11,9 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
                     const Dataset& data, 
                     const Parameters& params, 
                     bool fit,
-                    bool validation
+                    bool validation,
+                    bool force_fit,
+                    Dataset* validation_data
                     )
 {   
     auto indices = pop.get_island_indexes(island);
@@ -40,12 +42,12 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
         else
         {
             // assign weights to individual
-            if (fit && ind.get_is_fitted() == false)
+            if (fit && (force_fit || ind.get_is_fitted() == false))
             {
                 ind.program.fit(data.get_training_data(), params.class_weights);
             }
 
-            assign_fit(ind, data, params, validation);
+            assign_fit(ind, data, params, validation, validation_data);
         }
     }
 }
@@ -53,7 +55,8 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
 // assign loss to program
 template<ProgramType T> 
 void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data, 
-                               const Parameters& params, bool val)
+                               const Parameters& params, bool val,
+                               Dataset* validation_data)
 {
     VectorXf errors;
     using PT = ProgramType;
@@ -63,7 +66,11 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
     ind.error = errors;
 
     float f_v = f;
-    if (data.use_validation) {
+    if (validation_data != nullptr) {
+        VectorXf val_errors;
+        f_v = S.score(ind, *validation_data, val_errors, params);
+    }
+    else if (data.use_validation) {
         Dataset validation = data.get_validation_data();
 
         // when calculating validation score, we should not let

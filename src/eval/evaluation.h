@@ -74,7 +74,9 @@ public:
                  const Dataset& data, 
                  const Parameters& params, 
                  bool fit=true,
-                 bool validation=true // if there is no validation, then loss_v==loss
+                 bool validation=true, // if there is no validation, then loss_v==loss
+                 bool force_fit=false,
+                 Dataset* validation_data=nullptr
                  );
     
     /**
@@ -85,7 +87,8 @@ public:
      * @param val Flag indicating whether it is validation fitness.
      */
     void assign_fit(Individual<T>& ind, const Dataset& data,
-                    const Parameters& params, bool val=false);
+                    const Parameters& params, bool val=false,
+                    Dataset* validation_data=nullptr);
 
     // representation program (TODO: implement)
 };

@@ -421,13 +421,19 @@ bool Engine<T>::update_best()
 template <ProgramType T>
 void Engine<T>::run(Dataset &data)
 {
+    // All learning-time state is derived from the training partition.  The
+    // original dataset remains the source of the fixed validation partition.
+    Dataset training = data.get_training_data();
+    training.set_batch_size(params.batch_size);
+    Dataset validation = data.get_validation_data();
+
     // avoid re-initializing stuff so we can perform partial fits
     if (!this->is_fitted){
         //TODO: i need to make sure i initialize everything (pybind needs to have constructors
         // without arguments to work, and i need to handle correcting these values before running)
 
         // initializing classes that need data references    
-        this->ss.init(data, params.functions, params.weights_init);    
+        this->ss.init(training, params.functions, params.weights_init);
         
         // TODO: make init to take necessary arguments and perform all initializations inside that function
         this->init();
@@ -453,7 +459,7 @@ void Engine<T>::run(Dataset &data)
 
     // This is data dependent so we initialize it everytime, regardless of partial fit
     // TODO: make variator have a default constructor and make it an attribute of engine
-    Variation<T> variator = Variation<T>(this->params, this->ss, data);
+    Variation<T> variator = Variation<T>(this->params, this->ss, training);
     
     // log file stream
     std::ofstream log;
@@ -466,7 +472,10 @@ void Engine<T>::run(Dataset &data)
 
     evaluator.set_scorer(params.scorer);
 
-    Dataset &batch = data;
+    // Batch samples are drawn from training data only. Keep the hold-out set
+    // separate so it stays fixed for validation throughout the run.
+    Dataset batch = training;
+    Dataset* fixed_validation = data.use_validation ? &validation : nullptr;
 
     int threads;
     if (params.n_jobs == -1)
@@ -520,10 +529,13 @@ void Engine<T>::run(Dataset &data)
             // a stable order as well, so the first selection sees identical
             // fitness values for repeated seeded runs.
             auto fit_init_pop = subflow.emplace([&]() {
+                // The initial population has no fitted weights. Use the first
+                // representative batch rather than fitting every program on
+                // the whole training partition before evolution starts.
+                batch = training.get_batch();
                 for (int island = 0; island < this->params.num_islands; ++island) {
-                    // Evaluate the individuals at least once. Set validation
-                    // loss before calling update_best.
-                    evaluator.update_fitness(this->pop, island, data, params, true, true);
+                    evaluator.update_fitness(this->pop, island, batch, params,
+                                             true, true, true, fixed_validation);
                 }
             });
             auto find_init_best = subflow.emplace([&]() { 
@@ -542,7 +554,7 @@ void Engine<T>::run(Dataset &data)
         [&](tf::Subflow& subflow) { // loop body (evolutionary main loop)
             auto prepare_gen = subflow.emplace([&]() { 
                 params.set_current_gen(generation);
-                batch = data.get_batch(); // will return the original dataset if it is set to dont use batch 
+                batch = training.get_batch(); // returns all training data when batching is disabled
             }).name("prepare generation");// set generation in params, get batch
 
             // Selection consumes the process-wide random stream.  Keep island
@@ -551,19 +563,24 @@ void Engine<T>::run(Dataset &data)
             // nondeterministic.  Initial fitness evaluation is ordered too,
             // so the complete seeded evolutionary path is scheduler-neutral.
             auto run_generation = subflow.emplace([&]() {
+                // Lexicase samples case indices from the score dataset. Its
+                // sample weights must therefore have the same length as the
+                // current batch, not the full training partition.
+                Parameters selection_params = params;
+                if (params.classification)
+                    selection_params.set_sample_weights(batch.y);
+
                 for (int island = 0; island < this->params.num_islands; ++island) {
 
-                evaluator.update_fitness(this->pop, island, data, params, false, false); // fit the weights with all training data
-                
-                // TODO: have some way to set which fitness to use (for example in params, or it can infer based on split size idk)
-                // TODO: if using batch, fitness should be called before selection to set the batch
-                if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
-                    evaluator.update_fitness(this->pop, island, batch, params, false, false);
+                // Refit each surviving program on this generation's batch.
+                // Parent selection uses batch fitness while validation always
+                // uses the original, fixed hold-out partition.
+                evaluator.update_fitness(this->pop, island, batch, params,
+                                         true, false, true, fixed_validation);
 
-                vector<size_t> parents = selector.select(this->pop, island, params);
-                for (int i=0; i< parents.size(); i++){
-                    island_parents.at(island).at(i) = parents.at(i);
-                }
+                vector<size_t> parents = selector.select(
+                    this->pop, island, selection_params);
+                island_parents.at(island) = std::move(parents);
                 
                 this->pop.add_offspring_indexes(island); 
                 }
@@ -577,13 +594,14 @@ void Engine<T>::run(Dataset &data)
                     // TODO: do I have to pass data as an argument here? or can I use the instance reference.
                     // OBS: this function already calls fit internally!
                     variator.vary_and_update(this->pop, island, island_parents.at(island),
-                                             data, evaluator, 
+                                             batch, evaluator,
                                              
                                              // conditions to apply simplification.
                                              // It starts only on the second half of generations.
                                              // Also, we garantee that the final generation
                                              // will be simplified.
-                                             (generation>=params.max_gens/2) || (stall_count == params.max_stall) || (generation==params.max_gens-1)
+                                             (generation>=params.max_gens/2) || (stall_count == params.max_stall) || (generation==params.max_gens-1),
+                                             fixed_validation
                                             );
                 }
 
@@ -604,9 +622,11 @@ void Engine<T>::run(Dataset &data)
             auto finish_gen = subflow.emplace([&]() {
                 // Set validation loss before calling update best
                 for (int island = 0; island < this->params.num_islands; ++island) {
-                    // we can set fit to true, because already fitted individuals will be skipped,
-                    // and we ensure we fit everyone
-                    evaluator.update_fitness(this->pop, island, data, params, true, true);
+                    // Keep batch fitness for evolution but replace the fitness
+                    // values used by the archive and best-model selection with
+                    // scores from the fixed, complete validation partition.
+                    evaluator.update_fitness(this->pop, island, batch, params,
+                                             false, true, false, fixed_validation);
                 }
 
                 archive.update(pop, params);
@@ -646,9 +666,11 @@ void Engine<T>::run(Dataset &data)
         [&]() { return 0; }, // jump back to the next iteration
 
         [&](tf::Subflow& subflow) {
-            // set validation loss, refit (will work only on individuals not fitted)
+            // Keep the final batch-fitted weights and fixed validation scores;
+            // do not add a full-training pass after evolution ends.
             for (int island = 0; island < this->params.num_islands; ++island) {
-                evaluator.update_fitness(this->pop, island, data, params, true, true);
+                evaluator.update_fitness(this->pop, island, batch, params,
+                                         false, true, false, fixed_validation);
             }
 
             archive.update(pop, params);

@@ -121,8 +121,20 @@ class EstimatorInterface():
         (that is, trees using only SplitOn and SplitBest operators).
     batch_size : float, default 1.0
         Percentage of training data to sample every generation. If `1.0`, then
-        all data is used. Very small values can improve execution time, but 
-        also lead to underfit.
+        all data is used. Regression batches are stratified by four
+        equal-frequency target (`y`) quartiles: each batch receives as equal a
+        share as its size allows from every nonempty quartile and consumes every training row
+        without replacement before shuffling a new epoch. For classification,
+        every batch contains at least one example of each class. If the requested
+        batch would be smaller than the number of
+        classes, it is enlarged to that number. Remaining slots follow the
+        original training-set class prevalence. Every training row is used at
+        least once per epoch; after a minority class has exhausted its unique
+        rows, examples from that class are sampled again so it remains present
+        while the other classes finish their pass. Validation rows are never
+        batched. The final batch of an epoch may be smaller than requested to
+        avoid immediately repeating the last unseen row of another class. Very
+        small values can improve execution time, but also lead to underfit.
     sel : str, default 'lexicase'
         The selection method to perform parent selection. When using lexicase,
         the selection is done as if it was a single-objective problem, based on 

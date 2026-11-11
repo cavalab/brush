@@ -221,7 +221,8 @@ public:
      * @param parents The indices of the parent individuals.
      */
     void vary_and_update(Population<T>& pop, int island, const vector<size_t>& parents,
-                         const Dataset& data, Evaluation<T>& evaluator, bool do_simplification) {
+                         const Dataset& data, Evaluation<T>& evaluator, bool do_simplification,
+                         Dataset* validation_data=nullptr) {
 
         // TODO: move implementation to cpp file and keep only declarations here
         // TODO: rewrite this entire function to avoid repetition (this is a frankenstein)
@@ -376,7 +377,7 @@ public:
                 }
             }
         
-            evaluator.assign_fit(ind, data, parameters, false);
+            evaluator.assign_fit(ind, data, parameters, false, validation_data);
             
             // vector<float> deltas(ind.get_objectives().size(), 0.0f);
             vector<float> deltas;
