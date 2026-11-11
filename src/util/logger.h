@@ -6,8 +6,8 @@ license: GNU/GPL v3
 #ifndef LOGGER_H
 #define LOGGER_H
 
-#include<iostream>
-using namespace std;
+#include <iostream>
+#include <string>
 
 namespace Brush {
 namespace Util{
@@ -50,10 +50,10 @@ public:
         * @param sep The separator to be used between log messages.
         * @return The formatted log message.
         */
-    string log(string m, int v, string sep="\n") const;
+    std::string log(std::string m, int v, std::string sep="\n") const;
     
 private:
-    int verbosity; //!< The current log level.
+    int verbosity = 0; //!< The current log level (matches Parameters::verbosity default).
     static Logger* instance; //!< The singleton instance of the logger.
 };
 

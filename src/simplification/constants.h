@@ -6,6 +6,7 @@
 #include "../program/program.h"
 #include "../vary/search_space.h"
 #include "../util/utils.h"
+#include "record.h"
 
 using namespace std;
 using Brush::Node;
@@ -15,9 +16,11 @@ namespace Brush { namespace Simpl{
     class Constants_simplifier
     {
         public:
+            /// @param records if not null, every replacement is appended to it
             template <ProgramType P>
             Program<P> simplify_tree(
-                Program<P>& program, const SearchSpace &ss, const Dataset &d)
+                Program<P>& program, const SearchSpace &ss, const Dataset &d,
+                SimplificationRecords* records = nullptr)
             {
                 using RetType =
                 typename std::conditional_t<P == PT::Regressor, ArrayXf,
@@ -80,8 +83,18 @@ namespace Brush { namespace Simpl{
                                 ss.terminal_map.at(n.ret_type).size()-1);
 
                             cte.W = branch_pred.mean();
+
+                            string original;
+                            if (records)
+                                original = spot.node->get_model();
+
                             simplified_program.Tree.erase_children(spot); 
                             spot = simplified_program.Tree.replace(spot, cte);
+
+                            if (records)
+                                records->push_back({0, 0, "constants",
+                                                    DataTypeName.at(n.ret_type),
+                                                    original, spot.node->get_model(), 0.0f});
                         }
                     }
                     ++spot;

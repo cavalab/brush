@@ -3,6 +3,10 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <chrono>
+#include <cstdio>
+#include <ctime>
+#include <random>
 
 namespace Brush{
 
@@ -50,89 +54,65 @@ void Engine<T>::print_progress(float percentage)
 
 
 template <ProgramType T>
-void Engine<T>::calculate_stats()
+typename Engine<T>::PopSummary Engine<T>::summarize(const vector<size_t>& indices) const
 {
-    int pop_size = 0;
-    if (params.num_islands < 0) {
-        HANDLE_ERROR_THROW("Invalid params.num_islands: cannot be negative");
-    }
+    const size_t n = indices.size();
 
-    if (static_cast<size_t>(params.num_islands) > pop.island_indexes.size()) {
-        HANDLE_ERROR_THROW(
-            "params.num_islands is greater than pop.island_indexes size in calculate_stats");
-    }
+    ArrayXf scores(n);
+    ArrayXf scores_v(n);
+    ArrayXi sizes(n);
+    ArrayXi complexities(n);
 
-    for (int island=0; island<params.num_islands; ++island)
+    int index = 0; // counter for population size of valid individuals 
+    for (const size_t population_index : indices)
     {
-        auto indices = pop.island_indexes.at(island);
-        pop_size += indices.size();
-    }
-
-    ArrayXf scores(pop_size);
-    ArrayXf scores_v(pop_size);
-    
-    // TODO: change all size_t to unsigned?
-    ArrayXi sizes(pop_size);
-    ArrayXi complexities(pop_size); 
-
-    float error_weight = Individual<T>::weightsMap[params.scorer];
-
-    int index = 0;
-    for (int island=0; island<params.num_islands; ++island)
-    {
-        auto indices = pop.island_indexes.at(island);
-        for (unsigned int i=0; i<indices.size(); ++i)
-        {
-            const size_t population_index = indices[i];
-            if (population_index >= this->pop.individuals.size()) {
-                HANDLE_ERROR_THROW(
-                    "Invalid population index in island " + to_string(island)
-                    + ": " + to_string(population_index)
-                    + " (individuals size=" + to_string(this->pop.individuals.size()) + ")");
-            }
-
-            const auto& p = this->pop.individuals.at(population_index);
-            
-            // Skip nullptr individuals (offspring slots not yet filled)
-            if (!p)
-                continue;
-
-            float fitness_loss = 0.0f;
-            float fitness_loss_v = 0.0f;
-            unsigned individual_size = 0;
-            unsigned individual_complexity = 0;
-            try {
-                fitness_loss = p->fitness.get_loss();
-                fitness_loss_v = p->fitness.get_loss_v();
-                individual_size = p->get_size();
-                individual_complexity = p->get_complexity();
-            } catch (const std::exception& e) {
-                HANDLE_ERROR_THROW(
-                    "Failed to get fitness/size/complexity from individual at population index "
-                    + to_string(population_index) + ": " + e.what());
-            } catch (...) {
-                HANDLE_ERROR_THROW(
-                    "Failed to get fitness/size/complexity from individual at population index "
-                    + to_string(population_index) + ": unknown error");
-            }
-
-            if (!std::isfinite(fitness_loss) || !std::isfinite(fitness_loss_v)) {
-                HANDLE_ERROR_THROW(
-                    "Invalid non-finite fitness values at population index "
-                    + to_string(population_index));
-            }
-
-            // Fitness class will store every information that can be used as
-            // fitness. you just need to access them. Multiplying by weight
-            // so we can find best score. From Fitness::dominates:
-            //     the proper way of comparing weighted values is considering
-            //     everything as a maximization problem
-            scores(index)       = fitness_loss;
-            scores_v(index)     = fitness_loss_v;
-            sizes(index)        = individual_size;
-            complexities(index) = individual_complexity;
-            ++index;
+        if (population_index >= this->pop.individuals.size()) {
+            HANDLE_ERROR_THROW(
+                "Invalid population index " + to_string(population_index)
+                + " (individuals size=" + to_string(this->pop.individuals.size()) + ")");
         }
+
+        const auto& p = this->pop.individuals.at(population_index);
+        
+        // Skip nullptr individuals (offspring slots not yet filled)
+        if (!p)
+            continue;
+
+        float fitness_loss = 0.0f;
+        float fitness_loss_v = 0.0f;
+        unsigned individual_size = 0;
+        unsigned individual_complexity = 0;
+
+        // If the logger fails, it is easier to catch what have gone wrong
+        try {
+            fitness_loss = p->fitness.get_loss();
+            fitness_loss_v = p->fitness.get_loss_v();
+            individual_size = p->get_size();
+            individual_complexity = p->get_complexity();
+
+        } catch (const std::exception& e) {
+            HANDLE_ERROR_THROW(
+                "Failed to get fitness/size/complexity from individual at population index "
+                + to_string(population_index) + ": " + e.what());
+
+        } catch (...) {
+            HANDLE_ERROR_THROW(
+                "Failed to get fitness/size/complexity from individual at population index "
+                + to_string(population_index) + ": unknown error");
+
+        }
+
+        if (!std::isfinite(fitness_loss) || !std::isfinite(fitness_loss_v)) {
+            HANDLE_ERROR_THROW(
+                "Invalid non-finite fitness values at population index "
+                + to_string(population_index));
+        }
+
+        scores(index)       = fitness_loss;
+        scores_v(index)     = fitness_loss_v;
+        sizes(index)        = individual_size;
+        complexities(index) = individual_complexity;
+        ++index;
     }
 
     // index now contains the actual count of non-null individuals
@@ -142,68 +122,197 @@ void Engine<T>::calculate_stats()
     sizes.conservativeResize(index);
     complexities.conservativeResize(index);
 
+    PopSummary s;
+    s.n_individuals = index;
+    if (index == 0)
+        return s;
+
     // Multiply by weight to make it a maximization problem.
     // Then, multiply again to get rid of signal
-    float    best_score     = index > 0 ? (scores*error_weight).maxCoeff()*error_weight : 0.0f;
-    float    best_score_v   = this->best_ind.fitness.get_loss_v();
+    float error_weight = Individual<T>::weightsMap[params.scorer];
+
+    s.best_score     = (scores*error_weight).maxCoeff()*error_weight;
+    s.best_score_v   = (scores_v*error_weight).maxCoeff()*error_weight;
+    s.med_score      = median(scores);
+    s.med_score_v    = median(scores_v);
+    s.med_size       = median(sizes);
+    s.med_complexity = median(complexities);
+    s.max_size       = sizes.maxCoeff();
+    s.max_complexity = complexities.maxCoeff();
+
+    return s;
+}
+
+template <ProgramType T>
+void Engine<T>::calculate_stats()
+{
+    if (params.num_islands < 0) {
+        HANDLE_ERROR_THROW("Invalid params.num_islands: cannot be negative");
+    }
+    if (static_cast<size_t>(params.num_islands) > pop.island_indexes.size()) {
+        HANDLE_ERROR_THROW(
+            "params.num_islands is greater than pop.island_indexes size in calculate_stats");
+    }
+
+    vector<size_t> indices;
+    for (int island=0; island<params.num_islands; ++island)
+    {
+        const auto& island_indices = pop.island_indexes.at(island);
+        indices.insert(indices.end(), island_indices.begin(), island_indices.end());
+    }
+
+    PopSummary s = summarize(indices);
+
+    // the best validation score is the one of the best individual, which is
+    // not necessarily the smallest validation loss in the population
+    float best_score_v = this->best_ind.fitness.get_loss_v();
 
     if (!std::isfinite(best_score_v)) {
         HANDLE_ERROR_THROW("Invalid non-finite validation loss in best_ind while calculating stats");
     }
     
-    float    med_score      = index > 0 ? median(scores) : 0.0f; 
-    float    med_score_v    = index > 0 ? median(scores_v) : 0.0f; 
-    unsigned med_size       = index > 0 ? median(sizes) : 0;                        
-    unsigned med_complexity = index > 0 ? median(complexities) : 0;
-    unsigned max_size       = index > 0 ? sizes.maxCoeff() : 0;
-    unsigned max_complexity = index > 0 ? complexities.maxCoeff() : 0;
-    
     // update stats
     stats.update(params.current_gen,
                  timer.Elapsed().count(),
-                 best_score,
+                 s.best_score,
                  best_score_v,
-                 med_score,
-                 med_score_v,
-                 med_size,
-                 med_complexity,
-                 max_size,
-                 max_complexity);
+                 s.med_score,
+                 s.med_score_v,
+                 s.med_size,
+                 s.med_complexity,
+                 s.max_size,
+                 s.max_complexity);
 }
 
-
-template <ProgramType T>
-void Engine<T>::log_stats(std::ofstream& log)
-{
-    // print stats in tabular format
-    string sep = ",";
-    if (params.current_gen == 0) // print header
+namespace {
+    /// unique, human readable identifier for a run. It does not use Brush's
+    /// random generator, so logging never changes the results of a seeded run.
+    string make_run_id()
     {
-        log << "generation"     << sep
-            << "time"           << sep
-            << "best_score"     << sep 
-            << "best_score_val" << sep 
-            << "med_score"      << sep 
-            << "med_score_val"  << sep 
-            << "med_size"       << sep 
-            << "med_complexity" << sep 
-            << "max_size"       << sep 
-            << "max_complexity" << "\n";
+        auto now = std::chrono::system_clock::now();
+        std::time_t t = std::chrono::system_clock::to_time_t(now);
+        auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(
+            now.time_since_epoch()).count() % 1000;
+
+        std::tm tm{};
+        localtime_r(&t, &tm);
+
+        std::random_device rd;
+        char buf[48];
+        std::snprintf(buf, sizeof(buf), "%04d%02d%02dT%02d%02d%02d.%03d-%04x",
+            tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday,
+            tm.tm_hour, tm.tm_min, tm.tm_sec, static_cast<int>(ms),
+            static_cast<unsigned>(rd() & 0xffff));
+        return buf;
     }
-    log << params.current_gen          << sep
-        << timer.Elapsed().count()     << sep
-        << stats.best_score.back()     << sep
-        << stats.best_score_v.back()   << sep
-        << stats.med_score.back()      << sep
-        << stats.med_score_v.back()    << sep
-        << stats.med_size.back()       << sep
-        << stats.med_complexity.back() << sep
-        << stats.max_size.back()       << sep
-        << stats.max_complexity.back() << "\n"; 
 }
 
 template <ProgramType T>
-void Engine<T>::print_stats(std::ofstream& log, float fraction)
+void Engine<T>::open_logs()
+{
+    run_id = make_run_id();
+
+    // run metadata: one json object per line, one line per call to fit
+    {
+        std::ofstream runs(params.logfile + "_runs.jsonl", std::ofstream::app);
+        if (!runs.is_open())
+            HANDLE_ERROR_THROW("Failed to open logfile: " + params.logfile + "_runs.jsonl");
+
+        json j;
+        j["run_id"] = run_id;
+        j["random_state"] = params.random_state;
+        j["params"] = params;
+        runs << j.dump() << "\n";
+    }
+
+    log_generations.open(params.logfile, {
+        "run_id", "random_state", "generation", "time",
+        "best_score", "best_score_val", "med_score", "med_score_val",
+        "med_size", "med_complexity", "max_size", "max_complexity",
+        "best_size", "best_complexity",
+        "stall_count", "archive_size", "n_evaluations",
+        "best_model"});
+
+    log_islands.open(params.logfile + "_islands.csv", {
+        "run_id", "generation", "island", "n_individuals",
+        "best_score", "best_score_val", "med_score", "med_score_val",
+        "med_size", "med_complexity", "max_size", "max_complexity"});
+
+    log_simplifications.open(params.logfile + "_simplifications.csv", {
+        "run_id", "generation", "individual_id", "simplifier", "ret_type",
+        "original", "replacement", "distance"});
+}
+
+template <ProgramType T>
+void Engine<T>::log_stats(unsigned stall_count, const SimplificationRecords& simplifications)
+{
+    using F = Util::CsvWriter;
+
+    log_generations.write_row({
+        run_id,
+        F::field(params.random_state),
+        F::field(params.current_gen),
+        F::field(timer.Elapsed().count()),
+        F::field(stats.best_score.back()),
+        F::field(stats.best_score_v.back()),
+        F::field(stats.med_score.back()),
+        F::field(stats.med_score_v.back()),
+        F::field(stats.med_size.back()),
+        F::field(stats.med_complexity.back()),
+        F::field(stats.max_size.back()),
+        F::field(stats.max_complexity.back()),
+        F::field(best_ind.get_size()),
+        F::field(best_ind.get_complexity()),
+        F::field(stall_count),
+        F::field(archive.individuals.size()),
+        F::field(evaluator.n_evaluations),
+        best_ind.program.get_model()
+    });
+
+    for (int island = 0; island < params.num_islands; ++island)
+    {
+        PopSummary s = summarize(pop.get_island_indexes(island));
+        log_islands.write_row({
+            run_id,
+            F::field(params.current_gen),
+            F::field(island),
+            F::field(s.n_individuals),
+            F::field(s.best_score),
+            F::field(s.best_score_v),
+            F::field(s.med_score),
+            F::field(s.med_score_v),
+            F::field(s.med_size),
+            F::field(s.med_complexity),
+            F::field(s.max_size),
+            F::field(s.max_complexity)
+        });
+    }
+
+    for (const auto& rec : simplifications)
+    {
+        log_simplifications.write_row({
+            run_id,
+            F::field(rec.generation),
+            F::field(rec.individual_id),
+            rec.simplifier,
+            rec.ret_type,
+            rec.original,
+            rec.replacement,
+            F::field(rec.distance)
+        });
+    }
+}
+
+template <ProgramType T>
+void Engine<T>::close_logs()
+{
+    log_generations.close();
+    log_islands.close();
+    log_simplifications.close();
+}
+
+template <ProgramType T>
+void Engine<T>::print_stats(float fraction)
 {
     // progress bar
     string bar, space = "";                                 
@@ -455,14 +564,8 @@ void Engine<T>::run(Dataset &data)
     // TODO: make variator have a default constructor and make it an attribute of engine
     Variation<T> variator = Variation<T>(this->params, this->ss, data);
     
-    // log file stream
-    std::ofstream log;
-    if (!params.logfile.empty()) {
-        log.open(params.logfile, std::ofstream::app);
-        if (!log.is_open()) {
-            HANDLE_ERROR_THROW("Failed to open logfile: " + params.logfile);
-        }
-    }
+    if (!params.logfile.empty())
+        open_logs();
 
     evaluator.set_scorer(params.scorer);
 
@@ -542,6 +645,9 @@ void Engine<T>::run(Dataset &data)
         [&](tf::Subflow& subflow) { // loop body (evolutionary main loop)
             auto prepare_gen = subflow.emplace([&]() { 
                 params.set_current_gen(generation);
+                // the variator keeps its own copy of the parameters. It uses the
+                // generation to set individual ids and to tag simplification logs.
+                variator.parameters.set_current_gen(generation);
                 batch = data.get_batch(); // will return the original dataset if it is set to dont use batch 
             }).name("prepare generation");// set generation in params, get batch
 
@@ -621,17 +727,17 @@ void Engine<T>::run(Dataset &data)
                 }
 
                 if(params.verbosity>1)
-                    print_stats(log, fraction);
+                    print_stats(fraction);
                 else if(params.verbosity == 1)
                     print_progress(fraction);
 
-                if (!params.logfile.empty() && log.is_open())
-                    log_stats(log);
-                    
                 if (generation == 0 || updated_best )
                     stall_count = 0;
                 else
                     ++stall_count;
+
+                if (!params.logfile.empty())
+                    log_stats(stall_count, variator.pop_simplification_records());
                 
                 ++generation;
 
@@ -659,18 +765,16 @@ void Engine<T>::run(Dataset &data)
 
             set_is_fitted(true);
             
-            // logging the simplifications performed
+            // dump the expressions stored by the inexact simplifier
             if (!params.logfile.empty() && params.inexact_simplification) {
-                std::ofstream log_simplification;
-                log_simplification.open(params.logfile+"_simplification_table", std::ofstream::app);
-                variator.log_simplification_table(log_simplification);
-                
-                log_simplification.close();
+                Util::CsvWriter log_simplification_table(
+                    params.logfile+"_simplification_table",
+                    Inexact_simplifier::simplification_table_header);
+                variator.log_simplification_table(log_simplification_table, run_id);
             }
 
-            // TODO: open, write, close? (to avoid breaking the file and allow some debugging if things dont work well)
-            if (log.is_open())
-                log.close();
+            if (!params.logfile.empty())
+                close_logs();
 
             // getting the updated versions
             this->ss = variator.search_space;

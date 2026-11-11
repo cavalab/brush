@@ -5,6 +5,7 @@
 
 // #include "../../src/program/dispatch_table.h"
 #include "../../src/data/io.h"
+#include <fstream>
 #include "../../src/engine.h"
 #include "../../src/selection/selection.h"
 #include "../../src/selection/selection_operator.h"
@@ -88,11 +89,35 @@ TEST(Engine, EngineWorks)
     est6.run(data);
     
     std::cout << "n jobs = 2" << std::endl;
-    params.set_logfile("./tests/cpp/__logfile.csv"); // TODO: test classification and regression and save log so we can inspect it
+
+    // start from clean log files: appending to a log written by an older
+    // version (different columns) is an error. we start by cleaning up previous files
+    const string logfile = "./tests/cpp/__logfile.csv";
+    const vector<string> log_suffixes = {"", "_islands.csv", "_simplifications.csv",
+                                         "_runs.jsonl", "_simplification_table"};
+    for (const auto& suffix : log_suffixes)
+        std::remove((logfile + suffix).c_str());
+
+    params.set_logfile(logfile);
     params.set_n_jobs(2);
     Brush::RegressorEngine est7(params, ss);
     est7.run(data);
     params.set_logfile("");
+
+    // one header plus one row per generation
+    {
+        std::ifstream in(logfile);
+        ASSERT_TRUE(in.is_open());
+        string line;
+        std::getline(in, line);
+        ASSERT_EQ(line.rfind("run_id,random_state,generation,", 0), 0);
+        size_t rows = 0;
+        while (std::getline(in, line))
+            ++rows;
+        ASSERT_EQ(rows, params.get_max_gens());
+    }
+    for (const auto& suffix : {"_islands.csv", "_simplifications.csv", "_runs.jsonl"})
+        ASSERT_TRUE(std::ifstream(logfile + suffix).is_open()) << logfile + suffix;
 
     std::cout << "n jobs = -1" << std::endl;
     params.set_n_jobs(-1);

@@ -348,9 +348,13 @@ public:
             // simplify before calculating fitness (order matters, as they are not refitted and constants simplifier does not replace with the right value.)
             // simplify constants first to avoid letting the lsh simplifier to visit redundant branches
             
+            // replacements are only recorded when they are going to be logged
+            SimplificationRecords records;
+            SimplificationRecords* records_ptr = parameters.logfile.empty() ? nullptr : &records;
+
             if (parameters.constants_simplification && do_simplification)
             {
-                constants_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());  
+                constants_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data(), records_ptr);  
             }
 
             if (parameters.inexact_simplification)
@@ -363,17 +367,19 @@ public:
 
                 if (do_simplification)
                 {
-                    // string prg_str = ind.program.get_model();
-
-                    inexact_simplifier.simplify_tree<T>(ind.program, search_space, data_simp);
-
-                    // if (ind.program.get_model().compare(prg_str)!= 0)
-                    //     cout << prg_str << endl << ind.program.get_model() << endl << "=====" << endl;
+                    inexact_simplifier.simplify_tree<T>(ind.program, search_space, data_simp, records_ptr);
                 }
                 else
                 {
                     inexact_simplifier.analyze_tree<T>(ind.program, search_space, data_simp);
                 }
+            }
+
+            for (auto& rec : records)
+            {
+                rec.generation    = parameters.current_gen;
+                rec.individual_id = id;
+                simplification_records.push_back(std::move(rec));
             }
         
             evaluator.assign_fit(ind, data, parameters, false);
@@ -606,8 +612,16 @@ public:
         return std::nullopt;
     };
 
-    inline void log_simplification_table(std::ofstream& log) {
-        inexact_simplifier.log_simplification_table(log);
+    inline void log_simplification_table(Util::CsvWriter& log, const string& run_id) {
+        inexact_simplifier.log_simplification_table(log, run_id);
+    };
+
+    /// returns the simplifications performed since the last call, and clears them.
+    /// Records are only collected when `parameters.logfile` is set.
+    inline SimplificationRecords pop_simplification_records() {
+        SimplificationRecords out;
+        out.swap(simplification_records);
+        return out;
     };
 
     // bandit_sample_subtree // TODO: should I implement this? (its going to be hard).
@@ -630,6 +644,7 @@ private:
     // simplification methods
     Constants_simplifier constants_simplifier; 
     Inexact_simplifier inexact_simplifier;
+    SimplificationRecords simplification_records; ///< replacements not yet logged
 };
 
 class MutationBase {    
