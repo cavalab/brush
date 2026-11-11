@@ -1,5 +1,6 @@
 var namespaceBrush_1_1Util =
 [
+    [ "CsvWriter", "de/d31/classBrush_1_1Util_1_1CsvWriter.html", "de/d31/classBrush_1_1Util_1_1CsvWriter" ],
     [ "Log_Stats", "db/d7e/structBrush_1_1Util_1_1Log__Stats.html", "db/d7e/structBrush_1_1Util_1_1Log__Stats" ],
     [ "Logger", "dd/d56/classBrush_1_1Util_1_1Logger.html", "dd/d56/classBrush_1_1Util_1_1Logger" ],
     [ "Normalizer", "d2/df8/structBrush_1_1Util_1_1Normalizer.html", "d2/df8/structBrush_1_1Util_1_1Normalizer" ],

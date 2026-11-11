@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
   <compounddef id="d6/d2e/namespaceBrush_1_1Util" kind="namespace" language="C++">
     <compoundname>Brush::Util</compoundname>
+    <innerclass refid="de/d31/classBrush_1_1Util_1_1CsvWriter" prot="public">Brush::Util::CsvWriter</innerclass>
     <innerclass refid="db/d7e/structBrush_1_1Util_1_1Log__Stats" prot="public">Brush::Util::Log_Stats</innerclass>
     <innerclass refid="dd/d56/classBrush_1_1Util_1_1Logger" prot="public">Brush::Util::Logger</innerclass>
     <innerclass refid="d2/df8/structBrush_1_1Util_1_1Normalizer" prot="public">Brush::Util::Normalizer</innerclass>
@@ -88,7 +89,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="13" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="13" bodyend="-1" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="167" declcolumn="15"/>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1a33590e9eed9490be52dc2eedbb5b0feb" compoundref="da/d5c/engine_8cpp" startline="37" endline="49">Brush::Engine&lt; T &gt;::print_progress</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a33590e9eed9490be52dc2eedbb5b0feb" compoundref="da/d5c/engine_8cpp" startline="41" endline="53">Brush::Engine&lt; T &gt;::print_progress</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d6/d2e/namespaceBrush_1_1Util_1afdf0a27a6e1782537f1d1751e1efde51" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -104,7 +105,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="14" column="5" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="14" bodyend="-1" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="169" declcolumn="12"/>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1a33590e9eed9490be52dc2eedbb5b0feb" compoundref="da/d5c/engine_8cpp" startline="37" endline="49">Brush::Engine&lt; T &gt;::print_progress</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a33590e9eed9490be52dc2eedbb5b0feb" compoundref="da/d5c/engine_8cpp" startline="41" endline="53">Brush::Engine&lt; T &gt;::print_progress</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d6/d2e/namespaceBrush_1_1Util_1a739956e96c77117c32f45cdb30472652" prot="public" static="no" mutable="no">
         <type><ref refid="d6/d2e/namespaceBrush_1_1Util_1adc1985a99c2dc32ac23e139322748380" kindref="member">TypeMap</ref>&lt; std::string &gt;</type>
@@ -415,7 +416,7 @@
         <referencedby refid="d7/da9/namespaceBrush_1_1Split_1a34b904a04926a4b4280fb922618cfe19" compoundref="d4/d59/split_8cpp" startline="68" endline="95">Brush::Split::gain</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a647e7137bb014b8fb21cf0d9a985584b" compoundref="de/d06/utils_8cpp" startline="335" endline="344">kurtosis</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a3ecdd0fbfe8f46304f0b48992cf5726c" compoundref="de/d06/utils_8cpp" startline="366" endline="369">pearson_correlation</referencedby>
-        <referencedby refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1a1967ec4e50c83b4a7890959d9f6e145f" compoundref="d2/d6f/constants_8h" startline="19" endline="91">Brush::Simpl::Constants_simplifier::simplify_tree</referencedby>
+        <referencedby refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1a2eeedd1039fde5250481fab009ee7123" compoundref="d2/d6f/constants_8h" startline="21" endline="104">Brush::Simpl::Constants_simplifier::simplify_tree</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a3a5e794811c2588fb5910b4d5b9abdcb" compoundref="de/d06/utils_8cpp" startline="323" endline="332">skew</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a26cf881c06b230990b810de739347b58" compoundref="de/d06/utils_8cpp" startline="359" endline="363">slope</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1ad88c0170839ba79e41dc5715e77abfc8" compoundref="de/d06/utils_8cpp" startline="317" endline="320">variance</referencedby>
@@ -709,11 +710,12 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="192" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="192" bodyend="195"/>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1ab03528e8d9652013786252f63b6d5840" compoundref="d5/d60/utils_8h" startline="192" endline="195">in</references>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a79a47baeb7d1583415e514a1c04c2b07" compoundref="d4/d1f/variation_8h" startline="544" endline="584">Brush::Var::Variation&lt; T &gt;::bandit_sample_op_with_arg</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a79a47baeb7d1583415e514a1c04c2b07" compoundref="d4/d1f/variation_8h" startline="550" endline="590">Brush::Var::Variation&lt; T &gt;::bandit_sample_op_with_arg</referencedby>
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a35d500d78521e7fe880349c8006e55c7" compoundref="d9/d99/search__space_8h" startline="655" endline="670">Brush::SearchSpace::CreateNode</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1ab03528e8d9652013786252f63b6d5840" compoundref="d5/d60/utils_8h" startline="192" endline="195">in</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a8c4ce8e8bd8cedecb3d0ef621aad9d22" compoundref="d7/d4a/population_8cpp" startline="62" endline="98">Brush::Pop::Population&lt; T &gt;::init</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a46922ab810383db1271d700e03005962" compoundref="d7/d4a/population_8cpp" startline="18" endline="59">Brush::Pop::Population&lt; T &gt;::init</referencedby>
+        <referencedby refid="de/d31/classBrush_1_1Util_1_1CsvWriter_1aed55f9ebf447034a13b2f92adb6633fd" compoundref="d3/d8e/csv_8h" startline="43" endline="70">Brush::Util::CsvWriter::open</referencedby>
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1ad4ecbe9a8128d1a2b5aba0d5aeec686f" compoundref="d9/d99/search__space_8h" startline="534" endline="591">Brush::SearchSpace::sample_op_with_arg</referencedby>
         <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a073b0ac31fc55c35e2a8296b919c1876" compoundref="d7/d05/archive_8cpp" startline="10" endline="16">Brush::Pop::Archive&lt; T &gt;::set_objectives</referencedby>
         <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6c1d8ad202376074ffaf3a64de74a711" compoundref="df/dbb/selection_8cpp" startline="47" endline="47">Brush::Sel::Selection&lt; T &gt;::set_type</referencedby>
@@ -747,10 +749,10 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="202" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="202" bodyend="219"/>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1a4d848757d9123e0562a7d87b44f1bdc6" compoundref="d5/d60/utils_8h" startline="202" endline="219">median</references>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" compoundref="da/d5c/engine_8cpp" startline="53" endline="172">Brush::Engine&lt; T &gt;::calculate_stats</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a27c00366227bc7afa5d057ca555f9e12" compoundref="de/d06/utils_8cpp" startline="373" endline="384">mad</referencedby>
         <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ae3c8babca545b4cb131aa6ec8f039ac3" compoundref="d9/df7/timeseries_8h" startline="131" endline="131">Brush::Data::TimeSeries&lt; bool &gt;::median</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a4d848757d9123e0562a7d87b44f1bdc6" compoundref="d5/d60/utils_8h" startline="202" endline="219">median</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a8464aa864da59723428f43faed5ff996" compoundref="da/d5c/engine_8cpp" startline="57" endline="144">Brush::Engine&lt; T &gt;::summarize</referencedby>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a95368f7dc6c9ced55ce63b8c5f27a3ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -970,7 +972,6 @@
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="369" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="369" bodyend="374"/>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" compoundref="d5/d60/utils_8h" startline="369" endline="374">to_string</references>
         <referencedby refid="d8/df7/bind__variation_8h_1aa00827ef4bd73eeb7c3e30717bf91a74" compoundref="d8/df7/bind__variation_8h" startline="21" endline="77">bind_variation</referencedby>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" compoundref="da/d5c/engine_8cpp" startline="53" endline="172">Brush::Engine&lt; T &gt;::calculate_stats</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="458" endline="509">Brush::Data::Dataset::copy_and_make_features</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a46922ab810383db1271d700e03005962" compoundref="d7/d4a/population_8cpp" startline="18" endline="59">Brush::Pop::Population&lt; T &gt;::init</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1ad193aced6ffa6d3587f0f390d9ed0415" compoundref="d7/d4a/population_8cpp" startline="117" endline="134">Brush::Pop::Population&lt; T &gt;::load</referencedby>
@@ -978,6 +979,7 @@
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9e841d2f28f1466b82428dddba49227" compoundref="da/dc9/data_8cpp" startline="387" endline="455">Brush::Data::Dataset::make_features</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a92f851fffa86280c36cd54a8f670466e" compoundref="d7/d4a/population_8cpp" startline="213" endline="230">Brush::Pop::Population&lt; T &gt;::print_models</referencedby>
         <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a4bec036d5b4fa2acc82b2e934183a45c" compoundref="dc/d7a/fitness_8h" startline="212" endline="221">Brush::Fitness::repr</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a8464aa864da59723428f43faed5ff996" compoundref="da/d5c/engine_8cpp" startline="57" endline="144">Brush::Engine&lt; T &gt;::summarize</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" compoundref="d5/d60/utils_8h" startline="369" endline="374">to_string</referencedby>
         <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a6253406e0ac28947766a5f5afbb721e1" compoundref="dc/d7a/fitness_8h" startline="199" endline="209">Brush::Fitness::toString</referencedby>
       </memberdef>
@@ -1363,6 +1365,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/brush/brush/src/util/error.cpp" line="11" column="15"/>
+    <location file="/home/runner/work/brush/brush/src/util/csv.h" line="19" column="15"/>
   </compounddef>
 </doxygen>

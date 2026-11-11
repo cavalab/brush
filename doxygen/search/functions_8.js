@@ -11,9 +11,10 @@ var searchData=
   ['initrand_8',['initRand',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a4fee4453f2aff1384cda4e14d53234fe',1,'Brush::Util::Rnd']]],
   ['inputs_9',['inputs',['../df/d09/structBrush_1_1TinyCostFunction.html#aa39289bac5f4ffdac9e6534e8d58ae9c',1,'Brush::TinyCostFunction']]],
   ['is_10',['Is',['../dc/d5c/namespaceBrush.html#a4f135739df5fe55a0ff81d943bec8be2',1,'Brush']]],
-  ['iscommutative_11',['IsCommutative',['../dc/d5c/namespaceBrush.html#a2b2fe399958c87099f03e33511fcd3d0',1,'Brush']]],
-  ['isdifferentiable_12',['IsDifferentiable',['../dc/d5c/namespaceBrush.html#af66d4d1b86198350055ea499bb0238f7',1,'Brush']]],
-  ['isleaf_13',['IsLeaf',['../dc/d5c/namespaceBrush.html#a21f448ef801105ba35186dae512bef06',1,'Brush']]],
-  ['isnt_14',['Isnt',['../dc/d5c/namespaceBrush.html#a14447d2f04191fa6607e02077a4137ea',1,'Brush::Isnt(DataType dt) -&gt; bool'],['../dc/d5c/namespaceBrush.html#ac47c0777f99875f50e193b67b691cbb0',1,'Brush::Isnt(NodeType nt) -&gt; bool']]],
-  ['isweighable_15',['IsWeighable',['../dc/d5c/namespaceBrush.html#a1d5a63450bcdb77bd08283c9f74ca53f',1,'Brush::IsWeighable() noexcept -&gt; bool'],['../dc/d5c/namespaceBrush.html#a8b19fac06df5a0722bdb46eb9b9e50d3',1,'Brush::IsWeighable(DataType dt) noexcept -&gt; bool'],['../dc/d5c/namespaceBrush.html#a1d5a63450bcdb77bd08283c9f74ca53f',1,'Brush::IsWeighable() noexcept -&gt; bool'],['../dc/d5c/namespaceBrush.html#a8dc5b7550111d2207dd36c94e4cb17cb',1,'Brush::IsWeighable(NodeType nt) noexcept -&gt; bool']]]
+  ['is_5fopen_11',['is_open',['../de/d31/classBrush_1_1Util_1_1CsvWriter.html#a69bbacae2a195b879ccc362446427450',1,'Brush::Util::CsvWriter']]],
+  ['iscommutative_12',['IsCommutative',['../dc/d5c/namespaceBrush.html#a2b2fe399958c87099f03e33511fcd3d0',1,'Brush']]],
+  ['isdifferentiable_13',['IsDifferentiable',['../dc/d5c/namespaceBrush.html#af66d4d1b86198350055ea499bb0238f7',1,'Brush']]],
+  ['isleaf_14',['IsLeaf',['../dc/d5c/namespaceBrush.html#a21f448ef801105ba35186dae512bef06',1,'Brush']]],
+  ['isnt_15',['Isnt',['../dc/d5c/namespaceBrush.html#a14447d2f04191fa6607e02077a4137ea',1,'Brush::Isnt(DataType dt) -&gt; bool'],['../dc/d5c/namespaceBrush.html#ac47c0777f99875f50e193b67b691cbb0',1,'Brush::Isnt(NodeType nt) -&gt; bool']]],
+  ['isweighable_16',['IsWeighable',['../dc/d5c/namespaceBrush.html#a1d5a63450bcdb77bd08283c9f74ca53f',1,'Brush::IsWeighable() noexcept -&gt; bool'],['../dc/d5c/namespaceBrush.html#a8b19fac06df5a0722bdb46eb9b9e50d3',1,'Brush::IsWeighable(DataType dt) noexcept -&gt; bool'],['../dc/d5c/namespaceBrush.html#a1d5a63450bcdb77bd08283c9f74ca53f',1,'Brush::IsWeighable() noexcept -&gt; bool'],['../dc/d5c/namespaceBrush.html#a8dc5b7550111d2207dd36c94e4cb17cb',1,'Brush::IsWeighable(NodeType nt) noexcept -&gt; bool']]]
 ];

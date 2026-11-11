@@ -3,6 +3,7 @@
   <compounddef id="d1/d8c/logger_8h" kind="file" language="C++">
     <compoundname>logger.h</compoundname>
     <includes local="no">iostream</includes>
+    <includes local="no">string</includes>
     <includedby refid="d2/dbd/data_8h" local="yes">data.h</includedby>
     <includedby refid="d3/d30/logger_8cpp" local="yes">logger.cpp</includedby>
     <includedby refid="da/d33/params_8h" local="yes">params.h</includedby>
@@ -12,9 +13,14 @@
         <link refid="d1/d8c/logger_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
       </node>
       <node id="2">
         <label>iostream</label>
+      </node>
+      <node id="3">
+        <label>string</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
@@ -601,8 +607,8 @@
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>LOGGER_H</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LOGGER_H</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="d8/dcc/namespacestd" kindref="compound">std</ref>;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref><sp/>{</highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="d6/d2e/namespaceBrush_1_1Util" kindref="compound">Util</ref>{</highlight></codeline>
@@ -619,10 +625,10 @@
 <codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dd/d56/classBrush_1_1Util_1_1Logger_1a628245421b92a8888c393de40b817363" kindref="member">get_log_level</ref>();</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="dd/d56/classBrush_1_1Util_1_1Logger_1ad91c0afb3eba406a0dff9316d3b2b80d" kindref="member">log</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>m,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>v,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>sep=</highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="dd/d56/classBrush_1_1Util_1_1Logger_1a36df6daba1d45b34c970037708124511" kindref="member">log</ref>(std::string<sp/>m,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>v,<sp/>std::string<sp/>sep=</highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="56" refid="dd/d56/classBrush_1_1Util_1_1Logger_1acfdc6d8167ea179d97c91512122e4873" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dd/d56/classBrush_1_1Util_1_1Logger_1acfdc6d8167ea179d97c91512122e4873" kindref="member">verbosity</ref>;<sp/></highlight></codeline>
+<codeline lineno="56" refid="dd/d56/classBrush_1_1Util_1_1Logger_1acfdc6d8167ea179d97c91512122e4873" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dd/d56/classBrush_1_1Util_1_1Logger_1acfdc6d8167ea179d97c91512122e4873" kindref="member">verbosity</ref><sp/>=<sp/>0;<sp/></highlight></codeline>
 <codeline lineno="57" refid="dd/d56/classBrush_1_1Util_1_1Logger_1a66e978372533d5960afe73a702382cf0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="dd/d56/classBrush_1_1Util_1_1Logger" kindref="compound">Logger</ref>*<sp/><ref refid="dd/d56/classBrush_1_1Util_1_1Logger_1a66e978372533d5960afe73a702382cf0" kindref="member">instance</ref>;<sp/></highlight></codeline>
 <codeline lineno="58"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"></highlight></codeline>

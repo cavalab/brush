@@ -31,9 +31,11 @@ var annotated_dup =
       [ "Simpl", "df/d29/namespaceBrush_1_1Simpl.html", [
         [ "Constants_simplifier", "d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier.html", "d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier" ],
         [ "HashStorage", "d4/d71/classBrush_1_1Simpl_1_1HashStorage.html", "d4/d71/classBrush_1_1Simpl_1_1HashStorage" ],
-        [ "Inexact_simplifier", "de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html", "de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier" ]
+        [ "Inexact_simplifier", "de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html", "de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier" ],
+        [ "SimplificationRecord", "d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord.html", "d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord" ]
       ] ],
       [ "Util", "d6/d2e/namespaceBrush_1_1Util.html", [
+        [ "CsvWriter", "de/d31/classBrush_1_1Util_1_1CsvWriter.html", "de/d31/classBrush_1_1Util_1_1CsvWriter" ],
         [ "Log_Stats", "db/d7e/structBrush_1_1Util_1_1Log__Stats.html", "db/d7e/structBrush_1_1Util_1_1Log__Stats" ],
         [ "Logger", "dd/d56/classBrush_1_1Util_1_1Logger.html", "dd/d56/classBrush_1_1Util_1_1Logger" ],
         [ "Normalizer", "d2/df8/structBrush_1_1Util_1_1Normalizer.html", "d2/df8/structBrush_1_1Util_1_1Normalizer" ],

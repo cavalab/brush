@@ -1376,6 +1376,7 @@
         <referencedby refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a936cf115e4d95aed91817fcf1bb9c084" compoundref="d7/de0/operator_8h" startline="312" endline="324">Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;::get</referencedby>
         <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1ad1be6b37dda8f94db59996bc060e5e2e" compoundref="da/dc9/data_8cpp" startline="511" endline="515">Brush::Data::operator&lt;&lt;</referencedby>
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1aa82c9f1cc1b96e7424b0ac250e4c5c91" compoundref="da/d48/search__space_8cpp" startline="312" endline="465">Brush::SearchSpace::PTC2</referencedby>
+        <referencedby refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1a2eeedd1039fde5250481fab009ee7123" compoundref="d2/d6f/constants_8h" startline="21" endline="104">Brush::Simpl::Constants_simplifier::simplify_tree</referencedby>
       </memberdef>
       <memberdef kind="variable" id="dc/d5c/namespaceBrush_1ae8e6a6b88349644cf160c63559cddd9c" prot="public" static="no" mutable="no">
         <type><ref refid="d9/d28/classmap" kindref="compound">map</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref> &gt;</type>
@@ -1859,7 +1860,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/engine.h" line="158" column="1" declfile="/home/runner/work/brush/brush/src/engine.h" declline="158" declcolumn="1"/>
+        <location file="/home/runner/work/brush/brush/src/engine.h" line="182" column="1" declfile="/home/runner/work/brush/brush/src/engine.h" declline="182" declcolumn="1"/>
         <references refid="dc/d5c/namespaceBrush_1a2b2ffd06833f1e9ee57cfd689acfcc6d">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</references>
         <referencedby refid="dc/d5c/namespaceBrush_1a78f7f19a49bc1a818f29602b1773acc4">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</referencedby>
         <referencedby refid="dc/d5c/namespaceBrush_1aec1262548f3c9b2aa988c8705575885c">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</referencedby>
@@ -1900,7 +1901,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/engine.h" line="159" column="1" declfile="/home/runner/work/brush/brush/src/engine.h" declline="159" declcolumn="1"/>
+        <location file="/home/runner/work/brush/brush/src/engine.h" line="183" column="1" declfile="/home/runner/work/brush/brush/src/engine.h" declline="183" declcolumn="1"/>
         <references refid="dc/d5c/namespaceBrush_1a2b2ffd06833f1e9ee57cfd689acfcc6d">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</references>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1aec1262548f3c9b2aa988c8705575885c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -1936,7 +1937,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/engine.h" line="160" column="1" declfile="/home/runner/work/brush/brush/src/engine.h" declline="160" declcolumn="1"/>
+        <location file="/home/runner/work/brush/brush/src/engine.h" line="184" column="1" declfile="/home/runner/work/brush/brush/src/engine.h" declline="184" declcolumn="1"/>
         <references refid="dc/d5c/namespaceBrush_1a2b2ffd06833f1e9ee57cfd689acfcc6d">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</references>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1a58948e8e175aae197197ef454a3a9e13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -1972,7 +1973,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/engine.h" line="161" column="1" declfile="/home/runner/work/brush/brush/src/engine.h" declline="161" declcolumn="1"/>
+        <location file="/home/runner/work/brush/brush/src/engine.h" line="185" column="1" declfile="/home/runner/work/brush/brush/src/engine.h" declline="185" declcolumn="1"/>
         <references refid="dc/d5c/namespaceBrush_1a2b2ffd06833f1e9ee57cfd689acfcc6d">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</references>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1a8cfe33753dda03e1480fdcbe62e1885d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -2016,8 +2017,8 @@
         <references refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" compoundref="dc/d7a/fitness_8h" startline="53">Brush::Fitness::values</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" compoundref="dc/d7a/fitness_8h" startline="54" endline="54">Brush::Fitness::weights</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" compoundref="dc/d7a/fitness_8h" startline="57" endline="57">Brush::Fitness::wvalues</references>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1a8bb4aef355347af91f98f35a42fce5c9" compoundref="da/d5c/engine_8cpp" startline="239" endline="249">Brush::Engine&lt; T &gt;::get_archive_as_json</referencedby>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1ac1fb4a26cd18f8addacf93d4b0bea020" compoundref="da/d5c/engine_8cpp" startline="254" endline="273">Brush::Engine&lt; T &gt;::get_population_as_json</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a8bb4aef355347af91f98f35a42fce5c9" compoundref="da/d5c/engine_8cpp" startline="348" endline="358">Brush::Engine&lt; T &gt;::get_archive_as_json</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1ac1fb4a26cd18f8addacf93d4b0bea020" compoundref="da/d5c/engine_8cpp" startline="363" endline="382">Brush::Engine&lt; T &gt;::get_population_as_json</referencedby>
         <referencedby refid="dc/d5c/namespaceBrush_1a8cfe33753dda03e1480fdcbe62e1885d" compoundref="dc/d5c/fitness_8cpp" startline="6" endline="29">to_json</referencedby>
         <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="120" endline="140">to_json</referencedby>
         <referencedby refid="dc/d5c/namespaceBrush_1ab70b101224f05ee7cb285e1212137053" compoundref="d1/dea/program_8h" startline="704" endline="707">to_json</referencedby>
@@ -2068,7 +2069,7 @@
         <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="305" endline="390">from_json</referencedby>
         <referencedby refid="dc/d5c/namespaceBrush_1a2360e8e22462df83dc799c8096ce5938" compoundref="d1/dea/program_8h" startline="710" endline="714">from_json</referencedby>
         <referencedby refid="dd/d06/tree__node_8cpp_1a3fc3c974a33ae40a1182f771a9a4c7d1" compoundref="dd/d06/tree__node_8cpp" startline="81" endline="99">from_json</referencedby>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1ae8b79f5ffa6323af3e7287c0a6005bec" compoundref="da/d5c/engine_8cpp" startline="305" endline="328">Brush::Engine&lt; T &gt;::set_population_from_json</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1ae8b79f5ffa6323af3e7287c0a6005bec" compoundref="da/d5c/engine_8cpp" startline="414" endline="437">Brush::Engine&lt; T &gt;::set_population_from_json</referencedby>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1a47214a87c664b933f4f44f7b7e783716" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2522,7 +2523,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="48" column="13" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="48" bodyend="48"/>
         <references refid="dc/d5c/namespaceBrush_1a14447d2f04191fa6607e02077a4137ea" compoundref="d1/d77/node_8h" startline="48" endline="48">Isnt</references>
-        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a9e6645327d19f04e16025a61faaca021" compoundref="d1/db6/inexact_8h" startline="133" endline="158">Brush::Simpl::Inexact_simplifier::analyze_tree</referencedby>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a9e6645327d19f04e16025a61faaca021" compoundref="d1/db6/inexact_8h" startline="136" endline="161">Brush::Simpl::Inexact_simplifier::analyze_tree</referencedby>
         <referencedby refid="db/d88/structBrush_1_1Program_1ab288bd389c68ab3c0776ef14a9e5e331" compoundref="d1/dea/program_8h" startline="501" endline="669">Brush::Program&lt; PT::Regressor &gt;::get_dot_model</referencedby>
         <referencedby refid="dc/d5c/namespaceBrush_1af66d4d1b86198350055ea499bb0238f7" compoundref="d1/d77/node_8h" startline="338" endline="350">IsDifferentiable</referencedby>
         <referencedby refid="dc/d5c/namespaceBrush_1a14447d2f04191fa6607e02077a4137ea" compoundref="d1/d77/node_8h" startline="48" endline="48">Isnt</referencedby>
@@ -2531,8 +2532,8 @@
         <referencedby refid="dc/d5c/namespaceBrush_1a8b19fac06df5a0722bdb46eb9b9e50d3" compoundref="d1/d77/node_8h" startline="59" endline="66">IsWeighable</referencedby>
         <referencedby refid="dc/d5c/namespaceBrush_1a8dc5b7550111d2207dd36c94e4cb17cb" compoundref="d1/d77/node_8h" startline="368" endline="383">IsWeighable</referencedby>
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1aa82c9f1cc1b96e7424b0ac250e4c5c91" compoundref="da/d48/search__space_8cpp" startline="312" endline="465">Brush::SearchSpace::PTC2</referencedby>
-        <referencedby refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1a1967ec4e50c83b4a7890959d9f6e145f" compoundref="d2/d6f/constants_8h" startline="19" endline="91">Brush::Simpl::Constants_simplifier::simplify_tree</referencedby>
-        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a8a70383d31da8c7798595f36f2acb2a9" compoundref="d1/db6/inexact_8h" startline="161" endline="251">Brush::Simpl::Inexact_simplifier::simplify_tree</referencedby>
+        <referencedby refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1a2eeedd1039fde5250481fab009ee7123" compoundref="d2/d6f/constants_8h" startline="21" endline="104">Brush::Simpl::Constants_simplifier::simplify_tree</referencedby>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a8f93b8df64e7a56cd45b235426a206f7" compoundref="d1/db6/inexact_8h" startline="165" endline="264">Brush::Simpl::Inexact_simplifier::simplify_tree</referencedby>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1a1d5a63450bcdb77bd08283c9f74ca53f" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
@@ -2576,7 +2577,7 @@
         <referencedby refid="d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation_1a2ecf70886b1561e4cb5e2ccbab014c66" compoundref="d1/d64/variation_8cpp" startline="310" endline="319">Brush::Var::ToggleWeightOnMutation::mutate</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a70fb9b583f72b67f6c24c2bbaae55267" compoundref="d1/d77/node_8h" startline="300" endline="303">Brush::Node::set_is_weighted</referencedby>
         <referencedby refid="db/d88/structBrush_1_1Program_1a5ba9c69ade043cacb917dfb654a57834" compoundref="d1/dea/program_8h" startline="368" endline="392">Brush::Program&lt; PT::Regressor &gt;::set_weights</referencedby>
-        <referencedby refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1a1967ec4e50c83b4a7890959d9f6e145f" compoundref="d2/d6f/constants_8h" startline="19" endline="91">Brush::Simpl::Constants_simplifier::simplify_tree</referencedby>
+        <referencedby refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1a2eeedd1039fde5250481fab009ee7123" compoundref="d2/d6f/constants_8h" startline="21" endline="104">Brush::Simpl::Constants_simplifier::simplify_tree</referencedby>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1a8b19fac06df5a0722bdb46eb9b9e50d3" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
@@ -2629,7 +2630,7 @@
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="317" column="13" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="317" bodyend="317"/>
         <references refid="dc/d5c/namespaceBrush_1a4f135739df5fe55a0ff81d943bec8be2" compoundref="d1/d77/node_8h" startline="317" endline="317">Is</references>
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a4a255b2a600b65c33dc7dad6dd6a4614" compoundref="d9/d99/search__space_8h" startline="673" endline="694">Brush::SearchSpace::AddNode</referencedby>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1aee4d051cf57caab64e694bdb70622913" compoundref="d4/d1f/variation_8h" startline="511" endline="541">Brush::Var::Variation&lt; T &gt;::bandit_get_node_like</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1aee4d051cf57caab64e694bdb70622913" compoundref="d4/d1f/variation_8h" startline="517" endline="547">Brush::Var::Variation&lt; T &gt;::bandit_get_node_like</referencedby>
         <referencedby refid="db/d88/structBrush_1_1Program_1ab288bd389c68ab3c0776ef14a9e5e331" compoundref="d1/dea/program_8h" startline="501" endline="669">Brush::Program&lt; PT::Regressor &gt;::get_dot_model</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1af621eb9463a3ed3434841565a849c03b" compoundref="d7/d70/node_8cpp" startline="58" endline="113">Brush::Node::get_model</referencedby>
         <referencedby refid="db/d88/structBrush_1_1Program_1a990bd3691f3b3e2b7ff479bcd4231479" compoundref="d1/dea/program_8h" startline="308" endline="332">Brush::Program&lt; PT::Regressor &gt;::get_n_weights</referencedby>

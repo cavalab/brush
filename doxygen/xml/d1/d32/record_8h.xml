@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="d1/d32/record_8h" kind="file" language="C++">
+    <compoundname>record.h</compoundname>
+    <includes local="no">string</includes>
+    <includes local="no">vector</includes>
+    <includedby refid="d2/d6f/constants_8h" local="yes">constants.h</includedby>
+    <includedby refid="d1/db6/inexact_8h" local="yes">inexact.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>record.h</label>
+        <link refid="d1/d32/record_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>string</label>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="8">
+        <label>bind_engines.cpp</label>
+        <link refid="d1/df0/bind__engines_8cpp"/>
+      </node>
+      <node id="7">
+        <label>bind_engines.h</label>
+        <link refid="d4/d93/bind__engines_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>bind_variation.cpp</label>
+        <link refid="df/d41/bind__variation_8cpp"/>
+      </node>
+      <node id="3">
+        <label>bind_variation.h</label>
+        <link refid="d8/df7/bind__variation_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>engine.cpp</label>
+        <link refid="da/d5c/engine_8cpp"/>
+      </node>
+      <node id="9">
+        <label>engine.h</label>
+        <link refid="d1/d55/engine_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>constants.cpp</label>
+        <link refid="d6/d80/constants_8cpp"/>
+      </node>
+      <node id="2">
+        <label>constants.h</label>
+        <link refid="d2/d6f/constants_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>inexact.cpp</label>
+        <link refid="de/d79/inexact_8cpp"/>
+      </node>
+      <node id="12">
+        <label>inexact.h</label>
+        <link refid="d1/db6/inexact_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>record.h</label>
+        <link refid="d1/d32/record_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>variation.cpp</label>
+        <link refid="d1/d64/variation_8cpp"/>
+      </node>
+      <node id="6">
+        <label>variation.h</label>
+        <link refid="d4/d1f/variation_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord" prot="public">Brush::Simpl::SimplificationRecord</innerclass>
+    <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
+    <innernamespace refid="df/d29/namespaceBrush_1_1Simpl">Brush::Simpl</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>SIMPLIFICATION_RECORD_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SIMPLIFICATION_RECORD_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref><sp/>{<sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="df/d29/namespaceBrush_1_1Simpl" kindref="compound">Simpl</ref>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord" kindref="compound">SimplificationRecord</ref></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="13" refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1aeaebe570d4edefcf33299f9a89b430e6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1aeaebe570d4edefcf33299f9a89b430e6" kindref="member">generation</ref><sp/><sp/><sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="14" refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1a691dc5b0c8a392f96faea96b3b90cc91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1a691dc5b0c8a392f96faea96b3b90cc91" kindref="member">individual_id</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="15" refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1a4430768d6fd76de8596296c4621b9f86" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1a4430768d6fd76de8596296c4621b9f86" kindref="member">simplifier</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="16" refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1ab81a291a50939322771510ea4d180427" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1ab81a291a50939322771510ea4d180427" kindref="member">ret_type</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="17" refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1adf7c7f74d124437862c15d559a777290" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1adf7c7f74d124437862c15d559a777290" kindref="member">original</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="18" refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1aff8d4dd194ffd251af419cc8c5ba274c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1aff8d4dd194ffd251af419cc8c5ba274c" kindref="member">replacement</ref>;<sp/></highlight></codeline>
+<codeline lineno="19" refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1a560b967ebfff93bb529f5616f2a0b37a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1a560b967ebfff93bb529f5616f2a0b37a" kindref="member">distance</ref><sp/>=<sp/>0.0f;<sp/></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="df/d29/namespaceBrush_1_1Simpl_1a44ca59a351f3f6bfe2dc301cd339a620" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="df/d29/namespaceBrush_1_1Simpl_1a44ca59a351f3f6bfe2dc301cd339a620" kindref="member">SimplificationRecords</ref><sp/>=<sp/>std::vector&lt;SimplificationRecord&gt;;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Simpl</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/runner/work/brush/brush/src/simplification/record.h"/>
+  </compounddef>
+</doxygen>

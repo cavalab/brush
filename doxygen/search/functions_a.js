@@ -6,12 +6,12 @@ var searchData=
   ['linearize_3',['linearize',['../db/d88/structBrush_1_1Program.html#a9db890cb3b1bd9f07764bb3bc7f75d64',1,'Brush::Program']]],
   ['load_4',['load',['../da/da3/classBrush_1_1Pop_1_1Population.html#ad193aced6ffa6d3587f0f390d9ed0415',1,'Brush::Pop::Population']]],
   ['lock_5fnodes_5',['lock_nodes',['../d0/d75/classBrush_1_1Engine.html#a99c0766456fae1affc3632e1d051bfea',1,'Brush::Engine::lock_nodes()'],['../db/d88/structBrush_1_1Program.html#a16b14765b1fd177c99f7cd116fae0fde',1,'Brush::Program::lock_nodes()']]],
-  ['log_6',['log',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a89035e010d3469fc61ac8e4bdc855de2',1,'Brush::Data::TimeSeries::log()'],['../dd/d56/classBrush_1_1Util_1_1Logger.html#ad91c0afb3eba406a0dff9316d3b2b80d',1,'Brush::Util::Logger::log()'],['../d0/d8e/structTimeSeries.html#a89035e010d3469fc61ac8e4bdc855de2',1,'TimeSeries::log()']]],
+  ['log_6',['log',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a89035e010d3469fc61ac8e4bdc855de2',1,'Brush::Data::TimeSeries::log()'],['../dd/d56/classBrush_1_1Util_1_1Logger.html#a36df6daba1d45b34c970037708124511',1,'Brush::Util::Logger::log()'],['../d0/d8e/structTimeSeries.html#a89035e010d3469fc61ac8e4bdc855de2',1,'TimeSeries::log()']]],
   ['log1p_7',['log1p',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#af8bb93e61e138809de23791eb0127673',1,'Brush::Data::TimeSeries::log1p()'],['../d0/d8e/structTimeSeries.html#af8bb93e61e138809de23791eb0127673',1,'TimeSeries::log1p()']]],
   ['log_5floss_8',['log_loss',['../d5/db3/namespaceBrush_1_1Eval.html#ab4118142943e05c08bdd5e5ad62d9127',1,'Brush::Eval']]],
-  ['log_5fsimplification_5ftable_9',['log_simplification_table',['../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#adcb98569affab47f0a15bac9e99dd4c1',1,'Brush::Simpl::Inexact_simplifier::log_simplification_table()'],['../d5/d14/classBrush_1_1Var_1_1Variation.html#ae34d61e9fc35cd9dedcca8ee379eade3',1,'Brush::Var::Variation::log_simplification_table()']]],
+  ['log_5fsimplification_5ftable_9',['log_simplification_table',['../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a010f9ed4245c2703f6b37208e08d1b1c',1,'Brush::Simpl::Inexact_simplifier::log_simplification_table()'],['../d5/d14/classBrush_1_1Var_1_1Variation.html#a5278c88ba4e962848a994787a68ce4a6',1,'Brush::Var::Variation::log_simplification_table()']]],
   ['log_5fstats_10',['Log_Stats',['../db/d7e/structBrush_1_1Util_1_1Log__Stats.html#a23765133646ba95a682e5a09fbe00439',1,'Brush::Util::Log_Stats']]],
-  ['log_5fstats_11',['log_stats',['../d0/d75/classBrush_1_1Engine.html#ae099086faca2e6ea54f5e85b380a8da8',1,'Brush::Engine']]],
+  ['log_5fstats_11',['log_stats',['../d0/d75/classBrush_1_1Engine.html#a779b5b22e364b2bbe8b7d00fd7c49884',1,'Brush::Engine']]],
   ['logabs_12',['logabs',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa298e6d97eb7bbc8a4eadcda159505ba',1,'Brush::Data::TimeSeries::logabs()'],['../d0/d8e/structTimeSeries.html#aa298e6d97eb7bbc8a4eadcda159505ba',1,'TimeSeries::logabs()']]],
   ['ltrim_13',['ltrim',['../d6/d2e/namespaceBrush_1_1Util.html#a3837fbd31ac81e3f8db8aaa399fda345',1,'Brush::Util']]]
 ];

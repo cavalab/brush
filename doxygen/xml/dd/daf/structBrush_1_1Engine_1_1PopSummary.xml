@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="dd/daf/structBrush_1_1Engine_1_1PopSummary" kind="struct" language="C++" prot="private">
+    <compoundname>Brush::Engine::PopSummary</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="dd/daf/structBrush_1_1Engine_1_1PopSummary_1a3948dd2c1f6fe68c678aa03aa72cb6d4" prot="public" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned Brush::Engine&lt; T &gt;::PopSummary::n_individuals</definition>
+        <argsstring></argsstring>
+        <name>n_individuals</name>
+        <qualifiedname>Brush::Engine::PopSummary::n_individuals</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/engine.h" line="152" column="18" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="152" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a779b5b22e364b2bbe8b7d00fd7c49884" compoundref="da/d5c/engine_8cpp" startline="247" endline="304">Brush::Engine&lt; T &gt;::log_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a8464aa864da59723428f43faed5ff996" compoundref="da/d5c/engine_8cpp" startline="57" endline="144">Brush::Engine&lt; T &gt;::summarize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dd/daf/structBrush_1_1Engine_1_1PopSummary_1a7a191e2a371eb5082fc2d6cb79096c9d" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Brush::Engine&lt; T &gt;::PopSummary::best_score</definition>
+        <argsstring></argsstring>
+        <name>best_score</name>
+        <qualifiedname>Brush::Engine::PopSummary::best_score</qualifiedname>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+<para>best train loss </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/engine.h" line="153" column="18" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="153" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" compoundref="da/d5c/engine_8cpp" startline="147" endline="185">Brush::Engine&lt; T &gt;::calculate_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a779b5b22e364b2bbe8b7d00fd7c49884" compoundref="da/d5c/engine_8cpp" startline="247" endline="304">Brush::Engine&lt; T &gt;::log_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a8464aa864da59723428f43faed5ff996" compoundref="da/d5c/engine_8cpp" startline="57" endline="144">Brush::Engine&lt; T &gt;::summarize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dd/daf/structBrush_1_1Engine_1_1PopSummary_1acc9b8f7cc9eb5bb9c5052332d1c7cd02" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Brush::Engine&lt; T &gt;::PopSummary::best_score_v</definition>
+        <argsstring></argsstring>
+        <name>best_score_v</name>
+        <qualifiedname>Brush::Engine::PopSummary::best_score_v</qualifiedname>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+<para>best validation loss (may be another individual) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/engine.h" line="154" column="18" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="154" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a779b5b22e364b2bbe8b7d00fd7c49884" compoundref="da/d5c/engine_8cpp" startline="247" endline="304">Brush::Engine&lt; T &gt;::log_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a8464aa864da59723428f43faed5ff996" compoundref="da/d5c/engine_8cpp" startline="57" endline="144">Brush::Engine&lt; T &gt;::summarize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dd/daf/structBrush_1_1Engine_1_1PopSummary_1aad646f91ca2b23c30a39c4dad553f001" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Brush::Engine&lt; T &gt;::PopSummary::med_score</definition>
+        <argsstring></argsstring>
+        <name>med_score</name>
+        <qualifiedname>Brush::Engine::PopSummary::med_score</qualifiedname>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/engine.h" line="155" column="18" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="155" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" compoundref="da/d5c/engine_8cpp" startline="147" endline="185">Brush::Engine&lt; T &gt;::calculate_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a779b5b22e364b2bbe8b7d00fd7c49884" compoundref="da/d5c/engine_8cpp" startline="247" endline="304">Brush::Engine&lt; T &gt;::log_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a8464aa864da59723428f43faed5ff996" compoundref="da/d5c/engine_8cpp" startline="57" endline="144">Brush::Engine&lt; T &gt;::summarize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dd/daf/structBrush_1_1Engine_1_1PopSummary_1ae4e8eff32845bb2d1ccfc015c738ca25" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Brush::Engine&lt; T &gt;::PopSummary::med_score_v</definition>
+        <argsstring></argsstring>
+        <name>med_score_v</name>
+        <qualifiedname>Brush::Engine::PopSummary::med_score_v</qualifiedname>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/engine.h" line="156" column="18" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="156" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" compoundref="da/d5c/engine_8cpp" startline="147" endline="185">Brush::Engine&lt; T &gt;::calculate_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a779b5b22e364b2bbe8b7d00fd7c49884" compoundref="da/d5c/engine_8cpp" startline="247" endline="304">Brush::Engine&lt; T &gt;::log_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a8464aa864da59723428f43faed5ff996" compoundref="da/d5c/engine_8cpp" startline="57" endline="144">Brush::Engine&lt; T &gt;::summarize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dd/daf/structBrush_1_1Engine_1_1PopSummary_1a85a60178eff07da552b0531ee4f35d78" prot="public" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned Brush::Engine&lt; T &gt;::PopSummary::med_size</definition>
+        <argsstring></argsstring>
+        <name>med_size</name>
+        <qualifiedname>Brush::Engine::PopSummary::med_size</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/engine.h" line="157" column="18" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="157" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" compoundref="da/d5c/engine_8cpp" startline="147" endline="185">Brush::Engine&lt; T &gt;::calculate_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a779b5b22e364b2bbe8b7d00fd7c49884" compoundref="da/d5c/engine_8cpp" startline="247" endline="304">Brush::Engine&lt; T &gt;::log_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a8464aa864da59723428f43faed5ff996" compoundref="da/d5c/engine_8cpp" startline="57" endline="144">Brush::Engine&lt; T &gt;::summarize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dd/daf/structBrush_1_1Engine_1_1PopSummary_1a541bdb625a2fdb920688735d522f4766" prot="public" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned Brush::Engine&lt; T &gt;::PopSummary::med_complexity</definition>
+        <argsstring></argsstring>
+        <name>med_complexity</name>
+        <qualifiedname>Brush::Engine::PopSummary::med_complexity</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/engine.h" line="158" column="18" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="158" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" compoundref="da/d5c/engine_8cpp" startline="147" endline="185">Brush::Engine&lt; T &gt;::calculate_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a779b5b22e364b2bbe8b7d00fd7c49884" compoundref="da/d5c/engine_8cpp" startline="247" endline="304">Brush::Engine&lt; T &gt;::log_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a8464aa864da59723428f43faed5ff996" compoundref="da/d5c/engine_8cpp" startline="57" endline="144">Brush::Engine&lt; T &gt;::summarize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dd/daf/structBrush_1_1Engine_1_1PopSummary_1af54dfec8e46c915214b1441cc19fc664" prot="public" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned Brush::Engine&lt; T &gt;::PopSummary::max_size</definition>
+        <argsstring></argsstring>
+        <name>max_size</name>
+        <qualifiedname>Brush::Engine::PopSummary::max_size</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/engine.h" line="159" column="18" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="159" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" compoundref="da/d5c/engine_8cpp" startline="147" endline="185">Brush::Engine&lt; T &gt;::calculate_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a779b5b22e364b2bbe8b7d00fd7c49884" compoundref="da/d5c/engine_8cpp" startline="247" endline="304">Brush::Engine&lt; T &gt;::log_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a8464aa864da59723428f43faed5ff996" compoundref="da/d5c/engine_8cpp" startline="57" endline="144">Brush::Engine&lt; T &gt;::summarize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dd/daf/structBrush_1_1Engine_1_1PopSummary_1af5f49675220ae2786c5ab9e0866feb83" prot="public" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned Brush::Engine&lt; T &gt;::PopSummary::max_complexity</definition>
+        <argsstring></argsstring>
+        <name>max_complexity</name>
+        <qualifiedname>Brush::Engine::PopSummary::max_complexity</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/engine.h" line="160" column="18" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="160" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" compoundref="da/d5c/engine_8cpp" startline="147" endline="185">Brush::Engine&lt; T &gt;::calculate_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a779b5b22e364b2bbe8b7d00fd7c49884" compoundref="da/d5c/engine_8cpp" startline="247" endline="304">Brush::Engine&lt; T &gt;::log_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a8464aa864da59723428f43faed5ff996" compoundref="da/d5c/engine_8cpp" startline="57" endline="144">Brush::Engine&lt; T &gt;::summarize</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>summary statistics of a subset of the population (e.g. an island) </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/brush/brush/src/engine.h" line="151" column="5" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="151" bodyend="161"/>
+    <listofallmembers>
+      <member refid="dd/daf/structBrush_1_1Engine_1_1PopSummary_1a7a191e2a371eb5082fc2d6cb79096c9d" prot="public" virt="non-virtual"><scope>Brush::Engine::PopSummary</scope><name>best_score</name></member>
+      <member refid="dd/daf/structBrush_1_1Engine_1_1PopSummary_1acc9b8f7cc9eb5bb9c5052332d1c7cd02" prot="public" virt="non-virtual"><scope>Brush::Engine::PopSummary</scope><name>best_score_v</name></member>
+      <member refid="dd/daf/structBrush_1_1Engine_1_1PopSummary_1af5f49675220ae2786c5ab9e0866feb83" prot="public" virt="non-virtual"><scope>Brush::Engine::PopSummary</scope><name>max_complexity</name></member>
+      <member refid="dd/daf/structBrush_1_1Engine_1_1PopSummary_1af54dfec8e46c915214b1441cc19fc664" prot="public" virt="non-virtual"><scope>Brush::Engine::PopSummary</scope><name>max_size</name></member>
+      <member refid="dd/daf/structBrush_1_1Engine_1_1PopSummary_1a541bdb625a2fdb920688735d522f4766" prot="public" virt="non-virtual"><scope>Brush::Engine::PopSummary</scope><name>med_complexity</name></member>
+      <member refid="dd/daf/structBrush_1_1Engine_1_1PopSummary_1aad646f91ca2b23c30a39c4dad553f001" prot="public" virt="non-virtual"><scope>Brush::Engine::PopSummary</scope><name>med_score</name></member>
+      <member refid="dd/daf/structBrush_1_1Engine_1_1PopSummary_1ae4e8eff32845bb2d1ccfc015c738ca25" prot="public" virt="non-virtual"><scope>Brush::Engine::PopSummary</scope><name>med_score_v</name></member>
+      <member refid="dd/daf/structBrush_1_1Engine_1_1PopSummary_1a85a60178eff07da552b0531ee4f35d78" prot="public" virt="non-virtual"><scope>Brush::Engine::PopSummary</scope><name>med_size</name></member>
+      <member refid="dd/daf/structBrush_1_1Engine_1_1PopSummary_1a3948dd2c1f6fe68c678aa03aa72cb6d4" prot="public" virt="non-virtual"><scope>Brush::Engine::PopSummary</scope><name>n_individuals</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

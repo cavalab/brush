@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Engine (and parameters) &mdash; Brush 0.1.dev1+g45f17d01e documentation</title>
+  <title>Engine (and parameters) &mdash; Brush 0.1.dev1+g6ff7853b0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=829ed20d"></script>
+      <script src="../_static/documentation_options.js?v=946e8c66"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -199,8 +199,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush6EngineD0Ev"><code class="docutils literal notranslate"><span class="pre">~Engine()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush6Engine14print_progressEf"><code class="docutils literal notranslate"><span class="pre">print_progress()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush6Engine15calculate_statsEv"><code class="docutils literal notranslate"><span class="pre">calculate_stats()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush6Engine11print_statsERNSt8ofstreamEf"><code class="docutils literal notranslate"><span class="pre">print_stats()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush6Engine9log_statsERNSt8ofstreamE"><code class="docutils literal notranslate"><span class="pre">log_stats()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush6Engine11print_statsEf"><code class="docutils literal notranslate"><span class="pre">print_stats()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush6Engine10get_paramsEv"><code class="docutils literal notranslate"><span class="pre">get_params()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush6Engine10set_paramsER10Parameters"><code class="docutils literal notranslate"><span class="pre">set_params()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Brush6Engine16get_search_spaceEv"><code class="docutils literal notranslate"><span class="pre">get_search_space()</span></code></a></li>
@@ -890,13 +889,8 @@
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N5Brush6Engine11print_statsERNSt8ofstreamEf">
-<span id="_CPPv3N5Brush6Engine11print_statsERNSt8ofstreamEf"></span><span id="_CPPv2N5Brush6Engine11print_statsERNSt8ofstreamEf"></span><span id="Brush::Engine::print_stats__std::ofstreamR.float"></span><span class="target" id="d0/d75/classBrush_1_1Engine_1ae246e0130aecd7b1a6680468b0fe9b9b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">print_stats</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ofstream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">log</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fraction</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush6Engine11print_statsERNSt8ofstreamEf" title="Link to this definition"></a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N5Brush6Engine9log_statsERNSt8ofstreamE">
-<span id="_CPPv3N5Brush6Engine9log_statsERNSt8ofstreamE"></span><span id="_CPPv2N5Brush6Engine9log_statsERNSt8ofstreamE"></span><span id="Brush::Engine::log_stats__std::ofstreamR"></span><span class="target" id="d0/d75/classBrush_1_1Engine_1ae099086faca2e6ea54f5e85b380a8da8"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">log_stats</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ofstream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">log</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush6Engine9log_statsERNSt8ofstreamE" title="Link to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush6Engine11print_statsEf">
+<span id="_CPPv3N5Brush6Engine11print_statsEf"></span><span id="_CPPv2N5Brush6Engine11print_statsEf"></span><span id="Brush::Engine::print_stats__float"></span><span class="target" id="d0/d75/classBrush_1_1Engine_1a765ad559318acba8b195e6927e48b430"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">print_stats</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fraction</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush6Engine11print_statsEf" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">

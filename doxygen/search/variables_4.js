@@ -8,9 +8,10 @@ var searchData=
   ['datatypename_5',['DataTypeName',['../dc/d5c/namespaceBrush.html#ab8d6c8427ade77c95f36ac1781279efb',1,'Brush']]],
   ['dcounter_6',['dcounter',['../d6/dd0/structBrush_1_1Fitness.html#a76b3053e09f2fa0f08a5dc4abb1c8daf',1,'Brush::Fitness']]],
   ['depth_7',['depth',['../d6/dd0/structBrush_1_1Fitness.html#ac5ea0f880c248e2426a132d1d151243a',1,'Brush::Fitness']]],
-  ['dominated_8',['dominated',['../d6/dd0/structBrush_1_1Fitness.html#ad66abe65f27bd44fc49975be3c2103cb',1,'Brush::Fitness']]],
-  ['dtable_5ffit_9',['dtable_fit',['../dc/d5c/namespaceBrush.html#ab00cdf5cac845f372ec06d02f7a316b5',1,'Brush']]],
-  ['dtable_5fpredict_10',['dtable_predict',['../dc/d5c/namespaceBrush.html#a175d0497be0c922c453075fed37ecec0',1,'Brush']]],
-  ['dtypes_11',['dtypes',['../d2/df8/structBrush_1_1Util_1_1Normalizer.html#a574c6632238c45c3b505b2c0eab9744e',1,'Brush::Util::Normalizer']]],
-  ['dynamic_5fupdate_12',['dynamic_update',['../db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit.html#a08a370a0d6cd8751f1748544ff47e419',1,'Brush::MAB::ThompsonSamplingBandit']]]
+  ['distance_8',['distance',['../d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord.html#a560b967ebfff93bb529f5616f2a0b37a',1,'Brush::Simpl::SimplificationRecord']]],
+  ['dominated_9',['dominated',['../d6/dd0/structBrush_1_1Fitness.html#ad66abe65f27bd44fc49975be3c2103cb',1,'Brush::Fitness']]],
+  ['dtable_5ffit_10',['dtable_fit',['../dc/d5c/namespaceBrush.html#ab00cdf5cac845f372ec06d02f7a316b5',1,'Brush']]],
+  ['dtable_5fpredict_11',['dtable_predict',['../dc/d5c/namespaceBrush.html#a175d0497be0c922c453075fed37ecec0',1,'Brush']]],
+  ['dtypes_12',['dtypes',['../d2/df8/structBrush_1_1Util_1_1Normalizer.html#a574c6632238c45c3b505b2c0eab9744e',1,'Brush::Util::Normalizer']]],
+  ['dynamic_5fupdate_13',['dynamic_update',['../db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit.html#a08a370a0d6cd8751f1748544ff47e419',1,'Brush::MAB::ThompsonSamplingBandit']]]
 ];

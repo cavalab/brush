@@ -66,20 +66,20 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d1/d3a/structBrush_1_1Node.html#a24ab653c36833ab9cd301efe99b39d5f",
-"d2/d36/classBrush_1_1Data_1_1Dataset.html#a2923e87bfc5d20fc3b45b9f72ca71de2",
-"d4/d01/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesb_01_4.html",
-"d4/dcb/structBrush_1_1DataEnumType_3_01DT_1_1ArrayBJet_01_4.html",
-"d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html",
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a7def716cd7f6c5c071ac8eeb6f3a3dd3",
-"d8/d4a/structBrush_1_1Function_3_01NodeType_1_1Min_01_4.html#a13cd3b4f7131cc1f694337e5c6d027b1",
-"da/da3/classBrush_1_1Pop_1_1Population.html#a415c50b87a36ef476547ca965e4f341d",
-"db/d88/structBrush_1_1Program.html#a8ed721f103dd63c7adfc2934340097b4",
-"dc/d5c/namespaceBrush.html#a58948e8e175aae197197ef454a3a9e13",
-"dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation.html#a1a80c7e972edead47f615d4c216d4af2",
-"de/d87/structSearchSpace.html#af004a91112f5e3994d7c90c8baa71310",
-"de/deb/structBrush_1_1Parameters.html#acaae679131485c3a26d673de03dec296",
-"globals_defs.html"
+"d1/d32/record_8h_source.html",
+"d2/d2d/classBrush_1_1Util_1_1Rnd.html#aaefc1dfb704aa94c17973a8798e81603",
+"d3/da8/structBrush_1_1DispatchTable.html#ab68d8c77b6defc24352bbaac2688b06e",
+"d4/dc3/structBrush_1_1SearchSpace.html#ab23bc4732e733749b8aa1e8c2c2689a2",
+"d6/d2e/namespaceBrush_1_1Util.html#ad88c0170839ba79e41dc5715e77abfc8",
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a198011a9dfb8aeee496e073af6ea536c",
+"d8/d49/structNode.html#a2d4b7a1f21f80ce980f4748432911964",
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#ad88baa386d47e6464c130f0da3858325",
+"db/d88/structBrush_1_1Program.html#a097256d2ed5456aa1ad10233e97c8e6c",
+"dc/d5c/namespaceBrush.html#a1f2bbe4d2e8f978c26e3b50612ac4fcb",
+"dd/d20/classarray_1_1reverse__iterator.html",
+"de/d83/classBrush_1_1Pop_1_1Individual.html#a65ad1b63a3f74fc95d03584f9807efe8",
+"de/deb/structBrush_1_1Parameters.html#a520456c57a2c3f8703036ae0d5142635",
+"dir_c2e0cc19d6853ed6e4afc6dc582757b2.html"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

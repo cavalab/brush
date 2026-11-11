@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['zero_5fone_5floss_0',['zero_one_loss',['../d5/db3/namespaceBrush_1_1Eval.html#a1c8af1d41e4eba5c5472fbc3efa85d05',1,'Brush::Eval']]]
+  ['write_5frow_0',['write_row',['../de/d31/classBrush_1_1Util_1_1CsvWriter.html#a9ffcfa5658c6328f675eb11255629359',1,'Brush::Util::CsvWriter']]]
 ];

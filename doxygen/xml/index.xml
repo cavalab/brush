@@ -84,9 +84,22 @@
   <compound refid="dd/d51/classvector_1_1const__reverse__iterator" kind="class"><name>vector::const_reverse_iterator</name>
   </compound>
   <compound refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier" kind="class"><name>Brush::Simpl::Constants_simplifier</name>
-    <member refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1a1967ec4e50c83b4a7890959d9f6e145f" kind="function"><name>simplify_tree</name></member>
+    <member refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1a2eeedd1039fde5250481fab009ee7123" kind="function"><name>simplify_tree</name></member>
     <member refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1a1d3b09ecfca74270f8b89f751ec839a0" kind="function"><name>Constants_simplifier</name></member>
     <member refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1ad652683352c6e58a84f093a8b34503b9" kind="function"><name>~Constants_simplifier</name></member>
+  </compound>
+  <compound refid="de/d31/classBrush_1_1Util_1_1CsvWriter" kind="class"><name>Brush::Util::CsvWriter</name>
+    <member refid="de/d31/classBrush_1_1Util_1_1CsvWriter_1a738e3d295dab6697640be3437d1600bb" kind="variable"><name>out</name></member>
+    <member refid="de/d31/classBrush_1_1Util_1_1CsvWriter_1a2ed9b9cbab83f1d871be570b68e213de" kind="variable"><name>n_columns</name></member>
+    <member refid="de/d31/classBrush_1_1Util_1_1CsvWriter_1a35c9caf7daf3b467a23cfe30a1702426" kind="function"><name>CsvWriter</name></member>
+    <member refid="de/d31/classBrush_1_1Util_1_1CsvWriter_1ad7a4fada60640740df56cd1c229d4ee8" kind="function"><name>CsvWriter</name></member>
+    <member refid="de/d31/classBrush_1_1Util_1_1CsvWriter_1aed55f9ebf447034a13b2f92adb6633fd" kind="function"><name>open</name></member>
+    <member refid="de/d31/classBrush_1_1Util_1_1CsvWriter_1a69bbacae2a195b879ccc362446427450" kind="function"><name>is_open</name></member>
+    <member refid="de/d31/classBrush_1_1Util_1_1CsvWriter_1a64772301b88e54ac58f1ceb1c1bd7553" kind="function"><name>close</name></member>
+    <member refid="de/d31/classBrush_1_1Util_1_1CsvWriter_1a9ffcfa5658c6328f675eb11255629359" kind="function"><name>write_row</name></member>
+    <member refid="de/d31/classBrush_1_1Util_1_1CsvWriter_1a851813222957702b7970eadcf8b33d72" kind="function"><name>escape</name></member>
+    <member refid="de/d31/classBrush_1_1Util_1_1CsvWriter_1aabf288fb29f9648b7d6f3c7d2afd6dde" kind="function"><name>field</name></member>
+    <member refid="de/d31/classBrush_1_1Util_1_1CsvWriter_1a17d119cf2cca255d4c24645ad3e15148" kind="function"><name>format_row</name></member>
   </compound>
   <compound refid="d8/d17/structBrush_1_1DataEnumType" kind="struct"><name>Brush::DataEnumType</name>
   </compound>
@@ -312,13 +325,16 @@
     <member refid="d0/d75/classBrush_1_1Engine_1a70abc4545878805cd572d110f21d1e7c" kind="variable"><name>survivor</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1a596db23cf521696b72b023bacbf3a737" kind="variable"><name>stats</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1a1c15a1ffc9ffcebee65da12242791b13" kind="variable"><name>timer</name></member>
+    <member refid="d0/d75/classBrush_1_1Engine_1a0947ccb7d88921d50b26c3374242c71a" kind="variable"><name>run_id</name></member>
+    <member refid="d0/d75/classBrush_1_1Engine_1a7d2477a9a4d8f6300454d0a41746325f" kind="variable"><name>log_generations</name></member>
+    <member refid="d0/d75/classBrush_1_1Engine_1a6d632e957d7d29df8fd8fe1fd676a781" kind="variable"><name>log_islands</name></member>
+    <member refid="d0/d75/classBrush_1_1Engine_1a92b3490d762d6f4eecdbba9bb042a232" kind="variable"><name>log_simplifications</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1ab1eff1b88ccdae24b480972bd5b0131d" kind="function"><name>Engine</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1a4fbbbdda545c6dda1a55ef8644c008b8" kind="function"><name>Engine</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1a426bf144e6990e58cb1b1347c4a5795d" kind="function"><name>~Engine</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1a33590e9eed9490be52dc2eedbb5b0feb" kind="function"><name>print_progress</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" kind="function"><name>calculate_stats</name></member>
-    <member refid="d0/d75/classBrush_1_1Engine_1ae246e0130aecd7b1a6680468b0fe9b9b" kind="function"><name>print_stats</name></member>
-    <member refid="d0/d75/classBrush_1_1Engine_1ae099086faca2e6ea54f5e85b380a8da8" kind="function"><name>log_stats</name></member>
+    <member refid="d0/d75/classBrush_1_1Engine_1a765ad559318acba8b195e6927e48b430" kind="function"><name>print_stats</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1a7c02eca29f421b7242a346ceaefd622b" kind="function"><name>get_params</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1a7fdb1ff2afedbde73b8cf91d667f98b6" kind="function"><name>set_params</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1a25c352fff846ce0a5ce45bfe65cab739" kind="function"><name>get_search_space</name></member>
@@ -341,11 +357,16 @@
     <member refid="d0/d75/classBrush_1_1Engine_1a5f0c0926d9aa939e69833211d182e881" kind="function"><name>set_population</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1a99c0766456fae1affc3632e1d051bfea" kind="function"><name>lock_nodes</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" kind="function"><name>run</name></member>
+    <member refid="d0/d75/classBrush_1_1Engine_1a8464aa864da59723428f43faed5ff996" kind="function"><name>summarize</name></member>
+    <member refid="d0/d75/classBrush_1_1Engine_1ab40fa0432f57b3d319db34aad8cec0d0" kind="function"><name>open_logs</name></member>
+    <member refid="d0/d75/classBrush_1_1Engine_1a779b5b22e364b2bbe8b7d00fd7c49884" kind="function"><name>log_stats</name></member>
+    <member refid="d0/d75/classBrush_1_1Engine_1a55af9b8033473647aaf3be7fb4f37062" kind="function"><name>close_logs</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" kind="function"><name>init</name></member>
     <member refid="d0/d75/classBrush_1_1Engine_1a82422a2bb8061934c4be271ee7eef810" kind="function"><name>set_is_fitted</name></member>
   </compound>
   <compound refid="d1/de5/classBrush_1_1Eval_1_1Evaluation" kind="class"><name>Brush::Eval::Evaluation</name>
     <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a8b0cbe86a7f12660f9ff1df7d4ef6835" kind="variable"><name>S</name></member>
+    <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ae11ddc27c1f34159b9fd90428ddab021" kind="variable"><name>n_evaluations</name></member>
     <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a97f33d97eef93cbe4f38168957a7ee7e" kind="function"><name>Evaluation</name></member>
     <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a7a35cc80ebd4d2573151270caacaa03e" kind="function"><name>~Evaluation</name></member>
     <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a87c9ee9700af58b3d96469b6cd50bf1b" kind="function"><name>set_scorer</name></member>
@@ -604,7 +625,7 @@
     <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a88fbcc63b2b89bf016dcd15c1463307f" kind="function"><name>getList</name></member>
     <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a4cc087bda9fd98d2e7fe416e3e3ad4ba" kind="function"><name>clear</name></member>
     <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1ac6052dacde0f387c0a94c4db6a716546" kind="function"><name>keys</name></member>
-    <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1ac57c86930d31872b0add261949855563" kind="function"><name>print</name></member>
+    <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1ae134ea4df5bfbb9b0b9cc9ddb9913c4d" kind="function"><name>print</name></member>
   </compound>
   <compound refid="de/d83/classBrush_1_1Pop_1_1Individual" kind="class"><name>Brush::Pop::Individual</name>
     <member refid="de/d83/classBrush_1_1Pop_1_1Individual_1af8eafd2aab3c3a683d6b3b80a649dfa6" kind="variable"><name>program</name></member>
@@ -651,16 +672,17 @@
     <member refid="de/d83/classBrush_1_1Pop_1_1Individual_1abbf86134203ab8b573dc043a3c10d388" kind="function"><name>set_objectives</name></member>
   </compound>
   <compound refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier" kind="class"><name>Brush::Simpl::Inexact_simplifier</name>
+    <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ab2e4a0ea20595e8c95993b4743628429" kind="variable"><name>simplification_table_header</name></member>
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ae737baf7821d6027feda169330192272" kind="variable"><name>inputDim</name></member>
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ac63ac4ab691f7bedb423a60ead721ec9" kind="variable"><name>equivalentExpressions</name></member>
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a7319339ce256877088504967d3100685" kind="variable"><name>uniformPlanes</name></member>
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1abb9431d42274e6b559249d6b2872d2a2" kind="function"><name>init</name></member>
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a9e6645327d19f04e16025a61faaca021" kind="function"><name>analyze_tree</name></member>
-    <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a8a70383d31da8c7798595f36f2acb2a9" kind="function"><name>simplify_tree</name></member>
+    <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a8f93b8df64e7a56cd45b235426a206f7" kind="function"><name>simplify_tree</name></member>
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a3a6711a4adc8e43324fe675688c8b3cb" kind="function"><name>Inexact_simplifier</name></member>
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a8b53abd24e3b1b8018379befdce0059a" kind="function"><name>~Inexact_simplifier</name></member>
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a7c78cf61e853e40d9729e4b31cb1ca59" kind="function"><name>index</name></member>
-    <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1adcb98569affab47f0a15bac9e99dd4c1" kind="function"><name>log_simplification_table</name></member>
+    <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a010f9ed4245c2703f6b37208e08d1b1c" kind="function"><name>log_simplification_table</name></member>
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a5f837106982ddf27cb2fcd8d492cc677" kind="function"><name>hash</name></member>
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a32dabddbcfac94f89741db0c4fd6ffa3" kind="function"><name>query</name></member>
     <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a1bee6d91769fb8c3bcefaf29e2b4f232" kind="function"><name>dt_to_string</name></member>
@@ -757,7 +779,7 @@
     <member refid="dd/d56/classBrush_1_1Util_1_1Logger_1a192baac90d120fa142fbf385a802f73f" kind="function"><name>destroy</name></member>
     <member refid="dd/d56/classBrush_1_1Util_1_1Logger_1a9e88baaf25e97566fe654a0563253fd8" kind="function"><name>set_log_level</name></member>
     <member refid="dd/d56/classBrush_1_1Util_1_1Logger_1a628245421b92a8888c393de40b817363" kind="function"><name>get_log_level</name></member>
-    <member refid="dd/d56/classBrush_1_1Util_1_1Logger_1ad91c0afb3eba406a0dff9316d3b2b80d" kind="function"><name>log</name></member>
+    <member refid="dd/d56/classBrush_1_1Util_1_1Logger_1a36df6daba1d45b34c970037708124511" kind="function"><name>log</name></member>
   </compound>
   <compound refid="d9/d28/classmap" kind="class"><name>map</name>
     <member refid="d9/d28/classmap_1a8dc2b3ed44acf51fb2bd3eb30b237269" kind="variable"><name>keys</name></member>
@@ -1125,6 +1147,17 @@
   <compound refid="d4/d46/classBrush_1_1Var_1_1PointMutation" kind="class"><name>Brush::Var::PointMutation</name>
     <member refid="d4/d46/classBrush_1_1Var_1_1PointMutation_1abed0c55509e074070bd1068a62a1ca0a" kind="function"><name>mutate</name></member>
   </compound>
+  <compound refid="dd/daf/structBrush_1_1Engine_1_1PopSummary" kind="struct"><name>Brush::Engine::PopSummary</name>
+    <member refid="dd/daf/structBrush_1_1Engine_1_1PopSummary_1a3948dd2c1f6fe68c678aa03aa72cb6d4" kind="variable"><name>n_individuals</name></member>
+    <member refid="dd/daf/structBrush_1_1Engine_1_1PopSummary_1a7a191e2a371eb5082fc2d6cb79096c9d" kind="variable"><name>best_score</name></member>
+    <member refid="dd/daf/structBrush_1_1Engine_1_1PopSummary_1acc9b8f7cc9eb5bb9c5052332d1c7cd02" kind="variable"><name>best_score_v</name></member>
+    <member refid="dd/daf/structBrush_1_1Engine_1_1PopSummary_1aad646f91ca2b23c30a39c4dad553f001" kind="variable"><name>med_score</name></member>
+    <member refid="dd/daf/structBrush_1_1Engine_1_1PopSummary_1ae4e8eff32845bb2d1ccfc015c738ca25" kind="variable"><name>med_score_v</name></member>
+    <member refid="dd/daf/structBrush_1_1Engine_1_1PopSummary_1a85a60178eff07da552b0531ee4f35d78" kind="variable"><name>med_size</name></member>
+    <member refid="dd/daf/structBrush_1_1Engine_1_1PopSummary_1a541bdb625a2fdb920688735d522f4766" kind="variable"><name>med_complexity</name></member>
+    <member refid="dd/daf/structBrush_1_1Engine_1_1PopSummary_1af54dfec8e46c915214b1441cc19fc664" kind="variable"><name>max_size</name></member>
+    <member refid="dd/daf/structBrush_1_1Engine_1_1PopSummary_1af5f49675220ae2786c5ab9e0866feb83" kind="variable"><name>max_complexity</name></member>
+  </compound>
   <compound refid="da/da3/classBrush_1_1Pop_1_1Population" kind="class"><name>Brush::Pop::Population</name>
     <member refid="da/da3/classBrush_1_1Pop_1_1Population_1aada5cceb77f0823c7fdc99d21536146d" kind="variable"><name>pop_size</name></member>
     <member refid="da/da3/classBrush_1_1Pop_1_1Population_1a0a1f364040ce0de2ab17ae82e0faac76" kind="variable"><name>num_islands</name></member>
@@ -1490,6 +1523,15 @@
   <compound refid="dd/d50/structBrush_1_1Signatures_3_01NodeType_1_1SplitOn_01_4" kind="struct"><name>Brush::Signatures&lt; NodeType::SplitOn &gt;</name>
     <member refid="dd/d50/structBrush_1_1Signatures_3_01NodeType_1_1SplitOn_01_4_1a5b068024a27d16dbae7509712d267848" kind="typedef"><name>type</name></member>
   </compound>
+  <compound refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord" kind="struct"><name>Brush::Simpl::SimplificationRecord</name>
+    <member refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1aeaebe570d4edefcf33299f9a89b430e6" kind="variable"><name>generation</name></member>
+    <member refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1a691dc5b0c8a392f96faea96b3b90cc91" kind="variable"><name>individual_id</name></member>
+    <member refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1a4430768d6fd76de8596296c4621b9f86" kind="variable"><name>simplifier</name></member>
+    <member refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1ab81a291a50939322771510ea4d180427" kind="variable"><name>ret_type</name></member>
+    <member refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1adf7c7f74d124437862c15d559a777290" kind="variable"><name>original</name></member>
+    <member refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1aff8d4dd194ffd251af419cc8c5ba274c" kind="variable"><name>replacement</name></member>
+    <member refid="d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord_1a560b967ebfff93bb529f5616f2a0b37a" kind="variable"><name>distance</name></member>
+  </compound>
   <compound refid="d1/d20/structBrush_1_1Sel_1_1NSGA2_1_1sort__n" kind="struct"><name>Brush::Sel::NSGA2::sort_n</name>
     <member refid="d1/d20/structBrush_1_1Sel_1_1NSGA2_1_1sort__n_1a40b03cfa01716d6fb5fbbaafe60e0095" kind="variable"><name>pop</name></member>
     <member refid="d1/d20/structBrush_1_1Sel_1_1NSGA2_1_1sort__n_1ad5506c24a9dc23e4e956a7ca024b622e" kind="function"><name>sort_n</name></member>
@@ -1746,6 +1788,7 @@
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a21485a94fc3b448451983abe5ea6507b" kind="variable"><name>op_bandits</name></member>
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a81a91c3a62473615877e1dcb7a1efda6" kind="variable"><name>constants_simplifier</name></member>
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a52754389aa9f09ae9916376eed681588" kind="variable"><name>inexact_simplifier</name></member>
+    <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1aef3cb07f9593b79b3441cf104d33da17" kind="variable"><name>simplification_records</name></member>
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a3df7d1814f29d5073fccce5a4c59311c" kind="function"><name>Variation</name></member>
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1ab37851161965ba93a7f93668d07075cd" kind="function"><name>Variation</name></member>
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a68dde038b2d0554791ee4a8da2f7e623" kind="function"><name>~Variation</name></member>
@@ -1759,7 +1802,8 @@
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1aee4d051cf57caab64e694bdb70622913" kind="function"><name>bandit_get_node_like</name></member>
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a79a47baeb7d1583415e514a1c04c2b07" kind="function"><name>bandit_sample_op_with_arg</name></member>
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a0abca6376ae18e18765501f36a87136a" kind="function"><name>bandit_sample_op</name></member>
-    <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1ae34d61e9fc35cd9dedcca8ee379eade3" kind="function"><name>log_simplification_table</name></member>
+    <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a5278c88ba4e962848a994787a68ce4a6" kind="function"><name>log_simplification_table</name></member>
+    <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1aab2118da11bb18c19bda7a882ed191df" kind="function"><name>pop_simplification_records</name></member>
   </compound>
   <compound refid="d7/dfc/classvector" kind="class"><name>vector</name>
     <member refid="d7/dfc/classvector_1a2396209900e8f592db1f0b2467f7d899" kind="variable"><name>elements</name></member>
@@ -1947,6 +1991,8 @@
     <member refid="dc/d5c/namespaceBrush_1a7d1315460dd7c6eb76e3ace99d4aad03" kind="function"><name>generate_terminals</name></member>
     <member refid="dc/d5c/namespaceBrush_1a819e6d35661a163c3f40d927766a3213" kind="function"><name>RandomDequeue</name></member>
   </compound>
+  <compound refid="d7/d6a/namespaceBrush_1_1_0d014045254232010354164334074013021350064276044265" kind="namespace"><name>Brush::@014045254232010354164334074013021350064276044265</name>
+  </compound>
   <compound refid="d9/d1c/namespaceBrush_1_1Data" kind="namespace"><name>Brush::Data</name>
     <member refid="d9/d1c/namespaceBrush_1_1Data_1a7e8d2615fe3bb7ef5f2a7cc9c625f985" kind="enum"><name>TimeValues</name></member>
     <member refid="d9/d1c/namespaceBrush_1_1Data_1a7e8d2615fe3bb7ef5f2a7cc9c625f985a7a86c157ee9713c34fbd7a1ee40f0c5a" kind="enumvalue"><name>offset</name></member>
@@ -2010,6 +2056,7 @@
   <compound refid="d9/df6/namespaceBrush_1_1Sel" kind="namespace"><name>Brush::Sel</name>
   </compound>
   <compound refid="df/d29/namespaceBrush_1_1Simpl" kind="namespace"><name>Brush::Simpl</name>
+    <member refid="df/d29/namespaceBrush_1_1Simpl_1a44ca59a351f3f6bfe2dc301cd339a620" kind="typedef"><name>SimplificationRecords</name></member>
   </compound>
   <compound refid="d7/da9/namespaceBrush_1_1Split" kind="namespace"><name>Brush::Split</name>
     <member refid="d7/da9/namespaceBrush_1_1Split_1ae5981aac972763c24e7b668bfca35e96" kind="function"><name>threshold_mask</name></member>
@@ -2373,7 +2420,11 @@
   <compound refid="d1/db6/inexact_8h" kind="file"><name>inexact.h</name>
     <member refid="d1/db6/inexact_8h_1a3f2c9b744330ba4a561ac72f048a1a5f" kind="enum"><name>DataType</name></member>
   </compound>
+  <compound refid="d1/d32/record_8h" kind="file"><name>record.h</name>
+  </compound>
   <compound refid="d9/d49/types_8h" kind="file"><name>types.h</name>
+  </compound>
+  <compound refid="d3/d8e/csv_8h" kind="file"><name>csv.h</name>
   </compound>
   <compound refid="dd/db1/error_8cpp" kind="file"><name>error.cpp</name>
   </compound>

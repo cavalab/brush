@@ -5,5 +5,7 @@ var searchData=
   ['op_5fbandits_2',['op_bandits',['../d5/d14/classBrush_1_1Var_1_1Variation.html#a21485a94fc3b448451983abe5ea6507b',1,'Brush::Var::Variation']]],
   ['op_5fnames_3',['op_names',['../d4/dc3/structBrush_1_1SearchSpace.html#a9d2c04b945cb5b2a7a00fe0a9cdcda13',1,'Brush::SearchSpace::op_names'],['../de/d87/structSearchSpace.html#a9d2c04b945cb5b2a7a00fe0a9cdcda13',1,'SearchSpace::op_names']]],
   ['opcount_4',['OpCount',['../db/d53/structBrush_1_1NodeTypes.html#acf3e2b9f55d6886ee6190d05f3d2bd0b',1,'Brush::NodeTypes']]],
-  ['operator_5fcomplexities_5',['operator_complexities',['../dd/d06/tree__node_8cpp.html#a0c8375d4426d87075c4631d960ec4887',1,'tree_node.cpp']]]
+  ['operator_5fcomplexities_5',['operator_complexities',['../dd/d06/tree__node_8cpp.html#a0c8375d4426d87075c4631d960ec4887',1,'tree_node.cpp']]],
+  ['original_6',['original',['../d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord.html#adf7c7f74d124437862c15d559a777290',1,'Brush::Simpl::SimplificationRecord']]],
+  ['out_7',['out',['../de/d31/classBrush_1_1Util_1_1CsvWriter.html#a738e3d295dab6697640be3437d1600bb',1,'Brush::Util::CsvWriter']]]
 ];

@@ -33,9 +33,10 @@ var searchData=
   ['signatures_3c_20nodetype_3a_3anot_20_3e_30',['Signatures&lt; NodeType::Not &gt;',['../d3/d91/structBrush_1_1Signatures_3_01NodeType_1_1Not_01_4.html',1,'Brush']]],
   ['signatures_3c_20nodetype_3a_3asoftmax_20_3e_31',['Signatures&lt; NodeType::Softmax &gt;',['../db/d1c/structBrush_1_1Signatures_3_01NodeType_1_1Softmax_01_4.html',1,'Brush']]],
   ['signatures_3c_20nodetype_3a_3aspliton_20_3e_32',['Signatures&lt; NodeType::SplitOn &gt;',['../dd/d50/structBrush_1_1Signatures_3_01NodeType_1_1SplitOn_01_4.html',1,'Brush']]],
-  ['sort_5fn_33',['sort_n',['../d1/d20/structBrush_1_1Sel_1_1NSGA2_1_1sort__n.html',1,'Brush::Sel::NSGA2']]],
-  ['sortcomplexity_34',['SortComplexity',['../d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity.html',1,'Brush::Pop::Population']]],
-  ['sortlinearcomplexity_35',['SortLinearComplexity',['../d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity.html',1,'Brush::Pop::Population']]],
-  ['string_36',['string',['../d5/d92/classstring.html',1,'']]],
-  ['subtreemutation_37',['SubtreeMutation',['../de/d23/classBrush_1_1Var_1_1SubtreeMutation.html',1,'Brush::Var']]]
+  ['simplificationrecord_33',['SimplificationRecord',['../d2/d2f/structBrush_1_1Simpl_1_1SimplificationRecord.html',1,'Brush::Simpl']]],
+  ['sort_5fn_34',['sort_n',['../d1/d20/structBrush_1_1Sel_1_1NSGA2_1_1sort__n.html',1,'Brush::Sel::NSGA2']]],
+  ['sortcomplexity_35',['SortComplexity',['../d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity.html',1,'Brush::Pop::Population']]],
+  ['sortlinearcomplexity_36',['SortLinearComplexity',['../d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity.html',1,'Brush::Pop::Population']]],
+  ['string_37',['string',['../d5/d92/classstring.html',1,'']]],
+  ['subtreemutation_38',['SubtreeMutation',['../de/d23/classBrush_1_1Var_1_1SubtreeMutation.html',1,'Brush::Var']]]
 ];

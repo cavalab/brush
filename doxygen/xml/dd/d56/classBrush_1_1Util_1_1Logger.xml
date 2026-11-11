@@ -10,8 +10,9 @@
         <argsstring></argsstring>
         <name>verbosity</name>
         <qualifiedname>Brush::Util::Logger::verbosity</qualifiedname>
+        <initializer>= 0</initializer>
         <briefdescription>
-<para>The current log level. </para>
+<para>The current log level (matches <ref refid="de/deb/structBrush_1_1Parameters_1aa3266a1e88b1d869a94ab3b21152beda" kindref="member">Parameters::verbosity</ref> default). </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -19,7 +20,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/logger.h" line="56" column="9" bodyfile="/home/runner/work/brush/brush/src/util/logger.h" bodystart="56" bodyend="-1"/>
         <referencedby refid="dd/d56/classBrush_1_1Util_1_1Logger_1a628245421b92a8888c393de40b817363" compoundref="d3/d30/logger_8cpp" startline="44" endline="47">get_log_level</referencedby>
-        <referencedby refid="dd/d56/classBrush_1_1Util_1_1Logger_1ad91c0afb3eba406a0dff9316d3b2b80d" compoundref="d3/d30/logger_8cpp" startline="50" endline="61">log</referencedby>
+        <referencedby refid="dd/d56/classBrush_1_1Util_1_1Logger_1a36df6daba1d45b34c970037708124511" compoundref="d3/d30/logger_8cpp" startline="50" endline="61">log</referencedby>
         <referencedby refid="dd/d56/classBrush_1_1Util_1_1Logger_1a9e88baaf25e97566fe654a0563253fd8" compoundref="d3/d30/logger_8cpp" startline="31" endline="42">set_log_level</referencedby>
       </memberdef>
     </sectiondef>
@@ -132,14 +133,14 @@
         <location file="/home/runner/work/brush/brush/src/util/logger.h" line="44" column="9" bodyfile="/home/runner/work/brush/brush/src/util/logger.cpp" bodystart="44" bodyend="47"/>
         <references refid="dd/d56/classBrush_1_1Util_1_1Logger_1acfdc6d8167ea179d97c91512122e4873" compoundref="d1/d8c/logger_8h" startline="56">verbosity</references>
       </memberdef>
-      <memberdef kind="function" id="dd/d56/classBrush_1_1Util_1_1Logger_1ad91c0afb3eba406a0dff9316d3b2b80d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
+      <memberdef kind="function" id="dd/d56/classBrush_1_1Util_1_1Logger_1a36df6daba1d45b34c970037708124511" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
         <definition>string Brush::Util::Logger::log</definition>
-        <argsstring>(string m, int v, string sep=&quot;\n&quot;) const</argsstring>
+        <argsstring>(std::string m, int v, std::string sep=&quot;\n&quot;) const</argsstring>
         <name>log</name>
         <qualifiedname>Brush::Util::Logger::log</qualifiedname>
         <param>
-          <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
+          <type>std::string</type>
           <declname>m</declname>
         </param>
         <param>
@@ -147,7 +148,7 @@
           <declname>v</declname>
         </param>
         <param>
-          <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
+          <type>std::string</type>
           <declname>sep</declname>
           <defval>&quot;\n&quot;</defval>
         </param>
@@ -187,7 +188,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/util/logger.h" line="53" column="12" bodyfile="/home/runner/work/brush/brush/src/util/logger.cpp" bodystart="50" bodyend="61"/>
+        <location file="/home/runner/work/brush/brush/src/util/logger.h" line="53" column="17" bodyfile="/home/runner/work/brush/brush/src/util/logger.cpp" bodystart="50" bodyend="61"/>
         <references refid="dd/d56/classBrush_1_1Util_1_1Logger_1acfdc6d8167ea179d97c91512122e4873" compoundref="d1/d8c/logger_8h" startline="56">verbosity</references>
       </memberdef>
     </sectiondef>
@@ -211,7 +212,7 @@
       <member refid="dd/d56/classBrush_1_1Util_1_1Logger_1a628245421b92a8888c393de40b817363" prot="public" virt="non-virtual"><scope>Brush::Util::Logger</scope><name>get_log_level</name></member>
       <member refid="dd/d56/classBrush_1_1Util_1_1Logger_1ab4dd486a1ab7322f72b4ccca66d61096" prot="public" virt="non-virtual"><scope>Brush::Util::Logger</scope><name>initLogger</name></member>
       <member refid="dd/d56/classBrush_1_1Util_1_1Logger_1a66e978372533d5960afe73a702382cf0" prot="private" virt="non-virtual"><scope>Brush::Util::Logger</scope><name>instance</name></member>
-      <member refid="dd/d56/classBrush_1_1Util_1_1Logger_1ad91c0afb3eba406a0dff9316d3b2b80d" prot="public" virt="non-virtual"><scope>Brush::Util::Logger</scope><name>log</name></member>
+      <member refid="dd/d56/classBrush_1_1Util_1_1Logger_1a36df6daba1d45b34c970037708124511" prot="public" virt="non-virtual"><scope>Brush::Util::Logger</scope><name>log</name></member>
       <member refid="dd/d56/classBrush_1_1Util_1_1Logger_1a9e88baaf25e97566fe654a0563253fd8" prot="public" virt="non-virtual"><scope>Brush::Util::Logger</scope><name>set_log_level</name></member>
       <member refid="dd/d56/classBrush_1_1Util_1_1Logger_1acfdc6d8167ea179d97c91512122e4873" prot="private" virt="non-virtual"><scope>Brush::Util::Logger</scope><name>verbosity</name></member>
     </listofallmembers>

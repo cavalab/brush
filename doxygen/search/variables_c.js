@@ -4,8 +4,11 @@ var searchData=
   ['lexicase_5fpool_1',['lexicase_pool',['../d2/dd0/classBrush_1_1Sel_1_1Lexicase.html#afc232349270b95ae1c8a33ec92109435',1,'Brush::Sel::Lexicase']]],
   ['linear_5fcomplexity_2',['linear_complexity',['../d6/dd0/structBrush_1_1Fitness.html#a73c060c3062cc51f0c6444d58d76de7a',1,'Brush::Fitness::linear_complexity'],['../d1/d30/structBrush_1_1Pop_1_1Archive.html#aeee2d8283bccc50026b654e0bff4b388',1,'Brush::Pop::Archive::linear_complexity'],['../da/da3/classBrush_1_1Pop_1_1Population.html#a37b76e13ed8e9d39dbec875b3e50d7c7',1,'Brush::Pop::Population::linear_complexity']]],
   ['load_5fpopulation_3',['load_population',['../de/deb/structBrush_1_1Parameters.html#ad1a131cf61b76ff1ab4b576f5fd1df9b',1,'Brush::Parameters']]],
-  ['logfile_4',['logfile',['../de/deb/structBrush_1_1Parameters.html#ab800a9c06c4bbfd47f031659ff7bb7b8',1,'Brush::Parameters']]],
-  ['logger_5',['logger',['../d6/d2e/namespaceBrush_1_1Util.html#aa6d49e22e6193fabd31fde261f607560',1,'Brush::Util']]],
-  ['loss_6',['loss',['../d6/dd0/structBrush_1_1Fitness.html#a30e994e0b4aa0a8febfe7d7a09529f04',1,'Brush::Fitness']]],
-  ['loss_5fv_7',['loss_v',['../d6/dd0/structBrush_1_1Fitness.html#aa8cd674fad6f65c344f008c3e2442491',1,'Brush::Fitness']]]
+  ['log_5fgenerations_4',['log_generations',['../d0/d75/classBrush_1_1Engine.html#a7d2477a9a4d8f6300454d0a41746325f',1,'Brush::Engine']]],
+  ['log_5fislands_5',['log_islands',['../d0/d75/classBrush_1_1Engine.html#a6d632e957d7d29df8fd8fe1fd676a781',1,'Brush::Engine']]],
+  ['log_5fsimplifications_6',['log_simplifications',['../d0/d75/classBrush_1_1Engine.html#a92b3490d762d6f4eecdbba9bb042a232',1,'Brush::Engine']]],
+  ['logfile_7',['logfile',['../de/deb/structBrush_1_1Parameters.html#ab800a9c06c4bbfd47f031659ff7bb7b8',1,'Brush::Parameters']]],
+  ['logger_8',['logger',['../d6/d2e/namespaceBrush_1_1Util.html#aa6d49e22e6193fabd31fde261f607560',1,'Brush::Util']]],
+  ['loss_9',['loss',['../d6/dd0/structBrush_1_1Fitness.html#a30e994e0b4aa0a8febfe7d7a09529f04',1,'Brush::Fitness']]],
+  ['loss_5fv_10',['loss_v',['../d6/dd0/structBrush_1_1Fitness.html#aa8cd674fad6f65c344f008c3e2442491',1,'Brush::Fitness']]]
 ];

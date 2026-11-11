@@ -6,5 +6,6 @@ var classBrush_1_1Eval_1_1Evaluation =
     [ "get_scorer", "d1/de5/classBrush_1_1Eval_1_1Evaluation.html#ab85a890810fbb2f047ddd689aea80ed9", null ],
     [ "set_scorer", "d1/de5/classBrush_1_1Eval_1_1Evaluation.html#a87c9ee9700af58b3d96469b6cd50bf1b", null ],
     [ "update_fitness", "d1/de5/classBrush_1_1Eval_1_1Evaluation.html#a6ca34005b1a4ab87038a4c391e77d786", null ],
+    [ "n_evaluations", "d1/de5/classBrush_1_1Eval_1_1Evaluation.html#ae11ddc27c1f34159b9fd90428ddab021", null ],
     [ "S", "d1/de5/classBrush_1_1Eval_1_1Evaluation.html#a8b0cbe86a7f12660f9ff1df7d4ef6835", null ]
 ];
