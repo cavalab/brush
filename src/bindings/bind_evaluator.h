@@ -14,7 +14,13 @@ void bind_evaluator(py::module& m, string name)
     // TODO: will this part of c++ be exposed?
     py::class_<Class> eval(m, name.data() ); 
     eval.def(py::init<>())    
-        .def("assign_fit", &Class::assign_fit)
+        // Keep the original four-argument Python API. The optional dataset is
+        // used internally by batched Engine runs to score a fixed validation
+        // partition and is not required by the DEAP interface.
+        .def("assign_fit", &Class::assign_fit,
+             py::arg("individual"), py::arg("data"), py::arg("params"),
+             py::arg("validation") = false,
+             py::arg("validation_data") = nullptr)
         .def_property("scorer", &Class::get_scorer, &Class::set_scorer)
         ;
 }

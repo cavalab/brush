@@ -84,11 +84,16 @@ public:
     };
     Engine<T> &fit(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)
     {
+        // The dataset constructor may shuffle its validation split. Seed before
+        // constructing it so the native X/y entry point is reproducible too.
+        r.set_seed(params.get_random_state());
+
         // Using constructor 2 to create the dataset
         Dataset d(X,y,params.feature_names,{},params.feature_types,
                 params.classification,params.validation_size,
                 params.batch_size, params.shuffle_split);
-        return fit(d);
+
+                return fit(d);
     };
 
     auto predict(const Dataset& data) { return this->best_ind.predict(data); };
