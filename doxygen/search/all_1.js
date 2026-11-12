@@ -53,7 +53,7 @@ var searchData=
   ['arrayxxijet_50',['ArrayXXiJet',['../dc/d5c/namespaceBrush.html#af5c48ba01828e9da34a2a539dd2e8a14',1,'Brush']]],
   ['asin_51',['Asin',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a76cfc54de4e2b9cde17334c821217d11',1,'Brush']]],
   ['asin_52',['asin',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a94655fb93885f74e588075d592901981',1,'Brush::Data::TimeSeries::asin()'],['../d0/d8e/structTimeSeries.html#a94655fb93885f74e588075d592901981',1,'TimeSeries::asin()']]],
-  ['assign_5ffit_53',['assign_fit',['../d1/de5/classBrush_1_1Eval_1_1Evaluation.html#ac7562624d114b22b19720729d599a40a',1,'Brush::Eval::Evaluation']]],
+  ['assign_5ffit_53',['assign_fit',['../d1/de5/classBrush_1_1Eval_1_1Evaluation.html#a9816a8fbe2adc4218d3e60b88c30e17f',1,'Brush::Eval::Evaluation']]],
   ['associativebinaryop_54',['AssociativeBinaryOp',['../de/d26/nodetype_8h.html#ae09c2c47bcd6dad5a050d1aae1638af2',1,'nodetype.h']]],
   ['atan_55',['Atan',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8ac9968ab1fa8103acbb3a4f22265f2def',1,'Brush']]],
   ['atan_56',['atan',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aee09528bdc649c092bdc0f93313965d8',1,'Brush::Data::TimeSeries::atan()'],['../d0/d8e/structTimeSeries.html#aee09528bdc649c092bdc0f93313965d8',1,'TimeSeries::atan()']]],

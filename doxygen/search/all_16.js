@@ -13,7 +13,7 @@ var searchData=
   ['variation_2eh_10',['variation.h',['../d4/d1f/variation_8h.html',1,'']]],
   ['variation_5fbandit_11',['variation_bandit',['../d5/d14/classBrush_1_1Var_1_1Variation.html#a5a134c3d6b952ac01254d396f9dd2726',1,'Brush::Var::Variation']]],
   ['vary_12',['vary',['../d5/d14/classBrush_1_1Var_1_1Variation.html#a344233ce053ca4b267539182fecbbc91',1,'Brush::Var::Variation']]],
-  ['vary_5fand_5fupdate_13',['vary_and_update',['../d5/d14/classBrush_1_1Var_1_1Variation.html#a2efd0b4d27f160c92d528d7623669975',1,'Brush::Var::Variation']]],
+  ['vary_5fand_5fupdate_13',['vary_and_update',['../d5/d14/classBrush_1_1Var_1_1Variation.html#aa92b9a932da6fbd3b019ab00551a806f',1,'Brush::Var::Variation']]],
   ['vector_14',['vector',['../d7/dfc/classvector.html',1,'']]],
   ['vectortotuple_15',['vectorToTuple',['../d6/d2e/namespaceBrush_1_1Util.html#a7a0a0b4f0cab1c690fc54ea9126e6814',1,'Brush::Util']]],
   ['vectortotuplehelper_16',['vectorToTupleHelper',['../d6/d2e/namespaceBrush_1_1Util.html#a75d33dae3c8a1a36b1ef5f889d815d6e',1,'Brush::Util']]],

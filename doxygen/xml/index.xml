@@ -151,6 +151,10 @@
   <compound refid="d2/d36/classBrush_1_1Data_1_1Dataset" kind="class"><name>Brush::Data::Dataset</name>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a4112a2cb86ce4138c3c4bea966c96b65" kind="variable"><name>training_data_idx</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ab8f3010fa3099efe3aac8fcd3140faf6" kind="variable"><name>validation_data_idx</name></member>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ac9ddc2fde1a1e6a16ae28cb743c71923" kind="variable"><name>batch_cycle_idx</name></member>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aeecd5f654d8e3cdd3db0a4052171e09f" kind="variable"><name>batch_cycle_sizes</name></member>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afd6922bed58b07c8f18c56c44f5889f5" kind="variable"><name>batch_cycle_cursor</name></member>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a3a627573e3e5cc6acb479e2563b6433f" kind="variable"><name>batch_cycle_batch_cursor</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1c3dbde303375f3ad0586ad855bcd1bf" kind="variable"><name>feature_name_order_</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a96fc30b35f152f425377e1ae34398779" kind="variable"><name>unique_data_types</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a52d591cce797480e80f8cf1f1482702e" kind="variable"><name>feature_types</name></member>
@@ -190,6 +194,10 @@
   <compound refid="d7/da5/classDataset" kind="class"><name>Dataset</name>
     <member refid="d7/da5/classDataset_1a4112a2cb86ce4138c3c4bea966c96b65" kind="variable"><name>training_data_idx</name></member>
     <member refid="d7/da5/classDataset_1ab8f3010fa3099efe3aac8fcd3140faf6" kind="variable"><name>validation_data_idx</name></member>
+    <member refid="d7/da5/classDataset_1ac9ddc2fde1a1e6a16ae28cb743c71923" kind="variable"><name>batch_cycle_idx</name></member>
+    <member refid="d7/da5/classDataset_1aeecd5f654d8e3cdd3db0a4052171e09f" kind="variable"><name>batch_cycle_sizes</name></member>
+    <member refid="d7/da5/classDataset_1afd6922bed58b07c8f18c56c44f5889f5" kind="variable"><name>batch_cycle_cursor</name></member>
+    <member refid="d7/da5/classDataset_1a3a627573e3e5cc6acb479e2563b6433f" kind="variable"><name>batch_cycle_batch_cursor</name></member>
     <member refid="d7/da5/classDataset_1a1c3dbde303375f3ad0586ad855bcd1bf" kind="variable"><name>feature_name_order_</name></member>
     <member refid="d7/da5/classDataset_1a96fc30b35f152f425377e1ae34398779" kind="variable"><name>unique_data_types</name></member>
     <member refid="d7/da5/classDataset_1a52d591cce797480e80f8cf1f1482702e" kind="variable"><name>feature_types</name></member>
@@ -371,8 +379,8 @@
     <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a7a35cc80ebd4d2573151270caacaa03e" kind="function"><name>~Evaluation</name></member>
     <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a87c9ee9700af58b3d96469b6cd50bf1b" kind="function"><name>set_scorer</name></member>
     <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ab85a890810fbb2f047ddd689aea80ed9" kind="function"><name>get_scorer</name></member>
-    <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a6ca34005b1a4ab87038a4c391e77d786" kind="function"><name>update_fitness</name></member>
-    <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" kind="function"><name>assign_fit</name></member>
+    <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac8cce5d31a24abe88e7a6d81d73fbdaa" kind="function"><name>update_fitness</name></member>
+    <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a9816a8fbe2adc4218d3e60b88c30e17f" kind="function"><name>assign_fit</name></member>
   </compound>
   <compound refid="d6/dd0/structBrush_1_1Fitness" kind="struct"><name>Brush::Fitness</name>
     <member refid="d6/dd0/structBrush_1_1Fitness_1a30e994e0b4aa0a8febfe7d7a09529f04" kind="variable"><name>loss</name></member>
@@ -1797,7 +1805,7 @@
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1af8a04b3abeea0f0f9e5b6e358aa65c09" kind="function"><name>mutate</name></member>
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" kind="function"><name>vary</name></member>
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1ac3440610a9989704a29120584ab8e123" kind="function"><name>update_ss</name></member>
-    <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" kind="function"><name>vary_and_update</name></member>
+    <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1aa92b9a932da6fbd3b019ab00551a806f" kind="function"><name>vary_and_update</name></member>
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1ad72e239059728afbec698af129abec25" kind="function"><name>bandit_sample_terminal</name></member>
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1aee4d051cf57caab64e694bdb70622913" kind="function"><name>bandit_get_node_like</name></member>
     <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a79a47baeb7d1583415e514a1c04c2b07" kind="function"><name>bandit_sample_op_with_arg</name></member>

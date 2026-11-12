@@ -15,7 +15,7 @@ var searchData=
   ['args_5ftype_12',['args_type',['../d1/d3a/structBrush_1_1Node.html#a9ec6ba08b0baebc0cd105e4ef774b7fb',1,'Brush::Node::args_type()'],['../d8/d49/structNode.html#a9ec6ba08b0baebc0cd105e4ef774b7fb',1,'Node::args_type()']]],
   ['argsort_13',['argsort',['../d6/d2e/namespaceBrush_1_1Util.html#a3a18a9ccd426286d474e8507adee1025',1,'Brush::Util']]],
   ['asin_14',['asin',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a94655fb93885f74e588075d592901981',1,'Brush::Data::TimeSeries::asin()'],['../d0/d8e/structTimeSeries.html#a94655fb93885f74e588075d592901981',1,'TimeSeries::asin()']]],
-  ['assign_5ffit_15',['assign_fit',['../d1/de5/classBrush_1_1Eval_1_1Evaluation.html#ac7562624d114b22b19720729d599a40a',1,'Brush::Eval::Evaluation']]],
+  ['assign_5ffit_15',['assign_fit',['../d1/de5/classBrush_1_1Eval_1_1Evaluation.html#a9816a8fbe2adc4218d3e60b88c30e17f',1,'Brush::Eval::Evaluation']]],
   ['atan_16',['atan',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aee09528bdc649c092bdc0f93313965d8',1,'Brush::Data::TimeSeries::atan()'],['../d0/d8e/structTimeSeries.html#aee09528bdc649c092bdc0f93313965d8',1,'TimeSeries::atan()']]],
   ['autodiff_17',['Autodiff',['../d5/d8a/namespaceBrush_1_1detail.html#a947dcae654755bd0bb2afa43b5507a84',1,'Brush::detail']]],
   ['average_5fprecision_5fscore_18',['average_precision_score',['../d5/db3/namespaceBrush_1_1Eval.html#a473e918fd1efdc6d5f91c65cd8ce3db4',1,'Brush::Eval']]]

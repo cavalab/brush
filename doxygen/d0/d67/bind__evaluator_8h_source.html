@@ -130,10 +130,16 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('d0/d67/bind__e
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="comment">// TODO: will this part of c++ be exposed?</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    py::class_&lt;Class&gt; eval(m, name.data() ); </div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    eval.def(py::init&lt;&gt;())    </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        .def(<span class="stringliteral">&quot;assign_fit&quot;</span>, &amp;Class::assign_fit)</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        .def_property(<span class="stringliteral">&quot;scorer&quot;</span>, &amp;Class::get_scorer, &amp;Class::set_scorer)</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        ;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>}</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <span class="comment">// Keep the original four-argument Python API. The optional dataset is</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="comment">// used internally by batched Engine runs to score a fixed validation</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="comment">// partition and is not required by the DEAP interface.</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        .def(<span class="stringliteral">&quot;assign_fit&quot;</span>, &amp;Class::assign_fit,</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>             py::arg(<span class="stringliteral">&quot;individual&quot;</span>), py::arg(<span class="stringliteral">&quot;data&quot;</span>), py::arg(<span class="stringliteral">&quot;params&quot;</span>),</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>             py::arg(<span class="stringliteral">&quot;validation&quot;</span>) = <span class="keyword">false</span>,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>             py::arg(<span class="stringliteral">&quot;validation_data&quot;</span>) = <span class="keyword">nullptr</span>)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        .def_property(<span class="stringliteral">&quot;scorer&quot;</span>, &amp;Class::get_scorer, &amp;Class::set_scorer)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        ;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>}</div>
 </div>
 <div class="ttc" id="abind__engines_8h_html_ae2f679a1605bd79ee7983e55e31d6d2e"><div class="ttname"><a href="../../d4/d93/bind__engines_8h.html#ae2f679a1605bd79ee7983e55e31d6d2e">stream_redirect</a></div><div class="ttdeci">py::call_guard&lt; py::scoped_ostream_redirect, py::scoped_estream_redirect &gt; stream_redirect</div><div class="ttdef"><b>Definition</b> <a href="../../d4/d93/bind__engines_8h_source.html#l00031">bind_engines.h:31</a></div></div>
 <div class="ttc" id="abind__evaluator_8h_html_a4a078fc3865f8ccc54a84f4a75c4fceb"><div class="ttname"><a href="../../d0/d67/bind__evaluator_8h.html#a4a078fc3865f8ccc54a84f4a75c4fceb">bind_evaluator</a></div><div class="ttdeci">void bind_evaluator(py::module &amp;m, string name)</div><div class="ttdef"><b>Definition</b> <a href="#l00011">bind_evaluator.h:11</a></div></div>

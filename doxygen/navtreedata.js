@@ -68,18 +68,18 @@ var NAVTREEINDEX =
 "annotated.html",
 "d1/d32/record_8h_source.html",
 "d2/d2d/classBrush_1_1Util_1_1Rnd.html#aaefc1dfb704aa94c17973a8798e81603",
-"d3/da8/structBrush_1_1DispatchTable.html#ab68d8c77b6defc24352bbaac2688b06e",
-"d4/dc3/structBrush_1_1SearchSpace.html#ab23bc4732e733749b8aa1e8c2c2689a2",
-"d6/d2e/namespaceBrush_1_1Util.html#ad88c0170839ba79e41dc5715e77abfc8",
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a198011a9dfb8aeee496e073af6ea536c",
-"d8/d49/structNode.html#a2d4b7a1f21f80ce980f4748432911964",
-"da/d4c/classBrush_1_1Eval_1_1Scorer.html#ad88baa386d47e6464c130f0da3858325",
-"db/d88/structBrush_1_1Program.html#a097256d2ed5456aa1ad10233e97c8e6c",
-"dc/d5c/namespaceBrush.html#a1f2bbe4d2e8f978c26e3b50612ac4fcb",
-"dd/d20/classarray_1_1reverse__iterator.html",
-"de/d83/classBrush_1_1Pop_1_1Individual.html#a65ad1b63a3f74fc95d03584f9807efe8",
-"de/deb/structBrush_1_1Parameters.html#a520456c57a2c3f8703036ae0d5142635",
-"dir_c2e0cc19d6853ed6e4afc6dc582757b2.html"
+"d3/da8/structBrush_1_1DispatchTable.html#a7f205306356c4feb6cb2fdc9509db02e",
+"d4/dc3/structBrush_1_1SearchSpace.html#aa0d0eb72a9afd0fb54c414b66ad822ff",
+"d6/d2e/namespaceBrush_1_1Util.html#aa1982ec999d497f97eed7572863a58fa",
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a0713bbad886421937e47f11c79c1c03b",
+"d8/d3c/structnlohmann_1_1adl__serializer_3_01std_1_1shared__ptr_3_01T_01_4_01_4.html#a92685b9751ed834e511152e058816f29",
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#a074ffe387edb4090061c5aa0402ebb1d",
+"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ad6978c4386468c44dd252345c11ca126",
+"dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8affca562be079b9e4e41ea9d6a86c582b",
+"dd/d0f/structBrush_1_1Sel_1_1Selection.html#a717879ee6286397a025fe67b947283d2",
+"de/d83/classBrush_1_1Pop_1_1Individual.html#a4c8b9afd9297b200b8b0527353569297",
+"de/deb/structBrush_1_1Parameters.html#a49392abcea1d48447c024a23137fd788",
+"df/dde/classBrush_1_1MAB_1_1BanditOperator.html#afe6a2789a3e73970c443b7a05b05c6fa"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

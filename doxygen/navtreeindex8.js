@@ -1,5 +1,17 @@
 var NAVTREEINDEX8 =
 {
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#a074ffe387edb4090061c5aa0402ebb1d":[0,0,0,2,1,3],
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#a074ffe387edb4090061c5aa0402ebb1d":[2,0,0,1,1,3],
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#a29a78f6ded6e276708939f562e3b1153":[0,0,0,2,1,6],
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#a29a78f6ded6e276708939f562e3b1153":[2,0,0,1,1,6],
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#a2a49f288d77605b5f1d961f4bcf16314":[0,0,0,2,1,0],
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#a2a49f288d77605b5f1d961f4bcf16314":[2,0,0,1,1,0],
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#a3797d5ee458a9b91b165b53a8e53cbf6":[0,0,0,2,1,5],
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#a3797d5ee458a9b91b165b53a8e53cbf6":[2,0,0,1,1,5],
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#a559ded60a629200a78286da1f1843c97":[0,0,0,2,1,1],
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#a559ded60a629200a78286da1f1843c97":[2,0,0,1,1,1],
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#a9c85e27fd1be5f7bab4431332c30bae6":[0,0,0,2,1,8],
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#a9c85e27fd1be5f7bab4431332c30bae6":[2,0,0,1,1,8],
 "da/d4c/classBrush_1_1Eval_1_1Scorer.html#ad88baa386d47e6464c130f0da3858325":[0,0,0,2,1,2],
 "da/d4c/classBrush_1_1Eval_1_1Scorer.html#ad88baa386d47e6464c130f0da3858325":[2,0,0,1,1,2],
 "da/d4c/classBrush_1_1Eval_1_1Scorer.html#ae0f2e1477d465c8a5f4db4e0c8554865":[0,0,0,2,1,7],
@@ -237,17 +249,5 @@ var NAVTREEINDEX8 =
 "db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ac23e8ca79f408dfc07c4f86a8e89a9ca":[2,0,0,6,1,8],
 "db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ad14397a3403cfe63bfac32beea700c7a":[0,0,0,8,1,3],
 "db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ad14397a3403cfe63bfac32beea700c7a":[2,0,0,6,1,3],
-"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ad6978c4386468c44dd252345c11ca126":[0,0,0,8,1,7],
-"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ad6978c4386468c44dd252345c11ca126":[2,0,0,6,1,7],
-"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#add898f2c47859b9c759a1cab4cda136c":[0,0,0,8,1,2],
-"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#add898f2c47859b9c759a1cab4cda136c":[2,0,0,6,1,2],
-"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ae664f5f7dec3314e1a7cc6bce660eac4":[0,0,0,8,1,11],
-"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ae664f5f7dec3314e1a7cc6bce660eac4":[2,0,0,6,1,11],
-"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#aebdb57a7b38f632b9855ede6c86eb948":[0,0,0,8,1,4],
-"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#aebdb57a7b38f632b9855ede6c86eb948":[2,0,0,6,1,4],
-"db/d88/structBrush_1_1Program.html":[0,0,0,121],
-"db/d88/structBrush_1_1Program.html":[2,0,0,118],
-"db/d88/structBrush_1_1Program.html#a00356ac7bbc5c1d8f70bc8d90f41d4ac":[0,0,0,121,3],
-"db/d88/structBrush_1_1Program.html#a00356ac7bbc5c1d8f70bc8d90f41d4ac":[2,0,0,118,3],
-"db/d88/structBrush_1_1Program.html#a097256d2ed5456aa1ad10233e97c8e6c":[0,0,0,121,1]
+"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ad6978c4386468c44dd252345c11ca126":[0,0,0,8,1,7]
 };

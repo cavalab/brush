@@ -31,9 +31,9 @@
         <referencedby refid="d0/d75/classBrush_1_1Engine_1a5f0c0926d9aa939e69833211d182e881" compoundref="da/d5c/engine_8cpp" startline="440" endline="455">Brush::Engine&lt; T &gt;::set_population</referencedby>
         <referencedby refid="d0/d75/classBrush_1_1Engine_1ae8b79f5ffa6323af3e7287c0a6005bec" compoundref="da/d5c/engine_8cpp" startline="414" endline="437">Brush::Engine&lt; T &gt;::set_population_from_json</referencedby>
         <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1af4f50fb2e3fbad69b68d16d4d03d7c32" compoundref="d5/d1f/individual_8h" startline="202" endline="214">Brush::Pop::to_json</referencedby>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a6ca34005b1a4ab87038a4c391e77d786" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="51">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac8cce5d31a24abe88e7a6d81d73fbdaa" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="53">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
         <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" compoundref="d1/d64/variation_8cpp" startline="776" endline="859">Brush::Var::Variation&lt; T &gt;::vary</referencedby>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="488">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1aa92b9a932da6fbd3b019ab00551a806f" compoundref="d4/d1f/variation_8h" startline="223" endline="489">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/d83/classBrush_1_1Pop_1_1Individual_1a4be0cd31ca91af4d113bee11793a4015" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -103,7 +103,7 @@
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="32" column="12" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="32" bodyend="-1"/>
         <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1af7f97a6c5ba977ab4ef312a0ac71c828" compoundref="d5/d1f/individual_8h" startline="217" endline="226">Brush::Pop::from_json</referencedby>
         <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1af4f50fb2e3fbad69b68d16d4d03d7c32" compoundref="d5/d1f/individual_8h" startline="202" endline="214">Brush::Pop::to_json</referencedby>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="488">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1aa92b9a932da6fbd3b019ab00551a806f" compoundref="d4/d1f/variation_8h" startline="223" endline="489">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/d83/classBrush_1_1Pop_1_1Individual_1a0347b9c5936dbd3120f8772262cfa1e9" prot="public" static="no" mutable="no">
         <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d8/d49/structNode" kindref="compound">Node</ref> &gt;</type>
@@ -134,8 +134,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="35" column="14" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="35" bodyend="-1"/>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="55" endline="123">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a6ca34005b1a4ab87038a4c391e77d786" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="51">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a9816a8fbe2adc4218d3e60b88c30e17f" compoundref="d9/d6a/evaluation_8cpp" startline="57" endline="130">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac8cce5d31a24abe88e7a6d81d73fbdaa" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="53">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" prot="public" static="no" mutable="no">
         <type><ref refid="d6/dd0/structBrush_1_1Fitness" kindref="compound">Fitness</ref></type>
@@ -151,7 +151,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="37" column="13" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="37" bodyend="-1"/>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="55" endline="123">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a9816a8fbe2adc4218d3e60b88c30e17f" compoundref="d9/d6a/evaluation_8cpp" startline="57" endline="130">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
         <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a4196468152e50eed683b327b0b732f70" compoundref="de/d0d/nsga2_8cpp" startline="158" endline="240">Brush::Sel::NSGA2&lt; T &gt;::fast_nds</referencedby>
         <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1af7f97a6c5ba977ab4ef312a0ac71c828" compoundref="d5/d1f/individual_8h" startline="217" endline="226">Brush::Pop::from_json</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1aba7a86b4a919e95ca0bb4219ba469b74" compoundref="d7/d4a/population_8cpp" startline="274" endline="341">Brush::Pop::Population&lt; T &gt;::hall_of_fame</referencedby>
@@ -162,9 +162,9 @@
         <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8407a45b676b80bbf7197dbdd96d2c30" compoundref="d7/d05/archive_8cpp" startline="38" endline="51">Brush::Pop::Archive&lt; T &gt;::sortObj1</referencedby>
         <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1af4f50fb2e3fbad69b68d16d4d03d7c32" compoundref="d5/d1f/individual_8h" startline="202" endline="214">Brush::Pop::to_json</referencedby>
         <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a263e5ab1678a79eb1cab18fce362b9f9" compoundref="de/d0d/nsga2_8cpp" startline="18" endline="36">Brush::Sel::NSGA2&lt; T &gt;::tournament</referencedby>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a6ca34005b1a4ab87038a4c391e77d786" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="51">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac8cce5d31a24abe88e7a6d81d73fbdaa" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="53">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
         <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" compoundref="d1/d64/variation_8cpp" startline="776" endline="859">Brush::Var::Variation&lt; T &gt;::vary</referencedby>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="488">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1aa92b9a932da6fbd3b019ab00551a806f" compoundref="d4/d1f/variation_8h" startline="223" endline="489">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/d83/classBrush_1_1Pop_1_1Individual_1a27993e06c9f048907ffaa42545a5a32e" prot="public" static="no" mutable="no">
         <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt;</type>
@@ -214,9 +214,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="163" column="28" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="163" bodyend="177"/>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="55" endline="123">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a9816a8fbe2adc4218d3e60b88c30e17f" compoundref="d9/d6a/evaluation_8cpp" startline="57" endline="130">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
         <referencedby refid="d0/d75/classBrush_1_1Engine_1a8464aa864da59723428f43faed5ff996" compoundref="da/d5c/engine_8cpp" startline="57" endline="144">Brush::Engine&lt; T &gt;::summarize</referencedby>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="488">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1aa92b9a932da6fbd3b019ab00551a806f" compoundref="d4/d1f/variation_8h" startline="223" endline="489">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -233,7 +233,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="42" column="5" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="42" bodyend="46"/>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="488">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1aa92b9a932da6fbd3b019ab00551a806f" compoundref="d4/d1f/variation_8h" startline="223" endline="489">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1acca3bba8a620c4498bf51dc1ddc9aea3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -275,7 +275,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="52" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="52" bodyend="65"/>
         <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" compoundref="d1/d64/variation_8cpp" startline="776" endline="859">Brush::Var::Variation&lt; T &gt;::vary</referencedby>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="488">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1aa92b9a932da6fbd3b019ab00551a806f" compoundref="d4/d1f/variation_8h" startline="223" endline="489">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1a4fbf8d65d5cfe6e28c655d6c2a543902" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="de/d83/classBrush_1_1Pop_1_1Individual_1a7224f798511c371e30acf92a8aa37a31" kindref="member">Individual</ref>&lt; T &gt; &amp;</type>
@@ -484,7 +484,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="123" column="18" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="123" bodyend="123"/>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="55" endline="123">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a9816a8fbe2adc4218d3e60b88c30e17f" compoundref="d9/d6a/evaluation_8cpp" startline="57" endline="130">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1ad17e7fd9fab8894a38aa6a46653198d4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>unsigned int</type>
@@ -499,7 +499,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="124" column="18" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="124" bodyend="124"/>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="55" endline="123">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a9816a8fbe2adc4218d3e60b88c30e17f" compoundref="d9/d6a/evaluation_8cpp" startline="57" endline="130">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1a14fd7a5cc46f3dde2d71b6ef8f128e05" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>unsigned int</type>
@@ -514,7 +514,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="125" column="18" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="125" bodyend="125"/>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="55" endline="123">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a9816a8fbe2adc4218d3e60b88c30e17f" compoundref="d9/d6a/evaluation_8cpp" startline="57" endline="130">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1ae82cf291f4e18cc85b74ecc2c6d11ce4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>unsigned int</type>
@@ -529,7 +529,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="126" column="18" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="126" bodyend="126"/>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="55" endline="123">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a9816a8fbe2adc4218d3e60b88c30e17f" compoundref="d9/d6a/evaluation_8cpp" startline="57" endline="130">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1a6de9a64bd6963f896b8f45d291a3b8f4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program</ref>&lt; T &gt; &amp;</type>
@@ -654,7 +654,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="138" column="12" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="138" bodyend="138"/>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="488">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1aa92b9a932da6fbd3b019ab00551a806f" compoundref="d4/d1f/variation_8h" startline="223" endline="489">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1afe255c458bb9558fdab16cccd01de0c6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -669,7 +669,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="140" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="140" bodyend="140"/>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a6ca34005b1a4ab87038a4c391e77d786" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="51">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac8cce5d31a24abe88e7a6d81d73fbdaa" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="53">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1a08168c940109051fedcaca4a7c39f108" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -721,7 +721,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="144" column="12" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="144" bodyend="144"/>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="488">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1aa92b9a932da6fbd3b019ab00551a806f" compoundref="d4/d1f/variation_8h" startline="223" endline="489">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1a1437cb5915bf88cc6f66ffb439fa3ea2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>unsigned int</type>
@@ -755,7 +755,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="147" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="147" bodyend="147"/>
         <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" compoundref="d1/d64/variation_8cpp" startline="776" endline="859">Brush::Var::Variation&lt; T &gt;::vary</referencedby>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="488">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1aa92b9a932da6fbd3b019ab00551a806f" compoundref="d4/d1f/variation_8h" startline="223" endline="489">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1acc67d46bc2b684a68e59b500a2d9aa8a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -775,7 +775,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="148" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="148" bodyend="152"/>
         <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" compoundref="d1/d64/variation_8cpp" startline="776" endline="859">Brush::Var::Variation&lt; T &gt;::vary</referencedby>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="488">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1aa92b9a932da6fbd3b019ab00551a806f" compoundref="d4/d1f/variation_8h" startline="223" endline="489">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1aad07cb9ef262458bfe335316c707f816" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -809,9 +809,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="179" column="12" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="179" bodyend="179"/>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="55" endline="123">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a9816a8fbe2adc4218d3e60b88c30e17f" compoundref="d9/d6a/evaluation_8cpp" startline="57" endline="130">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
         <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" compoundref="d1/d64/variation_8cpp" startline="776" endline="859">Brush::Var::Variation&lt; T &gt;::vary</referencedby>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a2efd0b4d27f160c92d528d7623669975" compoundref="d4/d1f/variation_8h" startline="223" endline="488">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1aa92b9a932da6fbd3b019ab00551a806f" compoundref="d4/d1f/variation_8h" startline="223" endline="489">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1abbf86134203ab8b573dc043a3c10d388" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -830,7 +830,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="180" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="180" bodyend="196"/>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="55" endline="123">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a9816a8fbe2adc4218d3e60b88c30e17f" compoundref="d9/d6a/evaluation_8cpp" startline="57" endline="130">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
         <referencedby refid="d0/d75/classBrush_1_1Engine_1a5f0c0926d9aa939e69833211d182e881" compoundref="da/d5c/engine_8cpp" startline="440" endline="455">Brush::Engine&lt; T &gt;::set_population</referencedby>
         <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" compoundref="d1/d64/variation_8cpp" startline="776" endline="859">Brush::Var::Variation&lt; T &gt;::vary</referencedby>
       </memberdef>

@@ -1,5 +1,13 @@
 var NAVTREEINDEX5 =
 {
+"d6/d2e/namespaceBrush_1_1Util.html#aa1982ec999d497f97eed7572863a58fa":[0,0,0,8,33],
+"d6/d2e/namespaceBrush_1_1Util.html#aa6d49e22e6193fabd31fde261f607560":[0,0,0,8,52],
+"d6/d2e/namespaceBrush_1_1Util.html#ab03528e8d9652013786252f63b6d5840":[0,0,0,8,17],
+"d6/d2e/namespaceBrush_1_1Util.html#ab1b4143c76ac0fdd7bf92e09472d3921":[0,0,0,8,43],
+"d6/d2e/namespaceBrush_1_1Util.html#abbcdb6fb60bd2927a57691262f14420a":[0,0,0,8,46],
+"d6/d2e/namespaceBrush_1_1Util.html#abbfd3f4b029bb0b27ba4746f12726df2":[0,0,0,8,37],
+"d6/d2e/namespaceBrush_1_1Util.html#ac697e701ef641df7a4cff481c667c9f7":[0,0,0,8,47],
+"d6/d2e/namespaceBrush_1_1Util.html#ad7cd519e42ccafa3c6f4242a0c2b6749":[0,0,0,8,42],
 "d6/d2e/namespaceBrush_1_1Util.html#ad88c0170839ba79e41dc5715e77abfc8":[0,0,0,8,48],
 "d6/d2e/namespaceBrush_1_1Util.html#adc1985a99c2dc32ac23e139322748380":[0,0,0,8,7],
 "d6/d2e/namespaceBrush_1_1Util.html#ae119a14eab4e4899608c4e766acf54c0":[0,0,0,8,13],
@@ -241,13 +249,5 @@ var NAVTREEINDEX5 =
 "d7/d4a/population_8cpp.html":[3,0,0,5,2],
 "d7/d4a/population_8cpp_source.html":[3,0,0,5,2],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html":[0,0,0,0,2],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html":[2,0,0,0,2],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a0713bbad886421937e47f11c79c1c03b":[0,0,0,0,2,6],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a0713bbad886421937e47f11c79c1c03b":[2,0,0,0,2,6],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a082aa7f74f2d671f76cca96be985216f":[0,0,0,0,2,44],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a082aa7f74f2d671f76cca96be985216f":[2,0,0,0,2,44],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a13d976221f4765b0dc6cde188b868c74":[0,0,0,0,2,30],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a13d976221f4765b0dc6cde188b868c74":[2,0,0,0,2,30],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a183d78293a991b4c67912ab1bda4d0b7":[0,0,0,0,2,48],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a183d78293a991b4c67912ab1bda4d0b7":[2,0,0,0,2,48]
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html":[2,0,0,0,2]
 };

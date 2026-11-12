@@ -655,7 +655,7 @@
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="409" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="409" bodyend="419" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="501" declcolumn="8"/>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1afc397ee448b473fec9502461f3e75eae" compoundref="de/d06/utils_8cpp" startline="409" endline="419">mask_to_index</references>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1afc397ee448b473fec9502461f3e75eae" compoundref="de/d06/utils_8cpp" startline="409" endline="419">mask_to_index</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a52fc24ef058c0e8a3d330aa25e46338d" compoundref="da/dc9/data_8cpp" startline="203" endline="212">Brush::Data::Dataset::split</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a52fc24ef058c0e8a3d330aa25e46338d" compoundref="da/dc9/data_8cpp" startline="372" endline="381">Brush::Data::Dataset::split</referencedby>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a43f8d9d4ac086fe1166492d0751eb2db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>tuple&lt; <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;, <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt; &gt;</type>
@@ -710,7 +710,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="192" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="192" bodyend="195"/>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1ab03528e8d9652013786252f63b6d5840" compoundref="d5/d60/utils_8h" startline="192" endline="195">in</references>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a79a47baeb7d1583415e514a1c04c2b07" compoundref="d4/d1f/variation_8h" startline="550" endline="590">Brush::Var::Variation&lt; T &gt;::bandit_sample_op_with_arg</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a79a47baeb7d1583415e514a1c04c2b07" compoundref="d4/d1f/variation_8h" startline="551" endline="591">Brush::Var::Variation&lt; T &gt;::bandit_sample_op_with_arg</referencedby>
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a35d500d78521e7fe880349c8006e55c7" compoundref="d9/d99/search__space_8h" startline="655" endline="670">Brush::SearchSpace::CreateNode</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1ab03528e8d9652013786252f63b6d5840" compoundref="d5/d60/utils_8h" startline="192" endline="195">in</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a8c4ce8e8bd8cedecb3d0ef621aad9d22" compoundref="d7/d4a/population_8cpp" startline="62" endline="98">Brush::Pop::Population&lt; T &gt;::init</referencedby>
@@ -972,11 +972,11 @@
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="369" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="369" bodyend="374"/>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" compoundref="d5/d60/utils_8h" startline="369" endline="374">to_string</references>
         <referencedby refid="d8/df7/bind__variation_8h_1aa00827ef4bd73eeb7c3e30717bf91a74" compoundref="d8/df7/bind__variation_8h" startline="21" endline="77">bind_variation</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="458" endline="509">Brush::Data::Dataset::copy_and_make_features</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="631" endline="682">Brush::Data::Dataset::copy_and_make_features</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a46922ab810383db1271d700e03005962" compoundref="d7/d4a/population_8cpp" startline="18" endline="59">Brush::Pop::Population&lt; T &gt;::init</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1ad193aced6ffa6d3587f0f390d9ed0415" compoundref="d7/d4a/population_8cpp" startline="117" endline="134">Brush::Pop::Population&lt; T &gt;::load</referencedby>
         <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1ab4118142943e05c08bdd5e5ad62d9127" compoundref="dd/da2/metrics_8cpp" startline="19" endline="44">Brush::Eval::log_loss</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9e841d2f28f1466b82428dddba49227" compoundref="da/dc9/data_8cpp" startline="387" endline="455">Brush::Data::Dataset::make_features</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9e841d2f28f1466b82428dddba49227" compoundref="da/dc9/data_8cpp" startline="560" endline="628">Brush::Data::Dataset::make_features</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a92f851fffa86280c36cd54a8f670466e" compoundref="d7/d4a/population_8cpp" startline="213" endline="230">Brush::Pop::Population&lt; T &gt;::print_models</referencedby>
         <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a4bec036d5b4fa2acc82b2e934183a45c" compoundref="dc/d7a/fitness_8h" startline="212" endline="221">Brush::Fitness::repr</referencedby>
         <referencedby refid="d0/d75/classBrush_1_1Engine_1a8464aa864da59723428f43faed5ff996" compoundref="da/d5c/engine_8cpp" startline="57" endline="144">Brush::Engine&lt; T &gt;::summarize</referencedby>
@@ -1200,7 +1200,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="684" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="684" bodyend="689"/>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1ac697e701ef641df7a4cff481c667c9f7" compoundref="d5/d60/utils_8h" startline="684" endline="689">unique_insert</references>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="378">Brush::Data::Dataset::init</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="419" endline="547">Brush::Data::Dataset::init</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="139" endline="182">Brush::Data::Dataset::operator()</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1ac697e701ef641df7a4cff481c667c9f7" compoundref="d5/d60/utils_8h" startline="684" endline="689">unique_insert</referencedby>
       </memberdef>

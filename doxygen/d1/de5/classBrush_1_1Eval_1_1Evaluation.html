@@ -152,10 +152,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a87c9ee9700af58b3d96469b6cd50bf1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the scorer for evaluation.  <br /></td></tr>
 <tr class="memitem:ab85a890810fbb2f047ddd689aea80ed9" id="r_ab85a890810fbb2f047ddd689aea80ed9"><td class="memItemLeft"><a class="el" href="../../d5/d92/classstring.html">string</a>&#160;</td><td class="memItemRight"><a class="el" href="#ab85a890810fbb2f047ddd689aea80ed9">get_scorer</a> ()</td></tr>
 <tr class="memdesc:ab85a890810fbb2f047ddd689aea80ed9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current scorer.  <br /></td></tr>
-<tr class="memitem:a6ca34005b1a4ab87038a4c391e77d786" id="r_a6ca34005b1a4ab87038a4c391e77d786"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6ca34005b1a4ab87038a4c391e77d786">update_fitness</a> (<a class="el" href="../../da/da3/classBrush_1_1Pop_1_1Population.html">Population</a>&lt; T &gt; &amp;pop, int island, const <a class="el" href="../../d7/da5/classDataset.html">Dataset</a> &amp;data, const <a class="el" href="../../de/deb/structBrush_1_1Parameters.html">Parameters</a> &amp;params, bool fit=true, bool validation=true)</td></tr>
-<tr class="memdesc:a6ca34005b1a4ab87038a4c391e77d786"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the fitness of individuals in a population.  <br /></td></tr>
-<tr class="memitem:ac7562624d114b22b19720729d599a40a" id="r_ac7562624d114b22b19720729d599a40a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac7562624d114b22b19720729d599a40a">assign_fit</a> (<a class="el" href="../../de/d83/classBrush_1_1Pop_1_1Individual.html">Individual</a>&lt; T &gt; &amp;ind, const <a class="el" href="../../d7/da5/classDataset.html">Dataset</a> &amp;data, const <a class="el" href="../../de/deb/structBrush_1_1Parameters.html">Parameters</a> &amp;params, bool val=false)</td></tr>
-<tr class="memdesc:ac7562624d114b22b19720729d599a40a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assign fitness to an individual.  <br /></td></tr>
+<tr class="memitem:ac8cce5d31a24abe88e7a6d81d73fbdaa" id="r_ac8cce5d31a24abe88e7a6d81d73fbdaa"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac8cce5d31a24abe88e7a6d81d73fbdaa">update_fitness</a> (<a class="el" href="../../da/da3/classBrush_1_1Pop_1_1Population.html">Population</a>&lt; T &gt; &amp;pop, int island, const <a class="el" href="../../d7/da5/classDataset.html">Dataset</a> &amp;data, const <a class="el" href="../../de/deb/structBrush_1_1Parameters.html">Parameters</a> &amp;params, bool fit=true, bool validation=true, bool force_fit=false, <a class="el" href="../../d7/da5/classDataset.html">Dataset</a> *validation_data=nullptr)</td></tr>
+<tr class="memdesc:ac8cce5d31a24abe88e7a6d81d73fbdaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the fitness of individuals in a population.  <br /></td></tr>
+<tr class="memitem:a9816a8fbe2adc4218d3e60b88c30e17f" id="r_a9816a8fbe2adc4218d3e60b88c30e17f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9816a8fbe2adc4218d3e60b88c30e17f">assign_fit</a> (<a class="el" href="../../de/d83/classBrush_1_1Pop_1_1Individual.html">Individual</a>&lt; T &gt; &amp;ind, const <a class="el" href="../../d7/da5/classDataset.html">Dataset</a> &amp;data, const <a class="el" href="../../de/deb/structBrush_1_1Parameters.html">Parameters</a> &amp;params, bool val=false, <a class="el" href="../../d7/da5/classDataset.html">Dataset</a> *validation_data=nullptr)</td></tr>
+<tr class="memdesc:a9816a8fbe2adc4218d3e60b88c30e17f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assign fitness to an individual.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -253,8 +253,8 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="ac7562624d114b22b19720729d599a40a" name="ac7562624d114b22b19720729d599a40a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7562624d114b22b19720729d599a40a">&#9670;&#160;</a></span>assign_fit()</h2>
+<a id="a9816a8fbe2adc4218d3e60b88c30e17f" name="a9816a8fbe2adc4218d3e60b88c30e17f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9816a8fbe2adc4218d3e60b88c30e17f">&#9670;&#160;</a></span>assign_fit()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -279,7 +279,12 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>val</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>val</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d7/da5/classDataset.html">Dataset</a> *</td>          <td class="paramname"><span class="paramname"><em>validation_data</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -295,12 +300,12 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d6a/evaluation_8cpp_source.html#l00055">55</a> of file <a class="el" href="../../d9/d6a/evaluation_8cpp_source.html">evaluation.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d6a/evaluation_8cpp_source.html#l00057">57</a> of file <a class="el" href="../../d9/d6a/evaluation_8cpp_source.html">evaluation.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d1/de5/classBrush_1_1Eval_1_1Evaluation_ac7562624d114b22b19720729d599a40a_cgraph.png" border="0" usemap="#ad1/de5/classBrush_1_1Eval_1_1Evaluation_ac7562624d114b22b19720729d599a40a_cgraph" loading="lazy" alt=""/></div>
-<map name="ad1/de5/classBrush_1_1Eval_1_1Evaluation_ac7562624d114b22b19720729d599a40a_cgraph" id="ad1/de5/classBrush_1_1Eval_1_1Evaluation_ac7562624d114b22b19720729d599a40a_cgraph">
+<div class="center"><img src="../../d1/de5/classBrush_1_1Eval_1_1Evaluation_a9816a8fbe2adc4218d3e60b88c30e17f_cgraph.png" border="0" usemap="#ad1/de5/classBrush_1_1Eval_1_1Evaluation_a9816a8fbe2adc4218d3e60b88c30e17f_cgraph" loading="lazy" alt=""/></div>
+<map name="ad1/de5/classBrush_1_1Eval_1_1Evaluation_a9816a8fbe2adc4218d3e60b88c30e17f_cgraph" id="ad1/de5/classBrush_1_1Eval_1_1Evaluation_a9816a8fbe2adc4218d3e60b88c30e17f_cgraph">
 <area shape="rect" title="Assign fitness to an individual." alt="" coords="5,525,177,570"/>
 <area shape="rect" href="../../de/d83/classBrush_1_1Pop_1_1Individual.html#a14fd7a5cc46f3dde2d71b6ef8f128e05" title=" " alt="" coords="231,5,393,50"/>
 <area shape="poly" title=" " alt="" coords="89,525,92,441,98,382,109,318,125,250,149,182,181,118,223,61,228,58,225,63,227,64,185,121,154,184,130,251,114,319,103,383,98,441,94,525"/>
@@ -352,12 +357,12 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d1/de5/classBrush_1_1Eval_1_1Evaluation_ac7562624d114b22b19720729d599a40a_icgraph.png" border="0" usemap="#ad1/de5/classBrush_1_1Eval_1_1Evaluation_ac7562624d114b22b19720729d599a40a_icgraph" loading="lazy" alt=""/></div>
-<map name="ad1/de5/classBrush_1_1Eval_1_1Evaluation_ac7562624d114b22b19720729d599a40a_icgraph" id="ad1/de5/classBrush_1_1Eval_1_1Evaluation_ac7562624d114b22b19720729d599a40a_icgraph">
+<div class="center"><img src="../../d1/de5/classBrush_1_1Eval_1_1Evaluation_a9816a8fbe2adc4218d3e60b88c30e17f_icgraph.png" border="0" usemap="#ad1/de5/classBrush_1_1Eval_1_1Evaluation_a9816a8fbe2adc4218d3e60b88c30e17f_icgraph" loading="lazy" alt=""/></div>
+<map name="ad1/de5/classBrush_1_1Eval_1_1Evaluation_a9816a8fbe2adc4218d3e60b88c30e17f_icgraph" id="ad1/de5/classBrush_1_1Eval_1_1Evaluation_a9816a8fbe2adc4218d3e60b88c30e17f_icgraph">
 <area shape="rect" title="Assign fitness to an individual." alt="" coords="412,40,583,85"/>
-<area shape="rect" href="../../d1/de5/classBrush_1_1Eval_1_1Evaluation.html#a6ca34005b1a4ab87038a4c391e77d786" title="Update the fitness of individuals in a population." alt="" coords="193,5,364,50"/>
+<area shape="rect" href="../../d1/de5/classBrush_1_1Eval_1_1Evaluation.html#ac8cce5d31a24abe88e7a6d81d73fbdaa" title="Update the fitness of individuals in a population." alt="" coords="193,5,364,50"/>
 <area shape="poly" title=" " alt="" coords="394,47,365,44,365,39,399,46"/>
-<area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#a2efd0b4d27f160c92d528d7623669975" title="Varies a population and updates the selection strategy based on rewards." alt="" coords="202,75,355,119"/>
+<area shape="rect" href="../../d5/d14/classBrush_1_1Var_1_1Variation.html#aa92b9a932da6fbd3b019ab00551a806f" title="Varies a population and updates the selection strategy based on rewards." alt="" coords="202,75,355,119"/>
 <area shape="poly" title=" " alt="" coords="400,78,356,88,355,82,394,79"/>
 <area shape="rect" href="../../d0/d75/classBrush_1_1Engine.html#a4248c80ebcd035a70953065045e04705" title="train the model" alt="" coords="5,83,145,111"/>
 <area shape="poly" title=" " alt="" coords="183,97,145,100,145,94,188,97"/>
@@ -455,8 +460,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a6ca34005b1a4ab87038a4c391e77d786" name="a6ca34005b1a4ab87038a4c391e77d786"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ca34005b1a4ab87038a4c391e77d786">&#9670;&#160;</a></span>update_fitness()</h2>
+<a id="ac8cce5d31a24abe88e7a6d81d73fbdaa" name="ac8cce5d31a24abe88e7a6d81d73fbdaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8cce5d31a24abe88e7a6d81d73fbdaa">&#9670;&#160;</a></span>update_fitness()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -491,7 +496,17 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>validation</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>validation</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>force_fit</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d7/da5/classDataset.html">Dataset</a> *</td>          <td class="paramname"><span class="paramname"><em>validation_data</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -513,10 +528,10 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d1/de5/classBrush_1_1Eval_1_1Evaluation_a6ca34005b1a4ab87038a4c391e77d786_cgraph.png" border="0" usemap="#ad1/de5/classBrush_1_1Eval_1_1Evaluation_a6ca34005b1a4ab87038a4c391e77d786_cgraph" loading="lazy" alt=""/></div>
-<map name="ad1/de5/classBrush_1_1Eval_1_1Evaluation_a6ca34005b1a4ab87038a4c391e77d786_cgraph" id="ad1/de5/classBrush_1_1Eval_1_1Evaluation_a6ca34005b1a4ab87038a4c391e77d786_cgraph">
+<div class="center"><img src="../../d1/de5/classBrush_1_1Eval_1_1Evaluation_ac8cce5d31a24abe88e7a6d81d73fbdaa_cgraph.png" border="0" usemap="#ad1/de5/classBrush_1_1Eval_1_1Evaluation_ac8cce5d31a24abe88e7a6d81d73fbdaa_cgraph" loading="lazy" alt=""/></div>
+<map name="ad1/de5/classBrush_1_1Eval_1_1Evaluation_ac8cce5d31a24abe88e7a6d81d73fbdaa_cgraph" id="ad1/de5/classBrush_1_1Eval_1_1Evaluation_ac8cce5d31a24abe88e7a6d81d73fbdaa_cgraph">
 <area shape="rect" title="Update the fitness of individuals in a population." alt="" coords="5,829,177,874"/>
-<area shape="rect" href="../../d1/de5/classBrush_1_1Eval_1_1Evaluation.html#ac7562624d114b22b19720729d599a40a" title="Assign fitness to an individual." alt="" coords="225,551,396,595"/>
+<area shape="rect" href="../../d1/de5/classBrush_1_1Eval_1_1Evaluation.html#a9816a8fbe2adc4218d3e60b88c30e17f" title="Assign fitness to an individual." alt="" coords="225,551,396,595"/>
 <area shape="poly" title=" " alt="" coords="108,827,281,605,283,610,112,830"/>
 <area shape="rect" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html#ae69087b8c020840f254e3679cd324ba5" title=" " alt="" coords="453,5,609,50"/>
 <area shape="poly" title=" " alt="" coords="93,828,121,698,147,601,183,493,229,379,287,264,321,209,358,156,398,106,442,60,449,57,446,62,446,64,402,110,362,159,325,212,292,267,234,381,188,495,152,603,126,699,99,830"/>
@@ -594,7 +609,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#ae591329af27c88
 
 <p>number of calls to assign_fit (each one scores an individual on the training partition and, if there is one, on the validation partition). </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d3/df9/evaluation_8h_source.html#l00092">92</a> of file <a class="el" href="../../d3/df9/evaluation_8h_source.html">evaluation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d3/df9/evaluation_8h_source.html#l00095">95</a> of file <a class="el" href="../../d3/df9/evaluation_8h_source.html">evaluation.h</a>.</p>
 
 </div>
 </div>

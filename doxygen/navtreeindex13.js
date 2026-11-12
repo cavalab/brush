@@ -1,5 +1,17 @@
 var NAVTREEINDEX13 =
 {
+"de/deb/structBrush_1_1Parameters.html#a49392abcea1d48447c024a23137fd788":[0,0,0,120,98],
+"de/deb/structBrush_1_1Parameters.html#a49392abcea1d48447c024a23137fd788":[2,0,0,117,98],
+"de/deb/structBrush_1_1Parameters.html#a49b871e5bfa462b974e47112cc53ce53":[0,0,0,120,62],
+"de/deb/structBrush_1_1Parameters.html#a49b871e5bfa462b974e47112cc53ce53":[2,0,0,117,62],
+"de/deb/structBrush_1_1Parameters.html#a4e5aa0dc57b760b0329483e64c3ccea3":[0,0,0,120,64],
+"de/deb/structBrush_1_1Parameters.html#a4e5aa0dc57b760b0329483e64c3ccea3":[2,0,0,117,64],
+"de/deb/structBrush_1_1Parameters.html#a4ff98035fbd50487abb5946504e8e4d6":[0,0,0,120,111],
+"de/deb/structBrush_1_1Parameters.html#a4ff98035fbd50487abb5946504e8e4d6":[2,0,0,117,111],
+"de/deb/structBrush_1_1Parameters.html#a503e5e39ff8078bfd0132399bc376651":[0,0,0,120,10],
+"de/deb/structBrush_1_1Parameters.html#a503e5e39ff8078bfd0132399bc376651":[2,0,0,117,10],
+"de/deb/structBrush_1_1Parameters.html#a50778f2c6d11b993f8388b80616a5459":[0,0,0,120,4],
+"de/deb/structBrush_1_1Parameters.html#a50778f2c6d11b993f8388b80616a5459":[2,0,0,117,4],
 "de/deb/structBrush_1_1Parameters.html#a520456c57a2c3f8703036ae0d5142635":[0,0,0,120,65],
 "de/deb/structBrush_1_1Parameters.html#a520456c57a2c3f8703036ae0d5142635":[2,0,0,117,65],
 "de/deb/structBrush_1_1Parameters.html#a531d8a7a2fc8a402881be57b62f38e2c":[0,0,0,120,52],
@@ -237,17 +249,5 @@ var NAVTREEINDEX13 =
 "df/dde/classBrush_1_1MAB_1_1BanditOperator.html#acc0564b969a11e14016363510b6dbe6d":[0,0,0,3,1,0],
 "df/dde/classBrush_1_1MAB_1_1BanditOperator.html#acc0564b969a11e14016363510b6dbe6d":[2,0,0,2,1,0],
 "df/dde/classBrush_1_1MAB_1_1BanditOperator.html#ad5073f5958b0d8914e2938664d25ee05":[0,0,0,3,1,2],
-"df/dde/classBrush_1_1MAB_1_1BanditOperator.html#ad5073f5958b0d8914e2938664d25ee05":[2,0,0,2,1,2],
-"df/dde/classBrush_1_1MAB_1_1BanditOperator.html#afe6a2789a3e73970c443b7a05b05c6fa":[0,0,0,3,1,5],
-"df/dde/classBrush_1_1MAB_1_1BanditOperator.html#afe6a2789a3e73970c443b7a05b05c6fa":[2,0,0,2,1,5],
-"df/dfe/nodetype_8cpp.html":[3,0,0,6,6],
-"df/dfe/nodetype_8cpp_source.html":[3,0,0,6,6],
-"dir_2d96a730aedf75b6c9de709ebcfcca46.html":[3,0,0,6,0],
-"dir_5081caf4253f166c37035217032e821c.html":[3,0,0,3],
-"dir_68267d1309a1af8e8297ef4c3efbcdba.html":[3,0,0],
-"dir_912e27584effbc7a6b259c7c304a5eca.html":[3,0,0,0],
-"dir_a8ba1cdc789e15ce0e3acecc77cc7168.html":[3,0,0,10],
-"dir_ac1bb9a98a8a77c3c6ad363e33af8aee.html":[3,0,0,7],
-"dir_b7878ad5ecbf2506f4125b9d34c97e45.html":[3,0,0,9],
-"dir_c1be8d27e7f84178e95f152701110b19.html":[3,0,0,2]
+"df/dde/classBrush_1_1MAB_1_1BanditOperator.html#ad5073f5958b0d8914e2938664d25ee05":[2,0,0,2,1,2]
 };

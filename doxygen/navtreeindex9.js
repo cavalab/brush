@@ -1,5 +1,17 @@
 var NAVTREEINDEX9 =
 {
+"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ad6978c4386468c44dd252345c11ca126":[2,0,0,6,1,7],
+"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#add898f2c47859b9c759a1cab4cda136c":[0,0,0,8,1,2],
+"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#add898f2c47859b9c759a1cab4cda136c":[2,0,0,6,1,2],
+"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ae664f5f7dec3314e1a7cc6bce660eac4":[0,0,0,8,1,11],
+"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ae664f5f7dec3314e1a7cc6bce660eac4":[2,0,0,6,1,11],
+"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#aebdb57a7b38f632b9855ede6c86eb948":[0,0,0,8,1,4],
+"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#aebdb57a7b38f632b9855ede6c86eb948":[2,0,0,6,1,4],
+"db/d88/structBrush_1_1Program.html":[0,0,0,121],
+"db/d88/structBrush_1_1Program.html":[2,0,0,118],
+"db/d88/structBrush_1_1Program.html#a00356ac7bbc5c1d8f70bc8d90f41d4ac":[0,0,0,121,3],
+"db/d88/structBrush_1_1Program.html#a00356ac7bbc5c1d8f70bc8d90f41d4ac":[2,0,0,118,3],
+"db/d88/structBrush_1_1Program.html#a097256d2ed5456aa1ad10233e97c8e6c":[0,0,0,121,1],
 "db/d88/structBrush_1_1Program.html#a097256d2ed5456aa1ad10233e97c8e6c":[2,0,0,118,1],
 "db/d88/structBrush_1_1Program.html#a0e4050b85e3f7c741d51d9eb243bdc8a":[0,0,0,121,27],
 "db/d88/structBrush_1_1Program.html#a0e4050b85e3f7c741d51d9eb243bdc8a":[2,0,0,118,27],
@@ -237,17 +249,5 @@ var NAVTREEINDEX9 =
 "dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8aec211f7c20af43e742bf2570c3cb84f9":[0,0,0,199,31],
 "dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8aed4629033ecb516ed7d1536e162030bb":[0,0,0,199,1],
 "dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8af3f6d0343d56ce88ce7958170ed05cb3":[0,0,0,199,11],
-"dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8af8c481a92abba984160fae1003dfad55":[0,0,0,199,36],
-"dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8affca562be079b9e4e41ea9d6a86c582b":[0,0,0,199,4],
-"dc/d5c/namespaceBrush.html#a0df1acf4afe5f9d3ab91be448c3b2a31":[0,0,0,192],
-"dc/d5c/namespaceBrush.html#a110a71b11a52c4c11874f33d85082788":[0,0,0,236],
-"dc/d5c/namespaceBrush.html#a12cdc4558b7841338641fdc58bbda013":[0,0,0,176],
-"dc/d5c/namespaceBrush.html#a14447d2f04191fa6607e02077a4137ea":[0,0,0,213],
-"dc/d5c/namespaceBrush.html#a175d0497be0c922c453075fed37ecec0":[0,0,0,249],
-"dc/d5c/namespaceBrush.html#a1c0079df772d6e050857327591514810":[0,0,0,160],
-"dc/d5c/namespaceBrush.html#a1d5a63450bcdb77bd08283c9f74ca53f":[0,0,0,215],
-"dc/d5c/namespaceBrush.html#a1d5a63450bcdb77bd08283c9f74ca53f":[0,0,0,216],
-"dc/d5c/namespaceBrush.html#a1d836cd56c93c1a9e89f76768fa59582":[0,0,0,186],
-"dc/d5c/namespaceBrush.html#a1dc15defd0ed08feac029e2844f7867e":[0,0,0,170],
-"dc/d5c/namespaceBrush.html#a1ebf835d71baed4d5d616491364856ff":[0,0,0,168]
+"dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8af8c481a92abba984160fae1003dfad55":[0,0,0,199,36]
 };

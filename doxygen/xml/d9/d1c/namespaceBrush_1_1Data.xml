@@ -216,8 +216,8 @@
         <location file="/home/runner/work/brush/brush/src/data/data.cpp" line="67" column="10" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="67" bodyend="70" declfile="/home/runner/work/brush/brush/src/data/data.h" declline="38" declcolumn="10"/>
         <references refid="d9/d1c/namespaceBrush_1_1Data_1a6c00d36ba6aefd852544da96a089754a" compoundref="da/dc9/data_8cpp" startline="67" endline="70">StateType</references>
         <references refid="d9/d1c/namespaceBrush_1_1Data_1a024bc26071be66d565dd66852c79ada2" compoundref="da/dc9/data_8cpp" startline="54" endline="64">StateTypes</references>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a52324d5e7201e2150b60811f8f399844" compoundref="da/dc9/data_8cpp" startline="217" endline="245">Brush::Data::Dataset::get_feature_types</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="250" endline="378">Brush::Data::Dataset::init</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a52324d5e7201e2150b60811f8f399844" compoundref="da/dc9/data_8cpp" startline="386" endline="414">Brush::Data::Dataset::get_feature_types</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="419" endline="547">Brush::Data::Dataset::init</referencedby>
         <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1a6c00d36ba6aefd852544da96a089754a" compoundref="da/dc9/data_8cpp" startline="67" endline="70">StateType</referencedby>
       </memberdef>
       <memberdef kind="function" id="d9/d1c/namespaceBrush_1_1Data_1a82683b7af172813488ef4db81905de67" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -249,7 +249,7 @@
         <references refid="dc/d5c/namespaceBrush_1ae8e6a6b88349644cf160c63559cddd9c" compoundref="da/dc9/data_8cpp" startline="34">Brush::DataNameType</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
         <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1a82683b7af172813488ef4db81905de67" compoundref="da/dc9/data_8cpp" startline="71" endline="125">check_type</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9e841d2f28f1466b82428dddba49227" compoundref="da/dc9/data_8cpp" startline="387" endline="455">Brush::Data::Dataset::make_features</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9e841d2f28f1466b82428dddba49227" compoundref="da/dc9/data_8cpp" startline="560" endline="628">Brush::Data::Dataset::make_features</referencedby>
         <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1ad4320ca3604e146155ccc7c55ea9006c" compoundref="d5/d5a/io_8cpp" startline="14" endline="88">read_csv</referencedby>
       </memberdef>
       <memberdef kind="function" id="d9/d1c/namespaceBrush_1_1Data_1a5e5f876d004717e85c08b7661e090e29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -280,7 +280,7 @@
         <location file="/home/runner/work/brush/brush/src/data/data.cpp" line="128" column="7" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="128" bodyend="136" declfile="/home/runner/work/brush/brush/src/data/data.h" declline="41" declcolumn="7"/>
         <references refid="d9/d1c/namespaceBrush_1_1Data_1a5e5f876d004717e85c08b7661e090e29" compoundref="da/dc9/data_8cpp" startline="128" endline="136">cast_type</references>
         <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1a5e5f876d004717e85c08b7661e090e29" compoundref="da/dc9/data_8cpp" startline="128" endline="136">cast_type</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="458" endline="509">Brush::Data::Dataset::copy_and_make_features</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="631" endline="682">Brush::Data::Dataset::copy_and_make_features</referencedby>
       </memberdef>
       <memberdef kind="function" id="d9/d1c/namespaceBrush_1_1Data_1ad1be6b37dda8f94db59996bc060e5e2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>ostream &amp;</type>
@@ -302,10 +302,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.cpp" line="511" column="1" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="511" bodyend="515"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.cpp" line="684" column="1" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="684" bodyend="688"/>
         <references refid="dc/d5c/namespaceBrush_1ab8d6c8427ade77c95f36ac1781279efb" compoundref="da/dc9/data_8cpp" startline="14" endline="33">Brush::DataTypeName</references>
-        <references refid="d9/d1c/namespaceBrush_1_1Data_1ad1be6b37dda8f94db59996bc060e5e2e" compoundref="da/dc9/data_8cpp" startline="511" endline="515">operator&lt;&lt;</references>
-        <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1ad1be6b37dda8f94db59996bc060e5e2e" compoundref="da/dc9/data_8cpp" startline="511" endline="515">operator&lt;&lt;</referencedby>
+        <references refid="d9/d1c/namespaceBrush_1_1Data_1ad1be6b37dda8f94db59996bc060e5e2e" compoundref="da/dc9/data_8cpp" startline="684" endline="688">operator&lt;&lt;</references>
+        <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1ad1be6b37dda8f94db59996bc060e5e2e" compoundref="da/dc9/data_8cpp" startline="684" endline="688">operator&lt;&lt;</referencedby>
       </memberdef>
       <memberdef kind="function" id="d9/d1c/namespaceBrush_1_1Data_1ad4320ca3604e146155ccc7c55ea9006c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref></type>
@@ -334,7 +334,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/io.cpp" line="14" column="9" bodyfile="/home/runner/work/brush/brush/src/data/io.cpp" bodystart="14" bodyend="88" declfile="/home/runner/work/brush/brush/src/data/io.h" declline="23" declcolumn="9"/>
         <references refid="d9/d1c/namespaceBrush_1_1Data_1a82683b7af172813488ef4db81905de67" compoundref="da/dc9/data_8cpp" startline="71" endline="125">check_type</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="117" endline="132">Brush::Data::Dataset::Dataset</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" compoundref="d2/dbd/data_8h" startline="125" endline="140">Brush::Data::Dataset::Dataset</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
         <references refid="d9/d1c/namespaceBrush_1_1Data_1ad4320ca3604e146155ccc7c55ea9006c" compoundref="d5/d5a/io_8cpp" startline="14" endline="88">read_csv</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1ad7cd519e42ccafa3c6f4242a0c2b6749" compoundref="de/d06/utils_8cpp" startline="36" endline="39">Brush::Util::trim</references>

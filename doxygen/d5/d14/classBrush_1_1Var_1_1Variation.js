@@ -14,7 +14,7 @@ var classBrush_1_1Var_1_1Variation =
     [ "pop_simplification_records", "d5/d14/classBrush_1_1Var_1_1Variation.html#aab2118da11bb18c19bda7a882ed191df", null ],
     [ "update_ss", "d5/d14/classBrush_1_1Var_1_1Variation.html#ac3440610a9989704a29120584ab8e123", null ],
     [ "vary", "d5/d14/classBrush_1_1Var_1_1Variation.html#a344233ce053ca4b267539182fecbbc91", null ],
-    [ "vary_and_update", "d5/d14/classBrush_1_1Var_1_1Variation.html#a2efd0b4d27f160c92d528d7623669975", null ],
+    [ "vary_and_update", "d5/d14/classBrush_1_1Var_1_1Variation.html#aa92b9a932da6fbd3b019ab00551a806f", null ],
     [ "constants_simplifier", "d5/d14/classBrush_1_1Var_1_1Variation.html#a81a91c3a62473615877e1dcb7a1efda6", null ],
     [ "data", "d5/d14/classBrush_1_1Var_1_1Variation.html#a52293d9aac76f8a53394961e11e15752", null ],
     [ "inexact_simplifier", "d5/d14/classBrush_1_1Var_1_1Variation.html#a52754389aa9f09ae9916376eed681588", null ],
