@@ -38,7 +38,7 @@ jobs:
           cd ..
           which python
           # micromamba info
-          python -c "import brush"
+          python -c "import pybrush"
       - 
         name: Wrapper Test 
         run: |

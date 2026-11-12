@@ -58,6 +58,8 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
                                const Parameters& params, bool val,
                                Dataset* validation_data)
 {
+    ++n_evaluations;
+
     VectorXf errors;
     using PT = ProgramType;
     

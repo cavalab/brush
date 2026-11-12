@@ -6,6 +6,8 @@
 #include "../program/program.h"
 #include "../vary/search_space.h"
 #include "../util/utils.h"
+#include "../util/csv.h"
+#include "record.h"
 
 using namespace std;
 using Brush::Node;
@@ -98,18 +100,19 @@ public:
         return result;
     }
 
-    void print(const string& prefix, std::ofstream& log) const {
+    /// writes one row per stored tree: prefix..., plane, key, tree
+    void print(const vector<string>& prefix, Util::CsvWriter& log) const {
         for (size_t plane_idx = 0; plane_idx < storage.size(); ++plane_idx) {
             for (const auto& kv : storage[plane_idx]) {
                 size_t key = kv.first;
                 const auto& trees = kv.second;
 
                 for (const auto& t : trees) {
-                    log << prefix
-                              << plane_idx << ","
-                              << key << ","
-                              << t.begin().node->get_model()
-                              << "\n";
+                    vector<string> row(prefix);
+                    row.push_back(std::to_string(plane_idx));
+                    row.push_back(std::to_string(key));
+                    row.push_back(t.begin().node->get_model());
+                    log.write_row(row);
                 }
             }
         }
@@ -157,9 +160,11 @@ class Inexact_simplifier
             }  
         }
 
+        /// @param records if not null, every replacement is appended to it
         template<ProgramType P>
         Program<P> simplify_tree(Program<P>& program,
-                                    const SearchSpace &ss, const Dataset &d)
+                                    const SearchSpace &ss, const Dataset &d,
+                                    SimplificationRecords* records = nullptr)
         {
             // using RetType =
             //     typename // std::conditional_t<P == PT::Regressor, ArrayXf,
@@ -229,13 +234,21 @@ class Inexact_simplifier
                             }
                             if (best_distance < threshold) {
 
-                                // cout << "replacing " << spot.node->get_model();
+                                string original;
+                                if (records)
+                                    original = spot.node->get_model();
+
                                 simplified_program.Tree.erase_children(spot);
 
                                 const tree<Node> best_branch_copy(best_branch);
-                                // cout << " with " << best_branch_copy.begin().node->get_model() << endl;
                                 
                                 spot = simplified_program.Tree.move_ontop(spot, best_branch_copy.begin());
+
+                                if (records)
+                                    records->push_back({0, 0, "inexact",
+                                                        dt_to_string(spot.node->data.ret_type),
+                                                        original, spot.node->get_model(),
+                                                        best_distance});
 
                                 // learning the simplifications made here
                                 analyze_tree(simplified_program, ss, d);
@@ -273,17 +286,17 @@ class Inexact_simplifier
         }
 
         // wrapper to print all equivalentExpressions
-        inline void log_simplification_table(std::ofstream& log) {
-            // print header
-            log << "DataType,Plane,Key,Tree\n";
+        inline static const vector<string> simplification_table_header = {
+            "run_id", "DataType", "Plane", "Key", "Tree"};
 
+        /// dumps every stored expression. Expects a writer opened with
+        /// simplification_table_header.
+        inline void log_simplification_table(Util::CsvWriter& log, const string& run_id) {
             for (const auto& kv : equivalentExpressions) {
                 DataType dt = kv.first;
                 const HashStorage& hs = kv.second;
 
-                // prefix is the DataType name + a comma
-                std::string prefix = dt_to_string(dt) + ",";
-                hs.print(prefix, log);
+                hs.print({run_id, dt_to_string(dt)}, log);
             }
         }
 

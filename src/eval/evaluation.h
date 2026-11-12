@@ -90,6 +90,10 @@ public:
                     const Parameters& params, bool val=false,
                     Dataset* validation_data=nullptr);
 
+    /// number of calls to assign_fit (each one scores an individual on the
+    /// training partition and, if there is one, on the validation partition).
+    size_t n_evaluations = 0;
+
     // representation program (TODO: implement)
 };
 
