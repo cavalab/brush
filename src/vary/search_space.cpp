@@ -66,6 +66,7 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
                     weighted,
                     feature_name
                 );
+                n.set_feature_type(DataTypeEnum<T>::value);
 
                 float prob_change = 1.0; // default value
                 
@@ -148,16 +149,38 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
     cXf.set_prob_change(signature_avg(cXf.ret_type));
     terminals.push_back(cXf);
     
-    // Reminder: Integers are used to represent categorical variables
+    // Integer values are discrete, so make observed category values available
+    // to mutation instead of expecting gradient descent to learn them.
+    std::set<int> category_values;
+    for (const auto& [name, value] : d.features) {
+        if (const auto* column = std::get_if<ArrayXi>(&value))
+            for (int category : *column)
+                category_values.insert(category);
+    }
     auto cXi = Node(NodeType::Constant, Signature<ArrayXi()>(), true, "constI");
-    cXi.set_prob_change(signature_avg(cXi.ret_type));
+    const size_t n_integer_constants = 1 + category_values.size() - category_values.count(1);
+    const float integer_constant_weight = signature_avg(cXi.ret_type) / n_integer_constants;
+    cXi.set_prob_change(integer_constant_weight);
     terminals.push_back(cXi);
+    for (int category : category_values) {
+        if (category == 1)
+            continue;
+        auto constant = Node(NodeType::Constant, Signature<ArrayXi()>(), true,
+                             fmt::format("const{}I", category));
+        constant.W = static_cast<float>(category);
+        constant.set_prob_change(integer_constant_weight);
+        terminals.push_back(constant);
+    }
 
     // Boolean constants are needed to prevent crashes when logical operators (And, Or, Not, Geq, Equals) 
     // appear in programs and need boolean terminals as arguments, even in regression problems
     auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>(), true, "constB");
-    cXb.set_prob_change(signature_avg(cXb.ret_type));
+    cXb.set_prob_change(signature_avg(cXb.ret_type) / 2.0f);
     terminals.push_back(cXb);
+    auto false_constant = Node(NodeType::Constant, Signature<ArrayXb()>(), false, "constFalseB");
+    false_constant.W = 0.0f;
+    false_constant.set_prob_change(signature_avg(false_constant.ret_type) / 2.0f);
+    terminals.push_back(false_constant);
 
     // mean label node. Does not need to be part of symbols. works only for classification
     if (d.classification)
@@ -204,8 +227,33 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
 
     // create nodes based on data types 
     terminal_types = d.unique_data_types;
+    // Scalar constants are terminals even when the dataset has no feature of
+    // that type. In particular, comparisons can produce boolean conditions
+    // for SplitOn without requiring a boolean input column.
+    Util::unique_insert(terminal_types, DataType::ArrayF);
+    Util::unique_insert(terminal_types, DataType::ArrayI);
+    Util::unique_insert(terminal_types, DataType::ArrayB);
 
     vector<Node> terminals = generate_terminals(d, weights_init);
+
+    // Float and boolean constants can close ordinary prediction trees. Only
+    // introduce integer operators when integers are present or can be produced
+    // by another available operator; otherwise they create constant-only
+    // categorical expressions on wholly continuous datasets.
+    vector<DataType> operator_types = d.unique_data_types;
+    Util::unique_insert(operator_types, DataType::ArrayF);
+    Util::unique_insert(operator_types, DataType::ArrayB);
+    auto generate_operators = [&](const unordered_map<string, float>& ops) {
+        bool changed;
+        do {
+            GenerateNodeMap(ops, operator_types,
+                            std::make_index_sequence<NodeTypes::OpCount>());
+            changed = node_map.find(DataType::ArrayI) != node_map.end()
+                   && !in(operator_types, DataType::ArrayI);
+            if (changed)
+                operator_types.push_back(DataType::ArrayI);
+        } while (changed);
+    };
     
     // If it is a classification problem, we need to add the fixed root nodes 
     // (logistic for binary classification, softmax for multiclassification).
@@ -256,13 +304,11 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
         }
 
         // fmt::print("generate nodetype\n");
-        GenerateNodeMap(extended_user_ops, terminal_types, 
-                        std::make_index_sequence<NodeTypes::OpCount>());
+        generate_operators(extended_user_ops);
     }
     else
     {
-        GenerateNodeMap(user_ops, terminal_types, 
-                    std::make_index_sequence<NodeTypes::OpCount>());
+        generate_operators(user_ops);
     }
 
     // map terminals
@@ -283,23 +329,20 @@ std::optional<tree<Node>> SearchSpace::sample_subtree(Node root, int max_d, int 
 {
     // public interface to use PTC2 algorithm
 
-    // PTC is designed to not fail (it will persistently try to find nodes with
-    // sampling functions). In pop initialization, this shoudnt be a problem, but
-    // during evolution, due to dynamic changes in node weights by the learners, 
-    // it now may fail. We need to check, before calling it, that it has elements
-    // in search space to sample
-    auto ret_match = node_map.at(root.ret_type);
-
-    vector<float> args_w = get_weights(root.ret_type);
-
-    // at least one operator that matches the weight must have positive probability
-    if (!has_solution_space(args_w.begin(), args_w.end()))
+    // Sample a new root of the required type. Retaining the old root made a
+    // subtree mutation on a terminal a successful no-op.
+    // because we initialize the search space with constants, there will always be 
+    // one available terminal to fill the leaves.
+    std::optional<Node> replacement;
+    if (max_d > 1 && max_size > 1)
+        replacement = sample_op(root.ret_type);
+    if (!replacement)
+        replacement = sample_terminal(root.ret_type);
+    if (!replacement)
         return std::nullopt;
 
-    // it will always have a terminal (because we create constants).
-
     auto Tree = tree<Node>();
-    auto spot = Tree.insert(Tree.begin(), root);
+    auto spot = Tree.insert(Tree.begin(), *replacement);
 
     // we should notice the difference between size of a PROGRAM and a TREE.
     // program count weights in its size, while the TREE structure dont. Wenever
@@ -330,11 +373,14 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
 
     Node root = spot.node->data;
 
-    // updating size accordingly to root node
-    if (Is<NodeType::SplitBest>(root.node_type) || Is<NodeType::SplitOn>(root.node_type)){
-        s += 2;
+    // updating size accordingly to root node. This doesnt need to be 
+    // exact calculations, just proxys. We just dont want huge trees 
+    // being generated in the initial population.
+    if (Is<NodeType::SplitBest>(root.node_type)){
+        s += 3;
     }        
     else if ( root.get_is_weighted()==true
+              && IsWeighable(root.node_type)
               && Isnt<NodeType::Constant, NodeType::MeanLabel>(root.node_type) )
         s += 2;
         
@@ -434,11 +480,11 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
         // increment is different based on node weights
         ++s;
         
-        if (Is<NodeType::SplitBest>(n.node_type) || Is<NodeType::SplitOn>(n.node_type)){
-            // cout << "sampled split on node/n";
-            s += 2;
+        if (Is<NodeType::SplitBest>(n.node_type)){
+            s += 3;
         }
         else if ( n.get_is_weighted()==true
+                  && IsWeighable(n.node_type)
                   && Isnt<NodeType::Constant, NodeType::MeanLabel>(n.node_type) )
             s += 2;
     } 
