@@ -77,7 +77,29 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
     struct Function<NodeType::Div>
     {
         template<typename T1, typename T2>
+        requires (!is_one_of_v<typename T1::Scalar, int, iJet>)
         inline auto operator()(const T1& t1, const T2& t2) { return t1 / t2 ; }
+
+        template<typename T1, typename T2>
+        requires is_one_of_v<typename T1::Scalar, int, iJet>
+        inline auto operator()(const T1& t1, const T2& t2) {
+            auto result = t1.eval();
+            for (Eigen::Index i = 0; i < t1.size(); ++i) {
+                int numerator, denominator;
+                if constexpr (std::is_same_v<typename T1::Scalar, iJet>) {
+                    numerator = t1(i).a;
+                    denominator = t2(i).a;
+                } else {
+                    numerator = t1(i);
+                    denominator = t2(i);
+                }
+                int value = denominator == 0 ? 0
+                    : numerator == std::numeric_limits<int>::min() && denominator == -1
+                        ? std::numeric_limits<int>::max() : numerator / denominator;
+                result(i) = typename T1::Scalar(value);
+            }
+            return result;
+        }
     };
     
 
