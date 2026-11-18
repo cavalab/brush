@@ -50,18 +50,32 @@ inline auto Isnt(DataType dt) -> bool { return !((dt == T) || ...); }
 template<DataType DT>
 inline auto IsWeighable() noexcept -> bool { 
         return Isnt<DataType::ArrayB,
+                    DataType::ArrayI,
                     DataType::MatrixB,
+                    DataType::MatrixI,
                     DataType::TimeSeriesB,
+                    DataType::TimeSeriesI,
                     DataType::ArrayBJet,
-                    DataType::MatrixBJet
+                    DataType::ArrayIJet,
+                    DataType::MatrixBJet,
+                    DataType::MatrixIJet,
+                    DataType::TimeSeriesBJet,
+                    DataType::TimeSeriesIJet
                     >(DT);                
 }
 inline auto IsWeighable(DataType dt) noexcept -> bool { 
         return Isnt<DataType::ArrayB,
+                    DataType::ArrayI,
                     DataType::MatrixB,
+                    DataType::MatrixI,
                     DataType::TimeSeriesB,
+                    DataType::TimeSeriesI,
                     DataType::ArrayBJet,
-                    DataType::MatrixBJet
+                    DataType::ArrayIJet,
+                    DataType::MatrixBJet,
+                    DataType::MatrixIJet,
+                    DataType::TimeSeriesBJet,
+                    DataType::TimeSeriesIJet
                     >(dt);                
 }
 
@@ -221,7 +235,7 @@ struct Node {
     size_t get_node_hash(bool include_const=true) const {
         // we ignore the constant only on simplification, because it will be tuned anyways
 
-        return std::hash<HashTuple>{}(HashTuple{
+        auto hash = std::hash<HashTuple>{}(HashTuple{
                 NodeTypes::GetIndex(node_type),
                 sig_hash,
                 get_is_weighted(),
@@ -233,6 +247,9 @@ struct Node {
                 // just so we differentiate whether the weight exists or is ignored
                 include_const ? int(W * 100) : (get_is_weighted() ? 1 : 0)
         });
+        for (int category : split_categories)
+            hash ^= std::hash<int>{}(category) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+        return hash;
     }
     ////////////////////////////////////////////////////////////////////////////////
     //comparison operators
@@ -309,6 +326,10 @@ struct Node {
     /// @brief feature type for terminals or splitting nodes
     DataType feature_type = DataType::ArrayF; 
 
+    // For categorical SplitBest nodes, the values routed to the first branch.
+    // Empty preserves the historical single-category threshold representation.
+    vector<int> split_categories;
+
     /// @brief fix the SplitBest feature when the node is fixed
     bool keep_split_feature = false; // TODO: unittests for keep_split_feature
 };
@@ -380,6 +401,18 @@ inline auto IsWeighable(NodeType nt) noexcept -> bool {
                     NodeType::Not,
                     NodeType::MeanLabel
                     >(nt);                
+}
+
+// Keep parameter enumeration and evaluation in agreement. Constants always
+// use their value; integer and boolean values are not optimized by Ceres.
+inline bool HasOptimizableWeight(const Node& node) noexcept {
+    if (node.weight_is_fixed || !IsWeighable(node.ret_type))
+        return false;
+    if (Is<NodeType::Constant>(node.node_type))
+        return true;
+    if (Is<NodeType::OffsetSum>(node.node_type))
+        return node.get_is_weighted();
+    return node.get_is_weighted() && IsWeighable(node.node_type);
 }
 
 ostream& operator<<(ostream& os, const Node& n);
