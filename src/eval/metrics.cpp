@@ -28,11 +28,10 @@ VectorXf log_loss(const VectorXf& y, const VectorXf& predict_proba,
     loss.resize(y.rows());  
     for (unsigned i = 0; i < y.rows(); ++i)
     {
-        if (predict_proba(i) < eps || 1 - predict_proba(i) < eps)
-            // clip probabilities since log loss is undefined for predict_proba=0 or predict_proba=1
-            loss(i) = -(y(i)*log(eps) + (1-y(i))*log(1-eps));
-        else
-            loss(i) = -(y(i)*log(predict_proba(i)) + (1-y(i))*log(1-predict_proba(i)));
+        // Clip either end independently: a prediction close to one must not
+        // be scored as if the positive-class probability were close to zero.
+        const float probability = std::clamp(predict_proba(i), eps, 1.0f - eps);
+        loss(i) = -(y(i)*log(probability) + (1-y(i))*log(1-probability));
 
         if (loss(i)<0)
             std::runtime_error("loss(i)= " + to_string(loss(i)) 
