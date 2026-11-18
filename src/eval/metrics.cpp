@@ -149,7 +149,8 @@ float binary_average_precision(const VectorXf& y, const VectorXf& predict_proba,
                                const vector<float>& w)
 {
     int num_instances = y.size();
-    float eps = 1e-6f;
+    if (num_instances == 0)
+        return 0.0f;
 
     // get argsort of predict proba (descending)
     vector<int> order(num_instances);
@@ -170,23 +171,6 @@ float binary_average_precision(const VectorXf& y, const VectorXf& predict_proba,
         w_sorted[i] = w[idx];
 
         ysum += y_sorted[i] * w_sorted[i];
-    }
-
-    // when all scores are the same, the sort order is arbitrary, so the PR curve
-    // you integrate is a staircase instead of a flat line. Sklearn avoids this by
-    // treating ties as one threshold.
-    // however, this does not produce consistent results, so we will handle flat
-    // lines below
-
-    // detect constant prediction case (all p_sorted equal within tolerance).
-    // because p_sorted is sorted, the first element is the maximum, and the last is the minimum,
-    if (fabs(p_sorted.back() - p_sorted.front()) <= eps) {
-        // All predictions are (effectively) constant.
-        float total_weight = std::accumulate(w_sorted.begin(), w_sorted.end(), 0.0f);
-
-        // Return weighted positives / total weight, matching sklearn's result for constant scores
-        // (kinda weighted prevalence)
-        return total_weight == 0.0f ? 0.0f : ysum / total_weight;
     }
 
     // Find the indexes where prediction changes, so we can treat it as one block
@@ -213,10 +197,12 @@ float binary_average_precision(const VectorXf& y, const VectorXf& predict_proba,
             tp += y_sorted.at(j) * w_sorted.at(j);
             fp += (1.0f - y_sorted.at(j)) * w_sorted.at(j);
 
-            float relevant = tp + fp;
-            precision.push_back(relevant == 0.0f ? 0.0f : tp / relevant);
-            recall.push_back(ysum == 0.0f ? 1.0f : tp / ysum);
         }
+        // A tied group is one threshold. Scoring each member separately makes
+        // fitness depend on their input order and penalizes piecewise models.
+        float relevant = tp + fp;
+        precision.push_back(relevant == 0.0f ? 0.0f : tp / relevant);
+        recall.push_back(ysum == 0.0f ? 0.0f : tp / ysum);
     }
 
     // integrate PR curve
