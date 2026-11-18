@@ -51,14 +51,24 @@ namespace Split{
         return ret;
     }
     float gini_impurity_index(const ArrayXf& classes, const vector<float>& uc);
-    float gain(const ArrayXf& lsplit, const ArrayXf& rsplit, bool classification, 
-            vector<float> unique_classes);
+    float gain(const ArrayXf& lsplit, const ArrayXf& rsplit, bool classification,
+            vector<float> unique_classes, const vector<float>& class_weights = {});
 
     template<typename T> vector<float> get_thresholds(const T& x); 
-    tuple<string,float> get_best_variable_and_threshold(const Dataset& d, TreeNode& tn);
+    struct Candidate {
+        string feature;
+        float threshold = 0.0f;
+        float score = MAX_FLT;
+        vector<int> categories;
+    };
+    Candidate best_category_split(const ArrayXi& x, const ArrayXf& y, bool classification,
+                                  const vector<float>& class_weights = {});
+    Candidate get_best_split(const Dataset& d, const vector<float>& class_weights = {});
+    ArrayXb category_mask(const ArrayXi& x, const vector<int>& categories);
 
     template<typename T>
-    tuple<float,float> best_threshold(const T& x, const ArrayXf& y, bool classification)
+    tuple<float,float> best_threshold(const T& x, const ArrayXf& y, bool classification,
+                                     const vector<float>& class_weights = {})
     {
         /* for each unique value in x, calculate the reduction in the 
         * heuristic brought about by
@@ -72,8 +82,7 @@ namespace Split{
         vector<float> all_thresholds = get_thresholds(x); 
 
         //////////////////// shared //////////////////////
-        float best_thresh, best_score = MAX_FLT;
-        int i = 0 ;
+        float best_thresh = 0.0f, best_score = MAX_FLT;
 
         vector<float> unique_classes;
         if (classification)
@@ -96,14 +105,13 @@ namespace Split{
                 continue;
 
             //TODO: templatize gain for classification/regression
-            float score = gain(lhs, rhs, classification, unique_classes);
+            float score = gain(lhs, rhs, classification, unique_classes, class_weights);
             /* fmt::print("threshold={}; lhs={};rhs={}; score = {}\n",thresh,lhs,rhs,score); */
-            if (score < best_score || i == 0)
+            if (std::isfinite(score) && score < best_score)
             {
                 best_score = score;
                 best_thresh = thresh;
             }
-            ++i;
         }
 
         best_thresh = std::isinf(best_thresh)? 
@@ -115,59 +123,54 @@ namespace Split{
     }
 
     template<typename T>
-    void get_best_threshold_by_type(const Dataset& d, auto& results)
+    void get_best_threshold_by_type(const Dataset& d, auto& results,
+                                    const vector<float>& class_weights)
     {
         DataType DT = DataTypeEnum<T>::value;
         /* fmt::print("get_best_threshold_by_type [T = {}]\n",DT); */
 
-        vector<string> keys;
-        float best_score = MAX_FLT;
-        string feature="";
-        float threshold=0.0;
-        int i = 0;
+        if (d.features_of_type.find(DT) == d.features_of_type.end())
+            return;
 
-        if (d.features_of_type.find(DT) != d.features_of_type.end())
-            keys = d.features_of_type.at(DT);
-        else
+        for (const auto& key : d.features_of_type.at(DT))
         {
-            /* fmt::print("didn't find features of type {} in data\n",DT); */
-            return; // std::make_tuple(feature, threshold, best_score);
+            Candidate candidate;
+            if constexpr (std::is_same_v<T, ArrayXi>)
+                candidate = best_category_split(std::get<T>(d[key]), d.y, d.classification, class_weights);
+            else
+                tie(candidate.threshold, candidate.score) =
+                    best_threshold(std::get<T>(d[key]), d.y, d.classification, class_weights);
+            candidate.feature = key;
+            if (std::isfinite(candidate.score) && candidate.score < MAX_FLT)
+                results.push_back(std::move(candidate));
         }
-
-        for (const auto& key : keys) 
-        {
-            float tmp_thresh, score;
-
-            tie(tmp_thresh, score) = best_threshold(std::get<T>(d[key]), d.y, d.classification);
-            // fmt::print("best threshold for {} = {:.3f}, score = {:.3f}\n",key,tmp_thresh,score);
-            if (score < best_score | i == 0)
-            {
-                best_score = score;
-                feature = key;
-                threshold = tmp_thresh;
-            }
-            ++i;
-        }
-        auto tmp = std::make_tuple(feature, threshold, best_score);
-        results.push_back(std::make_tuple(feature, threshold, best_score));
     }
 
     template<typename Ts,  std::size_t... Is> 
-    auto get_best_thresholds(const Dataset&d, std::index_sequence<Is...>)
+    auto get_best_thresholds(const Dataset&d, const vector<float>& class_weights,
+                             std::index_sequence<Is...>)
     {
         /* fmt::print("get_best_thresholds\n"); */
-        using entry = tuple<string, float, float>;
-        auto compare = [](const entry& a, const entry& b){ 
-            return (std::get<2>(a) < std::get<2>(b)); 
-        };
-
-        vector<entry> results;
+        vector<Candidate> results;
         /* fmt::print("get_best_thresholds::results size:{}\n",results.size()); */
-        (..., (get_best_threshold_by_type<std::tuple_element_t<Is,Ts>>(d, results)));
+        (..., (get_best_threshold_by_type<std::tuple_element_t<Is,Ts>>(d, results, class_weights)));
         /* fmt::print("getting best\n"); */
-        auto best = std::ranges::min_element(results, compare);
-        /* fmt::print("best: {}\n",(*best)); */
-        return (*best);
+        if (results.empty())
+            return Candidate{};
+        Candidate best = results.front();
+        int ties = 1;
+        for (size_t i = 1; i < results.size(); ++i) {
+            const float tolerance = 1e-7f * std::max(1.0f, std::abs(best.score));
+            if (results[i].score < best.score - tolerance) {
+                best = results[i];
+                ties = 1;
+            } else if (std::abs(results[i].score - best.score) <= tolerance) {
+                ++ties;
+                if (Util::r.rnd_int(1, ties) == 1)
+                    best = results[i];
+            }
+        }
+        return best;
     }
 
     /// Stitches together outputs from left or right child based on threshold
@@ -202,7 +205,21 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
     /* static constexpr auto F = [](const auto& ...args){ Function<NT> f{}; return f(args...); }; */ 
     static constexpr Function<NT> F{};
 
-    std::array<RetType,2> get_kids(const std::array<Dataset, 2>& d, TreeNode& tn, const W** weights=nullptr) const
+    // Optimizer parameters are laid out in postorder, including subtrees
+    // receiving no samples. Advance past those parameters without evaluating
+    // a branch on an empty dataset.
+    static size_t count_weights(const TreeNode* node)
+    {
+        size_t count = 0;
+        for (auto child = node->first_child; child != nullptr; child = child->next_sibling)
+            count += count_weights(child);
+        const auto& n = node->data;
+        if (HasOptimizableWeight(n))
+            ++count;
+        return count;
+    }
+
+    std::array<RetType,2> get_kids(const std::array<Dataset, 2>& d, TreeNode& tn, const W** weights, const vector<float>& class_weights) const
     {
         using arg_type = NthType<1>;
         std::array<arg_type,2> child_outputs;
@@ -216,27 +233,32 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
             if (d.at(i).get_n_samples() > 0)
             {
                 if constexpr (Fit)
-                    child_outputs.at(i) = sib->fit<arg_type>(d.at(i));
+                    child_outputs.at(i) = sib->fit<arg_type>(d.at(i), class_weights);
                 else
                     child_outputs.at(i) = sib->predict<arg_type>(d.at(i), weights);
+            }
+            else if constexpr (!Fit)
+            {
+                if (weights != nullptr)
+                    *weights += count_weights(sib);
             }
             sib = sib->next_sibling;
         }
         return child_outputs;
     };
 
-    RetType fit(const Dataset& d, TreeNode& tn) const {
+    RetType fit(const Dataset& d, TreeNode& tn, const vector<float>& class_weights) const {
         auto& threshold = tn.data.W;
 
         // set feature and threshold
         if constexpr (NT == NodeType::SplitOn)
         {
             // split on first child
-            FirstArg split_feature = tn.first_child->fit<FirstArg>(d);
+            FirstArg split_feature = tn.first_child->fit<FirstArg>(d, class_weights);
 
             // get the best splitting threshold
             if (!tn.data.weight_is_fixed) // avoid changing fixed weights
-                tie(threshold, ignore) = Split::best_threshold(split_feature, d.y, d.classification);
+                tie(threshold, ignore) = Split::best_threshold(split_feature, d.y, d.classification, class_weights);
         }
         else // splitbest
         {
@@ -250,51 +272,59 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
                 if (!tn.data.weight_is_fixed){
                     // Threshold will be optimized regardless.
                     if (std::holds_alternative<ArrayXf>(values))
-                        tie(threshold, ignore) = Split::best_threshold(std::get<ArrayXf>(values), d.y, d.classification);
-                    else if (std::holds_alternative<ArrayXi>(values))
-                        tie(threshold, ignore) = Split::best_threshold(std::get<ArrayXi>(values), d.y, d.classification);
+                        tie(threshold, ignore) = Split::best_threshold(std::get<ArrayXf>(values), d.y, d.classification, class_weights);
+                    else if (std::holds_alternative<ArrayXi>(values)) {
+                        auto best = Split::best_category_split(std::get<ArrayXi>(values), d.y, d.classification, class_weights);
+                        threshold = best.threshold;
+                        tn.data.split_categories = std::move(best.categories);
+                    }
                     else if (std::holds_alternative<ArrayXb>(values))
-                        tie(threshold, ignore) = Split::best_threshold(std::get<ArrayXb>(values), d.y, d.classification);
+                        tie(threshold, ignore) = Split::best_threshold(std::get<ArrayXb>(values), d.y, d.classification, class_weights);
                 }
                 
             }
             else // keep_split_feature == false
             {
                 if (!tn.data.weight_is_fixed){
-                    string feature = "";
-                    tie(feature, threshold) = Split::get_best_variable_and_threshold(d, tn);
-    
-                    tn.data.set_feature(feature);
-                    tn.data.set_feature_type(d.get_feature_type(feature));
+                    auto best = Split::get_best_split(d, class_weights);
+                    threshold = best.threshold;
+                    tn.data.set_feature(best.feature);
+                    tn.data.split_categories = std::move(best.categories);
+                    if (!best.feature.empty())
+                        tn.data.set_feature_type(d.get_feature_type(best.feature));
                 }
             }
         }
 
-        return predict(d, tn);
+        return predict(d, tn, nullptr, class_weights);
     }
 
-    RetType predict(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const 
+    RetType predict(const Dataset& d, TreeNode& tn, const W** weights=nullptr, const vector<float>& class_weights = {}) const
     {
         const auto& threshold = tn.data.W;
         const auto& feature = tn.data.get_feature();
 
         // split the data
         ArrayXb mask;
-        if (feature == "")
-        {
-            mask.resize(d.get_n_samples());
-            mask.fill(true);
-        }
-        else if constexpr (NT==NodeType::SplitBest)
-            mask = Split::threshold_mask(d[feature], threshold);
-        else {
+        if constexpr (NT==NodeType::SplitBest) {
+            if (feature.empty()) {
+                mask.resize(d.get_n_samples());
+                mask.fill(true);
+            } else {
+                const auto& value = d[feature];
+                if (!tn.data.split_categories.empty() && std::holds_alternative<ArrayXi>(value))
+                    mask = Split::category_mask(std::get<ArrayXi>(value), tn.data.split_categories);
+                else
+                    mask = Split::threshold_mask(value, threshold);
+            }
+        } else {
             auto split_feature = tn.first_child->predict<FirstArg>(d, weights);
             mask = Split::threshold_mask(split_feature, threshold);
         }
 
         std::array<Dataset, 2> data_splits = d.split(mask);
             
-        auto child_outputs = get_kids(data_splits, tn, weights);
+        auto child_outputs = get_kids(data_splits, tn, weights, class_weights);
 
         // stitch together outputs
         // fmt::print("stitching outputs\n");
@@ -304,9 +334,9 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
 
         return out;
     }
-    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const {
+    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr, const vector<float>& class_weights = {}) const {
         if constexpr (Fit)
-            return fit(d,tn); 
+            return fit(d,tn,class_weights);
         else
             return predict(d,tn,weights);
     }
