@@ -40,13 +40,17 @@ namespace Brush { namespace Simpl{
                     // non-wheightable nodes are not simplified. TODO: revisit this and see if they should (then implement it)
                     if (Isnt<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>(n.node_type)
                     &&  n.get_prob_change()>0
-                    &&  IsWeighable(n.ret_type)
+                    &&  (IsWeighable(n.ret_type) || n.ret_type == DataType::ArrayI)
                     )
                     {       
                         // TODO: check if holds alternative and use this information, instead of making it templated. Also, return void.
                         // get new_pred with predictions after simplification
                         VectorXf branch_pred;
-                        if constexpr (P==ProgramType::Regressor || P==ProgramType::BinaryClassifier)
+                        if (n.ret_type == DataType::ArrayI)
+                        {
+                            branch_pred = (*spot.node).template predict<ArrayXi>(d).template cast<float>();
+                        }
+                        else if constexpr (P==ProgramType::Regressor || P==ProgramType::BinaryClassifier)
                         {
                             RetType pred = (*spot.node).predict<RetType>(d);
                             branch_pred = pred.template cast<float>();
