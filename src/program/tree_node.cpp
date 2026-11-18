@@ -41,8 +41,12 @@ string TreeNode::get_tree_model(bool pretty, string offset) const
             child_outputs += "\n";
     }
     if (Is<NodeType::SplitBest>(data.node_type)){
+        if (data.get_feature_type() == DataType::ArrayI && !data.split_categories.empty())
+            return fmt::format("If({} in {{{}}})", data.get_feature(),
+                               fmt::join(data.split_categories, ",")) + child_outputs;
         if (data.get_feature_type() != DataType::ArrayB) {
-            return fmt::format("If({}>={:.2f})", data.get_feature(), data.W) + child_outputs;
+            const char* op = data.get_feature_type() == DataType::ArrayI ? "==" : ">=";
+            return fmt::format("If({}{}{:.2f})", data.get_feature(), op, data.W) + child_outputs;
         }
         else {
             return fmt::format("If({})", data.get_feature()) + child_outputs;
@@ -136,7 +140,7 @@ unordered_map<NodeType, int> operator_complexities = {
     {NodeType::Prod     , 4},
 
     // Transformers 
-    {NodeType::Softmax, 5},
+    {NodeType::Softmax, 5}, // This is used only in multiclassification. Change here to allow brush to work with more classes
 
     // Binary
     {NodeType::Add, 3},
@@ -153,6 +157,8 @@ unordered_map<NodeType, int> operator_complexities = {
     {NodeType::And, 3},
     {NodeType::Or , 3},
     {NodeType::Not, 3},
+    {NodeType::Geq, 3},
+    {NodeType::Equals, 3},
 
     // leaves
     {NodeType::MeanLabel, 1},
@@ -179,7 +185,7 @@ int TreeNode::get_linear_complexity() const
     }
 
     // include the `w` and `*` if the node is weighted (and it is not a constant or mean label)
-    if (data.get_is_weighted()
+    if (data.get_is_weighted() && IsWeighable(data.node_type)
     &&  Isnt<NodeType::Constant, NodeType::MeanLabel>(data.node_type) )
     {
         // ignoring weight if it has the value of neutral element of operation
@@ -207,7 +213,7 @@ int TreeNode::get_complexity() const
     children_complexity_sum = max(children_complexity_sum, 1);
 
     // include the `w` and `*` if the node is weighted (and it is not a constant or mean label)
-    if (data.get_is_weighted()
+    if (data.get_is_weighted() && IsWeighable(data.node_type)
     &&  Isnt<NodeType::Constant, NodeType::MeanLabel>(data.node_type) )
     {
         // complexity for offsetsum or weighted nodes.
@@ -227,17 +233,18 @@ int TreeNode::get_size(bool include_weight) const
 {
     int acc = 1; // the node operator or terminal
 
-    // SplitBest has an optimizable decision tree consisting of 3 nodes
-    // (terminal, arithmetic comparison, value) that needs to be taken
-    // into account. Split on will have an random decision tree that can 
-    // have different sizes, but will also have the arithmetic comparison
-    // and a value.
-    if (Is<NodeType::SplitBest>(data.node_type))
-        acc += 3;
-    else if (Is<NodeType::SplitOn>(data.node_type))
-        acc += 2;
-
+    // SplitBest contains an implicit feature, comparison, and threshold.
+    // SplitOn's boolean condition is already represented by its first child.
+    if (Is<NodeType::SplitBest>(data.node_type)) {
+        if (data.get_feature_type() == DataType::ArrayB)
+            acc += 1;
+        else if (data.get_feature_type() == DataType::ArrayI && !data.split_categories.empty())
+            acc += 2 + static_cast<int>(data.split_categories.size());
+        else
+            acc += 3;
+    }
     if ( (include_weight && data.get_is_weighted()==true)
+    &&   IsWeighable(data.node_type)
     &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(data.node_type) )
         // Taking into account the weight and multiplication, if enabled.
         // weighted constants still count as 1 (simpler than constant terminals)
