@@ -67,6 +67,14 @@ public:
      */
     ~Variation() {};
 
+    static string terminal_arm(const Node& node) {
+        if (node.node_type == NodeType::Constant) {
+            if (node.ret_type == DataType::ArrayI) return "Constant:ArrayI";
+            if (node.ret_type == DataType::ArrayB) return "Constant:ArrayB";
+        }
+        return NodeTypeName.at(node.node_type) + ":" + node.get_feature();
+    }
+
     /**
      * @brief Initializes the Variation object with parameters and search space.
      * 
@@ -103,8 +111,8 @@ public:
                     // TODO: do not insert if coefficient is smaller than zero. Fix bandits to work with that
                     if (entry.second[i] > 0.0)
                     {
-                        auto node_name = search_space.terminal_map.at(entry.first).at(i).get_feature();
-                        terminal_probs[node_name] = entry.second[i];
+                        auto node_name = terminal_arm(search_space.terminal_map.at(entry.first).at(i));
+                        terminal_probs[node_name] += entry.second[i];
                     }
                     
                 if (terminal_probs.size()>0)
@@ -154,7 +162,18 @@ public:
         // ensuring all terminals exists as a simplification option
         // Only initialize simplification tables if inexact_simplification is enabled
         if (parameters.inexact_simplification) {
-            inexact_simplifier.init(256, data, 1);
+            // All hashes must use the same rows and fit the simplifier's
+            // 1000-row limit, including when training uses smaller batches.
+            Dataset training = data.get_training_data();
+            const auto count = std::min(1000, training.get_n_samples());
+            vector<size_t> indices(training.get_n_samples());
+            std::iota(indices.begin(), indices.end(), 0);
+            if (indices.size() > static_cast<size_t>(count)) {
+                r.shuffle(indices.begin(), indices.end());
+                indices.resize(count);
+            }
+            simplification_data = training(indices);
+            inexact_simplifier.init(256, *simplification_data, 1);
             for (const auto& entry : this->search_space.terminal_weights) {
                 map<string, float> terminal_probs;
                 for (int i = 0; i < entry.second.size(); i++)
@@ -165,7 +184,7 @@ public:
                         tree<Node> dummy_tree;
                         dummy_tree.insert(dummy_tree.begin(), node);
                         auto it = dummy_tree.begin();
-                        inexact_simplifier.index<T>(it, data.get_training_data());                    
+                        inexact_simplifier.index<T>(it, *simplification_data);
                     }
             }
         }
@@ -209,6 +228,54 @@ public:
      * @param rewards The rewards obtained from the evaluation of individuals.
      */
     void update_ss();
+
+    void reward_variation(const string& choice, const Individual<T>& ind, float reward)
+    {
+        if (choice.empty())
+            return;
+        const bool succeeded = ind.get_variation() == choice;
+        variation_bandit.update(choice, succeeded ? reward : 0.0f);
+        if (!succeeded)
+            return;
+        for (const auto& node : ind.get_sampled_nodes()) {
+            if (node.get_arg_count() == 0) {
+                auto it = terminal_bandits.find(node.get_ret_type());
+                if (it != terminal_bandits.end())
+                    it->second.update(terminal_arm(node), reward);
+            } else {
+                auto ret = op_bandits.find(node.get_ret_type());
+                if (ret != op_bandits.end()) {
+                    auto args = ret->second.find(node.args_type());
+                    if (args != ret->second.end())
+                        args->second.update(node.name, reward);
+                }
+            }
+        }
+    }
+
+    /// Apply the configured simplifiers to an already fitted expression.
+    void simplify_individual(Individual<T>& ind, const Dataset& score_data,
+                             bool do_simplification)
+    {
+        SimplificationRecords records;
+        SimplificationRecords* records_ptr = parameters.logfile.empty() ? nullptr : &records;
+        if (parameters.constants_simplification && do_simplification)
+            constants_simplifier.simplify_tree<T>(ind.program, search_space,
+                                                  score_data.get_training_data(), records_ptr);
+        if (parameters.inexact_simplification) {
+            if (do_simplification)
+                inexact_simplifier.simplify_tree<T>(ind.program, search_space,
+                                                   *simplification_data, records_ptr);
+            else
+                inexact_simplifier.analyze_tree<T>(ind.program, search_space,
+                                                  *simplification_data);
+        }
+        for (auto& rec : records) {
+            rec.generation = parameters.current_gen;
+            rec.individual_id = ind.get_id();
+            simplification_records.push_back(std::move(rec));
+        }
+    }
 
     /**
      * @brief Varies a population and updates the selection strategy based on rewards.
@@ -265,10 +332,10 @@ public:
                 ind = Individual<T>();
                 ind.init(search_space, parameters);
 
-                // Alternative: keep it as it is, and just re-fit the constants
-                // (comment out just the line below to disable, but keep ind.init)
+                // Keep the fitted program when variation cannot change it.
                 Program<T> copy(mom.program);
                 ind.program = copy;
+                ind.set_is_fitted(mom.get_is_fitted());
                 ind.variation = "clone";
             }
             else
@@ -320,6 +387,7 @@ public:
                         // fallback: mark as a subtree attempt that failed to produce a new individual
                         Program<T> copy(mom.program);
                         ind.program = copy;
+                        ind.set_is_fitted(mom.get_is_fitted());
                         ind.variation = "clone";
                     }
                 }
@@ -344,44 +412,13 @@ public:
             assert(ind.program.size() > 0);
             assert(ind.fitness.valid() == false);
 
-            ind.program.fit(data.get_training_data(), parameters.class_weights);
-
-            // simplify before calculating fitness (order matters, as they are not refitted and constants simplifier does not replace with the right value.)
-            // simplify constants first to avoid letting the lsh simplifier to visit redundant branches
-            
-            // replacements are only recorded when they are going to be logged
-            SimplificationRecords records;
-            SimplificationRecords* records_ptr = parameters.logfile.empty() ? nullptr : &records;
-
-            if (parameters.constants_simplification && do_simplification)
-            {
-                constants_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data(), records_ptr);  
+            if (!ind.get_is_fitted() || !ind.program.is_fitted_) {
+                ind.program.fit(data.get_training_data(), parameters.class_weights);
+                ind.set_is_fitted(true);
             }
 
-            if (parameters.inexact_simplification)
-            {
-                auto inputDim = std::min(inexact_simplifier.inputDim, data.get_training_data().get_n_samples());
-
-                vector<size_t> idx(inputDim);
-                std::iota(idx.begin(), idx.end(), 0);
-                Dataset data_simp = data(idx);
-
-                if (do_simplification)
-                {
-                    inexact_simplifier.simplify_tree<T>(ind.program, search_space, data_simp, records_ptr);
-                }
-                else
-                {
-                    inexact_simplifier.analyze_tree<T>(ind.program, search_space, data_simp);
-                }
-            }
-
-            for (auto& rec : records)
-            {
-                rec.generation    = parameters.current_gen;
-                rec.individual_id = id;
-                simplification_records.push_back(std::move(rec));
-            }
+            // Simplify constants first, then look for inexact replacements.
+            simplify_individual(ind, data, do_simplification);
         
             evaluator.assign_fit(ind, data, parameters, false, validation_data);
             
@@ -440,35 +477,7 @@ public:
             if (allPositive && !allNegative)
                 r = 1.0;
 
-            if (!ind.get_variation().compare("born")
-            &&  !ind.get_variation().compare("cx")
-            &&  !ind.get_variation().compare("subtree") // TODO: handle subtree
-            )
-            {
-                this->variation_bandit.update(ind.get_variation(), r);
-                              
-                if (ind.get_sampled_nodes().size() > 0) {
-                    const auto& changed_nodes = ind.get_sampled_nodes();
-                    for (auto& node : changed_nodes) {
-                        if (node.get_arg_count() == 0) {
-                            auto datatype = node.get_ret_type();
-
-                            this->terminal_bandits[datatype].update(node.get_feature(), r);
-                        }
-                        else {
-                            auto ret_type = node.get_ret_type();
-                            auto args_type = node.args_type();
-                            auto name = node.name;
-
-                            this->op_bandits[ret_type][args_type].update(name, r);
-                        }
-                    }
-                }
-            }
-            else
-            { // giving zero reward if the variation failed
-                this->variation_bandit.update(choice, 0.0);
-            }
+            reward_variation(choice, ind, r);
             
             // aux_individuals.push_back(std::make_shared<Individual<T>>(ind));
             pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(ind);
@@ -500,18 +509,19 @@ public:
         auto& bandit = terminal_bandits.at(R);
         string terminal_name = bandit.choose();
 
-        auto it = std::find_if(
-            search_space.terminal_map.at(R).begin(),
-            search_space.terminal_map.at(R).end(), 
-            [&](auto& node) { return node.get_feature() == terminal_name; });
-
-        if (it != search_space.terminal_map.at(R).end()) {
-            auto index = std::distance(search_space.terminal_map.at(R).begin(), it);
-
-            return search_space.terminal_map.at(R).at(index);
+        vector<Node> matches;
+        vector<float> weights;
+        const auto& nodes = search_space.terminal_map.at(R);
+        const auto& node_weights = search_space.terminal_weights.at(R);
+        for (size_t i = 0; i < nodes.size(); ++i) {
+            if (terminal_arm(nodes[i]) == terminal_name && node_weights[i] > 0.0f) {
+                matches.push_back(nodes[i]);
+                weights.push_back(node_weights[i]);
+            }
         }
-
-        return std::nullopt;
+        if (matches.empty())
+            return std::nullopt;
+        return *r.select_randomly(matches.begin(), matches.end(), weights.begin(), weights.end());
     };
 
     // bandit_get_node_like
@@ -645,6 +655,7 @@ private:
     // simplification methods
     Constants_simplifier constants_simplifier; 
     Inexact_simplifier inexact_simplifier;
+    std::optional<Dataset> simplification_data;
     SimplificationRecords simplification_records; ///< replacements not yet logged
 };
 
