@@ -20,8 +20,12 @@ namespace util{
     Scalar get_weight(const TreeNode& tn, const W** weights=nullptr)
     { 
         Scalar w;
+        // Integer constants are discrete values, not optimizer parameters.
+        if constexpr (is_one_of_v<Scalar, int, iJet>)
+            return Scalar(static_cast<int>(tn.data.W));
+
         // Prediction case: weight is stored in the node data.
-        if (weights == nullptr)
+        if (weights == nullptr || tn.data.weight_is_fixed)
         {
             if constexpr (std::is_floating_point_v<decltype(tn.data.W)> || std::is_integral_v<decltype(tn.data.W)>) {
                 if (std::isnan(tn.data.W) || tn.data.W == std::numeric_limits<decltype(tn.data.W)>::lowest()) {
@@ -75,7 +79,7 @@ namespace util{
             "it should not be\n"));
 
         // std::cout << "Returning weight: Scalar(true) for a boolean node tn " << tn.data.name << std::endl;
-        return Scalar(true);
+        return Scalar(static_cast<bool>(tn.data.W));
     };
 }
 ////////////////////////////////////////////////////////////////////////////////
