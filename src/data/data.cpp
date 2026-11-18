@@ -359,6 +359,7 @@ Dataset Dataset::get_batch() const
                 batch_cycle_sizes.push_back(batch_indices.size());
             }
         }
+        ++batch_epoch;
     }
 
     // get the indices and move the two cursors
@@ -554,6 +555,7 @@ void Dataset::set_batch_size(float new_size) {
     batch_cycle_sizes.clear();
     batch_cycle_cursor = 0;
     batch_cycle_batch_cursor = 0;
+    batch_epoch = 0;
 }
 
 /// turns input data into a feature map

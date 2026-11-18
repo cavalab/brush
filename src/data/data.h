@@ -64,10 +64,17 @@ class Dataset
         mutable vector<size_t> batch_cycle_sizes;
         mutable size_t batch_cycle_cursor = 0;
         mutable size_t batch_cycle_batch_cursor = 0;
+        mutable size_t batch_epoch = 0;
         /// @brief stores the original feature name order before map sorting
         vector<string> feature_name_order_;
 
     public:
+        struct BatchProgress {
+            size_t epoch;
+            size_t batch;
+            size_t batches;
+        };
+
         /// @brief keeps track of the unique data types in the dataset. 
         std::vector<DataType> unique_data_types;
 
@@ -240,6 +247,14 @@ class Dataset
         /// Select the next batch without replacement. Classification batches
         /// preserve the prevalence of the remaining class-specific queues.
         Dataset get_batch() const;
+
+        /// Position of the most recently selected batch, if batching is active.
+        std::optional<BatchProgress> get_batch_progress() const {
+            if (!use_batch || batch_epoch == 0)
+                return std::nullopt;
+            return BatchProgress{batch_epoch, batch_cycle_batch_cursor,
+                                 batch_cycle_sizes.size()};
+        }
 
         float get_batch_size();
         void set_batch_size(float new_size);
