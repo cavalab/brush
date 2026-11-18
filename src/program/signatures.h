@@ -157,13 +157,13 @@ template<typename R, typename Arg, size_t ArgCount>
 using NarySignature_t = typename NarySignature<R,Arg,ArgCount>::type;
 
 /**
- * @brief Makes a tuple of signatures with increasing arity up to `MaxArgCount`. 
+ * @brief Makes a tuple of signatures with arity below `MaxArgCount`.
  * 
  * Assumes the types of the arguments are identical. 
  * 
  * @tparam R  return type of the signature.
  * @tparam Arg shared type of every argument. 
- * @tparam MaxArgCount maximum number of arguments.
+ * @tparam MaxArgCount exclusive upper bound on the number of arguments.
  */
 template<typename R, typename Arg, size_t MaxArgCount>
 struct NarySignatures
@@ -426,7 +426,8 @@ template <>
 struct Signatures<NodeType::Softmax>
     {
         using unaryTuple = std::tuple< Signature<ArrayXXf(ArrayXXf)> >;
-        using naryTuple = NarySignatures_t<ArrayXXf,ArrayXf,MAX_ARGS>;
+        // Include one logit for each class through the supported maximum.
+        using naryTuple = NarySignatures_t<ArrayXXf,ArrayXf,MAX_ARGS+1>;
 
         using type = decltype(std::tuple_cat(unaryTuple(), naryTuple()));
     };
