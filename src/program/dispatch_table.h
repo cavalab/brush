@@ -28,7 +28,7 @@ namespace Brush{
 template<typename R, NodeType NT, typename S, bool Fit, typename W> 
 R DispatchOp( const Data::Dataset& d, TreeNode& tn, const W** weights); 
 template<typename R, NodeType NT, typename S, bool Fit> 
-R DispatchOp( const Data::Dataset& d, TreeNode& tn); 
+R DispatchOp( const Data::Dataset& d, TreeNode& tn, const vector<float>& class_weights);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Dispatch Table
@@ -37,7 +37,7 @@ struct DispatchTable
 {
     template<typename T>
     using Callable = typename std::conditional_t<Fit, 
-        std::function<T(const Data::Dataset&, TreeNode&)>,
+        std::function<T(const Data::Dataset&, TreeNode&, const vector<float>&)>,
         std::function<T(const Data::Dataset&, TreeNode&, const typename WeightType<T>::type**)>
     >;
 

@@ -67,7 +67,10 @@ public:
     };
 
     Individual<T> &fit(const Dataset& data) {
-        program.fit(data);
+        return fit(data, {});
+    };
+    Individual<T> &fit(const Dataset& data, const vector<float>& class_weights) {
+        program.fit(data, class_weights);
         this->is_fitted_ = true;
         return *this;
     };

@@ -39,7 +39,7 @@ class tree_node_<Node> { // size: 5*4=20 bytes (on 32 bit arch), can be reduced 
 		Node data;
 
         template<typename T>
-        auto fit(const Dataset& d); 
+        auto fit(const Dataset& d, const vector<float>& class_weights = {});
 
         template<typename T> 
         auto predict(const Dataset& d, const float** weights=nullptr); 
@@ -63,10 +63,10 @@ using TreeNode = class tree_node_<Node>;
 #include "dispatch_table.h"
 
 template<typename T>
-auto TreeNode::fit(const Dataset& d)
+auto TreeNode::fit(const Dataset& d, const vector<float>& class_weights)
 { 
     auto F = dtable_fit.template Get<T>(data.node_type, data.sig_hash);
-    return F(d, (*this));
+    return F(d, (*this), class_weights);
 };
 
 template<typename T> 

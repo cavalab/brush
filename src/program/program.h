@@ -156,7 +156,7 @@ template<PT PType> struct Program
     Program<PType>& fit(const Dataset& d,
                         const vector<float>& class_weights)
     {
-        TreeType out =  Tree.begin().node->fit<TreeType>(d);
+        TreeType out =  Tree.begin().node->fit<TreeType>(d, class_weights);
         this->is_fitted_ = true;
         update_weights(d, class_weights);
         // this->valid = true;
