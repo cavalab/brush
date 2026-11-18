@@ -66,8 +66,9 @@ public:
      * @param island The island index.
      * @param data The dataset for evaluation.
      * @param params The parameters for evaluation.
-     * @param fit Flag indicating whether to update fitness.
-     * @param validation Flag indicating whether to perform validation.
+     * @param fit Fit individuals that have not yet been fitted.
+     * @param validation Use validation loss for the fitness objective.
+     * @param force_fit Refit even individuals that have already been fitted.
      */
     void update_fitness(Population<T>& pop,
                  int island,
