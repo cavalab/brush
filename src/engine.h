@@ -60,9 +60,10 @@ public:
     ~Engine(){};
 
     // outputs a progress bar, filled according to @param percentage.
-    void print_progress(float percentage);
+    void print_progress(float percentage, const string& batch_label = "");
     void calculate_stats();
-    void print_stats(float fraction);
+    void print_stats(float fraction, const string& batch_label = "",
+                     std::optional<double> estimated_remaining = std::nullopt);
 
     // all hyperparameters are controlled by the parameter class. please refer to that to change something
     inline Parameters& get_params(){return params;}
@@ -77,6 +78,7 @@ public:
     bool update_best();
 
     Individual<T>& get_best_ind(){return best_ind;};  
+    void set_best_ind(const Individual<T>& individual) { best_ind = individual; }
     
     Engine<T> &fit(Dataset& data) {
         run(data);
@@ -126,6 +128,7 @@ public:
     vector<Individual<T>> get_archive();
     vector<Individual<T>> get_population();
     void set_population(vector<Individual<T>> pop_vector);
+    void invalidate_population_fit();
 
     // locking and unlocking parts of the solutions
     void lock_nodes(int end_depth=0, bool keep_leaves_unlocked=true, bool keep_current_weights=false);
@@ -174,6 +177,7 @@ private:
 
     void open_logs();
     void log_stats(unsigned stall_count, const SimplificationRecords& simplifications);
+    void log_simplification_records(const SimplificationRecords& simplifications);
     void close_logs();
 
     void init();
