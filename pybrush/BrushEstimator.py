@@ -23,8 +23,6 @@ from pybrush._brush import set_random_state as set_brush_random_state
 from pybrush.EstimatorInterface import EstimatorInterface
 from pybrush import RegressorEngine, ClassifierEngine, MultiClassifierEngine
 
-from pandas.api.types import is_float_dtype, is_bool_dtype, is_integer_dtype
-
 def _ovr_macro(binary_metric):
     """Macro one-vs-rest average of a binary ranking metric, skipping classes
     that are absent (or the only class present) in `y_true`. Matches brush's
@@ -93,36 +91,10 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         if isinstance(self.random_state, int):
             set_brush_random_state(self.random_state)
 
-        self.feature_names_ = []
-        self.feature_types_ = []
-        if isinstance(X, pd.DataFrame):
-            self.feature_names_ = X.columns.to_list()
-            for values, dtype in zip(X.values.T, X.dtypes):
-                if is_bool_dtype(dtype):
-                    self.feature_types_.append('ArrayB')
-                elif is_integer_dtype(dtype):
-                    # For Brush, it does matter if it is realy an integer or a boolean in disguise
-                    if np.all(np.logical_or(values == 0, values == 1)):
-                        self.feature_types_.append('ArrayB')
-                    else:
-                        if len(np.unique(values))<=10: # Categories, encoded
-                            self.feature_types_.append('ArrayI')
-                        else: # Integers, we'll treat as floats so we can do all the math normally
-                            self.feature_types_.append('ArrayF')
-                elif is_float_dtype(dtype):
-                    self.feature_types_.append('ArrayF')
-                else:
-                    raise ValueError(
-                        "Unsupported data type. Please try using an "
-                        "encoding method to convert the data to a supported "
-                        "format.")
-        else:
-            # For numpy arrays, generate feature names in the correct order
-            # BEFORE creating the Dataset, so we maintain the column order
-            self.feature_names_ = [f"x_{i}" for i in range(X.shape[1])]
+        self._prepare_feature_types(X)
 
         # Beyong this point, X is not a dataframe anymore
-        X, y = check_X_y(X, y)
+        X, y = check_X_y(self._encode_categories(X), y)
         if self.mode == 'classification':
             # The C++ core indexes probability columns with class labels.  Keep
             # that representation internal while preserving sklearn's original
@@ -130,7 +102,8 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
             self.classes_, y = np.unique(y, return_inverse=True)
             y = y.astype(np.float32)
 
-        self.data_ = self._make_data(X, y, 
+        # X has already been encoded above, before sklearn validation.
+        self.data_ = self._make_data(X, y, _encoded=True,
                                      feature_names=self.feature_names_,
                                      feature_types=self.feature_types_,
                                      validation_size=self.validation_size,
@@ -139,7 +112,7 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         # Get feature_types from the dataset if we didn't have them (numpy array case)
         # but DON'T overwrite feature_names_ because the dataset may return them
         # in alphabetical order due to std::map sorting!
-        if not self.feature_types_: # if it is not a pandas dataframe, then feature_types will be empty
+        if not self.feature_types_ or any(not t for t in self.feature_types_):
             self.feature_types_ = self.data_.get_feature_types()
 
         # These have a default behavior to return something meaningfull if 
@@ -182,9 +155,15 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         return self
     
     def partial_fit(self, X, y, *, 
-                    lock_nodes_depth=0, keep_leaves_unlocked=True, keep_current_weights=False):
+                    lock_nodes_depth=0, keep_leaves_unlocked=True,
+                    keep_current_weights=False, refit=True):
         """
-        Fit an estimator to X,y, without reseting the estimator.
+        Continue fitting the current population on X and y.
+
+        With ``max_gens=0``, the population is refitted and reevaluated without
+        evolutionary or final model selection; enabled simplifiers run once.
+        Use it to re-evaluate the expressions and simplify them based on 
+        their predictions.
 
         Parameters
         ----------
@@ -199,7 +178,16 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         keep_current_weights : bool, optional
             Whether to keep current weights at the spot they appear, and preventing 
             them to be changed during optimization. Default is False.
+        refit : bool, default True
+            Fit every existing expression once on the first training batch.
+            Set ``batch_size=1.0`` to fit on the whole training partition. The
+            validation partition remains separate. Set to False to reevaluate
+            existing weights and split thresholds without fitting them again.
         """
+
+        check_is_fitted(self, ["engine_", "classes_" if self.mode == "classification" else "best_estimator_"])
+        if isinstance(self.random_state, int):
+            set_brush_random_state(self.random_state)
 
         if isinstance(X, pd.DataFrame):
             assert self.feature_names_ == X.columns.to_list(), \
@@ -222,9 +210,10 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         # We need to update class weights, this is what is happening here.
         new_parameters = self._wrap_parameters(new_data.get_training_data().y)
 
-        # Using the same engine as before --- it will keep the population
-        assert self.engine_ is not None, \
-            "You must call `fit` before calling `partial_fit`"
+        if self.pop_size != len(self.engine_.get_population()):
+            raise ValueError("pop_size cannot be changed between fit and partial_fit")
+        if self.num_islands != self.engine_.params.num_islands:
+            raise ValueError("num_islands cannot be changed between fit and partial_fit")
         
         # The logistic root is not affected by locking or unlocking.
         # It is fixed due to prob_change==0.0.
@@ -233,10 +222,13 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         self.parameters_ = new_parameters
         self.engine_.params = new_parameters
         
-        # replicating the best individual
-        self.engine_.set_population([self.best_estimator_ for _ in range(self.pop_size)])
+        # The selected individual may have left the current population. Keep
+        # it as a candidate without replacing every member with copies of it.
+        self.engine_.set_best_ind(self.best_estimator_)
 
         self.engine_.lock_nodes(lock_nodes_depth, keep_leaves_unlocked, keep_current_weights)
+        if refit:
+            self.engine_.invalidate_population_fit()
         self.engine_.fit(new_data)
         # self.engine_.lock_nodes(0, False, False) # unlocking everything
 
@@ -248,9 +240,13 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         self.archive_ = self.engine_.get_archive()
         self.population_ = self.engine_.get_population()
         self.best_estimator_ = self.engine_.best_ind
+        self.data_ = new_data
+        self.train_ = new_data.get_training_data()
+        self.train_.set_batch_size(self.batch_size)
+        self.validation_ = new_data.get_validation_data()
 
-        if self.final_model_selection != "":
-            self._update_final_model(new_data.get_validation_data())
+        if self.max_gens != 0 and self.final_model_selection != "":
+            self._update_final_model(self.validation_)
 
         return self
 
@@ -259,19 +255,8 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         check_is_fitted(self)
 
-        if isinstance(X, pd.DataFrame):
-            X = X.values
-
-        assert isinstance(X, np.ndarray)
-
-        # Need to provide feature names because reference does not store order.
-        # Some of the self.<attr> are created just after fitting the estimator,
-        # and they are properly serialized in the python-side.
-        data = Dataset(X=X, # ref_dataset=self.data_, 
-                            feature_types=self.feature_types_,
-                            feature_names=self.feature_names_,
-                            validation_size=0.0,
-                            )
+        data = self._make_data(X, feature_types=self.feature_types_,
+                               feature_names=self.feature_names_)
         
         prediction = np.asarray(self.best_estimator_.program.predict(data))
         if self.mode == 'classification':
@@ -335,12 +320,20 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
                 else: # accuracy, balanced accuracy, or regression metrics
                     y_pred = np.array(ind.predict(data))
 
+                sample_y = y[sample]
+                sample_pred = y_pred[sample]
                 metric_kwargs = {}
-                if self.parameters_.scorer == "multi_log":
+                if self.parameters_.scorer in ["log", "multi_log"]:
                     metric_kwargs["labels"] = np.arange(self.parameters_.n_classes)
                 elif self.parameters_.scorer in ["precision", "recall"]:
                     metric_kwargs["zero_division"] = 0
                     metric_kwargs["average"] = "macro" if multiclass else "binary"
+
+                # Match the native scorer when a binary AUROC sample has only
+                # one class: AUROC is undefined, and Brush returns 0.5.
+                if self.parameters_.scorer == "roc_auc" and not multiclass \
+                        and len(np.unique(sample_y)) < 2:
+                    return 0.5
 
                 # y_pred = np.nan_to_num(y_pred) # Protecting the evaluation
 
@@ -348,30 +341,24 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
                 # support, I calculate it here. otherwise, no weight is used
                 if self.mode == 'classification' \
                 and (self.class_weights not in ['unbalanced'] and self.parameters_.scorer not in ['balanced_accuracy']):
-                    sample_weight = []
                     if isinstance(self.class_weights, list): # using user-defined values
-                        sample_weight = [self.class_weights[int(label)] for label in y]
+                        sample_weight = np.array([self.class_weights[int(label)] for label in sample_y])
                     else: # support
-                        # Calculate class weights by support
-                        classes, counts = np.unique(y[sample], return_counts=True)
-        
-                        support_weights = {
-                            int(cls): len(y[sample]) / (len(classes)*count) 
-                            if count > 0 else 0.0 for cls, count in zip(classes, counts)}
-                        
-                        # classes and support weights are calculated with y[sample].
-                        # sample_weight will be indexed in the function call, so we use raw y.
-                        sample_weight = [support_weights[int(label)] for label in y]
-                    sample_weight = np.array(sample_weight)
-                    return loss_f(y[sample], y_pred[sample],
-                                  sample_weight=sample_weight[sample], **metric_kwargs)
+                        # Weight only sampled labels: a bootstrap sample may
+                        # omit classes that are present in the full dataset.
+                        classes, inverse, counts = np.unique(
+                            sample_y, return_inverse=True, return_counts=True)
+                        sample_weight = (len(sample_y) / (len(classes) * counts))[inverse]
+                    return loss_f(sample_y, sample_pred,
+                                  sample_weight=sample_weight, **metric_kwargs)
                 else: # unbalanced metrics, ignoring weights
-                    return loss_f(y[sample], y_pred[sample], **metric_kwargs)
+                    return loss_f(sample_y, sample_pred, **metric_kwargs)
 
-            np.random.seed(0)
+            seed = self.random_state if isinstance(self.random_state, (int, np.integer)) else 0
+            bootstrap_rng = np.random.RandomState(seed)
             val_samples = []
             for i in range(100):
-                sample = np.random.randint(0, len(y), size=len(y))
+                sample = bootstrap_rng.randint(0, len(y), size=len(y))
                 val_samples.append( eval(self.best_estimator_, sample) )
 
             lower_ci, upper_ci = np.quantile(val_samples,0.05), np.quantile(val_samples,0.95)
@@ -409,6 +396,8 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
 class BrushClassifier(BrushEstimator, ClassifierMixin):
     """Brush with c++ engine for classification.
+
+    Supports two to five classes. Original class labels are preserved.
 
     Parameters are defined and documented in 
     :py:class:`EstimatorInterface <pybrush.EstimatorInterface.EstimatorInterface>`
@@ -448,16 +437,8 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
         
         check_is_fitted(self)
     
-        if isinstance(X, pd.DataFrame):
-            X = X.values
-
-        assert isinstance(X, np.ndarray)
-
-        # Need to provide feature names because reference does not store order
-        data = Dataset(X=X, # ref_dataset=self.data_, 
-                            feature_types=self.feature_types_,
-                            feature_names=self.feature_names_,
-                            validation_size=0.0)
+        data = self._make_data(X, feature_types=self.feature_types_,
+                               feature_names=self.feature_names_)
 
         prob = self.best_estimator_.program.predict_proba(data)
 
