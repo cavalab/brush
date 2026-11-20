@@ -47,6 +47,7 @@ void bind_engine(py::module& m, string name)
              .def_property("search_space", &T::get_search_space, &T::set_search_space)
              .def_property_readonly("is_fitted", &T::get_is_fitted)
              .def_property_readonly("best_ind", &T::get_best_ind)
+             .def("set_best_ind", &T::set_best_ind)
              .def("fit",
                 static_cast<T &(T::*)(Dataset &d)>(&T::fit),
                 py::call_guard<py::gil_scoped_release>(), 
@@ -64,6 +65,7 @@ void bind_engine(py::module& m, string name)
             .def("get_archive", &T::get_archive)
             .def("get_population", &T::get_population)
             .def("set_population", &T::set_population)
+            .def("invalidate_population_fit", &T::invalidate_population_fit)
             .def("get_archive_as_json", &T::get_archive_as_json)
             .def("get_population_as_json", &T::get_population_as_json)
             .def("set_population_from_json", &T::set_population_from_json)
