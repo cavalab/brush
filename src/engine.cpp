@@ -1,4 +1,5 @@
 #include "engine.h"
+#include "util/progress.h"
 
 #include <iostream>
 #include <fstream>
@@ -15,6 +16,19 @@ using namespace Sel;
 using namespace Eval;
 using namespace Var;
 using namespace MAB;
+
+namespace {
+string batch_progress_label(const Dataset& training)
+{
+    const auto progress = training.get_batch_progress();
+    if (!progress)
+        return "";
+
+    const auto width = std::to_string(progress->batches).size();
+    return fmt::format("epoch {}, batch {:0{}}/{}", progress->epoch,
+                       progress->batch, width, progress->batches);
+}
+}
 
 /// @brief initialize Feat object for fitting.
 template <ProgramType T>
@@ -38,13 +52,16 @@ void Engine<T>::init()
 }
 
 template <ProgramType T>
-void Engine<T>::print_progress(float percentage)
+void Engine<T>::print_progress(float percentage, const string& batch_label)
 {
     int val = (int) (percentage * 100);
     int lpad = (int) (percentage * PBWIDTH);
     int rpad = PBWIDTH - lpad;
 
     printf ("\rCompleted %3d%% [%.*s%*s]", val, lpad, PBSTR.c_str(), rpad, "");
+    if (!batch_label.empty())
+        printf(" (%s)", batch_label.c_str());
+    printf("  ");
     
     fflush (stdout);
     
@@ -288,6 +305,13 @@ void Engine<T>::log_stats(unsigned stall_count, const SimplificationRecords& sim
         });
     }
 
+    log_simplification_records(simplifications);
+}
+
+template <ProgramType T>
+void Engine<T>::log_simplification_records(const SimplificationRecords& simplifications)
+{
+    using F = Util::CsvWriter;
     for (const auto& rec : simplifications)
     {
         log_simplifications.write_row({
@@ -312,8 +336,10 @@ void Engine<T>::close_logs()
 }
 
 template <ProgramType T>
-void Engine<T>::print_stats(float fraction)
+void Engine<T>::print_stats(float fraction, const string& batch_label,
+                            std::optional<double> estimated_remaining)
 {
+    const auto elapsed = Util::format_duration(timer.Elapsed().count());
     // progress bar
     string bar, space = "";                                 
     for (unsigned int i = 0; i<50; ++i)
@@ -327,21 +353,28 @@ void Engine<T>::print_stats(float fraction)
     
     if(params.max_time == -1)
         std::cout << "Generation " << params.current_gen+1 << "/" 
-            << params.max_gens << " [" + bar + space + "]\n";
+            << params.max_gens << " [" + bar + space + "]";
     else
-        std::cout << std::fixed << "Time elapsed "<< timer 
-            << "/" << params.max_time 
-            << " seconds (Generation "<< params.current_gen+1 
-            << ") [" + bar + space + "]\n";
+        std::cout << "Time elapsed " << elapsed
+            << "/" << Util::format_duration(params.max_time)
+            << " (Generation " << params.current_gen+1
+            << ") [" + bar + space + "]";
+
+    if (!batch_label.empty())
+        std::cout << " (" << batch_label << ")";
+    std::cout << "\n";
         
     std::cout << std::fixed
-              << "Best model on Val:" << best_ind.program.get_model() << "\n"
+              << "Best model on Val (" << best_ind.program.Tree.size() << " nodes): "
+              << best_ind.program.get_model() << "\n"
               << "Train Loss (Med): " << stats.best_score.back() << " (" << stats.med_score.back() << ")\n"
               << "Val Loss (Med): " << stats.best_score_v.back() << " (" << stats.med_score_v.back() << ")\n"
               << "Median Size (Max): " << stats.med_size.back() << " (" << stats.max_size.back() << ")\n"
               << "Median complexity (Max): " << stats.med_complexity.back() << " (" << stats.max_complexity.back() << ")\n"
-              << "Time (s): " << timer
-              <<"\n\n";
+              << "Elapsed: " << elapsed
+              << " | Estimated remaining: "
+              << (estimated_remaining ? Util::format_duration(*estimated_remaining) : "--:--:--")
+              << "\n\n" << std::flush;
 }
 
 template <ProgramType T>
@@ -443,6 +476,7 @@ void Engine<T>::set_population(vector<Individual<T>> pop_vector)
     for (const auto& ind_j : pop_vector) {
         Individual<T> ind;
         ind.program = ind_j.program;
+        ind.set_is_fitted(ind_j.get_is_fitted());
         ind.set_objectives(ind_j.get_objectives());
 
         new_pop.push_back(ind);
@@ -452,6 +486,15 @@ void Engine<T>::set_population(vector<Individual<T>> pop_vector)
         HANDLE_ERROR_THROW("set_population size is different from params.pop_size");
 
     this->pop.init(new_pop, params);
+}
+
+template <ProgramType T>
+void Engine<T>::invalidate_population_fit()
+{
+    for (int island = 0; island < pop.num_islands; ++island)
+        for (auto index : pop.get_island_indexes(island))
+            pop.individuals.at(index)->set_is_fitted(false);
+    best_ind.set_is_fitted(false);
 }
 
 
@@ -473,6 +516,8 @@ void Engine<T>::lock_nodes(int end_depth, bool keep_leaves_unlocked, bool keep_c
             ind->program.lock_nodes(end_depth, keep_leaves_unlocked, keep_current_weights);
         }
     }
+    if (is_fitted)
+        best_ind.program.lock_nodes(end_depth, keep_leaves_unlocked, keep_current_weights);
 }
 
 template <ProgramType T>
@@ -530,6 +575,21 @@ bool Engine<T>::update_best()
 template <ProgramType T>
 void Engine<T>::run(Dataset &data)
 {
+    const bool continuing = is_fitted;
+    if constexpr (T == PT::BinaryClassifier || T == PT::MulticlassClassifier) {
+        // Check the data as well as the configured count: callers of the
+        // native engine may supply inconsistent or incomplete parameters.
+        std::set<float> observed_classes;
+        for (Eigen::Index i = 0; i < data.y.size(); ++i)
+            observed_classes.insert(data.y(i));
+        const auto n_classes = std::max(static_cast<size_t>(params.n_classes),
+                                        observed_classes.size());
+        if (n_classes > MAX_ARGS)
+            HANDLE_ERROR_THROW(fmt::format(
+                "Brush supports at most {} classes; received {} classes. "
+                "Training cannot continue.", MAX_ARGS, n_classes));
+    }
+
     // All learning-time state is derived from the training partition.  The
     // original dataset remains the source of the fixed validation partition.
     Dataset training = data.get_training_data();
@@ -555,6 +615,10 @@ void Engine<T>::run(Dataset &data)
             // This only works because the Population constructor resizes individuals to zero.
             this->pop.init(this->ss, this->params);
         }
+    }
+    else {
+        // Each continued fit has its own elapsed time and time limit.
+        timer.Reset();
     }
     
     // TODO: Should I refit them? or use the values at it is? (the fitness WILL BE recalculated regardless)
@@ -598,6 +662,8 @@ void Engine<T>::run(Dataset &data)
     unsigned generation = 0;
     unsigned stall_count = 0;
     float fraction = 0;
+    Util::RecentGenerationTimes generation_times;
+    std::chrono::steady_clock::time_point last_generation_timing;
 
     auto stop = [&]() {
         bool condition = ( (generation == params.max_gens)
@@ -625,6 +691,21 @@ void Engine<T>::run(Dataset &data)
         island_parents.at(i).resize(delta);
     }
 
+    // make sure we have an updated reference to the best individual in the population
+    // when resuming the evolution due to a call to partial_fit
+    std::optional<size_t> selected_in_population;
+    if (continuing && params.max_gens == 0) {
+        const json selected_program = best_ind.program;
+        for (int island = 0; island < pop.num_islands && !selected_in_population; ++island)
+            for (auto index : pop.get_island_indexes(island)) {
+                const auto& ind = *pop.individuals.at(index);
+                if (ind.id == best_ind.id && json(ind.program) == selected_program) {
+                    selected_in_population = index;
+                    break;
+                }
+            }
+    }
+
     // heavily inspired in https://github.com/heal-research/operon/blob/main/source/algorithms/nsga2.cpp
     auto [init, cond, body, back, done] = taskflow.emplace(
         [&](tf::Subflow& subflow) { 
@@ -632,22 +713,60 @@ void Engine<T>::run(Dataset &data)
             // a stable order as well, so the first selection sees identical
             // fitness values for repeated seeded runs.
             auto fit_init_pop = subflow.emplace([&]() {
-                // The initial population has no fitted weights. Use the first
-                // representative batch rather than fitting every program on
-                // the whole training partition before evolution starts.
+                // Fit new programs on the first representative batch; loaded
+                // or continued programs retain their previously fitted weights.
                 batch = training.get_batch();
-                for (int island = 0; island < this->params.num_islands; ++island) {
-                    evaluator.update_fitness(this->pop, island, batch, params,
-                                             true, true, true, fixed_validation);
+                if (params.verbosity > 0) {
+                    // This message shows that brush started to run and it is performing the first evaluation
+                    const auto label = batch_progress_label(training);
+                    if (!label.empty())
+                        std::cout << "Initializing population (" << label << ")\n" << std::flush;
+                }
+                if (continuing && params.max_gens == 0 && // this is how we force it to just reevaluate and simplify but skip the evolutionary loop when calling partial_fit
+                    (params.constants_simplification || params.inexact_simplification)) {
+                    for (int island = 0; island < this->params.num_islands; ++island) {
+                        for (auto index : pop.get_island_indexes(island)) {
+                            auto& ind = *pop.individuals.at(index);
+
+                            // OBS: when we call partial_fit, the python side invokes
+                            // engine_.invalidate_population_fit(), so they will all be invalid
+                            if (!ind.get_is_fitted() || !ind.program.is_fitted_) {
+                                ind.program.fit(batch, params.class_weights);
+                                ind.set_is_fitted(true);
+                            }
+                            variator.simplify_individual(ind, batch, true);
+                            evaluator.assign_fit(ind, batch, params, true, fixed_validation);
+                        }
+                    }
+                } else {
+                    for (int island = 0; island < this->params.num_islands; ++island)
+                        evaluator.update_fitness(this->pop, island, batch, params,
+                                                 true, true, false, fixed_validation);
                 }
             });
+            // this block below runs independently of the previous one
             auto find_init_best = subflow.emplace([&]() { 
-                // Make sure we initialize it. We do this update here because we need to 
-                // have the individuals fitted before we can compare them. When update_best
-                // is called, we are garanteed that the individuals are fitted and have valid 
-                // fitnesses.
-                this->best_ind = *pop.individuals.at(0);
-                this->update_best(); // at this moment we dont care about update_best return value
+                if (selected_in_population) {
+                    // Reuse the already refitted and simplified member.
+                    best_ind = *pop.individuals.at(*selected_in_population);
+                } else if (continuing) {
+                    // The previously selected model can be outside the final
+                    // population. Rescore it on the same data before comparing.
+                    if (!best_ind.get_is_fitted() || !best_ind.program.is_fitted_) {
+                        best_ind.program.fit(batch, params.class_weights);
+                        best_ind.set_is_fitted(true);
+                    }
+                    if (params.max_gens == 0 &&
+                        (params.constants_simplification || params.inexact_simplification))
+                        variator.simplify_individual(best_ind, batch, true);
+                    evaluator.assign_fit(best_ind, batch, params, true, fixed_validation);
+                } else {
+                    this->best_ind = *pop.individuals.at(0);
+                }
+                // A zero-generation continuation only reevaluates existing
+                // candidates; preserve the user's selected model.
+                if (!continuing || params.max_gens != 0)
+                    this->update_best();
             });
             fit_init_pop.precede(find_init_best);
          }, // init (entry point for taskflow)
@@ -656,6 +775,8 @@ void Engine<T>::run(Dataset &data)
         
         [&](tf::Subflow& subflow) { // loop body (evolutionary main loop)
             auto prepare_gen = subflow.emplace([&]() { 
+                if (params.verbosity > 1 && generation == 0)
+                    last_generation_timing = std::chrono::steady_clock::now();
                 params.set_current_gen(generation);
                 batch = training.get_batch(); // returns all training data when batching is disabled
             }).name("prepare generation");// set generation in params, get batch
@@ -675,11 +796,10 @@ void Engine<T>::run(Dataset &data)
 
                 for (int island = 0; island < this->params.num_islands; ++island) {
 
-                // Refit each surviving program on this generation's batch.
-                // Parent selection uses batch fitness while validation always
-                // uses the original, fixed hold-out partition.
+                // Reevaluate survivors on the new batch without changing their
+                // fitted weights or split thresholds.
                 evaluator.update_fitness(this->pop, island, batch, params,
-                                         true, false, true, fixed_validation);
+                                         false, false, false, fixed_validation);
 
                 vector<size_t> parents = selector.select(
                     this->pop, island, selection_params);
@@ -743,15 +863,31 @@ void Engine<T>::run(Dataset &data)
                     calculate_stats();
                 }
 
-                if(params.verbosity>1)
-                    print_stats(fraction);
-                else if(params.verbosity == 1)
-                    print_progress(fraction);
-
                 if (generation == 0 || updated_best )
                     stall_count = 0;
                 else
                     ++stall_count;
+
+                if (params.verbosity > 0) {
+                    // do the necessary calculations and log the info
+                    const auto label = batch_progress_label(training);
+                    if (params.verbosity > 1) {
+                        const auto now = std::chrono::steady_clock::now();
+                        const auto duration = std::chrono::duration<double>(
+                            now - last_generation_timing).count();
+                        last_generation_timing = now;
+                        generation_times.record(duration);
+                        const bool stalled = params.max_stall != 0 && stall_count > params.max_stall;
+                        const auto remaining_generations = stalled ? 0 :
+                            std::max(0LL, static_cast<long long>(params.max_gens) - generation - 1);
+                        std::optional<double> time_limit_remaining;
+                        if (params.max_time != -1)
+                            time_limit_remaining = params.max_time - timer.Elapsed().count();
+                        print_stats(fraction, label,
+                                    generation_times.remaining(remaining_generations, time_limit_remaining));
+                    } else
+                        print_progress(fraction, label);
+                }
 
                 if (!params.logfile.empty())
                     log_stats(stall_count, variator.pop_simplification_records());
@@ -769,12 +905,12 @@ void Engine<T>::run(Dataset &data)
         [&]() { return 0; }, // jump back to the next iteration
 
         [&](tf::Subflow& subflow) {
-            // Keep the final batch-fitted weights and fixed validation scores;
+            // Keep the fitted weights and fixed validation scores;
             // do not add a full-training pass after evolution ends.
-            for (int island = 0; island < this->params.num_islands; ++island) {
-                evaluator.update_fitness(this->pop, island, batch, params,
-                                         false, true, false, fixed_validation);
-            }
+            if (params.max_gens != 0)
+                for (int island = 0; island < this->params.num_islands; ++island)
+                    evaluator.update_fitness(this->pop, island, batch, params,
+                                             false, true, false, fixed_validation);
 
             archive.update(pop, params);
             // calculate_stats();
@@ -792,8 +928,10 @@ void Engine<T>::run(Dataset &data)
                 variator.log_simplification_table(log_simplification_table, run_id);
             }
 
-            if (!params.logfile.empty())
+            if (!params.logfile.empty()) {
+                log_simplification_records(variator.pop_simplification_records());
                 close_logs();
+            }
 
             // getting the updated versions
             this->ss = variator.search_space;
@@ -814,8 +952,9 @@ void Engine<T>::run(Dataset &data)
     body.precede(back);
     back.precede(cond);
 
-    executor.run(taskflow);
-    executor.wait_for_all();
+    // Propagate failures from the task graph instead of returning an unfitted
+    // engine when an evaluation throws on a worker.
+    executor.run(taskflow).get();
     
     //When you have tasks that are created at runtime (e.g., subflow,
     // cudaFlow), you need to execute the graph first to spawn these tasks and dump the entire graph.

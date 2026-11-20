@@ -136,16 +136,14 @@ class Inexact_simplifier
         void analyze_tree(Program<P>& program,
                                     const SearchSpace &ss, const Dataset &d)
         {
-            // iterate over the tree, trying to replace each node with a constant, and keeping the change if the pred does not change.
-            TreeIter spot = program.Tree.begin_post();
-            while(spot != program.Tree.end_post())
+            // Index eligible subtrees in postorder.
+            PostIter post = program.Tree.begin_post();
+            while(post != program.Tree.end_post())
             {
-                // we dont index or simplify fixed stuff.
-                // non-wheightable nodes are not simplified. TODO: revisit this and see if they should (then implement it)
-                // This is avoiding using booleans.
-                if (spot.node->data.get_prob_change() > 0
-                // &&  IsWeighable(spot.node->data.ret_type) && IsWeighable(spot.node->data.node_type)
-                ) {
+                TreeIter spot(post);
+                // Do not index subtrees containing locked nodes.
+                if (supports_subtree<P>(spot.node->data.ret_type)
+                &&  can_replace_subtree(spot.node)) {
                     // indexing only small subtrees. We don't index constants (the constant simplifier will take
                     // care of them), but we index terminals, as they are weighted and may be added to different
                     // hash collections
@@ -156,7 +154,7 @@ class Inexact_simplifier
                         // terminals are already indexed on initialization 
                     }
                 }
-                ++spot;
+                ++post;
             }  
         }
 
@@ -175,21 +173,23 @@ class Inexact_simplifier
 
             Program<P> simplified_program(program);
             
-            // prediction at the root already performs template cast and always returns a float
-            auto original_predictions = simplified_program.predict(d);
+            // Classification labels alone hide changes to probabilities and log loss.
+            auto predictions = [&](Program<P>& candidate) {
+                if constexpr (P == PT::BinaryClassifier || P == PT::MulticlassClassifier)
+                    return candidate.predict_proba(d);
+                else
+                    return candidate.predict(d);
+            };
+            const auto original_predictions = predictions(simplified_program);
             
-            // iterate over the tree, trying to replace each node with a constant, and keeping the change if the pred does not change.
-            // notice it is a post order iterator.
-            TreeIter spot = simplified_program.Tree.begin_post();
-            while(spot != simplified_program.Tree.end_post())
+            // Consider replacements in postorder, keeping the root predictions close.
+            PostIter post = simplified_program.Tree.begin_post();
+            while(post != simplified_program.Tree.end_post())
             {
-                // we dont index or simplify fixed stuff.
-                // non-wheightable nodes are not simplified. TODO: revisit this and see if they should (then implement it)
-                // This is avoiding using booleans.
-                // we do not simplify branches with fixed weights, because the simplification ignores the weight (it uses normalized predictions)
-                if (spot.node->data.get_prob_change() > 0 && !spot.node->data.weight_is_fixed
-                // &&  IsWeighable(spot.node->data.ret_type) && IsWeighable(spot.node->data.node_type)
-                ) {
+                TreeIter spot(post);
+                // Do not replace subtrees containing locked nodes or weights.
+                if (supports_subtree<P>(spot.node->data.ret_type)
+                &&  can_replace_subtree(spot.node)) {
                     // TODO: use IsLeaf here instead of checking for each possible nodetype. also search throughout the code and replace it
                     if (Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::Terminal>(spot.node->data.node_type)){
 
@@ -219,11 +219,35 @@ class Inexact_simplifier
 
                                 spot = simplified_program.Tree.move_ontop(spot, simplified_branch.begin());
                                 
-                                auto new_predictions = simplified_program.predict(d);
+                                auto new_predictions = predictions(simplified_program);
                                 
                                 float diff = (original_predictions.template cast<float>() - new_predictions.template cast<float>()).square().mean();
-                                
-                                if (diff < best_distance) {    
+                                bool preserves_log_probabilities = true;
+                                bool preserves_labels = true;
+                                if constexpr (P == PT::BinaryClassifier || P == PT::MulticlassClassifier) {
+                                    // A small absolute probability change near zero can cause a
+                                    // large log-loss change. Bound the change for every class.
+                                    constexpr float epsilon = 1e-6f;
+                                    const auto original_log = original_predictions.max(epsilon).min(1.0f - epsilon).log().eval();
+                                    const auto new_log = new_predictions.max(epsilon).min(1.0f - epsilon).log().eval();
+                                    float max_log_change = (original_log - new_log).abs().maxCoeff();
+                                    if constexpr (P == PT::BinaryClassifier) {
+                                        const auto original_negative_log = (1.0f - original_predictions).max(epsilon).min(1.0f - epsilon).log().eval();
+                                        const auto new_negative_log = (1.0f - new_predictions).max(epsilon).min(1.0f - epsilon).log().eval();
+                                        max_log_change = std::max(max_log_change,
+                                            (original_negative_log - new_negative_log).abs().maxCoeff());
+                                        preserves_labels = ((original_predictions > 0.5f)
+                                                            == (new_predictions > 0.5f)).all();
+                                    } else {
+                                        auto argmax = Function<NodeType::ArgMax>{};
+                                        preserves_labels = (argmax(original_predictions)
+                                                            == argmax(new_predictions)).all();
+                                    }
+                                    preserves_log_probabilities = std::isfinite(max_log_change)
+                                        && max_log_change < std::sqrt(threshold);
+                                }
+
+                                if (preserves_labels && preserves_log_probabilities && diff < best_distance) {
                                     best_distance = diff;
                                     best_branch = cand;
                                 }
@@ -256,7 +280,10 @@ class Inexact_simplifier
                         }
                     }
                 }
-                ++spot;
+                // Replacements can move or erase the current node, so resume
+                // postorder traversal from the node that is now in its place.
+                post = PostIter(spot);
+                ++post;
             }    
             program.Tree = simplified_program.Tree;
 
@@ -302,6 +329,24 @@ class Inexact_simplifier
 
         int inputDim = 1000; // default value
     private:
+        static bool can_replace_subtree(const TreeNode* node)
+        {
+            if (node->data.get_prob_change() <= 0 || node->data.weight_is_fixed)
+                return false;
+            for (auto child = node->first_child; child != nullptr; child = child->next_sibling)
+                if (!can_replace_subtree(child))
+                    return false;
+            return true;
+        }
+
+        template<ProgramType P>
+        static bool supports_subtree(DataType type)
+        {
+            if constexpr (P == PT::Representer)
+                return type == DataType::MatrixF;
+            return type == DataType::ArrayF || type == DataType::ArrayI || type == DataType::ArrayB;
+        }
+
         template<ProgramType P>
         vector<size_t> hash(TreeIter& spot, const Dataset &d)
         {

@@ -47,11 +47,13 @@ public:
 
     Individual(Program<T>& prg) : Individual() {
         program = prg;
+        is_fitted_ = program.is_fitted_;
     };
 
     void init(SearchSpace& ss, const Parameters& params)
     {
         program = ss.make_program<Program<T>>(params, 0, 0);
+        is_fitted_ = false;
 
         // overriding the objectives with the ones from params (to replace
         // the generic "scorer" by the actual scorer set in the params object)
@@ -65,7 +67,10 @@ public:
     };
 
     Individual<T> &fit(const Dataset& data) {
-        program.fit(data);
+        return fit(data, {});
+    };
+    Individual<T> &fit(const Dataset& data, const vector<float>& class_weights) {
+        program.fit(data, class_weights);
         this->is_fitted_ = true;
         return *this;
     };

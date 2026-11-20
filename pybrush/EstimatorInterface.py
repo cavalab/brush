@@ -7,6 +7,7 @@ provides documentation for the hyperparameters.
 
 import numpy as np
 import pandas as pd
+from pandas.api.types import is_float_dtype, is_bool_dtype, is_integer_dtype, is_string_dtype
 from pybrush import Parameters, Dataset
 from typing import Union, List, Dict
 from collections.abc import Callable
@@ -31,6 +32,11 @@ class EstimatorInterface():
     verbosity : int, default 0
         Controls level of printouts. Set 0 to disable all printouts,
         1 for basic information, and 2 or more for detailed information.
+        For the native Brush estimators, when batching is enabled, print the
+        current epoch and batch, including the first batch used to fit the
+        initial population. Detailed output includes elapsed time and an
+        estimate based on the last ten generations, the generation limit, and
+        any time limit. Early stopping can end a run sooner.
     max_depth : int, default 10
         Maximum depth of GP trees in the GP program. Use 0 for no limit.
     max_size : int, default 100
@@ -63,6 +69,16 @@ class EstimatorInterface():
         A dictionary with keys naming the function set and values giving the probability
         of sampling them, or a list of functions which will be weighted uniformly.
         If empty, all available functions are included in the search space.
+    feature_types : list or dict, optional
+        Explicit feature types (``ArrayF``, ``ArrayI``, or ``ArrayB``), either
+        in column order or keyed by DataFrame column name. Unspecified columns
+        are inferred: binary values become ``ArrayB``, integral columns with at
+        most ten distinct values become ``ArrayI``, and other numeric columns
+        become ``ArrayF``. Use ``ArrayI`` for encoded categories of any cardinality.
+        DataFrame string and categorical columns are encoded consistently at
+        prediction time. For ``SplitBest``, unseen categories follow the other
+        branch. It searches all category partitions up to ten values; for larger
+        sets it considers target-ordered partitions and individual categories.
     initialization : {"uniform", "max_size"}, default "uniform" 
         Distribution of sizes on the initial population. If `max_size`, then every
         expression is created with `max_size` nodes. If `uniform`, size will be
@@ -132,7 +148,10 @@ class EstimatorInterface():
         least once per epoch; after a minority class has exhausted its unique
         rows, examples from that class are sampled again so it remains present
         while the other classes finish their pass. Validation rows are never
-        batched. The final batch of an epoch may be smaller than requested to
+        batched. In the native engine, new or changed expressions are fitted on
+        their first batch; surviving expressions are rescored on subsequent
+        batches without reoptimizing their weights or split thresholds. The
+        final batch of an epoch may be smaller than requested to
         avoid immediately repeating the last unseen row of another class. Very
         small values can improve execution time, but also lead to underfit.
     sel : str, default 'lexicase'
@@ -163,6 +182,10 @@ class EstimatorInterface():
         the 95% confidence interval of the best solution's validation loss, with
         the confidence interval estimated with the inner validation partition of
         the data passed to `fit` or `partial_fit`;
+
+        A `partial_fit` with `max_gens=0` retains the previously selected model
+        and does not run final model selection. It still updates the population
+        fitness and Pareto archive.
 
         If a custom function is passed, then it should hhave the signature
         `Callable[[List[Dict], List[Dict]], Dict]]`, which means that it takes
@@ -244,6 +267,7 @@ class EstimatorInterface():
         logfile: str = "",
         random_state: int = None,
         class_weights: Union[str, List[float]] = "support",
+        feature_types: Union[List[str], Dict[str, str]] = None,
     ) -> None:
         self.pop_size = pop_size
         self.max_gens = max_gens
@@ -279,6 +303,62 @@ class EstimatorInterface():
         self.weights_init = weights_init
         self.validation_size = validation_size
         self.class_weights = class_weights
+        self.feature_types = feature_types
+
+    def _prepare_feature_types(self, X):
+        self.feature_names_ = []
+        self.feature_types_ = []
+        self.category_levels_ = {}
+        if isinstance(X, pd.DataFrame):
+            self.feature_names_ = X.columns.to_list()
+            for name, dtype in X.dtypes.items():
+                if isinstance(dtype, pd.CategoricalDtype) or is_string_dtype(dtype):
+                    if X[name].isna().any():
+                        raise ValueError(f"Missing values are not supported in feature {name!r}")
+                    self.category_levels_[name] = list(pd.Categorical(X[name]).categories)
+                    self.feature_types_.append('ArrayI')
+                elif is_bool_dtype(dtype) or is_integer_dtype(dtype) or is_float_dtype(dtype):
+                    # Dataset applies the same value-based inference for both input forms.
+                    self.feature_types_.append('')
+                else:
+                    raise ValueError(f"Unsupported data type for feature {name!r}")
+        else:
+            self.feature_names_ = [f"x_{i}" for i in range(X.shape[1])]
+
+        feature_types = getattr(self, "feature_types", None)
+        if feature_types is not None:
+            if isinstance(feature_types, dict):
+                unknown = set(feature_types) - set(self.feature_names_)
+                if unknown:
+                    raise ValueError(f"Unknown feature names in feature_types: {unknown}")
+                defaults = self.feature_types_ or [''] * len(self.feature_names_)
+                self.feature_types_ = [feature_types.get(name, default)
+                                       for name, default in zip(self.feature_names_, defaults)]
+            else:
+                self.feature_types_ = list(feature_types)
+                if len(self.feature_types_) != len(self.feature_names_):
+                    raise ValueError("feature_types must contain one entry per feature")
+            if any(t not in ('', 'ArrayF', 'ArrayI', 'ArrayB') for t in self.feature_types_):
+                raise ValueError("feature_types entries must be ArrayF, ArrayI, or ArrayB")
+
+    def _encode_categories(self, X):
+        array_input = isinstance(X, np.ndarray)
+        category_levels = getattr(self, "category_levels_", {})
+        if array_input and category_levels:
+            if X.ndim != 2 or X.shape[1] != len(self.feature_names_):
+                raise ValueError("Input must have the same number of features as the training data")
+            X = pd.DataFrame(X, columns=self.feature_names_)
+        if not isinstance(X, pd.DataFrame):
+            return X
+        if X.columns.to_list() != getattr(self, "feature_names_", X.columns.to_list()):
+            raise ValueError("Feature names and order must match the training data")
+        encoded = X.copy()
+        for name, levels in category_levels.items():
+            if X[name].isna().any():
+                raise ValueError(f"Missing values are not supported in feature {name!r}")
+            # Reserve -1 for categories not observed during fit.
+            encoded[name] = pd.Index(levels).get_indexer(X[name]).astype(np.int32)
+        return encoded.to_numpy() if array_input else encoded
 
     def _wrap_parameters(self, y, **extra_kwargs):
         """
@@ -364,6 +444,7 @@ class EstimatorInterface():
         params.validation_size = self.validation_size
         params.batch_size = self.batch_size
         params.feature_names = self.feature_names_
+        params.feature_types = self.feature_types_
     
         # Scorer is the metric associated with "scorer" objective. To optimize
         # something else, set it in the objectives list.
@@ -408,7 +489,7 @@ class EstimatorInterface():
     
     def _make_data(self, X, y=None,
                     feature_names=[], feature_types=[],
-                    validation_size=0.0, shuffle_split=False):
+                    validation_size=0.0, shuffle_split=False, _encoded=False):
         """
         Prepare the data for training or prediction.
 
@@ -435,6 +516,8 @@ class EstimatorInterface():
         # before calling `_make_data` (so predict can be made with np arrays or
         # pd dataframes).
 
+        if not _encoded:
+            X = self._encode_categories(X)
         if isinstance(y, pd.Series):
             y = y.values
         if isinstance(X, pd.DataFrame):

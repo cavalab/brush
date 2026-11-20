@@ -20,8 +20,12 @@ namespace util{
     Scalar get_weight(const TreeNode& tn, const W** weights=nullptr)
     { 
         Scalar w;
+        // Integer constants are discrete values, not optimizer parameters.
+        if constexpr (is_one_of_v<Scalar, int, iJet>)
+            return Scalar(static_cast<int>(tn.data.W));
+
         // Prediction case: weight is stored in the node data.
-        if (weights == nullptr)
+        if (weights == nullptr || tn.data.weight_is_fixed)
         {
             if constexpr (std::is_floating_point_v<decltype(tn.data.W)> || std::is_integral_v<decltype(tn.data.W)>) {
                 if (std::isnan(tn.data.W) || tn.data.W == std::numeric_limits<decltype(tn.data.W)>::lowest()) {
@@ -75,7 +79,7 @@ namespace util{
             "it should not be\n"));
 
         // std::cout << "Returning weight: Scalar(true) for a boolean node tn " << tn.data.name << std::endl;
-        return Scalar(true);
+        return Scalar(static_cast<bool>(tn.data.W));
     };
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -128,7 +132,7 @@ struct Operator
 
     /// get a std::array or eigen array of kids
     template<typename T=ArgTypes> requires(is_std_array_v<T> || is_eigen_array_v<T>) 
-    T get_kids(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
+    T get_kids(const Dataset& d, TreeNode& tn, const W** weights, const vector<float>& class_weights) const
     {
         T child_outputs;
         using arg_type = std::conditional_t<is_std_array_v<T>,
@@ -143,9 +147,9 @@ struct Operator
                 HANDLE_ERROR_THROW("bad sibling ptr in get kids");
             if constexpr (Fit){
                 if constexpr(is_std_array_v<T>)
-                    child_outputs.at(i) = sib->fit<arg_type>(d);
+                    child_outputs.at(i) = sib->fit<arg_type>(d, class_weights);
                 else
-                    child_outputs.col(i) = sib->fit<arg_type>(d);
+                    child_outputs.col(i) = sib->fit<arg_type>(d, class_weights);
             }
             else{
                 if constexpr(is_std_array_v<T>)
@@ -160,7 +164,7 @@ struct Operator
 
     /// gets one kid for a tuple of kids
     template<int I>
-    NthType<I> get_kid(const Dataset& d, TreeNode& tn, const W** weights ) const
+    NthType<I> get_kid(const Dataset& d, TreeNode& tn, const W** weights, const vector<float>& class_weights) const
     {
         TreeNode* sib = tn.first_child;
         for (int i = 0; i < I; ++i)
@@ -168,7 +172,7 @@ struct Operator
             sib= sib->next_sibling;
         }
         if constexpr(Fit)
-            return sib->fit<NthType<I>>(d);
+            return sib->fit<NthType<I>>(d, class_weights);
         else
             return sib->predict<NthType<I>>(d,weights);
     };
@@ -183,9 +187,9 @@ struct Operator
      * @return a tuple with elements corresponding to each child node
      */
     template<typename T, size_t ...Is> requires(is_tuple_v<T>) 
-    T get_kids_seq(const Dataset& d, TreeNode& tn, const W** weights, std::index_sequence<Is...>) const 
+    T get_kids_seq(const Dataset& d, TreeNode& tn, const W** weights, const vector<float>& class_weights, std::index_sequence<Is...>) const
     { 
-        return std::make_tuple(get_kid<Is>(d,tn,weights)...);
+        return std::make_tuple(get_kid<Is>(d,tn,weights,class_weights)...);
     };
 
     /// @brief get a std::tuple of kids. Used when child arguments are different types.
@@ -195,9 +199,9 @@ struct Operator
     /// @param weights option pointer to a weight array, used in place of node weight
     /// @return a tuple of the child arguments
     template<typename T=ArgTypes> requires(is_tuple_v<T>) 
-    T get_kids(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
+    T get_kids(const Dataset& d, TreeNode& tn, const W** weights, const vector<float>& class_weights) const
     {
-        return get_kids_seq<T>(d, tn, weights, std::make_index_sequence<ArgCount>{});
+        return get_kids_seq<T>(d, tn, weights, class_weights, std::make_index_sequence<ArgCount>{});
     };
 
     ///////////////////////////////////////////////////////////////////////////
@@ -230,9 +234,9 @@ struct Operator
     /// @param weights option pointer to a weight array, used in place of node weight
     /// @return output values from applying operator function 
     template<typename T=ArgTypes, typename Scalar=RetType::Scalar>
-    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
+    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr, const vector<float>& class_weights = {}) const
     {
-        auto inputs = get_kids(d, tn, weights);
+        auto inputs = get_kids(d, tn, weights, class_weights);
         if constexpr (is_one_of_v<Scalar,float,fJet>)
         {
             // Nodes like Floor and Ceil can have is_weighted set (it only
@@ -251,9 +255,9 @@ struct Operator
     // overloaded version for offset sum
     template<typename T=ArgTypes, typename Scalar=RetType::Scalar>
     requires is_in_v<NT, NodeType::OffsetSum>
-    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
+    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr, const vector<float>& class_weights = {}) const
     {
-        auto inputs = get_kids(d, tn, weights);
+        auto inputs = get_kids(d, tn, weights, class_weights);
         if constexpr (is_one_of_v<Scalar,float,fJet>)
         {
             if (tn.data.get_is_weighted())
@@ -277,7 +281,7 @@ struct Operator<NodeType::Terminal, S, Fit>
     // Standard C++ types
     template<typename T=RetType, typename Scalar=typename T::Scalar> 
         requires (is_one_of_v<Scalar,bool,int,float>)
-    RetType eval(const Dataset& d, const TreeNode& tn, const W** weights=nullptr) const 
+    RetType eval(const Dataset& d, const TreeNode& tn, const W** weights=nullptr, const vector<float>& class_weights = {}) const
     { 
         if constexpr (is_one_of_v<Scalar,float,fJet>)
         {
@@ -293,7 +297,7 @@ struct Operator<NodeType::Terminal, S, Fit>
     // Jet types
     template <typename T = RetType, typename Scalar=typename T::Scalar>
         requires( is_one_of_v<Scalar, bJet, iJet, fJet>)
-    RetType eval(const Dataset &d, const TreeNode &tn, const W **weights = nullptr) const
+    RetType eval(const Dataset &d, const TreeNode &tn, const W **weights = nullptr, const vector<float>& class_weights = {}) const
     {
         using nonJetType = UnJetify_t<RetType>; 
         if constexpr (is_one_of_v<Scalar,float,fJet>)
@@ -333,7 +337,7 @@ struct Operator<NodeType::Constant, S, Fit>
     using W = typename S::WeightType;
 
     template<typename T=RetType, typename Scalar=T::Scalar, int N=T::NumDimensions> 
-    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const 
+    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr, const vector<float>& class_weights = {}) const
     { 
         // Scalar w = get_weight(tn, weights);
         Scalar w = util::get_weight<RetType,Scalar,W>(tn, weights);
@@ -399,7 +403,7 @@ struct Operator<NodeType::MeanLabel, S, Fit>
             return RetType::Constant(d.get_n_samples(), d.get_n_features(), w); 
     };
 
-    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const {
+    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr, const vector<float>& class_weights = {}) const {
         if constexpr (Fit)
             return fit(d,tn); 
         else
@@ -421,10 +425,10 @@ inline R DispatchOp(const Dataset& d, TreeNode& tn, const W** weights)
 };
 
 template<typename R, NodeType NT, typename S, bool Fit> 
-inline R DispatchOp(const Dataset& d, TreeNode& tn) 
+inline R DispatchOp(const Dataset& d, TreeNode& tn, const vector<float>& class_weights)
 {
     const auto op = Operator<NT,S,Fit>{};
-    return op.eval(d, tn);
+    return op.eval(d, tn, nullptr, class_weights);
 };
 
 } // Brush

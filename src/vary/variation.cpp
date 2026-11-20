@@ -9,6 +9,38 @@ using namespace Pop;
 using namespace MAB;
 
 namespace {
+// A successful operator can still reproduce its parent exactly. Compare the
+// complete node state, including unrounded weights and split thresholds, so an
+// unchanged copy keeps its fitted parameters.
+template <ProgramType T>
+bool same_fitted_expression(const Individual<T>& parent, const Program<T>& child)
+{
+    // fast checks first. then we do the node-by-node check. Idea here is to avoid
+    // fitting expressions unnecessarily, because for large datasets it becomes
+    // a huge burden
+    if (!parent.get_is_fitted() || !parent.program.is_fitted_ || !child.is_fitted_
+        || parent.program.Tree.size() != child.Tree.size())
+        return false;
+
+    auto left = parent.program.Tree.begin();
+    auto right = child.Tree.begin();
+    for (; left != parent.program.Tree.end(); ++left, ++right) {
+        const Node& a = *left;
+        const Node& b = *right;
+        // TODO: should I overload the comparison operator instead of this ugly thing?
+        if (a.name != b.name || a.node_type != b.node_type || a.ret_type != b.ret_type
+            || a.arg_types != b.arg_types || a.sig_hash != b.sig_hash
+            || a.sig_dual_hash != b.sig_dual_hash || a.node_is_fixed != b.node_is_fixed
+            || a.weight_is_fixed != b.weight_is_fixed || a.is_weighted != b.is_weighted
+            || a.prob_change != b.prob_change || a.W != b.W || a.center_op != b.center_op
+            || a.get_feature() != b.get_feature() || a.get_feature_type() != b.get_feature_type()
+            || a.get_keep_split_feature() != b.get_keep_split_feature()
+            || a.split_categories != b.split_categories)
+            return false;
+    }
+    return true;
+}
+
 enum class MutationType {
     Point,
     Insert,
@@ -73,7 +105,7 @@ class PointMutation : public MutationBase
 public:
     template<Brush::ProgramType T>
     static auto mutate(Program<T>& program, Iter spot, Variation<T>& variator,
-                    const Parameters& params)
+                    const Parameters& params, vector<Node>& sampled)
     {
         // get_node_like will sample a similar node based on node_map_weights or
         // terminal_weights, and maybe will return a Node.
@@ -94,6 +126,7 @@ public:
         }
 
         // if optional contains a Node, we access its contained value as an address
+        sampled.push_back(*newNode);
         program.Tree.replace(spot, *newNode);
 
         return true;
@@ -143,7 +176,7 @@ public:
 
     template<Brush::ProgramType T>
     static auto mutate(Program<T>& program, Iter spot, Variation<T>& variator,
-                    const Parameters& params)
+                    const Parameters& params, vector<Node>& sampled)
     {
         auto spot_type = spot.node->data.ret_type;
         
@@ -160,6 +193,8 @@ public:
 
         if (!n) // there is no operator with compatible arguments
             return false;
+
+        sampled.push_back(*n);
 
         // moving the fixed weight to the new inserted node
         // (this should be done before Tree.wrap, because that function affects the spot reference)
@@ -193,6 +228,7 @@ public:
                 if (!opt)
                     return false;
 
+                sampled.push_back(*opt);
                 program.Tree.append_child(parent_node, opt.value());
             }
             // if types match, treat this spot as filled by the spot node 
@@ -205,6 +241,7 @@ public:
                 if (!opt)
                     return false;
 
+                sampled.push_back(*opt);
                 program.Tree.insert(spot, opt.value());
             }
         } 
@@ -247,7 +284,7 @@ public:
 
     template<Brush::ProgramType T>
     static auto mutate(Program<T>& program, Iter spot, Variation<T>& variator,
-                    const Parameters& params)
+                    const Parameters& params, vector<Node>& sampled)
     {
         // sample_terminal will sample based on terminal_weights. If it succeeds, 
         // then the new terminal will be in `opt.value()`
@@ -256,6 +293,8 @@ public:
         
         if (!opt) // there is no terminal with compatible arguments
             return false;
+
+        sampled.push_back(*opt);
 
         program.Tree.erase_children(spot); 
 
@@ -290,7 +329,8 @@ public:
                             // only weighted nodes can be toggled off
                             if ((!n.get_is_weighted())
                             &&  (!n.weight_is_fixed)
-                            &&  IsWeighable(n.node_type))
+                            &&  IsWeighable(n.node_type)
+                            &&  IsWeighable(n.ret_type))
                             {
                                 return n.get_prob_change();
                             }
@@ -311,7 +351,8 @@ public:
                     const Parameters& params)
     {
         if (spot.node->data.get_is_weighted()==true // cant turn on whats already on
-        ||  !IsWeighable(spot.node->data.node_type)) // does not accept weights (e.g. boolean)
+        ||  !IsWeighable(spot.node->data.node_type)
+        ||  !IsWeighable(spot.node->data.ret_type)) // discrete values have no optimizer weights
             return false; // false indicates that mutation failed and should return std::nullopt
 
         spot.node->data.set_is_weighted(true);
@@ -378,8 +419,6 @@ public:
     {
         vector<float> weights;
 
-        auto node_map = variator.search_space.node_map;
-
         // The minimal size increment would be 2 - replacing a constant with a weighted terminal.
         // we dont check for size constraints because the replacement can shrink the tree.
         Iter iter = program.Tree.begin();
@@ -390,8 +429,7 @@ public:
                         std::advance(iter, 1);
 
                         // we need to make sure there's some node to start the subtree
-                        if ((d >= params.max_depth)
-                        ||  (node_map.find(n.ret_type) == node_map.end()) )
+                        if (d >= params.max_depth)
                             return 0.0f;
                         else
                             return n.get_prob_change(); 
@@ -581,6 +619,7 @@ std::optional<Individual<T>> Variation<T>::cross(
             // fmt::print("other_spot : {}\n",other_spot.node->data);
             // swap subtrees at child_spot and other_spot
             child.Tree.move_ontop(child_spot, other_spot);
+            child.is_fitted_ = same_fitted_expression(mom, child);
             
             Individual<T> ind(child);
             ind.set_variation(mutation_type_to_string(MutationType::Crossover));
@@ -711,15 +750,16 @@ std::optional<Individual<T>> Variation<T>::mutate(
         // program tree. Here we call the mutation function and return the result
         
         bool success;
+        vector<Node> sampled;
         switch (mutation_choice) {
             case MutationType::Point:
-                success = PointMutation::mutate(child, spot, (*this), parameters);
+                success = PointMutation::mutate(child, spot, (*this), parameters, sampled);
                 break;
             case MutationType::Insert:
-                success = InsertMutation::mutate(child, spot, (*this), parameters);
+                success = InsertMutation::mutate(child, spot, (*this), parameters, sampled);
                 break;
             case MutationType::Delete:
-                success = DeleteMutation::mutate(child, spot, (*this), parameters);
+                success = DeleteMutation::mutate(child, spot, (*this), parameters, sampled);
                 break;
             case MutationType::Subtree:
                 success = SubtreeMutation::mutate(child, spot, (*this), parameters);
@@ -745,6 +785,7 @@ std::optional<Individual<T>> Variation<T>::mutate(
             // loose mutation --- it will try its best, but may return something slightly larger.
             // || attempts==3 // this is the final attempt, return whatever we got.
         ){
+            child.is_fitted_ = same_fitted_expression(parent, child);
             Individual<T> ind(child);
 
             ind.set_variation(choice);
@@ -760,7 +801,7 @@ std::optional<Individual<T>> Variation<T>::mutate(
             ||  choice.compare("insert")  == 0
             ||  choice.compare("delete")  == 0
             ) {
-                ind.set_sampled_nodes({spot.node->data});
+                ind.set_sampled_nodes(sampled);
             }
             
             return ind;
@@ -832,7 +873,6 @@ void Variation<T>::vary(Population<T>& pop, int island,
 
         ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
 
-        ind.is_fitted_ = false;
         ind.set_id(id);
 
         // TODO: smarter way of copying the entire fitness
@@ -880,20 +920,17 @@ void Variation<T>::update_ss()
         auto terminal_probs = bandit.second.sample_probs(true);
 
         for (auto& [terminal_name, terminal_prob] : terminal_probs) {
-            // Search for the index that matches the terminal name
-            auto it = std::find_if(
-                search_space.terminal_map.at(datatype).begin(),
-                search_space.terminal_map.at(datatype).end(), 
-                [&](auto& node) { return node.get_feature() == terminal_name; });
-
-            if (it == search_space.terminal_map.at(datatype).end()) {
+            const auto& nodes = search_space.terminal_map.at(datatype);
+            auto& weights = search_space.terminal_weights.at(datatype);
+            float total = 0.0f;
+            for (size_t i = 0; i < nodes.size(); ++i)
+                if (terminal_arm(nodes[i]) == terminal_name)
+                    total += weights[i];
+            if (total <= 0.0f)
                 continue;
-            }
-
-            auto index = std::distance(search_space.terminal_map.at(datatype).begin(), it);
-
-            // Update the terminal weights with the second value
-            search_space.terminal_weights.at(datatype)[index] = terminal_prob;
+            for (size_t i = 0; i < nodes.size(); ++i)
+                if (terminal_arm(nodes[i]) == terminal_name)
+                    weights[i] = terminal_prob * weights[i] / total;
         }
     }
 

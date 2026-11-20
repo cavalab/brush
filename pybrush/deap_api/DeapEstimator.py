@@ -19,8 +19,6 @@ from sklearn.utils.validation  import check_is_fitted
 from sklearn.base import BaseEstimator, ClassifierMixin, RegressorMixin, \
                          TransformerMixin
 
-from pandas.api.types import is_float_dtype, is_bool_dtype, is_integer_dtype
-
 from pybrush.EstimatorInterface import EstimatorInterface
 from pybrush.deap_api.nsga2 import nsga2
 from pybrush import individual
@@ -90,7 +88,8 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
         toolbox.register("update_current_gen", update_current_gen) 
 
         def assign_fit(ind, validation=False):
-            ind.program.fit(self.data_.get_training_data())
+            if not ind.is_fitted:
+                ind.fit(self.data_.get_training_data(), self.parameters_.class_weights)
             self.eval_.assign_fit(ind, self.data_, self.parameters_, validation)
             return ind
         
@@ -136,25 +135,7 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
             1-d array of (boolean) target values.
         """
         
-        self.feature_names_ = []
-        self.feature_types_ = []
-        if isinstance(X, pd.DataFrame):
-            self.feature_names_ = X.columns.to_list()
-            for values, dtype in zip(X.values.T, X.dtypes):
-                if is_bool_dtype(dtype):
-                    self.feature_types_.append('ArrayB')
-                elif is_integer_dtype(dtype):
-                    if np.all(np.logical_or(values == 0, values == 1)):
-                        self.feature_types_.append('ArrayB')
-                    else:
-                        self.feature_types_.append('ArrayI')
-                elif is_float_dtype(dtype):
-                    self.feature_types_.append('ArrayF')
-                else:
-                    raise ValueError(
-                        "Unsupported data type. Please try using an "
-                        "encoding method to convert the data to a supported "
-                        "format.")
+        self._prepare_feature_types(X)
 
         if self.mode == 'classification':
             self.classes_, y = np.unique(y, return_inverse=True)
@@ -165,6 +146,8 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
                                      feature_types=self.feature_types_,
                                      validation_size=self.validation_size,
                                      shuffle_split=self.shuffle_split)
+        if not self.feature_types_ or any(not t for t in self.feature_types_):
+            self.feature_types_ = self.data_.get_feature_types()
 
         # These have a default behavior to return something meaningfull if 
         # no values are set
@@ -255,21 +238,8 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
 
         check_is_fitted(self)
 
-        if self.data_ is None:
-            self.data_ = self._make_data(X, 
-                                    feature_names=self.feature_names_,
-                                    feature_types=self.feature_types_,
-                                    validation_size=self.validation_size,
-                                    shuffle_split=self.shuffle_split)
-            
-        if isinstance(X, pd.DataFrame):
-            X = X.values
-
-        assert isinstance(X, np.ndarray)
-
-        # Need to provide feature names because reference does not store order
-        data = Dataset(X=X, ref_dataset=self.data_, 
-                              feature_names=self.feature_names_)
+        data = self._make_data(X, feature_names=self.feature_names_,
+                               feature_types=self.feature_types_)
         
         prediction = np.asarray(self.best_estimator_.program.predict(data))
         if self.mode == 'classification':
@@ -339,21 +309,8 @@ class DeapClassifier(DeapEstimator,ClassifierMixin):
         
         check_is_fitted(self)
 
-        if isinstance(X, pd.DataFrame):
-            X = X.values
-
-        if self.data_ is None:
-            self.data_ = self._make_data(X, 
-                                    feature_names=self.feature_names_,
-                                    feature_types=self.feature_types_,
-                                    validation_size=self.validation_size,
-                                    shuffle_split=self.shuffle_split)
-            
-        assert isinstance(X, np.ndarray)
-
-        # Need to provide feature names because reference does not store order
-        data = Dataset(X=X, ref_dataset=self.data_, 
-                              feature_names=self.feature_names_)
+        data = self._make_data(X, feature_names=self.feature_names_,
+                               feature_types=self.feature_types_)
 
         prob = self.best_estimator_.program.predict_proba(data)
 

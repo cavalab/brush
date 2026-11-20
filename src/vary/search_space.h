@@ -383,7 +383,10 @@ struct SearchSpace
     /// @return `std::optional` that may contain a terminal Node of type `R`.     
     std::optional<Node> sample_terminal(DataType R, bool force_return=false) const
     {
-        // should I keep doing this check?
+        if (terminal_map.find(R) == terminal_map.end()
+            || terminal_weights.find(R) == terminal_weights.end())
+            return std::nullopt;
+        // TODO: should I keep doing this check?
         // if (terminal_map.find(R) == terminal_map.end()){
         //     auto msg = fmt::format("{} not in terminal_map\n",R);
         //     HANDLE_ERROR_THROW(msg); 
@@ -426,32 +429,36 @@ struct SearchSpace
     /// @return `std::optional` that may contain a randomly chosen operator matching return type `ret`
     std::optional<Node> sample_op(DataType ret) const
     {
-        check(ret);
         if (node_map.find(ret) == node_map.end())
             return std::nullopt;
-
-        //TODO: match terminal args_type (probably '{}' or something?)
-        auto ret_match = node_map.at(ret);
-
-        vector<float> args_w = get_weights(ret);
-
-        if (!has_solution_space(args_w.begin(), args_w.end()))
+        // User weights describe operators, not the number of signatures an
+        // operator happens to expose. Pick a node type first, then a signature.
+        // The idea is to avoid giving higher probabilities to an operator that
+        // has more signatures.
+        map<NodeType, vector<std::pair<Node, float>>> by_type;
+        for (const auto& [signature, nodes] : node_map.at(ret))
+            for (const auto& [type, node] : nodes) {
+                float weight = node_map_weights.at(ret).at(signature).at(type);
+                if (weight > 0.0f)
+                    by_type[type].emplace_back(node, weight);
+            }
+        if (by_type.empty())
             return std::nullopt;
 
-        auto arg_match = *r.select_randomly(ret_match.begin(), 
-                                            ret_match.end(), 
-                                            args_w.begin(), 
-                                            args_w.end());
-
-        vector<float> name_w = get_weights(ret, arg_match.first);
-
-        if (!has_solution_space(name_w.begin(), name_w.end()))
-            return std::nullopt;
-
-        return (*r.select_randomly(arg_match.second.begin(), 
-                                   arg_match.second.end(), 
-                                   name_w.begin(), 
-                                   name_w.end())).second;
+        vector<float> type_weights;
+        for (const auto& [type, entries] : by_type) {
+            float total = 0.0f;
+            for (const auto& entry : entries)
+                total += entry.second;
+            type_weights.push_back(total / entries.size());
+        }
+        auto chosen = r.select_randomly(by_type.begin(), by_type.end(),
+                                        type_weights.begin(), type_weights.end());
+        vector<float> signature_weights;
+        for (const auto& entry : chosen->second)
+            signature_weights.push_back(entry.second);
+        return r.select_randomly(chosen->second.begin(), chosen->second.end(),
+                                 signature_weights.begin(), signature_weights.end())->first;
     };
 
     /// @brief Get a specific node type that matches a return value. 
@@ -460,7 +467,6 @@ struct SearchSpace
     /// @return `std::optional` that may contain a Node of type `type` with return type `R`. 
     std::optional<Node> sample_op(NodeType type, DataType R, bool force_return=false) const
     {
-        check(R);
         if (node_map.find(R) == node_map.end())
             return std::nullopt;
 
@@ -499,7 +505,6 @@ struct SearchSpace
                                   size_t arg_count,
                                   bool force_return=false) const
     {
-        check(R);
         if (node_map.find(R) == node_map.end())
             return std::nullopt;
 

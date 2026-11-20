@@ -156,7 +156,7 @@ template<PT PType> struct Program
     Program<PType>& fit(const Dataset& d,
                         const vector<float>& class_weights)
     {
-        TreeType out =  Tree.begin().node->fit<TreeType>(d);
+        TreeType out =  Tree.begin().node->fit<TreeType>(d, class_weights);
         this->is_fitted_ = true;
         update_weights(d, class_weights);
         // this->valid = true;
@@ -317,15 +317,7 @@ template<PT PType> struct Program
             // get_n_weights, get_weights, and set_weights, are functions used in 
             // parameter optimization --- we can simply make weights invisible to parameter
             // optimization, and they will not be changed (so they remain fixed).
-            if (node.weight_is_fixed)
-                continue;
-
-            // some nodes cannot have their weights optimized, others must have.
-            // It is important that this condition also matches the condition in 
-            // the methods get_weights and set_weights.
-            if (Is<NodeType::OffsetSum>(node.node_type)
-            || (node.get_is_weighted() && IsWeighable(node.ret_type)
-                && IsWeighable(node.node_type)) )
+            if (HasOptimizableWeight(node))
                 ++count;
         }
         return count;
@@ -344,13 +336,7 @@ template<PT PType> struct Program
         {
             const auto& node = t.node->data; 
 
-            // skip fixed weights (this also avoid changing offsetSum weight if is locked)
-            if (node.weight_is_fixed)
-                continue;
-
-            if ( Is<NodeType::OffsetSum>(node.node_type)
-            ||   (node.get_is_weighted() && IsWeighable(node.ret_type)
-                && IsWeighable(node.node_type)) )
+            if (HasOptimizableWeight(node))
             {
                 weights(i) = node.W;
                 ++i;
@@ -377,13 +363,7 @@ template<PT PType> struct Program
         {
             auto& node = i.node->data; 
 
-            // skip fixed weights (this also avoid changing offsetSum weight if is locked)
-            if (node.weight_is_fixed)
-                continue;
-
-            if ( Is<NodeType::OffsetSum>(node.node_type)
-            ||   (node.get_is_weighted() && IsWeighable(node.ret_type)
-                && IsWeighable(node.node_type)) )
+            if (HasOptimizableWeight(node))
             {
                 node.W = weights(j);
                 ++j;
@@ -531,7 +511,7 @@ template<PT PType> struct Program
             // This is for the root --------------------------------------------
             // if the first node is weighted, make a dummy output node so that the 
             // first node's weight can be shown
-            if (i==0 && parent->data.get_is_weighted())
+            if (i==0 && parent->data.get_is_weighted() && IsWeighable(parent->data.node_type))
             {
                 // making the weight red if fixed
                 string font_color = "";
@@ -562,7 +542,15 @@ template<PT PType> struct Program
                 if (parent->data.weight_is_fixed)
                     threshold += "*"; // split weight fixed
 
-                node_label = fmt::format("{} >= {}?", feature, threshold);
+                if (parent->data.get_feature_type() == DataType::ArrayB)
+                    node_label = fmt::format("{}?", feature);
+                else if (parent->data.get_feature_type() == DataType::ArrayI
+                         && !parent->data.split_categories.empty())
+                    node_label = fmt::format("{} in {{{}}}?", feature,
+                                             fmt::join(parent->data.split_categories, ","));
+                else
+                    node_label = fmt::format("{} {} {}?", feature,
+                        parent->data.get_feature_type() == DataType::ArrayI ? "==" : ">=", threshold);
             }
             if (Is<NodeType::OffsetSum>(parent->data.node_type)){
                 node_label = fmt::format("Add"); 
@@ -584,7 +572,7 @@ template<PT PType> struct Program
                 // string kid_id = fmt::format("{}",fmt::ptr(kid));
                 // kid_id = kid_id.substr(2);
 
-                if (kid->data.get_is_weighted()
+                if (kid->data.get_is_weighted() && IsWeighable(kid->data.node_type)
                 && Isnt<NodeType::Constant, NodeType::MeanLabel, 
                         NodeType::OffsetSum, NodeType::SplitBest>(kid->data.node_type))
                 {
@@ -594,7 +582,7 @@ template<PT PType> struct Program
                 if (Is<NodeType::SplitOn>(parent->data.node_type)){
                     use_head_tail_labels=true;
                     if (j == 0)
-                        tail_label = fmt::format(">= {:.2f}",parent->data.W); 
+                        tail_label = "condition";
                     else if (j==1)
                         tail_label = "Y"; 
                     else

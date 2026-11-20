@@ -34,6 +34,7 @@ void bind_individual(py::module& m, string name)
        .def("init", &Class::init)
        .def_property("objectives", &Class::get_objectives, &Class::set_objectives)
        .def_property_readonly("program", &Class::get_program)
+       .def_property_readonly("is_fitted", &Class::get_is_fitted)
        .def_property_readonly("fitness", &Class::get_fitness)
        .def_property_readonly("id", &Class::get_id)
        .def("get_model", &Class::get_model, 
@@ -44,6 +45,10 @@ void bind_individual(py::module& m, string name)
        .def("fit",
             static_cast<Class &(Class::*)(const Dataset &d)>(&Class::fit),
             "fit from Dataset object")
+        .def("fit",
+            static_cast<Class &(Class::*)(const Dataset &, const vector<float>&)>(&Class::fit),
+            py::arg("data"), py::arg("class_weights"),
+            "fit from Dataset object with per-class weights")
         .def("fit",
             static_cast<Class &(Class::*)(const Ref<const ArrayXXf> &X, const Ref<const ArrayXf> &y)>(&Class::fit),
             "fit from X,y data")

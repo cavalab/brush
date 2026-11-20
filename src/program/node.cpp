@@ -24,7 +24,7 @@ auto Node::get_name(bool include_weight) const noexcept -> std::string
 
     if (Is<NodeType::Terminal>(node_type))
     {
-        if (is_weighted && !weight_is_one && include_weight)
+        if (get_is_weighted() && !weight_is_one && include_weight)
             return fmt::format("{:.2f}*{}", W, feature);
         else
             return feature;
@@ -46,7 +46,7 @@ auto Node::get_name(bool include_weight) const noexcept -> std::string
 
         return "Sum";
     }
-    else if (is_weighted && !weight_is_one && include_weight)
+    else if (get_is_weighted() && IsWeighable(node_type) && !weight_is_one && include_weight)
     {
         return fmt::format("{:.2f}*{}", W, name);
     }
@@ -60,12 +60,14 @@ string Node::get_model(const vector<string>& children) const noexcept
     if (children.empty())
         return get_name();
     else if (Is<NodeType::SplitBest>(node_type)){
-        return fmt::format("If({}>={:.2f},{},{})",
-            feature,
-            W,
-            children.at(0),
-            children.at(1)
-            );
+        if (feature_type == DataType::ArrayB)
+            return fmt::format("If({},{},{})", feature, children.at(0), children.at(1));
+        if (feature_type == DataType::ArrayI && !split_categories.empty())
+            return fmt::format("If({} in {{{}}},{},{})", feature,
+                               fmt::join(split_categories, ","), children.at(0), children.at(1));
+        const char* op = feature_type == DataType::ArrayI ? "==" : ">=";
+        return fmt::format("If({}{}{:.2f},{},{})", feature, op, W,
+                           children.at(0), children.at(1));
     }
     else if (Is<NodeType::SplitOn>(node_type)){
         if (arg_types.at(0) == DataType::ArrayB)
@@ -134,7 +136,8 @@ void to_json(json& j, const Node& p)
         {"ret_type", p.ret_type}, 
         {"arg_types", p.arg_types}, 
         {"feature", p.get_feature()},
-        {"feature_type", p.get_feature_type()}
+        {"feature_type", p.get_feature_type()},
+        {"split_categories", p.split_categories}
         // {"node_hash", p.get_node_hash()} 
     };
 }
@@ -330,6 +333,11 @@ void from_json(const json &j, Node& p)
     {
         j.at("feature_type").get_to(p.feature_type);
     }
+
+    if (j.contains("split_categories"))
+        j.at("split_categories").get_to(p.split_categories);
+    else
+        p.split_categories.clear();
 
     // if node has a ret_type and arg_types, get them. if not we need to make 
     // a signature

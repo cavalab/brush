@@ -28,6 +28,10 @@ void bind_program(py::module& m, string name)
             static_cast<T &(T::*)(const Dataset &d)>(&T::fit),
             "fit from Dataset object")
         .def("fit",
+            static_cast<T &(T::*)(const Dataset &, const vector<float>&)>(&T::fit),
+            py::arg("data"), py::arg("class_weights"),
+            "fit from Dataset object with per-class weights")
+        .def("fit",
             static_cast<T &(T::*)(const Ref<const ArrayXXf> &X, const Ref<const ArrayXf> &y)>(&T::fit),
             "fit from X,y data")
         .def("replace_program",

@@ -178,6 +178,20 @@ TEST_F(BinaryMetrics, RocAuc)
     EXPECT_NEAR(roc_auc_score(y, proba, loss, {1.0f, 2.0f}), 0.72f, 1e-6f);
 }
 
+TEST_F(BinaryMetrics, AveragePrecisionTreatsTiesAsOneThreshold)
+{
+    VectorXf y(4), probabilities(4), loss;
+    y << 1, 0, 1, 0;
+    probabilities << 0.9f, 0.9f, 0.1f, 0.1f;
+    EXPECT_NEAR(average_precision_score(y, probabilities, loss), 0.5f, 1e-6f);
+    EXPECT_NEAR(average_precision_score(y, probabilities, loss, {1.0f, 2.0f}), 2.0f / 3.0f, 1e-6f);
+
+    y.resize(2); probabilities.resize(2);
+    y << 1, 0;
+    probabilities << 0.5000001f, 0.5f; // testing brush precision handling
+    EXPECT_NEAR(average_precision_score(y, probabilities, loss), 1.0f, 1e-6f);
+}
+
 TEST_F(BinaryMetrics, RocAucTiedScores)
 {
     // tied scores are a single threshold (trapezoid, not a staircase)
@@ -335,9 +349,12 @@ TEST(Evaluation, MulticlassSoftmaxHasOneOutputPerClass)
     y << 0.0f, 1.0f, 2.0f, 0.0f, 1.0f, 2.0f;
 
     Dataset data(X, y, {}, {}, {}, true);
-    SearchSpace search_space(data);
+    // Keep this softmax test independent of unrelated invalid-domain operators
+    // such as log or acos, and make its generated branches reproducible.
+    SearchSpace search_space(data, {{"Add", 1.0f}}, false);
     Parameters params;
     params.set_random_state(42);
+    Brush::Util::r.set_seed(42);
     params.classification = true;
     params.set_n_classes(y);
     params.max_depth = 3;
@@ -367,6 +384,40 @@ TEST(Evaluation, MulticlassSoftmaxHasOneOutputPerClass)
     const auto simplified_probabilities = program.predict_proba(data);
     for (int row = 0; row < simplified_probabilities.rows(); ++row)
         EXPECT_NEAR(simplified_probabilities.row(row).sum(), 1.0f, 1e-6f);
+}
+
+TEST(Evaluation, FiveClassSoftmaxFitsAndPredicts)
+{
+    ArrayXXf X(10, 2);
+    ArrayXf y(10);
+    for (int i = 0; i < 10; ++i) {
+        X(i, 0) = static_cast<float>(i);
+        X(i, 1) = static_cast<float>(i % 2);
+        y(i) = static_cast<float>(i % 5); // 5 class setting (maximum n of classes Brush supports)
+    }
+
+    Dataset data(X, y, {}, {}, {"ArrayF", "ArrayB"}, true);
+    SearchSpace search_space(data, {{"Add", 1.0f}}, false);
+    Parameters params;
+    params.classification = true;
+    params.set_n_classes(y);
+    params.max_depth = 3;
+    params.max_size = 20;
+    Brush::Util::r.set_seed(42);
+
+    auto program = search_space.make_multiclass_classifier(3, 20, params);
+    ASSERT_EQ(program.Tree.begin().node->data.arg_types.size(), 5U);
+    program.fit(data, {1.0f, 2.0f, 3.0f, 4.0f, 5.0f});
+
+    const auto probabilities = program.predict_proba(data);
+    ASSERT_EQ(probabilities.rows(), X.rows());
+    ASSERT_EQ(probabilities.cols(), 5);
+    ASSERT_TRUE(probabilities.isFinite().all());
+    for (int row = 0; row < probabilities.rows(); ++row)
+        EXPECT_NEAR(probabilities.row(row).sum(), 1.0f, 1e-6f);
+
+    MulticlassClassifierProgram restored = json(program);
+    EXPECT_TRUE(restored.predict_proba(data).isApprox(probabilities, 1e-6f));
 }
 
 TEST(Evaluation, SplitThresholdsAreNotOptimizerParameters)
